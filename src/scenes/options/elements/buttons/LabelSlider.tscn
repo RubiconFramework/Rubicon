@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlbq1suq2t0j3"]
+
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_tiral"]
+
+[node name="ScrollSpeed" type="Label"]
+mouse_filter = 1
+theme = ExtResource("1_tiral")
+theme_override_font_sizes/font_size = 22
+text = " %Name% [50%] "
+
+[node name="Slider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 378.0
+offset_right = 898.0
+offset_bottom = 35.0
+value = 50.0
+ticks_on_borders = true

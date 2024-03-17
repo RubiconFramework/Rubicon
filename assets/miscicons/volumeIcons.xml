@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="VolumeIcons.png">
+	<!-- Created with Adobe Animate version 22.0.3.179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="full0000" x="2" y="2" width="77" height="82"/>
+	<SubTexture name="full0001" x="81" y="2" width="77" height="82"/>
+	<SubTexture name="mid0000" x="160" y="2" width="85" height="83"/>
+	<SubTexture name="mid0001" x="2" y="87" width="85" height="83"/>
+	<SubTexture name="mute0000" x="89" y="87" width="69" height="82"/>
+	<SubTexture name="mute0001" x="160" y="87" width="69" height="82"/>
+</TextureAtlas>

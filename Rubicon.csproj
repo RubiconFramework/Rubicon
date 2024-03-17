@@ -1,0 +1,360 @@
+<Project Sdk="Godot.NET.Sdk/4.2.1">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
+    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <LangVersion>latest</LangVersion>
+    <IsPackable>false</IsPackable>
+    <PackageId />
+    <Version />
+    <Authors />
+    <Company>trolling incorporated</Company>
+    <Product>Rubicon Engine</Product>
+    <AssemblyVersion>1.0</AssemblyVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
+    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="YamlDotNet" Version="15.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
+    <Content Include="addons\sparrowconverter\plugin.cfg" />
+    <Content Include="addons\sparrowconverter\SparrowConvert.tscn" />
+    <Content Include="assets\fonts\alphabet\bold.png" />
+    <Content Include="assets\fonts\alphabet\bold.res" />
+    <Content Include="assets\fonts\alphabet\bold.xml" />
+    <Content Include="assets\fonts\alphabet\default.png" />
+    <Content Include="assets\fonts\alphabet\default.res" />
+    <Content Include="assets\fonts\alphabet\default.xml" />
+    <Content Include="assets\fonts\funkin.ttf" />
+    <Content Include="assets\fonts\pixel.otf" />
+    <Content Include="assets\fonts\vcr.ttf" />
+    <Content Include="assets\gameplay\characters\bf.tscn" />
+    <Content Include="assets\gameplay\characters\bfDead.tscn" />
+    <Content Include="assets\gameplay\characters\bfPixel.tscn" />
+    <Content Include="assets\gameplay\characters\bfPixelDead.tscn" />
+    <Content Include="assets\gameplay\characters\blank.tscn" />
+    <Content Include="assets\gameplay\characters\dad.tscn" />
+    <Content Include="assets\gameplay\characters\gf.tscn" />
+    <Content Include="assets\gameplay\characters\gfPixel.tscn" />
+    <Content Include="assets\gameplay\characters\icons\iconBF.png" />
+    <Content Include="assets\gameplay\characters\icons\iconBFPixel.png" />
+    <Content Include="assets\gameplay\characters\icons\iconDad.png" />
+    <Content Include="assets\gameplay\characters\icons\iconFace.png" />
+    <Content Include="assets\gameplay\characters\icons\iconGF.png" />
+    <Content Include="assets\gameplay\characters\images\bf\dead.png" />
+    <Content Include="assets\gameplay\characters\images\bf\dead.res" />
+    <Content Include="assets\gameplay\characters\images\bf\dead.xml" />
+    <Content Include="assets\gameplay\characters\images\bf\normal.png" />
+    <Content Include="assets\gameplay\characters\images\bf\normal.res" />
+    <Content Include="assets\gameplay\characters\images\bf\normal.xml" />
+    <Content Include="assets\gameplay\characters\images\bf\pixel\dead.png" />
+    <Content Include="assets\gameplay\characters\images\bf\pixel\dead.res" />
+    <Content Include="assets\gameplay\characters\images\bf\pixel\dead.xml" />
+    <Content Include="assets\gameplay\characters\images\bf\pixel\normal.png" />
+    <Content Include="assets\gameplay\characters\images\bf\pixel\normal.res" />
+    <Content Include="assets\gameplay\characters\images\bf\pixel\normal.xml" />
+    <Content Include="assets\gameplay\characters\images\dad\dad.png" />
+    <Content Include="assets\gameplay\characters\images\dad\dad.res" />
+    <Content Include="assets\gameplay\characters\images\dad\dad.xml" />
+    <Content Include="assets\gameplay\characters\images\gf\normal.png" />
+    <Content Include="assets\gameplay\characters\images\gf\normal.res" />
+    <Content Include="assets\gameplay\characters\images\gf\normal.xml" />
+    <Content Include="assets\gameplay\characters\images\gf\pixel.png" />
+    <Content Include="assets\gameplay\characters\images\gf\pixel.res" />
+    <Content Include="assets\gameplay\characters\images\gf\pixel.xml" />
+    <Content Include="assets\gameplay\hud\default\Countdown\go.png" />
+    <Content Include="assets\gameplay\hud\default\Countdown\ready.png" />
+    <Content Include="assets\gameplay\hud\default\Countdown\set.png" />
+    <Content Include="assets\gameplay\hud\default\Score\combo.png" />
+    <Content Include="assets\gameplay\hud\default\Score\Combo.res" />
+    <Content Include="assets\gameplay\hud\default\Score\judgements.png" />
+    <Content Include="assets\gameplay\hud\default\Score\Judgements.res" />
+    <Content Include="assets\gameplay\hud\default\Strums\assets.png" />
+    <Content Include="assets\gameplay\hud\default\Strums\Assets.res" />
+    <Content Include="assets\gameplay\hud\default\Strums\assets.xml" />
+    <Content Include="assets\gameplay\hud\default\Strums\splashes.png" />
+    <Content Include="assets\gameplay\hud\default\Strums\Splashes.res" />
+    <Content Include="assets\gameplay\hud\default\Strums\splashes.xml" />
+    <Content Include="assets\gameplay\hud\default\style.res" />
+    <Content Include="assets\gameplay\hud\pixel\Countdown\date.png" />
+    <Content Include="assets\gameplay\hud\pixel\Countdown\ready.png" />
+    <Content Include="assets\gameplay\hud\pixel\Countdown\set.png" />
+    <Content Include="assets\gameplay\hud\pixel\Score\combo.png" />
+    <Content Include="assets\gameplay\hud\pixel\Score\Combo.res" />
+    <Content Include="assets\gameplay\hud\pixel\Score\judgements.png" />
+    <Content Include="assets\gameplay\hud\pixel\Score\Judgements.res" />
+    <Content Include="assets\gameplay\hud\pixel\Strums\assets.png" />
+    <Content Include="assets\gameplay\hud\pixel\Strums\Assets.res" />
+    <Content Include="assets\gameplay\hud\pixel\Strums\splashes.png" />
+    <Content Include="assets\gameplay\hud\pixel\Strums\Splashes.res" />
+    <Content Include="assets\gameplay\hud\pixel\Strums\splashes.xml" />
+    <Content Include="assets\gameplay\hud\pixel\style.res" />
+    <Content Include="assets\gameplay\notes\damage\Assets\hurtNoteAssets.png" />
+    <Content Include="assets\gameplay\notes\damage\Assets\hurtNoteAssets.res" />
+    <Content Include="assets\gameplay\notes\damage\Assets\hurtNoteAssets.xml" />
+    <Content Include="assets\gameplay\notes\damage\Assets\hurtNoteSplashes.png" />
+    <Content Include="assets\gameplay\notes\damage\Assets\hurtNoteSplashes.xml" />
+    <Content Include="assets\gameplay\notes\damage\Note.tscn" />
+    <Content Include="assets\gameplay\notes\damage\splashes.res" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\assets.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Assets.res" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains.res" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\down hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\down hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\left hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\left hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\right hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\right hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\up hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\default\Sustains\up hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\assets.res" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains.res" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\down hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\down hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\left hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\left hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\right hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\right hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\up hold end.png" />
+    <Content Include="assets\gameplay\notes\default\Assets\pixel\sustains\up hold piece.png" />
+    <Content Include="assets\gameplay\notes\default\Default.tscn" />
+    <Content Include="assets\gameplay\stages\3d\stage\stage.tscn" />
+    <Content Include="assets\gameplay\stages\stage\Images\stageback.png" />
+    <Content Include="assets\gameplay\stages\stage\Images\stagecurtains.png" />
+    <Content Include="assets\gameplay\stages\stage\Images\stagefront.png" />
+    <Content Include="assets\gameplay\stages\stage\Images\stage_light.png" />
+    <Content Include="assets\gameplay\stages\stage\Stage.tscn" />
+    <Content Include="assets\menus\charteditor\checked.png" />
+    <Content Include="assets\menus\charteditor\checkedCircle.png" />
+    <Content Include="assets\menus\charteditor\hold.png" />
+    <Content Include="assets\menus\charteditor\note.png" />
+    <Content Include="assets\menus\charteditor\tail.png" />
+    <Content Include="assets\menus\charteditor\unchecked.png" />
+    <Content Include="assets\menus\charteditor\uncheckedCircle.png" />
+    <Content Include="assets\menus\mainmenu\freeplay.png" />
+    <Content Include="assets\menus\mainmenu\freeplay.res" />
+    <Content Include="assets\menus\mainmenu\freeplay.xml" />
+    <Content Include="assets\menus\mainmenu\options.png" />
+    <Content Include="assets\menus\mainmenu\options.res" />
+    <Content Include="assets\menus\mainmenu\options.xml" />
+    <Content Include="assets\menus\mainmenu\storyMode.png" />
+    <Content Include="assets\menus\mainmenu\storyMode.res" />
+    <Content Include="assets\menus\mainmenu\storyMode.xml" />
+    <Content Include="assets\menus\menuBG.png" />
+    <Content Include="assets\menus\menuBGBlue.png" />
+    <Content Include="assets\menus\menuBGDesat.png" />
+    <Content Include="assets\menus\optionsmenu\checkboxThingie.png" />
+    <Content Include="assets\menus\optionsmenu\checkboxThingie.res" />
+    <Content Include="assets\menus\optionsmenu\checkboxThingie.xml" />
+    <Content Include="assets\menus\storymenu\campaign_menu_UI_assets.png" />
+    <Content Include="assets\menus\storymenu\campaign_menu_UI_assets.res" />
+    <Content Include="assets\menus\storymenu\campaign_menu_UI_assets.xml" />
+    <Content Include="assets\menus\storymenu\Characters\bf.tscn" />
+    <Content Include="assets\menus\storymenu\Characters\gf.tscn" />
+    <Content Include="assets\menus\storymenu\Characters\images\boyfriend.png" />
+    <Content Include="assets\menus\storymenu\Characters\images\boyfriend.res" />
+    <Content Include="assets\menus\storymenu\Characters\images\boyfriend.xml" />
+    <Content Include="assets\menus\storymenu\Characters\images\girlfriend.png" />
+    <Content Include="assets\menus\storymenu\Characters\images\girlfriend.res" />
+    <Content Include="assets\menus\storymenu\Characters\images\girlfriend.xml" />
+    <Content Include="assets\menus\storymenu\Difficulties\easy.png" />
+    <Content Include="assets\menus\storymenu\Difficulties\hard.png" />
+    <Content Include="assets\menus\storymenu\Difficulties\normal.png" />
+    <Content Include="assets\menus\storymenu\Weeks\week1.png" />
+    <Content Include="assets\menus\titlescreen\gfDanceTitle.png" />
+    <Content Include="assets\menus\titlescreen\gfDanceTitle.res" />
+    <Content Include="assets\menus\titlescreen\gfDanceTitle.xml" />
+    <Content Include="assets\menus\titlescreen\logoBumpin.png" />
+    <Content Include="assets\menus\titlescreen\logoBumpin.res" />
+    <Content Include="assets\menus\titlescreen\logoBumpin.xml" />
+    <Content Include="assets\menus\titlescreen\newgrounds_logo.png" />
+    <Content Include="assets\menus\titlescreen\titleEnter.png" />
+    <Content Include="assets\menus\titlescreen\titleEnter.res" />
+    <Content Include="assets\menus\titlescreen\titleEnter.xml" />
+    <Content Include="assets\miscicons\alphabet.png" />
+    <Content Include="assets\miscicons\autoload.png" />
+    <Content Include="assets\miscicons\camera.png" />
+    <Content Include="assets\miscicons\camera.res" />
+    <Content Include="assets\miscicons\camera.xml" />
+    <Content Include="assets\miscicons\fnf.png" />
+    <Content Include="assets\miscicons\godot.svg" />
+    <Content Include="assets\miscicons\rubicon.png" />
+    <Content Include="assets\miscicons\volumeIcons.png" />
+    <Content Include="assets\miscicons\volumeIcons.res" />
+    <Content Include="assets\miscicons\volumeIcons.xml" />
+    <Content Include="assets\music\breakfast.ogg" />
+    <Content Include="assets\music\freakyMenu.ogg" />
+    <Content Include="assets\shaders\BasicColorShader.gdshader" />
+    <Content Include="assets\shaders\ChartLine.gdshader" />
+    <Content Include="assets\shaders\NoteBloom.gdshader" />
+    <Content Include="assets\shaders\TitleScreenShader.gdshader" />
+    <Content Include="assets\shaders\TitleScreenShaderMaterial.tres" />
+    <Content Include="assets\songs\dadbattle\easy.json" />
+    <Content Include="assets\songs\dadbattle\hard.json" />
+    <Content Include="assets\songs\dadbattle\normal.json" />
+    <Content Include="assets\songs\dadbattle\song\inst.ogg" />
+    <Content Include="assets\songs\dadbattle\song\inst.ogg.import" />
+    <Content Include="assets\songs\dadbattle\song\voices.ogg" />
+    <Content Include="assets\songs\dadbattle\song\voices.ogg.import" />
+    <Content Include="assets\songs\imscared\normal.json" />
+    <Content Include="assets\songs\imscared\song\inst.ogg" />
+    <Content Include="assets\songs\imscared\song\inst.ogg.import" />
+    <Content Include="assets\songs\imscared\song\voices.ogg" />
+    <Content Include="assets\songs\imscared\song\voices.ogg.import" />
+    <Content Include="assets\songs\test\normal.json" />
+    <Content Include="assets\songs\test\song\inst.ogg" />
+    <Content Include="assets\songs\test\song\inst.ogg.import" />
+    <Content Include="assets\songs\test\song\voices.ogg" />
+    <Content Include="assets\songs\test\song\voices.ogg.import" />
+    <Content Include="assets\sounds\hitSound.ogg" />
+    <Content Include="assets\sounds\menus\cancelMenu.ogg" />
+    <Content Include="assets\sounds\menus\confirmMenu.ogg" />
+    <Content Include="assets\sounds\menus\scrollMenu.ogg" />
+    <Content Include="assets\sounds\missNote1.ogg" />
+    <Content Include="assets\sounds\missNote2.ogg" />
+    <Content Include="assets\sounds\missNote3.ogg" />
+    <Content Include="assets\themes\Default.tres" />
+    <Content Include="assets\themes\default_bus_layout.tres" />
+    <Content Include="assets\themes\Duo\Duo's Theme.tres" />
+    <Content Include="assets\themes\Duo\real.jpg" />
+    <Content Include="assets\themes\Duo\real.jpg.import" />
+    <Content Include="assets\themes\Duo\styleboxflat.tres" />
+    <Content Include="assets\themes\healthbar\Opponent.tres" />
+    <Content Include="assets\themes\healthbar\Player.tres" />
+    <Content Include="project.godot" />
+    <Content Include="README.md" />
+    <Content Include="Rubicon.sln" />
+    <Content Include="src\backend\ui\alphabet\Alphabet.tscn" />
+    <Content Include="src\gameplay\elements\strumlines\4K.tscn" />
+    <Content Include="src\gameplay\elements\strumlines\Strum.tscn" />
+    <Content Include="src\gameplay\GameplayScene.tscn" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Source\Tools\AdobeJsonConverter\**" />
+    <Compile Remove="Assets\**" />
+    <Compile Remove="Source\**" />
+    <Compile Remove="src\tools\jsonyamlconverter\sparrow\**" />
+    <Compile Remove="src\scripts\classes\**" />
+    <Compile Remove="src\scripts\**" />
+    <Compile Remove="src\tools\**" />
+    <Compile Remove="src\menus\title\**" />
+    <Compile Remove="src\menus\mainmenu\**" />
+    <Compile Remove="addons\yamljsonconverter\**" />
+    <Compile Update="src\menus\options\UserSettings.cs">
+      <DependentUpon>OptionsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Update="src\menus\options\DirectoryIterator.cs">
+      <DependentUpon>OptionsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Update="src\menus\options\AllUserSettings.cs">
+      <DependentUpon>OptionsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Update="src\menus\options\GeneralUserSettings.cs">
+      <DependentUpon>OptionsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Update="src\menus\options\SettingsManagement.cs">
+      <DependentUpon>OptionsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Remove="src\gameplay\elements\strumlines\default\**" />
+    <Compile Update="src\gameplay\Characters.cs">
+      <DependentUpon>GameplayScene.cs</DependentUpon>
+    </Compile>
+    <Compile Update="src\gameplay\Notes.cs">
+      <DependentUpon>GameplayScene.cs</DependentUpon>
+    </Compile>
+    <Compile Update="src\gameplay\Song.cs">
+      <DependentUpon>GameplayScene.cs</DependentUpon>
+    </Compile>
+    <Compile Remove="assets\gameplay\characters\3d\**" />
+    <Compile Update="src\menus\options\Settings.cs">
+      <DependentUpon>OptionsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Remove="exclude\**" />
+    <Compile Remove="assets\songs\dadbattle\Audio\**" />
+    <Compile Remove="assets\songs\test\Audio\**" />
+    <Compile Remove="assets\songs\imscared\Audio\**" />
+    <Compile Remove="addons\jsonyamlconverter\**" />
+    <Compile Remove="src\autoload\**" />
+    <Compile Remove="src\backend\common\enums\optionsmenu\**" />
+    <Compile Remove="src\backend\common\abstract\**" />
+    <Compile Remove="src\backend\common\classes\settingsdata\**" />
+    <Compile Remove="src\backend\common\enums\usersettings\**" />
+    <Compile Update="src\menus\options\elements\SettingsData.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Remove="src\menus\options\elements\usersettings\types\**" />
+    <Compile Update="src\menus\options\SettingsData.cs">
+      <DependentUpon>OptionsMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Remove="src\menus\options\elements\usersettings\**" />
+    <Compile Remove="src\backend\common\attributes\**" />
+    <Compile Remove="src\menus\options\elements\data\**" />
+    <Compile Remove="src\menus\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
+    <EmbeddedResource Remove="Assets\**" />
+    <EmbeddedResource Remove="Source\**" />
+    <EmbeddedResource Remove="src\tools\jsonyamlconverter\sparrow\**" />
+    <EmbeddedResource Remove="src\scripts\classes\**" />
+    <EmbeddedResource Remove="src\scripts\**" />
+    <EmbeddedResource Remove="src\tools\**" />
+    <EmbeddedResource Remove="src\menus\title\**" />
+    <EmbeddedResource Remove="src\menus\mainmenu\**" />
+    <EmbeddedResource Remove="addons\yamljsonconverter\**" />
+    <EmbeddedResource Remove="src\gameplay\elements\strumlines\default\**" />
+    <EmbeddedResource Remove="assets\gameplay\characters\3d\**" />
+    <EmbeddedResource Remove="exclude\**" />
+    <EmbeddedResource Remove="assets\songs\dadbattle\Audio\**" />
+    <EmbeddedResource Remove="assets\songs\test\Audio\**" />
+    <EmbeddedResource Remove="assets\songs\imscared\Audio\**" />
+    <EmbeddedResource Remove="addons\jsonyamlconverter\**" />
+    <EmbeddedResource Remove="src\autoload\**" />
+    <EmbeddedResource Remove="src\backend\common\enums\optionsmenu\**" />
+    <EmbeddedResource Remove="src\backend\common\abstract\**" />
+    <EmbeddedResource Remove="src\backend\common\classes\settingsdata\**" />
+    <EmbeddedResource Remove="src\backend\common\enums\usersettings\**" />
+    <EmbeddedResource Remove="src\menus\options\elements\usersettings\types\**" />
+    <EmbeddedResource Remove="src\menus\options\elements\usersettings\**" />
+    <EmbeddedResource Remove="src\backend\common\attributes\**" />
+    <EmbeddedResource Remove="src\menus\options\elements\data\**" />
+    <EmbeddedResource Remove="src\menus\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\**\*.tscn" />
+    <None Update="src\autoload\debug\Notification.tscn">
+      <DependentUpon>ScreenNotifier.tscn</DependentUpon>
+    </None>
+    <None Remove="src\autoload\**" />
+    <None Remove="src\backend\common\enums\optionsmenu\**" />
+    <None Remove="src\backend\common\abstract\**" />
+    <None Remove="src\backend\common\classes\settingsdata\**" />
+    <None Remove="src\backend\common\enums\usersettings\**" />
+    <None Remove="src\menus\options\elements\usersettings\types\**" />
+    <None Remove="src\menus\options\elements\usersettings\**" />
+    <None Remove="src\backend\common\attributes\**" />
+    <None Remove="src\menus\options\elements\data\**" />
+    <None Remove="src\menus\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="**\*.import" />
+    <Compile Remove="**\*.import" />
+    <EmbeddedResource Remove="**\*.import" />
+    <None Remove="**\*.import" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\music\styles\GameOver\default\" />
+    <Folder Include="assets\music\styles\GameOver\pixel\" />
+    <Folder Include="assets\sounds\styles\default\Countdown\" />
+    <Folder Include="assets\sounds\styles\default\Death\" />
+    <Folder Include="assets\sounds\styles\pixel\Countdown\" />
+    <Folder Include="assets\sounds\styles\pixel\Death\" />
+    <Folder Include="src\scenes\credits\" />
+    <Folder Include="src\scenes\freeplay\" />
+  </ItemGroup>
+</Project>

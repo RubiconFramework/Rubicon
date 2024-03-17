@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3p6cg58tlfpy"]
+
+[ext_resource type="Script" path="res://src/gameplay/elements/scripts/Character2D.cs" id="1_p8mbv"]
+
+[sub_resource type="Animation" id="Animation_bynva"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_t4xji"]
+
+[sub_resource type="Animation" id="Animation_av0pr"]
+
+[sub_resource type="Animation" id="Animation_lanbj"]
+
+[sub_resource type="Animation" id="Animation_hldmo"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1es1c"]
+_data = {
+"idle": SubResource("Animation_bynva"),
+"singDOWN": SubResource("Animation_t4xji"),
+"singLEFT": SubResource("Animation_av0pr"),
+"singRIGHT": SubResource("Animation_hldmo"),
+"singUP": SubResource("Animation_lanbj")
+}
+
+[node name="Blank" type="Node2D"]
+script = ExtResource("1_p8mbv")
+mirrorCharacter = false
+spritePath = NodePath("AnimatedSprite2D")
+playerPath = NodePath("AnimatedSprite2D/AnimationPlayer")
+metadata/_edit_pinned_properties_ = [&"mirrorCharacter"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_1es1c")
+}
+
+[node name="CameraPos" type="Node2D" parent="."]

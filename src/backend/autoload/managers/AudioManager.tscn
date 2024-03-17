@@ -1,0 +1,198 @@
+[gd_scene load_steps=18 format=3 uid="uid://xmfla0tq4xbf"]
+
+[ext_resource type="Script" path="res://src/backend/autoload/managers/AudioManager.cs" id="1_eecsl"]
+[ext_resource type="AudioStream" uid="uid://co6mc8c7457wv" path="res://assets/music/freakyMenu.ogg" id="2_t1ien"]
+[ext_resource type="AudioStream" uid="uid://c0ke0htau7fq5" path="res://assets/music/jestersPity.mp3" id="3_rssb1"]
+[ext_resource type="AudioStream" uid="uid://uemo08ri7mqa" path="res://assets/sounds/menus/cancelMenu.ogg" id="4_01b8y"]
+[ext_resource type="AudioStream" uid="uid://cmva4p55k0xy7" path="res://assets/music/elseVI.mp3" id="4_pjttc"]
+[ext_resource type="AudioStream" uid="uid://dierbuc2e0638" path="res://assets/sounds/menus/scrollMenu.ogg" id="5_2fdq0"]
+[ext_resource type="AudioStream" uid="uid://cherw65y5re5a" path="res://assets/music/FireMenuSong.ogg" id="5_tx55a"]
+[ext_resource type="AudioStream" uid="uid://cx0p8bngscanj" path="res://assets/sounds/menus/confirmMenu.ogg" id="6_74pqv"]
+[ext_resource type="SpriteFrames" uid="uid://csiqsia2r7f2" path="res://assets/miscicons/volumeIcons.res" id="7_xr3dk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7v5m"]
+bg_color = Color(0.215686, 0.215686, 0.215686, 0.498039)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yq0le"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5myj3"]
+bg_color = Color(0.345098, 0.345098, 0.345098, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5prft"]
+bg_color = Color(1, 1, 1, 0.694118)
+
+[sub_resource type="Animation" id="Animation_60ns1"]
+resource_name = "In"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VolumeManager/dumbass panel/VolumeBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VolumeManager/dumbass panel/VolumeIcon:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VolumeManager/dumbass panel:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1.8025, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dbg63"]
+resource_name = "Out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VolumeManager/dumbass panel/VolumeBar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VolumeManager/dumbass panel/VolumeIcon:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VolumeManager/dumbass panel:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1.8025),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uco4k"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2ws5"]
+_data = {
+"In": SubResource("Animation_60ns1"),
+"Out": SubResource("Animation_dbg63"),
+"RESET": SubResource("Animation_uco4k")
+}
+
+[node name="AudioPlayer" type="Node"]
+script = ExtResource("1_eecsl")
+
+[node name="music" type="Node" parent="."]
+
+[node name="freakyMenu" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("2_t1ien")
+
+[node name="jestersPity" type="AudioStreamPlayer" parent="music"]
+editor_description = "what the fuck is this duo"
+stream = ExtResource("3_rssb1")
+
+[node name="elseVI" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("4_pjttc")
+
+[node name="AbsoluteBanger" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("5_tx55a")
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="menus" type="Node" parent="sounds"]
+
+[node name="cancelMenu" type="AudioStreamPlayer" parent="sounds/menus"]
+stream = ExtResource("4_01b8y")
+max_polyphony = 10
+
+[node name="scrollMenu" type="AudioStreamPlayer" parent="sounds/menus"]
+stream = ExtResource("5_2fdq0")
+max_polyphony = 10
+
+[node name="confirmMenu" type="AudioStreamPlayer" parent="sounds/menus"]
+stream = ExtResource("6_74pqv")
+max_polyphony = 10
+
+[node name="VolumeManager" type="CanvasLayer" parent="."]
+
+[node name="dumbass panel" type="Panel" parent="VolumeManager"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
+offset_top = 18.0
+offset_right = 171.0
+offset_bottom = 52.0
+grow_horizontal = 2
+scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(170.5, 16.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7v5m")
+
+[node name="VolumeBar" type="ProgressBar" parent="VolumeManager/dumbass panel"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_yq0le")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = -9.0
+offset_right = 163.5
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5myj3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5prft")
+value = 50.0
+show_percentage = false
+
+[node name="VolumeIcon" type="AnimatedSprite2D" parent="VolumeManager/dumbass panel"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(20, 17)
+scale = Vector2(0.355072, 0.280488)
+sprite_frames = ExtResource("7_xr3dk")
+animation = &"mute"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VolumeManager"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_n2ws5")
+}

@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvrifmg2wk0kt"]
+
+[ext_resource type="Theme" uid="uid://b1qc2jc1jged7" path="res://assets/themes/duo/ScreenNotifier [Duo].tres" id="1_eexnj"]
+[ext_resource type="FontFile" uid="uid://kc4e76kwbupt" path="res://assets/fonts/funkin.ttf" id="2_dp5xk"]
+
+[sub_resource type="Animation" id="Animation_60y5w"]
+resource_name = "in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_fi6yn"]
+resource_name = "out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t4u7u"]
+_data = {
+"in": SubResource("Animation_60y5w"),
+"out": SubResource("Animation_fi6yn")
+}
+
+[node name="Notification" type="Panel"]
+offset_left = 32.0
+offset_top = 36.0
+offset_right = 300.0
+offset_bottom = 67.0
+theme = ExtResource("1_eexnj")
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 0
+offset_right = 268.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("2_dp5xk")
+theme_override_font_sizes/font_size = 19
+text = "[INFO] Hi"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters_behavior = 3
+
+[node name="DurationBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 268.0
+offset_bottom = 35.0
+theme = ExtResource("1_eexnj")
+value = 50.0
+show_percentage = false
+
+[node name="animalationtolongplayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t4u7u")
+}

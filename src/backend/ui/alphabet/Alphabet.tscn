@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bphue4ru7nca0"]
+
+[ext_resource type="Script" path="res://src/backend/ui/alphabet/Alphabet.cs" id="1_kuwlo"]
+[ext_resource type="SpriteFrames" path="res://assets/fonts/alphabet/bold.res" id="2_54pt7"]
+[ext_resource type="SpriteFrames" path="res://assets/fonts/alphabet/default.res" id="3_f4k64"]
+
+[node name="Alphabet" type="ReferenceRect"]
+custom_minimum_size = Vector2(0, 120)
+offset_bottom = 120.0
+border_color = Color(1, 0, 0, 0)
+script = ExtResource("1_kuwlo")
+
+[node name="BoldTemplate" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("2_54pt7")
+animation = &"Z"
+centered = false
+
+[node name="DefaultTemplate" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("3_f4k64")
+animation = &"M"
+centered = false
+
+[node name="Letters" type="Node2D" parent="."]

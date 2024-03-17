@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://2dxpk5xecnnw"]
+
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_57sq6"]
+[ext_resource type="Script" path="res://src/scenes/options/elements/buttons/KeybindButton.cs" id="2_i0ofq"]
+
+[node name="KeybindButton" type="Button"]
+theme = ExtResource("1_57sq6")
+text = " %Action% "
+alignment = 0
+script = ExtResource("2_i0ofq")
+Action = "Action"
+
+[node name="AppendKey" type="Button" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_right = 227.0
+offset_bottom = 35.0
+text = "+"

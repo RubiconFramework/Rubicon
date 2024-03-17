@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bneh0rssj57b0"]
+
+[ext_resource type="Script" path="res://Assets/Gameplay/Notes/damage/Damage.gd" id="1_oqty4"]
+[ext_resource type="SpriteFrames" uid="uid://cfir4dsqcpk5s" path="res://Assets/gameplay/notes/damage/splashes.res" id="2_krjsy"]
+[ext_resource type="Texture2D" uid="uid://dcu1auf2cj0ob" path="res://Assets/gameplay/notes/default/assets/default/Sustains/left hold end.png" id="3_cwsen"]
+[ext_resource type="SpriteFrames" path="res://assets/gameplay/notes/damage/Assets/hurtNoteAssets.res" id="4_gdpee"]
+[ext_resource type="Script" path="res://source/scripts/classes/PlayerSprite.gd" id="5_gqkx0"]
+
+[node name="Damage" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_oqty4")
+health_gain_mult = 0.0
+should_hit = false
+skinable = false
+custom_splash = ExtResource("2_krjsy")
+hit_window_multiplier = 0.6
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
+offset_left = -56.0
+offset_right = 56.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0)
+
+[node name="Sustain" type="Line2D" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(56, 0)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 50.0
+texture_mode = 1
+
+[node name="EndPiece" type="Sprite2D" parent="ColorRect/Sustain"]
+texture = ExtResource("3_cwsen")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_gdpee")
+animation = &"red"
+script = ExtResource("5_gqkx0")

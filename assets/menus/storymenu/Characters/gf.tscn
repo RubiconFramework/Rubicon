@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg08f7hj335ld"]
+
+[ext_resource type="SpriteFrames" path="res://assets/menus/storymenu/Characters/images/girlfriend.res" id="1_grdtn"]
+[ext_resource type="Script" path="res://source/scripts/classes/PlayerSprite.gd" id="2_208hb"]
+
+[sub_resource type="Animation" id="Animation_tmjrl"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"GF Dancing Beat WHITE"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75ytl"]
+_data = {
+"idle": SubResource("Animation_tmjrl")
+}
+
+[node name="gf" type="Node2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_grdtn")
+animation = &"GF Dancing Beat WHITE"
+centered = false
+script = ExtResource("2_208hb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_75ytl")
+}
