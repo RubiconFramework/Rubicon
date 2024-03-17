@@ -295,6 +295,7 @@
     <Compile Remove="src\backend\common\attributes\**" />
     <Compile Remove="src\menus\options\elements\data\**" />
     <Compile Remove="src\menus\**" />
+    <Compile Remove="src\scenes\freeplay\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -324,6 +325,7 @@
     <EmbeddedResource Remove="src\backend\common\attributes\**" />
     <EmbeddedResource Remove="src\menus\options\elements\data\**" />
     <EmbeddedResource Remove="src\menus\**" />
+    <EmbeddedResource Remove="src\scenes\freeplay\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -340,6 +342,7 @@
     <None Remove="src\backend\common\attributes\**" />
     <None Remove="src\menus\options\elements\data\**" />
     <None Remove="src\menus\**" />
+    <None Remove="src\scenes\freeplay\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />
@@ -355,6 +358,5 @@
     <Folder Include="assets\sounds\styles\pixel\Countdown\" />
     <Folder Include="assets\sounds\styles\pixel\Death\" />
     <Folder Include="src\scenes\credits\" />
-    <Folder Include="src\scenes\freeplay\" />
   </ItemGroup>
 </Project>

@@ -37,11 +37,20 @@ public partial class Conductor : Node
     
     public override void _EnterTree()
     {
+        base._EnterTree();
         Instance = this;
         BeatHitEvent += OnBeatHit;
         StepHitEvent += OnStepHit;
         SectionHitEvent += OnSectionHit;
-        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        Instance = null;
+        BeatHitEvent -= OnBeatHit;
+        StepHitEvent -= OnStepHit;
+        SectionHitEvent -= OnSectionHit;
     }
 
     public override void _Ready()

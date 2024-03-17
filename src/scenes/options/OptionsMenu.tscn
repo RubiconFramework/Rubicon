@@ -1,10 +1,10 @@
 [gd_scene load_steps=22 format=3 uid="uid://cx352arf7ejqx"]
 
 [ext_resource type="Script" path="res://src/scenes/options/OptionsMenu.cs" id="1_025u3"]
-[ext_resource type="Texture2D" uid="uid://hqo2erokbwdy" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
+[ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
 [ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/elements/buttons/LabelSlider.tscn" id="4_lgvqj"]
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="5_aor24"]
-[ext_resource type="Texture2D" uid="uid://dpewafndf2xms" path="res://src/scenes/options/elements/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
+[ext_resource type="Texture2D" uid="uid://bngy4xd5trnmk" path="res://src/scenes/options/elements/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
 [ext_resource type="PackedScene" uid="uid://2dxpk5xecnnw" path="res://src/scenes/options/elements/buttons/KeybindButton.tscn" id="5_ib3ao"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jex1q"]
@@ -360,9 +360,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -130.5
-offset_top = -91.0
+offset_top = -88.0
 offset_right = 134.5
-offset_bottom = -23.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
 

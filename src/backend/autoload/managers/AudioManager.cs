@@ -120,6 +120,8 @@ public partial class AudioManager : Node
 
     public AudioStreamPlayer PlayAudio(AudioType type, string path, float volume = 1, bool loop = false)
     {
+        AudioStreamPlayer player;
+
         if (type == AudioType.Music)
         {
             foreach(var node in GetNode(type.ToString().ToLower()).GetChildren())
@@ -129,7 +131,7 @@ public partial class AudioManager : Node
             }   
         }
 
-        var player = GetNodeOrNull<AudioStreamPlayer>($"{type.ToString().ToLower()}/{path}");
+        player = GetNodeOrNull<AudioStreamPlayer>($"{type.ToString().ToLower()}/{path}");
         if (player != null && type == AudioType.Music && player.Playing && player.Stream == GD.Load<AudioStream>(ConstructAudioPath(path, type.ToString().ToLower()))) return player;
 
         if (player is null)
@@ -138,21 +140,22 @@ public partial class AudioManager : Node
             if (string.IsNullOrEmpty(finalPath)) return null;
             var audiostream = GD.Load<AudioStream>(finalPath);
 
-            player = new()
+            player = new AudioStreamPlayer()
             {
                 Stream = audiostream,
                 VolumeDb = Global.LinearToDb(volume),
                 Autoplay = true,
             };
-
+        
             GetNode<Node>($"{type.ToString().ToLower()}/{path}").AddChild(player);
             
-            player.Finished += () =>
-            {
-                if (loop) player.Play();
-                else player.QueueFree();
-            };
+            player.Finished += () => player.QueueFree();
         }
+
+        player.Finished += () =>
+        {
+            if (loop && type == AudioType.Music) player.Play();
+        };
 
         player.Play();
         return player;

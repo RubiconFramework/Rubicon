@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Godot.Sharp.Extras;
+using Rubicon.backend.autoload.debug.ScreenNotifier;
 using Rubicon.backend.common.enums;
 using Rubicon.gameplay.elements.classes.song;
 using Rubicon.gameplay.elements.resources;
@@ -16,7 +18,11 @@ public partial class GameplayScene : Conductor
     private Dictionary<string, Note> CachedNotes { get; set; } = new();
     private List<SectionNote> NoteData { get; set; } = new();
     private string[] noteTypeIgnore = Array.Empty<string>();
-
+    private Chart Song;
+    private readonly List<AudioStreamPlayer> tracks = new();
+    [NodePath("Song/Inst")] private AudioStreamPlayer inst;
+    [NodePath("Song/Voices")] private AudioStreamPlayer vocals;
+    
     //Song Vars
     private bool startingSong = true, endingSong, introSkipped, skipCountdown;
     private float scrollSpeed = 1f;
@@ -37,7 +43,7 @@ public partial class GameplayScene : Conductor
     private Character2D spectator, opponent, player;
 
     //2D
-    private Camera2D camera;
+    [NodePath("Camera2D")] private Camera2D camera;
     private float camSpeed = 3f, camZoom = 1f;
 
     //3D
@@ -45,22 +51,26 @@ public partial class GameplayScene : Conductor
     private bool camSmoothing3D = true;
 
     //HUD
-    private CanvasLayer HUD;
-    private CanvasModulate HUDModulate;
-    private Node2D ratingGroup, strumGroup;
-    private NoteGroup noteGroup;
-    private ScriptGroup scriptGroup;
-    private ColorRect healthBarBG;
-    private ProgressBar healthBar;
-    private Sprite2D oppIcon, playerIcon;
-    private Label scoreText;
+    [NodePath("HUD")] private CanvasLayer HUD;
+    [NodePath("HUD/HUDModulate")] private CanvasModulate HUDModulate;
+    [NodePath("HUD/RatingGroup")] private Node2D ratingGroup;
+    [NodePath("HUD/NoteGroup")] private NoteGroup noteGroup;
+    [NodePath("HUD/StrumGroup")] private Node2D strumGroup;
+    [NodePath("Scripts")] private ScriptGroup scriptGroup;
+    [NodePath("HUD/HealthBarBG")] private ColorRect healthBarBG;
+    [NodePath("HUD/HealthBarBG/HealthBar")] private ProgressBar healthBar;
+    [NodePath("HUD/HealthBarBG/ScoreText")] private Label scoreText;
+    [NodePath("HUD/HealthBarBG/HealthBar/PlayerIcon")] private Sprite2D playerIcon;
+    [NodePath("HUD/HealthBarBG/HealthBar/OppIcon")] private Sprite2D oppIcon;
+
     private StrumLine oppStrums, playerStrums;
     private readonly bool[] pressed = Array.Empty<bool>();
     private UIStyle uiStyle;
 
+    
     //Countdown
-    private Sprite2D countdownSprite;
-    private AudioStreamPlayer countdownSound;
+    [NodePath("HUD/CountdownSprite")] private Sprite2D countdownSprite;
+    [NodePath("HUD/CountdownSprite/CountdownSound")] private AudioStreamPlayer countdownSound;
     private int countdownTicks;
 
     private const float IconDeltaMultiplier = 60f * 0.25f;
@@ -73,37 +83,6 @@ public partial class GameplayScene : Conductor
         AudioManager.Instance.StopAudio(AudioType.Music, "elseVI");
         GetTree().Paused = false;
 
-        InitializeNodes();
-        LoadGameSettings();
-        LoadSong();
-        InitializeStrumGroups();
-        InitializeCountdown();
-        LoadStage();
-        StartSong();
-    }
-
-    private void InitializeNodes()
-    {
-        camera = GetNode<Camera2D>("Camera2D");
-        HUD = GetNode<CanvasLayer>("HUD");
-        HUDModulate = GetNode<CanvasModulate>("HUD/HUDModulate");
-        ratingGroup = GetNode<Node2D>("HUD/RatingGroup");
-        noteGroup = GetNode<NoteGroup>("HUD/NoteGroup");
-        strumGroup = GetNode<Node2D>("HUD/StrumGroup");
-        scriptGroup = GetNode<ScriptGroup>("Scripts");
-        healthBarBG = GetNode<ColorRect>("HUD/HealthBarBG");
-        healthBar = GetNode<ProgressBar>("HUD/HealthBarBG/HealthBar");
-        scoreText = GetNode<Label>("HUD/HealthBarBG/ScoreText");
-        playerIcon = GetNode<Sprite2D>("HUD/HealthBarBG/HealthBar/PlayerIcon");
-        oppIcon = GetNode<Sprite2D>("HUD/HealthBarBG/HealthBar/OppIcon");
-        countdownSprite = GetNode<Sprite2D>("HUD/CountdownSprite");
-        countdownSound = GetNode<AudioStreamPlayer>("HUD/CountdownSprite/CountdownSound");
-        inst = GetNode<AudioStreamPlayer>("Song/Inst");
-        vocals = GetNode<AudioStreamPlayer>("Song/Voices");
-    }
-
-    private void LoadGameSettings()
-    {
         scrollSpeed = Song.ScrollSpeed;
         var settingSpeed = Global.Settings.Gameplay.ScrollSpeed;
         switch (settingSpeed)
@@ -112,6 +91,149 @@ public partial class GameplayScene : Conductor
                 scrollSpeed *= settingSpeed;
                 break;
         }
+        
+
+        if (Global.Song == null)
+        {
+            Global.Song = Chart.LoadChart("imscared", "normal");
+            Song = Global.Song;
+        }
+
+        Conductor.Instance.MapBPMChanges(Song);
+        Conductor.Instance.bpm = Song.Bpm;
+        Conductor.Instance.position = Conductor.Instance.stepCrochet * 5;
+
+        string songPath = $"res://assets/songs/{Song.SongName.ToLower()}/song/";
+
+        foreach (var f in Global.audioFormats)
+        {
+            if (ResourceLoader.Exists($"{songPath}inst.{f}"))
+            {
+                inst.Stream = GD.Load<AudioStream>($"{songPath}inst.{f}");
+                if (vocals.Stream == null && ResourceLoader.Exists($"{songPath}voices.{f}"))
+                {
+                    vocals.Stream = GD.Load<AudioStream>($"{songPath}voices.{f}");
+                    tracks.Add(vocals);
+                }
+            }
+        }
+
+        if (inst.Stream == null)
+        {
+            ScreenNotifier.Instance.Notify($"Inst not found on path: '{songPath}inst' with every format, ending song", true, NotificationType.Error);
+            endingSong = true;
+            EndSong();
+            return;
+        }
+
+        foreach (AudioStreamPlayer track in tracks) track.PitchScale = Conductor.Instance.rate;
+        
+        InitializeStrumGroups();
+        InitializeCountdown();
+        LoadStage();
+        StartSong();
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        UpdateSongProgress(delta);
+        HandleHoldAnimation();
+        HandleSmoothZoom(delta);
+
+        if (health <= 0) GameOver();
+        healthBar.Value = health;
+        
+        if (Input.IsActionJustPressed("space_bar") && (introSkipped || startingSong)) SkipIntro();
+    }
+
+    public void StartSong()
+    {
+        Conductor.Instance.position = 0f;
+        foreach (AudioStreamPlayer track in tracks) track.Play((float)Conductor.Instance.position / 1000);
+        startingSong = false;
+    }
+
+    public void EndSong()
+    {
+        // Handle end of the song
+    }
+
+    private void UpdateSongProgress(double delta)
+    {
+        if (endingSong || tracks == null || tracks.Count == 0 || tracks[0].Stream == null)
+        {
+            if (endingSong) GD.Print("Song has ended. Returning");
+            else GD.PrintErr("There's nothing in tracks. Returning");
+            return;
+        }
+
+        Conductor.Instance.position += (float)delta * 1000f * Conductor.Instance.rate;
+
+        if (Conductor.Instance.position >= tracks[0].Stream.GetLength())
+        {
+            EndSong();
+            return;
+        }
+
+        if (Conductor.Instance.position >= 0f && startingSong) StartSong();
+    }
+
+    public void SyncSong()
+    {
+        foreach (var track in tracks.Where(track => track.Stream != null)) track.Play((float)Conductor.Instance.position / 1000f);
+    }
+
+    public void GameOver()
+    {
+        // Handle game over scenario
+    }
+
+    public void SkipIntro()
+    {
+        // Handle skipping the intro
+    }
+    
+    private void InitializeStrumGroups()
+    {
+        InitializeStrumLine(ref oppStrums, (Global.windowSize.X * 0.5f) - 320f);
+        InitializeStrumLine(ref playerStrums, (Global.windowSize.X * 0.5f) + 320f);
+    }
+
+    private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
+    {
+        strumLine = GD.Load<PackedScene>($"res://src/gameplay/elements/strumlines/{Song.KeyCount}K.tscn").Instantiate<StrumLine>();
+        strumLine.uiStyle = uiStyle;
+        strumGroup.AddChild(strumLine);
+        strumLine.Position = new(positionX, 100);
+        if (strumLine == playerStrums) strumLine.readsInput = true;
+    }
+
+    public void GenerateNotes(float skipTime = -1f)
+    {
+        foreach (Section section in Song.Sections)
+        {
+            foreach (SectionNote note in section.SectionNotes)
+            {
+                if (note.Time > skipTime) continue;
+
+                SectionNote newNote = (SectionNote)note.Duplicate();
+
+                string noteTypePath = $"res://assets/gameplay/notes/{note.Type.ToLower()}/";
+                IEnumerable<string> noteTypeDir = Global.FilesInDirectory(noteTypePath);
+                foreach (string file in noteTypeDir)
+                {
+                    if (!CachedNotes.ContainsKey(note.Type) && (file.EndsWith(".tscn") || file.EndsWith(".remap"))) 
+                        CachedNotes[note.Type] = GD.Load<Note>(noteTypePath + file.Replace(".remap", ""));
+                }
+
+                NoteData.Add(newNote);
+            }
+        }
+        NoteData.Sort((a, b) => a.Time.CompareTo(b.Time));
+
+        foreach (SectionNote note in NoteData) GD.Print(note.Time);
     }
 
     private void InitializeCountdown()
@@ -135,24 +257,54 @@ public partial class GameplayScene : Conductor
         camera.Zoom = new(camZoom, camZoom);
     }
 
-    public override void _Process(double delta)
+    public void GenerateCharacter(ref Character2D character, string characterType, Vector2 position)
     {
-        base._Process(delta);
+        if (character == null) throw new ArgumentNullException(nameof(character));
+        string path3d = Song.Is3D ? "3D/" : "";
+        string charPath = $"res://assets/gameplay/characters/{path3d + characterType}.tscn";
 
-        UpdateSongProgress(delta);
-        HandleHoldAnimation();
-        UpdateHealthBar();
-        HandleSmoothZoom(delta);
+        character = ResourceLoader.Load<PackedScene>(charPath)?.Instantiate<Character2D>() ?? GD.Load<PackedScene>("res://assets/gameplay/characters/bf.tscn").Instantiate<Character2D>();
 
-        if (Input.IsActionJustPressed("space_bar") && (introSkipped || startingSong)) SkipIntro();
+        if (character != null)
+        {
+            character.Position = position;
+            AddChild(character);
+        }
     }
 
-    private void UpdateHealthBar()
+    public void GenPlayer()
     {
-        if (health <= 0) GameOver();
-        healthBar.Value = health;
+        GenerateCharacter(ref player, Song.Player, stage.characterPositions["Player"]);
+        player.isPlayer = true;
     }
 
+    public void GenOpponent()
+    {
+        GenerateCharacter(ref opponent, Song.Opponent, stage.characterPositions["Opponent"]);
+
+        if (Song.Opponent == Song.Spectator)
+        {
+            opponent.Position = stage.characterPositions["Spectator"];
+            spectator.Visible = false;
+        }
+    }
+
+    public void GenSpectator() => GenerateCharacter(ref spectator, Song.Spectator, stage.characterPositions["Spectator"]);
+
+    public static void CharacterDance(Character2D charToDance, bool force = false)
+    {
+        if (charToDance?.danceOnBeat == true && (force || charToDance.lastAnim.StartsWith("sing"))) charToDance.dance();
+    }
+
+    private void HandleHoldAnimation()
+    {
+        if (pressed.Contains(true) || !player.lastAnim.StartsWith("sing") || player.holdTimer < Conductor.Instance.stepCrochet * player.singDuration * 0.0011)
+            return;
+
+        player.holdTimer = 0f;
+        player.dance();
+    }
+    
     private void HandleSmoothZoom(double delta)
     {
         if (!smoothZoom) return;

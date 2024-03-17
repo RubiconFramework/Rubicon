@@ -76,6 +76,7 @@ public partial class OptionsMenu : Control
 
 	public override void _ExitTree()
 	{
+		if (Global.Settings.Misc.DiscordRichPresence) Global.DiscordRpcClient.UpdateState(string.Empty);
 		HelperMethods = null;
 	}
 	
@@ -296,6 +297,8 @@ public partial class OptionsMenu : Control
 
 	private void UpdateSubmenuUI()
 	{
+		if (Global.Settings.Misc.DiscordRichPresence) Global.DiscordRpcClient.UpdateState($"Current Submenu: {CurrentSubmenu}");
+		
 		GameplaySubmenuButton.Text = "Gameplay";
 		VideoSubmenuButton.Text = "Video";
 		AudioSubmenuButton.Text = "Audio";
