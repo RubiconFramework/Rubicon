@@ -1,10 +1,12 @@
 using System.Collections.Generic;
-using Rubicon.backend.autoload;
-using Rubicon.backend.autoload.debug.ScreenNotifier;
-using Rubicon.backend.scripts;
-using Rubicon.scenes.options.elements.enums;
+using BaseRubicon.Backend.Autoload;
+using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
+using BaseRubicon.Backend.Scripts;
+using BaseRubicon.Scenes.Options.Submenus.Audio.Enums;
+using BaseRubicon.Scenes.Options.Submenus.Gameplay.Enums;
+using BaseRubicon.Scenes.Options.Submenus.Misc.Enums;
 
-namespace Rubicon.scenes.options.elements;
+namespace BaseRubicon.Scenes.Options.Elements;
 
 public class SettingsData
 {
@@ -44,7 +46,7 @@ public class SettingsData
         public TransitionType Transitions { get; set; } = TransitionType.Vanilla;
         public bool DiscordRichPresence { get; set; } = true;
         public bool OptionsMenuAnimations { get; set; } = true;
-        public bool SceneTransitions { get; set; } = false;
+        public bool SceneTransitions { get; set; }
     }
     
     public static SettingsData GetDefaultSettings()

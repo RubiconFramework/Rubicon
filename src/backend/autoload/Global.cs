@@ -1,19 +1,21 @@
-global using GameplayScene = Rubicon.gameplay.GameplayScene;
-global using Conductor = Rubicon.backend.autoload.Conductor;
+global using GameplayScene = BaseRubicon.Gameplay.GameplayScene;
+global using Conductor = BaseRubicon.Backend.Autoload.Conductor;
 global using Godot;
 global using System;
+global using Godot.Sharp.Extras;
+
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
+using BaseRubicon.Backend.Scripts;
+using BaseRubicon.Gameplay.Elements.Resources;
+using BaseRubicon.Scenes.Options.Elements;
 using DiscordRPC;
 using DiscordRPC.Logging;
-using Rubicon.backend.autoload.debug.ScreenNotifier;
-using Rubicon.backend.scripts;
-using Rubicon.gameplay.elements.resources;
-using Rubicon.scenes.options.elements;
 
-namespace Rubicon.backend.autoload;
+namespace BaseRubicon.Backend.Autoload;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Global : Node
@@ -31,7 +33,6 @@ public partial class Global : Node
     public static readonly string SettingsFilePath = "user://settings.json";
     public static readonly string[] defaultNoteDirections = { "left", "down", "up", "right" };
     public static readonly string DiscordRpcClientID = "1218405526677749760";
-	public static readonly string EngineVersion = ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString();
 	public static readonly Vector2 windowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
 	public static DiscordRpcClient DiscordRpcClient = new(DiscordRpcClientID);
@@ -140,15 +141,14 @@ public partial class Global : Node
 					DiscordRpcClient.OnReady += (_, e) => GD.Print($"Discord RPC: Received Ready from user: {e.User.Username}");
 					DiscordRpcClient.Initialize();
 				}
-
-				string sceneName = GetTree().CurrentScene?.Name ?? "Unknown Scene";
+				
 				DiscordRpcClient.SetPresence(new()
 				{
-					Details = sceneName,
+					Details = GetTree().CurrentScene?.Name ?? "Unknown Scene",
 					Assets = new()
 					{
 						LargeImageKey = "image_large",
-						LargeImageText = $"Version {EngineVersion}",
+						LargeImageText = $"Rubicon v{ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "Debug" : "Release")}",
 					}
 				});
 			}

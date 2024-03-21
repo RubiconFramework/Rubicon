@@ -20,3 +20,9 @@ UpgradeLog.htm
 .vscode/
 exclude/
 *.user
+.idea/.idea.Rubicon/.idea/workspace.xml
+.idea/.idea.Rubicon/.idea/vcs.xml
+.idea/.idea.Rubicon/.idea/projectSettingsUpdater.xml
+.idea/.idea.Rubicon/.idea/indexLayout.xml
+.idea/.idea.Rubicon/.idea/discord.xml
+/.idea

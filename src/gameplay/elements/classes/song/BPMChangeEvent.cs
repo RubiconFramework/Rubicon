@@ -1,4 +1,4 @@
-namespace Rubicon.gameplay.elements.classes.song;
+namespace BaseRubicon.Gameplay.Elements.Classes.Song;
 
 public partial class BPMChangeEvent : Resource
 {

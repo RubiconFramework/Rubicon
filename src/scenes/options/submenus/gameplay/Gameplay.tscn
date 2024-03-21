@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://v36c2nyp63w7"]
+
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_dut1v"]
+[ext_resource type="Script" path="res://src/scenes/options/submenus/gameplay/Gameplay.cs" id="1_l386l"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/buttons/LabelSlider.tscn" id="2_kdg2c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
+
+[node name="Gameplay" type="ScrollContainer"]
+offset_right = 957.0
+offset_bottom = 551.0
+script = ExtResource("1_l386l")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SectionSeparator" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// General Gameplay Settings ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Downscroll" type="CheckBox" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_dut1v")
+keep_pressed_outside = true
+text = "Downscroll"
+
+[node name="SectionSeparator2" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// Note Settings ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollSpeed" parent="Container" instance=ExtResource("2_kdg2c")]
+layout_mode = 2
+text = " Scroll Speed [1.5]"
+
+[node name="Slider" parent="Container/ScrollSpeed" index="0"]
+min_value = 1.0
+max_value = 15.0
+step = 0.1
+value = 1.5
+
+[node name="ScrollSpeedType" type="OptionButton" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_dut1v")
+theme_override_font_sizes/font_size = 22
+item_count = 2
+selected = 0
+popup/item_0/text = " Scroll Speed Type: Constant"
+popup/item_0/id = 0
+popup/item_1/text = " Scroll Speed Type: Multiplier"
+popup/item_1/id = 1
+
+[editable path="Container/ScrollSpeed"]

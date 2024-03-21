@@ -1,4 +1,4 @@
-namespace Rubicon.scenes.options.elements.enums;
+namespace BaseRubicon.Scenes.Options.Submenus.Misc.Enums;
 
 public enum TransitionType
 {

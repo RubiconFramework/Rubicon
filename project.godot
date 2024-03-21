@@ -13,7 +13,7 @@ config_version=5
 config/name="Rubicon"
 config/description="friday night funkin engine made for duo to express his hatred towards anyone named eugene"
 config/version="1.0"
-config/tags=PackedStringArray("engine", "fnf")
+config/tags=PackedStringArray("2d", "fnf", "framework", "rhythm")
 run/main_scene="res://src/scenes/title/Title.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Rubicon/Engine"
@@ -33,10 +33,10 @@ buses/default_bus_layout="res://assets/themes/default_bus_layout.tres"
 
 Global="*res://src/backend/autoload/Global.tscn"
 Conductor="*res://src/backend/autoload/Conductor.cs"
-AudioManager="*res://src/backend/autoload/managers/AudioManager.tscn"
+AudioManager="*res://src/backend/autoload/managers/audiomanager/AudioManager.tscn"
 TransitionManager="*res://src/backend/autoload/managers/TransitionManager.tscn"
 DebugInfo="*res://src/backend/autoload/debug/DebugInfo.tscn"
-ScreenNotifier="*res://src/backend/autoload/debug/ScreenNotifier/ScreenNotifier.tscn"
+ScreenNotifier="*res://src/backend/autoload/debug/screennotifier/ScreenNotifier.tscn"
 
 [debug]
 
@@ -51,7 +51,7 @@ window/vsync/vsync_mode=0
 
 [dotnet]
 
-project/assembly_name="Rubicon"
+project/assembly_name="Rubicon Framework"
 
 [editor_plugins]
 

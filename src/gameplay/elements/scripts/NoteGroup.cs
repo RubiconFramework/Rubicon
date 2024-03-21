@@ -1,4 +1,4 @@
-namespace Rubicon.gameplay.elements.scripts;
+namespace BaseRubicon.Gameplay.Elements.Scripts;
 
 public partial class NoteGroup : Node
 {

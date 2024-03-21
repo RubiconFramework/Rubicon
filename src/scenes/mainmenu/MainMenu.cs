@@ -1,10 +1,9 @@
-using Godot.Sharp.Extras;
-using Rubicon.backend.autoload.debug.ScreenNotifier;
-using Rubicon.backend.common.enums;
-using AudioManager = Rubicon.backend.autoload.managers.AudioManager;
-using TransitionManager = Rubicon.backend.autoload.managers.TransitionManager;
+using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
+using BaseRubicon.Backend.Autoload.Managers.AudioManager;
+using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
+using TransitionManager = BaseRubicon.Backend.Autoload.Managers.TransitionManager;
 
-namespace Rubicon.scenes.mainmenu;
+namespace BaseRubicon.Scenes.MainMenu;
 
 public partial class MainMenu : Conductor
 {
@@ -13,7 +12,7 @@ public partial class MainMenu : Conductor
 	[NodePath("BG/AnimationPlayer")] private AnimationPlayer bgAnim;
 	[NodePath("ButtonFlash")] private AnimationPlayer buttonAnim;
 	[NodePath("Buttons")] private Node2D buttonGroup;
-	
+
 	private bool selected;
 	private int curSelected;
 

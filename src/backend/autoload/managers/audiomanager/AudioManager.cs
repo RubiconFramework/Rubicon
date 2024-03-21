@@ -1,8 +1,6 @@
-using Godot.Sharp.Extras;
-using Rubicon.backend.common.enums;
-using Rubicon.scenes.options.elements.enums;
+using BaseRubicon.Scenes.Options.Submenus.Audio.Enums;
 
-namespace Rubicon.backend.autoload.managers;
+namespace BaseRubicon.Backend.Autoload.Managers.AudioManager;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class AudioManager : Node

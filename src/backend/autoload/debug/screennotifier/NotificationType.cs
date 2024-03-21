@@ -1,4 +1,4 @@
-namespace Rubicon.backend.common.enums;
+namespace BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
 
 public enum NotificationType
 {

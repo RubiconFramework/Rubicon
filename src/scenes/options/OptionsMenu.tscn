@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" path="res://src/scenes/options/OptionsMenu.cs" id="1_025u3"]
 [ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/elements/buttons/LabelSlider.tscn" id="4_lgvqj"]
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="5_aor24"]
 [ext_resource type="Texture2D" uid="uid://bngy4xd5trnmk" path="res://src/scenes/options/elements/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
-[ext_resource type="PackedScene" uid="uid://2dxpk5xecnnw" path="res://src/scenes/options/elements/buttons/KeybindButton.tscn" id="5_ib3ao"]
+[ext_resource type="PackedScene" uid="uid://v36c2nyp63w7" path="res://src/scenes/options/submenus/gameplay/Gameplay.tscn" id="5_f4aaq"]
+[ext_resource type="PackedScene" uid="uid://cvqw4i11yg6m0" path="res://src/scenes/options/submenus/audio/Audio.tscn" id="6_bm6i0"]
+[ext_resource type="PackedScene" uid="uid://cnxj6k6gqye8h" path="res://src/scenes/options/submenus/video/Video.tscn" id="7_mhcac"]
+[ext_resource type="PackedScene" uid="uid://c4hlnqsvubucn" path="res://src/scenes/options/submenus/misc/Misc.tscn" id="8_2efem"]
+[ext_resource type="PackedScene" uid="uid://dbdfpnvlhkxlo" path="res://src/scenes/options/submenus/keybinds/Keybinds.tscn" id="9_htkdd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jex1q"]
 
@@ -245,36 +248,12 @@ _data = {
 "StartTransition": SubResource("Animation_j62gs")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
-bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nbql"]
 bg_color = Color(0.0196078, 0.0196078, 0.0196078, 0.462745)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
-
-[sub_resource type="Animation" id="Animation_2e0fk"]
-resource_name = "TypeIn"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../DescriptionLabel:visible_ratio")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ggw0"]
-_data = {
-"TypeIn": SubResource("Animation_2e0fk")
-}
 
 [node name="Options Menu" type="Control"]
 layout_mode = 3
@@ -472,305 +451,44 @@ offset_bottom = 246.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameplayScrollContainer" type="ScrollContainer" parent="LeftPanel/ScrollContainers"]
-layout_mode = 2
+[node name="Gameplay" parent="LeftPanel/ScrollContainers" instance=ExtResource("5_f4aaq")]
+layout_mode = 0
 offset_left = -25.0
-offset_right = 932.0
-offset_bottom = 551.0
-grow_vertical = 2
+offset_top = 14.0
+offset_right = 931.0
+offset_bottom = 563.0
 
-[node name="GameplaySubmenuItems" type="VBoxContainer" parent="LeftPanel/ScrollContainers/GameplayScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="SectionSeparator" type="Label" parent="LeftPanel/ScrollContainers/GameplayScrollContainer/GameplaySubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// General Gameplay Settings ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Downscroll" type="CheckBox" parent="LeftPanel/ScrollContainers/GameplayScrollContainer/GameplaySubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-keep_pressed_outside = true
-text = "Downscroll"
-
-[node name="SectionSeparator2" type="Label" parent="LeftPanel/ScrollContainers/GameplayScrollContainer/GameplaySubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Note Settings ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ScrollSpeed" parent="LeftPanel/ScrollContainers/GameplayScrollContainer/GameplaySubmenuItems" instance=ExtResource("4_lgvqj")]
-layout_mode = 2
-text = " Scroll Speed [1.5]"
-
-[node name="Slider" parent="LeftPanel/ScrollContainers/GameplayScrollContainer/GameplaySubmenuItems/ScrollSpeed" index="0"]
-min_value = 1.0
-max_value = 15.0
-step = 0.1
-value = 1.5
-
-[node name="ScrollSpeedType" type="OptionButton" parent="LeftPanel/ScrollContainers/GameplayScrollContainer/GameplaySubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 22
-item_count = 2
-selected = 0
-popup/item_0/text = " Scroll Speed Type: Constant"
-popup/item_0/id = 0
-popup/item_1/text = " Scroll Speed Type: Multiplier"
-popup/item_1/id = 1
-
-[node name="AudioScrollContainer" type="ScrollContainer" parent="LeftPanel/ScrollContainers"]
+[node name="Audio" parent="LeftPanel/ScrollContainers" instance=ExtResource("6_bm6i0")]
 visible = false
-layout_mode = 2
-offset_left = -25.0
-offset_right = 932.0
-offset_bottom = 551.0
-grow_vertical = 2
+layout_mode = 0
+offset_left = -25.5
+offset_top = 14.0
+offset_right = 931.5
+offset_bottom = 565.0
 
-[node name="AudioSubmenuItems" type="VBoxContainer" parent="LeftPanel/ScrollContainers/AudioScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="SectionSeparator" type="Label" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// General Audio Settings ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MasterVolume" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems" instance=ExtResource("4_lgvqj")]
-layout_mode = 2
-text = " Master Volume [50%]"
-
-[node name="SoundOutputMode" type="OptionButton" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 22
-item_count = 2
-selected = 0
-popup/item_0/text = " Sound Output Mode: Stereo"
-popup/item_0/id = 0
-popup/item_1/text = " Sound Output Mode: Mono"
-popup/item_1/id = 1
-
-[node name="SectionSeparator2" type="Label" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Menu Audio ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MusicVolume" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems" instance=ExtResource("4_lgvqj")]
-layout_mode = 2
-text = " Music Volume [50%]"
-
-[node name="SFXVolume" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems" instance=ExtResource("4_lgvqj")]
-layout_mode = 2
-text = " SFX Volume [50%]"
-
-[node name="SectionSeparator3" type="Label" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Gameplay Audio ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="InstVolume" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems" instance=ExtResource("4_lgvqj")]
-layout_mode = 2
-text = " Inst Volume [50%]"
-
-[node name="VoiceVolume" parent="LeftPanel/ScrollContainers/AudioScrollContainer/AudioSubmenuItems" instance=ExtResource("4_lgvqj")]
-layout_mode = 2
-text = " Voice Volume [50%]"
-
-[node name="VideoScrollContainer" type="ScrollContainer" parent="LeftPanel/ScrollContainers"]
+[node name="Video" parent="LeftPanel/ScrollContainers" instance=ExtResource("7_mhcac")]
 visible = false
-layout_mode = 2
-offset_left = -25.0
-offset_right = 933.0
-offset_bottom = 551.0
-grow_vertical = 2
+layout_mode = 0
+offset_left = -25.5
+offset_top = 14.0
+offset_right = 932.5
+offset_bottom = 565.0
 
-[node name="VideoSubmenuItems" type="VBoxContainer" parent="LeftPanel/ScrollContainers/VideoScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="SectionSeparator" type="Label" parent="LeftPanel/ScrollContainers/VideoScrollContainer/VideoSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// General Video Settings ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MaxFPS" parent="LeftPanel/ScrollContainers/VideoScrollContainer/VideoSubmenuItems" instance=ExtResource("4_lgvqj")]
-layout_mode = 2
-text = " Max FPS [144]"
-
-[node name="Slider" parent="LeftPanel/ScrollContainers/VideoScrollContainer/VideoSubmenuItems/MaxFPS" index="0"]
-min_value = 15.0
-max_value = 1500.0
-value = 144.0
-
-[node name="VSync" type="OptionButton" parent="LeftPanel/ScrollContainers/VideoScrollContainer/VideoSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 22
-item_count = 4
-selected = 0
-popup/item_0/text = " VSync Mode: Disabled"
-popup/item_0/id = 0
-popup/item_1/text = " VSync Mode: Enabled"
-popup/item_1/id = 1
-popup/item_2/text = " VSync Mode: Adaptive"
-popup/item_2/id = 2
-popup/item_3/text = " VSync Mode: Mailbox"
-popup/item_3/id = 3
-
-[node name="WindowMode" type="OptionButton" parent="LeftPanel/ScrollContainers/VideoScrollContainer/VideoSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 22
-item_count = 3
-selected = 0
-popup/item_0/text = " Window Mode: Windowed"
-popup/item_0/id = 0
-popup/item_1/text = " Window Mode: Fullscreen"
-popup/item_1/id = 3
-popup/item_2/text = " Window Mode: Exclusive Fullscreen"
-popup/item_2/id = 4
-
-[node name="MiscScrollContainer" type="ScrollContainer" parent="LeftPanel/ScrollContainers"]
+[node name="Misc" parent="LeftPanel/ScrollContainers" instance=ExtResource("8_2efem")]
 visible = false
-layout_mode = 2
-offset_left = -25.0
-offset_right = 932.0
-offset_bottom = 551.0
-grow_vertical = 2
+layout_mode = 0
+offset_left = -25.5
+offset_top = 14.0
+offset_right = 931.5
+offset_bottom = 565.0
 
-[node name="MiscSubmenuItems" type="VBoxContainer" parent="LeftPanel/ScrollContainers/MiscScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="SectionSeparator" type="Label" parent="LeftPanel/ScrollContainers/MiscScrollContainer/MiscSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// General Miscellaneous Settings ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GameLanguage" type="OptionButton" parent="LeftPanel/ScrollContainers/MiscScrollContainer/MiscSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 22
-item_count = 2
-selected = 0
-popup/item_0/text = " Game Language: English"
-popup/item_0/id = 0
-popup/item_1/text = " Game Language: Spanish"
-popup/item_1/id = 1
-
-[node name="GameTransitions" type="OptionButton" parent="LeftPanel/ScrollContainers/MiscScrollContainer/MiscSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 22
-item_count = 4
-selected = 0
-popup/item_0/text = " Game Transitions: Vanilla"
-popup/item_0/id = 0
-popup/item_1/text = " Game Transitions: Fade"
-popup/item_1/id = 1
-popup/item_2/text = " Game Transitions: Sawn Off"
-popup/item_2/id = 2
-popup/item_3/text = " Game Transitions: Diamond Shapes"
-popup/item_3/id = 3
-
-[node name="DiscordRPC" type="CheckBox" parent="LeftPanel/ScrollContainers/MiscScrollContainer/MiscSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-keep_pressed_outside = true
-text = "Discord Rich Presence"
-
-[node name="SectionSeparator2" type="Label" parent="LeftPanel/ScrollContainers/MiscScrollContainer/MiscSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Menu Animations ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SceneTransitions" type="CheckBox" parent="LeftPanel/ScrollContainers/MiscScrollContainer/MiscSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-keep_pressed_outside = true
-text = "Scene Transitions"
-
-[node name="OptionsMenuAnimations" type="CheckBox" parent="LeftPanel/ScrollContainers/MiscScrollContainer/MiscSubmenuItems"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-keep_pressed_outside = true
-text = "Options Menu Animations"
-
-[node name="KeybindsScrollContainer" type="ScrollContainer" parent="LeftPanel/ScrollContainers"]
+[node name="Keybinds" parent="LeftPanel/ScrollContainers" instance=ExtResource("9_htkdd")]
 visible = false
-layout_mode = 2
-offset_left = -25.0
-offset_right = 933.0
-offset_bottom = 551.0
-grow_vertical = 2
-
-[node name="KeybindsSubmenuItems" type="VBoxContainer" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="SectionSeparator" type="Label" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer/KeybindsSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Gameplay Keybinds ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NoteLeft" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer/KeybindsSubmenuItems" instance=ExtResource("5_ib3ao")]
-layout_mode = 2
-text = " Note Left"
-Action = "NoteLeft"
-
-[node name="NoteRight" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer/KeybindsSubmenuItems" instance=ExtResource("5_ib3ao")]
-layout_mode = 2
-text = " Note Right"
-Action = "NoteRight"
-
-[node name="NoteUp" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer/KeybindsSubmenuItems" instance=ExtResource("5_ib3ao")]
-layout_mode = 2
-text = " Note Up"
-Action = "NoteUp"
-
-[node name="NoteDown" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer/KeybindsSubmenuItems" instance=ExtResource("5_ib3ao")]
-layout_mode = 2
-text = " Note Down"
-Action = "NoteDown"
-
-[node name="SectionSeparator2" type="Label" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer/KeybindsSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Menu Keybinds ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SectionSeparator3" type="Label" parent="LeftPanel/ScrollContainers/KeybindsScrollContainer/KeybindsSubmenuItems"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Other Keybinds ///"
-horizontal_alignment = 1
-vertical_alignment = 1
+layout_mode = 0
+offset_left = -25.5
+offset_top = 14.0
+offset_right = 932.5
+offset_bottom = 565.0
 
 [node name="DescriptionLabel" type="Label" parent="LeftPanel"]
 layout_mode = 1
@@ -787,12 +505,3 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7nbql")
 text = "the rot consumes i suppose"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/DescriptionLabel"]
-root_node = NodePath("")
-libraries = {
-"": SubResource("AnimationLibrary_3ggw0")
-}
-
-[editable path="LeftPanel/ScrollContainers/GameplayScrollContainer/GameplaySubmenuItems/ScrollSpeed"]
-[editable path="LeftPanel/ScrollContainers/VideoScrollContainer/VideoSubmenuItems/MaxFPS"]

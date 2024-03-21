@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Rubicon.backend.common.enums;
 
-namespace Rubicon.backend.autoload.debug.ScreenNotifier;
+namespace BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class ScreenNotifier : CanvasLayer

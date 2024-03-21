@@ -1,12 +1,11 @@
+using BaseRubicon.Backend.Autoload;
+using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
+using BaseRubicon.Scenes.Options.Elements;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Rubicon.backend.autoload;
-using Rubicon.backend.autoload.debug.ScreenNotifier;
-using Rubicon.backend.common.enums;
-using Rubicon.scenes.options.elements;
 using FileAccess = Godot.FileAccess;
 
-namespace Rubicon.backend.scripts;
+namespace BaseRubicon.Backend.Scripts;
 
 public static class JsonSettingsManager
 {

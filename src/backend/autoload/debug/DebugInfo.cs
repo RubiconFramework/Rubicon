@@ -1,9 +1,8 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
-using Godot.Sharp.Extras;
 
-namespace Rubicon.backend.autoload.debug;
+namespace BaseRubicon.Backend.Autoload.debug;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class DebugInfo : CanvasLayer
@@ -23,7 +22,11 @@ public partial class DebugInfo : CanvasLayer
         this.OnReady();
         currentProcess = Process.GetCurrentProcess();
         if (OS.IsDebugBuild()) DebugIndicator.Visible = true;
-        else DebugLabel.QueueFree();
+        else
+        {
+            DebugIndicator.QueueFree();
+            DebugLabel.QueueFree();
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -35,7 +38,7 @@ public partial class DebugInfo : CanvasLayer
             UpdateText();
         }
 
-        if(Input.IsActionJustPressed("debug_info")) showDebugInfo = !showDebugInfo;
+        if (Input.IsActionJustPressed("debug_info")) showDebugInfo = !showDebugInfo;
         DebugLabel.Visible = showDebugInfo;
     }
 
@@ -50,12 +53,11 @@ public partial class DebugInfo : CanvasLayer
         if (OS.IsDebugBuild())
         {
             workingSet = (long)OS.GetStaticMemoryUsage();
-            double VRAM = Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed);
             debugText.AppendLine($"RAM: {byteToMB(workingSet):F2} MB")
                 .AppendLine($"Private Memory: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB")
-                .AppendLine($"VRAM: {byteToMB((long)VRAM):F2} MB")
+                .AppendLine($"VRAM: {byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB")
                 .AppendLine($"Scene: {(currentScene != null && currentScene.SceneFilePath != "" ? currentScene.SceneFilePath : "None")}");
-            
+                
             if (Conductor.Instance != null)
             {
                 debugText.AppendLine("\n//Conductor Variables//")
@@ -70,14 +72,15 @@ public partial class DebugInfo : CanvasLayer
                     .AppendLine($"Decimal Step: {Conductor.Instance.curDecStep}")
                     .Append($"Decimal Section: {Conductor.Instance.curDecSection}");
             }
-            else debugText.AppendLine("\n//Conductor Variables//").AppendLine("Conductor is Unavailable.");
+            else debugText.AppendLine("\n//Conductor Variables//")
+                .AppendLine("Conductor is Unavailable.");
         }
         else
         {
             workingSet = currentProcess.WorkingSet64;
             debugText.AppendLine($"RAM: {byteToMB(workingSet):F2} MB")
                 .AppendLine($"Private Memory: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB")
-                .AppendLine("VRAM is Unavailable [Release Build].")
+                .AppendLine("VRAM is Unavailable.")
                 .AppendLine($"Scene: {(currentScene != null && currentScene.SceneFilePath != "" ? currentScene.SceneFilePath : "None")}");
 
             if (Conductor.Instance != null)
@@ -94,7 +97,8 @@ public partial class DebugInfo : CanvasLayer
                     .AppendLine($"Decimal Step: {Conductor.Instance.curDecStep}")
                     .Append($"Decimal Section: {Conductor.Instance.curDecSection}");
             }
-            else debugText.AppendLine("\n//Conductor Variables//").AppendLine("Conductor is Unavailable.");
+            else debugText.AppendLine("\n//Conductor Variables//")
+                .AppendLine("Conductor is Unavailable.");
         }
         
         DebugLabel.Text = debugText.ToString();

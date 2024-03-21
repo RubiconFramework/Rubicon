@@ -1,8 +1,8 @@
-using Rubicon.backend.autoload;
-using Rubicon.backend.autoload.managers;
-using Rubicon.scenes.options.elements.enums;
+using BaseRubicon.Backend.Autoload;
+using BaseRubicon.Scenes.Options.Submenus.Audio.Enums;
+using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
 
-namespace Rubicon.scenes.options.elements;
+namespace BaseRubicon.Scenes.Options.Elements;
 
 public class HelperMethods
 {
@@ -49,10 +49,11 @@ public class HelperMethods
     {
         if ((int)v == 1500)
         {
-            Global.Settings.Video.MaxFPS = 0;
+            Global.Settings.Video.MaxFPS = 1500;
             Engine.Singleton.MaxFps = 0;
             return;
         }
+        
         Global.Settings.Video.MaxFPS = (int)v;
         Engine.Singleton.MaxFps = (int)v;
     }

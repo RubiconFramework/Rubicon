@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcy3a42tu3j04"]
 
-[ext_resource type="Script" path="res://src/backend/autoload/debug/ScreenNotifier/ScreenNotifier.cs" id="1_aki6e"]
-[ext_resource type="PackedScene" uid="uid://dvrifmg2wk0kt" path="res://src/backend/autoload/debug/ScreenNotifier/Notification.tscn" id="2_oov47"]
+[ext_resource type="Script" path="res://src/backend/autoload/debug/screennotifier/ScreenNotifier.cs" id="1_aki6e"]
+[ext_resource type="PackedScene" uid="uid://dvrifmg2wk0kt" path="res://src/backend/autoload/debug/screennotifier/Notification.tscn" id="2_oov47"]
 
 [node name="ScreenNotifier" type="CanvasLayer"]
 script = ExtResource("1_aki6e")

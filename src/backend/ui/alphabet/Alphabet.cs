@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Global = Rubicon.backend.autoload.Global;
+using Global = BaseRubicon.Backend.Autoload.Global;
 
-namespace Rubicon.backend.ui.alphabet;
+namespace BaseRubicon.Backend.UI.Alphabet;
 
 [Tool]
 [Icon("res://assets/miscIcons/alphabet.png")]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4hlnqsvubucn"]
+
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_aodu4"]
+[ext_resource type="Script" path="res://src/scenes/options/submenus/misc/Misc.cs" id="1_tgalg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
+
+[node name="Misc" type="ScrollContainer"]
+offset_right = 957.0
+offset_bottom = 551.0
+script = ExtResource("1_tgalg")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SectionSeparator" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// General Miscellaneous Settings ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameLanguage" type="OptionButton" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_aodu4")
+theme_override_font_sizes/font_size = 22
+item_count = 2
+selected = 0
+popup/item_0/text = " Game Language: English"
+popup/item_0/id = 0
+popup/item_1/text = " Game Language: Spanish"
+popup/item_1/id = 1
+
+[node name="GameTransitions" type="OptionButton" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_aodu4")
+theme_override_font_sizes/font_size = 22
+item_count = 4
+selected = 0
+popup/item_0/text = " Game Transitions: Vanilla"
+popup/item_0/id = 0
+popup/item_1/text = " Game Transitions: Fade"
+popup/item_1/id = 1
+popup/item_2/text = " Game Transitions: Sawn Off"
+popup/item_2/id = 2
+popup/item_3/text = " Game Transitions: Diamond Shapes"
+popup/item_3/id = 3
+
+[node name="DiscordRPC" type="CheckBox" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_aodu4")
+keep_pressed_outside = true
+text = "Discord Rich Presence"
+
+[node name="SectionSeparator2" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// Menu Animations ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SceneTransitions" type="CheckBox" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_aodu4")
+keep_pressed_outside = true
+text = "Scene Transitions"
+
+[node name="OptionsMenuAnimations" type="CheckBox" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_aodu4")
+keep_pressed_outside = true
+text = "Options Menu Animations"

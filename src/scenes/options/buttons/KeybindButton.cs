@@ -1,8 +1,7 @@
-using Godot.Sharp.Extras;
-using Rubicon.backend.autoload;
-using Rubicon.scenes.options.elements.enums;
+using BaseRubicon.Backend.Autoload;
+using BaseRubicon.Scenes.Options.Elements.Enums;
 
-namespace Rubicon.scenes.options.elements.buttons;
+namespace BaseRubicon.Scenes.Options.Buttons;
 
 public partial class KeybindButton : Button
 {

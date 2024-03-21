@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvrifmg2wk0kt"]
 
 [ext_resource type="Theme" uid="uid://b1qc2jc1jged7" path="res://assets/themes/duo/ScreenNotifier [Duo].tres" id="1_eexnj"]
-[ext_resource type="FontFile" uid="uid://kc4e76kwbupt" path="res://assets/fonts/funkin.ttf" id="2_dp5xk"]
+[ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="2_dp5xk"]
 
 [sub_resource type="Animation" id="Animation_60y5w"]
 resource_name = "in"
@@ -13,7 +13,7 @@ tracks/0/path = NodePath("Message:visible_ratio")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]

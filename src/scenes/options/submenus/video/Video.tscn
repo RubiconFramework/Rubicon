@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnxj6k6gqye8h"]
+
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/buttons/LabelSlider.tscn" id="1_n3lqj"]
+[ext_resource type="Script" path="res://src/scenes/options/submenus/video/Video.cs" id="1_nq2e8"]
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="2_72u2y"]
+[ext_resource type="PackedScene" uid="uid://33ned2004gs" path="res://src/scenes/options/buttons/ColorPickerButton.tscn" id="3_2uvcn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
+
+[node name="Video" type="ScrollContainer"]
+offset_right = 958.0
+offset_bottom = 551.0
+script = ExtResource("1_nq2e8")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SectionSeparator" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// General Video Settings ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxFPS" parent="Container" instance=ExtResource("1_n3lqj")]
+layout_mode = 2
+text = " Max FPS [144]"
+
+[node name="Slider" parent="Container/MaxFPS" index="0"]
+min_value = 15.0
+max_value = 1500.0
+value = 144.0
+
+[node name="VSync" type="OptionButton" parent="Container"]
+layout_mode = 2
+theme = ExtResource("2_72u2y")
+theme_override_font_sizes/font_size = 22
+item_count = 4
+selected = 0
+popup/item_0/text = " VSync Mode: Disabled"
+popup/item_0/id = 0
+popup/item_1/text = " VSync Mode: Enabled"
+popup/item_1/id = 1
+popup/item_2/text = " VSync Mode: Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = " VSync Mode: Mailbox"
+popup/item_3/id = 3
+
+[node name="WindowMode" type="OptionButton" parent="Container"]
+layout_mode = 2
+theme = ExtResource("2_72u2y")
+theme_override_font_sizes/font_size = 22
+item_count = 3
+selected = 0
+popup/item_0/text = " Window Mode: Windowed"
+popup/item_0/id = 0
+popup/item_1/text = " Window Mode: Fullscreen"
+popup/item_1/id = 3
+popup/item_2/text = " Window Mode: Exclusive Fullscreen"
+popup/item_2/id = 4
+
+[node name="ColorPicker" parent="Container" instance=ExtResource("3_2uvcn")]
+layout_mode = 2
+text = " what exactly do i pick a color from here"
+
+[editable path="Container/MaxFPS"]

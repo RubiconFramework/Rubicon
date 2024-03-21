@@ -1,4 +1,4 @@
-namespace Rubicon.backend.autoload.managers;
+namespace BaseRubicon.Backend.Autoload.Managers;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class TransitionManager : CanvasLayer

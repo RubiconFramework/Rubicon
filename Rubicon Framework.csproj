@@ -12,6 +12,8 @@
     <Company>trolling incorporated</Company>
     <Product>Rubicon Engine</Product>
     <AssemblyVersion>1.0</AssemblyVersion>
+    <AssemblyName>Rubicon Framework</AssemblyName>
+    <RootNamespace>BaseRubicon</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
@@ -198,19 +200,13 @@
     <Content Include="assets\songs\dadbattle\hard.json" />
     <Content Include="assets\songs\dadbattle\normal.json" />
     <Content Include="assets\songs\dadbattle\song\inst.ogg" />
-    <Content Include="assets\songs\dadbattle\song\inst.ogg.import" />
     <Content Include="assets\songs\dadbattle\song\voices.ogg" />
-    <Content Include="assets\songs\dadbattle\song\voices.ogg.import" />
     <Content Include="assets\songs\imscared\normal.json" />
     <Content Include="assets\songs\imscared\song\inst.ogg" />
-    <Content Include="assets\songs\imscared\song\inst.ogg.import" />
     <Content Include="assets\songs\imscared\song\voices.ogg" />
-    <Content Include="assets\songs\imscared\song\voices.ogg.import" />
     <Content Include="assets\songs\test\normal.json" />
     <Content Include="assets\songs\test\song\inst.ogg" />
-    <Content Include="assets\songs\test\song\inst.ogg.import" />
     <Content Include="assets\songs\test\song\voices.ogg" />
-    <Content Include="assets\songs\test\song\voices.ogg.import" />
     <Content Include="assets\sounds\hitSound.ogg" />
     <Content Include="assets\sounds\menus\cancelMenu.ogg" />
     <Content Include="assets\sounds\menus\confirmMenu.ogg" />
@@ -222,17 +218,18 @@
     <Content Include="assets\themes\default_bus_layout.tres" />
     <Content Include="assets\themes\Duo\Duo's Theme.tres" />
     <Content Include="assets\themes\Duo\real.jpg" />
-    <Content Include="assets\themes\Duo\real.jpg.import" />
     <Content Include="assets\themes\Duo\styleboxflat.tres" />
     <Content Include="assets\themes\healthbar\Opponent.tres" />
     <Content Include="assets\themes\healthbar\Player.tres" />
     <Content Include="project.godot" />
     <Content Include="README.md" />
-    <Content Include="Rubicon.sln" />
+    <Content Include="src\backend\autoload\debug\screennotifier\Notification.tscn" />
+    <Content Include="src\backend\autoload\debug\screennotifier\ScreenNotifier.tscn" />
     <Content Include="src\backend\ui\alphabet\Alphabet.tscn" />
     <Content Include="src\gameplay\elements\strumlines\4K.tscn" />
     <Content Include="src\gameplay\elements\strumlines\Strum.tscn" />
     <Content Include="src\gameplay\GameplayScene.tscn" />
+    <Content Include="src\scenes\options\elements\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -296,6 +293,12 @@
     <Compile Remove="src\menus\options\elements\data\**" />
     <Compile Remove="src\menus\**" />
     <Compile Remove="src\scenes\freeplay\**" />
+    <Compile Remove="src\scenes\options\submenus\elements\**" />
+    <Compile Remove="src\backend\autoload\debug\ScreenNotifier\**" />
+    <Compile Remove="src\backend\common\**" />
+    <Compile Remove="src\backend\scripts\nuclearbombs\**" />
+    <Compile Include="src\backend\autoload\debug\screennotifier\NotificationType.cs" />
+    <Compile Include="src\backend\autoload\debug\screennotifier\ScreenNotifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -326,6 +329,10 @@
     <EmbeddedResource Remove="src\menus\options\elements\data\**" />
     <EmbeddedResource Remove="src\menus\**" />
     <EmbeddedResource Remove="src\scenes\freeplay\**" />
+    <EmbeddedResource Remove="src\scenes\options\submenus\elements\**" />
+    <EmbeddedResource Remove="src\backend\autoload\debug\ScreenNotifier\**" />
+    <EmbeddedResource Remove="src\backend\common\**" />
+    <EmbeddedResource Remove="src\backend\scripts\nuclearbombs\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -343,6 +350,10 @@
     <None Remove="src\menus\options\elements\data\**" />
     <None Remove="src\menus\**" />
     <None Remove="src\scenes\freeplay\**" />
+    <None Remove="src\scenes\options\submenus\elements\**" />
+    <None Remove="src\backend\autoload\debug\ScreenNotifier\**" />
+    <None Remove="src\backend\common\**" />
+    <None Remove="src\backend\scripts\nuclearbombs\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />
@@ -358,5 +369,6 @@
     <Folder Include="assets\sounds\styles\pixel\Countdown\" />
     <Folder Include="assets\sounds\styles\pixel\Death\" />
     <Folder Include="src\scenes\credits\" />
+    <Folder Include="src\scenes\options\submenus\" />
   </ItemGroup>
 </Project>

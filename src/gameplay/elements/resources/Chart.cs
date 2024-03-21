@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
+using BaseRubicon.Gameplay.Elements.Classes.Song;
 using Newtonsoft.Json;
-using Rubicon.gameplay.elements.classes.song;
 using FileAccess = Godot.FileAccess;
-using Section = Rubicon.gameplay.elements.classes.song.Section;
-using SectionNote = Rubicon.gameplay.elements.classes.song.SectionNote;
 
-namespace Rubicon.gameplay.elements.resources;
+namespace BaseRubicon.Gameplay.Elements.Resources;
 
 [Serializable]
 public partial class Chart : Resource
@@ -14,7 +12,7 @@ public partial class Chart : Resource
     public string SongName { get; set; } = "Test";
     public string NameRaw { get; set; } = "test";
     public float Bpm { get; set; } = 150;
-    public List<Section> Sections { get; set; } = new();
+    public List<Classes.Song.Section> Sections { get; set; } = new();
     public int KeyCount { get; set; } = 4;
     public float ScrollSpeed { get; set; } = 1;
     public bool Is3D { get; set; }
@@ -52,7 +50,7 @@ public partial class Chart : Resource
 
         foreach (SongSection Section in Data.notes)
         {
-            Section NewSection = new();
+            Classes.Song.Section NewSection = new();
             NewSection.Bpm = Section.bpm;
             NewSection.ChangeBpm = Section.changeBPM;
             NewSection.IsPlayer = Section.mustHitSection;
@@ -61,7 +59,7 @@ public partial class Chart : Resource
             
             foreach (List<dynamic> Note in Section.sectionNotes)
             {
-                SectionNote NewNote = new()
+                Classes.Song.SectionNote NewNote = new()
                 {
                     Time = (float)Note[0],
                     Direction = (int)Note[1],

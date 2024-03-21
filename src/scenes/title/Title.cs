@@ -1,19 +1,14 @@
+using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
+using BaseRubicon.Backend.Autoload.Managers.AudioManager;
+using BaseRubicon.Backend.UI.Alphabet;
 using Godot.Collections;
-using Godot.Sharp.Extras;
-using Rubicon.backend.autoload.debug.ScreenNotifier;
-using Rubicon.backend.common.enums;
-using Rubicon.backend.ui.alphabet;
-using AudioManager = Rubicon.backend.autoload.managers.AudioManager;
-using TransitionManager = Rubicon.backend.autoload.managers.TransitionManager;
+using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
+using TransitionManager = BaseRubicon.Backend.Autoload.Managers.TransitionManager;
 
-namespace Rubicon;
+namespace BaseRubicon.Scenes.Title;
 
 public partial class Title : Conductor
 {
-    private string[] LoadedIntroTexts = new[] { "yoooo swag shit", "ball shit" };
-    private bool skippedIntro;
-    private bool transitioning;
-
     [NodePath("TitleGroup/Girlfriend/AnimationPlayer")] private AnimationPlayer Girlfriend;
     [NodePath("TitleGroup/Logo")] private AnimatedSprite2D Logo;
     [NodePath("TitleGroup/TitleEnter")] private AnimatedSprite2D TitleEnter;
@@ -23,6 +18,10 @@ public partial class Title : Conductor
     [NodePath("NewgroundsSprite")] private Sprite2D NewgroundsSprite;
     [NodePath("Flash/AnimationPlayer")] private AnimationPlayer Flash;
     [NodePath("lol")] private VideoStreamPlayer lol;
+    
+    private string[] LoadedIntroTexts = new[] { "yoooo swag shit", "ball shit" };
+    private bool skippedIntro;
+    private bool transitioning;
 
     [Export]
     private Dictionary<int, string> beatActions = new()
@@ -46,7 +45,8 @@ public partial class Title : Conductor
     {
         this.OnReady();
         AudioStreamPlayer Audio = AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
-
+        Instance.position = Audio.GetPlaybackPosition();
+        
         if (GD.RandRange(1, 500000) == 30000)
         {
             lol.Play();
@@ -64,7 +64,7 @@ public partial class Title : Conductor
         Logo.Play("BumpIn");
         TitleEnter.Play("Press Enter to Begin");
         LoadedIntroTexts = GetIntroTexts();
-        Instance.bpm = (float)Audio.Stream._GetBpm();
+        Instance.ChangeBPM(100f);
     }
 
     public override void _Input(InputEvent @event)
@@ -89,10 +89,8 @@ public partial class Title : Conductor
 
     public override void _Process(double delta)
     {
-        //Instance.position = Audio.GetPlaybackPosition();
-        
-        //  int axis = Mathf.RoundToInt(Input.GetActionStrength("ui_left") - Input.GetActionStrength("ui_right"));
-        //  if (axis != 0) colorSwap.SetShaderParameter("time", colorSwap.GetShaderParameter("time") + (delta * 0.1f) * axis);
+        //int axis = Mathf.RoundToInt(Input.GetActionStrength("ui_left") - Input.GetActionStrength("ui_right"));
+         //if (axis != 0) colorSwap.SetShaderParameter("time", colorSwap.GetShaderParameter("time") + (delta * 0.1f) * axis);
     }
 
     protected override void OnBeatHit(int beat)
@@ -124,7 +122,6 @@ public partial class Title : Conductor
                             int index = int.Parse(parameters[0].Substring(16, parameters[0].Length - 17));
                             Call(methodName, LoadedIntroTexts[index]);
                         }
-
                         break;
                     case 2:
                         Call(methodName, parameters[0], bool.Parse(parameters[1]));

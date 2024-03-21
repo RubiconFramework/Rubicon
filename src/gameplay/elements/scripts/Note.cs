@@ -1,9 +1,8 @@
-using Godot.Sharp.Extras;
-using Rubicon.gameplay.elements.resources;
-using Rubicon.gameplay.elements.strumlines;
-using Global = Rubicon.backend.autoload.Global;
+using BaseRubicon.Gameplay.Elements.Resources;
+using BaseRubicon.Gameplay.Elements.StrumLines;
+using Global = BaseRubicon.Backend.Autoload.Global;
 
-namespace Rubicon.gameplay.elements.scripts;
+namespace BaseRubicon.Gameplay.Elements.Scripts;
 
 public partial class Note : Node2D
 {

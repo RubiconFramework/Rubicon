@@ -1,9 +1,9 @@
+using BaseRubicon.Gameplay.Elements.Resources;
 using Godot.Collections;
-using Rubicon.gameplay.elements.resources;
-using BPMChangeEvent = Rubicon.gameplay.elements.classes.song.BPMChangeEvent;
-using Section = Rubicon.gameplay.elements.classes.song.Section;
+using BPMChangeEvent = BaseRubicon.Gameplay.Elements.Classes.Song.BPMChangeEvent;
+using Section = BaseRubicon.Gameplay.Elements.Classes.Song.Section;
 
-namespace Rubicon.backend.autoload;
+namespace BaseRubicon.Backend.Autoload;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Conductor : Node
@@ -114,9 +114,21 @@ public partial class Conductor : Node
         curDecBeat = curDecStep / 4.0f;
         curDecSection = curDecStep / 16.0f;
 
-        if (oldStep != curStep && curStep > 0) StepHitEvent?.Invoke(curStep);
-        if (oldBeat != curBeat && curBeat > 0) BeatHitEvent?.Invoke(curBeat);
-        if (oldSection != curSection && curSection > 0) SectionHitEvent?.Invoke(curSection);
+        if (curStep != oldStep && curStep > 0)
+        {
+            StepHitEvent?.Invoke(curStep);
+            OnStepHit(curStep);
+        }
+        if (curBeat != oldBeat && curBeat > 0)
+        {
+            BeatHitEvent?.Invoke(curBeat);
+            OnBeatHit(curBeat);
+        }
+        if (curSection != oldSection && curSection > 0)
+        {
+            SectionHitEvent?.Invoke(curSection);
+            OnSectionHit(curSection);
+        }
     }
 
     protected virtual void OnBeatHit(int beat)
