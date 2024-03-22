@@ -7,17 +7,14 @@ namespace BaseRubicon.Scenes.Options.Elements;
 [Icon("res://assets/miscicons/settingsbutton.png")]
 public partial class BaseSubmenu : ScrollContainer
 {
-    protected OptionsMenu OptionsMenu = OptionsMenu.Instance;
-    protected readonly SettingsData UserSettings = Global.Settings;
-
     protected void RegisterButton(Button button, Action<bool> updateAction)
     {
         button.Pressed += () =>
         {
             updateAction.Invoke(button.ButtonPressed);
-            JsonSettingsManager.SaveSettingsToFile(Global.SettingsFilePath);
+            Global.Settings.SaveSettings();
         };
-        button.MouseEntered += () => OptionsMenu.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
+        button.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
     }
 
     protected void RegisterOptionButton(OptionButton optionButton, Action<int> updateAction)
@@ -25,9 +22,9 @@ public partial class BaseSubmenu : ScrollContainer
         optionButton.ItemSelected += index =>
         {
             updateAction.Invoke((int)index);
-            JsonSettingsManager.SaveSettingsToFile(Global.SettingsFilePath);
+            Global.Settings.SaveSettings();
         };
-        optionButton.MouseEntered += () => OptionsMenu.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
+        optionButton.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
     }
 
     protected void RegisterSlider(Label label, string settingName, Action<float> updateAction, bool showPercentage)
@@ -36,9 +33,9 @@ public partial class BaseSubmenu : ScrollContainer
         {
             label.Text = showPercentage ? $" {settingName}: [{(int)v}%]" : $" {settingName} [{(float)v}]";
             updateAction.Invoke((float)v);
-            JsonSettingsManager.SaveSettingsToFile(Global.SettingsFilePath);
+            Global.Settings.SaveSettings();
         };
-        label.MouseEntered += () => OptionsMenu.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
+        label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
 
     protected void RegisterColorPicker(Label label, Action<Color> updateAction)
@@ -46,9 +43,9 @@ public partial class BaseSubmenu : ScrollContainer
         label.GetNode<ColorPickerButton>("Picker").ColorChanged += color =>
         {
             updateAction.Invoke(color);
-            JsonSettingsManager.SaveSettingsToFile(Global.SettingsFilePath);
+            Global.Settings.SaveSettings();
         };
-        label.MouseEntered += () => OptionsMenu.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
+        label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
 
     protected void LoadButtonValue(Button button, bool v) => button.ButtonPressed = v;

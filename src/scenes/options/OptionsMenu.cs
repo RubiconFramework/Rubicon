@@ -3,7 +3,6 @@ using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
 using BaseRubicon.Scenes.Options.Elements;
 using BaseRubicon.Scenes.Options.Elements.Enums;
 using Newtonsoft.Json;
-using JsonSettingsManager = BaseRubicon.Backend.Scripts.JsonSettingsManager;
 using TransitionManager = BaseRubicon.Backend.Autoload.Managers.TransitionManager;
 
 namespace BaseRubicon.Scenes.Options;
@@ -66,7 +65,7 @@ public partial class OptionsMenu : Control
 			try
 			{
 				Global.Settings = JsonConvert.DeserializeObject<SettingsData>(Global.DecompressString(DisplayServer.ClipboardGet()));
-				JsonSettingsManager.SaveSettingsToFile(Global.SettingsFilePath);
+				Global.Settings.SaveSettings();
 				ScreenNotifier.Instance.Notify("Settings imported.");
 			}
 			catch (Exception e)

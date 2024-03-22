@@ -15,15 +15,15 @@ public partial class Video : BaseSubmenu
         this.OnReady();
         LoadSettings();
         
-        RegisterOptionButton(VSync, i => OptionsMenu.HelperMethods.SetVSync((DisplayServer.VSyncMode)i));
-        RegisterOptionButton(WindowMode, i => OptionsMenu.HelperMethods.SetWindowMode((DisplayServer.WindowMode)i));
-        RegisterSlider(MaxFPS, "Max FPS", OptionsMenu.HelperMethods.SetMaxFPS, false);
+        RegisterOptionButton(VSync, i => OptionsMenu.Instance.HelperMethods.SetVSync((DisplayServer.VSyncMode)i));
+        RegisterOptionButton(WindowMode, i => OptionsMenu.Instance.HelperMethods.SetWindowMode((DisplayServer.WindowMode)i));
+        RegisterSlider(MaxFPS, "Max FPS", OptionsMenu.Instance.HelperMethods.SetMaxFPS, false);
     }
     
     private void LoadSettings()
     {
-        LoadOptionButtonValue(VSync, (int)UserSettings.Video.VSync);
-        LoadOptionButtonValue(WindowMode, (int)UserSettings.Video.WindowMode);
-        LoadSliderValue(MaxFPS, "Max FPS", UserSettings.Video.MaxFPS);
+        LoadOptionButtonValue(VSync, (int)Global.Settings.Video.VSync);
+        LoadOptionButtonValue(WindowMode, (int)Global.Settings.Video.WindowMode);
+        LoadSliderValue(MaxFPS, "Max FPS", Global.Settings.Video.MaxFPS);
     }
 }

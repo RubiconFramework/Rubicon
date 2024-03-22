@@ -1,3 +1,4 @@
+using BaseRubicon.Backend.Scripts;
 using BaseRubicon.Scenes.Options.Submenus.Audio.Enums;
 
 namespace BaseRubicon.Backend.Autoload.Managers.AudioManager;
@@ -5,21 +6,22 @@ namespace BaseRubicon.Backend.Autoload.Managers.AudioManager;
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class AudioManager : Node
 {
-    public static AudioManager Instance { get; private set; }
-
-    private float MasterVolume;
-    private bool isMuted;
-    private float preMuteVolume = 50;
-    private float targetVolume;
-
     [NodePath("VolumeManager/AnimationPlayer")] private AnimationPlayer AnimationPlayer;
     [NodePath("VolumeManager/dumbass panel/VolumeIcon")] private AnimatedSprite2D VolumeIcon;
     [NodePath("VolumeManager/dumbass panel/VolumeBar")] private ProgressBar VolumeBar;
     
-    private const double AnimationDuration = 2.0;
-    private double animationTimer;
+    private float MasterVolume;
+    private float preMuteVolume = 50;
+    private float targetVolume;
+    
+    private bool isMuted;
     private VolumeBarState CurrentVolumeBarState = VolumeBarState.VolumeBarHidden;
 
+    private double animationTimer;
+    private const double AnimationDuration = 2.0;
+
+    public static AudioManager Instance { get; private set; }
+    
     public override void _EnterTree()
     {
         base._EnterTree();
@@ -83,6 +85,7 @@ public partial class AudioManager : Node
         MasterVolume = value; 
         MasterVolume = Mathf.Clamp(MasterVolume, 0, 100);
         Global.Settings.Audio.MasterVolume = MasterVolume;
+        Global.Settings.SaveSettings();
         UpdateVolume();
     }
 
@@ -118,8 +121,6 @@ public partial class AudioManager : Node
 
     public AudioStreamPlayer PlayAudio(AudioType type, string path, float volume = 1, bool loop = false)
     {
-        AudioStreamPlayer player;
-
         if (type == AudioType.Music)
         {
             foreach(var node in GetNode(type.ToString().ToLower()).GetChildren())
@@ -129,7 +130,7 @@ public partial class AudioManager : Node
             }   
         }
 
-        player = GetNodeOrNull<AudioStreamPlayer>($"{type.ToString().ToLower()}/{path}");
+        var player = GetNodeOrNull<AudioStreamPlayer>($"{type.ToString().ToLower()}/{path}");
         if (player != null && type == AudioType.Music && player.Playing && player.Stream == GD.Load<AudioStream>(ConstructAudioPath(path, type.ToString().ToLower()))) return player;
 
         if (player is null)
@@ -168,7 +169,7 @@ public partial class AudioManager : Node
 
     private static string ConstructAudioPath(string path, string type)
     {
-        foreach (var format in Global.audioFormats)
+        foreach (var format in Global.AudioFormats)
         {
             string formattedPath = $"res://assets/{type}/{path}.{format}";
             if (ResourceLoader.Exists(formattedPath)) return formattedPath;

@@ -242,16 +242,16 @@
     <Compile Remove="src\menus\title\**" />
     <Compile Remove="src\menus\mainmenu\**" />
     <Compile Remove="addons\yamljsonconverter\**" />
-    <Compile Update="src\menus\options\UserSettings.cs">
+    <Compile Update="src\menus\options\Global.Settings.cs">
       <DependentUpon>OptionsMenu.cs</DependentUpon>
     </Compile>
     <Compile Update="src\menus\options\DirectoryIterator.cs">
       <DependentUpon>OptionsMenu.cs</DependentUpon>
     </Compile>
-    <Compile Update="src\menus\options\AllUserSettings.cs">
+    <Compile Update="src\menus\options\AllGlobal.Settings.cs">
       <DependentUpon>OptionsMenu.cs</DependentUpon>
     </Compile>
-    <Compile Update="src\menus\options\GeneralUserSettings.cs">
+    <Compile Update="src\menus\options\GeneralGlobal.Settings.cs">
       <DependentUpon>OptionsMenu.cs</DependentUpon>
     </Compile>
     <Compile Update="src\menus\options\SettingsManagement.cs">

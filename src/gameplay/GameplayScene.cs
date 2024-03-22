@@ -104,7 +104,7 @@ public partial class GameplayScene : Conductor
 
         string songPath = $"res://assets/songs/{Song.SongName.ToLower()}/song/";
 
-        foreach (var f in Global.audioFormats)
+        foreach (var f in Global.AudioFormats)
         {
             if (ResourceLoader.Exists($"{songPath}inst.{f}"))
             {
@@ -196,8 +196,8 @@ public partial class GameplayScene : Conductor
     
     private void InitializeStrumGroups()
     {
-        InitializeStrumLine(ref oppStrums, (Global.windowSize.X * 0.5f) - 320f);
-        InitializeStrumLine(ref playerStrums, (Global.windowSize.X * 0.5f) + 320f);
+        InitializeStrumLine(ref oppStrums, (Global.EngineWindowSize.X * 0.5f) - 320f);
+        InitializeStrumLine(ref playerStrums, (Global.EngineWindowSize.X * 0.5f) + 320f);
     }
 
     private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
@@ -310,7 +310,7 @@ public partial class GameplayScene : Conductor
         float cameraSpeed = Mathf.Clamp((float)delta * ZoomDeltaMultiplier * Instance.rate, 0f, 1f);
         if (!Song.Is3D) camera.Zoom = new(Mathf.Lerp(camera.Zoom.X, camZoom, cameraSpeed), Mathf.Lerp(camera.Zoom.Y, camZoom, cameraSpeed));
         HUD.Scale = new(Mathf.Lerp(HUD.Scale.X, 1f, cameraSpeed), Mathf.Lerp(HUD.Scale.Y, 1f, cameraSpeed));
-        HUD.Offset = new((HUD.Scale.X - 1f) * -(Global.windowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Global.windowSize.Y * 0.5f));
+        HUD.Offset = new((HUD.Scale.X - 1f) * -(Global.EngineWindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Global.EngineWindowSize.Y * 0.5f));
     }
 
     protected override void OnBeatHit(int beat)

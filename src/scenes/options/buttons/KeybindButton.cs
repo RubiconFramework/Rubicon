@@ -6,28 +6,27 @@ namespace BaseRubicon.Scenes.Options.Buttons;
 public partial class KeybindButton : Button
 {
     [Export] private string Action;
-    [NodePath("AppendKey")] private Button AppendKey;
     private Button CurrentButton;
 
     public override void _Ready()
     {
         this.OnReady();
-        AppendKey.Pressed += CreateKeybindButton;
-    }
-    
-    private void CreateKeybindButton()
-    {
-        Button button = new();
-        button.Text = "N/A";
-        AppendKey.AddChild(button);
+        var AppendKey = GetNode<Button>("AppendKey");
 
-        Rect2 appendKeyRect = AppendKey.GetRect();
-        Rect2 rect2 = button.GetRect();
-        Vector2 newPosition = new(appendKeyRect.Position.X + appendKeyRect.Size.X + 15, appendKeyRect.Position.Y);
-        rect2.Position = newPosition;
-        button.Pressed += () => StartKeybinding(button);
+        AppendKey.Pressed += () =>
+        {
+            Button button = new();
+            button.Text = "N/A";
+            AppendKey.AddChild(button);
+
+            Rect2 appendKeyRect = AppendKey.GetRect();
+            Rect2 rect2 = button.GetRect();
+            Vector2 newPosition = new(appendKeyRect.Position.X + appendKeyRect.Size.X + 15, appendKeyRect.Position.Y);
+            rect2.Position = newPosition;
+            button.Pressed += () => StartKeybinding(button);
+        };
     }
-        
+
     private void StartKeybinding(Button button)
     {
         if (OptionsMenu.Instance.OptionsMenuCurrentState == OptionsMenuState.Idle)

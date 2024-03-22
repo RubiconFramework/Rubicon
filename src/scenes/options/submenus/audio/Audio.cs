@@ -19,21 +19,21 @@ public partial class Audio : BaseSubmenu
         this.OnReady();
         LoadSettings();
         
-        RegisterSlider(MasterVolume, "Master Volume", v => OptionsMenu.HelperMethods.SetVolume(VolumeType.MasterVolume, v), true);
-        RegisterSlider(MusicVolume, "Music Volume", v => OptionsMenu.HelperMethods.SetVolume(VolumeType.MusicVolume, v), true);
-        RegisterSlider(SFXVolume, "SFX Volume", v => OptionsMenu.HelperMethods.SetVolume(VolumeType.SFXVolume, v), true);
-        RegisterSlider(InstVolume, "Inst Volume", v => OptionsMenu.HelperMethods.SetVolume(VolumeType.InstVolume, v), true);
-        RegisterSlider(VoiceVolume, "Voice Volume", v => OptionsMenu.HelperMethods.SetVolume(VolumeType.VoiceVolume, v), true);
-        RegisterOptionButton(SoundOutputMode, i => UserSettings.Audio.OutputMode = (OutputMode)i);
+        RegisterSlider(MasterVolume, "Master Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MasterVolume, v), true);
+        RegisterSlider(MusicVolume, "Music Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MusicVolume, v), true);
+        RegisterSlider(SFXVolume, "SFX Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.SFXVolume, v), true);
+        RegisterSlider(InstVolume, "Inst Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.InstVolume, v), true);
+        RegisterSlider(VoiceVolume, "Voice Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.VoiceVolume, v), true);
+        RegisterOptionButton(SoundOutputMode, i => Global.Settings.Audio.OutputMode = (OutputMode)i);
     }
     
     private void LoadSettings()
     {
-        LoadSliderValue(MasterVolume, "Master Volume", UserSettings.Audio.MasterVolume, true);
-        LoadSliderValue(MusicVolume, "Music Volume", UserSettings.Audio.MusicVolume, true);
-        LoadSliderValue(SFXVolume, "SFX Volume", UserSettings.Audio.SFXVolume, true);
-        LoadSliderValue(InstVolume, "Inst Volume", UserSettings.Audio.InstVolume, true);
-        LoadSliderValue(VoiceVolume, "Voice Volume", UserSettings.Audio.VoiceVolume, true);
-        LoadOptionButtonValue(SoundOutputMode, (int)UserSettings.Audio.OutputMode);
+        LoadSliderValue(MasterVolume, "Master Volume", Global.Settings.Audio.MasterVolume, true);
+        LoadSliderValue(MusicVolume, "Music Volume", Global.Settings.Audio.MusicVolume, true);
+        LoadSliderValue(SFXVolume, "SFX Volume", Global.Settings.Audio.SFXVolume, true);
+        LoadSliderValue(InstVolume, "Inst Volume", Global.Settings.Audio.InstVolume, true);
+        LoadSliderValue(VoiceVolume, "Voice Volume", Global.Settings.Audio.VoiceVolume, true);
+        LoadOptionButtonValue(SoundOutputMode, (int)Global.Settings.Audio.OutputMode);
     }
 }

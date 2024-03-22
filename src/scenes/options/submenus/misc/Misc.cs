@@ -18,19 +18,19 @@ public partial class Misc : BaseSubmenu
         this.OnReady();
         LoadSettings();
         
-        RegisterButton(SceneTransitions, _ => UserSettings.Misc.SceneTransitions = !UserSettings.Misc.SceneTransitions);
-        RegisterButton(OptionsMenuAnimations, _ => UserSettings.Misc.OptionsMenuAnimations = !UserSettings.Misc.OptionsMenuAnimations);
-        RegisterButton(DiscordRichPresence, OptionsMenu.HelperMethods.SetDiscordRPC);
-        RegisterOptionButton(GameLanguage, i => UserSettings.Misc.Languages = (GameLanguages)i);
-        RegisterOptionButton(GameTransitions, i => UserSettings.Misc.Transitions = (TransitionType)i);
+        RegisterButton(SceneTransitions, _ => Global.Settings.Misc.SceneTransitions = !Global.Settings.Misc.SceneTransitions);
+        RegisterButton(OptionsMenuAnimations, _ => Global.Settings.Misc.OptionsMenuAnimations = !Global.Settings.Misc.OptionsMenuAnimations);
+        RegisterButton(DiscordRichPresence, OptionsMenu.Instance.HelperMethods.SetDiscordRPC);
+        RegisterOptionButton(GameLanguage, i => Global.Settings.Misc.Languages = (GameLanguages)i);
+        RegisterOptionButton(GameTransitions, i => Global.Settings.Misc.Transitions = (TransitionType)i);
     }
     
     private void LoadSettings()
     {
-        LoadButtonValue(SceneTransitions, UserSettings.Misc.SceneTransitions);
-        LoadButtonValue(OptionsMenuAnimations, UserSettings.Misc.OptionsMenuAnimations);
-        LoadButtonValue(DiscordRichPresence, UserSettings.Misc.DiscordRichPresence);
-        LoadOptionButtonValue(GameLanguage, (int)UserSettings.Misc.Languages);
-        LoadOptionButtonValue(GameTransitions, (int)UserSettings.Misc.Transitions);
+        LoadButtonValue(SceneTransitions, Global.Settings.Misc.SceneTransitions);
+        LoadButtonValue(OptionsMenuAnimations, Global.Settings.Misc.OptionsMenuAnimations);
+        LoadButtonValue(DiscordRichPresence, Global.Settings.Misc.DiscordRichPresence);
+        LoadOptionButtonValue(GameLanguage, (int)Global.Settings.Misc.Languages);
+        LoadOptionButtonValue(GameTransitions, (int)Global.Settings.Misc.Transitions);
     }
 }

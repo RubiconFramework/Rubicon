@@ -193,13 +193,13 @@ public partial class Alphabet : ReferenceRect
         switch (axes.ToUpperInvariant())
         {
             case "X":
-                position.X = (Global.windowSize.X * 0.5f) - (totalWidth / 2.0f);
+                position.X = (Global.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f);
                 break;
             case "Y":
-                position.Y = (Global.windowSize.Y * 0.5f) - (totalHeight / 2.0f);
+                position.Y = (Global.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f);
                 break;
             default:
-                Position = new((Global.windowSize.X * 0.5f) - (totalWidth / 2.0f), (Global.windowSize.Y * 0.5f) - (totalHeight / 2.0f));
+                Position = new((Global.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f), (Global.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f));
                 break;
         }
     }

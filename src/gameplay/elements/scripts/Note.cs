@@ -42,14 +42,14 @@ public partial class Note : Node2D
         StepCrochet = Conductor.Instance.stepCrochet;
         OriginalLength = Length;
         InitialScale = Scale;
-        Sprite.Play(Global.defaultNoteDirections[Direction]);
+        Sprite.Play(Global.DefaultNoteDirections[Direction]);
     }
 
     public void loadUIStyle(UIStyle style)
     {
         Sprite.SpriteFrames = style.noteTexture;
-        Sustain.Texture = style.sustainTexture.GetFrameTexture($"{Global.defaultNoteDirections[Direction]} hold piece",0);
-        SustainEnd.Texture = style.sustainTexture.GetFrameTexture($"{Global.defaultNoteDirections[Direction]} hold end",0);
+        Sustain.Texture = style.sustainTexture.GetFrameTexture($"{Global.DefaultNoteDirections[Direction]} hold piece",0);
+        SustainEnd.Texture = style.sustainTexture.GetFrameTexture($"{Global.DefaultNoteDirections[Direction]} hold end",0);
 
         Scale = Strumline.GetChild<Strum>(0).Scale;
         Sustain.Width /= (Scale.X + 0.3f);

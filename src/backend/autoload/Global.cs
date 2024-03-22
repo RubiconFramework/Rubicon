@@ -14,28 +14,32 @@ using BaseRubicon.Gameplay.Elements.Resources;
 using BaseRubicon.Scenes.Options.Elements;
 using DiscordRPC;
 using DiscordRPC.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using FileAccess = Godot.FileAccess;
 
 namespace BaseRubicon.Backend.Autoload;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Global : Node
 {
+	[Export] public string DiscordRpcClientID = "1218405526677749760";
+	[Export] public string SettingsFilePath = "user://settings.json";
+
 	public static Chart Song; // the fuck is this for ? -duo
 							  // ^ so we can access it from anywhere without having to reference gameplay :) -lego
 							  // stop talking -duo
 							  // :( -lego
 							  // im sorry that was rude -duo
 							  
-	public static SettingsData Settings { get; set; } = new();
 	public static Global Instance { get; private set; } = new();
 	
- 	public static readonly string[] audioFormats = { "mp3", "ogg", "wav" , "flac" };
-    public static readonly string SettingsFilePath = "user://settings.json";
-    public static readonly string[] defaultNoteDirections = { "left", "down", "up", "right" };
-    public static readonly string DiscordRpcClientID = "1218405526677749760";
-	public static readonly Vector2 windowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
+ 	public static readonly string[] AudioFormats = { "mp3", "ogg", "wav" , "flac" };
+    public static readonly string[] DefaultNoteDirections = { "left", "down", "up", "right" };
+	public static readonly Vector2 EngineWindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
-	public static DiscordRpcClient DiscordRpcClient = new(DiscordRpcClientID);
+	public static SettingsData Settings { get; set; } = new(Instance.SettingsFilePath);
+	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);
 
 	public override void _EnterTree()
     {
@@ -43,8 +47,8 @@ public partial class Global : Node
 
         Instance = this;
         DiscordRPC(true);
+        LoadSettings(SettingsFilePath);
         RenderingServer.SetDefaultClearColor(new(0,0,0));
-        JsonSettingsManager.LoadSettingsFromFile(SettingsFilePath);
         TranslationServer.SetLocale(Settings.Misc.Languages.ToString().ToLower());
         
         if ((bool)ProjectSettings.GetSetting("use_project_name_user_dir",true)){
@@ -78,6 +82,34 @@ public partial class Global : Node
 		base._ExitTree();
 		Settings = null;
 		DiscordRPC(false);
+	}
+	
+	public static SettingsData LoadSettings(string path)
+	{
+		try
+		{
+			SettingsData settings = new(path);
+			if (FileAccess.FileExists(path))
+			{
+				var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+				string json = jsonData.GetAsText();
+				settings = JsonConvert.DeserializeObject<SettingsData>(json);
+				GD.Print($"Settings loaded from file. [{path}]");
+			}
+			else
+			{
+				GD.Print("Settings file not found. Writing default settings to file.");
+				settings.GetDefaultSettings().SaveSettings();
+			}
+
+			Global.Settings = settings;
+			return settings;
+		}
+		catch (Exception e)
+		{
+			GD.PrintErr($"Failed to load or write default settings: {e.Message}");
+			return null;
+		}
 	}
 
 	public static IEnumerable<string> FilesInDirectory(string path)
@@ -148,7 +180,7 @@ public partial class Global : Node
 					Assets = new()
 					{
 						LargeImageKey = "image_large",
-						LargeImageText = $"Rubicon v{ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "Debug" : "Release")}",
+						LargeImageText = $"Rubicon v{ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "Debug Build" : "Release Build")}",
 					}
 				});
 			}

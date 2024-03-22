@@ -16,15 +16,15 @@ public partial class Gameplay : BaseSubmenu
         this.OnReady();
         LoadSettings();
         
-        RegisterButton(Downscroll, _ => UserSettings.Gameplay.Downscroll = !UserSettings.Gameplay.Downscroll);
-        RegisterOptionButton(ScrollSpeedType, i => UserSettings.Gameplay.ScrollSpeedType = (ScrollSpeedType)i);
-        RegisterSlider(ScrollSpeed, "Scroll Speed", v => UserSettings.Gameplay.ScrollSpeed = v, false);
+        RegisterButton(Downscroll, _ => Global.Settings.Gameplay.Downscroll = !Global.Settings.Gameplay.Downscroll);
+        RegisterOptionButton(ScrollSpeedType, i => Global.Settings.Gameplay.ScrollSpeedType = (ScrollSpeedType)i);
+        RegisterSlider(ScrollSpeed, "Scroll Speed", v => Global.Settings.Gameplay.ScrollSpeed = v, false);
     }
     
     private void LoadSettings()
     {
-        LoadButtonValue(Downscroll, UserSettings.Gameplay.Downscroll);
-        LoadOptionButtonValue(ScrollSpeedType, (int)UserSettings.Gameplay.ScrollSpeedType);
-        LoadSliderValue(ScrollSpeed, "Scroll Speed", UserSettings.Gameplay.ScrollSpeed);
+        LoadButtonValue(Downscroll, Global.Settings.Gameplay.Downscroll);
+        LoadOptionButtonValue(ScrollSpeedType, (int)Global.Settings.Gameplay.ScrollSpeedType);
+        LoadSliderValue(ScrollSpeed, "Scroll Speed", Global.Settings.Gameplay.ScrollSpeed);
     }
 }
