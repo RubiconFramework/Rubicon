@@ -38,7 +38,7 @@ public partial class Global : Node
     public static readonly string[] DefaultNoteDirections = { "left", "down", "up", "right" };
 	public static readonly Vector2 EngineWindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
-	public static SettingsData Settings { get; set; } = new(Instance.SettingsFilePath);
+	public static SettingsData Settings { get; set; } = new();
 	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);
 
 	public override void _EnterTree()
@@ -88,7 +88,7 @@ public partial class Global : Node
 	{
 		try
 		{
-			SettingsData settings = new(path);
+			SettingsData settings = new();
 			if (FileAccess.FileExists(path))
 			{
 				var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);

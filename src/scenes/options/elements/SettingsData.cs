@@ -13,15 +13,12 @@ namespace BaseRubicon.Scenes.Options.Elements;
 
 public class SettingsData
 {
-    public SettingsData(string settingsFilePath) => SettingsFilePath = settingsFilePath;
-
     public readonly GameplaySettings Gameplay = new();
     public readonly AudioSettings Audio = new();
     public readonly VideoSettings Video = new();
     public readonly MiscSettings Misc = new();
     
     private Dictionary<string, string> Keybinds { get; set; } = new();
-    private readonly string SettingsFilePath;
     
     public class GameplaySettings
     {
@@ -58,7 +55,7 @@ public class SettingsData
     
     public SettingsData GetDefaultSettings()
     {
-        SettingsData defaultSettings = new(SettingsFilePath);
+        SettingsData defaultSettings = new();
         return defaultSettings;
     }
     
@@ -66,14 +63,26 @@ public class SettingsData
     {
         try
         {
+            if (Global.Settings == null)
+            {
+                ScreenNotifier.Instance.Notify("Settings object is null.", true, NotificationType.Error);
+                return;
+            }
+
             var settings = new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 Formatting = Formatting.Indented
             };
-            
+        
             string jsonData = JsonConvert.SerializeObject(Global.Settings, settings);
-            using var file = FileAccess.Open(SettingsFilePath, FileAccess.ModeFlags.Write);
+            using var file = FileAccess.Open(Global.Instance.SettingsFilePath, FileAccess.ModeFlags.Write);
+            if (file == null)
+            {
+                ScreenNotifier.Instance.Notify("Failed to open settings file for writing.", true, NotificationType.Error);
+                return;
+            }
+
             file.StoreString(jsonData);
         }
         catch (Exception e)
@@ -81,6 +90,7 @@ public class SettingsData
             ScreenNotifier.Instance.Notify($"Failed to save settings: {e.Message}", true, NotificationType.Error);
         }
     }
+
     
     public void SetKeybind(string action, string button)
     {
@@ -89,7 +99,7 @@ public class SettingsData
         SaveSettings();
     }
     
-    public void RemoveKeybind(string action)
+    public void RemoveKeybind(string action, string path)
     {
         if (Keybinds.ContainsKey(action)) Keybinds.Remove(action);
         SaveSettings();
