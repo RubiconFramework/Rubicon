@@ -273,8 +273,8 @@ script = ExtResource("1_025u3")
 
 [node name="BG" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jex1q")
-position = Vector2(663.5, 348.5)
-scale = Vector2(1.08165, 1.09452)
+position = Vector2(659, 355)
+scale = Vector2(1.06221, 1.05205)
 texture = ExtResource("3_dq5lv")
 
 [node name="RightPanel" type="Panel" parent="."]

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://bgbh1pavhxi0p"]
 
-[ext_resource type="FontFile" uid="uid://kc4e76kwbupt" path="res://assets/fonts/funkin.ttf" id="1_28oul"]
+[ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="1_28oul"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hb7po"]
 bg_color = Color(0, 0, 0, 0.364706)
