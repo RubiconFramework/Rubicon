@@ -17,8 +17,7 @@ public class SettingsData
     public readonly AudioSettings Audio = new();
     public readonly VideoSettings Video = new();
     public readonly MiscSettings Misc = new();
-    
-    private Dictionary<string, string> Keybinds { get; set; } = new();
+    public Dictionary<string, string> Keybinds { get; set; } = new();
     
     public class GameplaySettings
     {
@@ -99,7 +98,7 @@ public class SettingsData
         SaveSettings();
     }
     
-    public void RemoveKeybind(string action, string path)
+    public void RemoveKeybind(string action)
     {
         if (Keybinds.ContainsKey(action)) Keybinds.Remove(action);
         SaveSettings();

@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlbq1suq2t0j3"]
 
-[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_ksnx6"]
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_xhubr"]
 
 [node name="ScrollSpeed" type="Label"]
 mouse_filter = 1
-theme = ExtResource("1_ksnx6")
+theme = ExtResource("1_xhubr")
 theme_override_font_sizes/font_size = 22
 text = " %Name% [50%] "
 

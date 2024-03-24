@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnxj6k6gqye8h"]
 
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/buttons/LabelSlider.tscn" id="1_n3lqj"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/buttons/slider/LabelSlider.tscn" id="1_n3lqj"]
 [ext_resource type="Script" path="res://src/scenes/options/submenus/video/Video.cs" id="1_nq2e8"]
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="2_72u2y"]
-[ext_resource type="PackedScene" uid="uid://33ned2004gs" path="res://src/scenes/options/buttons/ColorPickerButton.tscn" id="3_2uvcn"]
+[ext_resource type="PackedScene" uid="uid://33ned2004gs" path="res://src/scenes/options/buttons/colorpicker/ColorPickerButton.tscn" id="4_o8pgm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
@@ -62,7 +62,7 @@ popup/item_1/id = 3
 popup/item_2/text = " Window Mode: Exclusive Fullscreen"
 popup/item_2/id = 4
 
-[node name="ColorPicker" parent="Container" instance=ExtResource("3_2uvcn")]
+[node name="ColorPicker" parent="Container" instance=ExtResource("4_o8pgm")]
 layout_mode = 2
 text = " what exactly do i pick a color from here"
 

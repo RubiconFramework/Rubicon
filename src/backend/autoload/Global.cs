@@ -84,7 +84,7 @@ public partial class Global : Node
 		DiscordRPC(false);
 	}
 	
-	public static SettingsData LoadSettings(string path)
+	public static void LoadSettings(string path)
 	{
 		try
 		{
@@ -101,14 +101,11 @@ public partial class Global : Node
 				GD.Print("Settings file not found. Writing default settings to file.");
 				settings.GetDefaultSettings().SaveSettings();
 			}
-
 			Global.Settings = settings;
-			return settings;
 		}
 		catch (Exception e)
 		{
 			GD.PrintErr($"Failed to load or write default settings: {e.Message}");
-			return null;
 		}
 	}
 
@@ -180,7 +177,7 @@ public partial class Global : Node
 					Assets = new()
 					{
 						LargeImageKey = "image_large",
-						LargeImageText = $"Rubicon v{ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "Debug Build" : "Release Build")}",
+						LargeImageText = $"Framework Version {ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}",
 					}
 				});
 			}

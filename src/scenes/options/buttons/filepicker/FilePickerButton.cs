@@ -1,4 +1,4 @@
-namespace BaseRubicon.Scenes.Options.Buttons;
+namespace BaseRubicon.Scenes.Options.Buttons.FilePicker;
 
 public partial class FilePickerButton : Button
 {

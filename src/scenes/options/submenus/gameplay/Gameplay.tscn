@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_dut1v"]
 [ext_resource type="Script" path="res://src/scenes/options/submenus/gameplay/Gameplay.cs" id="1_l386l"]
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/buttons/LabelSlider.tscn" id="2_kdg2c"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/buttons/slider/LabelSlider.tscn" id="2_kdg2c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
