@@ -1,5 +1,5 @@
 using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager;
+using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
 using BaseRubicon.Backend.UI.Alphabet;
 using Godot.Collections;
 using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;

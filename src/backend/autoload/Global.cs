@@ -9,13 +9,11 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Scripts;
 using BaseRubicon.Gameplay.Elements.Resources;
 using BaseRubicon.Scenes.Options.Elements;
 using DiscordRPC;
 using DiscordRPC.Logging;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using FileAccess = Godot.FileAccess;
 
 namespace BaseRubicon.Backend.Autoload;
@@ -88,26 +86,36 @@ public partial class Global : Node
 	{
 		try
 		{
-			SettingsData settings = new();
+			SettingsData settings = new SettingsData();
 			if (FileAccess.FileExists(path))
 			{
 				var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);
 				string json = jsonData.GetAsText();
-				settings = JsonConvert.DeserializeObject<SettingsData>(json);
-				GD.Print($"Settings loaded from file. [{path}]");
+
+				if (!string.IsNullOrEmpty(json))
+				{
+					settings = JsonConvert.DeserializeObject<SettingsData>(json);
+					if (settings != null)
+					{
+						Global.Settings = settings;
+						GD.Print($"Settings loaded from file. [{path}]");
+					}
+				}
 			}
 			else
 			{
-				GD.Print("Settings file not found. Writing default settings to file.");
+				ScreenNotifier.Instance.Notify("Settings file not found. Writing default settings to file.");
 				settings.GetDefaultSettings().SaveSettings();
+				Global.Settings = settings;
 			}
-			Global.Settings = settings;
 		}
 		catch (Exception e)
 		{
 			GD.PrintErr($"Failed to load or write default settings: {e.Message}");
+			throw;
 		}
 	}
+
 
 	public static IEnumerable<string> FilesInDirectory(string path)
     {

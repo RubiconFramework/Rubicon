@@ -1,6 +1,6 @@
 using BaseRubicon.Backend.Autoload;
+using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
 using BaseRubicon.Scenes.Options.Elements;
-using BaseRubicon.Scenes.Options.Submenus.Audio.Enums;
 
 namespace BaseRubicon.Scenes.Options.Submenus.Audio;
 

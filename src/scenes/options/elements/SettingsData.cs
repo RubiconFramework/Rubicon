@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using BaseRubicon.Backend.Autoload;
 using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Scripts;
-using BaseRubicon.Scenes.Options.Submenus.Audio.Enums;
+using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
 using BaseRubicon.Scenes.Options.Submenus.Gameplay.Enums;
 using BaseRubicon.Scenes.Options.Submenus.Misc.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using YamlDotNet.Serialization;
 
 namespace BaseRubicon.Scenes.Options.Elements;
 

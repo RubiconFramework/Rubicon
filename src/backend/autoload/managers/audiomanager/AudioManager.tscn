@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://xmfla0tq4xbf"]
+[gd_scene load_steps=24 format=3 uid="uid://xmfla0tq4xbf"]
 
 [ext_resource type="Script" path="res://src/backend/autoload/managers/audiomanager/AudioManager.cs" id="1_eecsl"]
 [ext_resource type="AudioStream" uid="uid://bq8kvxkx3s0o3" path="res://assets/music/freakyMenu.ogg" id="2_t1ien"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://coosocb1aq48x" path="res://assets/music/FireMenuSong.ogg" id="5_tx55a"]
 [ext_resource type="AudioStream" uid="uid://cob3felu4jsrl" path="res://assets/sounds/menus/confirmMenu.ogg" id="6_74pqv"]
 [ext_resource type="SpriteFrames" uid="uid://csiqsia2r7f2" path="res://assets/miscicons/volumeIcons.res" id="7_xr3dk"]
+[ext_resource type="Theme" uid="uid://cnaffdtymkcv2" path="res://assets/themes/duo/AudioManager [Duo].tres" id="10_5qjre"]
+[ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="10_hkver"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7v5m"]
 bg_color = Color(0.215686, 0.215686, 0.215686, 0.498039)
@@ -31,7 +33,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VolumeManager/dumbass panel/VolumeBar:modulate")
+tracks/0/path = NodePath("MasterVolume/Panel/Bar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,7 +45,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VolumeManager/dumbass panel/VolumeIcon:modulate")
+tracks/1/path = NodePath("MasterVolume/Panel/Icon:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -55,7 +57,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VolumeManager/dumbass panel:scale")
+tracks/2/path = NodePath("MasterVolume/Panel:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -71,7 +73,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VolumeManager/dumbass panel/VolumeBar:modulate")
+tracks/0/path = NodePath("MasterVolume/Panel/Bar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +85,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VolumeManager/dumbass panel/VolumeIcon:modulate")
+tracks/1/path = NodePath("MasterVolume/Panel/Icon:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -95,7 +97,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VolumeManager/dumbass panel:scale")
+tracks/2/path = NodePath("MasterVolume/Panel:scale")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -115,7 +117,169 @@ _data = {
 "RESET": SubResource("Animation_uco4k")
 }
 
-[node name="AudioPlayer" type="Node"]
+[sub_resource type="Animation" id="Animation_uprq7"]
+resource_name = "In"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Rect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.639216)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/Master:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Container/Music:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Container/SFX:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Container/Inst:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Container/Voices:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_spay7"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_hhjt2"]
+resource_name = "Out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Rect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.639216), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/Master:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Container/Music:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Container/SFX:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Container/Inst:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Container/Voices:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fanfs"]
+_data = {
+"In": SubResource("Animation_uprq7"),
+"Out": SubResource("Animation_hhjt2"),
+"RESET": SubResource("Animation_spay7")
+}
+
+[node name="AudioManager" type="Node"]
 script = ExtResource("1_eecsl")
 
 [node name="music" type="Node" parent="."]
@@ -149,9 +313,9 @@ max_polyphony = 10
 stream = ExtResource("6_74pqv")
 max_polyphony = 10
 
-[node name="VolumeManager" type="CanvasLayer" parent="."]
+[node name="MasterVolume" type="CanvasLayer" parent="."]
 
-[node name="dumbass panel" type="Panel" parent="VolumeManager"]
+[node name="Panel" type="Panel" parent="MasterVolume"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -164,7 +328,7 @@ scale = Vector2(1e-05, 1)
 pivot_offset = Vector2(170.5, 16.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_c7v5m")
 
-[node name="VolumeBar" type="ProgressBar" parent="VolumeManager/dumbass panel"]
+[node name="Bar" type="ProgressBar" parent="MasterVolume/Panel"]
 modulate = Color(1, 1, 1, 0)
 material = SubResource("ShaderMaterial_yq0le")
 layout_mode = 1
@@ -184,15 +348,277 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_5prft")
 value = 50.0
 show_percentage = false
 
-[node name="VolumeIcon" type="AnimatedSprite2D" parent="VolumeManager/dumbass panel"]
+[node name="Icon" type="AnimatedSprite2D" parent="MasterVolume/Panel"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(20, 17)
 scale = Vector2(0.355072, 0.280488)
 sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="VolumeManager"]
+[node name="Player" type="AnimationPlayer" parent="MasterVolume"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_n2ws5")
 }
+
+[node name="VolumeManagerPanel" type="CanvasLayer" parent="."]
+
+[node name="Player" type="AnimationPlayer" parent="VolumeManagerPanel"]
+libraries = {
+"": SubResource("AnimationLibrary_fanfs")
+}
+
+[node name="Rect" type="ColorRect" parent="VolumeManagerPanel/Player"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Container" type="HBoxContainer" parent="VolumeManagerPanel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -153.0
+offset_right = 576.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Master" type="Panel" parent="VolumeManagerPanel/Container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
+
+[node name="Button" type="Button" parent="VolumeManagerPanel/Container/Master"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 182.0
+offset_bottom = 119.0
+theme = ExtResource("10_5qjre")
+
+[node name="Icon" type="AnimatedSprite2D" parent="VolumeManagerPanel/Container/Master/Button"]
+position = Vector2(65, 50)
+scale = Vector2(1.16123, 0.903963)
+sprite_frames = ExtResource("7_xr3dk")
+animation = &"mid"
+
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Master"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = 1.0
+offset_right = 90.5
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "Master [50%]"
+
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Master"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 269.0
+offset_right = 207.0
+offset_bottom = 285.0
+theme = ExtResource("10_5qjre")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Music" type="Panel" parent="VolumeManagerPanel/Container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
+
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Music"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = 1.0
+offset_right = 75.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "Music [50%]"
+
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Music"]
+offset_left = 21.0
+offset_top = 269.0
+offset_right = 207.0
+offset_bottom = 285.0
+theme = ExtResource("10_5qjre")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Button" type="Button" parent="VolumeManagerPanel/Container/Music"]
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 182.0
+offset_bottom = 119.0
+theme = ExtResource("10_5qjre")
+
+[node name="Icon" type="AnimatedSprite2D" parent="VolumeManagerPanel/Container/Music/Button"]
+position = Vector2(65, 50)
+scale = Vector2(1.16123, 0.903963)
+sprite_frames = ExtResource("7_xr3dk")
+animation = &"mid"
+
+[node name="SFX" type="Panel" parent="VolumeManagerPanel/Container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
+
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/SFX"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = 1.0
+offset_right = 67.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "SFX [50%]"
+
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/SFX"]
+offset_left = 21.0
+offset_top = 269.0
+offset_right = 207.0
+offset_bottom = 285.0
+theme = ExtResource("10_5qjre")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Button" type="Button" parent="VolumeManagerPanel/Container/SFX"]
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 182.0
+offset_bottom = 119.0
+theme = ExtResource("10_5qjre")
+
+[node name="Icon" type="AnimatedSprite2D" parent="VolumeManagerPanel/Container/SFX/Button"]
+position = Vector2(65, 50)
+scale = Vector2(1.16123, 0.903963)
+sprite_frames = ExtResource("7_xr3dk")
+animation = &"mid"
+
+[node name="Inst" type="Panel" parent="VolumeManagerPanel/Container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
+
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Inst"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.547
+anchor_right = 0.5
+anchor_bottom = 0.547
+offset_left = -68.5
+offset_top = -15.121
+offset_right = 69.5
+offset_bottom = 16.879
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "Inst [50%]"
+
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Inst"]
+offset_left = 21.0
+offset_top = 269.0
+offset_right = 207.0
+offset_bottom = 285.0
+theme = ExtResource("10_5qjre")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Button" type="Button" parent="VolumeManagerPanel/Container/Inst"]
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 182.0
+offset_bottom = 119.0
+theme = ExtResource("10_5qjre")
+
+[node name="Icon" type="AnimatedSprite2D" parent="VolumeManagerPanel/Container/Inst/Button"]
+position = Vector2(65, 50)
+scale = Vector2(1.16123, 0.903963)
+sprite_frames = ExtResource("7_xr3dk")
+animation = &"mid"
+
+[node name="Voices" type="Panel" parent="VolumeManagerPanel/Container"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
+
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Voices"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.507
+anchor_top = 0.548
+anchor_right = 0.507
+anchor_bottom = 0.548
+offset_left = -82.596
+offset_top = -15.464
+offset_right = 82.404
+offset_bottom = 15.536
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "Voices [50%]"
+
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Voices"]
+offset_left = 21.0
+offset_top = 269.0
+offset_right = 207.0
+offset_bottom = 285.0
+theme = ExtResource("10_5qjre")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Button" type="Button" parent="VolumeManagerPanel/Container/Voices"]
+offset_left = 48.0
+offset_top = 20.0
+offset_right = 182.0
+offset_bottom = 119.0
+theme = ExtResource("10_5qjre")
+
+[node name="Icon" type="AnimatedSprite2D" parent="VolumeManagerPanel/Container/Voices/Button"]
+position = Vector2(65, 50)
+scale = Vector2(1.16123, 0.903963)
+sprite_frames = ExtResource("7_xr3dk")
+animation = &"mid"

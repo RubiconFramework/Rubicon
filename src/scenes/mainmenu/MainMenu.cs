@@ -1,5 +1,5 @@
 using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager;
+using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
 using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
 using TransitionManager = BaseRubicon.Backend.Autoload.Managers.TransitionManager;
 

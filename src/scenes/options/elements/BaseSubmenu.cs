@@ -1,5 +1,4 @@
 using BaseRubicon.Backend.Autoload;
-using BaseRubicon.Backend.Scripts;
 using Button = Godot.Button;
 
 namespace BaseRubicon.Scenes.Options.Elements;

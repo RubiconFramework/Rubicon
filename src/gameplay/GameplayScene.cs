@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager;
+using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
 using BaseRubicon.Gameplay.Elements.Classes.Song;
 using BaseRubicon.Gameplay.Elements.Resources;
 using BaseRubicon.Gameplay.Elements.Scripts;

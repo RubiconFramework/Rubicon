@@ -1,4 +1,4 @@
-﻿namespace BaseRubicon.Scenes.Options.Submenus.Audio.Enums;
+namespace BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
 
 public enum VolumeType
 {
