@@ -1,4 +1,4 @@
-namespace BaseRubicon.Gameplay.Elements.Classes.Song;
+namespace Rubicon.Gameplay.Elements.Classes.Song;
 
 public partial class SectionNote : Resource
 {

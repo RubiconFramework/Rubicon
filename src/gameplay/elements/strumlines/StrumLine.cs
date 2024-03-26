@@ -1,6 +1,6 @@
-using BaseRubicon.Gameplay.Elements.Resources;
+using Rubicon.Gameplay.Elements.Resources;
 
-namespace BaseRubicon.Gameplay.Elements.StrumLines;
+namespace Rubicon.Gameplay.Elements.StrumLines;
 
 public partial class StrumLine : Node2D
 {

@@ -1,8 +1,7 @@
-using BaseRubicon.Gameplay.Elements.Resources;
-using BaseRubicon.Gameplay.Elements.StrumLines;
-using Global = BaseRubicon.Backend.Autoload.Global;
+using Rubicon.Gameplay.Elements.Resources;
+using Rubicon.Gameplay.Elements.StrumLines;
 
-namespace BaseRubicon.Gameplay.Elements.Scripts;
+namespace Rubicon.Gameplay.Elements.Scripts;
 
 public partial class Note : Node2D
 {
@@ -42,14 +41,14 @@ public partial class Note : Node2D
         StepCrochet = Conductor.Instance.stepCrochet;
         OriginalLength = Length;
         InitialScale = Scale;
-        Sprite.Play(Global.DefaultNoteDirections[Direction]);
+        Sprite.Play(Main.DefaultNoteDirections[Direction]);
     }
 
     public void loadUIStyle(UIStyle style)
     {
         Sprite.SpriteFrames = style.noteTexture;
-        Sustain.Texture = style.sustainTexture.GetFrameTexture($"{Global.DefaultNoteDirections[Direction]} hold piece",0);
-        SustainEnd.Texture = style.sustainTexture.GetFrameTexture($"{Global.DefaultNoteDirections[Direction]} hold end",0);
+        Sustain.Texture = style.sustainTexture.GetFrameTexture($"{Main.DefaultNoteDirections[Direction]} hold piece",0);
+        SustainEnd.Texture = style.sustainTexture.GetFrameTexture($"{Main.DefaultNoteDirections[Direction]} hold end",0);
 
         Scale = Strumline.GetChild<Strum>(0).Scale;
         Sustain.Width /= (Scale.X + 0.3f);

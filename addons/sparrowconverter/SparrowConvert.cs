@@ -1,4 +1,4 @@
-namespace BaseRubicon.Addons.SparrowConverter;
+namespace Rubicon.Addons.SparrowConverter;
 [Tool]
 public partial class SparrowConvert : EditorPlugin
 {

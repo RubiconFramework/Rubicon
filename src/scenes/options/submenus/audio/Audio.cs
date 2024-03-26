@@ -1,8 +1,7 @@
-using BaseRubicon.Backend.Autoload;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using BaseRubicon.Scenes.Options.Elements;
+using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
+using Rubicon.Scenes.Options.Elements;
 
-namespace BaseRubicon.Scenes.Options.Submenus.Audio;
+namespace Rubicon.Scenes.Options.Submenus.Audio;
 
 public partial class Audio : BaseSubmenu
 {
@@ -24,16 +23,16 @@ public partial class Audio : BaseSubmenu
         RegisterSlider(SFXVolume, "SFX Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.SFXVolume, v), true);
         RegisterSlider(InstVolume, "Inst Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.InstVolume, v), true);
         RegisterSlider(VoiceVolume, "Voice Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.VoiceVolume, v), true);
-        RegisterOptionButton(SoundOutputMode, i => Global.Settings.Audio.OutputMode = (OutputMode)i);
+        RegisterOptionButton(SoundOutputMode, i => Main.GameSettings.Audio.OutputMode = (OutputMode)i);
     }
     
     private void LoadSettings()
     {
-        LoadSliderValue(MasterVolume, "Master Volume", Global.Settings.Audio.MasterVolume, true);
-        LoadSliderValue(MusicVolume, "Music Volume", Global.Settings.Audio.MusicVolume, true);
-        LoadSliderValue(SFXVolume, "SFX Volume", Global.Settings.Audio.SFXVolume, true);
-        LoadSliderValue(InstVolume, "Inst Volume", Global.Settings.Audio.InstVolume, true);
-        LoadSliderValue(VoiceVolume, "Voice Volume", Global.Settings.Audio.VoiceVolume, true);
-        LoadOptionButtonValue(SoundOutputMode, (int)Global.Settings.Audio.OutputMode);
+        LoadSliderValue(MasterVolume, "Master Volume", Main.GameSettings.Audio.MasterVolume, true);
+        LoadSliderValue(MusicVolume, "Music Volume", Main.GameSettings.Audio.MusicVolume, true);
+        LoadSliderValue(SFXVolume, "SFX Volume", Main.GameSettings.Audio.SFXVolume, true);
+        LoadSliderValue(InstVolume, "Inst Volume", Main.GameSettings.Audio.InstVolume, true);
+        LoadSliderValue(VoiceVolume, "Voice Volume", Main.GameSettings.Audio.VoiceVolume, true);
+        LoadOptionButtonValue(SoundOutputMode, (int)Main.GameSettings.Audio.OutputMode);
     }
 }

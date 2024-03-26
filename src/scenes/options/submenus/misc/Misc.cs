@@ -1,8 +1,7 @@
-using BaseRubicon.Backend.Autoload;
-using BaseRubicon.Scenes.Options.Elements;
-using BaseRubicon.Scenes.Options.Submenus.Misc.Enums;
+using Rubicon.Scenes.Options.Elements;
+using Rubicon.Scenes.Options.Submenus.Misc.Enums;
 
-namespace BaseRubicon.Scenes.Options.Submenus.Misc;
+namespace Rubicon.Scenes.Options.Submenus.Misc;
 
 public partial class Misc : BaseSubmenu
 {
@@ -18,19 +17,19 @@ public partial class Misc : BaseSubmenu
         this.OnReady();
         LoadSettings();
         
-        RegisterButton(SceneTransitions, _ => Global.Settings.Misc.SceneTransitions = !Global.Settings.Misc.SceneTransitions);
-        RegisterButton(OptionsMenuAnimations, _ => Global.Settings.Misc.OptionsMenuAnimations = !Global.Settings.Misc.OptionsMenuAnimations);
+        RegisterButton(SceneTransitions, _ => Main.GameSettings.Misc.SceneTransitions = !Main.GameSettings.Misc.SceneTransitions);
+        RegisterButton(OptionsMenuAnimations, _ => Main.GameSettings.Misc.OptionsMenuAnimations = !Main.GameSettings.Misc.OptionsMenuAnimations);
         RegisterButton(DiscordRichPresence, OptionsMenu.Instance.HelperMethods.SetDiscordRPC);
-        RegisterOptionButton(GameLanguage, i => Global.Settings.Misc.Languages = (GameLanguages)i);
-        RegisterOptionButton(GameTransitions, i => Global.Settings.Misc.Transitions = (TransitionType)i);
+        RegisterOptionButton(GameLanguage, i => Main.GameSettings.Misc.Languages = (GameLanguages)i);
+        RegisterOptionButton(GameTransitions, i => Main.GameSettings.Misc.Transitions = (TransitionType)i);
     }
     
     private void LoadSettings()
     {
-        LoadButtonValue(SceneTransitions, Global.Settings.Misc.SceneTransitions);
-        LoadButtonValue(OptionsMenuAnimations, Global.Settings.Misc.OptionsMenuAnimations);
-        LoadButtonValue(DiscordRichPresence, Global.Settings.Misc.DiscordRichPresence);
-        LoadOptionButtonValue(GameLanguage, (int)Global.Settings.Misc.Languages);
-        LoadOptionButtonValue(GameTransitions, (int)Global.Settings.Misc.Transitions);
+        LoadButtonValue(SceneTransitions, Main.GameSettings.Misc.SceneTransitions);
+        LoadButtonValue(OptionsMenuAnimations, Main.GameSettings.Misc.OptionsMenuAnimations);
+        LoadButtonValue(DiscordRichPresence, Main.GameSettings.Misc.DiscordRichPresence);
+        LoadOptionButtonValue(GameLanguage, (int)Main.GameSettings.Misc.Languages);
+        LoadOptionButtonValue(GameTransitions, (int)Main.GameSettings.Misc.Transitions);
     }
 }

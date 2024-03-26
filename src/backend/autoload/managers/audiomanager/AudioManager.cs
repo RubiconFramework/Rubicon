@@ -1,6 +1,7 @@
-using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
+using System.Collections.Generic;
+using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
 
-namespace BaseRubicon.Backend.Autoload.Managers.AudioManager;
+namespace Rubicon.Backend.Autoload.Managers.AudioManager;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class AudioManager : Node
@@ -11,77 +12,77 @@ public partial class AudioManager : Node
     [NodePath("MasterVolume/Panel/Icon")] private AnimatedSprite2D VolumeIcon;
     [NodePath("MasterVolume/Panel/Bar")] private ProgressBar VolumeBar;
     
-    private float _musicVolume;
-    private float _sfxVolume;
-    private float _instVolume;
-    private float _voiceVolume;
-    private float _masterVolume;
-    
-    private float preMuteVolume = 50;
-    private float targetVolume;
+    [NodePath("VolumeManagerPanel/Player")] private AnimationPlayer VolumePanelAnimPlayer;
+    [NodePath("VolumeManagerPanel/Container/Master")] private Panel MasterVolumePanel;
+    [NodePath("VolumeManagerPanel/Container/Music")] private Panel MusicVolumePanel; 
+    [NodePath("VolumeManagerPanel/Container/SFX")] private Panel SFXVolumePanel;
+    [NodePath("VolumeManagerPanel/Container/Inst")] private Panel InstVolumePanel;
+    [NodePath("VolumeManagerPanel/Container/Voices")] private Panel VoicesVolumePanel;
     
     private bool isMuted;
     private bool isMasterVolumeBarShown;
+    private bool isVolumePanelShown;
+    
+    private float targetVolume = 50; 
+    private float preMuteVolume = 50;
 
     private double animationTimer;
+    
     private const double AnimationDuration = 2.0;
+    private readonly Dictionary<HSlider, float> previousVolumes = new();
 
-    [NodePath("VolumeManagerPanel/Player")] private AnimationPlayer VolumePanelAnimPlayer;
-    [NodePath("VolumeManagerPanel/Container/Master/HSlider")] private HSlider MasterVolumeSlider;
-    [NodePath("VolumeManagerPanel/Container/Music/HSlider")] private HSlider MusicVolumeSlider; 
-    [NodePath("VolumeManagerPanel/Container/SFX/HSlider")] private HSlider SFXVolumeSlider;
-    [NodePath("VolumeManagerPanel/Container/Inst/HSlider")] private HSlider InstVolumeSlider;
-    [NodePath("VolumeManagerPanel/Container/Voices/HSlider")] private HSlider VoicesVolumeSlider;
-
-    private bool isVolumePanelShown;
-
+    private float _masterVolume;
     public float MasterVolume
     {
         get => _masterVolume;
         set
         {
             _masterVolume = Mathf.Clamp(value, 0, 100);
-            VolumeChange(_masterVolume, 0);
+            ChangeVolume(_masterVolume);
         }
     }
 
+    private float _musicVolume;
     public float MusicVolume
     {
         get => _musicVolume;
         set
         {
             _musicVolume = Mathf.Clamp(value, 0, 100);
-            VolumeChange(_musicVolume, 1);
+            ChangeVolume(_musicVolume, 1);
         }
     }
 
+    private float _sfxVolume;
     public float SFXVolume
     {
         get => _sfxVolume;
         set
         {
             _sfxVolume = Mathf.Clamp(value, 0, 100);
-            VolumeChange(_sfxVolume, 2);
+            ChangeVolume(_sfxVolume, 2);
         }
     }
 
+    private float _instVolume;
     public float InstVolume
     {
         get => _instVolume;
         set
         {
             _instVolume = Mathf.Clamp(value, 0, 100);
-            VolumeChange(_instVolume, 3);
+            ChangeVolume(_instVolume, 3);
         }
     }
 
+    private float _voiceVolume;
     public float VoiceVolume
     {
         get => _voiceVolume;
         set
         {
             _voiceVolume = Mathf.Clamp(value, 0, 100);
-            VolumeChange(_voiceVolume, 4);
+            ChangeVolume(_voiceVolume, 4);
         }
     }
     
@@ -94,67 +95,88 @@ public partial class AudioManager : Node
     public override void _Ready()
     {
         this.OnReady();
-
-        //Global.Settings.Audio.MasterVolume = value;
-        //Global.Settings.SaveSettings();
-        //Global.Settings.Audio.MusicVolume = value;
-        //Global.Settings.SaveSettings();
-        //Global.Settings.Audio.SFXVolume = value;
-        //Global.Settings.SaveSettings();
-        //Global.Settings.Audio.InstVolume = value;
-        //Global.Settings.SaveSettings();
-        //Global.Settings.Audio.VoiceVolume = value;
-        //Global.Settings.SaveSettings();
         
-        MasterVolumeSlider.Value = Global.Settings.Audio.MasterVolume;
-        MusicVolumeSlider.Value = Global.Settings.Audio.MusicVolume;
-        SFXVolumeSlider.Value = Global.Settings.Audio.SFXVolume;
-        InstVolumeSlider.Value = Global.Settings.Audio.InstVolume;
-        VoicesVolumeSlider.Value = Global.Settings.Audio.VoiceVolume;
-        
-        MasterVolumeSlider.ValueChanged += value => MasterVolume = (float)value;
-        MusicVolumeSlider.ValueChanged += value => MusicVolume = (float)value;
-        SFXVolumeSlider.ValueChanged += value => SFXVolume = (float)value;
-        InstVolumeSlider.ValueChanged += value => InstVolume = (float)value;
-        VoicesVolumeSlider.ValueChanged += value => VoiceVolume = (float)value;
+        var valueTuples = new (Panel panel, Func<float> getVolume, Action<float> setVolume, string name)[]
+        {
+            (MasterVolumePanel, () => Main.GameSettings.Audio.MasterVolume, volume => { MasterVolume = volume; }, "Master"),
+            (MusicVolumePanel, () => Main.GameSettings.Audio.MusicVolume, volume => { MusicVolume = volume; }, "Music"),
+            (SFXVolumePanel, () => Main.GameSettings.Audio.SFXVolume, volume => { SFXVolume = volume; }, "SFX"),
+            (InstVolumePanel, () => Main.GameSettings.Audio.InstVolume, volume => { InstVolume = volume; }, "Inst"),
+            (VoicesVolumePanel, () => Main.GameSettings.Audio.VoiceVolume, volume => { VoiceVolume = volume; }, "Voices")
+        };
 
-        var Audio = Global.Settings.Audio;
-        foreach (var volumeSetting in new[] { Audio.MasterVolume, Audio.SFXVolume, Audio.InstVolume, Audio.MusicVolume, Audio.VoiceVolume}) 
-            VolumeChange(volumeSetting);
+        foreach (var (panel, getVolume, setVolume, name) in valueTuples)
+        {
+            var slider = panel.GetNode<HSlider>("HSlider");
+            var label = slider.GetNode<Label>("Label");
+            var button = panel.GetNode<Button>("Button");
+            var buttonSprite = button.GetNode<AnimatedSprite2D>("Icon");
+            
+            button.Pressed += () => OnVolumeButtonPressed(slider, label, name);
+            UpdateButtonSprite(buttonSprite, getVolume());
+            UpdateLabel(label, name, getVolume());
+
+            slider.Value = getVolume();
+            slider.ValueChanged += value =>
+            {
+                setVolume((float)value);
+                UpdateLabel(label, name, (float)value);
+                UpdateButtonSprite(buttonSprite, (float)value);
+            };
+        }
+
+        void OnVolumeButtonPressed(HSlider slider, Label label, string sliderName) 
+        {
+            var newValue = slider.Value == 0 ? previousVolumes.TryGetValue(slider, out var volume) ? volume : 50 : 0;
+            previousVolumes[slider] = (float)slider.Value;
+            slider.Value = newValue;
+            label.Text = newValue == 0 ? $"{sliderName} [Muted]" : $"{sliderName} [{(int)newValue}%]";
+        }
+
+        var Audio = Main.GameSettings.Audio;
+        foreach (var volumeSetting in new[] { Audio.MasterVolume, Audio.SFXVolume, Audio.InstVolume, Audio.MusicVolume, Audio.VoiceVolume}) ChangeVolume(volumeSetting);
     }
 
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
         VolumeBar.Value = Mathf.Lerp(VolumeBar.Value, targetVolume, delta * 10);
-        
+
         if (Input.IsActionJustPressed("master_volume_up") && !isVolumePanelShown)
         {
-            VolumeChange(Global.Settings.Audio.MasterVolume + 10);
-            targetVolume = Global.Settings.Audio.MasterVolume;
+            float newVolume = Mathf.Clamp(Main.GameSettings.Audio.MasterVolume + 5, 0, 100);
+            ChangeVolume(newVolume);
+            targetVolume = newVolume;
             PlayVolumeAnimation();
         }
         else if (Input.IsActionJustPressed("master_volume_down") && !isVolumePanelShown)
         {
-            VolumeChange(Global.Settings.Audio.MasterVolume - 10);
-            targetVolume = Global.Settings.Audio.MasterVolume;
+            float newVolume = Mathf.Clamp(Main.GameSettings.Audio.MasterVolume - 5, 0, 100);
+            ChangeVolume(newVolume);
+            targetVolume = newVolume;
             PlayVolumeAnimation();
         }
         else if (Input.IsActionJustPressed("master_volume_mute") && !isVolumePanelShown)
         {
             bool mute = !isMuted;
-            VolumeChange(mute ? 0 : preMuteVolume, 0, mute);
-            targetVolume = mute ? 0 : preMuteVolume;
+            float newVolume = mute ? 0 : preMuteVolume;
+            ChangeVolume(newVolume, 0, mute);
+            targetVolume = newVolume;
+            isMuted = mute;
             PlayVolumeAnimation();
         }
+
+        MasterVolumePanel.GetNode<HSlider>("HSlider").Value = Main.GameSettings.Audio.MasterVolume;
+        UpdateLabel(GetNode<Label>("VolumeManagerPanel/Container/Master/HSlider/Label"), "Master", Main.GameSettings.Audio.MasterVolume);
+        UpdateButtonSprite(GetNode<AnimatedSprite2D>("VolumeManagerPanel/Container/Master/Button/Icon"), Main.GameSettings.Audio.MasterVolume);
 
         void PlayVolumeAnimation()
         {
             animationTimer = 0.0;
-            if (isMasterVolumeBarShown && !MasterVolumeAnimPlayer.IsPlaying())
+            if (!isMasterVolumeBarShown && !MasterVolumeAnimPlayer.IsPlaying())
             {
                 MasterVolumeAnimPlayer.Play("In");
-                isMasterVolumeBarShown = false;
+                isMasterVolumeBarShown = true;
             }
         }
 
@@ -168,6 +190,18 @@ public partial class AudioManager : Node
             }
         }
     }
+    
+    private void UpdateLabel(Label label, string sliderName, float volume) => label.Text = volume == 0 ? $"{sliderName} [Muted]" : $"{sliderName} [{(int)volume}%]";
+    
+    private void UpdateButtonSprite(AnimatedSprite2D buttonSprite, float volume)
+    {
+        buttonSprite.Play(volume switch
+        {
+            0 => "mute",
+            < 50 => "mid",
+            _ => "full"
+        });
+    }
 
     public override void _Input(InputEvent @event)
     {
@@ -180,66 +214,83 @@ public partial class AudioManager : Node
 
         if (Input.IsActionPressed("open_volume_manager") && !isVolumePanelShown && !VolumePanelAnimPlayer.IsPlaying())
         {
-            if (isMasterVolumeBarShown && MasterVolumeAnimPlayer.CurrentAnimation == "In")
-            {
-                MasterVolumeAnimPlayer.Stop();
-                MasterVolumeAnimPlayer.Play("Out");
-                isMasterVolumeBarShown = false;
-            }
-        
             VolumePanelAnimPlayer.Play("In");
             isVolumePanelShown = true;
         }
     }
-
-
-    public void VolumeChange(float value, int busIndex = 0, bool mute = false)
-    {
-        float volumeToSet = 0;
     
+    public void ChangeVolume(float value, int busIndex = 0, bool mute = false)
+    {
+        float volumeToSet;
+        
         switch (mute)
         {
             case true when !isMuted:
-                preMuteVolume = BusVolumeOf(busIndex);
+                preMuteVolume = GetBusVolume(busIndex);
                 volumeToSet = 0;
                 isMuted = true;
                 break;
             case true:
-                volumeToSet = preMuteVolume;
+                volumeToSet = 0;
                 isMuted = false;
                 break;
             default:
-                volumeToSet = value; 
-                volumeToSet = Mathf.Clamp(volumeToSet, 0, 100);
-                BusVolumeOf(busIndex, volumeToSet);
+                volumeToSet = Mathf.Clamp(value, 0, 100);
+                SetBusVolume(busIndex, volumeToSet);
                 break;
         }
 
-        float BusVolumeOf(int i, float? newVolume = null)
+        float GetBusVolume(int i)
         {
-            float volume = i switch
+            return i switch
             {
-                0 => newVolume.HasValue ? (MasterVolume = newVolume.Value) : MasterVolume,
-                1 => newVolume.HasValue ? (MusicVolume = newVolume.Value) : MusicVolume,
-                2 => newVolume.HasValue ? (SFXVolume = newVolume.Value) : SFXVolume,
-                3 => newVolume.HasValue ? (InstVolume = newVolume.Value) : InstVolume,
-                4 => newVolume.HasValue ? (VoiceVolume = newVolume.Value) : VoiceVolume,
+                0 => _masterVolume,
+                1 => _musicVolume,
+                2 => _sfxVolume,
+                3 => _instVolume,
+                4 => _voiceVolume,
                 _ => 0
             };
-        
-            return volume;
         }
         
+        void SetBusVolume(int i, float volume)
+        {
+            switch (i)
+            {
+                case 0:
+                    _masterVolume = volume;
+                    Main.GameSettings.Audio.MasterVolume = volume;
+                    break;
+                case 1:
+                    _musicVolume = volume;
+                    Main.GameSettings.Audio.MusicVolume = volume;
+                    break;
+                case 2:
+                    _sfxVolume = volume;
+                    Main.GameSettings.Audio.SFXVolume = volume;
+                    break;
+                case 3:
+                    _instVolume = volume;
+                    Main.GameSettings.Audio.InstVolume = volume;
+                    break;
+                case 4:
+                    _voiceVolume = volume;
+                    Main.GameSettings.Audio.VoiceVolume = volume;
+                    break;
+            }
+        }
+
+        Main.GameSettings.Save();
         UpdateVolume(busIndex, volumeToSet);
     }
 
     private void UpdateVolume(int busIndex, float volume)
     {
         float volumeFloat = volume / 100.0f;
-        AudioServer.SetBusVolumeDb(busIndex, Global.LinearToDb(volumeFloat));
+        AudioServer.SetBusVolumeDb(busIndex, Main.LinearToDb(volumeFloat));
         AudioServer.SetBusMute(busIndex, volume == 0);
 
-        VolumeIcon.Animation = MasterVolume switch
+        VolumeIcon.Animation = volume switch
         {
             > 50 => "full",
             > 0 => "mid",
@@ -267,10 +318,10 @@ public partial class AudioManager : Node
             if (string.IsNullOrEmpty(finalPath)) return null;
             var audiostream = GD.Load<AudioStream>(finalPath);
 
-            player = new AudioStreamPlayer()
+            player = new()
             {
                 Stream = audiostream,
-                VolumeDb = Global.LinearToDb(volume),
+                VolumeDb = Main.LinearToDb(volume),
                 Autoplay = true,
             };
         
@@ -297,7 +348,7 @@ public partial class AudioManager : Node
 
     private static string ConstructAudioPath(string path, string type)
     {
-        foreach (var format in Global.AudioFormats)
+        foreach (var format in Main.AudioFormats)
         {
             string formattedPath = $"res://assets/{type}/{path}.{format}";
             if (ResourceLoader.Exists(formattedPath)) return formattedPath;

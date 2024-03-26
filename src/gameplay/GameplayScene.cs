@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using BaseRubicon.Gameplay.Elements.Classes.Song;
-using BaseRubicon.Gameplay.Elements.Resources;
-using BaseRubicon.Gameplay.Elements.Scripts;
-using BaseRubicon.Gameplay.Elements.StrumLines;
-using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
-using Global = BaseRubicon.Backend.Autoload.Global;
-using Stage = BaseRubicon.Backend.Scripts.Stage;
+using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
+using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
+using Rubicon.Gameplay.Elements.Classes.Song;
+using Rubicon.Gameplay.Elements.Resources;
+using Rubicon.Gameplay.Elements.Scripts;
+using Rubicon.Gameplay.Elements.StrumLines;
+using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
 
-namespace BaseRubicon.Gameplay;
+namespace Rubicon.Gameplay;
 
 public partial class GameplayScene : Conductor
 {
@@ -38,7 +36,7 @@ public partial class GameplayScene : Conductor
     private bool camBump = true, smoothZoom, camUpdate = true, iconBump = true, iconUpdate = true;
 
     //Elements
-    private Stage stage;
+    private Backend.Scripts.Stage stage;
     private Character2D spectator, opponent, player;
 
     //2D
@@ -83,7 +81,7 @@ public partial class GameplayScene : Conductor
         GetTree().Paused = false;
 
         scrollSpeed = Song.ScrollSpeed;
-        var settingSpeed = Global.Settings.Gameplay.ScrollSpeed;
+        var settingSpeed = Main.GameSettings.Gameplay.ScrollSpeed;
         switch (settingSpeed)
         {
             case > 0:
@@ -92,10 +90,10 @@ public partial class GameplayScene : Conductor
         }
         
 
-        if (Global.Song == null)
+        if (Main.Song == null)
         {
-            Global.Song = Chart.LoadChart("imscared", "normal");
-            Song = Global.Song;
+            Main.Song = Chart.LoadChart("imscared", "normal");
+            Song = Main.Song;
         }
 
         Instance.MapBPMChanges(Song);
@@ -104,7 +102,7 @@ public partial class GameplayScene : Conductor
 
         string songPath = $"res://assets/songs/{Song.SongName.ToLower()}/song/";
 
-        foreach (var f in Global.AudioFormats)
+        foreach (var f in Main.AudioFormats)
         {
             if (ResourceLoader.Exists($"{songPath}inst.{f}"))
             {
@@ -119,7 +117,7 @@ public partial class GameplayScene : Conductor
 
         if (inst.Stream == null)
         {
-            ScreenNotifier.Instance.Notify($"Inst not found on path: '{songPath}inst' with every format, ending song", true, NotificationType.Error);
+            Main.Instance.Notify($"Inst not found on path: '{songPath}inst' with every format, ending song", true, NotificationType.Error);
             endingSong = true;
             EndSong();
             return;
@@ -196,8 +194,8 @@ public partial class GameplayScene : Conductor
     
     private void InitializeStrumGroups()
     {
-        InitializeStrumLine(ref oppStrums, (Global.EngineWindowSize.X * 0.5f) - 320f);
-        InitializeStrumLine(ref playerStrums, (Global.EngineWindowSize.X * 0.5f) + 320f);
+        InitializeStrumLine(ref oppStrums, (Main.EngineWindowSize.X * 0.5f) - 320f);
+        InitializeStrumLine(ref playerStrums, (Main.EngineWindowSize.X * 0.5f) + 320f);
     }
 
     private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
@@ -220,7 +218,7 @@ public partial class GameplayScene : Conductor
                 SectionNote newNote = (SectionNote)note.Duplicate();
 
                 string noteTypePath = $"res://assets/gameplay/notes/{note.Type.ToLower()}/";
-                IEnumerable<string> noteTypeDir = Global.FilesInDirectory(noteTypePath);
+                IEnumerable<string> noteTypeDir = Main.FilesInDirectory(noteTypePath);
                 foreach (string file in noteTypeDir)
                 {
                     if (!CachedNotes.ContainsKey(note.Type) && (file.EndsWith(".tscn") || file.EndsWith(".remap"))) 
@@ -245,12 +243,12 @@ public partial class GameplayScene : Conductor
         string path3d = Song.Is3D ? "3D/" : "";
         string stagePath = $"res://assets/gameplay/stages/{path3d + Song.Stage}/";
 
-        IEnumerable<string> stageDir = Global.FilesInDirectory(stagePath);
+        IEnumerable<string> stageDir = Main.FilesInDirectory(stagePath);
         stagePath = stageDir.Where(file => file.EndsWith(".tscn") || file.EndsWith(".remap")).Aggregate(stagePath, (current, file) => current + file.Replace(".remap", ""));
 
         stage = ResourceLoader.Exists(stagePath) 
-            ? GD.Load<PackedScene>(stagePath).Instantiate<Stage>() 
-            : GD.Load<PackedScene>("res://assets/gameplay/stages/stage/Stage.tscn".Replace(".remap", "")).Instantiate<Stage>();
+            ? GD.Load<PackedScene>(stagePath).Instantiate<Backend.Scripts.Stage>() 
+            : GD.Load<PackedScene>("res://assets/gameplay/stages/stage/Stage.tscn".Replace(".remap", "")).Instantiate<Backend.Scripts.Stage>();
         AddChild(stage);
         camZoom = stage.defaultCamZoom;
         camera.Zoom = new(camZoom, camZoom);
@@ -310,7 +308,7 @@ public partial class GameplayScene : Conductor
         float cameraSpeed = Mathf.Clamp((float)delta * ZoomDeltaMultiplier * Instance.rate, 0f, 1f);
         if (!Song.Is3D) camera.Zoom = new(Mathf.Lerp(camera.Zoom.X, camZoom, cameraSpeed), Mathf.Lerp(camera.Zoom.Y, camZoom, cameraSpeed));
         HUD.Scale = new(Mathf.Lerp(HUD.Scale.X, 1f, cameraSpeed), Mathf.Lerp(HUD.Scale.Y, 1f, cameraSpeed));
-        HUD.Offset = new((HUD.Scale.X - 1f) * -(Global.EngineWindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Global.EngineWindowSize.Y * 0.5f));
+        HUD.Offset = new((HUD.Scale.X - 1f) * -(Main.EngineWindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Main.EngineWindowSize.Y * 0.5f));
     }
 
     protected override void OnBeatHit(int beat)

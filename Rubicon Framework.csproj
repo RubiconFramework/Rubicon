@@ -13,7 +13,7 @@
     <Product>Rubicon Engine</Product>
     <AssemblyVersion>1.0</AssemblyVersion>
     <AssemblyName>Rubicon Framework</AssemblyName>
-    <RootNamespace>BaseRubicon</RootNamespace>
+    <RootNamespace>Rubicon</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
@@ -218,13 +218,11 @@
     <Content Include="assets\themes\default_bus_layout.tres" />
     <Content Include="assets\themes\Duo\Duo's Theme.tres" />
     <Content Include="assets\themes\Duo\real.jpg" />
-    <Content Include="assets\themes\Duo\styleboxflat.tres" />
     <Content Include="assets\themes\healthbar\Opponent.tres" />
     <Content Include="assets\themes\healthbar\Player.tres" />
     <Content Include="project.godot" />
     <Content Include="README.md" />
-    <Content Include="src\backend\autoload\debug\screennotifier\Notification.tscn" />
-    <Content Include="src\backend\autoload\debug\screennotifier\ScreenNotifier.tscn" />
+    <Content Include="Rubicon Framework.sln" />
     <Content Include="src\backend\ui\alphabet\Alphabet.tscn" />
     <Content Include="src\gameplay\elements\strumlines\4K.tscn" />
     <Content Include="src\gameplay\elements\strumlines\Strum.tscn" />
@@ -299,6 +297,10 @@
     <Compile Remove="src\backend\scripts\nuclearbombs\**" />
     <Compile Include="src\backend\autoload\debug\screennotifier\NotificationType.cs" />
     <Compile Include="src\backend\autoload\debug\screennotifier\ScreenNotifier.cs" />
+    <Compile Remove="src\backend\autoload\debug\screennotifier\**" />
+    <Compile Remove="src\backend\autoload\main\**" />
+    <Compile Remove="assets\sounds\styles\**" />
+    <Compile Remove="assets\music\styles\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -333,6 +335,10 @@
     <EmbeddedResource Remove="src\backend\autoload\debug\ScreenNotifier\**" />
     <EmbeddedResource Remove="src\backend\common\**" />
     <EmbeddedResource Remove="src\backend\scripts\nuclearbombs\**" />
+    <EmbeddedResource Remove="src\backend\autoload\debug\screennotifier\**" />
+    <EmbeddedResource Remove="src\backend\autoload\main\**" />
+    <EmbeddedResource Remove="assets\sounds\styles\**" />
+    <EmbeddedResource Remove="assets\music\styles\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -354,6 +360,8 @@
     <None Remove="src\backend\autoload\debug\ScreenNotifier\**" />
     <None Remove="src\backend\common\**" />
     <None Remove="src\backend\scripts\nuclearbombs\**" />
+    <None Remove="src\backend\autoload\debug\screennotifier\**" />
+    <None Remove="src\backend\autoload\main\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />
@@ -362,12 +370,6 @@
     <None Remove="**\*.import" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\music\styles\GameOver\default\" />
-    <Folder Include="assets\music\styles\GameOver\pixel\" />
-    <Folder Include="assets\sounds\styles\default\Countdown\" />
-    <Folder Include="assets\sounds\styles\default\Death\" />
-    <Folder Include="assets\sounds\styles\pixel\Countdown\" />
-    <Folder Include="assets\sounds\styles\pixel\Death\" />
     <Folder Include="src\scenes\credits\" />
     <Folder Include="src\scenes\options\submenus\" />
   </ItemGroup>

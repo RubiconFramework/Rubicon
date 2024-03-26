@@ -31,12 +31,11 @@ buses/default_bus_layout="res://assets/themes/default_bus_layout.tres"
 
 [autoload]
 
-Global="*res://src/backend/autoload/Global.tscn"
+Main="*res://src/backend/autoload/global/Main.tscn"
+Conductor="*res://src/backend/autoload/global/Conductor.cs"
 AudioManager="*res://src/backend/autoload/managers/audiomanager/AudioManager.tscn"
-Conductor="*res://src/backend/autoload/Conductor.cs"
-TransitionManager="*res://src/backend/autoload/managers/TransitionManager.tscn"
+TransitionManager="*res://src/backend/autoload/managers/transitionmanager/TransitionManager.tscn"
 DebugInfo="*res://src/backend/autoload/debug/DebugInfo.tscn"
-ScreenNotifier="*res://src/backend/autoload/debug/screennotifier/ScreenNotifier.tscn"
 
 [debug]
 
@@ -52,10 +51,6 @@ window/vsync/vsync_mode=0
 [dotnet]
 
 project/assembly_name="Rubicon Framework"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/sparrowconverter/plugin.cfg")
 
 [input]
 

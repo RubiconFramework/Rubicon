@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Global = BaseRubicon.Backend.Autoload.Global;
 
-namespace BaseRubicon.Backend.UI.Alphabet;
+namespace Rubicon.Backend.UI.Alphabet;
 
 [Tool]
 [Icon("res://assets/miscIcons/alphabet.png")]
@@ -193,13 +192,13 @@ public partial class Alphabet : ReferenceRect
         switch (axes.ToUpperInvariant())
         {
             case "X":
-                position.X = (Global.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f);
+                position.X = (Main.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f);
                 break;
             case "Y":
-                position.Y = (Global.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f);
+                position.Y = (Main.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f);
                 break;
             default:
-                Position = new((Global.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f), (Global.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f));
+                Position = new((Main.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f), (Main.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f));
                 break;
         }
     }

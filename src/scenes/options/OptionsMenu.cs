@@ -1,11 +1,10 @@
-using BaseRubicon.Backend.Autoload;
-using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Scenes.Options.Elements;
-using BaseRubicon.Scenes.Options.Elements.Enums;
 using Newtonsoft.Json;
-using TransitionManager = BaseRubicon.Backend.Autoload.Managers.TransitionManager;
+using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
+using Rubicon.Scenes.Options.Elements;
+using Rubicon.Scenes.Options.Elements.Enums;
+using TransitionManager = Rubicon.Backend.Autoload.Managers.TransitionManager.TransitionManager;
 
-namespace BaseRubicon.Scenes.Options;
+namespace Rubicon.Scenes.Options;
 public partial class OptionsMenu : Control
 {
 	[Export] private OptionsMenuSubmenus CurrentSubmenu = OptionsMenuSubmenus.Gameplay;
@@ -32,21 +31,16 @@ public partial class OptionsMenu : Control
 	[NodePath("LeftPanel/ScrollContainers/Keybinds")] private ScrollContainer KeybindsScrollContainer;
 
 	public static OptionsMenu Instance { get; private set; }
-	public OptionsMenuState OptionsMenuCurrentState = OptionsMenuState.Idle;
+	public bool IsPickingKeybind;
 	
 	private bool IsAnimationPlaying;
-	public HelperMethods HelperMethods;
+	public readonly HelperMethods HelperMethods = new();
 
-	public override void _EnterTree()
-	{
-		Instance ??= this;
-		HelperMethods ??= new();
-	}
+	public override void _EnterTree() => Instance = this;
 
 	public override void _ExitTree()
 	{
-		if (Global.Settings.Misc.DiscordRichPresence) Global.DiscordRpcClient.UpdateState(string.Empty);
-		HelperMethods = null;
+		if (Main.GameSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState(string.Empty);
 	}
 	
 	public override void _Ready()
@@ -64,13 +58,13 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				Global.Settings = JsonConvert.DeserializeObject<SettingsData>(Global.DecompressString(DisplayServer.ClipboardGet()));
-				Global.Settings.SaveSettings();
-				ScreenNotifier.Instance.Notify("Settings imported.");
+				Main.GameSettings = JsonConvert.DeserializeObject<SettingsData>(Main.DecompressString(DisplayServer.ClipboardGet()));
+				Main.GameSettings.Save();
+				Main.Instance.Notify("Settings imported.");
 			}
 			catch (Exception e)
 			{
-				ScreenNotifier.Instance.Notify($"Failed to import settings: {e.Message}", true, NotificationType.Error);
+				Main.Instance.Notify($"Failed to import settings: {e.Message}", true, NotificationType.Error);
 			}
 		};
 
@@ -78,12 +72,12 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				DisplayServer.ClipboardSet(Global.CompressString(JsonConvert.SerializeObject(Global.Settings)));
-				ScreenNotifier.Instance.Notify("Settings exported and copied to clipboard.");
+				DisplayServer.ClipboardSet(Main.CompressString(JsonConvert.SerializeObject(Main.GameSettings)));
+				Main.Instance.Notify("Settings exported and copied to clipboard.");
 			}
 			catch (Exception e)
 			{
-				ScreenNotifier.Instance.Notify($"Failed to export settings: {e.Message}", true, NotificationType.Error);
+				Main.Instance.Notify($"Failed to export settings: {e.Message}", true, NotificationType.Error);
 			}
 		};
 	}
@@ -112,7 +106,7 @@ public partial class OptionsMenu : Control
 		int newSubmenuIndex = ((int)CurrentSubmenu + direction + 5) % 5;
 		CurrentSubmenu = (OptionsMenuSubmenus)newSubmenuIndex;
     
-		if (Global.Settings.Misc.OptionsMenuAnimations)
+		if (Main.GameSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
 			SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/StartTransition");
@@ -141,7 +135,7 @@ public partial class OptionsMenu : Control
 		if (IsAnimationPlaying) return;
 		CurrentSubmenu = menuSubmenus;
 
-		if (Global.Settings.Misc.OptionsMenuAnimations)
+		if (Main.GameSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
 			SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/StartTransition");
@@ -167,7 +161,7 @@ public partial class OptionsMenu : Control
 
 	private void UpdateSubmenuUI()
 	{
-		if (Global.Settings.Misc.DiscordRichPresence) Global.DiscordRpcClient.UpdateState($"Current Submenu: {CurrentSubmenu}");
+		if (Main.GameSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState($"Current Submenu: {CurrentSubmenu}");
 		
 		GameplaySubmenuButton.Text = "Gameplay";
 		VideoSubmenuButton.Text = "Video";

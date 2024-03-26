@@ -135,19 +135,19 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Container/Master:modulate")
+tracks/1/path = NodePath("Player/Rect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Container/Music:modulate")
+tracks/2/path = NodePath("Container:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -159,44 +159,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Container/SFX:modulate")
+tracks/3/path = NodePath("Container:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Container/Inst:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Container/Voices:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_spay7"]
 length = 0.001
 
-[sub_resource type="Animation" id="Animation_hhjt2"]
+[sub_resource type="Animation" id="Animation_pfrco"]
 resource_name = "Out"
 length = 0.3
 tracks/0/type = "value"
@@ -214,19 +190,19 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Container/Master:modulate")
+tracks/1/path = NodePath("Player/Rect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Container/Music:modulate")
+tracks/2/path = NodePath("Container:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -238,44 +214,20 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Container/SFX:modulate")
+tracks/3/path = NodePath("Container:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Container/Inst:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Container/Voices:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fanfs"]
 _data = {
 "In": SubResource("Animation_uprq7"),
-"Out": SubResource("Animation_hhjt2"),
+"Out": SubResource("Animation_pfrco"),
 "RESET": SubResource("Animation_spay7")
 }
 
@@ -369,6 +321,7 @@ libraries = {
 }
 
 [node name="Rect" type="ColorRect" parent="VolumeManagerPanel/Player"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -377,6 +330,8 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="Container" type="HBoxContainer" parent="VolumeManagerPanel"]
+visible = false
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -392,7 +347,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Master" type="Panel" parent="VolumeManagerPanel/Container"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_5qjre")
@@ -411,23 +365,6 @@ scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Master"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -82.5
-offset_top = 1.0
-offset_right = 90.5
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
-text = "Master [50%]"
-
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Master"]
 layout_mode = 0
 offset_left = 21.0
@@ -439,40 +376,30 @@ step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Music" type="Panel" parent="VolumeManagerPanel/Container"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("10_5qjre")
-
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Music"]
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Master/HSlider"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.5
-offset_top = 1.0
-offset_right = 75.5
-offset_bottom = 25.0
+offset_left = -83.0
+offset_top = -123.0
+offset_right = 90.0
+offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("10_hkver")
 theme_override_font_sizes/font_size = 30
-text = "Music [50%]"
+text = "Master [50%]"
 
-[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Music"]
-offset_left = 21.0
-offset_top = 269.0
-offset_right = 207.0
-offset_bottom = 285.0
+[node name="Music" type="Panel" parent="VolumeManagerPanel/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("10_5qjre")
-step = 5.0
-value = 50.0
-rounded = true
 
 [node name="Button" type="Button" parent="VolumeManagerPanel/Container/Music"]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
 offset_right = 182.0
@@ -485,30 +412,8 @@ scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
-[node name="SFX" type="Panel" parent="VolumeManagerPanel/Container"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("10_5qjre")
-
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/SFX"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -66.5
-offset_top = 1.0
-offset_right = 67.5
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
-text = "SFX [50%]"
-
-[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/SFX"]
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Music"]
+layout_mode = 0
 offset_left = 21.0
 offset_top = 269.0
 offset_right = 207.0
@@ -518,7 +423,58 @@ step = 5.0
 value = 50.0
 rounded = true
 
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Music/HSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -123.0
+offset_right = 75.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "Music [50%]"
+
+[node name="SFX" type="Panel" parent="VolumeManagerPanel/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
+
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/SFX"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 269.0
+offset_right = 207.0
+offset_bottom = 285.0
+theme = ExtResource("10_5qjre")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/SFX/HSlider"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -123.0
+offset_right = 67.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "SFX [50%]"
+
 [node name="Button" type="Button" parent="VolumeManagerPanel/Container/SFX"]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
 offset_right = 182.0
@@ -532,29 +488,12 @@ sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
 [node name="Inst" type="Panel" parent="VolumeManagerPanel/Container"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_5qjre")
 
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Inst"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.547
-anchor_right = 0.5
-anchor_bottom = 0.547
-offset_left = -68.5
-offset_top = -15.121
-offset_right = 69.5
-offset_bottom = 16.879
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
-text = "Inst [50%]"
-
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Inst"]
+layout_mode = 0
 offset_left = 21.0
 offset_top = 269.0
 offset_right = 207.0
@@ -564,7 +503,25 @@ step = 5.0
 value = 50.0
 rounded = true
 
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Inst/HSlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.547
+anchor_right = 0.5
+anchor_bottom = 0.547
+offset_left = -69.0
+offset_top = -125.491
+offset_right = 69.0
+offset_bottom = -93.491
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "Inst [50%]"
+
 [node name="Button" type="Button" parent="VolumeManagerPanel/Container/Inst"]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
 offset_right = 182.0
@@ -578,29 +535,12 @@ sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
 [node name="Voices" type="Panel" parent="VolumeManagerPanel/Container"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_5qjre")
 
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Voices"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.507
-anchor_top = 0.548
-anchor_right = 0.507
-anchor_bottom = 0.548
-offset_left = -82.596
-offset_top = -15.464
-offset_right = 82.404
-offset_bottom = 15.536
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
-text = "Voices [50%]"
-
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Voices"]
+layout_mode = 0
 offset_left = 21.0
 offset_top = 269.0
 offset_right = 207.0
@@ -610,7 +550,25 @@ step = 5.0
 value = 50.0
 rounded = true
 
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Voices/HSlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.507
+anchor_top = 0.548
+anchor_right = 0.507
+anchor_bottom = 0.548
+offset_left = -82.302
+offset_top = -125.544
+offset_right = 82.698
+offset_bottom = -94.544
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_hkver")
+theme_override_font_sizes/font_size = 30
+text = "Voices [50%]"
+
 [node name="Button" type="Button" parent="VolumeManagerPanel/Container/Voices"]
+layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
 offset_right = 182.0

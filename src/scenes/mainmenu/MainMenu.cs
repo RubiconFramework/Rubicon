@@ -1,9 +1,9 @@
-using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
-using TransitionManager = BaseRubicon.Backend.Autoload.Managers.TransitionManager;
+using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
+using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
+using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
+using TransitionManager = Rubicon.Backend.Autoload.Managers.TransitionManager.TransitionManager;
 
-namespace BaseRubicon.Scenes.MainMenu;
+namespace Rubicon.Scenes.MainMenu;
 
 public partial class MainMenu : Conductor
 {
@@ -72,7 +72,7 @@ public partial class MainMenu : Conductor
 			case "freeplay": TransitionManager.Instance.ChangeScene("res://src/gameplay/GameplayScene.tscn"); break;
 			case "options": TransitionManager.Instance.ChangeScene("res://src/scenes/options/OptionsMenu.tscn"); break;
 			default:
-				ScreenNotifier.Instance.Notify($"Scene {buttonName} not found lol", true, NotificationType.Warning);
+				Main.Instance.Notify($"Scene {buttonName} not found lol", true, NotificationType.Warning);
 				TransitionManager.Instance.ChangeScene("res://src/scenes/MainMenu.tscn");
 				break;
 		}

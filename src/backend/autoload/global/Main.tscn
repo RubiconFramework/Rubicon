@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c85d4dpafegtt"]
+
+[ext_resource type="Script" path="res://src/backend/autoload/global/Main.cs" id="1_5actk"]
+[ext_resource type="PackedScene" uid="uid://dvrifmg2wk0kt" path="res://src/backend/autoload/global/elements/Notification.tscn" id="2_omd1b"]
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_5actk")
+WarnNotificationColor = Color(0.788235, 0.788235, 0, 1)
+ErrorNotificationColor = Color(0.701961, 0, 0, 1)
+
+[node name="Notification" parent="." instance=ExtResource("2_omd1b")]
+visible = false

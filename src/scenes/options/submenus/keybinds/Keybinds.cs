@@ -1,6 +1,6 @@
-using BaseRubicon.Scenes.Options.Elements;
+using Rubicon.Scenes.Options.Elements;
 
-namespace BaseRubicon.Scenes.Options.Submenus.Keybinds;
+namespace Rubicon.Scenes.Options.Submenus.Keybinds;
 
 public partial class Keybinds : BaseSubmenu
 {

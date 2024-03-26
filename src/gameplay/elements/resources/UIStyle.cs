@@ -1,4 +1,4 @@
-namespace BaseRubicon.Gameplay.Elements.Resources;
+namespace Rubicon.Gameplay.Elements.Resources;
 
 public partial class UIStyle : Resource
 {

@@ -1,7 +1,6 @@
-using BaseRubicon.Backend.Autoload;
-using BaseRubicon.Scenes.Options.Elements;
+using Rubicon.Scenes.Options.Elements;
 
-namespace BaseRubicon.Scenes.Options.Submenus.Video;
+namespace Rubicon.Scenes.Options.Submenus.Video;
 
 public partial class Video : BaseSubmenu
 {
@@ -22,8 +21,8 @@ public partial class Video : BaseSubmenu
     
     private void LoadSettings()
     {
-        LoadOptionButtonValue(VSync, (int)Global.Settings.Video.VSync);
-        LoadOptionButtonValue(WindowMode, (int)Global.Settings.Video.WindowMode);
-        LoadSliderValue(MaxFPS, "Max FPS", Global.Settings.Video.MaxFPS);
+        LoadOptionButtonValue(VSync, (int)Main.GameSettings.Video.VSync);
+        LoadOptionButtonValue(WindowMode, (int)Main.GameSettings.Video.WindowMode);
+        LoadSliderValue(MaxFPS, "Max FPS", Main.GameSettings.Video.MaxFPS);
     }
 }

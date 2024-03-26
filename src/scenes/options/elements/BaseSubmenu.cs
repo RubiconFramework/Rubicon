@@ -1,7 +1,6 @@
-using BaseRubicon.Backend.Autoload;
 using Button = Godot.Button;
 
-namespace BaseRubicon.Scenes.Options.Elements;
+namespace Rubicon.Scenes.Options.Elements;
 
 [Icon("res://assets/miscicons/settingsbutton.png")]
 public partial class BaseSubmenu : ScrollContainer
@@ -11,7 +10,7 @@ public partial class BaseSubmenu : ScrollContainer
         button.Pressed += () =>
         {
             updateAction.Invoke(button.ButtonPressed);
-            Global.Settings.SaveSettings();
+            Main.GameSettings.Save();
         };
         button.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
     }
@@ -21,7 +20,7 @@ public partial class BaseSubmenu : ScrollContainer
         optionButton.ItemSelected += index =>
         {
             updateAction.Invoke((int)index);
-            Global.Settings.SaveSettings();
+            Main.GameSettings.Save();
         };
         optionButton.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
     }
@@ -32,7 +31,7 @@ public partial class BaseSubmenu : ScrollContainer
         {
             label.Text = showPercentage ? $" {settingName}: [{(int)v}%]" : $" {settingName} [{(float)v}]";
             updateAction.Invoke((float)v);
-            Global.Settings.SaveSettings();
+            Main.GameSettings.Save();
         };
         label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
@@ -42,7 +41,7 @@ public partial class BaseSubmenu : ScrollContainer
         label.GetNode<ColorPickerButton>("Picker").ColorChanged += color =>
         {
             updateAction.Invoke(color);
-            Global.Settings.SaveSettings();
+            Main.GameSettings.Save();
         };
         label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }

@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using BaseRubicon.Backend.Autoload;
-using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using BaseRubicon.Scenes.Options.Submenus.Gameplay.Enums;
-using BaseRubicon.Scenes.Options.Submenus.Misc.Enums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
+using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
+using Rubicon.Scenes.Options.Submenus.Gameplay.Enums;
+using Rubicon.Scenes.Options.Submenus.Misc.Enums;
 
-namespace BaseRubicon.Scenes.Options.Elements;
+namespace Rubicon.Scenes.Options.Elements;
 
 public class SettingsData
 {
@@ -56,13 +55,13 @@ public class SettingsData
         return defaultSettings;
     }
     
-    public void SaveSettings()
+    public void Save()
     {
         try
         {
-            if (Global.Settings == null)
+            if (Main.GameSettings == null)
             {
-                ScreenNotifier.Instance.Notify("Settings object is null.", true, NotificationType.Error);
+                Main.Instance.Notify("Settings object is null.", true, NotificationType.Error);
                 return;
             }
 
@@ -72,11 +71,11 @@ public class SettingsData
                 Formatting = Formatting.Indented
             };
         
-            string jsonData = JsonConvert.SerializeObject(Global.Settings, settings);
-            using var file = FileAccess.Open(Global.Instance.SettingsFilePath, FileAccess.ModeFlags.Write);
+            string jsonData = JsonConvert.SerializeObject(Main.GameSettings, settings);
+            using var file = FileAccess.Open(Main.Instance.SettingsFilePath, FileAccess.ModeFlags.Write);
             if (file == null)
             {
-                ScreenNotifier.Instance.Notify("Failed to open settings file for writing.", true, NotificationType.Error);
+                Main.Instance.Notify("Failed to open settings file for writing.", true, NotificationType.Error);
                 return;
             }
 
@@ -84,7 +83,7 @@ public class SettingsData
         }
         catch (Exception e)
         {
-            ScreenNotifier.Instance.Notify($"Failed to save settings: {e.Message}", true, NotificationType.Error);
+            Main.Instance.Notify($"Failed to save settings: {e.Message}", true, NotificationType.Error);
         }
     }
 
@@ -92,14 +91,15 @@ public class SettingsData
     public void SetKeybind(string action, string button)
     {
         Keybinds[action] = button;
-        ScreenNotifier.Instance.Notify($"{action} bound to {button}");
-        SaveSettings();
+        Main.Instance.Notify($"{action} bound to {button}");
+        Save();
     }
     
     public void RemoveKeybind(string action)
     {
         if (Keybinds.ContainsKey(action)) Keybinds.Remove(action);
-        SaveSettings();
+        Main.Instance.Notify($"{action} removed");
+        Save();
     }
     
     public List<string> GetKeybind(string action)

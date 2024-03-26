@@ -1,6 +1,5 @@
-﻿using Global = BaseRubicon.Backend.Autoload.Global;
-
-namespace BaseRubicon.Backend.UI.Alphabet;
+﻿
+namespace Rubicon.Backend.UI.Alphabet;
 
 [Tool]
 [Icon("res://fnf_icon.png")]
@@ -11,6 +10,6 @@ public partial class FreeplayAlphabet : Alphabet
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (!is_template && !Engine.IsEditorHint()) Visible = !(Position.X < -(Size.Y + 20) || Position.Y > Global.EngineWindowSize.Y + 20);
+        if (!is_template && !Engine.IsEditorHint()) Visible = !(Position.X < -(Size.Y + 20) || Position.Y > Main.EngineWindowSize.Y + 20);
     }
 }

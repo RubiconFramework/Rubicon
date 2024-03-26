@@ -1,8 +1,7 @@
-using BaseRubicon.Backend.Autoload;
-using BaseRubicon.Scenes.Options.Elements;
-using BaseRubicon.Scenes.Options.Submenus.Gameplay.Enums;
+using Rubicon.Scenes.Options.Elements;
+using Rubicon.Scenes.Options.Submenus.Gameplay.Enums;
 
-namespace BaseRubicon.Scenes.Options.Submenus.Gameplay;
+namespace Rubicon.Scenes.Options.Submenus.Gameplay;
 
 public partial class Gameplay : BaseSubmenu
 {
@@ -16,15 +15,15 @@ public partial class Gameplay : BaseSubmenu
         this.OnReady();
         LoadSettings();
         
-        RegisterButton(Downscroll, _ => Global.Settings.Gameplay.Downscroll = !Global.Settings.Gameplay.Downscroll);
-        RegisterOptionButton(ScrollSpeedType, i => Global.Settings.Gameplay.ScrollSpeedType = (ScrollSpeedType)i);
-        RegisterSlider(ScrollSpeed, "Scroll Speed", v => Global.Settings.Gameplay.ScrollSpeed = v, false);
+        RegisterButton(Downscroll, _ => Main.GameSettings.Gameplay.Downscroll = !Main.GameSettings.Gameplay.Downscroll);
+        RegisterOptionButton(ScrollSpeedType, i => Main.GameSettings.Gameplay.ScrollSpeedType = (ScrollSpeedType)i);
+        RegisterSlider(ScrollSpeed, "Scroll Speed", v => Main.GameSettings.Gameplay.ScrollSpeed = v, false);
     }
     
     private void LoadSettings()
     {
-        LoadButtonValue(Downscroll, Global.Settings.Gameplay.Downscroll);
-        LoadOptionButtonValue(ScrollSpeedType, (int)Global.Settings.Gameplay.ScrollSpeedType);
-        LoadSliderValue(ScrollSpeed, "Scroll Speed", Global.Settings.Gameplay.ScrollSpeed);
+        LoadButtonValue(Downscroll, Main.GameSettings.Gameplay.Downscroll);
+        LoadOptionButtonValue(ScrollSpeedType, (int)Main.GameSettings.Gameplay.ScrollSpeedType);
+        LoadSliderValue(ScrollSpeed, "Scroll Speed", Main.GameSettings.Gameplay.ScrollSpeed);
     }
 }

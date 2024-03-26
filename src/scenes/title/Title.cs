@@ -1,11 +1,11 @@
-using BaseRubicon.Backend.Autoload.Debug.ScreenNotifier;
-using BaseRubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using BaseRubicon.Backend.UI.Alphabet;
 using Godot.Collections;
-using AudioManager = BaseRubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
-using TransitionManager = BaseRubicon.Backend.Autoload.Managers.TransitionManager;
+using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
+using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
+using Rubicon.Backend.UI.Alphabet;
+using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
+using TransitionManager = Rubicon.Backend.Autoload.Managers.TransitionManager.TransitionManager;
 
-namespace BaseRubicon.Scenes.Title;
+namespace Rubicon.Scenes.Title;
 
 public partial class Title : Conductor
 {
@@ -176,7 +176,7 @@ public partial class Title : Conductor
             return textLines[randomIndex].Split("--");   
         }
 
-        ScreenNotifier.Instance.Notify("Intro Texts file is null. Skipping.", true, NotificationType.Error);
+        Main.Instance.Notify("Intro Texts file is null. Skipping.", true, NotificationType.Error);
         return null;
     }
 }

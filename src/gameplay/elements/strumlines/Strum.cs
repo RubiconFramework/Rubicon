@@ -1,4 +1,4 @@
-namespace BaseRubicon.Gameplay.Elements.StrumLines;
+namespace Rubicon.Gameplay.Elements.StrumLines;
 
 public partial class Strum : AnimatedSprite2D
 {

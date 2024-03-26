@@ -1,9 +1,8 @@
-using BaseRubicon.Gameplay.Elements.Resources;
 using Godot.Collections;
-using BPMChangeEvent = BaseRubicon.Gameplay.Elements.Classes.Song.BPMChangeEvent;
-using Section = BaseRubicon.Gameplay.Elements.Classes.Song.Section;
+using Rubicon.Gameplay.Elements.Classes.Song;
+using Rubicon.Gameplay.Elements.Resources;
 
-namespace BaseRubicon.Backend.Autoload;
+namespace Rubicon.Backend.Autoload.Global;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Conductor : Node
@@ -133,16 +132,13 @@ public partial class Conductor : Node
 
     protected virtual void OnBeatHit(int beat)
     {
-        //this thing cant even receive its own signals?? is it five stupid??
     }
 
     protected virtual void OnStepHit(int step)
     {
-        //this thing cant even receive its own signals?? is it five stupid??
     }
     protected virtual void OnSectionHit(int section) 
     { 
-        //this thing cant even receive its own signals?? is it five stupid
     }
     
     public bool IsSoundSynced(AudioStreamPlayer sound)
