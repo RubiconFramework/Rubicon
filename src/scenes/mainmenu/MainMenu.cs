@@ -72,7 +72,7 @@ public partial class MainMenu : Conductor
 			case "freeplay": TransitionManager.Instance.ChangeScene("res://src/gameplay/GameplayScene.tscn"); break;
 			case "options": TransitionManager.Instance.ChangeScene("res://src/scenes/options/OptionsMenu.tscn"); break;
 			default:
-				Main.Instance.Notify($"Scene {buttonName} not found lol", true, NotificationType.Warning);
+				Main.Instance.Alert($"Scene {buttonName} not found lol", true, NotificationType.Warning);
 				TransitionManager.Instance.ChangeScene("res://src/scenes/MainMenu.tscn");
 				break;
 		}

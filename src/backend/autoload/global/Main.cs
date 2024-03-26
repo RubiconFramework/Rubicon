@@ -27,7 +27,7 @@ public partial class Main : CanvasLayer
 	[Export] public string DiscordRpcClientID = "1218405526677749760";
 	[Export] public string SettingsFilePath = "user://settings.json";
 	[Export] private Color InfoNotificationColor { get; set; } = new(0.32f,0.32f, 0.32f);
-	[Export] private Color WarnNotificationColor { get; set; } = new(0.79f,0.79f, 0);
+	[Export] private Color WarningNotificationColor { get; set; } = new(0.79f,0.79f, 0);
 	[Export] private Color ErrorNotificationColor { get; set; } = new(0.70f, 0f, 0f);
 
 	public static Chart Song; // the fuck is this for ? -duo
@@ -64,7 +64,7 @@ public partial class Main : CanvasLayer
 			switch (customUserDir)
 			{
 				case "Rubicon/Engine" when projectName != "Rubicon":
-					Notify("New project name has been found. Reload project.godot for it to apply.");
+					Alert("New project name has been found. Reload project.godot for it to apply.");
 					ProjectSettings.SetSetting("application/config/custom_user_dir_name", $"Rubicon/{projectName}");
 					ProjectSettings.Save();
 					break;
@@ -72,11 +72,11 @@ public partial class Main : CanvasLayer
 				{
 					if (customUserDir != "Rubicon/Engine" && projectName == "Rubicon")
 					{
-						Notify("Base engine detected. Reload project.godot for it to apply.");
+						Alert("Base engine detected. Reload project.godot for it to apply.");
 						ProjectSettings.SetSetting("application/config/custom_user_dir_name", "Rubicon/Engine");
 						ProjectSettings.Save();
 					}
-					else Notify($"Data stored at: user://{customUserDir}");
+					else Alert($"Data stored at: user://{customUserDir}");
 					break;
 				}
 			}
@@ -91,8 +91,36 @@ public partial class Main : CanvasLayer
 		GameSettings = null;
 		DiscordRPC(false);
 	}
-	
-	public override void _Process(double delta) => UpdateProgressBar(delta);
+
+	public override void _Process(double delta)
+	{
+		for (int i = 0; i < notificationQueue.Count; i++)
+		{
+			var (panel, duration) = notificationQueue.Dequeue();
+			duration -= delta;
+			var progressBar = panel.GetNode<ProgressBar>("DurationBar");
+			var animalationtolongplayer = panel.GetNode<AnimationPlayer>("animalationtolongplayer");
+			progressBar.Value = duration;
+
+			if (Mathf.Abs(duration - 0.5f) < 0.01f) animalationtolongplayer.Play("out");
+			if (duration <= 0) OnNotificationTimeout(panel);
+			else notificationQueue.Enqueue((panel, duration));
+		}
+        
+		void OnNotificationTimeout(Panel panel)
+		{ 
+			notificationQueue = new(notificationQueue.Where(item => item.Item1 != panel));
+			panel.QueueFree();
+			YOffset -= panel.GetRect().Size.Y + 10;
+    
+			float yOffset = YOffset;
+			foreach (var (remainingPanel, _) in notificationQueue)
+			{
+				remainingPanel.Position = new(remainingPanel.Position.X, yOffset);
+				yOffset += remainingPanel.GetRect().Size.Y + 10;
+			}
+		}
+	}
 
 	public static void LoadSettings(string path)
 	{
@@ -116,7 +144,7 @@ public partial class Main : CanvasLayer
 			}
 			else
 			{
-				Instance.Notify("Settings file not found. Writing default settings to file.");
+				Instance.Alert("Settings file not found. Writing default settings to file.");
 				settings.GetDefaultSettings().Save();
 				GameSettings = settings;
 			}
@@ -215,7 +243,7 @@ public partial class Main : CanvasLayer
 		}
 	}
 	
-	public void Notify(string message, bool printToConsole = true, NotificationType type = NotificationType.Info, float duration = 5.0f)
+	public void Alert(string message, bool printToConsole = true, NotificationType type = NotificationType.Info, float duration = 5.0f)
     {
         StackTrace stackTrace = new();
         StackFrame stackFrame = stackTrace.GetFrame(1);
@@ -238,12 +266,15 @@ public partial class Main : CanvasLayer
             {
                 case NotificationType.Info:
                     if (printToConsole) GD.Print(fullMessage);
+                    progressBar.AddThemeColorOverride("bg_color", InfoNotificationColor);
                     break;
                 case NotificationType.Warning:
                     if (printToConsole) GD.Print(fullMessage);
+                    progressBar.AddThemeColorOverride("bg_color", WarningNotificationColor);
                     break;
                 case NotificationType.Error:
                     if (printToConsole) GD.PrintErr(fullMessage);
+                    progressBar.AddThemeColorOverride("bg_color", ErrorNotificationColor);
                     break;
             }
 
@@ -263,36 +294,6 @@ public partial class Main : CanvasLayer
             
             notificationQueue.Enqueue((notificationInstance, duration));
             Instance.AddChild(notificationInstance);
-        }
-    }
-    
-    private void UpdateProgressBar(double delta)
-    {
-        for (int i = 0; i < notificationQueue.Count; i++)
-        {
-            var (panel, duration) = notificationQueue.Dequeue();
-            duration -= delta;
-            var progressBar = panel.GetNode<ProgressBar>("DurationBar");
-            var animalationtolongplayer = panel.GetNode<AnimationPlayer>("animalationtolongplayer");
-            progressBar.Value = duration;
-
-            if (Mathf.Abs(duration - 0.5f) < 0.01f) animalationtolongplayer.Play("out");
-            if (duration <= 0) OnNotificationTimeout(panel);
-            else notificationQueue.Enqueue((panel, duration));
-        }
-        
-        void OnNotificationTimeout(Panel panel)
-        { 
-	        notificationQueue = new(notificationQueue.Where(item => item.Item1 != panel));
-	        panel.QueueFree();
-	        YOffset -= panel.GetRect().Size.Y + 10;
-    
-	        float yOffset = YOffset;
-	        foreach (var (remainingPanel, _) in notificationQueue)
-	        {
-		        remainingPanel.Position = new(remainingPanel.Position.X, yOffset);
-		        yOffset += remainingPanel.GetRect().Size.Y + 10;
-	        }
         }
     }
 }

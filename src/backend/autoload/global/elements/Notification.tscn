@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvrifmg2wk0kt"]
+[gd_scene load_steps=7 format=3 uid="uid://dvrifmg2wk0kt"]
 
 [ext_resource type="Theme" uid="uid://b1qc2jc1jged7" path="res://assets/themes/duo/ScreenNotifier [Duo].tres" id="1_eexnj"]
 [ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="2_dp5xk"]
@@ -35,8 +35,12 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_8l844"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t4u7u"]
 _data = {
+"RESET": SubResource("Animation_8l844"),
 "in": SubResource("Animation_60y5w"),
 "out": SubResource("Animation_fi6yn")
 }

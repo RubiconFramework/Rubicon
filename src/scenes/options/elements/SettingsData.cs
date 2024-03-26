@@ -26,11 +26,11 @@ public class SettingsData
     public class AudioSettings
     {
         public float MasterVolume { get; set; } = 50;
+        public OutputMode OutputMode { get; set; } = OutputMode.Stereo;
         public float MusicVolume { get; set; } = 100;
         public float SFXVolume { get; set; } = 100;
         public float InstVolume { get; set; } = 100;
         public float VoiceVolume { get; set; } = 100;
-        public OutputMode OutputMode { get; set; } = OutputMode.Stereo;
     }
 
     public class VideoSettings
@@ -46,7 +46,7 @@ public class SettingsData
         public TransitionType Transitions { get; set; } = TransitionType.Vanilla;
         public bool DiscordRichPresence { get; set; } = true;
         public bool OptionsMenuAnimations { get; set; } = true;
-        public bool SceneTransitions { get; set; }
+        public bool SceneTransitions { get; set; } = true;
     }
     
     public SettingsData GetDefaultSettings()
@@ -61,7 +61,7 @@ public class SettingsData
         {
             if (Main.GameSettings == null)
             {
-                Main.Instance.Notify("Settings object is null.", true, NotificationType.Error);
+                Main.Instance.Alert("Settings object is null.", true, NotificationType.Error);
                 return;
             }
 
@@ -75,7 +75,7 @@ public class SettingsData
             using var file = FileAccess.Open(Main.Instance.SettingsFilePath, FileAccess.ModeFlags.Write);
             if (file == null)
             {
-                Main.Instance.Notify("Failed to open settings file for writing.", true, NotificationType.Error);
+                Main.Instance.Alert("Failed to open settings file for writing.", true, NotificationType.Error);
                 return;
             }
 
@@ -83,7 +83,7 @@ public class SettingsData
         }
         catch (Exception e)
         {
-            Main.Instance.Notify($"Failed to save settings: {e.Message}", true, NotificationType.Error);
+            Main.Instance.Alert($"Failed to save settings: {e.Message}", true, NotificationType.Error);
         }
     }
 
@@ -91,14 +91,14 @@ public class SettingsData
     public void SetKeybind(string action, string button)
     {
         Keybinds[action] = button;
-        Main.Instance.Notify($"{action} bound to {button}");
+        Main.Instance.Alert($"{action} bound to {button}");
         Save();
     }
     
     public void RemoveKeybind(string action)
     {
         if (Keybinds.ContainsKey(action)) Keybinds.Remove(action);
-        Main.Instance.Notify($"{action} removed");
+        Main.Instance.Alert($"{action} removed");
         Save();
     }
     

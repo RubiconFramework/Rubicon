@@ -117,7 +117,7 @@ public partial class GameplayScene : Conductor
 
         if (inst.Stream == null)
         {
-            Main.Instance.Notify($"Inst not found on path: '{songPath}inst' with every format, ending song", true, NotificationType.Error);
+            Main.Instance.Alert($"Inst not found on path: '{songPath}inst' with every format, ending song", true, NotificationType.Error);
             endingSong = true;
             EndSong();
             return;

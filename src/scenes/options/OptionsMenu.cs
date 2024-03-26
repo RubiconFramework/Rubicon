@@ -60,11 +60,11 @@ public partial class OptionsMenu : Control
 			{
 				Main.GameSettings = JsonConvert.DeserializeObject<SettingsData>(Main.DecompressString(DisplayServer.ClipboardGet()));
 				Main.GameSettings.Save();
-				Main.Instance.Notify("Settings imported.");
+				Main.Instance.Alert("Settings imported.");
 			}
 			catch (Exception e)
 			{
-				Main.Instance.Notify($"Failed to import settings: {e.Message}", true, NotificationType.Error);
+				Main.Instance.Alert($"Failed to import settings: {e.Message}", true, NotificationType.Error);
 			}
 		};
 
@@ -73,11 +73,11 @@ public partial class OptionsMenu : Control
 			try
 			{
 				DisplayServer.ClipboardSet(Main.CompressString(JsonConvert.SerializeObject(Main.GameSettings)));
-				Main.Instance.Notify("Settings exported and copied to clipboard.");
+				Main.Instance.Alert("Settings exported and copied to clipboard.");
 			}
 			catch (Exception e)
 			{
-				Main.Instance.Notify($"Failed to export settings: {e.Message}", true, NotificationType.Error);
+				Main.Instance.Alert($"Failed to export settings: {e.Message}", true, NotificationType.Error);
 			}
 		};
 	}

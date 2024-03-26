@@ -176,7 +176,7 @@ public partial class Title : Conductor
             return textLines[randomIndex].Split("--");   
         }
 
-        Main.Instance.Notify("Intro Texts file is null. Skipping.", true, NotificationType.Error);
+        Main.Instance.Alert("Intro Texts file is null. Skipping.", true, NotificationType.Error);
         return null;
     }
 }
