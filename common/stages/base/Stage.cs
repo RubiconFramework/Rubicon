@@ -1,6 +1,6 @@
 using Godot.Collections;
 
-namespace Rubicon.Backend.Scripts;
+namespace Rubicon.Shared.Stages.Base;
 
 public partial class Stage : Node2D
 {

@@ -97,10 +97,15 @@ public class RubiconSettings
     
     public void RemoveKeybind(string action)
     {
-        if (Keybinds.ContainsKey(action)) Keybinds.Remove(action);
-        Main.Instance.Alert($"{action} removed");
-        Save();
+        if (Keybinds.ContainsKey(action))
+        {
+            Keybinds.Remove(action);
+            Main.Instance.Alert($"{action} removed");
+            Save();
+        }
+        else Main.Instance.Alert($"{action} not found in keybinds");
     }
+
     
     public List<string> GetKeybind(string action)
     {

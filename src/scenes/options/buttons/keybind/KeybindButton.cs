@@ -25,40 +25,39 @@ public partial class KeybindButton : Button
         List<string> keybinds = Main.GameSettings.GetKeybind(Action);
         foreach (string keybind in keybinds)
         {
-            Button button = new();
-            button.AddThemeFontSizeOverride("font_size", 15);
-            AppendKey.AddChild(button);
-
-            float centerY = (AppendKey.GetRect().Size.Y - button.GetRect().Size.Y) / 2;
-
-            Vector2 appendKeyGlobalPos = AppendKey.GlobalPosition;
-            Vector2 buttonGlobalPos = new(appendKeyGlobalPos.X, appendKeyGlobalPos.Y + centerY);
-
-            if (buttonPositions.Count > 0)
-            {
-                var lastButton = buttonPositions.Keys.Last();
-                buttonGlobalPos.X = buttonPositions[lastButton].X + lastButton.GetRect().Size.X + ButtonSpacing;
-            }
-            else buttonGlobalPos.X = appendKeyGlobalPos.X + AppendKey.GetRect().Size.X + ButtonSpacing;
-            
-            button.Text = $"  {keybind}  ";
-            buttonPositions.Add(button, buttonGlobalPos);
-            button.GlobalPosition = buttonGlobalPos;
+            Button button = NewKeybindButton(keybind);
+            button.GlobalPosition = new Vector2(button.GlobalPosition.X, AppendKey.GlobalPosition.Y + AppendKey.GetRect().Size.Y / 2 - button.GetRect().Size.Y / 2);
             button.Pressed += () => StartKeybindingSequence(button);
         }
     }
 
     private void AppendBindableButton()
     {
+        Button button = NewKeybindButton("N/A");
+        button.GlobalPosition = new Vector2(button.GlobalPosition.X, AppendKey.GlobalPosition.Y + AppendKey.GetRect().Size.Y / 2 - button.GetRect().Size.Y / 2);
+        StartKeybindingSequence(button);
+        button.Pressed += () => StartKeybindingSequence(button);
+    }
+
+    private Button NewKeybindButton(string keybind)
+    {
         Button button = new();
-        button.Text = "N/A";
         button.AddThemeFontSizeOverride("font_size", 15);
         AppendKey.AddChild(button);
 
-        float centerY = (AppendKey.GetRect().Size.Y - button.GetRect().Size.Y) / 2;
+        button.Text = $" {keybind} ";
 
+        Vector2 buttonGlobalPos = GetCenteredButtonPositionX();
+        button.GlobalPosition = buttonGlobalPos;
+        buttonPositions.Add(button, buttonGlobalPos);
+
+        return button;
+    }
+    
+    private Vector2 GetCenteredButtonPositionX()
+    {
         Vector2 appendKeyGlobalPos = AppendKey.GlobalPosition;
-        Vector2 buttonGlobalPos = new(appendKeyGlobalPos.X, appendKeyGlobalPos.Y + centerY);
+        Vector2 buttonGlobalPos = new(appendKeyGlobalPos.X, 0);
 
         if (buttonPositions.Count > 0)
         {
@@ -66,13 +65,9 @@ public partial class KeybindButton : Button
             buttonGlobalPos.X = buttonPositions[lastButton].X + lastButton.GetRect().Size.X + ButtonSpacing;
         }
         else buttonGlobalPos.X = appendKeyGlobalPos.X + AppendKey.GetRect().Size.X + ButtonSpacing;
-        
-        buttonPositions.Add(button, buttonGlobalPos);
-        button.GlobalPosition = buttonGlobalPos;
-        StartKeybindingSequence(button);
-        button.Pressed += () => StartKeybindingSequence(button);
+        return buttonGlobalPos;
     }
-
+    
     private void StartKeybindingSequence(Button button)
     {
         if (!OptionsMenu.Instance.IsPickingKeybind)
@@ -97,7 +92,7 @@ public partial class KeybindButton : Button
     private void RemoveKeybind()
     {
         Main.GameSettings.RemoveKeybind(Action);
-    
+
         Vector2 deletedButtonPos = Vector2.Zero;
         bool foundDeletedButton = false;
         foreach (var kvp in buttonPositions)
@@ -112,13 +107,26 @@ public partial class KeybindButton : Button
             }
         }
 
-        if (foundDeletedButton) UpdateButtonPositions(deletedButtonPos);
-        
+        if (foundDeletedButton)
+        {
+            List<Button> buttonsToUpdate = buttonPositions.Keys.OrderBy(b => buttonPositions[b].X).ToList();
+
+            foreach (var button in buttonsToUpdate)
+            {
+                if (buttonPositions[button].X > deletedButtonPos.X)
+                {
+                    Vector2 newPosition = new Vector2(buttonPositions[button].X - CurrentButton.GetRect().Size.X - ButtonSpacing, AppendKey.GlobalPosition.Y + AppendKey.GetRect().Size.Y / 2 - button.GetRect().Size.Y / 2);
+                    buttonPositions[button] = newPosition;
+                    button.GlobalPosition = newPosition;
+                }
+            }
+        }
+
         CurrentButton = null;
         OptionsMenu.Instance.IsPickingKeybind = false;
         OptionsMenu.Instance.SubmenuIndicatorAnimationPlayer.Play("KeybindPicking/PickedKeybind");
     }
-
+    
     private void SetKeybind(InputEventKey inputEventKey)
     {
         CurrentButton.Text = $"  {OS.GetKeycodeString(inputEventKey.Keycode)}  ";
@@ -126,17 +134,6 @@ public partial class KeybindButton : Button
         CurrentButton = null;
         OptionsMenu.Instance.IsPickingKeybind = false;
         OptionsMenu.Instance.SubmenuIndicatorAnimationPlayer.Play("KeybindPicking/PickedKeybind");
-    }
-
-    private void UpdateButtonPositions(Vector2 deletedButtonPos)
-    {
-        List<Button> buttonsToUpdate = new();
-        foreach (var kvp in buttonPositions) if (kvp.Value.X > deletedButtonPos.X) buttonsToUpdate.Add(kvp.Key);
-        foreach (var button in buttonsToUpdate)
-        {
-            buttonPositions[button] = new(buttonPositions[button].X - CurrentButton.GetRect().Size.X - ButtonSpacing, buttonPositions[button].Y);
-            button.GlobalPosition = buttonPositions[button];
-        }
     }
 }
 

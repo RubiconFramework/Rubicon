@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cs4ix72ty503g"]
 
-[ext_resource type="Script" path="res://source/gameplay/elements/classes/Note.cs" id="1_ogvqs"]
-[ext_resource type="Texture2D" path="res://Assets/gameplay/notes/default/assets/default/Sustains/left hold piece.png" id="2_lr3yk"]
-[ext_resource type="SpriteFrames" uid="uid://biq5ahl2ab8uj" path="res://shared/notes/default/Assets/default/Assets.res" id="3_4qbtg"]
-[ext_resource type="Texture2D" path="res://Assets/gameplay/notes/default/assets/default/Sustains/left hold end.png" id="3_nkhdj"]
+[ext_resource type="Script" path="res://src/gameplay/elements/scripts/Note.cs" id="1_ogvqs"]
+[ext_resource type="Texture2D" uid="uid://cxf8573pm87fk" path="res://common/notes/default/Assets/default/Sustains/left hold piece.png" id="2_lr3yk"]
+[ext_resource type="SpriteFrames" uid="uid://biq5ahl2ab8uj" path="res://common/notes/default/Assets/default/Assets.res" id="3_4qbtg"]
+[ext_resource type="Texture2D" uid="uid://c86uwov5w6eu0" path="res://common/notes/default/Assets/default/Sustains/left hold end.png" id="3_nkhdj"]
 
 [node name="Default" type="Node2D"]
 scale = Vector2(0.6, 0.6)

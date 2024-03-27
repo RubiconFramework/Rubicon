@@ -1,9 +1,62 @@
-[gd_scene load_steps=15 format=3 uid="uid://841861ujliwk"]
+[gd_scene load_steps=17 format=3 uid="uid://rahjtmlrruke"]
 
-[ext_resource type="Script" path="res://src/gameplay/elements/scripts/Character2D.cs" id="1_v7cgt"]
-[ext_resource type="Texture2D" uid="uid://8t46qrpupreo" path="res://shared/characters/bfPixel/iconBFPixel.png" id="2_m0eqb"]
-[ext_resource type="SpriteFrames" path="res://shared/characters/bfPixel/pixel/normal.res" id="3_gx47x"]
-[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_3njfi"]
+[ext_resource type="Script" path="res://src/gameplay/elements/scripts/Character2D.cs" id="1_fwpqp"]
+[ext_resource type="Texture2D" uid="uid://bjts1v21hgv87" path="res://common/characters/bf/icon.png" id="2_o74du"]
+[ext_resource type="SpriteFrames" uid="uid://x7ep0vbtqibp" path="res://common/characters/bf/images/normal.res" id="3_4qxfk"]
+[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_o1jdp"]
+
+[sub_resource type="Animation" id="Animation_wucwq"]
+resource_name = "hey"
+length = 0.625004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"BF HEY!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"
@@ -19,7 +72,60 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF IDLE instance 1"]
+"values": [&"BF idle dance"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jlgog"]
+resource_name = "scared"
+length = 0.125004
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"BF idle shaking"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -70,7 +176,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF DOWN NOTE instance 1"]
+"values": [&"BF NOTE DOWN"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -94,7 +200,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(20, 51)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -121,7 +227,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF DOWN MISS instance 1"]
+"values": [&"BF NOTE DOWN MISS"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -145,7 +251,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(20, 19)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -172,7 +278,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF LEFT NOTE instance 1"]
+"values": [&"BF NOTE LEFT"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -196,7 +302,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-5, 6)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -223,7 +329,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF LEFT MISS instance 1"]
+"values": [&"BF NOTE LEFT MISS"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -247,7 +353,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-5, -19)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -274,7 +380,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF RIGHT NOTE instance 1"]
+"values": [&"BF NOTE RIGHT"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -298,7 +404,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(48, 7)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -325,7 +431,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF RIGHT MISS instance 1"]
+"values": [&"BF NOTE RIGHT MISS"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -349,7 +455,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(44, -22)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -376,7 +482,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF UP NOTE instance 1"]
+"values": [&"BF NOTE UP"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -400,7 +506,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(46, -27)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -427,7 +533,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"BF UP MISS instance 1"]
+"values": [&"BF NOTE UP MISS"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -451,7 +557,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(42, -27)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -468,7 +574,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vgtrv"]
 _data = {
+"hey": SubResource("Animation_wucwq"),
 "idle": SubResource("Animation_epq6v"),
+"scared": SubResource("Animation_jlgog"),
 "singDOWN": SubResource("Animation_8yhx3"),
 "singDOWNmiss": SubResource("Animation_qv7xy"),
 "singLEFT": SubResource("Animation_4fmcm"),
@@ -479,22 +587,18 @@ _data = {
 "singUPmiss": SubResource("Animation_53fqm")
 }
 
-[node name="bf-pixel" type="Node2D"]
-script = ExtResource("1_v7cgt")
+[node name="bf" type="Node2D"]
+script = ExtResource("1_fwpqp")
 mirrorCharacter = true
-iconTexture = ExtResource("2_m0eqb")
-healthColor = Color(0.482353, 0.839216, 0.964706, 1)
+iconTexture = ExtResource("2_o74du")
+healthColor = Color(0.192157, 0.690196, 0.819608, 1)
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-219, -437)
-scale = Vector2(6, 6)
-sprite_frames = ExtResource("3_gx47x")
-animation = &"BF IDLE instance 1"
-frame = 13
-frame_progress = 1.0
+position = Vector2(-208, -413)
+sprite_frames = ExtResource("3_4qxfk")
+animation = &"BF idle dance"
 centered = false
-script = ExtResource("4_3njfi")
+script = ExtResource("4_o1jdp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
 libraries = {
@@ -502,4 +606,4 @@ libraries = {
 }
 
 [node name="CameraPos" type="Node2D" parent="."]
-position = Vector2(-65, -234)
+position = Vector2(-208, -333)

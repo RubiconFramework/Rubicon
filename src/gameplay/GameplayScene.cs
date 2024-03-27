@@ -6,6 +6,7 @@ using Rubicon.Gameplay.Elements.Classes.Song;
 using Rubicon.Gameplay.Elements.Resources;
 using Rubicon.Gameplay.Elements.Scripts;
 using Rubicon.Gameplay.Elements.StrumLines;
+using Rubicon.Shared.Stages.Base;
 using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
 
 namespace Rubicon.Gameplay;
@@ -17,6 +18,7 @@ public partial class GameplayScene : Conductor
     private string[] noteTypeIgnore = Array.Empty<string>();
     private Chart Song;
     private readonly List<AudioStreamPlayer> tracks = new();
+    
     [NodePath("Song/Inst")] private AudioStreamPlayer inst;
     [NodePath("Song/Voices")] private AudioStreamPlayer vocals;
     
@@ -36,7 +38,7 @@ public partial class GameplayScene : Conductor
     private bool camBump = true, smoothZoom, camUpdate = true, iconBump = true, iconUpdate = true;
 
     //Elements
-    private Backend.Scripts.Stage stage;
+    private Stage stage;
     private Character2D spectator, opponent, player;
 
     //2D
@@ -63,7 +65,6 @@ public partial class GameplayScene : Conductor
     private StrumLine oppStrums, playerStrums;
     private readonly bool[] pressed = Array.Empty<bool>();
     private UIStyle uiStyle;
-
     
     //Countdown
     [NodePath("HUD/CountdownSprite")] private Sprite2D countdownSprite;
@@ -88,7 +89,6 @@ public partial class GameplayScene : Conductor
                 scrollSpeed *= settingSpeed;
                 break;
         }
-        
 
         if (Main.Song == null)
         {
@@ -224,7 +224,6 @@ public partial class GameplayScene : Conductor
                     if (!CachedNotes.ContainsKey(note.Type) && (file.EndsWith(".tscn") || file.EndsWith(".remap"))) 
                         CachedNotes[note.Type] = GD.Load<Note>(noteTypePath + file.Replace(".remap", ""));
                 }
-
                 NoteData.Add(newNote);
             }
         }
@@ -247,14 +246,14 @@ public partial class GameplayScene : Conductor
         stagePath = stageDir.Where(file => file.EndsWith(".tscn") || file.EndsWith(".remap")).Aggregate(stagePath, (current, file) => current + file.Replace(".remap", ""));
 
         stage = ResourceLoader.Exists(stagePath) 
-            ? GD.Load<PackedScene>(stagePath).Instantiate<Backend.Scripts.Stage>() 
-            : GD.Load<PackedScene>("res://assets/gameplay/stages/stage/Stage.tscn".Replace(".remap", "")).Instantiate<Backend.Scripts.Stage>();
+            ? GD.Load<PackedScene>(stagePath).Instantiate<Stage>() 
+            : GD.Load<PackedScene>("res://assets/gameplay/stages/stage/Stage.tscn".Replace(".remap", "")).Instantiate<Stage>();
         AddChild(stage);
         camZoom = stage.defaultCamZoom;
         camera.Zoom = new(camZoom, camZoom);
     }
 
-    public void GenerateCharacter(ref Character2D character, string characterType, Vector2 position)
+    public void GenerateCharacter(ref Character2D character, string characterType, Vector2 characterPosition)
     {
         if (character == null) throw new ArgumentNullException(nameof(character));
         string path3d = Song.Is3D ? "3D/" : "";
@@ -264,7 +263,7 @@ public partial class GameplayScene : Conductor
 
         if (character != null)
         {
-            character.Position = position;
+            character.Position = characterPosition;
             AddChild(character);
         }
     }

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/gameplay/elements/scripts/NoteGroup.cs" id="2_ij2xm"]
 [ext_resource type="Script" path="res://src/gameplay/elements/scripts/ScriptGroup.cs" id="2_omdla"]
 [ext_resource type="FontFile" uid="uid://b4tisb1wsc8vf" path="res://assets/fonts/vcr.ttf" id="3_103p8"]
-[ext_resource type="Texture2D" uid="uid://c7tk5qdy7gkwo" path="res://shared/characters/blank/icon.png" id="5_6x0h2"]
+[ext_resource type="Texture2D" uid="uid://c7tk5qdy7gkwo" path="res://common/characters/blank/icon.png" id="5_6x0h2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abafg"]
 bg_color = Color(0, 1, 0, 1)

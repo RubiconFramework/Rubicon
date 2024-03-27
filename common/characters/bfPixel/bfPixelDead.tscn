@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/gameplay/elements/scripts/Character2D.cs" id="1_ue7c4"]
 [ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_33ay0"]
-[ext_resource type="SpriteFrames" uid="uid://b217ww8ob6va3" path="res://shared/characters/bfPixel/pixel/dead.res" id="6_qcw8p"]
+[ext_resource type="SpriteFrames" uid="uid://b217ww8ob6va3" path="res://common/characters/bfPixel/images/dead.res" id="6_qcw8p"]
 
 [sub_resource type="Animation" id="Animation_j4ny0"]
 resource_name = "deathConfirm"
@@ -179,8 +179,6 @@ position = Vector2(0, -183)
 scale = Vector2(6, 6)
 sprite_frames = ExtResource("6_qcw8p")
 animation = &"BF Dies pixel"
-frame = 57
-frame_progress = 1.0
 script = ExtResource("4_33ay0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite"]
