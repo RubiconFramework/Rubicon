@@ -58,7 +58,7 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				Main.GameSettings = JsonConvert.DeserializeObject<SettingsData>(Main.DecompressString(DisplayServer.ClipboardGet()));
+				Main.GameSettings = JsonConvert.DeserializeObject<RubiconSettings>(Main.DecompressString(DisplayServer.ClipboardGet()));
 				Main.GameSettings.Save();
 				Main.Instance.Alert("Settings imported.");
 			}

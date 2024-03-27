@@ -30,19 +30,14 @@ public partial class Main : CanvasLayer
 	[Export] private Color WarningNotificationColor { get; set; } = new(0.79f,0.79f, 0);
 	[Export] private Color ErrorNotificationColor { get; set; } = new(0.70f, 0f, 0f);
 
-	public static Chart Song; // the fuck is this for ? -duo
-							  // ^ so we can access it from anywhere without having to reference gameplay :) -lego
-							  // stop talking -duo
-							  // :( -lego
-							  // im sorry that was rude -duo
-							  
+	public static Chart Song; //i still have no clue why we need this here -dunine
 	public static Main Instance { get; private set; } = new();
 	
  	public static readonly string[] AudioFormats = { "mp3", "ogg", "wav" , "flac" };
     public static readonly string[] DefaultNoteDirections = { "left", "down", "up", "right" };
 	public static readonly Vector2 EngineWindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
-	public static SettingsData GameSettings { get; set; } = new();
+	public static RubiconSettings GameSettings { get; set; } = new();
 	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);
 	
 	[NodePath("Notification")] private Panel NotificationInstance;
@@ -58,31 +53,27 @@ public partial class Main : CanvasLayer
 		TranslationServer.SetLocale(GameSettings.Misc.Languages.ToString().ToLower());
         
 		if ((bool)ProjectSettings.GetSetting("use_project_name_user_dir",true)){
-			var customUserDir = ProjectSettings.GetSetting("application/config/custom_user_dir_name", "Rubicon/Engine").ToString();
+			var dir = ProjectSettings.GetSetting("application/config/custom_user_dir_name", "Rubicon/Engine").ToString();
 			var projectName = ProjectSettings.GetSetting("application/config/name", "Rubicon").ToString();
-			
-			switch (customUserDir)
+
+			if (dir == "Rubicon/Engine" && projectName != "Rubicon")
 			{
-				case "Rubicon/Engine" when projectName != "Rubicon":
-					Alert("New project name has been found. Reload project.godot for it to apply.");
-					ProjectSettings.SetSetting("application/config/custom_user_dir_name", $"Rubicon/{projectName}");
-					ProjectSettings.Save();
-					break;
-				default:
+				Alert("New project name has been found. Reload project.godot for it to apply.");
+				ProjectSettings.SetSetting("application/config/custom_user_dir_name", $"Rubicon/{projectName}");
+				ProjectSettings.Save();
+			}
+			else
+			{
+				if (dir != "Rubicon/Engine" && projectName == "Rubicon")
 				{
-					if (customUserDir != "Rubicon/Engine" && projectName == "Rubicon")
-					{
-						Alert("Base engine detected. Reload project.godot for it to apply.");
-						ProjectSettings.SetSetting("application/config/custom_user_dir_name", "Rubicon/Engine");
-						ProjectSettings.Save();
-					}
-					else Alert($"Data stored at: user://{customUserDir}");
-					break;
+					Alert("Base engine detected. Reload project.godot for it to apply.");
+					ProjectSettings.SetSetting("application/config/custom_user_dir_name", "Rubicon/Engine");
+					ProjectSettings.Save();
 				}
+				else Alert($"Data stored at: user://{dir}, Environment variable set to %{projectName}%");
 			}
 		}
 		
-		System.Environment.SetEnvironmentVariable("rubicon", OS.GetUserDataDir());
 		DiscordRPC(true);
 		LoadSettings(SettingsFilePath);
 	}
@@ -128,7 +119,7 @@ public partial class Main : CanvasLayer
 	{
 		try
 		{
-			SettingsData settings = new();
+			RubiconSettings rubiconSettings = new();
 			if (FileAccess.FileExists(path))
 			{
 				var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);
@@ -136,10 +127,10 @@ public partial class Main : CanvasLayer
 
 				if (!string.IsNullOrEmpty(json))
 				{
-					settings = JsonConvert.DeserializeObject<SettingsData>(json);
-					if (settings != null)
+					rubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(json);
+					if (rubiconSettings != null)
 					{
-						GameSettings = settings;
+						GameSettings = rubiconSettings;
 						GD.Print($"Settings loaded from file. [{path}]");
 					}
 				}
@@ -147,8 +138,8 @@ public partial class Main : CanvasLayer
 			else
 			{
 				Instance.Alert("Settings file not found. Writing default settings to file.");
-				settings.GetDefaultSettings().Save();
-				GameSettings = settings;
+				rubiconSettings.GetDefaultSettings().Save();
+				GameSettings = rubiconSettings;
 			}
 		}
 		catch (Exception e)
