@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon", "Rubicon.csproj", "{5013F51B-BCB9-4E14-91E0-76F5BD809434}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon Framework", "Rubicon Framework.csproj", "{5013F51B-BCB9-4E14-91E0-76F5BD809434}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

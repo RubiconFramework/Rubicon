@@ -81,6 +81,8 @@ public partial class Main : CanvasLayer
 				}
 			}
 		}
+		
+		System.Environment.SetEnvironmentVariable("rubicon", OS.GetUserDataDir());
 		DiscordRPC(true);
 		LoadSettings(SettingsFilePath);
 	}
