@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
@@ -95,17 +96,16 @@ public class RubiconSettings
         Save();
     }
     
-    public void RemoveKeybind(string action)
+    public void RemoveKeybind(string button)
     {
-        if (Keybinds.ContainsKey(action))
+        if (!string.IsNullOrEmpty(Keybinds.FirstOrDefault(x => x.Value == button).Key))
         {
-            Keybinds.Remove(action);
-            Main.Instance.Alert($"{action} removed");
+            Keybinds.Remove(Keybinds.FirstOrDefault(x => x.Value == button).Key);
+            Main.Instance.Alert($"Button {button} removed from keybinds (Action: {Keybinds.FirstOrDefault(x => x.Value == button).Key})");
             Save();
         }
-        else Main.Instance.Alert($"{action} not found in keybinds");
+        else Main.Instance.Alert($"Button {button} not found in keybinds");
     }
-
     
     public List<string> GetKeybind(string action)
     {

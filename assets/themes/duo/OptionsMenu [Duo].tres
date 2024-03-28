@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://d1miihidqd7ky"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://d1miihidqd7ky"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7v7w"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -213,6 +213,12 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onyn3"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.564706)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
 [resource]
 Button/font_sizes/font_size = 22
 Button/styles/disabled = SubResource("StyleBoxFlat_h7v7w")
@@ -232,3 +238,4 @@ OptionButton/styles/normal_mirrored = SubResource("StyleBoxFlat_wighs")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_m1acv")
 OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_rd78m")
 Panel/styles/panel = SubResource("StyleBoxFlat_bkqbc")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_onyn3")

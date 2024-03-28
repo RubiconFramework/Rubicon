@@ -36,6 +36,11 @@ public partial class MainMenu : Conductor
 		if (Input.IsActionJustReleased("menu_accept") && curSelected >= 0) selectOption();
 	}
 
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+	}
+
 	protected override void OnBeatHit(int beat)
 	{
 		base.OnBeatHit(beat);

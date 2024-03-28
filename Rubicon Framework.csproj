@@ -400,6 +400,8 @@
     <Compile Remove="assets\gameplay\**" />
     <Compile Remove="assets\songs\**" />
     <Compile Remove="shared\**" />
+    <Compile Remove="src\scenes\debugmenu\scenes\**" />
+    <Compile Remove="src\scenes\debugmenu\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -444,6 +446,8 @@
     <EmbeddedResource Remove="assets\gameplay\**" />
     <EmbeddedResource Remove="assets\songs\**" />
     <EmbeddedResource Remove="shared\**" />
+    <EmbeddedResource Remove="src\scenes\debugmenu\scenes\**" />
+    <EmbeddedResource Remove="src\scenes\debugmenu\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -468,6 +472,8 @@
     <None Remove="src\backend\autoload\debug\screennotifier\**" />
     <None Remove="src\backend\autoload\main\**" />
     <None Remove="src\meta\**" />
+    <None Remove="src\scenes\debugmenu\scenes\**" />
+    <None Remove="src\scenes\debugmenu\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />
@@ -477,6 +483,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\weeks\" />
+    <Folder Include="src\debugmenu\menus\weekeditor\" />
     <Folder Include="src\scenes\credits\" />
     <Folder Include="src\scenes\options\submenus\" />
   </ItemGroup>

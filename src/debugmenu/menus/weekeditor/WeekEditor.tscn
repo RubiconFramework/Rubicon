@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://u87ffkl0yiun"]
+
+[ext_resource type="Script" path="res://src/debugmenu/menus/weekeditor/WeekEditor.cs" id="1_ae80d"]
+
+[node name="WeekEditor" type="Node"]
+script = ExtResource("1_ae80d")

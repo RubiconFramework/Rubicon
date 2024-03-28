@@ -9,21 +9,20 @@ public partial class AudioManager : Node
     public static AudioManager Instance { get; private set; }
 
     [NodePath("MasterVolume/Player")] private AnimationPlayer MasterVolumeAnimPlayer;
-    [NodePath("MasterVolume/Panel/Icon")] private AnimatedSprite2D VolumeIcon;
-    [NodePath("MasterVolume/Panel/Bar")] private ProgressBar VolumeBar;
+    [NodePath("MasterVolume/Panel/Icon")] private AnimatedSprite2D MasterVolumeIcon;
+    [NodePath("MasterVolume/Panel/Bar")] private ProgressBar MasterVolumeBar;
     
     [NodePath("VolumeManagerPanel/Player")] private AnimationPlayer VolumePanelAnimPlayer;
     [NodePath("VolumeManagerPanel/Container/Master")] private Panel MasterVolumePanel;
     [NodePath("VolumeManagerPanel/Container/Music")] private Panel MusicVolumePanel; 
     [NodePath("VolumeManagerPanel/Container/SFX")] private Panel SFXVolumePanel;
     [NodePath("VolumeManagerPanel/Container/Inst")] private Panel InstVolumePanel;
-    [NodePath("VolumeManagerPanel/Container/Voices")] private Panel VoicesVolumePanel;
+    [NodePath("VolumeManagerPanel/Container/Voices")] private Panel VoiceVolumePanel;
     
     private bool isMuted;
     private bool isMasterVolumeBarShown;
     private bool isVolumePanelShown;
     
-    private float targetVolume = 50; 
     private float preMuteVolume = 50;
 
     private double animationTimer;
@@ -35,55 +34,35 @@ public partial class AudioManager : Node
     public float MasterVolume
     {
         get => _masterVolume;
-        set
-        {
-            _masterVolume = Mathf.Clamp(value, 0, 100);
-            ChangeVolume(_masterVolume);
-        }
+        set => ChangeVolume(value);
     }
 
     private float _musicVolume;
     public float MusicVolume
     {
         get => _musicVolume;
-        set
-        {
-            _musicVolume = Mathf.Clamp(value, 0, 100);
-            ChangeVolume(_musicVolume, 1);
-        }
+        set => ChangeVolume(value, 1);
     }
 
     private float _sfxVolume;
     public float SFXVolume
     {
         get => _sfxVolume;
-        set
-        {
-            _sfxVolume = Mathf.Clamp(value, 0, 100);
-            ChangeVolume(_sfxVolume, 2);
-        }
+        set => ChangeVolume(value, 2);
     }
 
     private float _instVolume;
     public float InstVolume
     {
         get => _instVolume;
-        set
-        {
-            _instVolume = Mathf.Clamp(value, 0, 100);
-            ChangeVolume(_instVolume, 3);
-        }
+        set => ChangeVolume(value, 3);
     }
 
     private float _voiceVolume;
     public float VoiceVolume
     {
         get => _voiceVolume;
-        set
-        {
-            _voiceVolume = Mathf.Clamp(value, 0, 100);
-            ChangeVolume(_voiceVolume, 4);
-        }
+        set => ChangeVolume(value, 4);
     }
     
     public override void _EnterTree()
@@ -102,7 +81,7 @@ public partial class AudioManager : Node
             (MusicVolumePanel, () => Main.GameSettings.Audio.MusicVolume, volume => { MusicVolume = volume; }, "Music"),
             (SFXVolumePanel, () => Main.GameSettings.Audio.SFXVolume, volume => { SFXVolume = volume; }, "SFX"),
             (InstVolumePanel, () => Main.GameSettings.Audio.InstVolume, volume => { InstVolume = volume; }, "Inst"),
-            (VoicesVolumePanel, () => Main.GameSettings.Audio.VoiceVolume, volume => { VoiceVolume = volume; }, "Voices")
+            (VoiceVolumePanel, () => Main.GameSettings.Audio.VoiceVolume, volume => { VoiceVolume = volume; }, "Voices")
         };
 
         foreach (var (panel, getVolume, setVolume, name) in valueTuples)
@@ -134,26 +113,40 @@ public partial class AudioManager : Node
         }
 
         var Audio = Main.GameSettings.Audio;
-        foreach (var volumeSetting in new[] { Audio.MasterVolume, Audio.SFXVolume, Audio.InstVolume, Audio.MusicVolume, Audio.VoiceVolume}) ChangeVolume(volumeSetting);
+        foreach (var volumeSetting in new[]
+                 {
+                     Audio.MasterVolume, Audio.SFXVolume, Audio.InstVolume, Audio.MusicVolume, Audio.VoiceVolume
+                 }) 
+            ChangeVolume(volumeSetting);
     }
-
+    
+    private void UpdateLabel(Label label, string sliderName, float volume) => label.Text = volume == 0 ? $"{sliderName} [Muted]" : $"{sliderName} [{(int)volume}%]";
+    
+    private void UpdateButtonSprite(AnimatedSprite2D buttonSprite, float volume)
+    {
+        buttonSprite.Play(volume switch
+        {
+            0 => "mute",
+            < 50 => "mid",
+            _ => "full"
+        });
+    }
+    
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        VolumeBar.Value = Mathf.Lerp(VolumeBar.Value, targetVolume, delta * 10);
+        MasterVolumeBar.Value = Mathf.Lerp(MasterVolumeBar.Value, Main.GameSettings.Audio.MasterVolume, delta * 10);
 
         if (Input.IsActionJustPressed("master_volume_up") && !isVolumePanelShown)
         {
             float newVolume = Mathf.Clamp(Main.GameSettings.Audio.MasterVolume + 5, 0, 100);
             ChangeVolume(newVolume);
-            targetVolume = newVolume;
             PlayVolumeAnimation();
         }
         else if (Input.IsActionJustPressed("master_volume_down") && !isVolumePanelShown)
         {
             float newVolume = Mathf.Clamp(Main.GameSettings.Audio.MasterVolume - 5, 0, 100);
             ChangeVolume(newVolume);
-            targetVolume = newVolume;
             PlayVolumeAnimation();
         }
         else if (Input.IsActionJustPressed("master_volume_mute") && !isVolumePanelShown)
@@ -161,7 +154,6 @@ public partial class AudioManager : Node
             bool mute = !isMuted;
             float newVolume = mute ? 0 : preMuteVolume;
             ChangeVolume(newVolume, 0, mute);
-            targetVolume = newVolume;
             isMuted = mute;
             PlayVolumeAnimation();
         }
@@ -189,18 +181,6 @@ public partial class AudioManager : Node
                 isMasterVolumeBarShown = false;
             }
         }
-    }
-    
-    private void UpdateLabel(Label label, string sliderName, float volume) => label.Text = volume == 0 ? $"{sliderName} [Muted]" : $"{sliderName} [{(int)volume}%]";
-    
-    private void UpdateButtonSprite(AnimatedSprite2D buttonSprite, float volume)
-    {
-        buttonSprite.Play(volume switch
-        {
-            0 => "mute",
-            < 50 => "mid",
-            _ => "full"
-        });
     }
 
     public override void _Input(InputEvent @event)
@@ -290,7 +270,7 @@ public partial class AudioManager : Node
         AudioServer.SetBusVolumeDb(busIndex, Main.LinearToDb(volumeFloat));
         AudioServer.SetBusMute(busIndex, volume == 0);
 
-        VolumeIcon.Animation = volume switch
+        MasterVolumeIcon.Animation = volume switch
         {
             > 50 => "full",
             > 0 => "mid",
@@ -326,13 +306,13 @@ public partial class AudioManager : Node
             };
         
             GetNode<Node>($"{type.ToString().ToLower()}/{path}").AddChild(player);
-            
             player.Finished += () => player.QueueFree();
         }
 
         player.Finished += () =>
         {
-            if (loop && type == AudioType.Music) player.Play();
+            if (loop && type == AudioType.Music) 
+                player.Play();
         };
 
         player.Play();
