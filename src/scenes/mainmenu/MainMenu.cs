@@ -29,16 +29,29 @@ public partial class MainMenu : Conductor
 		float cameraSpeed = Mathf.Clamp(((float)delta * 3), 0f, 1f);
 		float camZoom = Mathf.Lerp(camera.Zoom.X, 1, cameraSpeed);
 		camera.Zoom = new(camZoom, camZoom);
-
-		if (selected) return;
-		if (Input.IsActionJustPressed("menu_up")) changeSelected(-1);
-		if (Input.IsActionJustPressed("menu_down")) changeSelected(1);
-		if (Input.IsActionJustReleased("menu_accept") && curSelected >= 0) selectOption();
 	}
 
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
+    
+		if (selected) return;
+
+		switch (@event)
+		{
+			case InputEventAction eventAction when eventAction.IsActionPressed("menu_up"):
+				changeSelected(-1);
+				break;
+			case InputEventAction eventAction when eventAction.IsActionPressed("menu_down"):
+				changeSelected(1);
+				break;
+			case InputEventAction eventAction when eventAction.IsActionReleased("menu_accept") && curSelected >= 0:
+				selectOption();
+				break;
+			case InputEventAction eventAction when eventAction.IsActionPressed("debug_menu"):
+				TransitionManager.Instance.ChangeScene("res://src/debugmenu/DebugMenu.tscn");
+				break;
+		}
 	}
 
 	protected override void OnBeatHit(int beat)
