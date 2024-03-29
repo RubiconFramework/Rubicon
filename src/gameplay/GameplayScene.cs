@@ -6,7 +6,7 @@ using Rubicon.Gameplay.Elements.Classes.Song;
 using Rubicon.Gameplay.Elements.Resources;
 using Rubicon.Gameplay.Elements.Scripts;
 using Rubicon.Gameplay.Elements.StrumLines;
-using Rubicon.Shared.Stages.Base;
+using Rubicon.Common.Stages.Base;
 using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
 
 namespace Rubicon.Gameplay;

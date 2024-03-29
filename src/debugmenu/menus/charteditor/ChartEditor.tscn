@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtbkqs4btf0y4"]
-
-[ext_resource type="Script" path="res://src/debugmenu/menus/charteditor/ChartEditor.cs" id="1_3svpk"]
-
-[node name="ChartEditor" type="Node"]
-script = ExtResource("1_3svpk")

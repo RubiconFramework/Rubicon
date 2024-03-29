@@ -402,6 +402,7 @@
     <Compile Remove="shared\**" />
     <Compile Remove="src\scenes\debugmenu\scenes\**" />
     <Compile Remove="src\scenes\debugmenu\**" />
+    <Compile Remove="src\debugmenu\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -448,6 +449,7 @@
     <EmbeddedResource Remove="shared\**" />
     <EmbeddedResource Remove="src\scenes\debugmenu\scenes\**" />
     <EmbeddedResource Remove="src\scenes\debugmenu\**" />
+    <EmbeddedResource Remove="src\debugmenu\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -474,6 +476,7 @@
     <None Remove="src\meta\**" />
     <None Remove="src\scenes\debugmenu\scenes\**" />
     <None Remove="src\scenes\debugmenu\**" />
+    <None Remove="src\debugmenu\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />
@@ -483,7 +486,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets\weeks\" />
-    <Folder Include="src\debugmenu\menus\weekeditor\" />
     <Folder Include="src\scenes\credits\" />
     <Folder Include="src\scenes\options\submenus\" />
   </ItemGroup>
