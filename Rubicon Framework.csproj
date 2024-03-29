@@ -320,6 +320,7 @@
     <Content Include="src\gameplay\elements\strumlines\4K.tscn" />
     <Content Include="src\gameplay\elements\strumlines\Strum.tscn" />
     <Content Include="src\gameplay\GameplayScene.tscn" />
+    <Content Include="src\scenes\freeplay\elements\FreeplaySong.tscn" />
     <Content Include="src\scenes\options\elements\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -383,7 +384,6 @@
     <Compile Remove="src\backend\common\attributes\**" />
     <Compile Remove="src\menus\options\elements\data\**" />
     <Compile Remove="src\menus\**" />
-    <Compile Remove="src\scenes\freeplay\**" />
     <Compile Remove="src\scenes\options\submenus\elements\**" />
     <Compile Remove="src\backend\autoload\debug\ScreenNotifier\**" />
     <Compile Remove="src\backend\common\**" />
@@ -403,6 +403,9 @@
     <Compile Remove="src\scenes\debugmenu\scenes\**" />
     <Compile Remove="src\scenes\debugmenu\**" />
     <Compile Remove="src\debugmenu\**" />
+    <Compile Remove="src\scenes\charteditor\**" />
+    <Compile Remove="src\scenes\freeplay\Elements\**" />
+    <Compile Include="src\scenes\freeplay\elements\FreeplaySong.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -432,7 +435,6 @@
     <EmbeddedResource Remove="src\backend\common\attributes\**" />
     <EmbeddedResource Remove="src\menus\options\elements\data\**" />
     <EmbeddedResource Remove="src\menus\**" />
-    <EmbeddedResource Remove="src\scenes\freeplay\**" />
     <EmbeddedResource Remove="src\scenes\options\submenus\elements\**" />
     <EmbeddedResource Remove="src\backend\autoload\debug\ScreenNotifier\**" />
     <EmbeddedResource Remove="src\backend\common\**" />
@@ -450,6 +452,8 @@
     <EmbeddedResource Remove="src\scenes\debugmenu\scenes\**" />
     <EmbeddedResource Remove="src\scenes\debugmenu\**" />
     <EmbeddedResource Remove="src\debugmenu\**" />
+    <EmbeddedResource Remove="src\scenes\charteditor\**" />
+    <EmbeddedResource Remove="src\scenes\freeplay\Elements\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -466,7 +470,6 @@
     <None Remove="src\backend\common\attributes\**" />
     <None Remove="src\menus\options\elements\data\**" />
     <None Remove="src\menus\**" />
-    <None Remove="src\scenes\freeplay\**" />
     <None Remove="src\scenes\options\submenus\elements\**" />
     <None Remove="src\backend\autoload\debug\ScreenNotifier\**" />
     <None Remove="src\backend\common\**" />
@@ -477,6 +480,8 @@
     <None Remove="src\scenes\debugmenu\scenes\**" />
     <None Remove="src\scenes\debugmenu\**" />
     <None Remove="src\debugmenu\**" />
+    <None Remove="src\scenes\charteditor\**" />
+    <None Remove="src\scenes\freeplay\Elements\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

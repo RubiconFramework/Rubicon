@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh6hbnu7rv3qu"]
+
+[ext_resource type="Script" path="res://src/scenes/freeplay/Freeplay.cs" id="1_87x0w"]
+[ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="2_i8v56"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eol8c"]
+
+[node name="Freeplay" type="Node"]
+script = ExtResource("1_87x0w")
+
+[node name="BG" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_eol8c")
+position = Vector2(683, 384)
+scale = Vector2(1.06221, 1.05205)
+texture = ExtResource("2_i8v56")
