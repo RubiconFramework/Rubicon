@@ -320,7 +320,6 @@
     <Content Include="src\gameplay\elements\strumlines\4K.tscn" />
     <Content Include="src\gameplay\elements\strumlines\Strum.tscn" />
     <Content Include="src\gameplay\GameplayScene.tscn" />
-    <Content Include="src\scenes\freeplay\elements\FreeplaySong.tscn" />
     <Content Include="src\scenes\options\elements\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -406,6 +405,7 @@
     <Compile Remove="src\scenes\charteditor\**" />
     <Compile Remove="src\scenes\freeplay\Elements\**" />
     <Compile Include="src\scenes\freeplay\elements\FreeplaySong.cs" />
+    <Compile Remove="src\scenes\freeplay\elements\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -454,6 +454,7 @@
     <EmbeddedResource Remove="src\debugmenu\**" />
     <EmbeddedResource Remove="src\scenes\charteditor\**" />
     <EmbeddedResource Remove="src\scenes\freeplay\Elements\**" />
+    <EmbeddedResource Remove="src\scenes\freeplay\elements\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -482,6 +483,7 @@
     <None Remove="src\debugmenu\**" />
     <None Remove="src\scenes\charteditor\**" />
     <None Remove="src\scenes\freeplay\Elements\**" />
+    <None Remove="src\scenes\freeplay\elements\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />
