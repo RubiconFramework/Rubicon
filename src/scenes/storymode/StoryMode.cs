@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace Rubicon.Scenes.StoryMode;
 
 public partial class StoryMode : Node
 {

@@ -123,13 +123,14 @@ _data = {
 script = ExtResource("1_hc00q")
 
 [node name="TitleGroup" type="Node2D" parent="."]
-visible = false
 
 [node name="Girlfriend" type="AnimatedSprite2D" parent="TitleGroup"]
 material = ExtResource("2_ilohj")
 position = Vector2(605, 58)
 sprite_frames = ExtResource("3_2bhit")
 animation = &"gfDance"
+frame = 29
+frame_progress = 1.0
 centered = false
 script = ExtResource("4_li603")
 
@@ -139,10 +140,11 @@ libraries = {
 }
 
 [node name="Logo" type="AnimatedSprite2D" parent="TitleGroup"]
-material = ExtResource("2_ilohj")
 position = Vector2(-82, -72)
 sprite_frames = ExtResource("5_t5b0g")
 animation = &"BumpIn"
+frame = 14
+frame_progress = 1.0
 centered = false
 script = ExtResource("4_li603")
 
@@ -151,7 +153,7 @@ material = ExtResource("2_ilohj")
 position = Vector2(169, 636)
 sprite_frames = ExtResource("6_gvhw7")
 animation = &"Press Enter to Begin"
-frame_progress = 0.329287
+frame_progress = 0.602703
 centered = false
 script = ExtResource("4_li603")
 
