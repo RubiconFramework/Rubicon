@@ -20,6 +20,7 @@ public partial class MainMenu : Conductor
 	{
 		this.OnReady();
 		changeSelected();
+		Instance.ChangeBPM(100f);
 	}
 
 	public override void _Process(double delta)
@@ -34,11 +35,14 @@ public partial class MainMenu : Conductor
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
-    
+	
 		if (selected) return;
 
 		switch (@event)
 		{
+			case InputEventAction eventAction when eventAction.IsActionPressed("back"):
+				TransitionManager.Instance.ChangeScene("res://src/scenes/title/Title.tscn");
+				break;
 			case InputEventAction eventAction when eventAction.IsActionPressed("menu_up"):
 				changeSelected(-1);
 				break;
@@ -58,7 +62,7 @@ public partial class MainMenu : Conductor
 	{
 		base.OnBeatHit(beat);
 		camera.Zoom = new(1.15f, 1.15f);
-		GD.Print("hi");
+		//GD.Print("hi");
 	}
 	
 	private async void selectOption()

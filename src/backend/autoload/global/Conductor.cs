@@ -1,4 +1,5 @@
 using Godot.Collections;
+using Rubicon.Backend.Autoload.Managers.AudioManager;
 using Rubicon.Gameplay.Elements.Classes.Song;
 using Rubicon.Gameplay.Elements.Resources;
 
@@ -90,11 +91,14 @@ public partial class Conductor : Node
 
     public override void _Process(double delta)
     {
+        base._Process(delta);
+        
         int oldStep = curStep;
         int oldBeat = curBeat;
         int oldSection = curSection;
 
-        position += delta;
+        //this is going to be changed later, rn is ugly af
+        position = AudioManager.Instance.music == null ? 0 :AudioManager.Instance.music.GetPlaybackPosition();
 
         BPMChangeEvent lastChange = null;
         foreach (BPMChangeEvent evt in bpmChangeMap)
@@ -105,42 +109,71 @@ public partial class Conductor : Node
 
         if (lastChange != null && !bpm.Equals(lastChange.bpm)) ChangeBPM(lastChange.bpm);
         
-        curStep = lastChange != null ? lastChange.stepTime + Mathf.FloorToInt((position - lastChange.songTime) / stepCrochet) : 0;
-        curBeat = Mathf.FloorToInt(curStep / 4.0f);
-        curSection = Mathf.FloorToInt(curStep / 16.0f);
-
-        curDecStep = lastChange != null ? lastChange.stepTime + ((position - lastChange.songTime) / stepCrochet) : 0;
-        curDecBeat = curDecStep / 4.0f;
-        curDecSection = curDecStep / 16.0f;
+        updateCurStep();
+        updateBeat();
+        updateSection();
 
         if (curStep != oldStep && curStep > 0)
         {
             StepHitEvent?.Invoke(curStep);
             OnStepHit(curStep);
         }
-        if (curBeat != oldBeat && curBeat > 0)
+    }
+
+    //the functions here are the math to calculate the current step, beat and section
+    private void updateCurStep()
+    {
+        var lastChange = getBPMFromSeconds((float)position);
+        var ass = position - lastChange.songTime / stepCrochet;
+        curDecStep = lastChange.stepTime + ass;
+        curStep = lastChange.stepTime + Mathf.FloorToInt(ass);
+    }
+
+    private void updateBeat(){
+        curBeat = Mathf.FloorToInt(curStep/4);
+        curDecBeat = curDecStep/4;
+    }
+    //idk if making the section thingy only update when you are in gameplay
+    private void updateSection(){
+        curSection = Mathf.FloorToInt(curBeat / 4.0f);
+        curDecSection = curDecBeat / 4.0f;
+    }
+
+    //this leaks memory?...
+    BPMChangeEvent getBPMFromSeconds(float time)
+    {
+        BPMChangeEvent lastChange = new BPMChangeEvent(0, 0.0f, bpm);
+        for (int i = 0; i < bpmChangeMap.Count; i++)
         {
-            BeatHitEvent?.Invoke(curBeat);
-            OnBeatHit(curBeat);
+            if (time >= bpmChangeMap[i].songTime)
+                lastChange = bpmChangeMap[i];
         }
-        if (curSection != oldSection && curSection > 0)
-        {
+
+        return lastChange;
+    }
+
+
+    //those are the signals
+    protected virtual void OnBeatHit(int beat)
+    {
+        if(beat%4==0){
             SectionHitEvent?.Invoke(curSection);
             OnSectionHit(curSection);
         }
     }
 
-    protected virtual void OnBeatHit(int beat)
-    {
-    }
-
     protected virtual void OnStepHit(int step)
     {
+        if(step%4==0){
+            BeatHitEvent?.Invoke(curBeat);
+            OnBeatHit(curBeat);
+        }
     }
     protected virtual void OnSectionHit(int section) 
     { 
     }
     
+    //well... it explains itself
     public bool IsSoundSynced(AudioStreamPlayer sound)
     {
         float msAllowed = (OS.GetName() == "Windows") ? (30 * sound.PitchScale) : (20 * sound.PitchScale);

@@ -19,6 +19,8 @@ public partial class AudioManager : Node
     [NodePath("VolumeManagerPanel/Container/Inst")] private Panel InstVolumePanel;
     [NodePath("VolumeManagerPanel/Container/Voices")] private Panel VoiceVolumePanel;
     
+    public AudioStreamPlayer music;
+
     private bool isMuted;
     private bool isMasterVolumeBarShown;
     private bool isVolumePanelShown;
@@ -316,6 +318,9 @@ public partial class AudioManager : Node
         };
 
         player.Play();
+
+        if (type == AudioType.Music) music = player;
+
         return player;
     }
 
