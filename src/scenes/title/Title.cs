@@ -23,8 +23,6 @@ public partial class Title : Conductor
 	private bool skippedIntro;
 	private bool transitioning;
 
-	public static AudioStreamPlayer Audio;
-
 	[Export]
 	private Dictionary<int, string> beatActions = new()
 	{
@@ -52,7 +50,6 @@ public partial class Title : Conductor
 		{
 			lol.Play();
 			SetProcessInput(false);
-			Audio.Stop();
 			
 			lol.Finished += () =>
 			{
@@ -61,6 +58,9 @@ public partial class Title : Conductor
 				TransitionManager.Instance.ChangeScene("res://src/scenes/mainmenu/MainMenu.tscn");
 			};
 		}
+		else
+			AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
+
 		TitleEnter.Play("Press Enter to Begin");
 		LoadedIntroTexts = GetIntroTexts();
 		Instance.ChangeBPM(100f);
