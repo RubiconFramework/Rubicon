@@ -44,8 +44,8 @@ public partial class Title : Conductor
 	public override void _Ready()
 	{
 		this.OnReady();
-		/*AudioStreamPlayer Audio =*/ AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
-		//Instance.position = Audio.GetPlaybackPosition();
+		AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
+		
 		if (GD.RandRange(1, 500000) == 30000)
 		{
 			lol.Play();
@@ -58,12 +58,11 @@ public partial class Title : Conductor
 				TransitionManager.Instance.ChangeScene("res://src/scenes/mainmenu/MainMenu.tscn");
 			};
 		}
-		else
-			AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
+		else AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
 
 		TitleEnter.Play("Press Enter to Begin");
 		LoadedIntroTexts = GetIntroTexts();
-		Instance.ChangeBPM(100f);
+		Instance.bpm = 190;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -86,13 +85,7 @@ public partial class Title : Conductor
 		}
 	}
 
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
-		//Instance.position = AudioManager.Instance.music.GetPlaybackPosition();
-	}
-
-	private bool alreadyLeft = false;
+	private bool alreadyLeft;
 	protected override void OnStepHit(int step)
 	{
 		base.OnStepHit(step);

@@ -9,8 +9,19 @@ namespace Rubicon.Backend.Autoload.Global;
 public partial class Conductor : Node
 {
     public float rate = 1.0f;
-    public float bpm = 100.0f;
- 
+    private float _bpm = 100f;
+
+    public float bpm
+    {
+        get => _bpm;
+        set
+        {
+            _bpm = value;
+            crochet = ((60.0f / value) * 1000.0f);
+            stepCrochet = crochet / 4.0f;
+        }
+    }
+
     public float crochet;
     public float stepCrochet;
  
@@ -55,9 +66,7 @@ public partial class Conductor : Node
 
     public override void _Ready()
     {
-        crochet = ((60.0f / bpm) * 1000.0f);
-        stepCrochet = crochet / 4.0f;
-        safeZoneOffset = (safeFrames / 60.0f) * 1000.0f;
+        bpm = _bpm;
     }
 
     public void MapBPMChanges(Chart song)
@@ -82,13 +91,6 @@ public partial class Conductor : Node
         }
     }
 
-    public void ChangeBPM(float newBpm)
-    {
-        bpm = newBpm;
-        crochet = ((60.0f / newBpm) * 1000.0f);
-        stepCrochet = crochet / 4.0f;
-    }
-
     public override void _Process(double delta)
     {
         base._Process(delta);
@@ -107,7 +109,7 @@ public partial class Conductor : Node
             else break;
         }
 
-        if (lastChange != null && !bpm.Equals(lastChange.bpm)) ChangeBPM(lastChange.bpm);
+        if (lastChange != null && !bpm.Equals(lastChange.bpm)) bpm = lastChange.bpm;
         
         updateCurStep();
         updateBeat();
@@ -143,10 +145,10 @@ public partial class Conductor : Node
     BPMChangeEvent getBPMFromSeconds(float time)
     {
         BPMChangeEvent lastChange = new BPMChangeEvent(0, 0.0f, bpm);
-        for (int i = 0; i < bpmChangeMap.Count; i++)
+        foreach (var t in bpmChangeMap)
         {
-            if (time >= bpmChangeMap[i].songTime)
-                lastChange = bpmChangeMap[i];
+            if (time >= t.songTime)
+                lastChange = t;
         }
 
         return lastChange;

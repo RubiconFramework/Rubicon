@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bg08f7hj335ld"]
 
-[ext_resource type="SpriteFrames" path="res://assets/menus/storymenu/Characters/images/girlfriend.res" id="1_grdtn"]
+[ext_resource type="SpriteFrames" path="res://assets/menus/storymenu/characters/images/girlfriend.res" id="1_grdtn"]
 [ext_resource type="Script" path="res://source/scripts/classes/PlayerSprite.gd" id="2_208hb"]
 
 [sub_resource type="Animation" id="Animation_tmjrl"]

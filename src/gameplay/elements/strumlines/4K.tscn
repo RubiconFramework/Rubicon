@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2fa3qseubmyx"]
 
 [ext_resource type="Script" path="res://src/gameplay/elements/strumlines/StrumLine.cs" id="1_f0uqj"]
-[ext_resource type="PackedScene" path="res://src/gameplay/elements/strumlines/Strum.tscn" id="2_g58p1"]
+[ext_resource type="PackedScene" uid="uid://di7hok3sttww8" path="res://src/gameplay/elements/strumlines/Strum.tscn" id="2_g58p1"]
 
 [node name="Default" type="Node2D"]
 script = ExtResource("1_f0uqj")
@@ -14,17 +14,16 @@ scale = Vector2(0.6, 0.6)
 [node name="down" parent="." instance=ExtResource("2_g58p1")]
 position = Vector2(-48, 0)
 scale = Vector2(0.6, 0.6)
-animation = &"down static"
 direction = 1
 
 [node name="up" parent="." instance=ExtResource("2_g58p1")]
 position = Vector2(48, 0)
 scale = Vector2(0.6, 0.6)
-animation = &"up static"
+animation = &"up"
 direction = 2
 
 [node name="right" parent="." instance=ExtResource("2_g58p1")]
 position = Vector2(144, 0)
 scale = Vector2(0.6, 0.6)
-animation = &"right static"
+animation = &"right"
 direction = 3

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bt85mt8exeopy"]
 
-[ext_resource type="SpriteFrames" uid="uid://tjwnn4yye8y8" path="res://Assets/menus/StoryMenu/Characters/images/boyfriend.res" id="1_rsj62"]
-[ext_resource type="Script" path="res://classes/AnimatedSprite.gd" id="2_exxes"]
+[ext_resource type="SpriteFrames" uid="uid://tjwnn4yye8y8" path="res://assets/menus/storymenu/characters/images/boyfriend.res" id="1_rsj62"]
+[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="2_exxes"]
 
 [sub_resource type="Animation" id="Animation_m5o1j"]
 resource_name = "confirm"
@@ -92,6 +92,7 @@ _data = {
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_rsj62")
 animation = &"BF idle dance white"
+frame_progress = 0.328073
 centered = false
 offset = Vector2(-3, -5)
 script = ExtResource("2_exxes")
