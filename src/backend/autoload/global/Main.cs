@@ -35,7 +35,7 @@ public partial class Main : CanvasLayer
 	
  	public static readonly string[] AudioFormats = { "mp3", "ogg", "wav" , "flac" };
     public static readonly string[] DefaultNoteDirections = { "left", "down", "up", "right" };
-	public static readonly Vector2 EngineWindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
+	public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
 	public static RubiconSettings GameSettings { get; set; } = new();
 	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);

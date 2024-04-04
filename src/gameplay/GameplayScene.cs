@@ -194,8 +194,8 @@ public partial class GameplayScene : Conductor
     
     private void InitializeStrumGroups()
     {
-        InitializeStrumLine(ref oppStrums, (Main.EngineWindowSize.X * 0.5f) - 320f);
-        InitializeStrumLine(ref playerStrums, (Main.EngineWindowSize.X * 0.5f) + 320f);
+        InitializeStrumLine(ref oppStrums, (Main.WindowSize.X * 0.5f) - 320f);
+        InitializeStrumLine(ref playerStrums, (Main.WindowSize.X * 0.5f) + 320f);
     }
 
     private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
@@ -307,7 +307,7 @@ public partial class GameplayScene : Conductor
         float cameraSpeed = Mathf.Clamp((float)delta * ZoomDeltaMultiplier * Instance.rate, 0f, 1f);
         if (!Song.Is3D) camera.Zoom = new(Mathf.Lerp(camera.Zoom.X, camZoom, cameraSpeed), Mathf.Lerp(camera.Zoom.Y, camZoom, cameraSpeed));
         HUD.Scale = new(Mathf.Lerp(HUD.Scale.X, 1f, cameraSpeed), Mathf.Lerp(HUD.Scale.Y, 1f, cameraSpeed));
-        HUD.Offset = new((HUD.Scale.X - 1f) * -(Main.EngineWindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Main.EngineWindowSize.Y * 0.5f));
+        HUD.Offset = new((HUD.Scale.X - 1f) * -(Main.WindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Main.WindowSize.Y * 0.5f));
     }
 
     protected override void OnBeatHit(int beat)

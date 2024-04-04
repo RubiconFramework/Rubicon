@@ -10,6 +10,6 @@ public partial class FreeplayAlphabet : Alphabet
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if (!is_template && !Engine.IsEditorHint()) Visible = !(Position.X < -(Size.Y + 20) || Position.Y > Main.EngineWindowSize.Y + 20);
+        if (!is_template && !Engine.IsEditorHint()) Visible = !(Position.X < -(Size.Y + 20) || Position.Y > Main.WindowSize.Y + 20);
     }
 }

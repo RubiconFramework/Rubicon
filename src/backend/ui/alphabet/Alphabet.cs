@@ -188,17 +188,16 @@ public partial class Alphabet : ReferenceRect
 
     public void ScreenCenter(string axes = "XY")
     {
-        var position = Position;
         switch (axes.ToUpperInvariant())
         {
             case "X":
-                position.X = (Main.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f);
+                Position = new Vector2((Main.WindowSize.X * 0.5f) - (totalWidth / 2f), Position.Y);
                 break;
             case "Y":
-                position.Y = (Main.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f);
+                Position = new Vector2(Position.X, (Main.WindowSize.Y * 0.5f) - (totalHeight / 2f));
                 break;
             default:
-                Position = new((Main.EngineWindowSize.X * 0.5f) - (totalWidth / 2.0f), (Main.EngineWindowSize.Y * 0.5f) - (totalHeight / 2.0f));
+                Position = new Vector2((Main.WindowSize.X * 0.5f) - (totalWidth / 2f), (Main.WindowSize.Y * 0.5f) - (totalHeight / 2f));
                 break;
         }
     }
