@@ -139,11 +139,19 @@ public partial class Main : CanvasLayer
                     progressBar.AddThemeColorOverride("bg_color", InfoNotificationColor);
                     break;
                 case NotificationType.Warning:
-                    if (printToConsole) GD.Print(fullMessage);
+	                if (printToConsole)
+	                {
+		                GD.PushWarning(fullMessage);
+		                GD.PrintRich($"[color={WarningNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
+	                }
                     progressBar.AddThemeColorOverride("bg_color", WarningNotificationColor);
                     break;
                 case NotificationType.Error:
-                    if (printToConsole) GD.PrintErr(fullMessage);
+	                if (printToConsole)
+	                {
+		                GD.PushError(fullMessage);
+		                GD.PrintRich($"[color={ErrorNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
+	                }
                     progressBar.AddThemeColorOverride("bg_color", ErrorNotificationColor);
                     break;
             }
