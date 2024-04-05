@@ -40,11 +40,10 @@ public partial class Title : Conductor
 		{ 15, "AddText:Funkin" },
 		{ 16, "SkipIntro" }
 	};
-
+	
 	public override void _Ready()
 	{
 		this.OnReady();
-		AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
 		
 		if (GD.RandRange(1, 500000) == 30000)
 		{

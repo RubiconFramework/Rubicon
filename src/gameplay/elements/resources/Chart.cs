@@ -24,7 +24,8 @@ public partial class Chart : Resource
 
     public static Chart LoadChart(string songName, string difficulty)
     {
-        string baseFilePath = $"res://shared/songs/{songName}/{difficulty}.json";
+        string baseFilePath = $"res://assets/songs/{Paths.FormatToSongPath(songName)}/{Paths.FormatToSongPath(songName)}-{difficulty}.json";
+        GD.Print($"Loading chart: {baseFilePath}");
 
         var file = FileAccess.Open(baseFilePath, FileAccess.ModeFlags.Read);
         if (file == null) throw new FileNotFoundException($"Unable to open file: {baseFilePath}");
