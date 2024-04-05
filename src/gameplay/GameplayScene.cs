@@ -199,16 +199,16 @@ public partial class GameplayScene : Conductor
 		// Handle game over scenario
 	}
 
-	public void SkipIntro()
-	{
-		// Handle skipping the intro
-	}
-	
-	private void InitializeStrumGroups()
-	{
-		InitializeStrumLine(ref oppStrums, (Main.EngineWindowSize.X * 0.5f) - 320f);
-		InitializeStrumLine(ref playerStrums, (Main.EngineWindowSize.X * 0.5f) + 320f);
-	}
+    public void SkipIntro()
+    {
+        // Handle skipping the intro
+    }
+    
+    private void InitializeStrumGroups()
+    {
+        InitializeStrumLine(ref oppStrums, (Main.WindowSize.X * 0.5f) - 320f);
+        InitializeStrumLine(ref playerStrums, (Main.WindowSize.X * 0.5f) + 320f);
+    }
 
 	private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
 	{
@@ -311,18 +311,18 @@ public partial class GameplayScene : Conductor
 			if (pressed.Contains(true) || !player.lastAnim.StartsWith("sing") || player.holdTimer < Instance.stepCrochet * player.singDuration * 0.0011)
 			return;
 
-		player.holdTimer = 0f;
-		player.dance();*/
-	}
-	
-	private void HandleSmoothZoom(double delta)
-	{
-		if (!smoothZoom) return;
-		float cameraSpeed = Mathf.Clamp((float)delta * ZoomDeltaMultiplier * Instance.rate, 0f, 1f);
-		if (!Song.Is3D) camera.Zoom = new(Mathf.Lerp(camera.Zoom.X, camZoom, cameraSpeed), Mathf.Lerp(camera.Zoom.Y, camZoom, cameraSpeed));
-		HUD.Scale = new(Mathf.Lerp(HUD.Scale.X, 1f, cameraSpeed), Mathf.Lerp(HUD.Scale.Y, 1f, cameraSpeed));
-		HUD.Offset = new((HUD.Scale.X - 1f) * -(Main.EngineWindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Main.EngineWindowSize.Y * 0.5f));
-	}
+        player.holdTimer = 0f;
+        player.dance();*/
+    }
+    
+    private void HandleSmoothZoom(double delta)
+    {
+        if (!smoothZoom) return;
+        float cameraSpeed = Mathf.Clamp((float)delta * ZoomDeltaMultiplier * Instance.rate, 0f, 1f);
+        if (!Song.Is3D) camera.Zoom = new(Mathf.Lerp(camera.Zoom.X, camZoom, cameraSpeed), Mathf.Lerp(camera.Zoom.Y, camZoom, cameraSpeed));
+        HUD.Scale = new(Mathf.Lerp(HUD.Scale.X, 1f, cameraSpeed), Mathf.Lerp(HUD.Scale.Y, 1f, cameraSpeed));
+        HUD.Offset = new((HUD.Scale.X - 1f) * -(Main.WindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Main.WindowSize.Y * 0.5f));
+    }
 
 	protected override void OnBeatHit(int beat)
 	{

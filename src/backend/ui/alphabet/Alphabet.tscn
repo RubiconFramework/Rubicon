@@ -13,7 +13,7 @@ script = ExtResource("1_kuwlo")
 [node name="BoldTemplate" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = ExtResource("2_54pt7")
-animation = &"Z"
+animation = &"~"
 centered = false
 
 [node name="DefaultTemplate" type="AnimatedSprite2D" parent="."]

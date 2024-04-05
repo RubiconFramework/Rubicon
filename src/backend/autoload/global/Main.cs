@@ -35,7 +35,7 @@ public partial class Main : CanvasLayer
 	
  	public static readonly string[] AudioFormats = { "mp3", "ogg", "wav" , "flac" };
     public static readonly string[] DefaultNoteDirections = { "left", "down", "up", "right" };
-	public static readonly Vector2 EngineWindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
+	public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
 	public static RubiconSettings GameSettings { get; set; } = new();
 	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);
@@ -139,11 +139,19 @@ public partial class Main : CanvasLayer
                     progressBar.AddThemeColorOverride("bg_color", InfoNotificationColor);
                     break;
                 case NotificationType.Warning:
-                    if (printToConsole) GD.Print(fullMessage);
+	                if (printToConsole)
+	                {
+		                GD.PushWarning(fullMessage);
+		                GD.PrintRich($"[color={WarningNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
+	                }
                     progressBar.AddThemeColorOverride("bg_color", WarningNotificationColor);
                     break;
                 case NotificationType.Error:
-                    if (printToConsole) GD.PrintErr(fullMessage);
+	                if (printToConsole)
+	                {
+		                GD.PushError(fullMessage);
+		                GD.PrintRich($"[color={ErrorNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
+	                }
                     progressBar.AddThemeColorOverride("bg_color", ErrorNotificationColor);
                     break;
             }
