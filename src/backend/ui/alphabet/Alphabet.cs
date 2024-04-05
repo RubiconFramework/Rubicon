@@ -58,7 +58,7 @@ public partial class Alphabet : ReferenceRect
     {
         letterAnimations.Clear();
         letterYOffsets.Clear();
-        
+
         foreach (var entry in bold ? boldCharacterData : nonBoldCharacterData)
         {
             letterAnimations[entry.Key] = entry.Value.anim;

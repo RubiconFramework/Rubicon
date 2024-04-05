@@ -7,7 +7,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cd1x8dun4uocr" path="res://assets/menus/titlescreen/logoBumpin.res" id="5_t5b0g"]
 [ext_resource type="SpriteFrames" uid="uid://6vecp03qpxmj" path="res://assets/menus/titlescreen/titleEnter.res" id="6_gvhw7"]
 [ext_resource type="PackedScene" uid="uid://bphue4ru7nca0" path="res://src/backend/ui/alphabet/Alphabet.tscn" id="7_myqlw"]
-[ext_resource type="Texture2D" uid="uid://l3qvo4uybmcl" path="res://assets/menus/titlescreen/newgrounds_logo.png" id="8_kd8uv"]
+[ext_resource type="Texture2D" uid="uid://dwdqru3hlxhrk" path="res://assets/menus/titlescreen/newgrounds_logo.png" id="8_kd8uv"]
 [ext_resource type="VideoStream" path="res://assets/videos/fnb twitter.ogv" id="9_6tib1"]
 
 [sub_resource type="Animation" id="Animation_ldyfc"]

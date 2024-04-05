@@ -213,7 +213,6 @@
     <Content Include="common\notes\damage\Assets\hurtNoteSplashes.png.import" />
     <Content Include="common\notes\damage\Assets\hurtNoteSplashes.xml" />
     <Content Include="common\notes\damage\Note.tscn" />
-    <Content Include="common\notes\damage\splashes.res" />
     <Content Include="common\notes\default\Assets\default\assets.png" />
     <Content Include="common\notes\default\Assets\default\assets.png.import" />
     <Content Include="common\notes\default\Assets\default\Assets.res" />
@@ -270,6 +269,15 @@
     <Content Include="common\songs\test\song\inst.ogg.import" />
     <Content Include="common\songs\test\song\voices.ogg" />
     <Content Include="common\songs\test\song\voices.ogg.import" />
+    <Content Include="common\stages\base\sprites\stageback.png" />
+    <Content Include="common\stages\base\sprites\stageback.png.import" />
+    <Content Include="common\stages\base\sprites\stagecurtains.png" />
+    <Content Include="common\stages\base\sprites\stagecurtains.png.import" />
+    <Content Include="common\stages\base\sprites\stagefront.png" />
+    <Content Include="common\stages\base\sprites\stagefront.png.import" />
+    <Content Include="common\stages\base\sprites\stage_light.png" />
+    <Content Include="common\stages\base\sprites\stage_light.png.import" />
+    <Content Include="common\stages\base\Stage.tscn" />
     <Content Include="export_presets.cfg" />
     <Content Include="project.godot" />
     <Content Include="rcedit-x64.exe" />

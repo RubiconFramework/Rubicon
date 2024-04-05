@@ -9,6 +9,7 @@ using Rubicon.Gameplay.Elements.StrumLines;
 using Rubicon.Common.Stages.Base;
 using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
 using Rubicon.Backend.Autoload.Managers.TransitionManager;
+using Rubicon.Backend.Scripts;
 
 namespace Rubicon.Gameplay;
 
