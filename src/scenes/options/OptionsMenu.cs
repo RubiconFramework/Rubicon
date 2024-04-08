@@ -1,3 +1,6 @@
+using System.IO;
+using System.IO.Compression;
+using System.Text;
 using Newtonsoft.Json;
 using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
 using Rubicon.Scenes.Options.Elements;
@@ -31,10 +34,10 @@ public partial class OptionsMenu : Control
 	[NodePath("LeftPanel/ScrollContainers/Keybinds")] private ScrollContainer KeybindsScrollContainer;
 
 	public static OptionsMenu Instance { get; private set; }
+	public readonly HelperMethods HelperMethods = new();
 	public bool IsPickingKeybind;
 	
 	private bool IsAnimationPlaying;
-	public readonly HelperMethods HelperMethods = new();
 
 	public override void _EnterTree() => Instance = this;
 
@@ -58,7 +61,7 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				Main.GameSettings = JsonConvert.DeserializeObject<RubiconSettings>(Main.DecompressString(DisplayServer.ClipboardGet()));
+				Main.GameSettings = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
 				Main.GameSettings.Save();
 				Main.Instance.Alert("Settings imported.");
 			}
@@ -72,7 +75,7 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				DisplayServer.ClipboardSet(Main.CompressString(JsonConvert.SerializeObject(Main.GameSettings)));
+				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(Main.GameSettings)));
 				Main.Instance.Alert("Settings exported and copied to clipboard.");
 			}
 			catch (Exception e)
@@ -118,16 +121,6 @@ public partial class OptionsMenu : Control
 			SubmenuIndicator.Text = CurrentSubmenu.ToString();
 			IsAnimationPlaying = false;
 		}
-
-		void AnimFinished(StringName name)
-		{
-			SubmenuIndicatorAnimationPlayer.AnimationFinished -= AnimFinished;
-			if (name == "SubmenuTransition/EndTransition") return;
-			IsAnimationPlaying = false;
-			SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/EndTransition");
-			UpdateSubmenuUI();
-			SubmenuIndicator.Text = CurrentSubmenu.ToString();
-		}
 	}
 
 	private void ChangeSubmenu(OptionsMenuSubmenus menuSubmenus)
@@ -147,16 +140,16 @@ public partial class OptionsMenu : Control
 			SubmenuIndicator.Text = CurrentSubmenu.ToString();
 			IsAnimationPlaying = false;
 		}
-
-		void AnimFinished(StringName name)
-		{
-			SubmenuIndicatorAnimationPlayer.AnimationFinished -= AnimFinished;
-			if (name == "SubmenuTransition/EndTransition") return;
-			IsAnimationPlaying = false;
-			SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/EndTransition");
-			UpdateSubmenuUI();
-			SubmenuIndicator.Text = CurrentSubmenu.ToString();
-		}
+	}
+	
+	private void AnimFinished(StringName name)
+	{
+		SubmenuIndicatorAnimationPlayer.AnimationFinished -= AnimFinished;
+		if (name == "SubmenuTransition/EndTransition") return;
+		IsAnimationPlaying = false;
+		SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/EndTransition");
+		UpdateSubmenuUI();
+		SubmenuIndicator.Text = CurrentSubmenu.ToString();
 	}
 
 	private void UpdateSubmenuUI()

@@ -34,7 +34,6 @@ public partial class Main : CanvasLayer
 	public static Main Instance { get; private set; } = new();
 	
  	public static readonly string[] AudioFormats = { "mp3", "ogg", "wav" , "flac" };
-    public static readonly string[] DefaultNoteDirections = { "left", "down", "up", "right" };
 	public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
 	public static RubiconSettings GameSettings { get; set; } = new();
@@ -219,53 +218,6 @@ public partial class Main : CanvasLayer
 			GD.PrintErr($"Failed to load or write default settings: {e.Message}");
 			throw;
 		}
-	}
-
-	public static IEnumerable<string> FilesInDirectory(string path)
-    {
-	    List<string> files = new();
-		var directory = DirAccess.Open(path);
-		if (directory != null)
-		{
-			try
-			{
-				directory.ListDirBegin();
-				while (true)
-				{
-					string file = directory.GetNext();
-					if (file == "") break;
-					if (!file.StartsWith(".")) files.Add(file);
-				}
-			}
-			finally
-			{
-				directory.ListDirEnd();
-			}
-		}
-		return files;
-	}
-    
-    public static string CompressString(string text)
-    {
-	    var bytes = Encoding.UTF8.GetBytes(text);
-	    using var mso = new MemoryStream();
-	    using (var gzs = new GZipStream(mso, CompressionMode.Compress)) gzs.Write(bytes, 0, bytes.Length);
-	    return Convert.ToBase64String(mso.ToArray());
-    }
-
-    public static string DecompressString(string compressedText)
-    {
-	    var bytes = Convert.FromBase64String(compressedText);
-	    using var msi = new MemoryStream(bytes);
-	    using var mso = new MemoryStream();
-	    using (var gzs = new GZipStream(msi, CompressionMode.Decompress)) gzs.CopyTo(mso);
-	    return Encoding.UTF8.GetString(mso.ToArray());
-    }
-
-	public static float LinearToDb(float linear)
-	{
-		if (linear <= 0) return -80.0f;
-		return (float)Math.Log10(linear) * 20;
 	}
 
 	public void DiscordRPC(bool enable)

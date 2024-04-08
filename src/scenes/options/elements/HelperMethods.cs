@@ -1,3 +1,6 @@
+using System.IO;
+using System.IO.Compression;
+using System.Text;
 using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
 using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
 
@@ -61,5 +64,22 @@ public class HelperMethods
     {
         Main.GameSettings.Misc.DiscordRichPresence = v;
         Main.Instance.DiscordRPC(v);
+    }
+    
+    public static string CompressString(string text)
+    {
+        var bytes = Encoding.UTF8.GetBytes(text);
+        using var mso = new MemoryStream();
+        using (var gzs = new GZipStream(mso, CompressionMode.Compress)) gzs.Write(bytes, 0, bytes.Length);
+        return Convert.ToBase64String(mso.ToArray());
+    }
+
+    public static string DecompressString(string compressedText)
+    {
+        var bytes = Convert.FromBase64String(compressedText);
+        using var msi = new MemoryStream(bytes);
+        using var mso = new MemoryStream();
+        using (var gzs = new GZipStream(msi, CompressionMode.Decompress)) gzs.CopyTo(mso);
+        return Encoding.UTF8.GetString(mso.ToArray());
     }
 }

@@ -414,6 +414,7 @@
     <Compile Remove="src\scenes\freeplay\Elements\**" />
     <Compile Include="src\scenes\freeplay\elements\FreeplaySong.cs" />
     <Compile Remove="src\scenes\freeplay\elements\**" />
+    <Compile Remove="src\charteditor\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -463,6 +464,7 @@
     <EmbeddedResource Remove="src\scenes\charteditor\**" />
     <EmbeddedResource Remove="src\scenes\freeplay\Elements\**" />
     <EmbeddedResource Remove="src\scenes\freeplay\elements\**" />
+    <EmbeddedResource Remove="src\charteditor\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -492,6 +494,7 @@
     <None Remove="src\scenes\charteditor\**" />
     <None Remove="src\scenes\freeplay\Elements\**" />
     <None Remove="src\scenes\freeplay\elements\**" />
+    <None Remove="src\charteditor\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

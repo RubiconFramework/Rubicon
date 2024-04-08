@@ -5,6 +5,8 @@ namespace Rubicon.Gameplay.Elements.Scripts;
 
 public partial class Note : Node2D
 {
+    public static readonly string[] DefaultNoteDirections = { "left", "down", "up", "right" };
+
     [Export] public float HealthGain = 1f;
     [Export] public bool ShouldHit = true;
     [Export] public bool ApplyUIStyle = true;
@@ -41,14 +43,14 @@ public partial class Note : Node2D
         StepCrochet = Conductor.Instance.stepCrochet;
         OriginalLength = Length;
         InitialScale = Scale;
-        Sprite.Play(Main.DefaultNoteDirections[Direction]);
+        Sprite.Play(DefaultNoteDirections[Direction]);
     }
 
     public void loadUIStyle(UIStyle style)
     {
         Sprite.SpriteFrames = style.noteTexture;
-        Sustain.Texture = style.sustainTexture.GetFrameTexture($"{Main.DefaultNoteDirections[Direction]} hold piece",0);
-        SustainEnd.Texture = style.sustainTexture.GetFrameTexture($"{Main.DefaultNoteDirections[Direction]} hold end",0);
+        Sustain.Texture = style.sustainTexture.GetFrameTexture($"{DefaultNoteDirections[Direction]} hold piece",0);
+        SustainEnd.Texture = style.sustainTexture.GetFrameTexture($"{DefaultNoteDirections[Direction]} hold end",0);
 
         Scale = Strumline.GetChild<Strum>(0).Scale;
         Sustain.Width /= (Scale.X + 0.3f);

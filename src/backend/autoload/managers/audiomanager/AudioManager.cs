@@ -270,7 +270,7 @@ public partial class AudioManager : Node
 	private void UpdateVolume(int busIndex, float volume)
 	{
 		float volumeFloat = volume / 100.0f;
-		AudioServer.SetBusVolumeDb(busIndex, Main.LinearToDb(volumeFloat));
+		AudioServer.SetBusVolumeDb(busIndex, LinearToDB(volumeFloat));
 		AudioServer.SetBusMute(busIndex, volume == 0);
 
 		MasterVolumeIcon.Animation = volume switch
@@ -304,7 +304,7 @@ public partial class AudioManager : Node
 			player = new()
 			{
 				Stream = audiostream,
-				VolumeDb = Main.LinearToDb(volume),
+				VolumeDb = LinearToDB(volume),
 				Autoplay = true,
 			};
 		
@@ -314,14 +314,11 @@ public partial class AudioManager : Node
 
 		player.Finished += () =>
 		{
-			if (loop && type == AudioType.Music) 
-				player.Play();
+			if (loop && type == AudioType.Music) player.Play();
 		};
 
 		player.Play();
-
 		if (type == AudioType.Music) music = player;
-
 		return player;
 	}
 
@@ -329,7 +326,7 @@ public partial class AudioManager : Node
 		var audioStream = GD.Load<AudioStream>(path);
 		AudioStreamPlayer player = new(){
 			Stream = audioStream,
-			VolumeDb = Main.LinearToDb(volume),
+			VolumeDb = LinearToDB(volume),
 			Autoplay = false
 		};
 		return player;
@@ -350,5 +347,11 @@ public partial class AudioManager : Node
 			if (ResourceLoader.Exists(formattedPath)) return formattedPath;
 		}
 		return string.Empty;
+	}
+	
+	public static float LinearToDB(float linear)
+	{
+		if (linear <= 0) return -80.0f;
+		return (float)Math.Log10(linear) * 20;
 	}
 }

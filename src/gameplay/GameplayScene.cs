@@ -113,10 +113,8 @@ public partial class GameplayScene : Conductor
 			{
 				GD.Print("final inst path: "+Paths.Inst(Song.SongName)+"."+f);
 				inst.Stream = GD.Load<AudioStream>(/*$"{songPath}inst.{f}"*/Paths.Inst(Song.SongName)+"."+f);
-				if (/*vocals.Stream == null && */ResourceLoader.Exists(/*$"{songPath}voices.{f}"*/Paths.Voices(Song.SongName)+"."+f))
-				{
+				if (/*vocals.Stream == null && */ResourceLoader.Exists(/*$"{songPath}voices.{f}"*/Paths.Voices(Song.SongName)+"."+f)) 
 					vocals.Stream = GD.Load<AudioStream>(/*$"{songPath}voices.{f}"*/Paths.Voices(Song.SongName)+"."+f);
-				}
 			}
 		}
 
@@ -131,7 +129,11 @@ public partial class GameplayScene : Conductor
 		//foreach (AudioStreamPlayer track in tracks) track.PitchScale = Instance.rate;
 		
 		InitializeStrumGroups();
-		InitializeCountdown();
+
+		//
+		//initialize countdown here
+		//
+		
 		//LoadStage();
 		StartSong();
 	}
@@ -141,7 +143,29 @@ public partial class GameplayScene : Conductor
 		base._Process(delta);
 
 		if (startingSong)
-			UpdateSongProgress(delta);
+		{
+			/*if (endingSong || tracks == null || tracks.Count == 0 || tracks[0].Stream == null)
+			{
+				if (endingSong) GD.Print("Song has ended. Returning");
+				else {
+					//GD.PrintErr("There's nothing in tracks. Returning");
+					Main.Instance.Alert("There's nothing in tracks. Returning", true, NotificationType.Error);
+					TransitionManager.Instance.ChangeScene("res://src/scenes/MainMenu.tscn");
+				return;
+				}
+			}*/
+			if (inst == null) {GD.PrintErr("NO MUSIC");return;}
+			Instance.position += /*(float)delta * 1000f * Instance.rate*/ inst.GetPlaybackPosition();
+
+			/*if (Instance.position >= tracks[0].Stream.GetLength())
+			{
+				EndSong();
+				return;
+			}*/
+
+			if (Instance.position >= 0f && startingSong) StartSong();
+		}
+		
 		HandleHoldAnimation();
 		HandleSmoothZoom(delta);
 
@@ -164,30 +188,6 @@ public partial class GameplayScene : Conductor
 	public void EndSong()
 	{
 		// Handle end of the song
-	}
-
-	private void UpdateSongProgress(double delta)
-	{
-		/*if (endingSong || tracks == null || tracks.Count == 0 || tracks[0].Stream == null)
-		{
-			if (endingSong) GD.Print("Song has ended. Returning");
-			else {
-				//GD.PrintErr("There's nothing in tracks. Returning");
-				Main.Instance.Alert("There's nothing in tracks. Returning", true, NotificationType.Error);
-				TransitionManager.Instance.ChangeScene("res://src/scenes/MainMenu.tscn");
-			return;
-			}
-		}*/
-		if (inst == null) {GD.PrintErr("NO MUSIC");return;}
-		Instance.position += /*(float)delta * 1000f * Instance.rate*/ inst.GetPlaybackPosition();
-
-		/*if (Instance.position >= tracks[0].Stream.GetLength())
-		{
-			EndSong();
-			return;
-		}*/
-
-		if (Instance.position >= 0f && startingSong) StartSong();
 	}
 
 	public void SyncSong()
@@ -232,7 +232,7 @@ public partial class GameplayScene : Conductor
 				SectionNote newNote = (SectionNote)note.Duplicate();
 
 				string noteTypePath = $"res://assets/gameplay/notes/{note.Type.ToLower()}/";
-				IEnumerable<string> noteTypeDir = Main.FilesInDirectory(noteTypePath);
+				IEnumerable<string> noteTypeDir = Paths.FilesInDirectory(noteTypePath);
 				foreach (string file in noteTypeDir)
 				{
 					if (!CachedNotes.ContainsKey(note.Type) && (file.EndsWith(".tscn") || file.EndsWith(".remap"))) 
@@ -246,17 +246,12 @@ public partial class GameplayScene : Conductor
 		foreach (SectionNote note in NoteData) GD.Print(note.Time);
 	}
 
-	private void InitializeCountdown()
-	{
-		// Initialize countdown sprite and sound
-	}
-
 	private void LoadStage()
 	{
 		string path3d = Song.Is3D ? "3D/" : "";
 		string stagePath = $"res://assets/gameplay/stages/{path3d + Song.Stage}/";
 
-		IEnumerable<string> stageDir = Main.FilesInDirectory(stagePath);
+		IEnumerable<string> stageDir = Paths.FilesInDirectory(stagePath);
 		stagePath = stageDir.Where(file => file.EndsWith(".tscn") || file.EndsWith(".remap")).Aggregate(stagePath, (current, file) => current + file.Replace(".remap", ""));
 
 		stage = ResourceLoader.Exists(stagePath) 
@@ -327,8 +322,6 @@ public partial class GameplayScene : Conductor
 
 	protected override void OnBeatHit(int beat)
 	{
-		GD.Print("beat");
-		return;
 		CharacterDance(opponent);
 		CharacterDance(player);
 		CharacterDance(spectator);

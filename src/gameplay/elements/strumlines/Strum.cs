@@ -1,9 +1,10 @@
+using Rubicon.Gameplay.Elements.Scripts;
+
 namespace Rubicon.Gameplay.Elements.StrumLines;
 
 public partial class Strum : AnimatedSprite2D
 {
     [Export] public int direction { get; set; }
-    string[] directionList = { "left", "down", "up", "right" };
 
     public override void _Ready() => playAnim("static");
 
@@ -14,15 +15,15 @@ public partial class Strum : AnimatedSprite2D
         switch (animName)
         {
             case "confirm" or "glow" or "hit":
-                Play(directionList[direction] + " confirm");
+                Play(Note.DefaultNoteDirections[direction] + " confirm");
                 Modulate = new(1, 1, 1);
                 break;
             case "press" or "pressed":
-                Play(directionList[direction] + " pressed");
+                Play(Note.DefaultNoteDirections[direction] + " pressed");
                 Modulate = new(1, 1, 1, 0.75f);
                 break;
             default:
-                Play(directionList[direction] + " static");
+                Play(Note.DefaultNoteDirections[direction] + " static");
                 Modulate = new(1, 1, 1, 0.75f);
                 break;
         }

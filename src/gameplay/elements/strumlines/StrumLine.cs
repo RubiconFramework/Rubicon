@@ -14,7 +14,7 @@ public partial class StrumLine : Node2D
 		if (@event is InputEventKey && readsInput) detectInput();
 	}
 
-	public void detectInput()
+	private void detectInput()
 	{
 		for (int i = 0; i < GetChildCount(); i++)
 		{

@@ -34,16 +34,13 @@ public partial class Character2D : Node2D
     public override void _Ready()
     {
         sprite = GetNode(spritePath);
-        animPlayer = (AnimationPlayer)GetNode(playerPath);
-
-        animPlayer.Connect(AnimationMixer.SignalName.AnimationFinished, Callable.From(finishAnim));
+        animPlayer = GetNode<AnimationPlayer>(playerPath);
+        
+        animPlayer.AnimationFinished += name => animFinished = true;
         dance(true);
 
         if (mirrorCharacter != isPlayer) Scale *= new Vector2(-1,1);
     }
-
-    private void finishAnim() { animFinished = true; }
-
     public Vector2 getCamPos() => camPos.GlobalPosition;
 
     public override void _Process(double delta)
