@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://di7hok3sttww8"]
 
 [ext_resource type="SpriteFrames" uid="uid://biq5ahl2ab8uj" path="res://common/notes/default/assets/default/Assets.res" id="1_x53qx"]
-[ext_resource type="Script" path="res://src/gameplay/elements/strumlines/Strum.cs" id="2_sa6hl"]
+[ext_resource type="Script" path="res://src/gameplay/objects/strumlines/Strum.cs" id="2_sa6hl"]
 
 [node name="Strum" type="AnimatedSprite2D"]
 sprite_frames = ExtResource("1_x53qx")

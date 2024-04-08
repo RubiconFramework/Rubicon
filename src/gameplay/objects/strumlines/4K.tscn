@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2fa3qseubmyx"]
 
-[ext_resource type="Script" path="res://src/gameplay/elements/strumlines/StrumLine.cs" id="1_f0uqj"]
-[ext_resource type="PackedScene" uid="uid://di7hok3sttww8" path="res://src/gameplay/elements/strumlines/Strum.tscn" id="2_g58p1"]
+[ext_resource type="Script" path="res://src/gameplay/objects/strumlines/StrumLine.cs" id="1_f0uqj"]
+[ext_resource type="PackedScene" uid="uid://di7hok3sttww8" path="res://src/gameplay/objects/strumlines/Strum.tscn" id="2_g58p1"]
 
 [node name="Default" type="Node2D"]
 script = ExtResource("1_f0uqj")

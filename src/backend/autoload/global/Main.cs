@@ -49,6 +49,7 @@ public partial class Main : CanvasLayer
 		this.OnReady();
 		
 		Instance = this;
+
 		RenderingServer.SetDefaultClearColor(new(0,0,0));
 		TranslationServer.SetLocale(GameSettings.Misc.Languages.ToString().ToLower());
         

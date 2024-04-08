@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bv2bmp1oon3uw"]
 
-[ext_resource type="Script" path="res://src/gameplay/elements/scripts/Character2D.cs" id="1_j06qm"]
+[ext_resource type="Script" path="res://src/gameplay/objects/scripts/Character2D.cs" id="1_j06qm"]
 [ext_resource type="SpriteFrames" path="res://common/characters/dad/images/dad.res" id="2_8b7lu"]
 [ext_resource type="Texture2D" uid="uid://cmk63pwgso40s" path="res://common/characters/dad/icon.png" id="2_r8kkf"]
 [ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_0ftyo"]
