@@ -1,6 +1,4 @@
 ﻿
-using Godot;
-
 namespace Rubicon.backend.ui.alphabet;
 
 [Tool]

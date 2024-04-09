@@ -1,4 +1,3 @@
-using Godot;
 using Godot.Sharp.Extras;
 using Rubicon.scenes.options.elements;
 using Rubicon.scenes.options.submenus.gameplay.enums;

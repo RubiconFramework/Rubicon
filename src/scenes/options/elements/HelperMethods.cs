@@ -2,9 +2,8 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Godot;
-using Rubicon.backend.autoload.managers.audiomanager.enums;
-using AudioManager = Rubicon.backend.autoload.managers.audiomanager.AudioManager;
+using Rubicon.autoload.managers.audiomanager.enums;
+using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
 
 namespace Rubicon.scenes.options.elements;
 

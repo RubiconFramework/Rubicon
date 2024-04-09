@@ -121,6 +121,7 @@ _data = {
 
 [node name="Title" type="Node"]
 script = ExtResource("1_hc00q")
+beatActions = null
 
 [node name="TitleGroup" type="Node2D" parent="."]
 
@@ -157,6 +158,7 @@ script = ExtResource("4_li603")
 visible = false
 offset_top = 200.0
 offset_bottom = 320.0
+script = null
 
 [node name="TextGroup" type="Node2D" parent="."]
 

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using Godot.Sharp.Extras;
 
 namespace Rubicon.scenes.options.buttons.keybind;

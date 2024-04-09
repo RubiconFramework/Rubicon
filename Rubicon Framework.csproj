@@ -19,7 +19,7 @@
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="YamlDotNet" Version="15.1.0" />
+    <PackageReference Update="GodotSharp" Version="4.2.1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitattributes" />
@@ -159,6 +159,11 @@
     <Content Include="assets\translations\rubicon.english.translation" />
     <Content Include="assets\translations\rubicon.spanish.translation" />
     <Content Include="assets\videos\fnb twitter.ogv" />
+    <Content Include="autoload\debug\DebugInfo.tscn" />
+    <Content Include="autoload\global\elements\Notification.tscn" />
+    <Content Include="autoload\global\Main.tscn" />
+    <Content Include="autoload\managers\audiomanager\AudioManager.tscn" />
+    <Content Include="autoload\managers\transitionmanager\TransitionManager.tscn" />
     <Content Include="common\characters\bfPixel\bfPixel.tscn" />
     <Content Include="common\characters\bfPixel\bfPixelDead.tscn" />
     <Content Include="common\characters\bfPixel\icon.png" />
@@ -327,6 +332,7 @@
     <Content Include="src\backend\ui\alphabet\Alphabet.tscn" />
     <Content Include="src\gameplay\GameplayScene.tscn" />
     <Content Include="src\scenes\options\elements\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
+    <Content Include="src\scenes\title\introTexts.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -373,7 +379,6 @@
     <Compile Remove="assets\songs\test\Audio\**" />
     <Compile Remove="assets\songs\imscared\Audio\**" />
     <Compile Remove="addons\jsonyamlconverter\**" />
-    <Compile Remove="src\autoload\**" />
     <Compile Remove="src\backend\common\enums\optionsmenu\**" />
     <Compile Remove="src\backend\common\abstract\**" />
     <Compile Remove="src\backend\common\classes\settingsdata\**" />
@@ -416,6 +421,8 @@
     <Compile Remove="src\gameplay\elements\**" />
     <Compile Remove="src\backend\scripts\filesystems\**" />
     <Compile Remove="src\backend\scripts\**" />
+    <Compile Remove="src\backend\autoload\**" />
+    <Compile Remove="src\autoload\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -435,7 +442,6 @@
     <EmbeddedResource Remove="assets\songs\test\Audio\**" />
     <EmbeddedResource Remove="assets\songs\imscared\Audio\**" />
     <EmbeddedResource Remove="addons\jsonyamlconverter\**" />
-    <EmbeddedResource Remove="src\autoload\**" />
     <EmbeddedResource Remove="src\backend\common\enums\optionsmenu\**" />
     <EmbeddedResource Remove="src\backend\common\abstract\**" />
     <EmbeddedResource Remove="src\backend\common\classes\settingsdata\**" />
@@ -469,13 +475,14 @@
     <EmbeddedResource Remove="src\gameplay\elements\**" />
     <EmbeddedResource Remove="src\backend\scripts\filesystems\**" />
     <EmbeddedResource Remove="src\backend\scripts\**" />
+    <EmbeddedResource Remove="src\backend\autoload\**" />
+    <EmbeddedResource Remove="src\autoload\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
     <None Update="src\autoload\debug\Notification.tscn">
       <DependentUpon>ScreenNotifier.tscn</DependentUpon>
     </None>
-    <None Remove="src\autoload\**" />
     <None Remove="src\backend\common\enums\optionsmenu\**" />
     <None Remove="src\backend\common\abstract\**" />
     <None Remove="src\backend\common\classes\settingsdata\**" />
@@ -502,6 +509,8 @@
     <None Remove="src\gameplay\elements\**" />
     <None Remove="src\backend\scripts\filesystems\**" />
     <None Remove="src\backend\scripts\**" />
+    <None Remove="src\backend\autoload\**" />
+    <None Remove="src\autoload\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

@@ -1,4 +1,3 @@
-using Godot;
 using Godot.Sharp.Extras;
 
 namespace Rubicon.scenes.options.buttons.filepicker;

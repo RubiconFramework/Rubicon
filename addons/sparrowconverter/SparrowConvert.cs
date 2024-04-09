@@ -1,5 +1,4 @@
 using System;
-using Godot;
 
 namespace Rubicon.addons.sparrowconverter;
 [Tool]

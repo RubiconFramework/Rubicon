@@ -1,9 +1,8 @@
-using Godot;
 using Godot.Sharp.Extras;
-using Rubicon.backend.autoload.global.elements;
-using Rubicon.backend.autoload.managers.audiomanager.enums;
-using AudioManager = Rubicon.backend.autoload.managers.audiomanager.AudioManager;
-using TransitionManager = Rubicon.backend.autoload.managers.transitionmanager.TransitionManager;
+using Rubicon.autoload.global.elements;
+using Rubicon.autoload.managers.audiomanager.enums;
+using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
+using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
 
 namespace Rubicon.scenes.mainmenu;
 

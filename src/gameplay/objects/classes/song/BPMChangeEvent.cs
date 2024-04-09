@@ -1,5 +1,3 @@
-using Godot;
-
 namespace Rubicon.gameplay.objects.classes.song;
 
 public partial class BPMChangeEvent : Resource

@@ -1,5 +1,4 @@
 using System;
-using Godot;
 using Rubicon.gameplay.objects.resources;
 
 namespace Rubicon.gameplay.objects.strumlines;

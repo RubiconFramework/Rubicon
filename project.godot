@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Rubicon"
+config/name="Rubicon Framework"
 config/description="hi"
 config/version="1.0.0"
 config/tags=PackedStringArray("2d", "fnf", "framework", "rhythm")
@@ -31,11 +31,11 @@ buses/default_bus_layout="res://assets/themes/default_bus_layout.tres"
 
 [autoload]
 
-Main="*res://src/backend/autoload/global/Main.tscn"
-Conductor="*res://src/backend/autoload/global/Conductor.cs"
-AudioManager="*res://src/backend/autoload/managers/audiomanager/AudioManager.tscn"
-TransitionManager="*res://src/backend/autoload/managers/transitionmanager/TransitionManager.tscn"
-DebugInfo="*res://src/backend/autoload/debug/DebugInfo.tscn"
+Main="*res://autoload/global/Main.tscn"
+Conductor="*res://autoload/global/Conductor.cs"
+AudioManager="*res://autoload/managers/audiomanager/AudioManager.tscn"
+TransitionManager="*res://autoload/managers/transitionmanager/TransitionManager.tscn"
+DebugInfo="*res://autoload/debug/DebugInfo.tscn"
 
 [debug]
 
@@ -52,6 +52,10 @@ window/vsync/vsync_mode=0
 [dotnet]
 
 project/assembly_name="Rubicon Framework"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [input]
 

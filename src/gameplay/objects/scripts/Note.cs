@@ -1,4 +1,3 @@
-using Godot;
 using Godot.Sharp.Extras;
 using Rubicon.gameplay.objects.resources;
 using Rubicon.gameplay.objects.strumlines;

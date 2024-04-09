@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using Godot.Sharp.Extras;
 using Rubicon.common;
 using Rubicon.common.stages.@base;
@@ -9,7 +8,7 @@ using Rubicon.gameplay.objects.classes.song;
 using Rubicon.gameplay.objects.resources;
 using Rubicon.gameplay.objects.scripts;
 using Rubicon.gameplay.objects.strumlines;
-using AudioManager = Rubicon.backend.autoload.managers.audiomanager.AudioManager;
+using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
 
 namespace Rubicon.gameplay;
 

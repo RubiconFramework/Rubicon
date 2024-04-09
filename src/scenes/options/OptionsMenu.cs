@@ -1,11 +1,10 @@
 using System;
-using Godot;
 using Godot.Sharp.Extras;
 using Newtonsoft.Json;
-using Rubicon.backend.autoload.global.elements;
+using Rubicon.autoload.global.elements;
 using Rubicon.scenes.options.elements;
 using Rubicon.scenes.options.elements.enums;
-using TransitionManager = Rubicon.backend.autoload.managers.transitionmanager.TransitionManager;
+using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
 
 namespace Rubicon.scenes.options;
 public partial class OptionsMenu : Control

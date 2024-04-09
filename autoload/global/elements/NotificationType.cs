@@ -1,4 +1,4 @@
-namespace Rubicon.backend.autoload.global.elements;
+namespace Rubicon.autoload.global.elements;
 
 public enum NotificationType
 {

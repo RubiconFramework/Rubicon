@@ -1,5 +1,3 @@
-using Godot;
-
 namespace Rubicon.backend;
 
 [Tool]

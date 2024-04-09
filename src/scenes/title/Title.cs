@@ -1,11 +1,11 @@
-using Godot;
 using Godot.Collections;
 using Godot.Sharp.Extras;
-using Rubicon.backend.autoload.global.elements;
-using Rubicon.backend.autoload.managers.audiomanager.enums;
+using Rubicon.autoload.global.elements;
+using Rubicon.autoload.managers.audiomanager.enums;
 using Rubicon.backend.ui.alphabet;
-using AudioManager = Rubicon.backend.autoload.managers.audiomanager.AudioManager;
-using TransitionManager = Rubicon.backend.autoload.managers.transitionmanager.TransitionManager;
+using Rubicon.gameplay;
+using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
+using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
 
 namespace Rubicon.scenes.title;
 
@@ -46,7 +46,10 @@ public partial class Title : Conductor
 	public override void _Ready()
 	{
 		this.OnReady();
-		
+
+		var mariomadnessreference = new mariomadnessreference("overdue is mid", "i said so", 10f);
+		mariomadnessreference.AddChild(this);
+
 		if (GD.RandRange(1, 500000) == 30000)
 		{
 			lol.Play();
