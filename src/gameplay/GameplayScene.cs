@@ -1,17 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
-using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using Rubicon.Gameplay.Elements.Classes.Song;
-using Rubicon.Gameplay.Elements.Resources;
-using Rubicon.Gameplay.Elements.Scripts;
-using Rubicon.Gameplay.Elements.StrumLines;
-using Rubicon.Common.Stages.Base;
-using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
-using Rubicon.Backend.Autoload.Managers.TransitionManager;
-using Rubicon.Backend.Scripts;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.common;
+using Rubicon.common.stages.@base;
+using Rubicon.gameplay.objects.classes.song;
+using Rubicon.gameplay.objects.resources;
+using Rubicon.gameplay.objects.scripts;
+using Rubicon.gameplay.objects.strumlines;
+using AudioManager = Rubicon.backend.autoload.managers.audiomanager.AudioManager;
 
-namespace Rubicon.Gameplay;
+namespace Rubicon.gameplay;
 
 public partial class GameplayScene : Conductor
 {
@@ -109,12 +109,12 @@ public partial class GameplayScene : Conductor
 
 		foreach (var f in Main.AudioFormats)
 		{   //also, maybe this step will move into paths
-			if (ResourceLoader.Exists(/*$"{songPath}inst.{f}")*/Paths.Inst(Song.SongName)+"."+f))
+			if (ResourceLoader.Exists(/*$"{songPath}inst.{f}")*/ExternalFileSystem.Inst(Song.SongName)+"."+f))
 			{
-				GD.Print("final inst path: "+Paths.Inst(Song.SongName)+"."+f);
-				inst.Stream = GD.Load<AudioStream>(/*$"{songPath}inst.{f}"*/Paths.Inst(Song.SongName)+"."+f);
-				if (/*vocals.Stream == null && */ResourceLoader.Exists(/*$"{songPath}voices.{f}"*/Paths.Voices(Song.SongName)+"."+f)) 
-					vocals.Stream = GD.Load<AudioStream>(/*$"{songPath}voices.{f}"*/Paths.Voices(Song.SongName)+"."+f);
+				GD.Print("final inst path: "+ExternalFileSystem.Inst(Song.SongName)+"."+f);
+				inst.Stream = GD.Load<AudioStream>(/*$"{songPath}inst.{f}"*/ExternalFileSystem.Inst(Song.SongName)+"."+f);
+				if (/*vocals.Stream == null && */ResourceLoader.Exists(/*$"{songPath}voices.{f}"*/ExternalFileSystem.Voices(Song.SongName)+"."+f)) 
+					vocals.Stream = GD.Load<AudioStream>(/*$"{songPath}voices.{f}"*/ExternalFileSystem.Voices(Song.SongName)+"."+f);
 			}
 		}
 
@@ -232,7 +232,7 @@ public partial class GameplayScene : Conductor
 				SectionNote newNote = (SectionNote)note.Duplicate();
 
 				string noteTypePath = $"res://assets/gameplay/notes/{note.Type.ToLower()}/";
-				IEnumerable<string> noteTypeDir = Paths.FilesInDirectory(noteTypePath);
+				IEnumerable<string> noteTypeDir = InternalFileSystem.FilesInDirectory(noteTypePath);
 				foreach (string file in noteTypeDir)
 				{
 					if (!CachedNotes.ContainsKey(note.Type) && (file.EndsWith(".tscn") || file.EndsWith(".remap"))) 
@@ -251,7 +251,7 @@ public partial class GameplayScene : Conductor
 		string path3d = Song.Is3D ? "3D/" : "";
 		string stagePath = $"res://assets/gameplay/stages/{path3d + Song.Stage}/";
 
-		IEnumerable<string> stageDir = Paths.FilesInDirectory(stagePath);
+		IEnumerable<string> stageDir = InternalFileSystem.FilesInDirectory(stagePath);
 		stagePath = stageDir.Where(file => file.EndsWith(".tscn") || file.EndsWith(".remap")).Aggregate(stagePath, (current, file) => current + file.Replace(".remap", ""));
 
 		stage = ResourceLoader.Exists(stagePath) 

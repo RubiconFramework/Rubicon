@@ -1,6 +1,8 @@
-using Rubicon.Gameplay.Elements.Resources;
+using System;
+using Godot;
+using Rubicon.gameplay.objects.resources;
 
-namespace Rubicon.Gameplay.Elements.StrumLines;
+namespace Rubicon.gameplay.objects.strumlines;
 
 public partial class StrumLine : Node2D
 {

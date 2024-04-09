@@ -1,8 +1,10 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using Godot;
+using Godot.Sharp.Extras;
 
-namespace Rubicon.Backend.Autoload.debug;
+namespace Rubicon.backend.autoload.debug;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class DebugInfo : CanvasLayer

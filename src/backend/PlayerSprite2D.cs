@@ -1,4 +1,6 @@
-namespace Rubicon.Backend.Scripts;
+using Godot;
+
+namespace Rubicon.backend;
 
 [Tool]
 public partial class PlayerSprite2D : AnimatedSprite2D

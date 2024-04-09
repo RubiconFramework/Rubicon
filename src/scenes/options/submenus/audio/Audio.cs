@@ -1,7 +1,9 @@
-using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using Rubicon.Scenes.Options.Elements;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.backend.autoload.managers.audiomanager.enums;
+using Rubicon.scenes.options.elements;
 
-namespace Rubicon.Scenes.Options.Submenus.Audio;
+namespace Rubicon.scenes.options.submenus.audio;
 
 public partial class Audio : BaseSubmenu
 {

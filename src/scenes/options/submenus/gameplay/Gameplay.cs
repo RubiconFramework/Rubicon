@@ -1,7 +1,9 @@
-using Rubicon.Scenes.Options.Elements;
-using Rubicon.Scenes.Options.Submenus.Gameplay.Enums;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.scenes.options.elements;
+using Rubicon.scenes.options.submenus.gameplay.enums;
 
-namespace Rubicon.Scenes.Options.Submenus.Gameplay;
+namespace Rubicon.scenes.options.submenus.gameplay;
 
 public partial class Gameplay : BaseSubmenu
 {

@@ -1,9 +1,11 @@
+using System;
+using Godot;
 using Godot.Collections;
-using Rubicon.Backend.Autoload.Managers.AudioManager;
-using Rubicon.Gameplay.Elements.Classes.Song;
-using Rubicon.Gameplay.Elements.Resources;
+using Rubicon.backend.autoload.managers.audiomanager;
+using Rubicon.gameplay.objects.classes.song;
+using Rubicon.gameplay.objects.resources;
 
-namespace Rubicon.Backend.Autoload.Global;
+namespace Rubicon.backend.autoload.global;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Conductor : Node

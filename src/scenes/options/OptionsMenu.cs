@@ -1,13 +1,13 @@
-using System.IO;
-using System.IO.Compression;
-using System.Text;
+using System;
+using Godot;
+using Godot.Sharp.Extras;
 using Newtonsoft.Json;
-using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
-using Rubicon.Scenes.Options.Elements;
-using Rubicon.Scenes.Options.Elements.Enums;
-using TransitionManager = Rubicon.Backend.Autoload.Managers.TransitionManager.TransitionManager;
+using Rubicon.backend.autoload.global.elements;
+using Rubicon.scenes.options.elements;
+using Rubicon.scenes.options.elements.enums;
+using TransitionManager = Rubicon.backend.autoload.managers.transitionmanager.TransitionManager;
 
-namespace Rubicon.Scenes.Options;
+namespace Rubicon.scenes.options;
 public partial class OptionsMenu : Control
 {
 	[Export] private OptionsMenuSubmenus CurrentSubmenu = OptionsMenuSubmenus.Gameplay;

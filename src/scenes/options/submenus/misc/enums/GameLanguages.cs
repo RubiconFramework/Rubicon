@@ -1,4 +1,4 @@
-namespace Rubicon.Scenes.Options.Submenus.Misc.Enums;
+namespace Rubicon.scenes.options.submenus.misc.enums;
 
 public enum GameLanguages
 {

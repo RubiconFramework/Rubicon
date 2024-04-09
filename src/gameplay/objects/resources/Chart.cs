@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using Godot;
 using Newtonsoft.Json;
-using Rubicon.Backend.Scripts;
-using Rubicon.Gameplay.Elements.Classes.Song;
+using Rubicon.common;
+using Rubicon.gameplay.objects.classes.song;
 using FileAccess = Godot.FileAccess;
 
-namespace Rubicon.Gameplay.Elements.Resources;
+namespace Rubicon.gameplay.objects.resources;
 
 [Serializable]
 public partial class Chart : Resource
@@ -25,7 +27,7 @@ public partial class Chart : Resource
 
     public static Chart LoadChart(string songName, string difficulty)
     {
-        string baseFilePath = $"res://assets/songs/{Paths.FormatToSongPath(songName)}/{Paths.FormatToSongPath(songName)}-{difficulty}.json";
+        string baseFilePath = $"res://assets/songs/{ExternalFileSystem.FormatToSongPath(songName)}/{ExternalFileSystem.FormatToSongPath(songName)}-{difficulty}.json";
         GD.Print($"Loading chart: {baseFilePath}");
 
         var file = FileAccess.Open(baseFilePath, FileAccess.ModeFlags.Read);

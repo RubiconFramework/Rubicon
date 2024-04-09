@@ -1,4 +1,4 @@
-namespace Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
+namespace Rubicon.backend.autoload.managers.audiomanager.enums;
 
 public enum VolumeType
 {

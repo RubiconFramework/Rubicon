@@ -1,7 +1,9 @@
-using Rubicon.Scenes.Options.Elements;
-using Rubicon.Scenes.Options.Submenus.Misc.Enums;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.scenes.options.elements;
+using Rubicon.scenes.options.submenus.misc.enums;
 
-namespace Rubicon.Scenes.Options.Submenus.Misc;
+namespace Rubicon.scenes.options.submenus.misc;
 
 public partial class Misc : BaseSubmenu
 {

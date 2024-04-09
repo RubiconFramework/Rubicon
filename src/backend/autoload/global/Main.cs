@@ -1,25 +1,21 @@
-global using GameplayScene = Rubicon.Gameplay.GameplayScene;
-global using Conductor = Rubicon.Backend.Autoload.Global.Conductor;
-global using Main = Rubicon.Backend.Autoload.Global.Main;
-global using Godot;
-global using System;
-global using Godot.Sharp.Extras;
-
+global using GameplayScene = Rubicon.gameplay.GameplayScene;
+global using Conductor = Rubicon.backend.autoload.global.Conductor;
+global using Main = Rubicon.backend.autoload.global.Main;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.IO.Compression;
 using System.Linq;
-using System.Text;
 using DiscordRPC;
 using DiscordRPC.Logging;
+using Godot;
+using Godot.Sharp.Extras;
 using Newtonsoft.Json;
-using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
-using Rubicon.Gameplay.Elements.Resources;
-using Rubicon.Scenes.Options.Elements;
+using Rubicon.backend.autoload.global.elements;
+using Rubicon.gameplay.objects.resources;
+using Rubicon.scenes.options.elements;
 using FileAccess = Godot.FileAccess;
 
-namespace Rubicon.Backend.Autoload.Global;
+namespace Rubicon.backend.autoload.global;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Main : CanvasLayer

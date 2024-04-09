@@ -414,6 +414,8 @@
     <Compile Remove="src\scenes\freeplay\elements\**" />
     <Compile Remove="src\charteditor\**" />
     <Compile Remove="src\gameplay\elements\**" />
+    <Compile Remove="src\backend\scripts\filesystems\**" />
+    <Compile Remove="src\backend\scripts\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -465,6 +467,8 @@
     <EmbeddedResource Remove="src\scenes\freeplay\elements\**" />
     <EmbeddedResource Remove="src\charteditor\**" />
     <EmbeddedResource Remove="src\gameplay\elements\**" />
+    <EmbeddedResource Remove="src\backend\scripts\filesystems\**" />
+    <EmbeddedResource Remove="src\backend\scripts\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -496,6 +500,8 @@
     <None Remove="src\scenes\freeplay\elements\**" />
     <None Remove="src\charteditor\**" />
     <None Remove="src\gameplay\elements\**" />
+    <None Remove="src\backend\scripts\filesystems\**" />
+    <None Remove="src\backend\scripts\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

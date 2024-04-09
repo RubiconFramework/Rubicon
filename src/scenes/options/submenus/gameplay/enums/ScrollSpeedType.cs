@@ -1,4 +1,4 @@
-namespace Rubicon.Scenes.Options.Submenus.Gameplay.Enums;
+namespace Rubicon.scenes.options.submenus.gameplay.enums;
 
 public enum ScrollSpeedType
 {

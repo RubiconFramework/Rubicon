@@ -1,4 +1,4 @@
-namespace Rubicon.Gameplay.Elements.Classes.Song;
+namespace Rubicon.gameplay.objects.classes.song;
 
 public class Song
 {

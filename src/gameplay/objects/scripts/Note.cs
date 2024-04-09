@@ -1,7 +1,9 @@
-using Rubicon.Gameplay.Elements.Resources;
-using Rubicon.Gameplay.Elements.StrumLines;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.gameplay.objects.resources;
+using Rubicon.gameplay.objects.strumlines;
 
-namespace Rubicon.Gameplay.Elements.Scripts;
+namespace Rubicon.gameplay.objects.scripts;
 
 public partial class Note : Node2D
 {

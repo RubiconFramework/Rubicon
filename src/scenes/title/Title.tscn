@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/scenes/title/Title.cs" id="1_hc00q"]
 [ext_resource type="Material" uid="uid://dlwbyy60pp0e2" path="res://assets/shaders/TitleScreenShaderMaterial.tres" id="2_ilohj"]
 [ext_resource type="SpriteFrames" uid="uid://xmmicsrmtycf" path="res://assets/menus/titlescreen/gfDanceTitle.res" id="3_2bhit"]
-[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_li603"]
+[ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_li603"]
 [ext_resource type="SpriteFrames" uid="uid://cd1x8dun4uocr" path="res://assets/menus/titlescreen/logoBumpin.res" id="5_t5b0g"]
 [ext_resource type="SpriteFrames" uid="uid://6vecp03qpxmj" path="res://assets/menus/titlescreen/titleEnter.res" id="6_gvhw7"]
 [ext_resource type="PackedScene" uid="uid://bphue4ru7nca0" path="res://src/backend/ui/alphabet/Alphabet.tscn" id="7_myqlw"]

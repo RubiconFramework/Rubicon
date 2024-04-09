@@ -1,4 +1,7 @@
-namespace Rubicon.Scenes.Options.Buttons.FilePicker;
+using Godot;
+using Godot.Sharp.Extras;
+
+namespace Rubicon.scenes.options.buttons.filepicker;
 
 public partial class FilePickerButton : Button
 {

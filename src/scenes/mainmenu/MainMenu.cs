@@ -1,10 +1,11 @@
-using Rubicon.Backend.Autoload.Debug.ScreenNotifier;
-using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using Rubicon.Backend.UI.Alphabet;
-using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
-using TransitionManager = Rubicon.Backend.Autoload.Managers.TransitionManager.TransitionManager;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.backend.autoload.global.elements;
+using Rubicon.backend.autoload.managers.audiomanager.enums;
+using AudioManager = Rubicon.backend.autoload.managers.audiomanager.AudioManager;
+using TransitionManager = Rubicon.backend.autoload.managers.transitionmanager.TransitionManager;
 
-namespace Rubicon.Scenes.MainMenu;
+namespace Rubicon.scenes.mainmenu;
 
 public partial class MainMenu : Conductor
 {

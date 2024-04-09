@@ -1,6 +1,7 @@
-using Rubicon.Scenes.Options.Submenus.Misc.Enums;
+using Godot;
+using Rubicon.scenes.options.submenus.misc.enums;
 
-namespace Rubicon.Backend.Autoload.Managers.TransitionManager;
+namespace Rubicon.backend.autoload.managers.transitionmanager;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class TransitionManager : CanvasLayer

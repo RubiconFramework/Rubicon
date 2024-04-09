@@ -1,5 +1,7 @@
 ﻿
-namespace Rubicon.Backend.UI.Alphabet;
+using Godot;
+
+namespace Rubicon.backend.ui.alphabet;
 
 [Tool]
 [Icon("res://fnf_icon.png")]

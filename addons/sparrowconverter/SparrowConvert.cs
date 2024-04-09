@@ -1,4 +1,7 @@
-namespace Rubicon.Addons.SparrowConverter;
+using System;
+using Godot;
+
+namespace Rubicon.addons.sparrowconverter;
 [Tool]
 public partial class SparrowConvert : EditorPlugin
 {

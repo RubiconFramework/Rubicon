@@ -1,6 +1,8 @@
-using Rubicon.Scenes.Options.Elements;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.scenes.options.elements;
 
-namespace Rubicon.Scenes.Options.Submenus.Video;
+namespace Rubicon.scenes.options.submenus.video;
 
 public partial class Video : BaseSubmenu
 {

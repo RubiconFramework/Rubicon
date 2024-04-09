@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
-using System.IO;
-using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.backend.autoload.managers.audiomanager.enums;
 
-namespace Rubicon.Backend.Autoload.Managers.AudioManager;
+namespace Rubicon.backend.autoload.managers.audiomanager;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class AudioManager : Node

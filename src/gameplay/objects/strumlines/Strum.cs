@@ -1,6 +1,7 @@
-using Rubicon.Gameplay.Elements.Scripts;
+using Godot;
+using Rubicon.gameplay.objects.scripts;
 
-namespace Rubicon.Gameplay.Elements.StrumLines;
+namespace Rubicon.gameplay.objects.strumlines;
 
 public partial class Strum : AnimatedSprite2D
 {

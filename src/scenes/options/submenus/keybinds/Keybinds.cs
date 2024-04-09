@@ -1,6 +1,8 @@
-using Rubicon.Scenes.Options.Elements;
+using Godot;
+using Godot.Sharp.Extras;
+using Rubicon.scenes.options.elements;
 
-namespace Rubicon.Scenes.Options.Submenus.Keybinds;
+namespace Rubicon.scenes.options.submenus.keybinds;
 
 public partial class Keybinds : BaseSubmenu
 {

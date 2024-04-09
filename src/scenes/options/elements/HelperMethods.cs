@@ -1,10 +1,12 @@
+using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Rubicon.Backend.Autoload.Managers.AudioManager.Enums;
-using AudioManager = Rubicon.Backend.Autoload.Managers.AudioManager.AudioManager;
+using Godot;
+using Rubicon.backend.autoload.managers.audiomanager.enums;
+using AudioManager = Rubicon.backend.autoload.managers.audiomanager.AudioManager;
 
-namespace Rubicon.Scenes.Options.Elements;
+namespace Rubicon.scenes.options.elements;
 
 public class HelperMethods
 {

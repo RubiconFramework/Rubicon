@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/gameplay/objects/scripts/Character2D.cs" id="1_fwpqp"]
 [ext_resource type="Texture2D" uid="uid://bjts1v21hgv87" path="res://common/characters/bf/icon.png" id="2_o74du"]
 [ext_resource type="SpriteFrames" uid="uid://x7ep0vbtqibp" path="res://common/characters/bf/images/normal.res" id="3_4qxfk"]
-[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_o1jdp"]
+[ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_o1jdp"]
 
 [sub_resource type="Animation" id="Animation_wucwq"]
 resource_name = "hey"

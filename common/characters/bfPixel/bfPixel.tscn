@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/gameplay/objects/scripts/Character2D.cs" id="1_v7cgt"]
 [ext_resource type="Texture2D" uid="uid://8t46qrpupreo" path="res://common/characters/bfPixel/icon.png" id="2_m0eqb"]
 [ext_resource type="SpriteFrames" path="res://common/characters/bfPixel/images/normal.res" id="3_gx47x"]
-[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_3njfi"]
+[ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_3njfi"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "idle"

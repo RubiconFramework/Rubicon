@@ -1,4 +1,4 @@
-namespace Rubicon.Backend.Autoload.Debug.ScreenNotifier;
+namespace Rubicon.backend.autoload.global.elements;
 
 public enum NotificationType
 {

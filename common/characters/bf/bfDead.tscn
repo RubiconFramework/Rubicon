@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/gameplay/objects/scripts/Character2D.cs" id="1_lne2a"]
 [ext_resource type="SpriteFrames" uid="uid://bsypavrje1d84" path="res://common/characters/bf/images/dead.res" id="2_sdoun"]
-[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="3_5bj67"]
+[ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="3_5bj67"]
 
 [sub_resource type="Animation" id="Animation_o4jtb"]
 resource_name = "deathConfirm"

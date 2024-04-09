@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Rubicon.Scenes.Options.Elements.Enums;
+using Godot;
+using Godot.Sharp.Extras;
 
-namespace Rubicon.Scenes.Options.Buttons.Keybind;
+namespace Rubicon.scenes.options.buttons.keybind;
 
 public partial class KeybindButton : Button
 {

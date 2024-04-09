@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Godot;
 
-namespace Rubicon.Backend.UI.Alphabet;
+namespace Rubicon.backend.ui.alphabet;
 
 [Tool]
 [Icon("res://assets/miscIcons/alphabet.png")]
