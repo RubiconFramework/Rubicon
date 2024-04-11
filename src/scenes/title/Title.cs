@@ -20,6 +20,7 @@ public partial class Title : Conductor
 	[NodePath("NewgroundsSprite")] private Sprite2D NewgroundsSprite;
 	[NodePath("Flash/AnimationPlayer")] private AnimationPlayer Flash;
 	[NodePath("lol")] private VideoStreamPlayer lol;
+	private Control mariomadnessreference = new mariomadnessreference("overdue is mid", "i said so");
 	
 	private string[] LoadedIntroTexts = new[] { "yoooo swag shit", "ball shit" };
 	private bool skippedIntro;
@@ -46,9 +47,7 @@ public partial class Title : Conductor
 	public override void _Ready()
 	{
 		this.OnReady();
-
-		var mariomadnessreference = new mariomadnessreference("overdue is mid", "i said so", 10f);
-		mariomadnessreference.AddChild(this);
+		mariomadnessreference = GD.Load<PackedScene>("res://src/gameplay/mariomadnessreference.tscn").Instantiate() as Control;
 
 		if (GD.RandRange(1, 500000) == 30000)
 		{

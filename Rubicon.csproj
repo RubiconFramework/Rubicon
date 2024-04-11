@@ -12,7 +12,7 @@
     <Company>trolling incorporated</Company>
     <Product>Rubicon Engine</Product>
     <AssemblyVersion>1.0</AssemblyVersion>
-    <AssemblyName>Rubicon Framework</AssemblyName>
+    <AssemblyName>Rubicon</AssemblyName>
     <RootNamespace>Rubicon</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
@@ -287,7 +287,7 @@
     <Content Include="project.godot" />
     <Content Include="rcedit-x64.exe" />
     <Content Include="README.md" />
-    <Content Include="Rubicon Framework.sln" />
+    <Content Include="Rubicon.sln" />
     <Content Include="shared\characters\bfPixel\iconBFPixel.png.import" />
     <Content Include="shared\characters\bfPixel\pixel\dead.png.import" />
     <Content Include="shared\characters\bfPixel\pixel\normal.png.import" />
