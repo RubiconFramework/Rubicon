@@ -108,12 +108,12 @@ public partial class GameplayScene : Conductor
 
 		foreach (var f in Main.AudioFormats)
 		{   //also, maybe this step will move into paths
-			if (ResourceLoader.Exists(/*$"{songPath}inst.{f}")*/ExternalFileSystem.Inst(Song.SongName)+"."+f))
+			if (ResourceLoader.Exists(/*$"{songPath}inst.{f}")*/ExternalPaths.Inst(Song.SongName)+"."+f))
 			{
-				GD.Print("final inst path: "+ExternalFileSystem.Inst(Song.SongName)+"."+f);
-				inst.Stream = GD.Load<AudioStream>(/*$"{songPath}inst.{f}"*/ExternalFileSystem.Inst(Song.SongName)+"."+f);
-				if (/*vocals.Stream == null && */ResourceLoader.Exists(/*$"{songPath}voices.{f}"*/ExternalFileSystem.Voices(Song.SongName)+"."+f)) 
-					vocals.Stream = GD.Load<AudioStream>(/*$"{songPath}voices.{f}"*/ExternalFileSystem.Voices(Song.SongName)+"."+f);
+				GD.Print("final inst path: "+ExternalPaths.Inst(Song.SongName)+"."+f);
+				inst.Stream = GD.Load<AudioStream>(/*$"{songPath}inst.{f}"*/ExternalPaths.Inst(Song.SongName)+"."+f);
+				if (/*vocals.Stream == null && */ResourceLoader.Exists(/*$"{songPath}voices.{f}"*/ExternalPaths.Voices(Song.SongName)+"."+f)) 
+					vocals.Stream = GD.Load<AudioStream>(/*$"{songPath}voices.{f}"*/ExternalPaths.Voices(Song.SongName)+"."+f);
 			}
 		}
 
@@ -231,7 +231,7 @@ public partial class GameplayScene : Conductor
 				SectionNote newNote = (SectionNote)note.Duplicate();
 
 				string noteTypePath = $"res://assets/gameplay/notes/{note.Type.ToLower()}/";
-				IEnumerable<string> noteTypeDir = InternalFileSystem.FilesInDirectory(noteTypePath);
+				IEnumerable<string> noteTypeDir = InternalPaths.FilesInDirectory(noteTypePath);
 				foreach (string file in noteTypeDir)
 				{
 					if (!CachedNotes.ContainsKey(note.Type) && (file.EndsWith(".tscn") || file.EndsWith(".remap"))) 
@@ -250,7 +250,7 @@ public partial class GameplayScene : Conductor
 		string path3d = Song.Is3D ? "3D/" : "";
 		string stagePath = $"res://assets/gameplay/stages/{path3d + Song.Stage}/";
 
-		IEnumerable<string> stageDir = InternalFileSystem.FilesInDirectory(stagePath);
+		IEnumerable<string> stageDir = InternalPaths.FilesInDirectory(stagePath);
 		stagePath = stageDir.Where(file => file.EndsWith(".tscn") || file.EndsWith(".remap")).Aggregate(stagePath, (current, file) => current + file.Replace(".remap", ""));
 
 		stage = ResourceLoader.Exists(stagePath) 

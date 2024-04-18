@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Rubicon.common;
 
-public static class InternalFileSystem
+public static class InternalPaths
 {
     public static IEnumerable<string> FilesInDirectory(string path)
     {

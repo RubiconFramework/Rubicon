@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://xmfla0tq4xbf"]
 
-[ext_resource type="Script" path="res://autoload/managers/audiomanager/AudioManager.cs" id="1_eecsl"]
+[ext_resource type="Script" path="res://src/autoload/managers/audiomanager/AudioManager.cs" id="1_eecsl"]
 [ext_resource type="AudioStream" uid="uid://bq8kvxkx3s0o3" path="res://assets/music/freakyMenu.ogg" id="2_t1ien"]
 [ext_resource type="AudioStream" uid="uid://bxi6bixsvr613" path="res://assets/music/jestersPity.mp3" id="3_rssb1"]
 [ext_resource type="AudioStream" uid="uid://diwgmjurhabs4" path="res://assets/sounds/menus/cancelMenu.ogg" id="4_01b8y"]

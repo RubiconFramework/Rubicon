@@ -31,11 +31,11 @@ buses/default_bus_layout="res://assets/themes/default_bus_layout.tres"
 
 [autoload]
 
-Main="*res://autoload/global/Main.tscn"
-Conductor="*res://autoload/global/Conductor.cs"
-AudioManager="*res://autoload/managers/audiomanager/AudioManager.tscn"
-TransitionManager="*res://autoload/managers/transitionmanager/TransitionManager.tscn"
-DebugInfo="*res://autoload/debug/DebugInfo.tscn"
+Main="*res://src/autoload/global/Main.tscn"
+Conductor="*res://src/autoload/global/Conductor.cs"
+AudioManager="*res://src/autoload/managers/audiomanager/AudioManager.tscn"
+TransitionManager="*res://src/autoload/managers/transitionmanager/TransitionManager.tscn"
+DebugInfo="*res://src/autoload/debug/DebugInfo.tscn"
 
 [debug]
 

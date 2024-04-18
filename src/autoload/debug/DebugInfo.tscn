@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bditr4686af55"]
 
-[ext_resource type="Script" path="res://autoload/debug/DebugInfo.cs" id="1_kpyvy"]
+[ext_resource type="Script" path="res://src/autoload/debug/DebugInfo.cs" id="1_kpyvy"]
 [ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="2_mvsaf"]
 
 [sub_resource type="SystemFont" id="SystemFont_qodwd"]

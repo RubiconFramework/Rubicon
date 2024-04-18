@@ -1,7 +1,7 @@
 using System.IO;
 
 namespace Rubicon.common;
-public static class ExternalFileSystem
+public static class ExternalPaths
 {
     //haxe spotted -dunine
     //at the moment, this will only work with music in source, i'll do the support for mods laterrr -blear

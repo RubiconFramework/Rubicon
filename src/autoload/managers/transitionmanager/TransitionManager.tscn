@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bd6rfrayedosy"]
 
-[ext_resource type="Script" path="res://autoload/managers/transitionmanager/TransitionManager.cs" id="1_owh6s"]
+[ext_resource type="Script" path="res://src/autoload/managers/transitionmanager/TransitionManager.cs" id="1_owh6s"]
 [ext_resource type="Shader" path="res://assets/shaders/Diamond.gdshader" id="2_22krj"]
 [ext_resource type="Shader" path="res://assets/shaders/saw.gdshader" id="2_y2hyg"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c85d4dpafegtt"]
 
-[ext_resource type="Script" path="res://autoload/global/Main.cs" id="1_5actk"]
-[ext_resource type="PackedScene" uid="uid://dvrifmg2wk0kt" path="res://autoload/global/elements/Notification.tscn" id="2_omd1b"]
+[ext_resource type="Script" path="res://src/autoload/global/Main.cs" id="1_5actk"]
+[ext_resource type="PackedScene" uid="uid://dvrifmg2wk0kt" path="res://src/autoload/global/elements/Notification.tscn" id="2_omd1b"]
 
 [node name="Main" type="CanvasLayer"]
 script = ExtResource("1_5actk")
