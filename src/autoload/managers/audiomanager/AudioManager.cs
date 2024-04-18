@@ -323,10 +323,11 @@ public partial class AudioManager : Node
 		return player;
 	}
 
-	public AudioStreamPlayer PlayMusic(string path, float volume = 1f){
-		var audioStream = GD.Load<AudioStream>(path);
-		AudioStreamPlayer player = new(){
-			Stream = audioStream,
+	public AudioStreamPlayer PlayMusic(string path, float volume = 1f)
+	{
+		AudioStreamPlayer player = new()
+		{
+			Stream = GD.Load<AudioStream>(path),
 			VolumeDb = LinearToDB(volume),
 			Autoplay = false
 		};

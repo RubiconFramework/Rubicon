@@ -1,7 +1,7 @@
 using Godot.Collections;
 using Godot.Sharp.Extras;
 
-namespace Rubicon.common.stages.@base;
+namespace Rubicon.common.stages.basestage;
 
 public partial class Stage : Node2D
 {

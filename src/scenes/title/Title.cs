@@ -47,7 +47,7 @@ public partial class Title : Conductor
 	public override void _Ready()
 	{
 		this.OnReady();
-		mariomadnessreference = GD.Load<PackedScene>("res://src/gameplay/mariomadnessreference.tscn").Instantiate() as Control;
+		mariomadnessreference = GD.Load<PackedScene>("res://src/gameplay/mariomadnessreference.tscn").Instantiate() as ReferenceRect;
 
 		if (GD.RandRange(1, 500000) == 30000)
 		{
@@ -72,7 +72,7 @@ public partial class Title : Conductor
 	{
 		base._Input(@event);
 
-		if (@event.IsActionPressed("ui_accept"))
+		if (Input.IsActionJustPressed("menu_accept"))
 		{
 			if (!skippedIntro) SkipIntro();
 			else if (!transitioning)
