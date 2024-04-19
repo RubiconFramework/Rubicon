@@ -4,6 +4,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_hkiql"]
 font_names = PackedStringArray("Cascadia Code")
+subpixel_positioning = 0
 
 [sub_resource type="Animation" id="Animation_8l844"]
 length = 0.001

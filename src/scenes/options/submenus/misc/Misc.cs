@@ -18,19 +18,19 @@ public partial class Misc : BaseSubmenu
         this.OnReady();
         LoadSettings();
         
-        RegisterButton(SceneTransitions, _ => Main.GameSettings.Misc.SceneTransitions = !Main.GameSettings.Misc.SceneTransitions);
-        RegisterButton(OptionsMenuAnimations, _ => Main.GameSettings.Misc.OptionsMenuAnimations = !Main.GameSettings.Misc.OptionsMenuAnimations);
+        RegisterButton(SceneTransitions, _ => Main.RubiconSettings.Misc.SceneTransitions = !Main.RubiconSettings.Misc.SceneTransitions);
+        RegisterButton(OptionsMenuAnimations, _ => Main.RubiconSettings.Misc.OptionsMenuAnimations = !Main.RubiconSettings.Misc.OptionsMenuAnimations);
         RegisterButton(DiscordRichPresence, OptionsMenu.Instance.HelperMethods.SetDiscordRPC);
-        RegisterOptionButton(GameLanguage, i => Main.GameSettings.Misc.Languages = (GameLanguages)i);
-        RegisterOptionButton(GameTransitions, i => Main.GameSettings.Misc.Transitions = (TransitionType)i);
+        RegisterOptionButton(GameLanguage, i => Main.RubiconSettings.Misc.Languages = (GameLanguages)i);
+        RegisterOptionButton(GameTransitions, i => Main.RubiconSettings.Misc.Transitions = (TransitionType)i);
     }
     
     private void LoadSettings()
     {
-        LoadButtonValue(SceneTransitions, Main.GameSettings.Misc.SceneTransitions);
-        LoadButtonValue(OptionsMenuAnimations, Main.GameSettings.Misc.OptionsMenuAnimations);
-        LoadButtonValue(DiscordRichPresence, Main.GameSettings.Misc.DiscordRichPresence);
-        LoadOptionButtonValue(GameLanguage, (int)Main.GameSettings.Misc.Languages);
-        LoadOptionButtonValue(GameTransitions, (int)Main.GameSettings.Misc.Transitions);
+        LoadButtonValue(SceneTransitions, Main.RubiconSettings.Misc.SceneTransitions);
+        LoadButtonValue(OptionsMenuAnimations, Main.RubiconSettings.Misc.OptionsMenuAnimations);
+        LoadButtonValue(DiscordRichPresence, Main.RubiconSettings.Misc.DiscordRichPresence);
+        LoadOptionButtonValue(GameLanguage, (int)Main.RubiconSettings.Misc.Languages);
+        LoadOptionButtonValue(GameTransitions, (int)Main.RubiconSettings.Misc.Transitions);
     }
 }

@@ -16,7 +16,6 @@ public class RubiconSettings
     public readonly AudioSettings Audio = new();
     public readonly VideoSettings Video = new();
     public readonly MiscSettings Misc = new();
-    public Dictionary<string, string> Keybinds { get; set; } = new();
     
     public class GameplaySettings
     {
@@ -61,7 +60,7 @@ public class RubiconSettings
     {
         try
         {
-            if (Main.GameSettings == null)
+            if (Main.RubiconSettings == null)
             {
                 Main.Instance.Alert("Settings object is null.", true, NotificationType.Error);
                 return;
@@ -73,7 +72,7 @@ public class RubiconSettings
                 Formatting = Formatting.Indented
             };
         
-            string jsonData = JsonConvert.SerializeObject(Main.GameSettings, settings);
+            string jsonData = JsonConvert.SerializeObject(Main.RubiconSettings, settings);
             using var file = FileAccess.Open(Main.Instance.SettingsFilePath, FileAccess.ModeFlags.Write);
             if (file == null)
             {
@@ -87,32 +86,5 @@ public class RubiconSettings
         {
             Main.Instance.Alert($"Failed to save settings: {e.Message}", true, NotificationType.Error);
         }
-    }
-
-    
-    public void SetKeybind(string action, string button)
-    {
-        Keybinds[action] = button;
-        Main.Instance.Alert($"{action} bound to {button}");
-        Save();
-    }
-    
-    public void RemoveKeybind(string button)
-    {
-        if (!string.IsNullOrEmpty(Keybinds.FirstOrDefault(x => x.Value == button).Key))
-        {
-            Keybinds.Remove(Keybinds.FirstOrDefault(x => x.Value == button).Key);
-            Main.Instance.Alert($"Button {button} removed from keybinds (Action: {Keybinds.FirstOrDefault(x => x.Value == button).Key})");
-            Save();
-        }
-        else Main.Instance.Alert($"Button {button} not found in keybinds");
-    }
-    
-    public List<string> GetKeybind(string action)
-    {
-        List<string> keybinds = new();
-        foreach (var kvp in Keybinds) if (kvp.Value == action) keybinds.Add(kvp.Key);
-        if (keybinds.Count > 0) return keybinds;
-        else return new() { "N/A" };
     }
 }

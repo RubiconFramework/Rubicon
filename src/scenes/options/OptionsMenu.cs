@@ -10,6 +10,7 @@ namespace Rubicon.scenes.options;
 public partial class OptionsMenu : Control
 {
 	[Export] private OptionsMenuSubmenus CurrentSubmenu = OptionsMenuSubmenus.Gameplay;
+	[NodePath("LeftPanel/SubmenuIndicator/AnimationPlayer/KeybindLabel")] public Label KeybindLabel;
 
 	//Right Panel VBoxes
 	[NodePath("RightPanel/UpperVBox/GameplaySubmenu")] private Button GameplaySubmenuButton;
@@ -23,7 +24,7 @@ public partial class OptionsMenu : Control
 	//Left Panel Specific
 	[NodePath("LeftPanel/DescriptionLabel")] public Label OptionDescriptionLabel;
 	[NodePath("LeftPanel/SubmenuIndicator")] private Label SubmenuIndicator;
-	[NodePath("LeftPanel/SubmenuIndicator/AnimationPlayer")] public AnimationPlayer SubmenuIndicatorAnimationPlayer;
+	[NodePath("LeftPanel/SubmenuIndicator/AnimationPlayer")] public AnimationPlayer OptionsMenuAnimPlayer;
 	
 	//Left Panel Scroll Containers
 	[NodePath("LeftPanel/ScrollContainers/Gameplay")] private ScrollContainer GameplayScrollContainer;
@@ -34,15 +35,12 @@ public partial class OptionsMenu : Control
 
 	public static OptionsMenu Instance { get; private set; }
 	public readonly HelperMethods HelperMethods = new();
-	public bool IsPickingKeybind;
-	
-	private bool IsAnimationPlaying;
 
 	public override void _EnterTree() => Instance = this;
 
 	public override void _ExitTree()
 	{
-		if (Main.GameSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState(string.Empty);
+		if (Main.RubiconSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState(string.Empty);
 	}
 	
 	public override void _Ready()
@@ -60,8 +58,8 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				Main.GameSettings = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
-				Main.GameSettings.Save();
+				Main.RubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
+				Main.RubiconSettings.Save();
 				Main.Instance.Alert("Settings imported.");
 			}
 			catch (Exception e)
@@ -74,7 +72,7 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(Main.GameSettings)));
+				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(Main.RubiconSettings)));
 				Main.Instance.Alert("Settings exported and copied to clipboard.");
 			}
 			catch (Exception e)
@@ -102,17 +100,18 @@ public partial class OptionsMenu : Control
 		}
 	}
 
+	private bool IsAnimationPlaying;
 	private void ChangeSubmenu(int direction)
 	{
 		if (IsAnimationPlaying) return;
 		int newSubmenuIndex = ((int)CurrentSubmenu + direction + 5) % 5;
 		CurrentSubmenu = (OptionsMenuSubmenus)newSubmenuIndex;
     
-		if (Main.GameSettings.Misc.OptionsMenuAnimations)
+		if (Main.RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
-			SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/StartTransition");
-			SubmenuIndicatorAnimationPlayer.AnimationFinished += AnimFinished;
+			OptionsMenuAnimPlayer.Play("SubmenuTransition/StartTransition");
+			OptionsMenuAnimPlayer.AnimationFinished += AnimFinished;
 		}
 		else
 		{
@@ -127,11 +126,11 @@ public partial class OptionsMenu : Control
 		if (IsAnimationPlaying) return;
 		CurrentSubmenu = menuSubmenus;
 
-		if (Main.GameSettings.Misc.OptionsMenuAnimations)
+		if (Main.RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
-			SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/StartTransition");
-			SubmenuIndicatorAnimationPlayer.AnimationFinished += AnimFinished;
+			OptionsMenuAnimPlayer.Play("SubmenuTransition/StartTransition");
+			OptionsMenuAnimPlayer.AnimationFinished += AnimFinished;
 		}
 		else
 		{
@@ -143,17 +142,17 @@ public partial class OptionsMenu : Control
 	
 	private void AnimFinished(StringName name)
 	{
-		SubmenuIndicatorAnimationPlayer.AnimationFinished -= AnimFinished;
+		OptionsMenuAnimPlayer.AnimationFinished -= AnimFinished;
 		if (name == "SubmenuTransition/EndTransition") return;
 		IsAnimationPlaying = false;
-		SubmenuIndicatorAnimationPlayer.Play("SubmenuTransition/EndTransition");
+		OptionsMenuAnimPlayer.Play("SubmenuTransition/EndTransition");
 		UpdateSubmenuUI();
 		SubmenuIndicator.Text = CurrentSubmenu.ToString();
 	}
 
 	private void UpdateSubmenuUI()
 	{
-		if (Main.GameSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState($"Current Submenu: {CurrentSubmenu}");
+		if (Main.RubiconSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState($"Current Submenu: {CurrentSubmenu}");
 		
 		GameplaySubmenuButton.Text = "Gameplay";
 		VideoSubmenuButton.Text = "Video";

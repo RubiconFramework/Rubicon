@@ -474,6 +474,8 @@
     <Compile Remove="autoload\**" />
     <Compile Remove="src\common\**" />
     <Compile Remove="common\stages\base\**" />
+    <Compile Remove="src\scenes\options\buttons\keybind\**" />
+    <Compile Remove="src\scenes\options\buttons\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -529,6 +531,8 @@
     <EmbeddedResource Remove="autoload\**" />
     <EmbeddedResource Remove="src\common\**" />
     <EmbeddedResource Remove="common\stages\base\**" />
+    <EmbeddedResource Remove="src\scenes\options\buttons\keybind\**" />
+    <EmbeddedResource Remove="src\scenes\options\buttons\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -563,6 +567,8 @@
     <None Remove="src\backend\scripts\**" />
     <None Remove="src\backend\autoload\**" />
     <None Remove="src\common\**" />
+    <None Remove="src\scenes\options\buttons\keybind\**" />
+    <None Remove="src\scenes\options\buttons\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

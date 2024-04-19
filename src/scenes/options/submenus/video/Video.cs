@@ -22,8 +22,8 @@ public partial class Video : BaseSubmenu
     
     private void LoadSettings()
     {
-        LoadOptionButtonValue(VSync, (int)Main.GameSettings.Video.VSync);
-        LoadOptionButtonValue(WindowMode, (int)Main.GameSettings.Video.WindowMode);
-        LoadSliderValue(MaxFPS, "Max FPS", Main.GameSettings.Video.MaxFPS);
+        LoadOptionButtonValue(VSync, (int)Main.RubiconSettings.Video.VSync);
+        LoadOptionButtonValue(WindowMode, (int)Main.RubiconSettings.Video.WindowMode);
+        LoadSliderValue(MaxFPS, "Max FPS", Main.RubiconSettings.Video.MaxFPS);
     }
 }

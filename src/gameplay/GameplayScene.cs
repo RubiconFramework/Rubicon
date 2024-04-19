@@ -85,7 +85,7 @@ public partial class GameplayScene : Conductor
 		//GetTree().Paused = false;
 
 		scrollSpeed = /*Song.ScrollSpeed*/ 1.0f;
-		var settingSpeed = Main.GameSettings.Gameplay.ScrollSpeed;
+		var settingSpeed = Main.RubiconSettings.Gameplay.ScrollSpeed;
 		switch (settingSpeed)
 		{
 			case > 0:

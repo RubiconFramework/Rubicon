@@ -33,7 +33,7 @@ public partial class Main : CanvasLayer
  	public static readonly string[] AudioFormats = { "mp3", "ogg", "wav" , "flac" };
 	public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
-	public static RubiconSettings GameSettings { get; set; } = new();
+	public static RubiconSettings RubiconSettings { get; set; } = new();
 	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);
 	
 	[NodePath("Notification")] private Panel NotificationInstance;
@@ -46,8 +46,8 @@ public partial class Main : CanvasLayer
 		this.OnReady();
 		Instance = this;
 		RenderingServer.SetDefaultClearColor(new(0,0,0));
-		TranslationServer.SetLocale(GameSettings.Misc.Languages.ToString().ToLower());
-        
+		TranslationServer.SetLocale(RubiconSettings.Misc.Languages.ToString().ToLower());
+
 		if ((bool)ProjectSettings.GetSetting("use_project_name_user_dir",true)){
 			var dir = ProjectSettings.GetSetting("application/config/custom_user_dir_name", "Rubicon/Engine").ToString();
 			var projectName = ProjectSettings.GetSetting("application/config/name", "Rubicon").ToString();
@@ -77,7 +77,7 @@ public partial class Main : CanvasLayer
 	public override void _ExitTree()
 	{
 		base._ExitTree();
-		GameSettings = null;
+		RubiconSettings = null;
 		DiscordRPC(false);
 	}
 
@@ -197,7 +197,7 @@ public partial class Main : CanvasLayer
 					rubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(json);
 					if (rubiconSettings != null)
 					{
-						GameSettings = rubiconSettings;
+						RubiconSettings = rubiconSettings;
 						GD.Print($"Settings loaded from file. [{path}]");
 					}
 				}
@@ -206,7 +206,7 @@ public partial class Main : CanvasLayer
 			{
 				Instance.Alert("Settings file not found. Writing default settings to file.");
 				rubiconSettings.GetDefaultSettings().Save();
-				GameSettings = rubiconSettings;
+				RubiconSettings = rubiconSettings;
 			}
 		}
 		catch (Exception e)

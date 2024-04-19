@@ -1,10 +1,15 @@
 using System.IO;
 
 namespace Rubicon.common;
+
+/// <summary>
+/// haxe looking headass paths -dunine
+/// at the moment, this will only work with music in source, i'll do the support for mods laterrr -blear
+/// </summary>
 public static class ExternalPaths
 {
-    //haxe spotted -dunine
-    //at the moment, this will only work with music in source, i'll do the support for mods laterrr -blear
+    private static char[] invalidChars = new char[] {'~', '&', '\\', ';', ':', '<', '>', '#'};
+    private static char[] hideChars = new char[] {'~', '/', '[', '.', '\'', '%', '?', '!', ']'};
     
     public static string Inst(string song)
     {
@@ -22,8 +27,6 @@ public static class ExternalPaths
 
     public static string FormatToSongPath(string path)
     {
-        char[] invalidChars = new char[] {'~', '&', '\\', ';', ':', '<', '>', '#'};
-        char[] hideChars = new char[] {'~', '/', '[', '.', '\'', '%', '?', '!', ']'};
         path = string.Join("-", path.Replace(' ', '-').Split(invalidChars));
         return string.Join("", path.Split(hideChars)).ToLower();
     }

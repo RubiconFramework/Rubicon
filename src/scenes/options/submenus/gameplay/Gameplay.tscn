@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_dut1v"]
 [ext_resource type="Script" path="res://src/scenes/options/submenus/gameplay/Gameplay.cs" id="1_l386l"]
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/buttons/slider/LabelSlider.tscn" id="2_kdg2c"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/elements/buttons/slider/LabelSlider.tscn" id="3_8cjpt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
@@ -37,7 +37,7 @@ text = "/// Note Settings ///"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScrollSpeed" parent="Container" instance=ExtResource("2_kdg2c")]
+[node name="ScrollSpeed" parent="Container" instance=ExtResource("3_8cjpt")]
 layout_mode = 2
 text = " Scroll Speed [1.5]"
 

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbdfpnvlhkxlo"]
+[gd_scene load_steps=3 format=3 uid="uid://dbdfpnvlhkxlo"]
 
 [ext_resource type="Script" path="res://src/scenes/options/submenus/keybinds/Keybinds.cs" id="1_3jr24"]
-[ext_resource type="PackedScene" uid="uid://2dxpk5xecnnw" path="res://src/scenes/options/buttons/keybind/KeybindButton.tscn" id="2_rn2oj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
@@ -20,40 +19,6 @@ size_flags_vertical = 0
 [node name="SectionSeparator" type="Label" parent="Container"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Gameplay Keybinds ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NoteLeft" parent="Container" instance=ExtResource("2_rn2oj")]
-layout_mode = 2
-text = " Note Left"
-Action = "NoteLeft"
-
-[node name="NoteRight" parent="Container" instance=ExtResource("2_rn2oj")]
-layout_mode = 2
-text = " Note Right"
-Action = "NoteRight"
-
-[node name="NoteUp" parent="Container" instance=ExtResource("2_rn2oj")]
-layout_mode = 2
-text = " Note Up"
-Action = "NoteUp"
-
-[node name="NoteDown" parent="Container" instance=ExtResource("2_rn2oj")]
-layout_mode = 2
-text = " Note Down"
-Action = "NoteDown"
-
-[node name="SectionSeparator2" type="Label" parent="Container"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Menu Keybinds ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SectionSeparator3" type="Label" parent="Container"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Other Keybinds ///"
+text = "/// Rubicon Keybinds (im not finding a way to group them because they literally work with the editor) ///"
 horizontal_alignment = 1
 vertical_alignment = 1

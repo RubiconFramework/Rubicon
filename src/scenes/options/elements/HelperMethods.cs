@@ -14,23 +14,23 @@ public class HelperMethods
         switch (volumeType)
         {
             case VolumeType.MasterVolume:
-                Main.GameSettings.Audio.MasterVolume = v;
+                Main.RubiconSettings.Audio.MasterVolume = v;
                 AudioManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.MusicVolume:
-                Main.GameSettings.Audio.MusicVolume = v;
+                Main.RubiconSettings.Audio.MusicVolume = v;
                 AudioManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.SFXVolume:
-                Main.GameSettings.Audio.SFXVolume = v;
+                Main.RubiconSettings.Audio.SFXVolume = v;
                 AudioManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.InstVolume:
-                Main.GameSettings.Audio.InstVolume = v;
+                Main.RubiconSettings.Audio.InstVolume = v;
                 AudioManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.VoiceVolume:
-                Main.GameSettings.Audio.VoiceVolume = v;
+                Main.RubiconSettings.Audio.VoiceVolume = v;
                 AudioManager.Instance.ChangeVolume(v);
                 break;
         }
@@ -38,13 +38,13 @@ public class HelperMethods
 
     public void SetVSync(DisplayServer.VSyncMode v)
     {
-        Main.GameSettings.Video.VSync = v;
+        Main.RubiconSettings.Video.VSync = v;
         DisplayServer.Singleton.WindowSetVsyncMode(v);
     }
 
     public void SetWindowMode(DisplayServer.WindowMode v)
     {
-        Main.GameSettings.Video.WindowMode = v;
+        Main.RubiconSettings.Video.WindowMode = v;
         DisplayServer.Singleton.WindowSetMode(v);
     }
 
@@ -52,18 +52,18 @@ public class HelperMethods
     {
         if ((int)v == 1500)
         {
-            Main.GameSettings.Video.MaxFPS = 1500;
+            Main.RubiconSettings.Video.MaxFPS = 1500;
             Engine.Singleton.MaxFps = 0;
             return;
         }
         
-        Main.GameSettings.Video.MaxFPS = (int)v;
+        Main.RubiconSettings.Video.MaxFPS = (int)v;
         Engine.Singleton.MaxFps = (int)v;
     }
     
     public void SetDiscordRPC(bool v)
     {
-        Main.GameSettings.Misc.DiscordRichPresence = v;
+        Main.RubiconSettings.Misc.DiscordRichPresence = v;
         Main.Instance.DiscordRPC(v);
     }
     

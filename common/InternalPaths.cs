@@ -2,6 +2,9 @@ using System.Collections.Generic;
 
 namespace Rubicon.common;
 
+/// <summary>
+/// stuff done inside the godot filesystem
+/// </summary>
 public static class InternalPaths
 {
     public static IEnumerable<string> FilesInDirectory(string path)

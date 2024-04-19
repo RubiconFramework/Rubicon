@@ -24,16 +24,16 @@ public partial class Audio : BaseSubmenu
         RegisterSlider(SFXVolume, "SFX Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.SFXVolume, v), true);
         RegisterSlider(InstVolume, "Inst Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.InstVolume, v), true);
         RegisterSlider(VoiceVolume, "Voice Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.VoiceVolume, v), true);
-        RegisterOptionButton(SoundOutputMode, i => Main.GameSettings.Audio.OutputMode = (OutputMode)i);
+        RegisterOptionButton(SoundOutputMode, i => Main.RubiconSettings.Audio.OutputMode = (OutputMode)i);
     }
     
     private void LoadSettings()
     {
-        LoadSliderValue(MasterVolume, "Master Volume", Main.GameSettings.Audio.MasterVolume, true);
-        LoadSliderValue(MusicVolume, "Music Volume", Main.GameSettings.Audio.MusicVolume, true);
-        LoadSliderValue(SFXVolume, "SFX Volume", Main.GameSettings.Audio.SFXVolume, true);
-        LoadSliderValue(InstVolume, "Inst Volume", Main.GameSettings.Audio.InstVolume, true);
-        LoadSliderValue(VoiceVolume, "Voice Volume", Main.GameSettings.Audio.VoiceVolume, true);
-        LoadOptionButtonValue(SoundOutputMode, (int)Main.GameSettings.Audio.OutputMode);
+        LoadSliderValue(MasterVolume, "Master Volume", Main.RubiconSettings.Audio.MasterVolume, true);
+        LoadSliderValue(MusicVolume, "Music Volume", Main.RubiconSettings.Audio.MusicVolume, true);
+        LoadSliderValue(SFXVolume, "SFX Volume", Main.RubiconSettings.Audio.SFXVolume, true);
+        LoadSliderValue(InstVolume, "Inst Volume", Main.RubiconSettings.Audio.InstVolume, true);
+        LoadSliderValue(VoiceVolume, "Voice Volume", Main.RubiconSettings.Audio.VoiceVolume, true);
+        LoadOptionButtonValue(SoundOutputMode, (int)Main.RubiconSettings.Audio.OutputMode);
     }
 }

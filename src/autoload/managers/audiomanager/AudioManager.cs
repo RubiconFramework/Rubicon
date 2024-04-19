@@ -81,11 +81,11 @@ public partial class AudioManager : Node
 		
 		var valueTuples = new (Panel panel, Func<float> getVolume, Action<float> setVolume, string name)[]
 		{
-			(MasterVolumePanel, () => Main.GameSettings.Audio.MasterVolume, volume => { MasterVolume = volume; }, "Master"),
-			(MusicVolumePanel, () => Main.GameSettings.Audio.MusicVolume, volume => { MusicVolume = volume; }, "Music"),
-			(SFXVolumePanel, () => Main.GameSettings.Audio.SFXVolume, volume => { SFXVolume = volume; }, "SFX"),
-			(InstVolumePanel, () => Main.GameSettings.Audio.InstVolume, volume => { InstVolume = volume; }, "Inst"),
-			(VoiceVolumePanel, () => Main.GameSettings.Audio.VoiceVolume, volume => { VoiceVolume = volume; }, "Voices")
+			(MasterVolumePanel, () => Main.RubiconSettings.Audio.MasterVolume, volume => { MasterVolume = volume; }, "Master"),
+			(MusicVolumePanel, () => Main.RubiconSettings.Audio.MusicVolume, volume => { MusicVolume = volume; }, "Music"),
+			(SFXVolumePanel, () => Main.RubiconSettings.Audio.SFXVolume, volume => { SFXVolume = volume; }, "SFX"),
+			(InstVolumePanel, () => Main.RubiconSettings.Audio.InstVolume, volume => { InstVolume = volume; }, "Inst"),
+			(VoiceVolumePanel, () => Main.RubiconSettings.Audio.VoiceVolume, volume => { VoiceVolume = volume; }, "Voices")
 		};
 
 		foreach (var (panel, getVolume, setVolume, name) in valueTuples)
@@ -116,7 +116,7 @@ public partial class AudioManager : Node
 			label.Text = newValue == 0 ? $"{sliderName} [Muted]" : $"{sliderName} [{(int)newValue}%]";
 		}
 
-		var Audio = Main.GameSettings.Audio;
+		var Audio = Main.RubiconSettings.Audio;
 		foreach (var volumeSetting in new[]
 				 {
 					 Audio.MasterVolume, Audio.SFXVolume, Audio.InstVolume, Audio.MusicVolume, Audio.VoiceVolume
@@ -139,17 +139,17 @@ public partial class AudioManager : Node
 	public override void _PhysicsProcess(double delta)
 	{
 		base._PhysicsProcess(delta);
-		MasterVolumeBar.Value = Mathf.Lerp(MasterVolumeBar.Value, Main.GameSettings.Audio.MasterVolume, delta * 10);
+		MasterVolumeBar.Value = Mathf.Lerp(MasterVolumeBar.Value, Main.RubiconSettings.Audio.MasterVolume, delta * 10);
 
 		if (Input.IsActionJustPressed("master_volume_up") && !isVolumePanelShown)
 		{
-			float newVolume = Mathf.Clamp(Main.GameSettings.Audio.MasterVolume + 5, 0, 100);
+			float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume + 5, 0, 100);
 			ChangeVolume(newVolume);
 			PlayVolumeAnimation();
 		}
 		else if (Input.IsActionJustPressed("master_volume_down") && !isVolumePanelShown)
 		{
-			float newVolume = Mathf.Clamp(Main.GameSettings.Audio.MasterVolume - 5, 0, 100);
+			float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume - 5, 0, 100);
 			ChangeVolume(newVolume);
 			PlayVolumeAnimation();
 		}
@@ -162,9 +162,9 @@ public partial class AudioManager : Node
 			PlayVolumeAnimation();
 		}
 
-		MasterVolumePanel.GetNode<HSlider>("HSlider").Value = Main.GameSettings.Audio.MasterVolume;
-		UpdateLabel(GetNode<Label>("VolumeManagerPanel/Container/Master/HSlider/Label"), "Master", Main.GameSettings.Audio.MasterVolume);
-		UpdateButtonSprite(GetNode<AnimatedSprite2D>("VolumeManagerPanel/Container/Master/Button/Icon"), Main.GameSettings.Audio.MasterVolume);
+		MasterVolumePanel.GetNode<HSlider>("HSlider").Value = Main.RubiconSettings.Audio.MasterVolume;
+		UpdateLabel(GetNode<Label>("VolumeManagerPanel/Container/Master/HSlider/Label"), "Master", Main.RubiconSettings.Audio.MasterVolume);
+		UpdateButtonSprite(GetNode<AnimatedSprite2D>("VolumeManagerPanel/Container/Master/Button/Icon"), Main.RubiconSettings.Audio.MasterVolume);
 
 		void PlayVolumeAnimation()
 		{
@@ -243,28 +243,28 @@ public partial class AudioManager : Node
 			{
 				case 0:
 					_masterVolume = volume;
-					Main.GameSettings.Audio.MasterVolume = volume;
+					Main.RubiconSettings.Audio.MasterVolume = volume;
 					break;
 				case 1:
 					_musicVolume = volume;
-					Main.GameSettings.Audio.MusicVolume = volume;
+					Main.RubiconSettings.Audio.MusicVolume = volume;
 					break;
 				case 2:
 					_sfxVolume = volume;
-					Main.GameSettings.Audio.SFXVolume = volume;
+					Main.RubiconSettings.Audio.SFXVolume = volume;
 					break;
 				case 3:
 					_instVolume = volume;
-					Main.GameSettings.Audio.InstVolume = volume;
+					Main.RubiconSettings.Audio.InstVolume = volume;
 					break;
 				case 4:
 					_voiceVolume = volume;
-					Main.GameSettings.Audio.VoiceVolume = volume;
+					Main.RubiconSettings.Audio.VoiceVolume = volume;
 					break;
 			}
 		}
 
-		Main.GameSettings.Save();
+		Main.RubiconSettings.Save();
 		UpdateVolume(busIndex, volumeToSet);
 	}
 

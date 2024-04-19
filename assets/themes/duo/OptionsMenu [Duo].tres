@@ -28,11 +28,11 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5q8d"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.564706, 0.564706, 0.564706, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -128,26 +128,26 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0jhv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h8oq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.564706, 0.564706, 0.564706, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgrbr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ajnt"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.564706, 0.564706, 0.564706, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -231,8 +231,8 @@ Label/styles/normal = SubResource("StyleBoxFlat_6lrip")
 OptionButton/styles/disabled = SubResource("StyleBoxFlat_83682")
 OptionButton/styles/disabled_mirrored = SubResource("StyleBoxFlat_cckgh")
 OptionButton/styles/focus = SubResource("StyleBoxFlat_j3kp3")
-OptionButton/styles/hover = SubResource("StyleBoxFlat_b0jhv")
-OptionButton/styles/hover_mirrored = SubResource("StyleBoxFlat_qgrbr")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_0h8oq")
+OptionButton/styles/hover_mirrored = SubResource("StyleBoxFlat_3ajnt")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_hdycl")
 OptionButton/styles/normal_mirrored = SubResource("StyleBoxFlat_wighs")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_m1acv")

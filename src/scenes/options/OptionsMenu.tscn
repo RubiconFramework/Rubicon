@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cx352arf7ejqx"]
+[gd_scene load_steps=23 format=3 uid="uid://cx352arf7ejqx"]
 
 [ext_resource type="Script" path="res://src/scenes/options/OptionsMenu.cs" id="1_025u3"]
 [ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
@@ -30,7 +30,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_nr7nc"]
 resource_name = "PickedKeybind"
-length = 0.4
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,10 +38,10 @@ tracks/0/path = NodePath("AnimationPlayer/KeybindLabel:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(0, 1, 0, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -50,7 +50,7 @@ tracks/1/path = NodePath("../..:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
@@ -62,22 +62,10 @@ tracks/2/path = NodePath("AnimationPlayer/weird stupid line:modulate")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/KeybindLabel:visible")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_h13jm"]
@@ -90,7 +78,7 @@ tracks/0/path = NodePath("AnimationPlayer/KeybindLabel:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.3),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -122,20 +110,73 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/KeybindLabel:visible")
-tracks/3/interp = 2
+tracks/3/path = NodePath("AnimationPlayer/KeybindLabel:text")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": ["Press a Key, or Press Backspace to Remove the Bind."]
+}
+
+[sub_resource type="Animation" id="Animation_ba2f5"]
+resource_name = "RemovedKeybind"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/KeybindLabel:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/weird stupid line:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer/KeybindLabel:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Removed Keybind."]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cg8qp"]
 _data = {
 "PickedKeybind": SubResource("Animation_nr7nc"),
-"PickingKeybind": SubResource("Animation_h13jm")
+"PickingKeybind": SubResource("Animation_h13jm"),
+"RemovedKeybind": SubResource("Animation_ba2f5")
 }
 
 [sub_resource type="Animation" id="Animation_ycuxq"]
@@ -270,6 +311,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_025u3")
+CurrentSubmenu = 4
 
 [node name="BG" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jex1q")
@@ -419,7 +461,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "Press a Key, or Press [BACKSPACE] to Remove the Bind."
+text = "Removed Keybind."
 horizontal_alignment = 1
 vertical_alignment = 1
 
