@@ -92,6 +92,7 @@ public partial class Conductor : Node
         }
     }
 
+    private BPMChangeEvent lastChange;
     public override void _Process(double delta)
     {
         base._Process(delta);
@@ -101,9 +102,9 @@ public partial class Conductor : Node
         int oldSection = curSection;
 
         //this is going to be changed later, rn is ugly af
+        //CHANGE IT NOW!!!!!!
         position = AudioManager.Instance.music == null ? 0 :AudioManager.Instance.music.GetPlaybackPosition();
 
-        BPMChangeEvent lastChange = null;
         foreach (BPMChangeEvent evt in bpmChangeMap)
         {
             if (position >= evt.songTime) lastChange = evt;
@@ -126,10 +127,10 @@ public partial class Conductor : Node
     //the functions here are the math to calculate the current step, beat and section
     private void updateCurStep()
     {
-        var lastChange = getBPMFromSeconds((float)position);
-        var ass = position - lastChange.songTime / stepCrochet;
-        curDecStep = lastChange.stepTime + ass;
-        curStep = lastChange.stepTime + Mathf.FloorToInt(ass);
+        var lastBPMChange = getBPMFromSeconds((float)position);
+        var ass = position - lastBPMChange.songTime / stepCrochet;
+        curDecStep = lastBPMChange.stepTime + ass;
+        curStep = lastBPMChange.stepTime + Mathf.FloorToInt(ass);
     }
 
     private void updateBeat(){
@@ -145,21 +146,20 @@ public partial class Conductor : Node
     //this leaks memory?...
     BPMChangeEvent getBPMFromSeconds(float time)
     {
-        BPMChangeEvent lastChange = new BPMChangeEvent(0, 0.0f, bpm);
+        BPMChangeEvent changeEvent = new BPMChangeEvent(0, 0.0f, bpm);
         foreach (var t in bpmChangeMap)
         {
-            if (time >= t.songTime)
-                lastChange = t;
+            if (time >= t.songTime) changeEvent = t;
         }
-
-        return lastChange;
+        
+        return changeEvent;
     }
-
 
     //those are the signals
     protected virtual void OnBeatHit(int beat)
     {
-        if(beat%4==0){
+        if (beat % 4 == 0)
+        {
             SectionHitEvent?.Invoke(curSection);
             OnSectionHit(curSection);
         }
@@ -167,13 +167,15 @@ public partial class Conductor : Node
 
     protected virtual void OnStepHit(int step)
     {
-        if(step%4==0){
+        if (step % 4 == 0)
+        {
             BeatHitEvent?.Invoke(curBeat);
             OnBeatHit(curBeat);
         }
     }
-    protected virtual void OnSectionHit(int section) 
-    { 
+
+    protected virtual void OnSectionHit(int section)
+    {
     }
     
     //well... it explains itself

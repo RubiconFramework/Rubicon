@@ -20,10 +20,9 @@ public partial class Title : Conductor
 	[NodePath("NewgroundsSprite")] private Sprite2D NewgroundsSprite;
 	[NodePath("Flash/AnimationPlayer")] private AnimationPlayer Flash;
 	[NodePath("lol")] private VideoStreamPlayer lol;
-	private Control mariomadnessreference = new mariomadnessreference("overdue is mid", "i said so");
 	
 	private string[] LoadedIntroTexts = new[] { "yoooo swag shit", "ball shit" };
-	private bool skippedIntro;
+	private bool skippedIntro = true;
 	private bool transitioning;
 
 	[Export]
@@ -47,7 +46,12 @@ public partial class Title : Conductor
 	public override void _Ready()
 	{
 		this.OnReady();
-		mariomadnessreference = GD.Load<PackedScene>("res://src/gameplay/mariomadnessreference.tscn").Instantiate() as ReferenceRect;
+		var instance = GD.Load<PackedScene>("res://src/gameplay/mariomadnessreference.tscn").Instantiate() as mariomadnessreference;
+		if (instance != null)
+		{
+			instance = new mariomadnessreference("overdue is mid", "i said so", 2);
+			AddChild(instance);
+		}
 
 		if (GD.RandRange(1, 500000) == 30000)
 		{
@@ -72,12 +76,11 @@ public partial class Title : Conductor
 	{
 		base._Input(@event);
 
-		if (Input.IsActionJustPressed("menu_accept"))
+		if (@event.IsActionPressed("menu_accept"))
 		{
 			if (!skippedIntro) SkipIntro();
 			else if (!transitioning)
 			{
-				Flash.Play("Flash");
 				transitioning = true;
 				TitleEnter.Play("ENTER PRESSED");
 

@@ -36,6 +36,14 @@ public partial class BaseSubmenu : ScrollContainer
         };
         label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
+    
+    protected void LoadButtonValue(Button button, bool v) => button.ButtonPressed = v;
+    protected void LoadOptionButtonValue(OptionButton optionButton, int v) => optionButton.Selected = v;
+    protected void LoadSliderValue(Label parent, string settingName, float v, bool showPercentage = false)
+    {
+        parent.GetNode<Slider>("Slider").Value = v;
+        parent.Text = showPercentage ? $" {settingName}: [{(int)v}%]" : $" {settingName} [{v}]";
+    }
 
     protected void RegisterColorPicker(Label label, Action<Color> updateAction)
     {
@@ -45,13 +53,5 @@ public partial class BaseSubmenu : ScrollContainer
             Main.GameSettings.Save();
         };
         label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
-    }
-
-    protected void LoadButtonValue(Button button, bool v) => button.ButtonPressed = v;
-    protected void LoadOptionButtonValue(OptionButton optionButton, int v) => optionButton.Selected = v;
-    protected void LoadSliderValue(Label parent, string settingName, float v, bool showPercentage = false)
-    {
-        parent.GetNode<Slider>("Slider").Value = v;
-        parent.Text = showPercentage ? $" {settingName}: [{(int)v}%]" : $" {settingName} [{v}]";
     }
 }

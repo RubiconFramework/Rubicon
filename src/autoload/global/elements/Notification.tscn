@@ -1,7 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvrifmg2wk0kt"]
 
 [ext_resource type="Theme" uid="uid://b1qc2jc1jged7" path="res://assets/themes/duo/ScreenNotifier [Duo].tres" id="1_eexnj"]
-[ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="2_dp5xk"]
+
+[sub_resource type="SystemFont" id="SystemFont_hkiql"]
+font_names = PackedStringArray("Cascadia Code")
 
 [sub_resource type="Animation" id="Animation_8l844"]
 length = 0.001
@@ -56,9 +58,9 @@ theme = ExtResource("1_eexnj")
 layout_mode = 0
 offset_right = 268.0
 offset_bottom = 31.0
-theme_override_fonts/font = ExtResource("2_dp5xk")
-theme_override_font_sizes/font_size = 19
-text = "[INFO] Hi"
+theme_override_fonts/font = SubResource("SystemFont_hkiql")
+theme_override_font_sizes/font_size = 15
+text = "[INFO] hi im baldi"
 horizontal_alignment = 1
 vertical_alignment = 1
 visible_characters_behavior = 3

@@ -5,6 +5,6 @@ enum OptionsMenuSubmenus
     Gameplay,
     Audio,
     Video,
-    Miscellaneous,
+    Misc,
     Keybinds
 }

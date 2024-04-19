@@ -53,7 +53,7 @@ public partial class OptionsMenu : Control
 		GameplaySubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Gameplay);
 		VideoSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Video);
 		AudioSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Audio);
-		MiscSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Miscellaneous);
+		MiscSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Misc);
 		KeybindsSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Keybinds);
 
 		ImportFromCode.Pressed += () =>
@@ -181,7 +181,7 @@ public partial class OptionsMenu : Control
 				AudioSubmenuButton.Text += " ↩"; 
 				AudioScrollContainer.Visible = true;
 				break;
-			case OptionsMenuSubmenus.Miscellaneous:
+			case OptionsMenuSubmenus.Misc:
 				MiscSubmenuButton.Text += " ↩";
 				MiscScrollContainer.Visible = true;
 				break;

@@ -8,20 +8,20 @@ namespace Rubicon.autoload.debug;
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class DebugInfo : CanvasLayer
 {
-    [NodePath("NonDebugLabel")] private Label NonDebugLabel;
-    [NodePath("DebugLabel")] private Label DebugLabel;
+    [NodePath("VBox/NonDebugLabel")] private Label NonDebugLabel;
+    [NodePath("VBox/DebugLabel")] private Label DebugLabel;
     [NodePath("Version")] private Label DebugIndicator;
 
     private float updateTime;
     private bool showDebugInfo;
-    private Process currentProcess;
+    private Process currentProcess = Process.GetCurrentProcess();
 
     private double byteToMB(long bytes) => bytes / (1024.0 * 1024.0);
 
     public override void _Ready()
     {
         this.OnReady();
-        currentProcess = Process.GetCurrentProcess();
+        
         if (OS.IsDebugBuild()) DebugIndicator.Visible = true;
         else
         {
@@ -43,63 +43,39 @@ public partial class DebugInfo : CanvasLayer
         DebugLabel.Visible = showDebugInfo;
     }
 
+    long workingSet;
+    StringBuilder debugText = new();
+
     private void UpdateText()
     {
+        debugText.Clear();
         NonDebugLabel.Text = $"FPS: {Engine.GetFramesPerSecond().ToString(CultureInfo.InvariantCulture)}";
-
-        var currentScene = GetTree().CurrentScene;
-        StringBuilder debugText = new();
-
-        long workingSet;
+        
         if (OS.IsDebugBuild())
         {
             workingSet = (long)OS.GetStaticMemoryUsage();
-            debugText.AppendLine($"RAM: {byteToMB(workingSet):F2} MB")
-                .AppendLine($"Private Memory: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB")
-                .AppendLine($"VRAM: {byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB")
-                .AppendLine($"Scene: {(currentScene != null && currentScene.SceneFilePath != "" ? currentScene.SceneFilePath : "None")}");
-                
-            if (Conductor.Instance != null)
-            {
-                debugText.AppendLine("\n//Conductor Variables//")
-                    .AppendLine($"BPM: {Conductor.Instance.bpm}")
-                    .AppendLine($"Position: {Conductor.Instance.position}")
-                    .AppendLine($"Crochet: {Conductor.Instance.crochet}")
-                    .AppendLine($"StepCrochet: {Conductor.Instance.stepCrochet}")
-                    .AppendLine($"Step: {Conductor.Instance.curStep}")
-                    .AppendLine($"Beat: {Conductor.Instance.curBeat}")
-                    .AppendLine($"Section: {Conductor.Instance.curSection}")
-                    .AppendLine($"Decimal Beat: {Conductor.Instance.curDecBeat}")
-                    .AppendLine($"Decimal Step: {Conductor.Instance.curDecStep}")
-                    .Append($"Decimal Section: {Conductor.Instance.curDecSection}");
-            }
-            else debugText.AppendLine("\n//Conductor Variables//")
-                .AppendLine("Conductor is Unavailable.");
+            debugText.AppendLine($"RAM: {byteToMB(workingSet):F2} MB [Alloc: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB] // VRAM: {byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB")
+                .AppendLine($"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}");
+
+            debugText.AppendLine("\n//Conductor Variables//")
+                .AppendLine($"BPM: {Conductor.Instance.bpm}")
+                .AppendLine($"Song Position: {Conductor.Instance.position}")
+                .AppendLine($"Crochet: {Conductor.Instance.crochet} // StepCrochet: {Conductor.Instance.stepCrochet}")
+                .AppendLine($"Step: {Conductor.Instance.curStep} // Beat: {Conductor.Instance.curBeat} // Section: {Conductor.Instance.curSection}")
+                .Append($"Decimal Beat: {Conductor.Instance.curDecBeat} // Decimal Step: {Conductor.Instance.curDecStep} // Decimal Section: {Conductor.Instance.curDecSection}");
         }
         else
         {
             workingSet = currentProcess.WorkingSet64;
-            debugText.AppendLine($"RAM: {byteToMB(workingSet):F2} MB")
-                .AppendLine($"Private Memory: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB")
-                .AppendLine("VRAM is Unavailable.")
-                .AppendLine($"Scene: {(currentScene != null && currentScene.SceneFilePath != "" ? currentScene.SceneFilePath : "None")}");
+            debugText.AppendLine($"RAM: {byteToMB(workingSet):F2} MB [Alloc: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB] // VRAM is Unavailable.")
+                .AppendLine($"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}");
 
-            if (Conductor.Instance != null)
-            { 
-                debugText.AppendLine("\n//Conductor Variables//")
-                    .AppendLine($"BPM: {Conductor.Instance.bpm}")
-                    .AppendLine($"Position: {Conductor.Instance.position}")
-                    .AppendLine($"Crochet: {Conductor.Instance.crochet}")
-                    .AppendLine($"StepCrochet: {Conductor.Instance.stepCrochet}")
-                    .AppendLine($"Step: {Conductor.Instance.curStep}")
-                    .AppendLine($"Beat: {Conductor.Instance.curBeat}")
-                    .AppendLine($"Section: {Conductor.Instance.curSection}")
-                    .AppendLine($"Decimal Beat: {Conductor.Instance.curDecBeat}")
-                    .AppendLine($"Decimal Step: {Conductor.Instance.curDecStep}")
-                    .Append($"Decimal Section: {Conductor.Instance.curDecSection}");
-            }
-            else debugText.AppendLine("\n//Conductor Variables//")
-                .AppendLine("Conductor is Unavailable.");
+            debugText.AppendLine("\n//Conductor Variables//")
+                .AppendLine($"BPM: {Conductor.Instance.bpm}")
+                .AppendLine($"Song Position: {Conductor.Instance.position}")
+                .AppendLine($"Crochet: {Conductor.Instance.crochet} // StepCrochet: {Conductor.Instance.stepCrochet}")
+                .AppendLine($"Step: {Conductor.Instance.curStep} // Beat: {Conductor.Instance.curBeat} // Section: {Conductor.Instance.curSection}")
+                .Append($"Decimal Beat: {Conductor.Instance.curDecBeat} // Decimal Step: {Conductor.Instance.curDecStep} // Decimal Section: {Conductor.Instance.curDecSection}");
         }
         
         DebugLabel.Text = debugText.ToString();
