@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://rahjtmlrruke"]
 
-[ext_resource type="Script" path="res://src/gameplay/objects/scripts/Character2D.cs" id="1_fwpqp"]
+[ext_resource type="Script" path="res://src/gameplay/objects/classes/scripts/Character2D.cs" id="1_fwpqp"]
 [ext_resource type="Texture2D" uid="uid://bjts1v21hgv87" path="res://common/characters/bf/icon.png" id="2_o74du"]
 [ext_resource type="SpriteFrames" uid="uid://x7ep0vbtqibp" path="res://common/characters/bf/images/normal.res" id="3_4qxfk"]
 [ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_o1jdp"]

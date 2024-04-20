@@ -28,7 +28,7 @@ public partial class Alphabet : ReferenceRect
     private readonly Dictionary<char, (string anim, float offset)> boldCharacterData = new()
     {
         { '?', ("-question mark-", -10.0f) }, { '!', ("-exclamation point-", -10.0f) },
-        { '\'', ("-apostrophe-", -5.0f) },
+        { '\'', ("-apostraphie-", -5.0f) },
         { '\"', ("-end quote-", -5.0f) }, { '-', ("-dash-", 20.0f) }, { '*', ("-multiply x-", 20.0f) },
         { '.', ("-period-", 40.0f) }, { ',', ("-comma-", 40.0f) }, { '~', ("", 20.0f) },
         { '\\', ("-back slash-", 0.0f) }, { '/', ("-forward slash-", 0.0f) }
@@ -36,7 +36,7 @@ public partial class Alphabet : ReferenceRect
 
     private readonly Dictionary<char, (string anim, float offset)> nonBoldCharacterData = new()
     {
-        { '\'', ("-apostrophe-", 0.0f) }, { '\\', ("-back slash-", 0.0f) }, { '/', ("-forward slash-", 0.0f) },
+        { '\'', ("-apostraphie-", 0.0f) }, { '\\', ("-back slash-", 0.0f) }, { '/', ("-forward slash-", 0.0f) },
         { '\"', ("-end quote-", 0.0f) }, { '?', ("-question mark-", 0.0f) }, { '!', ("-exclamation point-", 0.0f) },
         { '.', ("-period-", 42.0f) }, { ',', ("-comma-", 42.0f) }, { '-', ("-dash-", 14.0f) },
         { '←', ("-left arrow-", 5.0f) }, { '↓', ("-down arrow-", 5.0f) }, { '↑', ("-up arrow-", 5.0f) },

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace Rubicon.gameplay.objects.classes.song;
+namespace Rubicon.gameplay.objects.classes.chart.resources;
 
 public class SongData
 {

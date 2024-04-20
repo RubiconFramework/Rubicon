@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Rubicon.gameplay.objects.classes.song;
+namespace Rubicon.gameplay.objects.classes.chart.resources;
 
 public class SongSection
 {

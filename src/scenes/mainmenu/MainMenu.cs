@@ -1,6 +1,6 @@
 using Godot.Sharp.Extras;
-using Rubicon.autoload.global.elements;
 using Rubicon.autoload.managers.audiomanager.enums;
+using Rubicon.backend.ui.notification;
 using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
 using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
 

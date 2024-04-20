@@ -1,4 +1,3 @@
-using System;
 using Button = Godot.Button;
 
 namespace Rubicon.scenes.options.elements;

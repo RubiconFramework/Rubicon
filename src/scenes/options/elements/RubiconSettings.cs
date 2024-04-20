@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Rubicon.autoload.global.elements;
 using Rubicon.autoload.managers.audiomanager.enums;
+using Rubicon.backend.ui.notification;
 using Rubicon.scenes.options.submenus.gameplay.enums;
 using Rubicon.scenes.options.submenus.misc.enums;
 

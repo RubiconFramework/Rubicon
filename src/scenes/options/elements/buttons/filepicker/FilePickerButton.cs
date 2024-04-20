@@ -1,6 +1,6 @@
 using Godot.Sharp.Extras;
 
-namespace Rubicon.scenes.options.buttons.filepicker;
+namespace Rubicon.scenes.options.elements.buttons.filepicker;
 
 public partial class FilePickerButton : Button
 {

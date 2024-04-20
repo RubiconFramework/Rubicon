@@ -58,5 +58,4 @@ public partial class TransitionManager : CanvasLayer
             Main.DiscordRpcClient.UpdateDetails(GetTree().CurrentScene.Name);
         }
     }
-
 }

@@ -1,17 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://xmfla0tq4xbf"]
+[gd_scene load_steps=23 format=3 uid="uid://xmfla0tq4xbf"]
 
 [ext_resource type="Script" path="res://src/autoload/managers/audiomanager/AudioManager.cs" id="1_eecsl"]
 [ext_resource type="AudioStream" uid="uid://bq8kvxkx3s0o3" path="res://assets/music/freakyMenu.ogg" id="2_t1ien"]
-[ext_resource type="AudioStream" uid="uid://bxi6bixsvr613" path="res://assets/music/jestersPity.mp3" id="3_rssb1"]
 [ext_resource type="AudioStream" uid="uid://diwgmjurhabs4" path="res://assets/sounds/menus/cancelMenu.ogg" id="4_01b8y"]
 [ext_resource type="AudioStream" uid="uid://b7x3jdhe2v5io" path="res://assets/music/elseVI.mp3" id="4_pjttc"]
 [ext_resource type="AudioStream" uid="uid://c3dugj18aveeb" path="res://assets/sounds/menus/scrollMenu.ogg" id="5_2fdq0"]
 [ext_resource type="AudioStream" uid="uid://coosocb1aq48x" path="res://assets/music/FireMenuSong.ogg" id="5_tx55a"]
-[ext_resource type="AudioStream" uid="uid://b2i1621vxgaxo" path="res://assets/music/Snowlight.mp3" id="6_8g77p"]
 [ext_resource type="AudioStream" uid="uid://cob3felu4jsrl" path="res://assets/sounds/menus/confirmMenu.ogg" id="6_74pqv"]
 [ext_resource type="SpriteFrames" uid="uid://csiqsia2r7f2" path="res://assets/miscicons/volumeIcons.res" id="7_xr3dk"]
 [ext_resource type="Theme" uid="uid://cnaffdtymkcv2" path="res://assets/themes/duo/AudioManager [Duo].tres" id="10_5qjre"]
-[ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="10_hkver"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7v5m"]
 bg_color = Color(0.215686, 0.215686, 0.215686, 0.498039)
@@ -232,6 +229,9 @@ _data = {
 "RESET": SubResource("Animation_spay7")
 }
 
+[sub_resource type="SystemFont" id="SystemFont_7l78e"]
+font_names = PackedStringArray("Cascadia Code")
+
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_eecsl")
 
@@ -242,16 +242,10 @@ stream = ExtResource("2_t1ien")
 
 [node name="jestersPity" type="AudioStreamPlayer" parent="music"]
 editor_description = "what the fuck is this duo"
-stream = ExtResource("3_rssb1")
+stream = ExtResource("5_tx55a")
 
 [node name="elseVI" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("4_pjttc")
-
-[node name="AbsoluteBanger" type="AudioStreamPlayer" parent="music"]
-stream = ExtResource("5_tx55a")
-
-[node name="Snowlight" type="AudioStreamPlayer" parent="music"]
-stream = ExtResource("6_8g77p")
 
 [node name="sounds" type="Node" parent="."]
 
@@ -325,7 +319,6 @@ libraries = {
 }
 
 [node name="Rect" type="ColorRect" parent="VolumeManagerPanel/Player"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -334,7 +327,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="Container" type="HBoxContainer" parent="VolumeManagerPanel"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -371,9 +363,9 @@ animation = &"mid"
 
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Master"]
 layout_mode = 0
-offset_left = 21.0
+offset_left = 28.0
 offset_top = 269.0
-offset_right = 207.0
+offset_right = 214.0
 offset_bottom = 285.0
 theme = ExtResource("10_5qjre")
 step = 5.0
@@ -382,20 +374,20 @@ rounded = true
 
 [node name="Label" type="Label" parent="VolumeManagerPanel/Container/Master/HSlider"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -123.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -133.0
 offset_right = 90.0
-offset_bottom = -90.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_7l78e")
+theme_override_font_sizes/font_size = 25
 text = "Master [50%]"
+horizontal_alignment = 1
 
 [node name="Music" type="Panel" parent="VolumeManagerPanel/Container"]
 layout_mode = 2
@@ -417,10 +409,9 @@ sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Music"]
-layout_mode = 0
-offset_left = 21.0
+offset_left = 28.0
 offset_top = 269.0
-offset_right = 207.0
+offset_right = 214.0
 offset_bottom = 285.0
 theme = ExtResource("10_5qjre")
 step = 5.0
@@ -429,53 +420,25 @@ rounded = true
 
 [node name="Label" type="Label" parent="VolumeManagerPanel/Container/Music/HSlider"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -123.0
-offset_right = 75.0
-offset_bottom = -99.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -133.0
+offset_right = 90.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_7l78e")
+theme_override_font_sizes/font_size = 25
 text = "Music [50%]"
+horizontal_alignment = 1
 
 [node name="SFX" type="Panel" parent="VolumeManagerPanel/Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("10_5qjre")
-
-[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/SFX"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 269.0
-offset_right = 207.0
-offset_bottom = 285.0
-theme = ExtResource("10_5qjre")
-step = 5.0
-value = 50.0
-rounded = true
-
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/SFX/HSlider"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -67.0
-offset_top = -123.0
-offset_right = 67.0
-offset_bottom = -91.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
-text = "SFX [50%]"
 
 [node name="Button" type="Button" parent="VolumeManagerPanel/Container/SFX"]
 layout_mode = 0
@@ -491,38 +454,37 @@ scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
-[node name="Inst" type="Panel" parent="VolumeManagerPanel/Container"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("10_5qjre")
-
-[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Inst"]
-layout_mode = 0
-offset_left = 21.0
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/SFX"]
+offset_left = 28.0
 offset_top = 269.0
-offset_right = 207.0
+offset_right = 214.0
 offset_bottom = 285.0
 theme = ExtResource("10_5qjre")
 step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Inst/HSlider"]
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/SFX/HSlider"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.547
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.547
-offset_left = -69.0
-offset_top = -125.491
-offset_right = 69.0
-offset_bottom = -93.491
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -133.0
+offset_right = 90.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
-text = "Inst [50%]"
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_7l78e")
+theme_override_font_sizes/font_size = 25
+text = "SFX [50%]"
+horizontal_alignment = 1
+
+[node name="Inst" type="Panel" parent="VolumeManagerPanel/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
 
 [node name="Button" type="Button" parent="VolumeManagerPanel/Container/Inst"]
 layout_mode = 0
@@ -538,38 +500,37 @@ scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
-[node name="Voices" type="Panel" parent="VolumeManagerPanel/Container"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("10_5qjre")
-
-[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Voices"]
-layout_mode = 0
-offset_left = 21.0
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Inst"]
+offset_left = 28.0
 offset_top = 269.0
-offset_right = 207.0
+offset_right = 214.0
 offset_bottom = 285.0
 theme = ExtResource("10_5qjre")
 step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Voices/HSlider"]
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Inst/HSlider"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.507
-anchor_top = 0.548
-anchor_right = 0.507
-anchor_bottom = 0.548
-offset_left = -82.302
-offset_top = -125.544
-offset_right = 82.698
-offset_bottom = -94.544
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -133.0
+offset_right = 90.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("10_hkver")
-theme_override_font_sizes/font_size = 30
-text = "Voices [50%]"
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_7l78e")
+theme_override_font_sizes/font_size = 25
+text = "Inst [50%]"
+horizontal_alignment = 1
+
+[node name="Voices" type="Panel" parent="VolumeManagerPanel/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_5qjre")
 
 [node name="Button" type="Button" parent="VolumeManagerPanel/Container/Voices"]
 layout_mode = 0
@@ -584,3 +545,30 @@ position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
+
+[node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Voices"]
+offset_left = 28.0
+offset_top = 269.0
+offset_right = 214.0
+offset_bottom = 285.0
+theme = ExtResource("10_5qjre")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Label" type="Label" parent="VolumeManagerPanel/Container/Voices/HSlider"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -133.0
+offset_right = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("SystemFont_7l78e")
+theme_override_font_sizes/font_size = 25
+text = "Voices [50%]"
+horizontal_alignment = 1

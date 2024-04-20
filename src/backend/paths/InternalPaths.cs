@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Rubicon.common;
+namespace Rubicon.backend.paths;
 
 /// <summary>
 /// stuff done inside the godot filesystem

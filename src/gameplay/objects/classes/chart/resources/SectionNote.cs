@@ -1,4 +1,4 @@
-namespace Rubicon.gameplay.objects.classes.song;
+namespace Rubicon.gameplay.objects.classes.chart.resources;
 
 public partial class SectionNote : Resource
 {

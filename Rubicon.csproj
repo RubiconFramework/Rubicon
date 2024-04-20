@@ -24,6 +24,10 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="addons\audio_preview\AudioStreamPreview.gd" />
+    <Content Include="addons\audio_preview\AudioStreamPreview.tscn" />
+    <Content Include="addons\audio_preview\voice_preview_generator.gd" />
+    <Content Include="addons\audio_preview\voice_preview_generator.tscn" />
     <Content Include="addons\sparrowconverter\plugin.cfg" />
     <Content Include="addons\sparrowconverter\SparrowConvert.tscn" />
     <Content Include="assets\fonts\alphabet\bold.png" />
@@ -374,8 +378,6 @@
     <Content Include="shared\stages\base\sprites\stagecurtains.png.import" />
     <Content Include="shared\stages\base\sprites\stagefront.png.import" />
     <Content Include="shared\stages\base\sprites\stage_light.png.import" />
-    <Content Include="src\autoload\debug\DebugInfo.tscn" />
-    <Content Include="src\autoload\global\elements\Notification.tscn" />
     <Content Include="src\autoload\global\Main.tscn" />
     <Content Include="src\autoload\managers\audiomanager\AudioManager.tscn" />
     <Content Include="src\autoload\managers\transitionmanager\TransitionManager.tscn" />
@@ -476,6 +478,12 @@
     <Compile Remove="common\stages\base\**" />
     <Compile Remove="src\scenes\options\buttons\keybind\**" />
     <Compile Remove="src\scenes\options\buttons\**" />
+    <Compile Remove="src\autoload\debug\**" />
+    <Compile Remove="src\autoload\global\elements\**" />
+    <Compile Remove="src\gameplay\objects\resources\**" />
+    <Compile Remove="src\gameplay\objects\scripts\**" />
+    <Compile Remove="src\gameplay\objects\classes\song\**" />
+    <Compile Remove="src\autoload\global\objects\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -533,6 +541,12 @@
     <EmbeddedResource Remove="common\stages\base\**" />
     <EmbeddedResource Remove="src\scenes\options\buttons\keybind\**" />
     <EmbeddedResource Remove="src\scenes\options\buttons\**" />
+    <EmbeddedResource Remove="src\autoload\debug\**" />
+    <EmbeddedResource Remove="src\autoload\global\elements\**" />
+    <EmbeddedResource Remove="src\gameplay\objects\resources\**" />
+    <EmbeddedResource Remove="src\gameplay\objects\scripts\**" />
+    <EmbeddedResource Remove="src\gameplay\objects\classes\song\**" />
+    <EmbeddedResource Remove="src\autoload\global\objects\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -569,6 +583,12 @@
     <None Remove="src\common\**" />
     <None Remove="src\scenes\options\buttons\keybind\**" />
     <None Remove="src\scenes\options\buttons\**" />
+    <None Remove="src\autoload\debug\**" />
+    <None Remove="src\autoload\global\elements\**" />
+    <None Remove="src\gameplay\objects\resources\**" />
+    <None Remove="src\gameplay\objects\scripts\**" />
+    <None Remove="src\gameplay\objects\classes\song\**" />
+    <None Remove="src\autoload\global\objects\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

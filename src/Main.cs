@@ -1,9 +1,8 @@
 global using GameplayScene = Rubicon.gameplay.GameplayScene;
 global using Conductor = Rubicon.autoload.global.Conductor;
-global using Main = Rubicon.autoload.global.Main;
-global using Godot;
+global using Godot; 
+global using System;
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,18 +10,18 @@ using DiscordRPC;
 using DiscordRPC.Logging;
 using Godot.Sharp.Extras;
 using Newtonsoft.Json;
-using Rubicon.autoload.global.elements;
-using Rubicon.gameplay.objects.resources;
+using Rubicon.backend.ui.notification;
 using Rubicon.scenes.options.elements;
+using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
 using FileAccess = Godot.FileAccess;
 
-namespace Rubicon.autoload.global;
+namespace Rubicon;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Main : CanvasLayer
 {
 	[Export] public string DiscordRpcClientID = "1218405526677749760";
-	[Export] public string SettingsFilePath = "user://settings.json";
+	[Export] public string SettingsFilePath = "user://settings.cfg";
 	[Export] private Color InfoNotificationColor { get; set; } = new(0.32f,0.32f, 0.32f);
 	[Export] private Color WarningNotificationColor { get; set; } = new(0.79f,0.79f, 0);
 	[Export] private Color ErrorNotificationColor { get; set; } = new(0.70f, 0f, 0f);
@@ -31,7 +30,8 @@ public partial class Main : CanvasLayer
 	public static Main Instance { get; private set; } = new();
 	
  	public static readonly string[] AudioFormats = { "mp3", "ogg", "wav" , "flac" };
-	public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
+    public static readonly string RubiconVersion = ProjectSettings.Singleton.GetSetting("application/config/version", "1").ToString();
+    public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
 	public static RubiconSettings RubiconSettings { get; set; } = new();
 	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);
@@ -108,7 +108,7 @@ public partial class Main : CanvasLayer
             }
         }
     }
-
+    
     public void Alert(string message, bool printToConsole = true, NotificationType type = NotificationType.Info, float duration = 5.0f)
     {
         StackTrace stackTrace = new();
@@ -130,8 +130,8 @@ public partial class Main : CanvasLayer
             switch (type)
             {
                 case NotificationType.Info:
-                    if (printToConsole) GD.Print(fullMessage);
-                    progressBar.AddThemeColorOverride("bg_color", InfoNotificationColor);
+                    if (printToConsole) GD.PrintRich($"[color={InfoNotificationColor}]{fullMessage}[/color]");
+                    progressBar.Modulate = InfoNotificationColor;
                     break;
                 case NotificationType.Warning:
 	                if (printToConsole)
@@ -139,7 +139,7 @@ public partial class Main : CanvasLayer
 		                GD.PushWarning(fullMessage);
 		                GD.PrintRich($"[color={WarningNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
 	                }
-                    progressBar.AddThemeColorOverride("bg_color", WarningNotificationColor);
+	                progressBar.Modulate = WarningNotificationColor;
                     break;
                 case NotificationType.Error:
 	                if (printToConsole)
@@ -147,7 +147,7 @@ public partial class Main : CanvasLayer
 		                GD.PushError(fullMessage);
 		                GD.PrintRich($"[color={ErrorNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
 	                }
-                    progressBar.AddThemeColorOverride("bg_color", ErrorNotificationColor);
+	                progressBar.Modulate = ErrorNotificationColor;
                     break;
             }
 
@@ -237,7 +237,7 @@ public partial class Main : CanvasLayer
 					Assets = new()
 					{
 						LargeImageKey = "image_large",
-						LargeImageText = $"Framework Version {ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}",
+						LargeImageText = $"Version {ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "Debug" : "Release")} Build",
 					}
 				});
 			}

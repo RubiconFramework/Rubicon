@@ -1,7 +1,6 @@
-using System;
 using Godot.Sharp.Extras;
 using Newtonsoft.Json;
-using Rubicon.autoload.global.elements;
+using Rubicon.backend.ui.notification;
 using Rubicon.scenes.options.elements;
 using Rubicon.scenes.options.elements.enums;
 using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;

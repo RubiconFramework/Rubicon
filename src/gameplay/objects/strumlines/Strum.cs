@@ -1,5 +1,3 @@
-using Rubicon.gameplay.objects.scripts;
-
 namespace Rubicon.gameplay.objects.strumlines;
 
 public partial class Strum : AnimatedSprite2D

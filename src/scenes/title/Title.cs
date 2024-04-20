@@ -1,9 +1,8 @@
 using Godot.Collections;
 using Godot.Sharp.Extras;
-using Rubicon.autoload.global.elements;
 using Rubicon.autoload.managers.audiomanager.enums;
 using Rubicon.backend.ui.alphabet;
-using Rubicon.gameplay;
+using Rubicon.backend.ui.notification;
 using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
 using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
 
@@ -46,13 +45,8 @@ public partial class Title : Conductor
 	public override void _Ready()
 	{
 		this.OnReady();
-		var instance = GD.Load<PackedScene>("res://src/gameplay/mariomadnessreference.tscn").Instantiate() as mariomadnessreference;
-		if (instance != null)
-		{
-			instance = new mariomadnessreference("overdue is mid", "i said so", 2);
-			AddChild(instance);
-		}
-
+		AudioManager.Instance.PlayAudio(AudioType.Music, "elseVI", 0.5f, true);
+		
 		if (GD.RandRange(1, 500000) == 30000)
 		{
 			lol.Play();
@@ -65,7 +59,6 @@ public partial class Title : Conductor
 				TransitionManager.Instance.ChangeScene("res://src/scenes/mainmenu/MainMenu.tscn");
 			};
 		}
-		else AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
 
 		TitleEnter.Play("Press Enter to Begin");
 		LoadedIntroTexts = GetIntroTexts();

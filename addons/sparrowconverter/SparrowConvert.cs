@@ -1,5 +1,3 @@
-using System;
-
 namespace Rubicon.addons.sparrowconverter;
 [Tool]
 public partial class SparrowConvert : EditorPlugin

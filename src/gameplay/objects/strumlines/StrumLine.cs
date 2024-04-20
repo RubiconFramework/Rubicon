@@ -1,5 +1,4 @@
-using System;
-using Rubicon.gameplay.objects.resources;
+using UIStyle = Rubicon.gameplay.objects.classes.scripts.UIStyle;
 
 namespace Rubicon.gameplay.objects.strumlines;
 

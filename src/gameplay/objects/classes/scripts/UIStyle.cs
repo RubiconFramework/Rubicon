@@ -1,4 +1,4 @@
-namespace Rubicon.gameplay.objects.resources;
+namespace Rubicon.gameplay.objects.classes.scripts;
 
 public partial class UIStyle : Resource
 {

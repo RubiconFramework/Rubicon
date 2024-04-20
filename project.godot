@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Rubicon"
 config/description="hi"
-config/version="1.0.0"
+config/version="1"
 config/tags=PackedStringArray("2d", "fnf", "framework", "rhythm")
 run/main_scene="res://src/scenes/title/Title.tscn"
 config/use_custom_user_dir=true
@@ -31,11 +31,11 @@ buses/default_bus_layout="res://assets/themes/default_bus_layout.tres"
 
 [autoload]
 
-Main="*res://src/autoload/global/Main.tscn"
+Main="*res://src/Main.tscn"
 Conductor="*res://src/autoload/global/Conductor.cs"
 AudioManager="*res://src/autoload/managers/audiomanager/AudioManager.tscn"
 TransitionManager="*res://src/autoload/managers/transitionmanager/TransitionManager.tscn"
-DebugInfo="*res://src/autoload/debug/DebugInfo.tscn"
+DebugInfo="*res://src/autoload/global/DebugInfo.tscn"
 
 [debug]
 

@@ -1,14 +1,18 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot.Sharp.Extras;
-using Rubicon.common;
-using Rubicon.gameplay.objects.classes.song;
-using Rubicon.gameplay.objects.resources;
-using Rubicon.gameplay.objects.scripts;
+using Rubicon.backend.paths;
 using Rubicon.gameplay.objects.strumlines;
 using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
+using Character2D = Rubicon.gameplay.objects.classes.scripts.Character2D;
+using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
+using Note = Rubicon.gameplay.objects.strumlines.Note;
+using NoteGroup = Rubicon.gameplay.objects.strumlines.NoteGroup;
+using ScriptGroup = Rubicon.gameplay.objects.classes.scripts.ScriptGroup;
+using Section = Rubicon.gameplay.objects.classes.chart.resources.Section;
+using SectionNote = Rubicon.gameplay.objects.classes.chart.resources.SectionNote;
 using Stage = Rubicon.common.stages.basestage.Stage;
+using UIStyle = Rubicon.gameplay.objects.classes.scripts.UIStyle;
 
 namespace Rubicon.gameplay;
 

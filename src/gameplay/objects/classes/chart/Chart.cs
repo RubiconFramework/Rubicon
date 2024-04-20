@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
-using Rubicon.common;
-using Rubicon.gameplay.objects.classes.song;
+using Rubicon.backend.paths;
+using Rubicon.gameplay.objects.classes.chart.resources;
 using FileAccess = Godot.FileAccess;
 
-namespace Rubicon.gameplay.objects.resources;
+namespace Rubicon.gameplay.objects.classes.chart;
 
 [Serializable]
 public partial class Chart : Resource

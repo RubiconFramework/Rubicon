@@ -1,8 +1,8 @@
-using System;
 using Godot.Collections;
 using Rubicon.autoload.managers.audiomanager;
-using Rubicon.gameplay.objects.classes.song;
-using Rubicon.gameplay.objects.resources;
+using BPMChangeEvent = Rubicon.gameplay.objects.classes.chart.resources.BPMChangeEvent;
+using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
+using Section = Rubicon.gameplay.objects.classes.chart.resources.Section;
 
 namespace Rubicon.autoload.global;
 
