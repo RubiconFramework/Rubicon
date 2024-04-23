@@ -409,6 +409,7 @@ sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Music"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
 offset_right = 214.0
@@ -455,6 +456,7 @@ sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/SFX"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
 offset_right = 214.0
@@ -501,6 +503,7 @@ sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Inst"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
 offset_right = 214.0
@@ -547,6 +550,7 @@ sprite_frames = ExtResource("7_xr3dk")
 animation = &"mid"
 
 [node name="HSlider" type="HSlider" parent="VolumeManagerPanel/Container/Voices"]
+layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
 offset_right = 214.0

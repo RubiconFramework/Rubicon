@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot.Sharp.Extras;
-using Rubicon.scenes.options.elements;
+using BaseSubmenu = Rubicon.scenes.options.objects.BaseSubmenu;
 
 namespace Rubicon.scenes.options.submenus.keybinds;
 

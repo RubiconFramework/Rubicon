@@ -1,6 +1,6 @@
 using Godot.Sharp.Extras;
 using Rubicon.autoload.managers.audiomanager.enums;
-using Rubicon.scenes.options.elements;
+using BaseSubmenu = Rubicon.scenes.options.objects.BaseSubmenu;
 
 namespace Rubicon.scenes.options.submenus.audio;
 

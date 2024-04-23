@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnxj6k6gqye8h"]
 
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/elements/buttons/slider/LabelSlider.tscn" id="1_n3lqj"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/objects/buttons/slider/LabelSlider.tscn" id="1_n3lqj"]
 [ext_resource type="Script" path="res://src/scenes/options/submenus/video/Video.cs" id="1_nq2e8"]
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="2_72u2y"]
-[ext_resource type="PackedScene" uid="uid://33ned2004gs" path="res://src/scenes/options/elements/buttons/colorpicker/ColorPickerButton.tscn" id="4_o8pgm"]
+[ext_resource type="PackedScene" uid="uid://33ned2004gs" path="res://src/scenes/options/objects/buttons/colorpicker/ColorPickerButton.tscn" id="4_o8pgm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)

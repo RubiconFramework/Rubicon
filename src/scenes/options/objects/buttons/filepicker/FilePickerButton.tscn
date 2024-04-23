@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmjkawcoslaw4"]
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_eurbb"]
-[ext_resource type="Script" path="res://src/scenes/options/elements/buttons/filepicker/FilePickerButton.cs" id="2_0hlfg"]
+[ext_resource type="Script" path="res://src/scenes/options/objects/buttons/filepicker/FilePickerButton.cs" id="2_0hlfg"]
 
 [sub_resource type="Animation" id="Animation_q3lj8"]
 resource_name = "End"

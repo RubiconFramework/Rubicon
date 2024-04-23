@@ -4,7 +4,7 @@ using System.Text;
 using Rubicon.autoload.managers.audiomanager.enums;
 using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
 
-namespace Rubicon.scenes.options.elements;
+namespace Rubicon.scenes.options.objects;
 
 public class HelperMethods
 {

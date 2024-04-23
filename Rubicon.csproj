@@ -383,8 +383,12 @@
     <Content Include="src\autoload\managers\transitionmanager\TransitionManager.tscn" />
     <Content Include="src\backend\ui\alphabet\Alphabet.tscn" />
     <Content Include="src\gameplay\GameplayScene.tscn" />
-    <Content Include="src\scenes\options\elements\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
-    <Content Include="src\scenes\title\introTexts.txt" />
+    <Content Include="src\scenes\freeplay\objects\resources\Song.gd" />
+    <Content Include="src\scenes\freeplay\objects\resources\Song.tres" />
+    <Content Include="src\scenes\freeplay\objects\resources\SongList.gd" />
+    <Content Include="src\scenes\freeplay\objects\resources\SongList.tres" />
+    <Content Include="src\scenes\options\objects\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
+    <Content Include="src\scenes\options\objects\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg.import" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -484,6 +488,9 @@
     <Compile Remove="src\gameplay\objects\scripts\**" />
     <Compile Remove="src\gameplay\objects\classes\song\**" />
     <Compile Remove="src\autoload\global\objects\**" />
+    <Compile Remove="src\scenes\title\objects\**" />
+    <Compile Remove="src\scenes\options\elements\**" />
+    <Compile Remove="src\scenes\options\objects\nodes\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -547,6 +554,9 @@
     <EmbeddedResource Remove="src\gameplay\objects\scripts\**" />
     <EmbeddedResource Remove="src\gameplay\objects\classes\song\**" />
     <EmbeddedResource Remove="src\autoload\global\objects\**" />
+    <EmbeddedResource Remove="src\scenes\title\objects\**" />
+    <EmbeddedResource Remove="src\scenes\options\elements\**" />
+    <EmbeddedResource Remove="src\scenes\options\objects\nodes\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -589,6 +599,9 @@
     <None Remove="src\gameplay\objects\scripts\**" />
     <None Remove="src\gameplay\objects\classes\song\**" />
     <None Remove="src\autoload\global\objects\**" />
+    <None Remove="src\scenes\title\objects\**" />
+    <None Remove="src\scenes\options\elements\**" />
+    <None Remove="src\scenes\options\objects\nodes\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

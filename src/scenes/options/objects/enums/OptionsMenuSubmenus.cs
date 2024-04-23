@@ -1,4 +1,4 @@
-namespace Rubicon.scenes.options.elements.enums;
+namespace Rubicon.scenes.options.objects.enums;
 
 enum OptionsMenuSubmenus
 {

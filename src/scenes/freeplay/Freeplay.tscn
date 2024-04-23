@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh6hbnu7rv3qu"]
+[gd_scene load_steps=5 format=3 uid="uid://dh6hbnu7rv3qu"]
 
 [ext_resource type="Script" path="res://src/scenes/freeplay/Freeplay.cs" id="1_87x0w"]
 [ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="2_i8v56"]
+[ext_resource type="Resource" uid="uid://c4o8wltmp6qne" path="res://src/scenes/freeplay/objects/resources/SongList.tres" id="2_ujpgb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eol8c"]
 
 [node name="Freeplay" type="Node"]
 script = ExtResource("1_87x0w")
+SongList = ExtResource("2_ujpgb")
 
 [node name="BG" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_eol8c")

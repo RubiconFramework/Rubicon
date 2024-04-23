@@ -5,7 +5,7 @@ using Rubicon.backend.ui.notification;
 using Rubicon.scenes.options.submenus.gameplay.enums;
 using Rubicon.scenes.options.submenus.misc.enums;
 
-namespace Rubicon.scenes.options.elements;
+namespace Rubicon.scenes.options.objects;
 
 public class RubiconSettings
 {

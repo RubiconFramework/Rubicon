@@ -11,7 +11,7 @@ using DiscordRPC.Logging;
 using Godot.Sharp.Extras;
 using Newtonsoft.Json;
 using Rubicon.backend.ui.notification;
-using Rubicon.scenes.options.elements;
+using Rubicon.scenes.options.objects;
 using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
 using FileAccess = Godot.FileAccess;
 

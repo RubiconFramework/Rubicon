@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/scenes/options/OptionsMenu.cs" id="1_025u3"]
 [ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="5_aor24"]
-[ext_resource type="Texture2D" uid="uid://bngy4xd5trnmk" path="res://src/scenes/options/elements/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
+[ext_resource type="Texture2D" uid="uid://bngy4xd5trnmk" path="res://src/scenes/options/objects/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
 [ext_resource type="PackedScene" uid="uid://v36c2nyp63w7" path="res://src/scenes/options/submenus/gameplay/Gameplay.tscn" id="5_f4aaq"]
 [ext_resource type="PackedScene" uid="uid://cvqw4i11yg6m0" path="res://src/scenes/options/submenus/audio/Audio.tscn" id="6_bm6i0"]
 [ext_resource type="PackedScene" uid="uid://cnxj6k6gqye8h" path="res://src/scenes/options/submenus/video/Video.tscn" id="7_mhcac"]
