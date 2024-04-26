@@ -1,13 +1,12 @@
-using Godot.Sharp.Extras;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
+using Rubicon.scenes.freeplay.objects.resources;
 
 namespace Rubicon.scenes.freeplay;
 
 public partial class Freeplay : Node
 {
-    [Resource("res://src/scenes/freeplay/objects/resources/SongList.tres")] 
-    [Export]
-    public Resource SongList;
+    [Export(PropertyHint.ArrayType, "res://src/scenes/freeplay/objects/resources/FreeplaySong.tres")]
+    private Array<FreeplaySong> Songs = new();
     
     public override void _Ready()
     {

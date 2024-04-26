@@ -1,9 +1,9 @@
-using Godot.Sharp.Extras;
 using Newtonsoft.Json;
 using Rubicon.backend.ui.notification;
 using Rubicon.scenes.options.objects;
 using Rubicon.scenes.options.objects.enums;
-using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
+using DiscordRichPresence = Rubicon.common.autoload.DiscordRichPresence;
+using TransitionManager = Rubicon.common.autoload.managers.TransitionManager;
 
 namespace Rubicon.scenes.options;
 public partial class OptionsMenu : Control
@@ -39,7 +39,7 @@ public partial class OptionsMenu : Control
 
 	public override void _ExitTree()
 	{
-		if (Main.RubiconSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState(string.Empty);
+		if (Main.RubiconSettings.Misc.DiscordRichPresence) DiscordRichPresence.Client.UpdateState(string.Empty);
 	}
 	
 	public override void _Ready()
@@ -59,11 +59,11 @@ public partial class OptionsMenu : Control
 			{
 				Main.RubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
 				Main.RubiconSettings.Save();
-				Main.Instance.Alert("Settings imported.");
+				Main.Instance.SendNotification("Settings imported.");
 			}
 			catch (Exception e)
 			{
-				Main.Instance.Alert($"Failed to import settings: {e.Message}", true, NotificationType.Error);
+				Main.Instance.SendNotification($"Failed to import settings: {e.Message}", true, NotificationType.Error);
 			}
 		};
 
@@ -72,11 +72,11 @@ public partial class OptionsMenu : Control
 			try
 			{
 				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(Main.RubiconSettings)));
-				Main.Instance.Alert("Settings exported and copied to clipboard.");
+				Main.Instance.SendNotification("Settings exported and copied to clipboard.");
 			}
 			catch (Exception e)
 			{
-				Main.Instance.Alert($"Failed to export settings: {e.Message}", true, NotificationType.Error);
+				Main.Instance.SendNotification($"Failed to export settings: {e.Message}", true, NotificationType.Error);
 			}
 		};
 	}
@@ -151,7 +151,7 @@ public partial class OptionsMenu : Control
 
 	private void UpdateSubmenuUI()
 	{
-		if (Main.RubiconSettings.Misc.DiscordRichPresence) Main.DiscordRpcClient.UpdateState($"Current Submenu: {CurrentSubmenu}");
+		if (Main.RubiconSettings.Misc.DiscordRichPresence) DiscordRichPresence.Client.UpdateState($"Current Submenu: {CurrentSubmenu}");
 		
 		GameplaySubmenuButton.Text = "Gameplay";
 		VideoSubmenuButton.Text = "Video";

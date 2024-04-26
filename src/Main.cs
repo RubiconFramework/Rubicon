@@ -1,27 +1,22 @@
 global using GameplayScene = Rubicon.gameplay.GameplayScene;
-global using Conductor = Rubicon.autoload.global.Conductor;
+global using Conductor = Rubicon.common.autoload.Conductor;
 global using Godot; 
 global using System;
+global using Godot.Sharp.Extras;
 
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using DiscordRPC;
-using DiscordRPC.Logging;
-using Godot.Sharp.Extras;
-using Newtonsoft.Json;
 using Rubicon.backend.ui.notification;
 using Rubicon.scenes.options.objects;
 using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
-using FileAccess = Godot.FileAccess;
+using DiscordRichPresence = Rubicon.common.autoload.DiscordRichPresence;
 
 namespace Rubicon;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Main : CanvasLayer
 {
-	[Export] public string DiscordRpcClientID = "1218405526677749760";
-	[Export] public string SettingsFilePath = "user://settings.cfg";
 	[Export] private Color InfoNotificationColor { get; set; } = new(0.32f,0.32f, 0.32f);
 	[Export] private Color WarningNotificationColor { get; set; } = new(0.79f,0.79f, 0);
 	[Export] private Color ErrorNotificationColor { get; set; } = new(0.70f, 0f, 0f);
@@ -33,8 +28,8 @@ public partial class Main : CanvasLayer
     public static readonly string RubiconVersion = ProjectSettings.Singleton.GetSetting("application/config/version", "1").ToString();
     public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
-	public static RubiconSettings RubiconSettings { get; set; } = new();
-	public static DiscordRpcClient DiscordRpcClient = new(Instance.DiscordRpcClientID);
+    public const string SettingsFilePath = "user://settings.cfg";
+    public static RubiconSettings RubiconSettings { get; set; } = new(SettingsFilePath);
 	
 	[NodePath("Notification")] private Panel NotificationInstance;
 	private Queue<(Panel, double)> notificationQueue = new();
@@ -54,7 +49,7 @@ public partial class Main : CanvasLayer
 
 			if (dir == "Rubicon/Engine" && projectName != "Rubicon")
 			{
-				Alert("New project name has been found. Reload project.godot for it to apply.");
+				SendNotification("New project name has been found. Reload project.godot for it to apply.");
 				ProjectSettings.SetSetting("application/config/custom_user_dir_name", $"Rubicon/{projectName}");
 				ProjectSettings.Save();
 			}
@@ -62,23 +57,22 @@ public partial class Main : CanvasLayer
 			{
 				if (dir != "Rubicon/Engine" && projectName == "Rubicon")
 				{
-					Alert("Base engine detected. Reload project.godot for it to apply.");
+					SendNotification("Base engine detected. Reload project.godot for it to apply.");
 					ProjectSettings.SetSetting("application/config/custom_user_dir_name", "Rubicon/Engine");
 					ProjectSettings.Save();
 				}
-				else Alert($"Data stored at: user://{dir}");
+				else SendNotification($"Data stored at: user://{dir}");
 			}
 		}
 		
-		DiscordRPC(true);
-		LoadSettings(SettingsFilePath);
+		DiscordRichPresence.Instance.Enable(true);
 	}
 
 	public override void _ExitTree()
 	{
 		base._ExitTree();
 		RubiconSettings = null;
-		DiscordRPC(false);
+		DiscordRichPresence.Instance.Enable(true);
 	}
 
     public override void _Process(double delta)
@@ -109,7 +103,7 @@ public partial class Main : CanvasLayer
         }
     }
     
-    public void Alert(string message, bool printToConsole = true, NotificationType type = NotificationType.Info, float duration = 5.0f)
+    public void SendNotification(string message, bool printToConsole = true, NotificationType type = NotificationType.Info, float duration = 5.0f)
     {
         StackTrace stackTrace = new();
         StackFrame stackFrame = stackTrace.GetFrame(1);
@@ -181,78 +175,4 @@ public partial class Main : CanvasLayer
             yOffset += panel.GetRect().Size.Y + 10;
         }
     }
-
-	public static void LoadSettings(string path)
-	{
-		try
-		{
-			RubiconSettings rubiconSettings = new();
-			if (FileAccess.FileExists(path))
-			{
-				var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);
-				string json = jsonData.GetAsText();
-
-				if (!string.IsNullOrEmpty(json))
-				{
-					rubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(json);
-					if (rubiconSettings != null)
-					{
-						RubiconSettings = rubiconSettings;
-						GD.Print($"Settings loaded from file. [{path}]");
-					}
-				}
-			}
-			else
-			{
-				Instance.Alert("Settings file not found. Writing default settings to file.");
-				rubiconSettings.GetDefaultSettings().Save();
-				RubiconSettings = rubiconSettings;
-			}
-		}
-		catch (Exception e)
-		{
-			GD.PrintErr($"Failed to load or write default settings: {e.Message}");
-			throw;
-		}
-	}
-
-	public void DiscordRPC(bool enable)
-	{
-		try
-		{
-			if (enable)
-			{
-				if (DiscordRpcClient.IsDisposed) DiscordRpcClient = new(DiscordRpcClientID);
-				
-				if (!DiscordRpcClient.IsInitialized)
-				{
-					DiscordRpcClient.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
-					DiscordRpcClient.OnReady += (_, e) => GD.Print($"Discord RPC: Received Ready from user: {e.User.Username}");
-					DiscordRpcClient.Initialize();
-				}
-				
-				DiscordRpcClient.SetPresence(new()
-				{
-					Details = GetTree().CurrentScene?.Name ?? "Unknown Scene",
-					Assets = new()
-					{
-						LargeImageKey = "image_large",
-						LargeImageText = $"Version {ProjectSettings.Singleton.GetSetting("application/config/version", "1.0").ToString()} {(OS.IsDebugBuild() ? "Debug" : "Release")} Build",
-					}
-				});
-			}
-			else
-			{
-				if (DiscordRpcClient.IsInitialized)
-				{
-					DiscordRpcClient.ClearPresence();
-					DiscordRpcClient.Dispose();
-				}
-			}
-		}
-		catch (Exception ex)
-		{
-			GD.PrintErr($"Error {(enable ? "initializing" : "disabling")} Discord RPC: {ex.Message}");
-		}
-	}
 }

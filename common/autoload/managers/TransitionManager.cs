@@ -1,6 +1,6 @@
 using Rubicon.scenes.options.submenus.misc.enums;
 
-namespace Rubicon.autoload.managers.transitionmanager;
+namespace Rubicon.common.autoload.managers;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class TransitionManager : CanvasLayer
@@ -19,7 +19,7 @@ public partial class TransitionManager : CanvasLayer
         {
             GetTree().ChangeSceneToFile(path);
             await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
-            Main.DiscordRpcClient.UpdateDetails(GetTree().CurrentScene.Name);
+            DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
             return;
         }
         
@@ -32,7 +32,7 @@ public partial class TransitionManager : CanvasLayer
             GetTree().ChangeSceneToFile(path);
             player.Play("End");
             await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
-            Main.DiscordRpcClient.UpdateDetails(GetTree().CurrentScene.Name);
+            DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
         }
     }
     
@@ -42,7 +42,7 @@ public partial class TransitionManager : CanvasLayer
         {
             GetTree().ChangeSceneToFile(path);
             await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-            Main.DiscordRpcClient.UpdateDetails(GetTree().CurrentScene.Name);
+            DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
             return;
         }
 
@@ -55,7 +55,7 @@ public partial class TransitionManager : CanvasLayer
             GetTree().ChangeSceneToFile(path);
             player.Play("End");
             await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-            Main.DiscordRpcClient.UpdateDetails(GetTree().CurrentScene.Name);
+            DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
         }
     }
 }

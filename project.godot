@@ -32,10 +32,12 @@ buses/default_bus_layout="res://assets/themes/default_bus_layout.tres"
 [autoload]
 
 Main="*res://src/Main.tscn"
-Conductor="*res://src/autoload/global/Conductor.cs"
-AudioManager="*res://src/autoload/managers/audiomanager/AudioManager.tscn"
-TransitionManager="*res://src/autoload/managers/transitionmanager/TransitionManager.tscn"
-DebugInfo="*res://src/autoload/global/DebugInfo.tscn"
+DiscordRichPresence="*res://common/autoload/DiscordRichPresence.cs"
+Conductor="*res://common/autoload/Conductor.cs"
+AudioManager="*res://common/autoload/managers/AudioManager.tscn"
+VolumeManager="*res://common/autoload/managers/VolumeManager.tscn"
+TransitionManager="*res://common/autoload/managers/TransitionManager.tscn"
+DebugInfo="*res://common/autoload/DebugInfo.tscn"
 
 [debug]
 

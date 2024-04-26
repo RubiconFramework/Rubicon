@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://xmfla0tq4xbf"]
+
+[ext_resource type="Script" path="res://common/autoload/managers/AudioManager.cs" id="1_ilqme"]
+[ext_resource type="AudioStream" uid="uid://bq8kvxkx3s0o3" path="res://assets/music/freakyMenu.ogg" id="2_buy5r"]
+[ext_resource type="AudioStream" uid="uid://coosocb1aq48x" path="res://assets/music/FireMenuSong.ogg" id="3_ym4yh"]
+[ext_resource type="AudioStream" uid="uid://b7x3jdhe2v5io" path="res://assets/music/elseVI.mp3" id="4_xfark"]
+[ext_resource type="AudioStream" uid="uid://diwgmjurhabs4" path="res://assets/sounds/menus/cancelMenu.ogg" id="5_uhr3w"]
+[ext_resource type="AudioStream" uid="uid://c3dugj18aveeb" path="res://assets/sounds/menus/scrollMenu.ogg" id="6_rj4hm"]
+[ext_resource type="AudioStream" uid="uid://cob3felu4jsrl" path="res://assets/sounds/menus/confirmMenu.ogg" id="7_ku5mx"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_ilqme")
+
+[node name="music" type="Node" parent="."]
+
+[node name="freakyMenu" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("2_buy5r")
+
+[node name="jestersPity" type="AudioStreamPlayer" parent="music"]
+editor_description = "what the fuck is this duo"
+stream = ExtResource("3_ym4yh")
+
+[node name="elseVI" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("4_xfark")
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="menus" type="Node" parent="sounds"]
+
+[node name="cancelMenu" type="AudioStreamPlayer" parent="sounds/menus"]
+stream = ExtResource("5_uhr3w")
+max_polyphony = 10
+
+[node name="scrollMenu" type="AudioStreamPlayer" parent="sounds/menus"]
+stream = ExtResource("6_rj4hm")
+max_polyphony = 10
+
+[node name="confirmMenu" type="AudioStreamPlayer" parent="sounds/menus"]
+stream = ExtResource("7_ku5mx")
+max_polyphony = 10

@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Rubicon.autoload.managers.audiomanager.enums;
 using Rubicon.backend.ui.notification;
+using Rubicon.common.autoload.managers.enums;
 using Rubicon.scenes.options.submenus.gameplay.enums;
 using Rubicon.scenes.options.submenus.misc.enums;
 
@@ -9,6 +9,42 @@ namespace Rubicon.scenes.options.objects;
 
 public class RubiconSettings
 {
+    public RubiconSettings(string path)
+    {
+        try
+        {
+            RubiconSettings rubiconSettings = new();
+            if (FileAccess.FileExists(path))
+            {
+                var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+                string json = jsonData.GetAsText();
+
+                if (!string.IsNullOrEmpty(json))
+                {
+                    rubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(json);
+                    if (rubiconSettings != null)
+                    {
+                        Main.RubiconSettings = rubiconSettings;
+                        GD.Print($"Settings loaded from file. [{path}]");
+                    }
+                }
+            }
+            else
+            {
+                Main.Instance.SendNotification("Settings file not found. Writing default settings to file.");
+                rubiconSettings.GetDefaultSettings().Save();
+                Main.RubiconSettings = rubiconSettings;
+            }
+        }
+        catch (Exception e)
+        {
+            Main.Instance.SendNotification($"Failed to load or write default settings: {e.Message}", true, NotificationType.Error);
+            throw;
+        }
+    }
+    
+    public RubiconSettings(){} //just returns the class
+    
     public readonly GameplaySettings Gameplay = new();
     public readonly AudioSettings Audio = new();
     public readonly VideoSettings Video = new();
@@ -59,7 +95,7 @@ public class RubiconSettings
         {
             if (Main.RubiconSettings == null)
             {
-                Main.Instance.Alert("Settings object is null.", true, NotificationType.Error);
+                Main.Instance.SendNotification("Settings object is null.", true, NotificationType.Error);
                 return;
             }
 
@@ -70,10 +106,10 @@ public class RubiconSettings
             };
         
             string jsonData = JsonConvert.SerializeObject(Main.RubiconSettings, settings);
-            using var file = FileAccess.Open(Main.Instance.SettingsFilePath, FileAccess.ModeFlags.Write);
+            using var file = FileAccess.Open(Main.SettingsFilePath, FileAccess.ModeFlags.Write);
             if (file == null)
             {
-                Main.Instance.Alert("Failed to open settings file for writing.", true, NotificationType.Error);
+                Main.Instance.SendNotification("Failed to open settings file for writing.", true, NotificationType.Error);
                 return;
             }
 
@@ -81,7 +117,7 @@ public class RubiconSettings
         }
         catch (Exception e)
         {
-            Main.Instance.Alert($"Failed to save settings: {e.Message}", true, NotificationType.Error);
+            Main.Instance.SendNotification($"Failed to save settings: {e.Message}", true, NotificationType.Error);
         }
     }
 }

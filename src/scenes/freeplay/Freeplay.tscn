@@ -1,17 +1,159 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh6hbnu7rv3qu"]
+[gd_scene load_steps=4 format=3 uid="uid://dh6hbnu7rv3qu"]
 
 [ext_resource type="Script" path="res://src/scenes/freeplay/Freeplay.cs" id="1_87x0w"]
 [ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="2_i8v56"]
-[ext_resource type="Resource" uid="uid://c4o8wltmp6qne" path="res://src/scenes/freeplay/objects/resources/SongList.tres" id="2_ujpgb"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eol8c"]
+[ext_resource type="Theme" uid="uid://bhiai7ytosyn4" path="res://assets/themes/duo/Freeplay [Duo].tres" id="4_oepd6"]
 
 [node name="Freeplay" type="Node"]
 script = ExtResource("1_87x0w")
-SongList = ExtResource("2_ujpgb")
 
 [node name="BG" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_eol8c")
 position = Vector2(683, 384)
 scale = Vector2(1.06221, 1.05205)
 texture = ExtResource("2_i8v56")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 42.0
+offset_top = 33.0
+offset_right = 1324.0
+offset_bottom = 735.0
+theme = ExtResource("4_oepd6")
+
+[node name="SongList" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_right = 904.0
+offset_bottom = 702.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/SongList"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -423.5
+offset_top = -331.5
+offset_right = 423.5
+offset_bottom = 331.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/SongList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Song" type="Button" parent="Panel/SongList/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_oepd6")
+text = "Null <-"
+alignment = 0
+
+[node name="SongDifficulties" type="OptionButton" parent="Panel/SongList/ScrollContainer/VBoxContainer/Song"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("4_oepd6")
+alignment = 1
+item_count = 3
+selected = 0
+popup/item_0/text = "Hard"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Easy"
+popup/item_2/id = 2
+
+[node name="SongDescription" type="Control" parent="Panel"]
+anchors_preset = 0
+offset_left = 908.0
+offset_right = 1282.0
+offset_bottom = 702.0
+
+[node name="ColorRect" type="ColorRect" parent="Panel/SongDescription"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.478431)
+
+[node name="Play" type="Button" parent="Panel/SongDescription"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -76.0
+offset_right = 134.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme = ExtResource("4_oepd6")
+text = "Play"
+
+[node name="icon placeholder" type="Label" parent="Panel/SongDescription"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 80.0
+offset_right = 353.0
+offset_bottom = 111.0
+theme = ExtResource("4_oepd6")
+text = "icon goes here"
+horizontal_alignment = 1
+
+[node name="SongDisplayName" type="Label" parent="Panel/SongDescription"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 225.0
+offset_right = 353.0
+offset_bottom = 256.0
+theme = ExtResource("4_oepd6")
+text = "Song Name"
+horizontal_alignment = 1
+
+[node name="SongScore" type="Label" parent="Panel/SongDescription"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 256.0
+offset_right = 353.0
+offset_bottom = 287.0
+theme = ExtResource("4_oepd6")
+text = "Score: 0"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SongDescription" type="Label" parent="Panel/SongDescription"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 323.0
+offset_right = 353.0
+offset_bottom = 434.0
+theme = ExtResource("4_oepd6")
+text = "Song Description (i have a hole in my brain and my name is cuphead)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 905.0
+offset_top = -351.0
+offset_right = 909.0
+offset_bottom = 351.0
+grow_vertical = 2
+theme = ExtResource("4_oepd6")

@@ -163,6 +163,10 @@
     <Content Include="assets\translations\rubicon.english.translation" />
     <Content Include="assets\translations\rubicon.spanish.translation" />
     <Content Include="assets\videos\fnb twitter.ogv" />
+    <Content Include="common\autoload\DebugInfo.tscn" />
+    <Content Include="common\autoload\managers\AudioManager.tscn" />
+    <Content Include="common\autoload\managers\TransitionManager.tscn" />
+    <Content Include="common\autoload\managers\VolumeManager.tscn" />
     <Content Include="common\characters\bfPixel\bfPixel.tscn" />
     <Content Include="common\characters\bfPixel\bfPixelDead.tscn" />
     <Content Include="common\characters\bfPixel\icon.png" />
@@ -378,15 +382,9 @@
     <Content Include="shared\stages\base\sprites\stagecurtains.png.import" />
     <Content Include="shared\stages\base\sprites\stagefront.png.import" />
     <Content Include="shared\stages\base\sprites\stage_light.png.import" />
-    <Content Include="src\autoload\global\Main.tscn" />
-    <Content Include="src\autoload\managers\audiomanager\AudioManager.tscn" />
-    <Content Include="src\autoload\managers\transitionmanager\TransitionManager.tscn" />
     <Content Include="src\backend\ui\alphabet\Alphabet.tscn" />
     <Content Include="src\gameplay\GameplayScene.tscn" />
-    <Content Include="src\scenes\freeplay\objects\resources\Song.gd" />
-    <Content Include="src\scenes\freeplay\objects\resources\Song.tres" />
-    <Content Include="src\scenes\freeplay\objects\resources\SongList.gd" />
-    <Content Include="src\scenes\freeplay\objects\resources\SongList.tres" />
+    <Content Include="src\scenes\freeplay\objects\resources\FreeplaySong.tres" />
     <Content Include="src\scenes\options\objects\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
     <Content Include="src\scenes\options\objects\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg.import" />
   </ItemGroup>
@@ -454,6 +452,7 @@
     <Compile Remove="src\backend\autoload\debug\ScreenNotifier\**" />
     <Compile Remove="src\backend\common\**" />
     <Compile Remove="src\backend\scripts\nuclearbombs\**" />
+    <Compile Include="autoload\Conductor.cs" />
     <Compile Include="src\backend\autoload\debug\screennotifier\NotificationType.cs" />
     <Compile Include="src\backend\autoload\debug\screennotifier\ScreenNotifier.cs" />
     <Compile Remove="src\backend\autoload\debug\screennotifier\**" />
@@ -477,7 +476,6 @@
     <Compile Remove="src\backend\scripts\filesystems\**" />
     <Compile Remove="src\backend\scripts\**" />
     <Compile Remove="src\backend\autoload\**" />
-    <Compile Remove="autoload\**" />
     <Compile Remove="src\common\**" />
     <Compile Remove="common\stages\base\**" />
     <Compile Remove="src\scenes\options\buttons\keybind\**" />
@@ -491,6 +489,12 @@
     <Compile Remove="src\scenes\title\objects\**" />
     <Compile Remove="src\scenes\options\elements\**" />
     <Compile Remove="src\scenes\options\objects\nodes\**" />
+    <Compile Remove="src\autoload\managers\audiomanager\**" />
+    <Compile Remove="src\autoload\managers\transitionmanager\**" />
+    <Compile Remove="src\autoload\global\**" />
+    <Compile Remove="src\autoload\**" />
+    <Compile Remove="autoload\**" />
+    <Compile Remove="common\autoload\managers\audio\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -543,7 +547,6 @@
     <EmbeddedResource Remove="src\backend\scripts\filesystems\**" />
     <EmbeddedResource Remove="src\backend\scripts\**" />
     <EmbeddedResource Remove="src\backend\autoload\**" />
-    <EmbeddedResource Remove="autoload\**" />
     <EmbeddedResource Remove="src\common\**" />
     <EmbeddedResource Remove="common\stages\base\**" />
     <EmbeddedResource Remove="src\scenes\options\buttons\keybind\**" />
@@ -557,6 +560,12 @@
     <EmbeddedResource Remove="src\scenes\title\objects\**" />
     <EmbeddedResource Remove="src\scenes\options\elements\**" />
     <EmbeddedResource Remove="src\scenes\options\objects\nodes\**" />
+    <EmbeddedResource Remove="src\autoload\managers\audiomanager\**" />
+    <EmbeddedResource Remove="src\autoload\managers\transitionmanager\**" />
+    <EmbeddedResource Remove="src\autoload\global\**" />
+    <EmbeddedResource Remove="src\autoload\**" />
+    <EmbeddedResource Remove="autoload\**" />
+    <EmbeddedResource Remove="common\autoload\managers\audio\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -602,6 +611,10 @@
     <None Remove="src\scenes\title\objects\**" />
     <None Remove="src\scenes\options\elements\**" />
     <None Remove="src\scenes\options\objects\nodes\**" />
+    <None Remove="src\autoload\managers\audiomanager\**" />
+    <None Remove="src\autoload\managers\transitionmanager\**" />
+    <None Remove="src\autoload\global\**" />
+    <None Remove="src\autoload\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

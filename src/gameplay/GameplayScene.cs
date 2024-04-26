@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Godot.Sharp.Extras;
 using Rubicon.backend.paths;
 using Rubicon.gameplay.objects.strumlines;
-using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
+using AudioManager = Rubicon.common.autoload.managers.AudioManager;
 using Character2D = Rubicon.gameplay.objects.classes.scripts.Character2D;
 using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
 using Note = Rubicon.gameplay.objects.strumlines.Note;
@@ -16,7 +15,7 @@ using UIStyle = Rubicon.gameplay.objects.classes.scripts.UIStyle;
 
 namespace Rubicon.gameplay;
 
-public partial class GameplayScene : Conductor
+public partial class GameplayScene : common.autoload.Conductor
 {
 	private Dictionary<string, Note> CachedNotes { get; set; } = new();
 	private List<SectionNote> NoteData { get; set; } = new();

@@ -1,12 +1,11 @@
-using Godot.Sharp.Extras;
-using Rubicon.autoload.managers.audiomanager.enums;
 using Rubicon.backend.ui.notification;
-using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
-using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
+using Rubicon.common.autoload.managers.enums;
+using AudioManager = Rubicon.common.autoload.managers.AudioManager;
+using TransitionManager = Rubicon.common.autoload.managers.TransitionManager;
 
 namespace Rubicon.scenes.mainmenu;
 
-public partial class MainMenu : Conductor
+public partial class MainMenu : common.autoload.Conductor
 {
 	[NodePath("Camera2D")] private Camera2D camera;
 	[NodePath("BG/MenuBGMagenta")] private Sprite2D bgMagenta;
@@ -74,7 +73,7 @@ public partial class MainMenu : Conductor
 			case "freeplay": TransitionManager.Instance.ChangeScene("res://src/gameplay/GameplayScene.tscn"); break;
 			case "options": TransitionManager.Instance.ChangeScene("res://src/scenes/options/OptionsMenu.tscn"); break;
 			default:
-				Main.Instance.Alert($"Scene {buttonName} not found lol", true, NotificationType.Warning);
+				Main.Instance.SendNotification($"Scene {buttonName} not found lol", true, NotificationType.Warning);
 				TransitionManager.Instance.ChangeScene("res://src/scenes/MainMenu.tscn");
 				break;
 		}

@@ -1,9 +1,8 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
-using Godot.Sharp.Extras;
 
-namespace Rubicon.autoload.global;
+namespace Rubicon.common.autoload;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class DebugInfo : CanvasLayer
@@ -25,7 +24,7 @@ public partial class DebugInfo : CanvasLayer
     {
         this.OnReady();
         if (!OS.IsDebugBuild()) VRAMLabel.Text = "VRAM is Unavailable.";
-        VersionLabel.Text = $"Rubicon Framework {Rubicon.Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+        VersionLabel.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
     }
 
     public override void _PhysicsProcess(double delta)

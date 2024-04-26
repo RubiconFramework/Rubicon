@@ -1,10 +1,10 @@
 using Godot.Collections;
-using Rubicon.autoload.managers.audiomanager;
+using AudioManager = Rubicon.common.autoload.managers.AudioManager;
 using BPMChangeEvent = Rubicon.gameplay.objects.classes.chart.resources.BPMChangeEvent;
 using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
 using Section = Rubicon.gameplay.objects.classes.chart.resources.Section;
 
-namespace Rubicon.autoload.global;
+namespace Rubicon.common.autoload;
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Conductor : Node
@@ -127,10 +127,8 @@ public partial class Conductor : Node
     //the functions here are the math to calculate the current step, beat and section
     private void updateCurStep()
     {
-        var lastBPMChange = getBPMFromSeconds((float)position);
-        var ass = position - lastBPMChange.songTime / stepCrochet;
-        curDecStep = lastBPMChange.stepTime + ass;
-        curStep = lastBPMChange.stepTime + Mathf.FloorToInt(ass);
+        curDecStep = getBPMFromSeconds((float)position).stepTime + position - getBPMFromSeconds((float)position).songTime / stepCrochet;
+        curStep = getBPMFromSeconds((float)position).stepTime + Mathf.FloorToInt(position - getBPMFromSeconds((float)position).songTime / stepCrochet);
     }
 
     private void updateBeat(){

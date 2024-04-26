@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bd6rfrayedosy"]
 
-[ext_resource type="Script" path="res://src/autoload/managers/transitionmanager/TransitionManager.cs" id="1_owh6s"]
+[ext_resource type="Script" path="res://common/autoload/managers/TransitionManager.cs" id="1_owh6s"]
 [ext_resource type="Shader" path="res://assets/shaders/Diamond.gdshader" id="2_22krj"]
 [ext_resource type="Shader" path="res://assets/shaders/saw.gdshader" id="2_y2hyg"]
 
@@ -405,7 +405,7 @@ libraries = {
 
 [node name="Rect" type="TextureRect" parent="Vanilla"]
 visible = false
-offset_top = 768.0
+offset_top = -768.0
 offset_right = 1366.0
-offset_bottom = 2304.0
+offset_bottom = 768.0
 texture = SubResource("GradientTexture2D_3m4ks")

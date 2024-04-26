@@ -1,8 +1,9 @@
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Rubicon.autoload.managers.audiomanager.enums;
-using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
+using Rubicon.common.autoload.managers.enums;
+using DiscordRichPresence = Rubicon.common.autoload.DiscordRichPresence;
+using VolumeManager = Rubicon.common.autoload.managers.VolumeManager;
 
 namespace Rubicon.scenes.options.objects;
 
@@ -14,23 +15,23 @@ public class HelperMethods
         {
             case VolumeType.MasterVolume:
                 Main.RubiconSettings.Audio.MasterVolume = v;
-                AudioManager.Instance.ChangeVolume(v);
+                VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.MusicVolume:
                 Main.RubiconSettings.Audio.MusicVolume = v;
-                AudioManager.Instance.ChangeVolume(v);
+                VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.SFXVolume:
                 Main.RubiconSettings.Audio.SFXVolume = v;
-                AudioManager.Instance.ChangeVolume(v);
+                VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.InstVolume:
                 Main.RubiconSettings.Audio.InstVolume = v;
-                AudioManager.Instance.ChangeVolume(v);
+                VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.VoiceVolume:
                 Main.RubiconSettings.Audio.VoiceVolume = v;
-                AudioManager.Instance.ChangeVolume(v);
+                VolumeManager.Instance.ChangeVolume(v);
                 break;
         }
     }
@@ -63,7 +64,7 @@ public class HelperMethods
     public void SetDiscordRPC(bool v)
     {
         Main.RubiconSettings.Misc.DiscordRichPresence = v;
-        Main.Instance.DiscordRPC(v);
+        DiscordRichPresence.Instance.Enable(v);
     }
     
     public static string CompressString(string text)

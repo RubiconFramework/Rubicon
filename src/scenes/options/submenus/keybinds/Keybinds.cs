@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Godot.Sharp.Extras;
 using BaseSubmenu = Rubicon.scenes.options.objects.BaseSubmenu;
 
 namespace Rubicon.scenes.options.submenus.keybinds;
@@ -75,11 +74,11 @@ public partial class Keybinds : BaseSubmenu
                 InputMap.ActionEraseEvent(action, eventToRemove);
                 buttonKeybindings.Remove(button);
                 button.QueueFree();
-                Main.Instance.Alert($"Button {button.Text.Trim()} removed from keybinds (Action: {action})");
+                Main.Instance.SendNotification($"Button {button.Text.Trim()} removed from keybinds (Action: {action})");
             }
-            else Main.Instance.Alert($"Button {button.Text.Trim()} not found in keybinds for action {action}");
+            else Main.Instance.SendNotification($"Button {button.Text.Trim()} not found in keybinds for action {action}");
         }
-        else Main.Instance.Alert($"Button {button.Text} not found in keybinds");
+        else Main.Instance.SendNotification($"Button {button.Text} not found in keybinds");
 
         currentKeybindButton = null;
         isPickingKeybind = false;
@@ -96,7 +95,7 @@ public partial class Keybinds : BaseSubmenu
         OptionsMenu.Instance.KeybindLabel.Text = $"{keyEvent.Keycode} Selected.";
 
         InputMap.ActionEraseEvents(buttonKeybindings[currentKeybindButton]);
-        Main.Instance.Alert($"{OS.GetKeycodeString(inputEventKey.Keycode)} bound to {buttonKeybindings[currentKeybindButton]}");
+        Main.Instance.SendNotification($"{OS.GetKeycodeString(inputEventKey.Keycode)} bound to {buttonKeybindings[currentKeybindButton]}");
         currentKeybindButton = null;
         isPickingKeybind = false;
         OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickedKeybind");

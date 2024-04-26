@@ -1,5 +1,3 @@
-using Godot.Sharp.Extras;
-
 namespace Rubicon.gameplay.objects.classes.scripts;
 
 public partial class Character2D : Node2D

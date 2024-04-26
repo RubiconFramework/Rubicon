@@ -1,14 +1,13 @@
 using Godot.Collections;
-using Godot.Sharp.Extras;
-using Rubicon.autoload.managers.audiomanager.enums;
 using Rubicon.backend.ui.alphabet;
 using Rubicon.backend.ui.notification;
-using AudioManager = Rubicon.autoload.managers.audiomanager.AudioManager;
-using TransitionManager = Rubicon.autoload.managers.transitionmanager.TransitionManager;
+using Rubicon.common.autoload.managers.enums;
+using AudioManager = Rubicon.common.autoload.managers.AudioManager;
+using TransitionManager = Rubicon.common.autoload.managers.TransitionManager;
 
 namespace Rubicon.scenes.title;
 
-public partial class Title : Conductor
+public partial class Title : common.autoload.Conductor
 {
 	[NodePath("TitleGroup/Girlfriend/AnimationPlayer")] private AnimationPlayer Girlfriend;
 	[NodePath("TitleGroup/Logo")] private AnimatedSprite2D Logo;
@@ -183,7 +182,7 @@ public partial class Title : Conductor
 			return textLines[randomIndex].Split("--");   
 		}
 
-		Main.Instance.Alert("Intro Texts file is null. Skipping.", true, NotificationType.Error);
+		Main.Instance.SendNotification("Intro Texts file is null. Skipping.", true, NotificationType.Error);
 		return null;
 	}
 }

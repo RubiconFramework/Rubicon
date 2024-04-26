@@ -5,7 +5,6 @@
 
 [node name="Main" type="CanvasLayer"]
 script = ExtResource("1_5actk")
-ErrorNotificationColor = Color(0.701961, 0, 0, 1)
 
 [node name="Notification" parent="." instance=ExtResource("2_omd1b")]
 visible = false

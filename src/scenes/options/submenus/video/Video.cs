@@ -1,4 +1,3 @@
-using Godot.Sharp.Extras;
 using BaseSubmenu = Rubicon.scenes.options.objects.BaseSubmenu;
 
 namespace Rubicon.scenes.options.submenus.video;
