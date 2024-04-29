@@ -30,13 +30,6 @@ theme = ExtResource("1_dut1v")
 keep_pressed_outside = true
 text = "Downscroll"
 
-[node name="SectionSeparator2" type="Label" parent="Container"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Note Settings ///"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ScrollSpeed" parent="Container" instance=ExtResource("3_8cjpt")]
 layout_mode = 2
 text = " Scroll Speed [1.5]"

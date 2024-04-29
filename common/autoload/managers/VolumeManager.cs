@@ -2,18 +2,20 @@ using System.Collections.Generic;
 
 namespace Rubicon.common.autoload.managers;
 
+[Icon("res://assets/miscicons/autoload.png")]
 public partial class VolumeManager : CanvasLayer
 {
-    [NodePath("MasterVolume/Player")] private AnimationPlayer MasterVolumeAnimPlayer;
-    [NodePath("MasterVolume/Panel/Icon")] private AnimatedSprite2D MasterVolumeIcon;
-    [NodePath("MasterVolume/Panel/Bar")] private ProgressBar MasterVolumeBar;
+	[NodePath("Player")] private AnimationPlayer AnimPlayer;
+
+	[NodePath("MasterVolumeLabel")] private Label MasterVolumeLabel;
+	[NodePath("MasterVolumeLabel/Icon")] private AnimatedSprite2D MasterVolumeIcon;
+    [NodePath("MasterVolumeLabel/Bar")] private ProgressBar MasterVolumeBar;
 	
-    [NodePath("Player")] private AnimationPlayer VolumePanelAnimPlayer;
-    [NodePath("Container/Master")] private Panel MasterVolumePanel;
-    [NodePath("Container/Music")] private Panel MusicVolumePanel; 
-    [NodePath("Container/SFX")] private Panel SFXVolumePanel;
-    [NodePath("Container/Inst")] private Panel InstVolumePanel;
-    [NodePath("Container/Voices")] private Panel VoiceVolumePanel;
+    [NodePath("Containers/Master")] private Panel MasterVolumePanel;
+    [NodePath("Containers/Music")] private Panel MusicVolumePanel; 
+    [NodePath("Containers/SFX")] private Panel SFXVolumePanel;
+    [NodePath("Containers/Inst")] private Panel InstVolumePanel;
+    [NodePath("Containers/Voices")] private Panel VoiceVolumePanel;
 
     private float _masterVolume;
     public float MasterVolume
@@ -59,7 +61,7 @@ public partial class VolumeManager : CanvasLayer
     private float preMuteVolume = 50;
     private double animationTimer;
 
-    public static VolumeManager Instance { get; set; }
+    public static VolumeManager Instance { get; private set; }
 
     public override void _EnterTree() => Instance = this;
 
@@ -120,17 +122,20 @@ public partial class VolumeManager : CanvasLayer
     public override void _PhysicsProcess(double delta)
     {
 	    base._PhysicsProcess(delta);
-	    MasterVolumeBar.Value = Mathf.Lerp(MasterVolumeBar.Value, Main.RubiconSettings.Audio.MasterVolume, delta * 10);
+	    if (MasterVolumeLabel.Visible)
+		    MasterVolumeBar.Value = Mathf.Lerp(MasterVolumeBar.Value, Main.RubiconSettings.Audio.MasterVolume, delta * 5);
 
 	    if (Input.IsActionJustPressed("master_volume_up") && !isVolumePanelShown)
 	    {
-		    float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume + 5, 0, 100);
+		    float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume + 10, 0, 100);
+		    MasterVolumeLabel.Text = $"Master Volume {newVolume}%";
 		    ChangeVolume(newVolume);
 		    PlayVolumeAnimation();
 	    }
 	    else if (Input.IsActionJustPressed("master_volume_down") && !isVolumePanelShown)
 	    {
-		    float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume - 5, 0, 100);
+		    float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume - 10, 0, 100);
+		    MasterVolumeLabel.Text = $"Master Volume {newVolume}%";
 		    ChangeVolume(newVolume);
 		    PlayVolumeAnimation();
 	    }
@@ -140,19 +145,20 @@ public partial class VolumeManager : CanvasLayer
 		    float newVolume = mute ? 0 : preMuteVolume;
 		    ChangeVolume(newVolume, 0, mute);
 		    isMuted = mute;
+		    MasterVolumeLabel.Text = $"Master Volume Muted";
 		    PlayVolumeAnimation();
 	    }
-
-	    MasterVolumePanel.GetNode<HSlider>("HSlider").Value = Main.RubiconSettings.Audio.MasterVolume;
-	    UpdateLabel(GetNode<Label>("Container/Master/HSlider/Label"), "Master", Main.RubiconSettings.Audio.MasterVolume);
-	    UpdateButtonSprite(GetNode<AnimatedSprite2D>("Container/Master/Button/Icon"), Main.RubiconSettings.Audio.MasterVolume);
+	    
+	    GetNode<HSlider>("Containers/Master/HSlider").Value = Main.RubiconSettings.Audio.MasterVolume;
+	    UpdateLabel(GetNode<Label>("Containers/Master/HSlider/Label"), "Master", Main.RubiconSettings.Audio.MasterVolume);
+	    UpdateButtonSprite(GetNode<AnimatedSprite2D>("Containers/Master/Button/Icon"), Main.RubiconSettings.Audio.MasterVolume);
 
 	    void PlayVolumeAnimation()
 	    {
 		    animationTimer = 0.0;
-		    if (!isMasterVolumeBarShown && !MasterVolumeAnimPlayer.IsPlaying())
+		    if (!isMasterVolumeBarShown && !AnimPlayer.IsPlaying())
 		    {
-			    MasterVolumeAnimPlayer.Play("In");
+			    AnimPlayer.Play("MasterPanel/In");
 			    isMasterVolumeBarShown = true;
 		    }
 	    }
@@ -162,7 +168,7 @@ public partial class VolumeManager : CanvasLayer
 		    animationTimer += delta;
 		    if (animationTimer >= AnimationDuration)
 		    {
-			    MasterVolumeAnimPlayer.Play("Out");
+			    AnimPlayer.Play("MasterPanel/Out");
 			    isMasterVolumeBarShown = false;
 		    }
 	    }
@@ -172,14 +178,14 @@ public partial class VolumeManager : CanvasLayer
     {
 	    if (@event is InputEventKey { KeyLabel: Key.Escape } && isVolumePanelShown)
 	    {
-		    VolumePanelAnimPlayer.Play("Out");
+		    AnimPlayer.Play("AllPanels/Out");
 		    isVolumePanelShown = false;
 		    return;
 	    }
 
-	    if (Input.IsActionPressed("open_volume_manager") && !isVolumePanelShown && !VolumePanelAnimPlayer.IsPlaying())
+	    if (Input.IsActionPressed("open_volume_manager") && !isVolumePanelShown && !AnimPlayer.IsPlaying())
 	    {
-		    VolumePanelAnimPlayer.Play("In");
+		    AnimPlayer.Play("AllPanels/In");
 		    isVolumePanelShown = true;
 	    }
     }

@@ -18,80 +18,111 @@ public partial class AudioManager : Node
 	public override void _Ready()
 	{
 		this.OnReady();
+    }
 
-		var Audio = Main.RubiconSettings.Audio;
-		foreach (var volumeSetting in new[] {Audio.MasterVolume, Audio.SFXVolume, Audio.InstVolume, Audio.MusicVolume, Audio.VoiceVolume}) 
-			VolumeManager.Instance.ChangeVolume(volumeSetting);
-	}
+    public AudioStreamPlayer PlayAudio(AudioType type, string path, float volume = 1, bool loop = false)
+    {
+        GD.Print("PlayAudio called with type: " + type + ", path: " + path + ", volume: " + volume + ", loop: " + loop);
 
-	public AudioStreamPlayer PlayAudio(AudioType type, string path, float volume = 1, bool loop = false)
-	{
-		if (type == AudioType.Music)
-		{
-			foreach(var node in GetNode(type.ToString().ToLower()).GetChildren())
-			{
-				var playerBullshit = (AudioStreamPlayer)node;
-				playerBullshit.Stop();
-			}   
-		}
+        string nodePath = $"{type.ToString().ToLower()}/{path}";
+        GD.Print("Checking for existing player at path: " + nodePath);
+        AudioStreamPlayer player = GetNodeOrNull<AudioStreamPlayer>(nodePath);
 
-		var player = GetNodeOrNull<AudioStreamPlayer>($"{type.ToString().ToLower()}/{path}");
-		if (player != null && type == AudioType.Music && player.Playing && player.Stream == GD.Load<AudioStream>(ConstructAudioPath(path, type.ToString().ToLower()))) return player;
+        if (player != null && type == AudioType.Music && player.Playing && player.Stream ==
+            GD.Load<AudioStream>(ConstructAudioPath(path, type.ToString().ToLower())))
+        {
+            GD.Print("Found existing player: " + player.GetPath());
+            return player;
+        }
 
-		if (player is null)
-		{
-			string finalPath = ConstructAudioPath(path, type.ToString().ToLower());
-			if (string.IsNullOrEmpty(finalPath)) return null;
-			var audiostream = GD.Load<AudioStream>(finalPath);
+        if (player == null)
+        {
+            GD.Print("Player not found, creating new player");
+            string finalPath = ConstructAudioPath(path, type.ToString().ToLower());
+            if (string.IsNullOrEmpty(finalPath))
+            {
+                GD.PrintErr("Audio file not found for path: " + path);
+                return null;
+            }
 
-			player = new()
-			{
-				Stream = audiostream,
-				VolumeDb = LinearToDB(volume),
-				Autoplay = true,
-			};
-		
-			GetNode<Node>($"{type.ToString().ToLower()}/{path}").AddChild(player);
-			player.Finished += () => player.QueueFree();
-		}
+            GD.Print("Loading audio stream from: " + finalPath);
+            var audiostream = GD.Load<AudioStream>(finalPath);
+            player = new AudioStreamPlayer
+            {
+                Stream = audiostream,
+                VolumeDb = LinearToDB(volume),
+                Autoplay = true
+            };
 
-		player.Finished += () =>
-		{
-			if (loop && type == AudioType.Music) player.Play();
-		};
+            GD.Print("Creating new player node: " + player.GetPath());
 
-		player.Play();
-		if (type == AudioType.Music) music = player;
-		return player;
-	}
+            Node parentNode = GetNodeOrNull<Node>(type.ToString().ToLower());
+            if (parentNode == null)
+            {
+                GD.Print("Parent node not found, creating new parent node");
+                parentNode = new Node();
+                AddChild(parentNode);
+            }
 
-	public AudioStreamPlayer PlayMusic(string path, float volume = 1f)
-	{
-		AudioStreamPlayer player = new()
-		{
-			Stream = GD.Load<AudioStream>(path),
-			VolumeDb = LinearToDB(volume),
-			Autoplay = false
-		};
-		return player;
-	}
+            GD.Print("Adding player node to parent node: " + parentNode.GetPath());
+            parentNode.AddChild(player);
+            player.Finished += () =>
+            {
+                GD.Print("Player finished: " + player.GetPath());
+                player.QueueFree();
+            };
+        }
 
-	public void StopAudio(AudioType type, string path)
-	{
-		var player = GetNodeOrNull<AudioStreamPlayer>($"{type.ToString().ToLower()}/{path}");
-		player?.Stop();
-		player?.QueueFree();
-	}
+        player.Finished += () =>
+        {
+            if (loop)
+            {
+                GD.Print("Looping player: " + player.GetPath());
+                player.Play();
+            }
+        };
 
-	private static string ConstructAudioPath(string path, string type)
-	{
-		foreach (var format in Main.AudioFormats)
-		{
-			string formattedPath = $"res://assets/{type}/{path}.{format}";
-			if (ResourceLoader.Exists(formattedPath)) return formattedPath;
-		}
-		return string.Empty;
-	}
+        GD.Print("Playing player: " + player.GetPath());
+        player.Play();
+
+        if (type == AudioType.Music)
+        {
+            GD.Print("Setting current music player: " + player.GetPath());
+            music = player;
+        }
+
+        return player;
+    }
+
+    public AudioStreamPlayer PlayMusic(string path, float volume = 1f)
+    {
+        AudioStreamPlayer player = new()
+        {
+            Stream = GD.Load<AudioStream>(path),
+            VolumeDb = LinearToDB(volume),
+            Autoplay = false
+        };
+        return player;
+    }
+
+    public void StopAudio(AudioType type, string path)
+    {
+        var player = GetNodeOrNull<AudioStreamPlayer>($"{type.ToString().ToLower()}/{path}");
+        player?.Stop();
+        player?.QueueFree();
+    }
+
+    private static string ConstructAudioPath(string path, string type)
+    {
+        foreach (var format in Main.AudioFormats)
+        {
+            string formattedPath = $"res://assets/{type}/{path}.{format}";
+            if (ResourceLoader.Exists(formattedPath))
+                return formattedPath;
+        }
+
+        return string.Empty;
+    }
 	
 	public static float LinearToDB(float linear)
 	{

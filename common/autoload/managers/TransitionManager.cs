@@ -1,5 +1,3 @@
-using Rubicon.scenes.options.submenus.misc.enums;
-
 namespace Rubicon.common.autoload.managers;
 
 [Icon("res://assets/miscicons/autoload.png")]

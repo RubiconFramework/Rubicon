@@ -4,7 +4,15 @@
 [ext_resource type="SpriteFrames" uid="uid://csiqsia2r7f2" path="res://assets/miscicons/volumeIcons.res" id="2_p8h41"]
 [ext_resource type="Theme" uid="uid://cnaffdtymkcv2" path="res://assets/themes/duo/AudioManager [Duo].tres" id="3_hqtuf"]
 
-[sub_resource type="Animation" id="Animation_uprq7"]
+[sub_resource type="Animation" id="Animation_spay7"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fanfs"]
+_data = {
+"RESET": SubResource("Animation_spay7")
+}
+
+[sub_resource type="Animation" id="Animation_kf0kn"]
 resource_name = "In"
 length = 0.3
 tracks/0/type = "value"
@@ -34,7 +42,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Container:modulate")
+tracks/2/path = NodePath("Containers:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -46,7 +54,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Container:visible")
+tracks/3/path = NodePath("Containers:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -56,7 +64,7 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_pfrco"]
+[sub_resource type="Animation" id="Animation_aucvn"]
 resource_name = "Out"
 length = 0.3
 tracks/0/type = "value"
@@ -86,7 +94,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Container:modulate")
+tracks/2/path = NodePath("Containers:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -98,7 +106,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Container:visible")
+tracks/3/path = NodePath("Containers:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -108,130 +116,101 @@ tracks/3/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_spay7"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fanfs"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vlfpd"]
 _data = {
-"In": SubResource("Animation_uprq7"),
-"Out": SubResource("Animation_pfrco"),
-"RESET": SubResource("Animation_spay7")
+"In": SubResource("Animation_kf0kn"),
+"Out": SubResource("Animation_aucvn")
+}
+
+[sub_resource type="Animation" id="Animation_xq270"]
+resource_name = "In"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MasterVolumeLabel:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.229739, 59.7141),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MasterVolumeLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_uux61"]
+resource_name = "Out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MasterVolumeLabel:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.277392, 0.229739),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MasterVolumeLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qdv13"]
+_data = {
+"In": SubResource("Animation_xq270"),
+"Out": SubResource("Animation_uux61")
 }
 
 [sub_resource type="SystemFont" id="SystemFont_g7okm"]
 font_names = PackedStringArray("Cascadia Code")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agfk8"]
-bg_color = Color(0.215686, 0.215686, 0.215686, 0.498039)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+[sub_resource type="SystemFont" id="SystemFont_tul1h"]
+font_names = PackedStringArray("Cascadia Mono")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_01cgd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7du1"]
+bg_color = Color(0, 0, 0, 0.505882)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg8i7"]
-bg_color = Color(0.345098, 0.345098, 0.345098, 0.584314)
+bg_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_re87m"]
-bg_color = Color(1, 1, 1, 0.694118)
+bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="Animation" id="Animation_60ns1"]
-resource_name = "In"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../MasterVolume/Panel/Bar:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../MasterVolume/Panel/Icon:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../MasterVolume/Panel:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1.8025, 1),
-"update": 0,
-"values": [Vector2(0, 1), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_dbg63"]
-resource_name = "Out"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../MasterVolume/Panel/Bar:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../MasterVolume/Panel/Icon:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../MasterVolume/Panel:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1.8025),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_uco4k"]
-length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2ws5"]
-_data = {
-"In": SubResource("Animation_60ns1"),
-"Out": SubResource("Animation_dbg63"),
-"RESET": SubResource("Animation_uco4k")
-}
-
-[node name="VolumeManagerPanel" type="CanvasLayer"]
+[node name="VolumeManager" type="CanvasLayer"]
 script = ExtResource("1_5v2rm")
 
 [node name="Player" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_fanfs")
+"": SubResource("AnimationLibrary_fanfs"),
+"AllPanels": SubResource("AnimationLibrary_vlfpd"),
+"MasterPanel": SubResource("AnimationLibrary_qdv13")
 }
 
 [node name="Rect" type="ColorRect" parent="Player"]
@@ -239,11 +218,13 @@ visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="Container" type="HBoxContainer" parent="."]
+[node name="Containers" type="HBoxContainer" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
@@ -260,12 +241,12 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Master" type="Panel" parent="Container"]
+[node name="Master" type="Panel" parent="Containers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_hqtuf")
 
-[node name="Button" type="Button" parent="Container/Master"]
+[node name="Button" type="Button" parent="Containers/Master"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
@@ -273,13 +254,13 @@ offset_right = 182.0
 offset_bottom = 119.0
 theme = ExtResource("3_hqtuf")
 
-[node name="Icon" type="AnimatedSprite2D" parent="Container/Master/Button"]
+[node name="Icon" type="AnimatedSprite2D" parent="Containers/Master/Button"]
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("2_p8h41")
 animation = &"mid"
 
-[node name="HSlider" type="HSlider" parent="Container/Master"]
+[node name="HSlider" type="HSlider" parent="Containers/Master"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
@@ -290,7 +271,7 @@ step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Label" type="Label" parent="Container/Master/HSlider"]
+[node name="Label" type="Label" parent="Containers/Master/HSlider"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -307,12 +288,12 @@ theme_override_font_sizes/font_size = 25
 text = "Master [50%]"
 horizontal_alignment = 1
 
-[node name="Music" type="Panel" parent="Container"]
+[node name="Music" type="Panel" parent="Containers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_hqtuf")
 
-[node name="Button" type="Button" parent="Container/Music"]
+[node name="Button" type="Button" parent="Containers/Music"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
@@ -320,13 +301,13 @@ offset_right = 182.0
 offset_bottom = 119.0
 theme = ExtResource("3_hqtuf")
 
-[node name="Icon" type="AnimatedSprite2D" parent="Container/Music/Button"]
+[node name="Icon" type="AnimatedSprite2D" parent="Containers/Music/Button"]
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("2_p8h41")
 animation = &"mid"
 
-[node name="HSlider" type="HSlider" parent="Container/Music"]
+[node name="HSlider" type="HSlider" parent="Containers/Music"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
@@ -337,7 +318,7 @@ step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Label" type="Label" parent="Container/Music/HSlider"]
+[node name="Label" type="Label" parent="Containers/Music/HSlider"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -354,12 +335,12 @@ theme_override_font_sizes/font_size = 25
 text = "Music [50%]"
 horizontal_alignment = 1
 
-[node name="SFX" type="Panel" parent="Container"]
+[node name="SFX" type="Panel" parent="Containers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_hqtuf")
 
-[node name="Button" type="Button" parent="Container/SFX"]
+[node name="Button" type="Button" parent="Containers/SFX"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
@@ -367,13 +348,13 @@ offset_right = 182.0
 offset_bottom = 119.0
 theme = ExtResource("3_hqtuf")
 
-[node name="Icon" type="AnimatedSprite2D" parent="Container/SFX/Button"]
+[node name="Icon" type="AnimatedSprite2D" parent="Containers/SFX/Button"]
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("2_p8h41")
 animation = &"mid"
 
-[node name="HSlider" type="HSlider" parent="Container/SFX"]
+[node name="HSlider" type="HSlider" parent="Containers/SFX"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
@@ -384,7 +365,7 @@ step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Label" type="Label" parent="Container/SFX/HSlider"]
+[node name="Label" type="Label" parent="Containers/SFX/HSlider"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -401,12 +382,12 @@ theme_override_font_sizes/font_size = 25
 text = "SFX [50%]"
 horizontal_alignment = 1
 
-[node name="Inst" type="Panel" parent="Container"]
+[node name="Inst" type="Panel" parent="Containers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_hqtuf")
 
-[node name="Button" type="Button" parent="Container/Inst"]
+[node name="Button" type="Button" parent="Containers/Inst"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
@@ -414,13 +395,13 @@ offset_right = 182.0
 offset_bottom = 119.0
 theme = ExtResource("3_hqtuf")
 
-[node name="Icon" type="AnimatedSprite2D" parent="Container/Inst/Button"]
+[node name="Icon" type="AnimatedSprite2D" parent="Containers/Inst/Button"]
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("2_p8h41")
 animation = &"mid"
 
-[node name="HSlider" type="HSlider" parent="Container/Inst"]
+[node name="HSlider" type="HSlider" parent="Containers/Inst"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
@@ -431,7 +412,7 @@ step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Label" type="Label" parent="Container/Inst/HSlider"]
+[node name="Label" type="Label" parent="Containers/Inst/HSlider"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -448,12 +429,12 @@ theme_override_font_sizes/font_size = 25
 text = "Inst [50%]"
 horizontal_alignment = 1
 
-[node name="Voices" type="Panel" parent="Container"]
+[node name="Voices" type="Panel" parent="Containers"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_hqtuf")
 
-[node name="Button" type="Button" parent="Container/Voices"]
+[node name="Button" type="Button" parent="Containers/Voices"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 20.0
@@ -461,13 +442,13 @@ offset_right = 182.0
 offset_bottom = 119.0
 theme = ExtResource("3_hqtuf")
 
-[node name="Icon" type="AnimatedSprite2D" parent="Container/Voices/Button"]
+[node name="Icon" type="AnimatedSprite2D" parent="Containers/Voices/Button"]
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("2_p8h41")
 animation = &"mid"
 
-[node name="HSlider" type="HSlider" parent="Container/Voices"]
+[node name="HSlider" type="HSlider" parent="Containers/Voices"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 269.0
@@ -478,7 +459,7 @@ step = 5.0
 value = 50.0
 rounded = true
 
-[node name="Label" type="Label" parent="Container/Voices/HSlider"]
+[node name="Label" type="Label" parent="Containers/Voices/HSlider"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -495,50 +476,45 @@ theme_override_font_sizes/font_size = 25
 text = "Voices [50%]"
 horizontal_alignment = 1
 
-[node name="MasterVolume" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="MasterVolume"]
+[node name="MasterVolumeLabel" type="Label" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -170.0
-offset_top = 18.0
-offset_right = 171.0
-offset_bottom = 52.0
+offset_left = -188.0
+offset_top = 29.0
+offset_right = 189.0
+offset_bottom = 69.0
 grow_horizontal = 2
 scale = Vector2(1e-05, 1)
-pivot_offset = Vector2(170.5, 16.5)
-theme_override_styles/panel = SubResource("StyleBoxFlat_agfk8")
+theme_override_fonts/font = SubResource("SystemFont_tul1h")
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxFlat_o7du1")
+text = "Master Volume: XX%"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Bar" type="ProgressBar" parent="MasterVolume/Panel"]
-modulate = Color(1, 1, 1, 0)
-material = SubResource("ShaderMaterial_01cgd")
+[node name="Bar" type="ProgressBar" parent="MasterVolumeLabel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.5
-offset_top = -9.0
-offset_right = 163.5
-offset_bottom = 8.0
+anchors_preset = -1
+anchor_left = 0.005
+anchor_top = 0.9
+anchor_right = 0.995
+anchor_bottom = 0.909
+offset_left = 0.115
+offset_top = -2.0
+offset_right = -0.115021
+offset_bottom = 1.64
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(245, 0)
 theme_override_styles/background = SubResource("StyleBoxFlat_hg8i7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_re87m")
 value = 50.0
 show_percentage = false
 
-[node name="Icon" type="AnimatedSprite2D" parent="MasterVolume/Panel"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(20, 17)
-scale = Vector2(0.355072, 0.280488)
+[node name="Icon" type="AnimatedSprite2D" parent="MasterVolumeLabel"]
+position = Vector2(33, 20)
+scale = Vector2(0.376755, 0.26391)
 sprite_frames = ExtResource("2_p8h41")
 animation = &"mid"
-
-[node name="Player" type="AnimationPlayer" parent="MasterVolume"]
-root_node = NodePath("")
-libraries = {
-"": SubResource("AnimationLibrary_n2ws5")
-}

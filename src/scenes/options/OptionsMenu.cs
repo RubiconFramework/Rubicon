@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Rubicon.backend;
 using Rubicon.backend.ui.notification;
 using Rubicon.scenes.options.objects;
 using Rubicon.scenes.options.objects.enums;
@@ -39,14 +40,15 @@ public partial class OptionsMenu : Control
 
 	public override void _ExitTree()
 	{
-		if (Main.RubiconSettings.Misc.DiscordRichPresence) DiscordRichPresence.Client.UpdateState(string.Empty);
+		if (Main.RubiconSettings.Misc.DiscordRichPresence)
+			DiscordRichPresence.Client.UpdateState(string.Empty);
 	}
 	
 	public override void _Ready()
 	{
 		this.OnReady();
 		ChangeSubmenu(CurrentSubmenu);
-		
+
 		GameplaySubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Gameplay);
 		VideoSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Video);
 		AudioSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Audio);

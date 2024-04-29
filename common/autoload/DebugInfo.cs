@@ -10,6 +10,7 @@ public partial class DebugInfo : CanvasLayer
     [NodePath("InfoContainer/Performance/FPS")] private Label FPSLabel;
     [NodePath("InfoContainer/Performance/RAM")] private Label RAMLabel;
     [NodePath("InfoContainer/Performance/VRAM")] private Label VRAMLabel;
+    [NodePath("InfoContainer/Performance/NodeObjects")] private Label NodeObjectsLabel;
     [NodePath("InfoContainer/Version")] private Label VersionLabel;
     [NodePath("InfoContainer/Scene")] private Label SceneLabel;
     [NodePath("InfoContainer/Conductor")] private Label ConductorLabel;
@@ -51,21 +52,23 @@ public partial class DebugInfo : CanvasLayer
         FPSLabel.Text = $"FPS: {Engine.GetFramesPerSecond().ToString(CultureInfo.InvariantCulture)}";
         if (OS.IsDebugBuild())
         {
-            RAMLabel.Text = $"RAM: {byteToMB((long)OS.GetStaticMemoryUsage()):F2} MB [Alloc: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
+            RAMLabel.Text = $"RAM: {byteToMB((long)OS.GetStaticMemoryUsage()):F2} MB [A: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
             VRAMLabel.Text = $"VRAM: {byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB";
             SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
+            NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
         }
         else
         {
             RAMLabel.Text = $"RAM: {byteToMB(currentProcess.WorkingSet64):F2} MB [Alloc: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
             SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
+            NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
         }
 
-        if (Conductor.Instance != null)
+        if (Conductor.ConductorInstance != null)
         {
-            ConductorSB.AppendLine($"BPM: {Conductor.Instance.bpm} // Song Position: {Conductor.Instance.position}")
-                .AppendLine($"Crochet: {Conductor.Instance.crochet} // StepCrochet: {Conductor.Instance.stepCrochet}")
-                .AppendLine($"Step: {Conductor.Instance.curStep} [Dec: {Conductor.Instance.curDecBeat}] // Beat: {Conductor.Instance.curBeat} [Dec: {Conductor.Instance.curDecStep}] // Section: {Conductor.Instance.curSection} [Dec: {Conductor.Instance.curDecSection}]");
+            ConductorSB.AppendLine($"BPM: {Conductor.ConductorInstance.bpm} // Song Position: {Conductor.ConductorInstance.position}")
+                .AppendLine($"Crochet: {Conductor.ConductorInstance.crochet} // StepCrochet: {Conductor.ConductorInstance.stepCrochet}")
+                .AppendLine($"Step: {Conductor.ConductorInstance.curStep} [Dec: {Conductor.ConductorInstance.curDecBeat}] // Beat: {Conductor.ConductorInstance.curBeat} [Dec: {Conductor.ConductorInstance.curDecStep}] // Section: {Conductor.ConductorInstance.curSection} [Dec: {Conductor.ConductorInstance.curDecSection}]");
         }
         else
         {

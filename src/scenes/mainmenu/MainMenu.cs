@@ -5,7 +5,7 @@ using TransitionManager = Rubicon.common.autoload.managers.TransitionManager;
 
 namespace Rubicon.scenes.mainmenu;
 
-public partial class MainMenu : common.autoload.Conductor
+public partial class MainMenu : Conductor
 {
 	[NodePath("Camera2D")] private Camera2D camera;
 	[NodePath("BG/MenuBGMagenta")] private Sprite2D bgMagenta;
@@ -20,7 +20,6 @@ public partial class MainMenu : common.autoload.Conductor
 	{
 		this.OnReady();
 		changeSelected();
-		Instance.bpm = 190;
 	}
 
 	public override void _Process(double delta)
@@ -70,11 +69,12 @@ public partial class MainMenu : common.autoload.Conductor
 		string buttonName = buttonGroup.GetChild<AnimatedSprite2D>(curSelected).Name.ToString().ToLower();
 		switch (buttonName)
 		{
-			case "freeplay": TransitionManager.Instance.ChangeScene("res://src/gameplay/GameplayScene.tscn"); break;
+			case "storymode": TransitionManager.Instance.ChangeScene("res://src/gameplay/GameplayScene.tscn"); break;
+			case "freeplay": TransitionManager.Instance.ChangeScene("res://src/scenes/freeplay/FreeplayMenu.tscn"); break;
 			case "options": TransitionManager.Instance.ChangeScene("res://src/scenes/options/OptionsMenu.tscn"); break;
 			default:
 				Main.Instance.SendNotification($"Scene {buttonName} not found lol", true, NotificationType.Warning);
-				TransitionManager.Instance.ChangeScene("res://src/scenes/MainMenu.tscn");
+				TransitionManager.Instance.ChangeScene("res://src/scenes/title/Title.tscn");
 				break;
 		}
 	}

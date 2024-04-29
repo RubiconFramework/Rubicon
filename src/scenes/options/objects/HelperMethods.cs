@@ -64,7 +64,7 @@ public class HelperMethods
     public void SetDiscordRPC(bool v)
     {
         Main.RubiconSettings.Misc.DiscordRichPresence = v;
-        DiscordRichPresence.Instance.Enable(v);
+        DiscordRichPresence.Instance.Toggle(v);
     }
     
     public static string CompressString(string text)

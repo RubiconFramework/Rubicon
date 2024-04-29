@@ -15,7 +15,7 @@ using UIStyle = Rubicon.gameplay.objects.classes.scripts.UIStyle;
 
 namespace Rubicon.gameplay;
 
-public partial class GameplayScene : common.autoload.Conductor
+public partial class GameplayScene : Conductor
 {
 	private Dictionary<string, Note> CachedNotes { get; set; } = new();
 	private List<SectionNote> NoteData { get; set; } = new();
@@ -102,9 +102,9 @@ public partial class GameplayScene : common.autoload.Conductor
 			Song = Main.Song;
 		}
 
-		Instance.MapBPMChanges(Song);
-		Instance.bpm = Song.Bpm;
-		Instance.position = Instance.stepCrochet * 5;
+		ConductorInstance.MapBPMChanges(Song);
+		ConductorInstance.bpm = Song.Bpm;
+		ConductorInstance.position = ConductorInstance.stepCrochet * 5;
 
 		//string songPath = /*$"res://assets/songs/{Song.SongName.ToLower()}/"*/Paths.Inst(Song.SongName);
 		//GD.PrintErr("the path of the music is: "+songPath);
@@ -157,7 +157,7 @@ public partial class GameplayScene : common.autoload.Conductor
 				}
 			}*/
 			if (inst == null) {GD.PrintErr("NO MUSIC");return;}
-			Instance.position += /*(float)delta * 1000f * Instance.rate*/ inst.GetPlaybackPosition();
+			ConductorInstance.position += /*(float)delta * 1000f * Instance.rate*/ inst.GetPlaybackPosition();
 
 			/*if (Instance.position >= tracks[0].Stream.GetLength())
 			{
@@ -165,7 +165,7 @@ public partial class GameplayScene : common.autoload.Conductor
 				return;
 			}*/
 
-			if (Instance.position >= 0f && startingSong) StartSong();
+			if (ConductorInstance.position >= 0f && startingSong) StartSong();
 		}
 		
 		HandleHoldAnimation();
@@ -179,7 +179,7 @@ public partial class GameplayScene : common.autoload.Conductor
 
 	public void StartSong()
 	{
-		Instance.position = 0f;
+		ConductorInstance.position = 0f;
 		inst.Play();
 		if (vocals != null)
 			vocals.Play();
@@ -316,7 +316,7 @@ public partial class GameplayScene : common.autoload.Conductor
     private void HandleSmoothZoom(double delta)
     {
         if (!smoothZoom) return;
-        float cameraSpeed = Mathf.Clamp((float)delta * ZoomDeltaMultiplier * Instance.rate, 0f, 1f);
+        float cameraSpeed = Mathf.Clamp((float)delta * ZoomDeltaMultiplier * ConductorInstance.rate, 0f, 1f);
         if (!Song.Is3D) camera.Zoom = new(Mathf.Lerp(camera.Zoom.X, camZoom, cameraSpeed), Mathf.Lerp(camera.Zoom.Y, camZoom, cameraSpeed));
         HUD.Scale = new(Mathf.Lerp(HUD.Scale.X, 1f, cameraSpeed), Mathf.Lerp(HUD.Scale.Y, 1f, cameraSpeed));
         HUD.Offset = new((HUD.Scale.X - 1f) * -(Main.WindowSize.X * 0.5f), (HUD.Scale.Y - 1f) * -(Main.WindowSize.Y * 0.5f));

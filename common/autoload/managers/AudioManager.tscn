@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://common/autoload/managers/AudioManager.cs" id="1_ilqme"]
 [ext_resource type="AudioStream" uid="uid://bq8kvxkx3s0o3" path="res://assets/music/freakyMenu.ogg" id="2_buy5r"]
-[ext_resource type="AudioStream" uid="uid://coosocb1aq48x" path="res://assets/music/FireMenuSong.ogg" id="3_ym4yh"]
-[ext_resource type="AudioStream" uid="uid://b7x3jdhe2v5io" path="res://assets/music/elseVI.mp3" id="4_xfark"]
+[ext_resource type="AudioStream" uid="uid://benu1xu6l85i3" path="res://assets/music/recursedMenu.mp3" id="3_jlip4"]
+[ext_resource type="AudioStream" uid="uid://65smro231ra3" path="res://assets/music/rubiconMenu.ogg" id="3_ksd8c"]
 [ext_resource type="AudioStream" uid="uid://diwgmjurhabs4" path="res://assets/sounds/menus/cancelMenu.ogg" id="5_uhr3w"]
 [ext_resource type="AudioStream" uid="uid://c3dugj18aveeb" path="res://assets/sounds/menus/scrollMenu.ogg" id="6_rj4hm"]
 [ext_resource type="AudioStream" uid="uid://cob3felu4jsrl" path="res://assets/sounds/menus/confirmMenu.ogg" id="7_ku5mx"]
@@ -15,13 +15,15 @@ script = ExtResource("1_ilqme")
 
 [node name="freakyMenu" type="AudioStreamPlayer" parent="music"]
 stream = ExtResource("2_buy5r")
+bus = &"Music"
 
-[node name="jestersPity" type="AudioStreamPlayer" parent="music"]
-editor_description = "what the fuck is this duo"
-stream = ExtResource("3_ym4yh")
+[node name="rubiconMenu" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("3_ksd8c")
+bus = &"Music"
 
-[node name="elseVI" type="AudioStreamPlayer" parent="music"]
-stream = ExtResource("4_xfark")
+[node name="recursedMenu" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("3_jlip4")
+bus = &"Music"
 
 [node name="sounds" type="Node" parent="."]
 

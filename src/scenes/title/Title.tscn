@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://duhqsh5l5bbtm"]
+[gd_scene load_steps=19 format=3 uid="uid://duhqsh5l5bbtm"]
 
 [ext_resource type="Script" path="res://src/scenes/title/Title.cs" id="1_hc00q"]
 [ext_resource type="Material" uid="uid://dlwbyy60pp0e2" path="res://assets/shaders/TitleScreenShaderMaterial.tres" id="2_ilohj"]
@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_li603"]
 [ext_resource type="SpriteFrames" uid="uid://cd1x8dun4uocr" path="res://assets/menus/titlescreen/logoBumpin.res" id="5_t5b0g"]
 [ext_resource type="SpriteFrames" uid="uid://6vecp03qpxmj" path="res://assets/menus/titlescreen/titleEnter.res" id="6_gvhw7"]
-[ext_resource type="PackedScene" uid="uid://bphue4ru7nca0" path="res://src/backend/ui/alphabet/Alphabet.tscn" id="7_myqlw"]
+[ext_resource type="PackedScene" uid="uid://b5jdf8vlqbm32" path="res://src/backend/ui/audiovisualizer/AudioVisualizer.tscn" id="7_ow66y"]
 [ext_resource type="Texture2D" uid="uid://dwdqru3hlxhrk" path="res://assets/menus/titlescreen/newgrounds_logo.png" id="8_6jyex"]
-[ext_resource type="VideoStream" path="res://assets/videos/fnb twitter.ogv" id="9_6tib1"]
+[ext_resource type="Shader" path="res://src/scenes/title/objects/Title.gdshader" id="10_xj5pp"]
 
 [sub_resource type="Animation" id="Animation_ldyfc"]
 resource_name = "danceLeft"
@@ -119,10 +119,58 @@ _data = {
 "Flash": SubResource("Animation_b6t4c")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j540g"]
+shader = ExtResource("10_xj5pp")
+shader_parameter/scale = 1.0
+shader_parameter/monochrome = true
+
+[sub_resource type="Animation" id="Animation_hu1iu"]
+resource_name = "Intro"
+length = 6.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(2.14355, 4.43829),
+"update": 0,
+"values": [10.0, 1.3]
+}
+
+[sub_resource type="Animation" id="Animation_3v37u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h4bmb"]
+_data = {
+"Intro": SubResource("Animation_hu1iu"),
+"RESET": SubResource("Animation_3v37u")
+}
+
 [node name="Title" type="Node"]
 script = ExtResource("1_hc00q")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(683, 384)
+
 [node name="TitleGroup" type="Node2D" parent="."]
+
+[node name="AudioVisualizer" parent="TitleGroup" instance=ExtResource("7_ow66y")]
+modulate = Color(1, 1, 1, 0.141176)
 
 [node name="Girlfriend" type="AnimatedSprite2D" parent="TitleGroup"]
 material = ExtResource("2_ilohj")
@@ -149,15 +197,9 @@ material = ExtResource("2_ilohj")
 position = Vector2(169, 636)
 sprite_frames = ExtResource("6_gvhw7")
 animation = &"Press Enter to Begin"
-frame_progress = 0.398088
+frame_progress = 0.85304
 centered = false
 script = ExtResource("4_li603")
-
-[node name="TextTemplate" parent="." instance=ExtResource("7_myqlw")]
-visible = false
-offset_top = 200.0
-offset_bottom = 320.0
-script = null
 
 [node name="TextGroup" type="Node2D" parent="."]
 
@@ -178,10 +220,16 @@ libraries = {
 "": SubResource("AnimationLibrary_kt3y7")
 }
 
-[node name="lol" type="VideoStreamPlayer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stream = ExtResource("9_6tib1")
+[node name="hi" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_j540g")
+offset_top = -1.0
+offset_right = 1366.0
+offset_bottom = 767.0
+pivot_offset = Vector2(650, 738)
+color = Color(0, 0, 0, 0.521569)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hi"]
+libraries = {
+"": SubResource("AnimationLibrary_h4bmb")
+}

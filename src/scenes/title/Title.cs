@@ -1,5 +1,5 @@
-using Godot.Collections;
-using Rubicon.backend.ui.alphabet;
+using System.Collections.Generic;
+using Rubicon.backend;
 using Rubicon.backend.ui.notification;
 using Rubicon.common.autoload.managers.enums;
 using AudioManager = Rubicon.common.autoload.managers.AudioManager;
@@ -7,24 +7,22 @@ using TransitionManager = Rubicon.common.autoload.managers.TransitionManager;
 
 namespace Rubicon.scenes.title;
 
-public partial class Title : common.autoload.Conductor
+public partial class Title : Conductor
 {
 	[NodePath("TitleGroup/Girlfriend/AnimationPlayer")] private AnimationPlayer Girlfriend;
 	[NodePath("TitleGroup/Logo")] private AnimatedSprite2D Logo;
 	[NodePath("TitleGroup/TitleEnter")] private AnimatedSprite2D TitleEnter;
 	[NodePath("TitleGroup")] private Node2D TitleGroup;
-	[NodePath("TextTemplate")] private Alphabet TextTemplate;
 	[NodePath("TextGroup")] private Node2D textGroup;
 	[NodePath("NewgroundsSprite")] private Sprite2D NewgroundsSprite;
 	[NodePath("Flash/AnimationPlayer")] private AnimationPlayer Flash;
-	[NodePath("lol")] private VideoStreamPlayer lol;
-	
+	[NodePath("Camera2D")] private Camera2D camera;
+
 	private string[] LoadedIntroTexts = new[] { "yoooo swag shit", "ball shit" };
 	private bool skippedIntro = true;
 	private bool transitioning;
 
-	[Export]
-	private Dictionary<int, string> beatActions = new()
+	[Export] private Godot.Collections.Dictionary<int, string> beatActions = new()
 	{
 		{ 1, "AddTextArray:duntine,legntle0" },
 		{ 3, "AddText:present" },
@@ -43,25 +41,19 @@ public partial class Title : common.autoload.Conductor
 	
 	public override void _Ready()
 	{
+		base._Ready();
 		this.OnReady();
-		AudioManager.Instance.PlayAudio(AudioType.Music, "elseVI", 0.5f, true);
-		
-		if (GD.RandRange(1, 500000) == 30000)
-		{
-			lol.Play();
-			SetProcessInput(false);
-			
-			lol.Finished += () =>
-			{
-				AudioManager.Instance.PlayAudio(AudioType.Music, "jestersPity", 0.5f, true);
-				SetProcessInput(true);
-				TransitionManager.Instance.ChangeScene("res://src/scenes/mainmenu/MainMenu.tscn");
-			};
-		}
 
-		TitleEnter.Play("Press Enter to Begin");
+		AnimationPlayer anim = GetNode<AnimationPlayer>("hi/AnimationPlayer");
+		anim.Play("Intro");
+		anim.AnimationFinished += _ =>
+		{
+			Flash.Play("Flash");
+			GetNode<ColorRect>("hi").Visible = false;
+		};
+
 		LoadedIntroTexts = GetIntroTexts();
-		Instance.bpm = 190;
+		TitleEnter.Play("Press Enter to Begin");
 	}
 
 	public override void _Input(InputEvent @event)
@@ -83,19 +75,15 @@ public partial class Title : common.autoload.Conductor
 		}
 	}
 
-	private bool alreadyLeft;
+	private bool isDancingLeft = true;
 	protected override void OnStepHit(int step)
 	{
 		base.OnStepHit(step);
 
-		if (alreadyLeft){
-			Girlfriend.Play("danceRight");
-			alreadyLeft = true;
-		}
-		else{
-			Girlfriend.Play("danceLeft");
-			alreadyLeft = false;
-		}
+		isDancingLeft = !isDancingLeft;
+		if (isDancingLeft) Girlfriend.Play("danceRight");
+		else Girlfriend.Play("danceLeft");
+
 		Logo.Play("BumpIn");
 	}
 
@@ -103,6 +91,7 @@ public partial class Title : common.autoload.Conductor
 	{
 		base.OnBeatHit(beat);
 
+		/*
 		if (beatActions.TryGetValue(beat, out string action))
 		{
 			string[] parts = action.Split(':');
@@ -135,6 +124,7 @@ public partial class Title : common.autoload.Conductor
 				}
 			}
 		}
+		*/
 	}
 
 	private void SkipIntro()
@@ -146,18 +136,8 @@ public partial class Title : common.autoload.Conductor
 		Flash.Play("Flash");
 	}
 
-	private void AddText(string text)
-	{
-		if (TextTemplate.Duplicate() is Alphabet a)
-		{
-			a.text = text;
-			a.ScreenCenter("X");
-			a.Position = new(0, textGroup.GetChildCount() * 60);
-			a.Visible = true;
-			textGroup.AddChild(a);
-		}
-	}
-	
+	private void AddText(string text) => Main.Instance.CreateAlphabet(textGroup, text, true, false, 0);
+
 	private void AddTextArray(string[] textArray)
 	{
 		foreach (var text in textArray) AddText(text);
@@ -165,16 +145,16 @@ public partial class Title : common.autoload.Conductor
 
 	private void DeleteText()
 	{
-		while (textGroup.GetChildCount() > 0 && textGroup.GetChild(0) is Alphabet a)
+		foreach (Node child in new List<Node>(textGroup.GetChildren()))
 		{
-			a.QueueFree();
-			textGroup.RemoveChild(a);
+			child.QueueFree();
+			textGroup.RemoveChild(child);
 		}
 	}
 
 	private string[] GetIntroTexts()
 	{
-		using FileAccess introTextFile = FileAccess.Open("res://assets/introTexts.txt", FileAccess.ModeFlags.Read);
+		using FileAccess introTextFile = FileAccess.Open("res://src/scenes/title/introTexts.txt", FileAccess.ModeFlags.Read);
 		if (introTextFile != null)
 		{
 			string[] textLines = introTextFile.GetAsText().Split('\n');

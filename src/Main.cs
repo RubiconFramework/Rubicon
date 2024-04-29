@@ -8,7 +8,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Rubicon.backend.ui.notification;
-using Rubicon.scenes.options.objects;
+using Rubicon.common.autoload.managers;
+using Rubicon.common.autoload.managers.enums;
 using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
 using DiscordRichPresence = Rubicon.common.autoload.DiscordRichPresence;
 
@@ -17,9 +18,10 @@ namespace Rubicon;
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Main : CanvasLayer
 {
-	[Export] private Color InfoNotificationColor { get; set; } = new(0.32f,0.32f, 0.32f);
+	[Export] private Color InfoNotificationColor { get; set; } = new(1f,1f, 1f);
 	[Export] private Color WarningNotificationColor { get; set; } = new(0.79f,0.79f, 0);
 	[Export] private Color ErrorNotificationColor { get; set; } = new(0.70f, 0f, 0f);
+	[Export] public PackedScene alphabetScene;
 
 	public static Chart Song; //i still have no clue why we need this here -dunine
 	public static Main Instance { get; private set; } = new();
@@ -28,7 +30,7 @@ public partial class Main : CanvasLayer
     public static readonly string RubiconVersion = ProjectSettings.Singleton.GetSetting("application/config/version", "1").ToString();
     public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
-    public const string SettingsFilePath = "user://settings.cfg";
+    public const string SettingsFilePath = "user://settings.json";
     public static RubiconSettings RubiconSettings { get; set; } = new(SettingsFilePath);
 	
 	[NodePath("Notification")] private Panel NotificationInstance;
@@ -40,6 +42,8 @@ public partial class Main : CanvasLayer
 	{
 		this.OnReady();
 		Instance = this;
+		AudioManager.Instance.PlayAudio(AudioType.Music, "rubiconMenu", 0.5f, true);
+		
 		RenderingServer.SetDefaultClearColor(new(0,0,0));
 		TranslationServer.SetLocale(RubiconSettings.Misc.Languages.ToString().ToLower());
 
@@ -64,15 +68,15 @@ public partial class Main : CanvasLayer
 				else SendNotification($"Data stored at: user://{dir}");
 			}
 		}
-		
-		DiscordRichPresence.Instance.Enable(true);
+
+		DiscordRichPresence.Instance.Toggle(true);
 	}
 
 	public override void _ExitTree()
 	{
 		base._ExitTree();
 		RubiconSettings = null;
-		DiscordRichPresence.Instance.Enable(true);
+		DiscordRichPresence.Instance.Toggle(true);
 	}
 
     public override void _Process(double delta)
@@ -81,28 +85,35 @@ public partial class Main : CanvasLayer
         {
             var (panel, duration) = notificationQueue.Dequeue();
             duration -= delta;
-
-            var progressBar = panel.GetNode<ProgressBar>("DurationBar");
-            var animationPlayer = panel.GetNode<AnimationPlayer>("animalationtolongplayer");
-
-            progressBar.Value = (float)duration;
-
-            if (Mathf.Abs(duration - 0.5f) < 0.01f)
-                animationPlayer.Play("out");
-
+            
+            panel.GetNode<ProgressBar>("DurationBar").Value = (float)duration;
+            if (Mathf.Abs(duration - 0.5f) < 0.01f) panel.GetNode<AnimationPlayer>("animalationtolongplayer").Play("out");
+            
             if (duration <= 0) OnNotificationTimeout(panel);
             else notificationQueue.Enqueue((panel, duration));
-            
-            void OnNotificationTimeout(Panel p)
-            {
-	            notificationQueue = new(notificationQueue.Where(item => item.Item1 != p));
-	            p.QueueFree();
-	            notificationPositions.Remove(p);
-	            UpdateNotificationPositions();
-            }
         }
     }
     
+    private void OnNotificationTimeout(Panel p)
+    {
+	    notificationQueue = new(notificationQueue.Where(item => item.Item1 != p));
+	    p.QueueFree();
+	    notificationPositions.Remove(p);
+	    UpdateNotificationPositions();
+    }
+    
+    public Node CreateAlphabet(Node parentNode, string text, bool bold, bool isMenuItem, int targetY)
+    {
+	    PackedScene scene = GD.Load<PackedScene>(this.alphabetScene.ResourcePath);
+	    Node alphabetNode = scene.Instantiate();
+	    alphabetNode.Set("text", text);
+	    alphabetNode.Set("bold", bold);
+	    alphabetNode.Set("is_menu_item", isMenuItem);
+	    alphabetNode.Set("target_y", targetY);
+	    parentNode.AddChild(alphabetNode);
+	    return alphabetNode;
+    }
+
     public void SendNotification(string message, bool printToConsole = true, NotificationType type = NotificationType.Info, float duration = 5.0f)
     {
         StackTrace stackTrace = new();
@@ -124,14 +135,14 @@ public partial class Main : CanvasLayer
             switch (type)
             {
                 case NotificationType.Info:
-                    if (printToConsole) GD.PrintRich($"[color={InfoNotificationColor}]{fullMessage}[/color]");
+                    if (printToConsole) GD.PrintRich($"[color=WHITE]{fullMessage}[/color]");
                     progressBar.Modulate = InfoNotificationColor;
                     break;
                 case NotificationType.Warning:
 	                if (printToConsole)
 	                {
 		                GD.PushWarning(fullMessage);
-		                GD.PrintRich($"[color={WarningNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
+		                GD.PrintRich($"[color=YELLOW][pulse]{fullMessage}[/pulse][/color]");
 	                }
 	                progressBar.Modulate = WarningNotificationColor;
                     break;
@@ -139,7 +150,7 @@ public partial class Main : CanvasLayer
 	                if (printToConsole)
 	                {
 		                GD.PushError(fullMessage);
-		                GD.PrintRich($"[color={ErrorNotificationColor}][pulse]{fullMessage}[/pulse][/color]");
+		                GD.PrintRich($"[color=RED][pulse]{fullMessage}[/pulse][/color]");
 	                }
 	                progressBar.Modulate = ErrorNotificationColor;
                     break;

@@ -1,4 +1,3 @@
-using Rubicon.scenes.options.submenus.gameplay.enums;
 using BaseSubmenu = Rubicon.scenes.options.objects.BaseSubmenu;
 
 namespace Rubicon.scenes.options.submenus.gameplay;

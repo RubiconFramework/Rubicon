@@ -10,26 +10,16 @@ public partial class DiscordRichPresence : Node
     public static DiscordRpcClient Client = new(ClientID);
     public static DiscordRichPresence Instance { get; private set; } 
 
-    public override void _EnterTree()
-    {
-        Enable(true);
-        Instance = this;
-    }
+    public override void _EnterTree() => Instance = this;
+    public override void _ExitTree() => Instance = null;
 
-    public override void _ExitTree()
-    {
-        Enable(false);
-        Instance = null;
-    }
-
-    public void Enable(bool enable)
+    public void Toggle(bool enable)
     {
         try
         {
             if (enable)
             {
                 if (Client.IsDisposed) Client = new(ClientID);
-                else GD.Print("The Discord RPC is already enabled.");
 				
                 if (!Client.IsInitialized)
                 {

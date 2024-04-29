@@ -39,7 +39,7 @@ public partial class Note : Node2D
         if (Length < 50) Length = 0;
         if (Length <= 0) Sustain.Visible = false;
 
-        StepCrochet = Conductor.Instance.stepCrochet;
+        StepCrochet = Conductor.ConductorInstance.stepCrochet;
         OriginalLength = Length;
         InitialScale = Scale;
         Sprite.Play(DefaultNoteDirections[Direction]);

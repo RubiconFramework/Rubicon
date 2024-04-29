@@ -53,13 +53,19 @@ text = "FPS: 0"
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_xcq7a")
-text = "RAM: 0 MB [Alloc: 0 MB]"
+text = "RAM: 0 MB [A: 0 MB]"
 
 [node name="VRAM" type="Label" parent="InfoContainer/Performance"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
 text = "VRAM: 0 MB"
+
+[node name="NodeObjects" type="Label" parent="InfoContainer/Performance"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Node Objects: 0"
 
 [node name="Version" type="Label" parent="InfoContainer"]
 layout_mode = 2

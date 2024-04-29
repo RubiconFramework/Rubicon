@@ -62,8 +62,8 @@ public partial class Character2D : Node2D
 
         if (lastAnim.StartsWith("sing"))
         {
-            holdTimer += (float)delta * Conductor.Instance.rate;
-            if(!isPlayer && holdTimer >= Conductor.Instance.stepCrochet * singDuration * 0.0011)
+            holdTimer += (float)delta * Conductor.ConductorInstance.rate;
+            if(!isPlayer && holdTimer >= Conductor.ConductorInstance.stepCrochet * singDuration * 0.0011)
             {
                 holdTimer = 0;
                 dance();

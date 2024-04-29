@@ -45,12 +45,12 @@ public partial class Conductor : Node
     private event Action<int> StepHitEvent;
     private event Action<int> SectionHitEvent;
 
-    public static Conductor Instance { get; private set; }
+    public static Conductor ConductorInstance { get; private set; }
     
     public override void _EnterTree()
     {
         base._EnterTree();
-        Instance = this;
+        ConductorInstance = this;
         BeatHitEvent += OnBeatHit;
         StepHitEvent += OnStepHit;
         SectionHitEvent += OnSectionHit;
@@ -59,7 +59,7 @@ public partial class Conductor : Node
     public override void _ExitTree()
     {
         base._ExitTree();
-        Instance = null;
+        ConductorInstance = null;
         BeatHitEvent -= OnBeatHit;
         StepHitEvent -= OnStepHit;
         SectionHitEvent -= OnSectionHit;
@@ -111,7 +111,7 @@ public partial class Conductor : Node
             else break;
         }
 
-        if (lastChange != null && !bpm.Equals(lastChange.bpm)) bpm = lastChange.bpm;
+        if (lastChange != null && !_bpm.Equals(lastChange.bpm)) _bpm = lastChange.bpm;
         
         updateCurStep();
         updateBeat();
@@ -131,17 +131,21 @@ public partial class Conductor : Node
         curStep = getBPMFromSeconds((float)position).stepTime + Mathf.FloorToInt(position - getBPMFromSeconds((float)position).songTime / stepCrochet);
     }
 
-    private void updateBeat(){
+    private void updateBeat()
+    {
         curBeat = Mathf.FloorToInt(curStep/4);
         curDecBeat = curDecStep/4;
     }
+    
     //idk if making the section thingy only update when you are in gameplay
-    private void updateSection(){
+    private void updateSection()
+    {
         curSection = Mathf.FloorToInt(curBeat / 4.0f);
         curDecSection = curDecBeat / 4.0f;
     }
 
     //this leaks memory?...
+    //this is in process.
     BPMChangeEvent getBPMFromSeconds(float time)
     {
         BPMChangeEvent changeEvent = new BPMChangeEvent(0, 0.0f, bpm);

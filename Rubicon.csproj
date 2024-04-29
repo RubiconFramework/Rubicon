@@ -382,7 +382,9 @@
     <Content Include="shared\stages\base\sprites\stagecurtains.png.import" />
     <Content Include="shared\stages\base\sprites\stagefront.png.import" />
     <Content Include="shared\stages\base\sprites\stage_light.png.import" />
+    <Content Include="src\backend\ui\alphabet\Alphabet.gd" />
     <Content Include="src\backend\ui\alphabet\Alphabet.tscn" />
+    <Content Include="src\backend\ui\audiovisualizer\AudioVisualizer.gd" />
     <Content Include="src\gameplay\GameplayScene.tscn" />
     <Content Include="src\scenes\freeplay\objects\resources\FreeplaySong.tres" />
     <Content Include="src\scenes\options\objects\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
@@ -495,6 +497,7 @@
     <Compile Remove="src\autoload\**" />
     <Compile Remove="autoload\**" />
     <Compile Remove="common\autoload\managers\audio\**" />
+    <Compile Remove="src\scenes\options\submenus\gameplay\enums\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -566,6 +569,7 @@
     <EmbeddedResource Remove="src\autoload\**" />
     <EmbeddedResource Remove="autoload\**" />
     <EmbeddedResource Remove="common\autoload\managers\audio\**" />
+    <EmbeddedResource Remove="src\scenes\options\submenus\gameplay\enums\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -615,6 +619,7 @@
     <None Remove="src\autoload\managers\transitionmanager\**" />
     <None Remove="src\autoload\global\**" />
     <None Remove="src\autoload\**" />
+    <None Remove="src\scenes\options\submenus\gameplay\enums\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />
