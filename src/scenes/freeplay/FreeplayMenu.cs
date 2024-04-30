@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot.Collections;
 using Rubicon.common.autoload.managers;
+using Rubicon.common.autoload.managers.enums;
 using Rubicon.scenes.freeplay.objects.resources;
 
 namespace Rubicon.scenes.freeplay;
@@ -11,7 +12,10 @@ public partial class FreeplayMenu : Conductor
     [NodePath("SongData/Panel/Buttons/DifficultiesButton")] private OptionButton DifficultyOptionButton;
 
     [NodePath("SongData/AnimPlayer")] private AnimationPlayer SongDataAnimPlayer;
+    
     [NodePath("GameplayModifiersLabel/AnimPlayer")] private AnimationPlayer GameplayModifiersAnimPlayer;
+    private FreeplaySong CurrentFreeplaySong;
+    private Tween ColorTween;
 
     [NodePath("SongData/Panel/Stats/SongScore")] private Label SongScore;
     [NodePath("SongData/Panel/Stats/SongDescription")] private Label SongDescription;
@@ -70,11 +74,15 @@ public partial class FreeplayMenu : Conductor
             {
                 isGameplayModifiers = true;
                 GameplayModifiersAnimPlayer.Play("Start");
+                ColorTween = GetTree().CreateTween();
+                ColorTween.TweenProperty(BackgroundSprite, "modulate", new Color(0.47f, 0.47f, 0.47f), 1);
             }
             else if (eventKey.Pressed && eventKey.Keycode == Key.Escape && isGameplayModifiers)
             {
                 isGameplayModifiers = false;
                 GameplayModifiersAnimPlayer.Play("End");
+                ColorTween = GetTree().CreateTween();
+                ColorTween.TweenProperty(BackgroundSprite, "modulate", CurrentFreeplaySong.BackgroundColor, 1);
             }
         }
     }
@@ -99,6 +107,7 @@ public partial class FreeplayMenu : Conductor
             alphabet.Set("target_y", GetTargetY(entry.Key, (selectedSongIndex + direction + songAlphabets.Count) % songAlphabets.Count));
         }
 
+        AudioManager.Instance.PlayAudio(AudioType.Sounds, "menus/scrollMenu");
         selectedSongIndex = (selectedSongIndex + direction + songAlphabets.Count) % songAlphabets.Count;
         UpdateSongData(Songs[selectedSongIndex]);
         SongDataAnimPlayer.Stop();
@@ -113,6 +122,7 @@ public partial class FreeplayMenu : Conductor
 
     private void UpdateSongData(FreeplaySong song)
     {
+        CurrentFreeplaySong = song;
         SongDisplayName.Text = song.SongDisplayName;
         SongDescription.Text = string.IsNullOrEmpty(song.SongDescription) ? "" : song.SongDescription;
         SongScore.Text = "TBA"; 
@@ -120,7 +130,8 @@ public partial class FreeplayMenu : Conductor
         foreach (string difficulty in song.Difficulties) DifficultyOptionButton.AddItem($" {difficulty}");
         isCameraBopping = song.IsCameraBopping;
         ConductorInstance.bpm = song.BPM;
-        GetTree().CreateTween().TweenProperty(BackgroundSprite, "modulate", song.BackgroundColor, 1);
+        ColorTween = GetTree().CreateTween();
+        ColorTween.TweenProperty(BackgroundSprite, "modulate", song.BackgroundColor, 1);
     }
 
     private void OnPlayButtonPressed() => TransitionManager.Instance.ChangeScene("res://src/gameplay/GameplayScene.tscn");

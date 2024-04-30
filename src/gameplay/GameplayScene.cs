@@ -130,8 +130,9 @@ public partial class GameplayScene : Conductor
 
 		//foreach (AudioStreamPlayer track in tracks) track.PitchScale = Instance.rate;
 		
-		InitializeStrumGroups();
-
+		InitializeStrumLine(ref oppStrums, (Main.WindowSize.X * 0.5f) - 320f);
+		InitializeStrumLine(ref playerStrums, (Main.WindowSize.X * 0.5f) + 320f);
+		
 		//
 		//initialize countdown here
 		//
@@ -156,7 +157,7 @@ public partial class GameplayScene : Conductor
 				return;
 				}
 			}*/
-			if (inst == null) {GD.PrintErr("NO MUSIC");return;}
+			if (inst == null) GD.PrintErr("NO MUSIC");return;
 			ConductorInstance.position += /*(float)delta * 1000f * Instance.rate*/ inst.GetPlaybackPosition();
 
 			/*if (Instance.position >= tracks[0].Stream.GetLength())
@@ -206,17 +207,11 @@ public partial class GameplayScene : Conductor
     {
         // Handle skipping the intro
     }
-    
-    private void InitializeStrumGroups()
-    {
-        InitializeStrumLine(ref oppStrums, (Main.WindowSize.X * 0.5f) - 320f);
-        InitializeStrumLine(ref playerStrums, (Main.WindowSize.X * 0.5f) + 320f);
-    }
 
-	private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
+    private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
 	{
 		/*Song.KeyCount*/
-		strumLine = GD.Load<PackedScene>($"res://src/gameplay/elements/strumlines/4K.tscn").Instantiate<StrumLine>();
+		strumLine = GD.Load<PackedScene>($"res://src/gameplay/objects/strumlines/4K.tscn").Instantiate<StrumLine>();
 		strumLine.uiStyle = uiStyle;
 		strumGroup.AddChild(strumLine);
 		strumLine.Position = new(positionX, 100);
@@ -251,15 +246,16 @@ public partial class GameplayScene : Conductor
 	private void LoadStage()
 	{
 		string path3d = Song.Is3D ? "3D/" : "";
-		string stagePath = $"res://assets/gameplay/stages/{path3d + Song.Stage}/";
+		string stagePath = $"res://common/stages/{path3d + Song.Stage}/";
 
 		IEnumerable<string> stageDir = InternalPaths.FilesInDirectory(stagePath);
 		stagePath = stageDir.Where(file => file.EndsWith(".tscn") || file.EndsWith(".remap")).Aggregate(stagePath, (current, file) => current + file.Replace(".remap", ""));
 
 		stage = ResourceLoader.Exists(stagePath) 
 			? GD.Load<PackedScene>(stagePath).Instantiate<Stage>() 
-			: GD.Load<PackedScene>("res://assets/gameplay/stages/stage/Stage.tscn".Replace(".remap", "")).Instantiate<Stage>();
+			: GD.Load<PackedScene>("res://common/stages/basestage/Stage.tscn".Replace(".remap", "")).Instantiate<Stage>();
 		AddChild(stage);
+		
 		camZoom = stage.defaultCamZoom;
 		camera.Zoom = new(camZoom, camZoom);
 	}
@@ -268,9 +264,10 @@ public partial class GameplayScene : Conductor
 	{
 		if (character == null) throw new ArgumentNullException(nameof(character));
 		string path3d = Song.Is3D ? "3D/" : "";
-		string charPath = $"res://assets/gameplay/characters/{path3d + characterType}.tscn";
+		string charPath = $"res://common/characters/{characterType}/{path3d + characterType}.tscn";
 
-		character = ResourceLoader.Load<PackedScene>(charPath)?.Instantiate<Character2D>() ?? GD.Load<PackedScene>("res://assets/gameplay/characters/bf.tscn").Instantiate<Character2D>();
+		character = ResourceLoader.Load<PackedScene>(charPath)?.Instantiate<Character2D>() 
+		            ?? GD.Load<PackedScene>("res://common/characters/bf/bf.tscn").Instantiate<Character2D>();
 
 		if (character != null)
 		{
@@ -279,24 +276,21 @@ public partial class GameplayScene : Conductor
 		}
 	}
 
-	public void GenPlayer()
+	public void GenerateCharacters()
 	{
-		GenerateCharacter(ref player, Song.Player, stage.characterPositions["Player"]);
+		GenerateCharacter(ref player, Song.Player, stage.characterPositions[StrumSides.Player.ToString()]);
 		player.isPlayer = true;
-	}
-
-	public void GenOpponent()
-	{
-		GenerateCharacter(ref opponent, Song.Opponent, stage.characterPositions["Opponent"]);
+		
+		GenerateCharacter(ref opponent, Song.Opponent, stage.characterPositions[StrumSides.Opponent.ToString()]);
 
 		if (Song.Opponent == Song.Spectator)
 		{
-			opponent.Position = stage.characterPositions["Spectator"];
+			opponent.Position = stage.characterPositions[StrumSides.Spectator.ToString()];
 			spectator.Visible = false;
 		}
+		
+		GenerateCharacter(ref spectator, Song.Spectator, stage.characterPositions[StrumSides.Spectator.ToString()]);
 	}
-
-	public void GenSpectator() => GenerateCharacter(ref spectator, Song.Spectator, stage.characterPositions["Spectator"]);
 
 	public static void CharacterDance(Character2D charToDance, bool force = false)
 	{

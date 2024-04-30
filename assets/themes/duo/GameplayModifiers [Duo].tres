@@ -205,7 +205,7 @@ corner_radius_bottom_left = 2
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7hrd"]
-bg_color = Color(0.0142752, 0.0142752, 0.0142752, 0.298039)
+bg_color = Color(0.0156863, 0.0156863, 0.0156863, 0.643137)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -216,6 +216,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [resource]
+Button/font_sizes/font_size = 24
 Button/styles/disabled = SubResource("StyleBoxFlat_stiy4")
 Button/styles/focus = SubResource("StyleBoxFlat_hy7ve")
 Button/styles/hover = SubResource("StyleBoxFlat_2h25b")

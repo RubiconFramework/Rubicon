@@ -1,16 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm5uby17wlrao"]
+[gd_scene load_steps=6 format=3 uid="uid://cm5uby17wlrao"]
 
-[ext_resource type="Script" path="res://src/scenes/freeplay/GameplayModifiers.cs" id="1_3d3eg"]
+[ext_resource type="Script" path="res://src/scenes/freeplay/objects/GameplayModifiers.cs" id="1_3d3eg"]
 [ext_resource type="Theme" uid="uid://b6ecmfgqd2syw" path="res://assets/themes/duo/GameplayModifiers [Duo].tres" id="2_sm2pk"]
 [ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/objects/buttons/slider/LabelSlider.tscn" id="3_3htfa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf85w"]
+bg_color = Color(0, 0, 0, 0.2)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3aok"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_top = 2
 
 [node name="GameplayModifiers" type="Panel"]
-offset_right = 994.0
-offset_bottom = 298.0
+offset_right = 1140.0
+offset_bottom = 454.0
 theme = ExtResource("2_sm2pk")
 script = ExtResource("1_3d3eg")
 
@@ -21,13 +24,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -478.0
-offset_top = 108.0
-offset_right = 478.0
-offset_bottom = 136.0
+offset_left = -534.0
+offset_top = 143.0
+offset_right = 534.0
+offset_bottom = 207.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_sm2pk")
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_xf85w")
 text = "Cool Label"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -39,10 +43,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -478.0
-offset_top = -128.0
-offset_right = 478.0
-offset_bottom = 94.0
+offset_left = -534.0
+offset_top = -199.0
+offset_right = 534.0
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -76,12 +80,12 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_e3aok")
 
 [node name="HealthGainMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_3htfa")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 23
 text = "Health Gain Multiplier [1.0x] "
 
 [node name="HealthLossMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_3htfa")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 23
 text = "Health Loss Multiplier [1.0x] "
 
 [node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
@@ -92,7 +96,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_e3aok")
 [node name="SoundOutputMode" type="OptionButton" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_sm2pk")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 24
 item_count = 3
 selected = 0
 popup/item_0/text = "Strum Side: Player (Boyfriend)"
