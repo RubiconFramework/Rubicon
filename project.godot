@@ -32,12 +32,12 @@ buses/default_bus_layout="res://assets/themes/default_bus_layout.tres"
 [autoload]
 
 Main="*res://src/Main.tscn"
-DebugInfo="*res://common/autoload/DebugInfo.tscn"
-Conductor="*res://common/autoload/Conductor.cs"
-DiscordRichPresence="*res://common/autoload/DiscordRichPresence.cs"
-TransitionManager="*res://common/autoload/managers/TransitionManager.tscn"
-AudioManager="*res://common/autoload/managers/AudioManager.tscn"
-VolumeManager="*res://common/autoload/managers/VolumeManager.tscn"
+DebugInfo="*res://src/autoload/DebugInfo.tscn"
+Conductor="*res://src/autoload/Conductor.cs"
+DiscordRichPresence="*res://src/autoload/DiscordRichPresence.cs"
+TransitionManager="*res://src/autoload/TransitionManager.tscn"
+AudioManager="*res://src/autoload/AudioManager.tscn"
+VolumeManager="*res://src/autoload/VolumeManager.tscn"
 
 [debug]
 
@@ -57,7 +57,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/sparrowconverter/plugin.cfg")
 
 [input]
 

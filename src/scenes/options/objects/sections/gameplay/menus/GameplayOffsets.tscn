@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://nxcmbsskule"]
+
+[ext_resource type="Script" path="res://src/scenes/options/objects/sections/gameplay/menus/GameplayOffsets.cs" id="1_cgcka"]
+
+[node name="GameplayOffsets" type="Node"]
+script = ExtResource("1_cgcka")

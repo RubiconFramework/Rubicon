@@ -1,30 +1,38 @@
 using Newtonsoft.Json;
-using Rubicon.backend;
-using Rubicon.backend.ui.notification;
-using Rubicon.scenes.options.objects;
-using Rubicon.scenes.options.objects.enums;
-using DiscordRichPresence = Rubicon.common.autoload.DiscordRichPresence;
-using TransitionManager = Rubicon.common.autoload.managers.TransitionManager;
+using Rubicon.backend.notification;
+using Rubicon.scenes.options.objects.sections;
+using DiscordRichPresence = Rubicon.autoload.DiscordRichPresence;
+using TransitionManager = Rubicon.autoload.TransitionManager;
 
 namespace Rubicon.scenes.options;
+enum OptionsMenuSections
+{
+	Gameplay,
+	Audio,
+	Video,
+	Misc,
+	Keybinds
+}
+
 public partial class OptionsMenu : Control
 {
-	[Export] private OptionsMenuSubmenus CurrentSubmenu = OptionsMenuSubmenus.Gameplay;
-	[NodePath("LeftPanel/SubmenuIndicator/AnimationPlayer/KeybindLabel")] public Label KeybindLabel;
+	[Export] private OptionsMenuSections CurrentSection = OptionsMenuSections.Gameplay;
+	[NodePath("LeftPanel/SectionIndicator/AnimationPlayer/KeybindLabel")] public Label KeybindLabel;
 
 	//Right Panel VBoxes
-	[NodePath("RightPanel/UpperVBox/GameplaySubmenu")] private Button GameplaySubmenuButton;
-	[NodePath("RightPanel/UpperVBox/VideoSubmenu")] private Button VideoSubmenuButton;
-	[NodePath("RightPanel/UpperVBox/AudioSubmenu")] private Button AudioSubmenuButton;
-	[NodePath("RightPanel/UpperVBox/MiscSubmenu")] private Button MiscSubmenuButton;
-	[NodePath("RightPanel/UpperVBox/KeybindsSubmenu")] private Button KeybindsSubmenuButton;
+	[NodePath("RightPanel/UpperVBox/GameplaySection")] private Button GameplaySectionButton;
+	[NodePath("RightPanel/UpperVBox/VideoSection")] private Button VideoSectionButton;
+	[NodePath("RightPanel/UpperVBox/AudioSection")] private Button AudioSectionButton;
+	[NodePath("RightPanel/UpperVBox/MiscSection")] private Button MiscSectionButton;
+	[NodePath("RightPanel/UpperVBox/KeybindsSection")] private Button KeybindsSectionButton;
+	
 	[NodePath("RightPanel/LowerVBox/ImportFromCode")] private Button ImportFromCode;
 	[NodePath("RightPanel/LowerVBox/ExportToCode")] private Button ExportToCode;
 
 	//Left Panel Specific
 	[NodePath("LeftPanel/DescriptionLabel")] public Label OptionDescriptionLabel;
-	[NodePath("LeftPanel/SubmenuIndicator")] private Label SubmenuIndicator;
-	[NodePath("LeftPanel/SubmenuIndicator/AnimationPlayer")] public AnimationPlayer OptionsMenuAnimPlayer;
+	[NodePath("LeftPanel/SectionIndicator")] private Label SectionIndicator;
+	[NodePath("LeftPanel/SectionIndicator/AnimationPlayer")] public AnimationPlayer OptionsMenuAnimPlayer;
 	
 	//Left Panel Scroll Containers
 	[NodePath("LeftPanel/ScrollContainers/Gameplay")] private ScrollContainer GameplayScrollContainer;
@@ -47,13 +55,13 @@ public partial class OptionsMenu : Control
 	public override void _Ready()
 	{
 		this.OnReady();
-		ChangeSubmenu(CurrentSubmenu);
+		ChangeSection(CurrentSection);
 
-		GameplaySubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Gameplay);
-		VideoSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Video);
-		AudioSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Audio);
-		MiscSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Misc);
-		KeybindsSubmenuButton.Pressed += () => ChangeSubmenu(OptionsMenuSubmenus.Keybinds);
+		GameplaySectionButton.Pressed += () => ChangeSection(OptionsMenuSections.Gameplay);
+		VideoSectionButton.Pressed += () => ChangeSection(OptionsMenuSections.Video);
+		AudioSectionButton.Pressed += () => ChangeSection(OptionsMenuSections.Audio);
+		MiscSectionButton.Pressed += () => ChangeSection(OptionsMenuSections.Misc);
+		KeybindsSectionButton.Pressed += () => ChangeSection(OptionsMenuSections.Keybinds);
 
 		ImportFromCode.Pressed += () =>
 		{
@@ -92,51 +100,51 @@ public partial class OptionsMenu : Control
 		{
 			case Key.Up:
 			case Key.Left:
-				ChangeSubmenu(-1);
+				ChangeSection(-1);
 				break;
 			case Key.Down:
 			case Key.Right:
-				ChangeSubmenu(1);
+				ChangeSection(1);
 				break;
 		}
 	}
 
 	private bool IsAnimationPlaying;
-	private void ChangeSubmenu(int direction)
+	private void ChangeSection(int direction)
 	{
 		if (IsAnimationPlaying) return;
-		int newSubmenuIndex = ((int)CurrentSubmenu + direction + 5) % 5;
-		CurrentSubmenu = (OptionsMenuSubmenus)newSubmenuIndex;
+		int newSectionIndex = ((int)CurrentSection + direction + 5) % 5;
+		CurrentSection = (OptionsMenuSections)newSectionIndex;
     
 		if (Main.RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
-			OptionsMenuAnimPlayer.Play("SubmenuTransition/StartTransition");
+			OptionsMenuAnimPlayer.Play("SectionTransition/StartTransition");
 			OptionsMenuAnimPlayer.AnimationFinished += AnimFinished;
 		}
 		else
 		{
-			UpdateSubmenuUI();
-			SubmenuIndicator.Text = CurrentSubmenu.ToString();
+			UpdateSectionUI();
+			SectionIndicator.Text = CurrentSection.ToString();
 			IsAnimationPlaying = false;
 		}
 	}
 
-	private void ChangeSubmenu(OptionsMenuSubmenus menuSubmenus)
+	private void ChangeSection(OptionsMenuSections menuSections)
 	{
 		if (IsAnimationPlaying) return;
-		CurrentSubmenu = menuSubmenus;
+		CurrentSection = menuSections;
 
 		if (Main.RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
-			OptionsMenuAnimPlayer.Play("SubmenuTransition/StartTransition");
+			OptionsMenuAnimPlayer.Play("SectionTransition/StartTransition");
 			OptionsMenuAnimPlayer.AnimationFinished += AnimFinished;
 		}
 		else
 		{
-			UpdateSubmenuUI();
-			SubmenuIndicator.Text = CurrentSubmenu.ToString();
+			UpdateSectionUI();
+			SectionIndicator.Text = CurrentSection.ToString();
 			IsAnimationPlaying = false;
 		}
 	}
@@ -144,22 +152,22 @@ public partial class OptionsMenu : Control
 	private void AnimFinished(StringName name)
 	{
 		OptionsMenuAnimPlayer.AnimationFinished -= AnimFinished;
-		if (name == "SubmenuTransition/EndTransition") return;
+		if (name == "SectionTransition/EndTransition") return;
 		IsAnimationPlaying = false;
-		OptionsMenuAnimPlayer.Play("SubmenuTransition/EndTransition");
-		UpdateSubmenuUI();
-		SubmenuIndicator.Text = CurrentSubmenu.ToString();
+		OptionsMenuAnimPlayer.Play("SectionTransition/EndTransition");
+		UpdateSectionUI();
+		SectionIndicator.Text = CurrentSection.ToString();
 	}
 
-	private void UpdateSubmenuUI()
+	private void UpdateSectionUI()
 	{
-		if (Main.RubiconSettings.Misc.DiscordRichPresence) DiscordRichPresence.Client.UpdateState($"Current Submenu: {CurrentSubmenu}");
+		if (Main.RubiconSettings.Misc.DiscordRichPresence) DiscordRichPresence.Client.UpdateState($"Current Section: {CurrentSection}");
 		
-		GameplaySubmenuButton.Text = "Gameplay";
-		VideoSubmenuButton.Text = "Video";
-		AudioSubmenuButton.Text = "Audio";
-		MiscSubmenuButton.Text = "Miscellaneous";
-		KeybindsSubmenuButton.Text = "Keybinds";
+		GameplaySectionButton.Text = "Gameplay";
+		VideoSectionButton.Text = "Video";
+		AudioSectionButton.Text = "Audio";
+		MiscSectionButton.Text = "Miscellaneous";
+		KeybindsSectionButton.Text = "Keybinds";
 
 		GameplayScrollContainer.Visible = false;
 		VideoScrollContainer.Visible = false;
@@ -167,26 +175,26 @@ public partial class OptionsMenu : Control
 		MiscScrollContainer.Visible = false;
 		KeybindsScrollContainer.Visible = false;
 
-		switch (CurrentSubmenu)
+		switch (CurrentSection)
 		{
-			case OptionsMenuSubmenus.Gameplay:
-				GameplaySubmenuButton.Text += " ↩"; 
+			case OptionsMenuSections.Gameplay:
+				GameplaySectionButton.Text += " ↩"; 
 				GameplayScrollContainer.Visible = true; 
 				break;
-			case OptionsMenuSubmenus.Video:
-				VideoSubmenuButton.Text += " ↩"; 
+			case OptionsMenuSections.Video:
+				VideoSectionButton.Text += " ↩"; 
 				VideoScrollContainer.Visible = true;
 				break;
-			case OptionsMenuSubmenus.Audio:
-				AudioSubmenuButton.Text += " ↩"; 
+			case OptionsMenuSections.Audio:
+				AudioSectionButton.Text += " ↩"; 
 				AudioScrollContainer.Visible = true;
 				break;
-			case OptionsMenuSubmenus.Misc:
-				MiscSubmenuButton.Text += " ↩";
+			case OptionsMenuSections.Misc:
+				MiscSectionButton.Text += " ↩";
 				MiscScrollContainer.Visible = true;
 				break;
-			case OptionsMenuSubmenus.Keybinds:
-				KeybindsSubmenuButton.Text += " ↩";
+			case OptionsMenuSections.Keybinds:
+				KeybindsSectionButton.Text += " ↩";
 				KeybindsScrollContainer.Visible = true;
 				break;
 		}

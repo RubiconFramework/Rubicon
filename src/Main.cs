@@ -1,5 +1,5 @@
-global using GameplayScene = Rubicon.gameplay.GameplayScene;
-global using Conductor = Rubicon.common.autoload.Conductor;
+global using GameplayScene = Rubicon.scenes.gameplay.GameplayScene;
+global using Conductor = Rubicon.autoload.Conductor;
 global using Godot; 
 global using System;
 global using Godot.Sharp.Extras;
@@ -7,11 +7,11 @@ global using Godot.Sharp.Extras;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Rubicon.backend.ui.notification;
-using Rubicon.common.autoload.managers;
-using Rubicon.common.autoload.managers.enums;
-using Chart = Rubicon.gameplay.objects.classes.chart.Chart;
-using DiscordRichPresence = Rubicon.common.autoload.DiscordRichPresence;
+using Rubicon.autoload.enums;
+using Rubicon.backend.notification;
+using AudioManager = Rubicon.autoload.AudioManager;
+using Chart = Rubicon.scenes.gameplay.objects.classes.Chart;
+using DiscordRichPresence = Rubicon.autoload.DiscordRichPresence;
 
 namespace Rubicon;
 
@@ -31,7 +31,7 @@ public partial class Main : CanvasLayer
     public static readonly Vector2 WindowSize = new((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
 
     public const string SettingsFilePath = "user://settings.json";
-    public static RubiconSettings RubiconSettings { get; set; } = new(SettingsFilePath);
+    public static RubiconSettings RubiconSettings { get; set; } = new();
 	
 	[NodePath("Notification")] private Panel NotificationInstance;
 	private Queue<(Panel, double)> notificationQueue = new();
@@ -44,6 +44,7 @@ public partial class Main : CanvasLayer
 		Instance = this;
 		AudioManager.Instance.PlayAudio(AudioType.Music, "rubiconMenu", 0.5f, true);
 		
+		RubiconSettings.Load(SettingsFilePath);
 		RenderingServer.SetDefaultClearColor(new(0,0,0));
 		TranslationServer.SetLocale(RubiconSettings.Misc.Languages.ToString().ToLower());
 
@@ -104,7 +105,7 @@ public partial class Main : CanvasLayer
     
     public Node CreateAlphabet(Node parentNode, string text, bool bold, bool isMenuItem, int targetY)
     {
-	    PackedScene scene = GD.Load<PackedScene>(this.alphabetScene.ResourcePath);
+	    PackedScene scene = GD.Load<PackedScene>(alphabetScene.ResourcePath);
 	    Node alphabetNode = scene.Instantiate();
 	    alphabetNode.Set("text", text);
 	    alphabetNode.Set("bold", bold);

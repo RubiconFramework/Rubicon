@@ -6,8 +6,8 @@
 [ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_li603"]
 [ext_resource type="SpriteFrames" uid="uid://cd1x8dun4uocr" path="res://assets/menus/titlescreen/logoBumpin.res" id="5_t5b0g"]
 [ext_resource type="SpriteFrames" uid="uid://6vecp03qpxmj" path="res://assets/menus/titlescreen/titleEnter.res" id="6_gvhw7"]
-[ext_resource type="PackedScene" uid="uid://b5jdf8vlqbm32" path="res://src/backend/ui/audiovisualizer/AudioVisualizer.tscn" id="7_ow66y"]
-[ext_resource type="Texture2D" uid="uid://dwdqru3hlxhrk" path="res://assets/menus/titlescreen/newgrounds_logo.png" id="8_6jyex"]
+[ext_resource type="PackedScene" uid="uid://b5jdf8vlqbm32" path="res://src/backend/audiovisualizer/AudioVisualizer.tscn" id="7_ow66y"]
+[ext_resource type="Texture2D" uid="uid://cohhfglioivvc" path="res://assets/menus/titlescreen/newgrounds_logo.png" id="8_6jyex"]
 [ext_resource type="Shader" path="res://src/scenes/title/objects/Title.gdshader" id="10_xj5pp"]
 
 [sub_resource type="Animation" id="Animation_ldyfc"]

@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://boxvix7acm8gm"]
-
-[ext_resource type="Script" path="res://src/gameplay/charteditor/ChartEditor.cs" id="1_hmivc"]
-
-[node name="ChartEditor" type="Node"]
-script = ExtResource("1_hmivc")

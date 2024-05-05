@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvqw4i11yg6m0"]
+
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/objects/buttons/slider/LabelSlider.tscn" id="1_ffoxu"]
+[ext_resource type="Script" path="res://src/scenes/options/objects/sections/audio/Audio.cs" id="1_htyfc"]
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="2_57eh0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
+
+[node name="Audio" type="ScrollContainer"]
+offset_right = 957.0
+offset_bottom = 551.0
+script = ExtResource("1_htyfc")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SectionSeparator" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// General Audio Settings ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolume" parent="Container" instance=ExtResource("1_ffoxu")]
+layout_mode = 2
+text = "Master Volume [50%]"
+
+[node name="AudioOutputMode" type="OptionButton" parent="Container"]
+layout_mode = 2
+theme = ExtResource("2_57eh0")
+theme_override_font_sizes/font_size = 22
+item_count = 2
+selected = 0
+popup/item_0/text = "Audio Output Mode: Stereo"
+popup/item_0/id = 0
+popup/item_1/text = "Audio Output Mode: Mono"
+popup/item_1/id = 1
+
+[node name="SectionSeparator2" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// Menu Audio ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolume" parent="Container" instance=ExtResource("1_ffoxu")]
+layout_mode = 2
+text = "Music Volume [50%]"
+
+[node name="SFXVolume" parent="Container" instance=ExtResource("1_ffoxu")]
+layout_mode = 2
+text = "SFX Volume [50%]"
+
+[node name="SectionSeparator3" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// Gameplay Audio ///"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstVolume" parent="Container" instance=ExtResource("1_ffoxu")]
+layout_mode = 2
+text = "Inst Volume [50%]"
+
+[node name="VoiceVolume" parent="Container" instance=ExtResource("1_ffoxu")]
+layout_mode = 2
+text = "Voice Volume [50%]"

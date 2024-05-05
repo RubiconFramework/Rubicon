@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Godot.Collections;
-using Rubicon.common.autoload.managers;
-using Rubicon.common.autoload.managers.enums;
-using Rubicon.scenes.freeplay.objects.resources;
+using Rubicon.autoload.enums;
+using AudioManager = Rubicon.autoload.AudioManager;
+using FreeplaySong = Rubicon.scenes.freeplay.resources.FreeplaySong;
+using TransitionManager = Rubicon.autoload.TransitionManager;
 
 namespace Rubicon.scenes.freeplay;
 

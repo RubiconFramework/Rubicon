@@ -1,0 +1,411 @@
+[gd_scene load_steps=20 format=3 uid="uid://bd6rfrayedosy"]
+
+[ext_resource type="Script" path="res://src/autoload/TransitionManager.cs" id="1_owh6s"]
+[ext_resource type="Shader" path="res://assets/shaders/Diamond.gdshader" id="2_22krj"]
+[ext_resource type="Shader" path="res://assets/shaders/saw.gdshader" id="2_y2hyg"]
+
+[sub_resource type="Animation" id="Animation_5fuo7"]
+resource_name = "End"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SawnOff/Rect:material:shader_parameter/right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SawnOff/Rect:material:shader_parameter/left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 8.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SawnOff/Rect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_uvre6"]
+resource_name = "Start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SawnOff/Rect:material:shader_parameter/right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.0, 8.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SawnOff/Rect:material:shader_parameter/left")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SawnOff/Rect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j78r0"]
+_data = {
+"End": SubResource("Animation_5fuo7"),
+"Start": SubResource("Animation_uvre6")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pyonq"]
+shader = ExtResource("2_y2hyg")
+shader_parameter/saw_b_shift = -0.267
+shader_parameter/saw_a_interval = 1.0
+shader_parameter/saw_b_interval = 2.0
+shader_parameter/saw_a_scale = 1.0
+shader_parameter/saw_b_scale = 0.821
+shader_parameter/uv_scale = Vector2(3, 8)
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/right = 7.0
+shader_parameter/left = 8.0
+
+[sub_resource type="Animation" id="Animation_5vn5j"]
+resource_name = "End"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionManager/Fade/Rect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionManager/Fade/Rect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4weys"]
+resource_name = "FadeStart"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionManager/Fade/Rect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionManager/Fade/Rect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qqm6"]
+_data = {
+"End": SubResource("Animation_5vn5j"),
+"Start": SubResource("Animation_4weys")
+}
+
+[sub_resource type="Animation" id="Animation_1onky"]
+resource_name = "End"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.325, -3.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/rotationAngle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [180.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionManager/DiamondShapes/Rect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_n2esf"]
+resource_name = "Start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/rotationAngle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TransitionManager/DiamondShapes/Rect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smieh"]
+_data = {
+"End": SubResource("Animation_1onky"),
+"Start": SubResource("Animation_n2esf")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ahxgy"]
+shader = ExtResource("2_22krj")
+shader_parameter/progress = 0.325
+shader_parameter/diamondPixelSize = 10.0
+shader_parameter/transitionDirection = Vector2(1, 1)
+shader_parameter/rotationAngle = 180.0
+
+[sub_resource type="Gradient" id="Gradient_gnsu6"]
+offsets = PackedFloat32Array(0.039, 0.5)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3m4ks"]
+gradient = SubResource("Gradient_gnsu6")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_cfvxm"]
+resource_name = "End"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vanilla/Rect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-1.56917, 1),
+"update": 0,
+"values": [Vector2(0, -768), Vector2(0, 768)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vanilla/Rect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("GradientTexture2D_3m4ks")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Vanilla/Rect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3p7ne"]
+resource_name = "Start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Vanilla/Rect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-1.56917, 1),
+"update": 0,
+"values": [Vector2(0, -1536), Vector2(0, -768)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Vanilla/Rect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("GradientTexture2D_3m4ks")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Vanilla/Rect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wmmck"]
+_data = {
+"End": SubResource("Animation_cfvxm"),
+"Start": SubResource("Animation_3p7ne")
+}
+
+[node name="TransitionManager" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_owh6s")
+
+[node name="SawnOff" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DiamondShapes")
+libraries = {
+"": SubResource("AnimationLibrary_j78r0")
+}
+
+[node name="Rect" type="ColorRect" parent="SawnOff"]
+visible = false
+material = SubResource("ShaderMaterial_pyonq")
+offset_right = 1366.0
+offset_bottom = 768.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Fade" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4qqm6")
+}
+
+[node name="Rect" type="ColorRect" parent="Fade"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_right = 1366.0
+offset_bottom = 768.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DiamondShapes" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_smieh")
+}
+
+[node name="Rect" type="ColorRect" parent="DiamondShapes"]
+visible = false
+material = SubResource("ShaderMaterial_ahxgy")
+offset_right = 1366.0
+offset_bottom = 768.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Vanilla" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wmmck")
+}
+
+[node name="Rect" type="TextureRect" parent="Vanilla"]
+visible = false
+offset_top = -768.0
+offset_right = 1366.0
+offset_bottom = 768.0
+texture = SubResource("GradientTexture2D_3m4ks")

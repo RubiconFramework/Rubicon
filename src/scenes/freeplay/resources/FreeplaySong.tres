@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bcrwsswwebgvi"]
+
+[ext_resource type="Script" path="res://src/scenes/freeplay/resources/FreeplaySong.cs" id="1_my4xq"]
+
+[resource]
+script = ExtResource("1_my4xq")

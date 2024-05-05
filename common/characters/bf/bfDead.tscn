@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbkrm47gynwi4"]
 
-[ext_resource type="Script" path="res://src/gameplay/objects/classes/scripts/Character2D.cs" id="1_lne2a"]
+[ext_resource type="Script" path="res://src/scenes/gameplay/objects/classes/Character2D.cs" id="1_lne2a"]
 [ext_resource type="SpriteFrames" uid="uid://bsypavrje1d84" path="res://common/characters/bf/images/dead.res" id="2_sdoun"]
 [ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="3_5bj67"]
 

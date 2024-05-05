@@ -1,7 +1,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Rubicon.backend.ui.notification;
-using Rubicon.common.autoload.managers.enums;
+using Rubicon.autoload.enums;
+using Rubicon.backend.notification;
+using Rubicon.scenes.gameplay;
 
 namespace Rubicon;
 
@@ -35,32 +36,45 @@ public enum TransitionType
 public class RubiconSettings
 {
     public readonly GameplaySettings Gameplay = new();
-    public readonly GameplayModifiers Modifiers = new();
     public readonly AudioSettings Audio = new();
     public readonly VideoSettings Video = new();
     public readonly MiscSettings Misc = new();
 
     public class GameplaySettings
     {
+        public readonly GameplayModifiers Modifiers = new();
+        public readonly GameplayOffsets Offsets = new();
+        
         public bool Downscroll { get; set; }
+        public bool Middlescroll { get; set; }
+        public bool DisableOpponentStrums { get; set; }
         public float ScrollSpeed { get; set; } = 1.0f;
         public ScrollSpeedType ScrollSpeedType { get; set; } = ScrollSpeedType.Constant; 
-    }
-
-    public class GameplayModifiers
-    {
-        public bool NoMissMode { get; set; }
-        public bool PFCOnly { get; set; }
-        public bool CoolMechanic { get; set; }
-        public float HealthGainMult { get; set; } = 1.0f;
-        public float HealthLossMult { get; set; } = 1.0f;
-        public StrumSides StrumSides { get; set; } = StrumSides.Player;
+        
+        public class GameplayModifiers
+        {
+            public bool NoMissMode { get; set; }
+            public bool PFCOnly { get; set; }
+            public bool CoolMechanic { get; set; }
+            public float HealthGainMult { get; set; } = 1.0f;
+            public float HealthLossMult { get; set; } = 1.0f;
+            public float SongRate { get; set; } = 1.0f;
+            public StrumSides StrumSides { get; set; } = StrumSides.Player;
+        }
+        
+        public class GameplayOffsets
+        {
+            public float SoundOffset { get; set; } = 1.0f;
+            public Vector2 RatingsPosition { get; set; } = new(0, 0); 
+            public Vector2 ComboPosition { get; set; } = new(0, 0); 
+            public GameplayCamera RatingsCamera { get; set; }
+        }
     }
 
     public class AudioSettings
     {
         public float MasterVolume { get; set; } = 50;
-        public OutputMode OutputMode { get; set; } = OutputMode.Stereo;
+        public AudioOutputMode AudioOutputMode { get; set; } = AudioOutputMode.Stereo;
         public float MusicVolume { get; set; } = 100;
         public float SFXVolume { get; set; } = 100;
         public float InstVolume { get; set; } = 100;
@@ -82,8 +96,14 @@ public class RubiconSettings
         public bool OptionsMenuAnimations { get; set; } = true;
         public bool SceneTransitions { get; set; } = true;
     }
+    
+    public RubiconSettings GetDefaultSettings()
+    {
+        RubiconSettings defaultSettings = new();
+        return defaultSettings;
+    }
 
-    public RubiconSettings(string path)
+    public void Load(string path)
     {
         try
         {
@@ -115,14 +135,6 @@ public class RubiconSettings
             Main.Instance.SendNotification($"Failed to load or write default settings: {e.Message}", true, NotificationType.Error);
             throw;
         }
-    }
-    
-    public RubiconSettings(){}
-
-    public RubiconSettings GetDefaultSettings()
-    {
-        RubiconSettings defaultSettings = new();
-        return defaultSettings;
     }
     
     public void Save()

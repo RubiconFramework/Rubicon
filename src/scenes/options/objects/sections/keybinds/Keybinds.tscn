@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbdfpnvlhkxlo"]
+
+[ext_resource type="Script" path="res://src/scenes/options/objects/sections/keybinds/Keybinds.cs" id="1_3jr24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
+
+[node name="Keybinds" type="ScrollContainer"]
+offset_left = 1.0
+offset_right = 959.0
+offset_bottom = 551.0
+script = ExtResource("1_3jr24")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SectionSeparator" type="Label" parent="Container"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
+text = "/// idk how to separate these they're not in the scene tree ///"
+horizontal_alignment = 1
+vertical_alignment = 1

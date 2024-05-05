@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://dh6hbnu7rv3qu"]
 
 [ext_resource type="Script" path="res://src/scenes/freeplay/FreeplayMenu.cs" id="1_3kwjh"]
-[ext_resource type="Script" path="res://src/scenes/freeplay/objects/resources/FreeplaySong.cs" id="2_o64g5"]
-[ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="3_mbm3f"]
+[ext_resource type="Script" path="res://src/scenes/freeplay/resources/FreeplaySong.cs" id="2_o64g5"]
+[ext_resource type="Texture2D" uid="uid://b01atyh6h5pkt" path="res://assets/menus/menuBGDesat.png" id="3_mbm3f"]
 [ext_resource type="Theme" uid="uid://bhiai7ytosyn4" path="res://assets/themes/duo/Freeplay [Duo].tres" id="4_iu2x7"]
-[ext_resource type="PackedScene" uid="uid://cm5uby17wlrao" path="res://src/scenes/freeplay/objects/GameplayModifiers.tscn" id="5_m7ccm"]
-[ext_resource type="FontFile" uid="uid://spbqu41arjij" path="res://assets/fonts/funkin.ttf" id="6_kue15"]
+[ext_resource type="PackedScene" uid="uid://cm5uby17wlrao" path="res://src/scenes/options/objects/sections/gameplay/menus/GameplayModifiers.tscn" id="5_m7ccm"]
+[ext_resource type="FontFile" uid="uid://bng77ldvnu6ev" path="res://assets/fonts/funkin.ttf" id="6_kue15"]
 
 [sub_resource type="Resource" id="Resource_aa6wv"]
 script = ExtResource("2_o64g5")
@@ -455,9 +455,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -484.0
+offset_left = -495.0
 offset_top = -37.0
-offset_right = -13.0
+offset_right = -26.0
 offset_bottom = -14.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -466,7 +466,7 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("6_kue15")
 theme_override_font_sizes/font_size = 22
 text = "Press Space to Open the Gameplay Modifiers Menu"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="GameplayModifiersLabel"]
@@ -475,7 +475,6 @@ libraries = {
 }
 
 [node name="GameplayModifiers" parent="." instance=ExtResource("5_m7ccm")]
-visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5

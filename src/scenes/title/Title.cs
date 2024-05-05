@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Rubicon.backend;
-using Rubicon.backend.ui.notification;
-using Rubicon.common.autoload.managers.enums;
-using AudioManager = Rubicon.common.autoload.managers.AudioManager;
-using TransitionManager = Rubicon.common.autoload.managers.TransitionManager;
+using Rubicon.autoload.enums;
+using Rubicon.backend.notification;
+using AudioManager = Rubicon.autoload.AudioManager;
+using TransitionManager = Rubicon.autoload.TransitionManager;
 
 namespace Rubicon.scenes.title;
 

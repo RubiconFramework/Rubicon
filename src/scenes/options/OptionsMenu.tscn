@@ -1,14 +1,14 @@
 [gd_scene load_steps=23 format=3 uid="uid://cx352arf7ejqx"]
 
 [ext_resource type="Script" path="res://src/scenes/options/OptionsMenu.cs" id="1_025u3"]
-[ext_resource type="Texture2D" uid="uid://k5teaxd8fpqm" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
+[ext_resource type="Texture2D" uid="uid://b01atyh6h5pkt" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="5_aor24"]
-[ext_resource type="Texture2D" uid="uid://bngy4xd5trnmk" path="res://src/scenes/options/objects/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
-[ext_resource type="PackedScene" uid="uid://v36c2nyp63w7" path="res://src/scenes/options/submenus/gameplay/Gameplay.tscn" id="5_f4aaq"]
-[ext_resource type="PackedScene" uid="uid://cvqw4i11yg6m0" path="res://src/scenes/options/submenus/audio/Audio.tscn" id="6_bm6i0"]
-[ext_resource type="PackedScene" uid="uid://cnxj6k6gqye8h" path="res://src/scenes/options/submenus/video/Video.tscn" id="7_mhcac"]
-[ext_resource type="PackedScene" uid="uid://c4hlnqsvubucn" path="res://src/scenes/options/submenus/misc/Misc.tscn" id="8_2efem"]
-[ext_resource type="PackedScene" uid="uid://dbdfpnvlhkxlo" path="res://src/scenes/options/submenus/keybinds/Keybinds.tscn" id="9_htkdd"]
+[ext_resource type="Texture2D" uid="uid://b43ljlyjf1t51" path="res://src/scenes/options/objects/sections/gameplay/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
+[ext_resource type="PackedScene" uid="uid://v36c2nyp63w7" path="res://src/scenes/options/objects/sections/gameplay/Gameplay.tscn" id="5_f4aaq"]
+[ext_resource type="PackedScene" uid="uid://cvqw4i11yg6m0" path="res://src/scenes/options/objects/sections/audio/Audio.tscn" id="6_bm6i0"]
+[ext_resource type="PackedScene" uid="uid://cnxj6k6gqye8h" path="res://src/scenes/options/objects/sections/video/Video.tscn" id="7_mhcac"]
+[ext_resource type="PackedScene" uid="uid://c4hlnqsvubucn" path="res://src/scenes/options/objects/sections/misc/Misc.tscn" id="8_2efem"]
+[ext_resource type="PackedScene" uid="uid://dbdfpnvlhkxlo" path="res://src/scenes/options/objects/sections/keybinds/Keybinds.tscn" id="9_htkdd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jex1q"]
 
@@ -311,7 +311,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_025u3")
-CurrentSubmenu = 4
 
 [node name="BG" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_jex1q")
@@ -343,31 +342,31 @@ offset_right = 134.5
 offset_bottom = 198.0
 grow_horizontal = 2
 
-[node name="GameplaySubmenu" type="Button" parent="RightPanel/UpperVBox"]
+[node name="GameplaySection" type="Button" parent="RightPanel/UpperVBox"]
 layout_mode = 2
 theme = ExtResource("5_aor24")
 theme_override_font_sizes/font_size = 20
 text = "Gameplay"
 
-[node name="AudioSubmenu" type="Button" parent="RightPanel/UpperVBox"]
+[node name="AudioSection" type="Button" parent="RightPanel/UpperVBox"]
 layout_mode = 2
 theme = ExtResource("5_aor24")
 theme_override_font_sizes/font_size = 20
 text = "Audio"
 
-[node name="VideoSubmenu" type="Button" parent="RightPanel/UpperVBox"]
+[node name="VideoSection" type="Button" parent="RightPanel/UpperVBox"]
 layout_mode = 2
 theme = ExtResource("5_aor24")
 theme_override_font_sizes/font_size = 20
 text = "Video"
 
-[node name="MiscSubmenu" type="Button" parent="RightPanel/UpperVBox"]
+[node name="MiscSection" type="Button" parent="RightPanel/UpperVBox"]
 layout_mode = 2
 theme = ExtResource("5_aor24")
 theme_override_font_sizes/font_size = 20
 text = "Miscellaneous"
 
-[node name="KeybindsSubmenu" type="Button" parent="RightPanel/UpperVBox"]
+[node name="KeybindsSection" type="Button" parent="RightPanel/UpperVBox"]
 layout_mode = 2
 theme = ExtResource("5_aor24")
 theme_override_font_sizes/font_size = 20
@@ -461,7 +460,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "Removed Keybind."
+text = "Press a Key, or Press Backspace to Remove the Bind."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -486,58 +485,53 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -453.0
-offset_top = -297.0
-offset_right = 453.0
-offset_bottom = 246.0
+offset_left = -477.5
+offset_top = -283.0
+offset_right = 478.5
+offset_bottom = 231.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Gameplay" parent="LeftPanel/ScrollContainers" instance=ExtResource("5_f4aaq")]
 layout_mode = 0
-offset_left = -25.0
-offset_top = 14.0
-offset_right = 931.0
-offset_bottom = 563.0
+offset_left = -0.5
+offset_right = 955.5
+offset_bottom = 514.0
 
 [node name="Audio" parent="LeftPanel/ScrollContainers" instance=ExtResource("6_bm6i0")]
 visible = false
 layout_mode = 0
-offset_left = -25.5
-offset_top = 14.0
-offset_right = 931.5
-offset_bottom = 565.0
+offset_left = -0.5
+offset_right = 956.5
+offset_bottom = 514.0
 
 [node name="Video" parent="LeftPanel/ScrollContainers" instance=ExtResource("7_mhcac")]
 visible = false
 layout_mode = 0
-offset_left = -25.5
-offset_top = 14.0
-offset_right = 932.5
-offset_bottom = 565.0
+offset_left = -0.5
+offset_right = 957.5
+offset_bottom = 514.0
 
 [node name="Misc" parent="LeftPanel/ScrollContainers" instance=ExtResource("8_2efem")]
 visible = false
 layout_mode = 0
-offset_left = -25.5
-offset_top = 14.0
-offset_right = 931.5
-offset_bottom = 565.0
+offset_left = -0.5
+offset_right = 956.5
+offset_bottom = 514.0
 
 [node name="Keybinds" parent="LeftPanel/ScrollContainers" instance=ExtResource("9_htkdd")]
 visible = false
 layout_mode = 0
-offset_left = -25.5
-offset_top = 14.0
-offset_right = 932.5
-offset_bottom = 565.0
+offset_left = -0.5
+offset_right = 957.5
+offset_bottom = 514.0
 
 [node name="DescriptionLabel" type="Label" parent="LeftPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 37.0
+offset_left = 38.0
 offset_top = 620.0
 offset_right = -37.0
 offset_bottom = -14.0
