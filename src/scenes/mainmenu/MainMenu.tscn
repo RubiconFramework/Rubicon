@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b01atyh6h5pkt" path="res://assets/menus/menuBGDesat.png" id="2_6l477"]
 [ext_resource type="Texture2D" uid="uid://dovnbdv3bqsvf" path="res://assets/menus/menuBG.png" id="3_fl4fl"]
 [ext_resource type="SpriteFrames" path="res://assets/menus/mainmenu/storyMode.res" id="4_466ln"]
-[ext_resource type="SpriteFrames" path="res://assets/menus/mainmenu/freeplay.res" id="5_uxx7t"]
+[ext_resource type="SpriteFrames" uid="uid://b8atqw2035xd3" path="res://assets/menus/mainmenu/freeplay.res" id="5_uxx7t"]
 [ext_resource type="SpriteFrames" path="res://assets/menus/mainmenu/options.res" id="6_3n0xn"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7ijp4"]

@@ -6,33 +6,6 @@ using Rubicon.scenes.gameplay;
 
 namespace Rubicon;
 
-public enum StrumSides
-{
-    Opponent,
-    Spectator,
-    Player
-}
-
-public enum ScrollSpeedType
-{
-    Multiplier,
-    Constant
-}
-    
-public enum GameLanguages
-{
-    English,
-    Spanish
-}
-    
-public enum TransitionType
-{
-    Vanilla,
-    Fade,
-    SawnOff,
-    DiamondShapes
-}
-
 public class RubiconSettings
 {
     public readonly GameplaySettings Gameplay = new();
@@ -156,4 +129,30 @@ public class RubiconSettings
             Main.Instance.SendNotification($"Failed to save settings: {e.Message}", true, NotificationType.Error);
         }
     }
+}
+public enum StrumSides
+{
+    Opponent,
+    Spectator,
+    Player
+}
+
+public enum ScrollSpeedType
+{
+    Multiplier,
+    Constant
+}
+    
+public enum GameLanguages
+{
+    English,
+    Spanish
+}
+    
+public enum TransitionType
+{
+    Vanilla,
+    Fade,
+    SawnOff,
+    DiamondShapes
 }

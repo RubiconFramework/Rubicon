@@ -29,6 +29,7 @@
     <Content Include="addons\audio_preview\voice_preview_generator.gd" />
     <Content Include="addons\audio_preview\voice_preview_generator.tscn" />
     <Content Include="addons\sparrowconverter\plugin.cfg" />
+    <Content Include="addons\sparrowconverter\SparrowConvert.gd" />
     <Content Include="addons\sparrowconverter\SparrowConvert.tscn" />
     <Content Include="assets\fonts\alphabet\bold.png" />
     <Content Include="assets\fonts\alphabet\bold.res" />
@@ -456,7 +457,6 @@
     <Compile Remove="src\backend\common\**" />
     <Compile Remove="src\backend\scripts\nuclearbombs\**" />
     <Compile Include="autoload\Conductor.cs" />
-    <Compile Include="src\autoload\AudioManager.cs" />
     <Compile Include="src\backend\autoload\debug\screennotifier\NotificationType.cs" />
     <Compile Include="src\backend\autoload\debug\screennotifier\ScreenNotifier.cs" />
     <Compile Remove="src\backend\autoload\debug\screennotifier\**" />

@@ -1,0 +1,143 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8pnkaxh8qdwe"]
+
+[ext_resource type="Texture2D" uid="uid://b01atyh6h5pkt" path="res://assets/menus/menuBGDesat.png" id="1_8otpr"]
+[ext_resource type="Script" path="res://src/backend/xmlconverter/XML Converter.gd" id="1_72kxm"]
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="4_cqp41"]
+
+[node name="XML Converter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_72kxm")
+
+[node name="BG" type="Sprite2D" parent="."]
+modulate = Color(0.105882, 0.0784314, 0.12549, 1)
+position = Vector2(1.00003, 1.52588e-05)
+scale = Vector2(1.06376, 1.05616)
+texture = ExtResource("1_8otpr")
+centered = false
+
+[node name="Converted Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 20.0
+offset_right = 1350.0
+offset_bottom = 748.0
+theme = ExtResource("4_cqp41")
+
+[node name="ConvertedSprites" type="Label" parent="Converted Panel"]
+layout_mode = 0
+offset_right = 725.0
+offset_bottom = 32.0
+text = "Converted Sprites:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpriteData" type="AnimatedSprite2D" parent="."]
+position = Vector2(954, 403)
+
+[node name="Main Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00585652
+anchor_top = 0.263021
+anchor_right = -0.00585652
+anchor_bottom = 0.263021
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 602.0
+offset_bottom = 291.0
+theme = ExtResource("4_cqp41")
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="Main Panel"]
+layout_mode = 0
+offset_right = 582.0
+offset_bottom = 45.0
+text = "XML -> SpriteFrames"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Choose Sprites" type="Button" parent="Main Panel"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 60.0
+offset_right = 224.0
+offset_bottom = 118.0
+focus_mode = 0
+theme = ExtResource("4_cqp41")
+action_mode = 0
+text = "Pick Sprite"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPS" type="LineEdit" parent="Main Panel"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 87.0
+offset_right = 565.0
+offset_bottom = 118.0
+theme = ExtResource("4_cqp41")
+text = "24"
+placeholder_text = "24"
+metadata/_edit_use_anchors_ = true
+
+[node name="FPS Text" type="Label" parent="Main Panel"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 60.0
+offset_right = 565.0
+offset_bottom = 87.0
+text = "Anim FPS"
+metadata/_edit_use_anchors_ = true
+
+[node name="Looped Checkbox" type="CheckBox" parent="Main Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 150.0
+offset_right = 224.0
+offset_bottom = 197.0
+focus_mode = 0
+theme = ExtResource("4_cqp41")
+text = "Looped?"
+metadata/_edit_use_anchors_ = true
+
+[node name="Optimized Checkbox" type="CheckBox" parent="Main Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 207.0
+offset_right = 224.0
+offset_bottom = 253.0
+theme = ExtResource("4_cqp41")
+button_pressed = true
+text = "Optimized?"
+metadata/_edit_use_anchors_ = true
+
+[node name="Convert Button" type="Button" parent="Main Panel"]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 150.0
+offset_right = 565.0
+offset_bottom = 255.0
+focus_mode = 0
+theme = ExtResource("4_cqp41")
+text = "Convert"
+metadata/_edit_use_anchors_ = true
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(500, 500)
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.png ; Spritesheets", "*.jpg ; Spritesheets", "*.jpeg ; Spritesheets", "*.xml ; XML Spritesheet Data")
+show_hidden_files = true
+
+[connection signal="pressed" from="Main Panel/Choose Sprites" to="." method="popup_shit"]
+[connection signal="text_changed" from="Main Panel/FPS" to="." method="set_fps"]
+[connection signal="toggled" from="Main Panel/Looped Checkbox" to="." method="set_looped"]
+[connection signal="toggled" from="Main Panel/Optimized Checkbox" to="." method="set_optimized"]
+[connection signal="pressed" from="Main Panel/Convert Button" to="." method="convert_xml"]
+[connection signal="file_selected" from="FileDialog" to="." method="set_path"]

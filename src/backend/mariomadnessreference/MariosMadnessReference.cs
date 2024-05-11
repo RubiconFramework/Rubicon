@@ -3,28 +3,38 @@ namespace Rubicon.backend.mariomadnessreference;
 public partial class MariosMadnessReference : Control
 {
     [NodePath("AnimationPlayer")] public AnimationPlayer AnimationPlayer;
-    [NodePath("Song")] public Label Song;
-    [NodePath("Composer")] public Label Composer;
-    public float Duration;
-
-    [NodePath("HSeparator/HSeparator2")] private HSeparator BGLine;
-    [NodePath("HSeparator")] private HSeparator FGLine;
+    [NodePath("HBoxContainer")] public HBoxContainer HBoxContainer;
     
-    public override void _Ready()
+    [NodePath("HBoxContainer/Rubicon/Song")] public Label Song;
+    [NodePath("HBoxContainer/Rubicon/Composer")] public Label Composer;
+    
+    public override void _Ready() => this.OnReady();
+
+    public void StartIntro(string songName, string songComposer)
     {
-        this.OnReady();
+        Song.Text = songName;
+        Composer.Text = songComposer;
+
+        float newSizeX = HBoxContainer.Size.X;
+    
+        if (Song.Size.X > Composer.Size.X)
+            if (Song.Size.X > HBoxContainer.Size.X) newSizeX = Song.Size.X + 5;
         
+        else if (Composer.Size.X > Song.Size.X)
+            if (Composer.Size.X > HBoxContainer.Size.X) newSizeX = Composer.Size.X + 5;
+        
+        if (!newSizeX.Equals(HBoxContainer.Size.X)) 
+            HBoxContainer.Size = new(newSizeX, HBoxContainer.Size.Y);
+
         AnimationPlayer.Play("In");
-        AnimationPlayer.AnimationFinished += AnimFinished;
     }
 
-    private async void AnimFinished(StringName name)
+    public void Finish()
     {
-        if (name == "In")
+        AnimationPlayer.Play("Out");
+        AnimationPlayer.AnimationFinished += _ =>
         {
-            await ToSignal(GetTree().CreateTimer(Duration), SceneTreeTimer.SignalName.Timeout);
-            AnimationPlayer.Play("Out");
-        }
-        else if (name == "Out") QueueFree();
+            if (_ == "Out") QueueFree();
+        };
     }
 }
