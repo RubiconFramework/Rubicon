@@ -10,10 +10,12 @@ controls = PackedStringArray("note_left", "note_down", "note_up", "note_right")
 [node name="left" parent="." instance=ExtResource("2_g58p1")]
 position = Vector2(-144, 0)
 scale = Vector2(0.6, 0.6)
+animation = &"left"
 
 [node name="down" parent="." instance=ExtResource("2_g58p1")]
 position = Vector2(-48, 0)
 scale = Vector2(0.6, 0.6)
+animation = &"down"
 direction = 1
 
 [node name="up" parent="." instance=ExtResource("2_g58p1")]

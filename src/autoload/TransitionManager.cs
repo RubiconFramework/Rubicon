@@ -34,7 +34,7 @@ public partial class TransitionManager : CanvasLayer
         }
     }
     
-    public async void ChangeScene(string path, TransitionType transitionType)
+    public async void ChangeScene(string path, TransitionType forcedTransitionType)
     {
         if (!Main.RubiconSettings.Misc.SceneTransitions)
         {
@@ -44,7 +44,7 @@ public partial class TransitionManager : CanvasLayer
             return;
         }
 
-        AnimationPlayer player = GetNode<AnimationPlayer>(transitionType.ToString());
+        AnimationPlayer player = GetNode<AnimationPlayer>(forcedTransitionType.ToString());
         player.Play("Start");
         player.AnimationFinished += TransitionFinished;
         async void TransitionFinished(StringName animName)

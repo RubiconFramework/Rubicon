@@ -30,8 +30,8 @@ public partial class GameplayScene : Conductor
 	private Chart Song;
 	
 	//music
-	private AudioStreamPlayer inst;
-	private AudioStreamPlayer vocals;
+	[NodePath("Song/Inst")] private AudioStreamPlayer inst;
+	[NodePath("Song/Voices")] private AudioStreamPlayer vocals;
 	
 	//Song Vars
 	private bool startingSong;
@@ -107,6 +107,7 @@ public partial class GameplayScene : Conductor
 	public override void _Ready()
 	{
 		base._Ready();
+		this.OnReady();
 
 		AudioManager.Instance.music.Stop();
 		//GetTree().Paused = false;
@@ -235,11 +236,12 @@ public partial class GameplayScene : Conductor
     private void InitializeStrumLine(ref StrumLine strumLine, float positionX)
 	{
 		/*Song.KeyCount*/
-		strumLine = GD.Load<PackedScene>($"res://src/gameplay/objects/strumlines/4K.tscn").Instantiate<StrumLine>();
+		strumLine = GD.Load<PackedScene>($"res://src/scenes/gameplay/objects/strumlines/4K.tscn").Instantiate<StrumLine>();
 		strumLine.uiStyle = uiStyle;
 		strumGroup.AddChild(strumLine);
 		strumLine.Position = new(positionX, 100);
-		if (strumLine == playerStrums) strumLine.readsInput = true;
+		if (strumLine == playerStrums) 
+			strumLine.readsInput = true;
 	}
 
 	public void GenerateNotes(float skipTime = -1f)

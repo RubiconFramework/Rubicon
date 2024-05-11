@@ -95,7 +95,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_103p8")
 theme_override_font_sizes/font_size = 20
-text = "Score: 0 • Combo Breaks: 0 • Rating: N/A% [N/A]"
+text = "Score: 0 - Combo Breaks: 0 - Accuracy: N/A% - Rating: N/A"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
