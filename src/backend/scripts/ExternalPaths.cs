@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Rubicon.backend;
+namespace Rubicon.backend.scripts;
 
 /// <summary>
 /// haxe looking headass paths -dunine

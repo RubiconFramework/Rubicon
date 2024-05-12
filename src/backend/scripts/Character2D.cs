@@ -1,4 +1,4 @@
-namespace Rubicon.scenes.gameplay.objects.classes;
+namespace Rubicon.backend.scripts;
 
 public partial class Character2D : Node2D
 {

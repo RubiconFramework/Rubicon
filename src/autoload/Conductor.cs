@@ -1,6 +1,7 @@
 using Godot.Collections;
-using Rubicon.scenes.gameplay.objects.classes;
-using Chart = Rubicon.scenes.gameplay.objects.classes.Chart;
+using BPMChangeEvent = Rubicon.backend.scripts.BPMChangeEvent;
+using Chart = Rubicon.backend.scripts.Chart;
+using Section = Rubicon.backend.scripts.Section;
 
 namespace Rubicon.autoload;
 

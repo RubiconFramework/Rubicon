@@ -10,7 +10,24 @@ public partial class MariosMadnessReference : Control
     
     public override void _Ready() => this.OnReady();
 
-    public void StartIntro(string songName, string songComposer)
+    public void ShowSong(string songName, string songComposer) => Setup(songName, songComposer);
+
+    public void ShowSong(string songName, string songComposer, Color color)
+    {
+        this.Modulate = color;
+        Setup(songName, songComposer);
+    }
+
+    public void HideSong()
+    {
+        AnimationPlayer.Play("Out");
+        AnimationPlayer.AnimationFinished += _ =>
+        {
+            if (_ == "Out") QueueFree();
+        };
+    }
+
+    private void Setup(string songName, string songComposer)
     {
         Song.Text = songName;
         Composer.Text = songComposer;
@@ -20,21 +37,12 @@ public partial class MariosMadnessReference : Control
         if (Song.Size.X > Composer.Size.X)
             if (Song.Size.X > HBoxContainer.Size.X) newSizeX = Song.Size.X + 5;
         
-        else if (Composer.Size.X > Song.Size.X)
-            if (Composer.Size.X > HBoxContainer.Size.X) newSizeX = Composer.Size.X + 5;
+            else if (Composer.Size.X > Song.Size.X)
+                if (Composer.Size.X > HBoxContainer.Size.X) newSizeX = Composer.Size.X + 5;
         
         if (!newSizeX.Equals(HBoxContainer.Size.X)) 
             HBoxContainer.Size = new(newSizeX, HBoxContainer.Size.Y);
 
         AnimationPlayer.Play("In");
-    }
-
-    public void Finish()
-    {
-        AnimationPlayer.Play("Out");
-        AnimationPlayer.AnimationFinished += _ =>
-        {
-            if (_ == "Out") QueueFree();
-        };
     }
 }

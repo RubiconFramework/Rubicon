@@ -380,6 +380,10 @@
     <Content Include="src\autoload\DebugInfo.tscn" />
     <Content Include="src\autoload\TransitionManager.tscn" />
     <Content Include="src\autoload\VolumeManager.tscn" />
+    <Content Include="src\backend\alphabet\Alphabet.gd" />
+    <Content Include="src\backend\audiovisualizer\AudioVisualizer.gd" />
+    <Content Include="src\backend\xmlconverter\XML Converter.gd" />
+    <Content Include="src\scenes\charteditor\ChartEditor.tscn" />
     <Content Include="src\scenes\freeplay\resources\FreeplaySong.tres" />
     <Content Include="src\scenes\options\objects\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg.import" />
     <Content Include="src\scenes\options\objects\sections\gameplay\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
@@ -466,14 +470,12 @@
     <Compile Remove="src\scenes\debugmenu\scenes\**" />
     <Compile Remove="src\scenes\debugmenu\**" />
     <Compile Remove="src\debugmenu\**" />
-    <Compile Remove="src\scenes\charteditor\**" />
     <Compile Remove="src\scenes\freeplay\Elements\**" />
     <Compile Include="src\scenes\freeplay\elements\FreeplaySong.cs" />
     <Compile Remove="src\scenes\freeplay\elements\**" />
     <Compile Remove="src\charteditor\**" />
     <Compile Remove="src\gameplay\elements\**" />
     <Compile Remove="src\backend\scripts\filesystems\**" />
-    <Compile Remove="src\backend\scripts\**" />
     <Compile Remove="src\backend\autoload\**" />
     <Compile Remove="src\common\**" />
     <Compile Remove="common\stages\base\**" />
@@ -508,6 +510,10 @@
     <Compile Remove="common\autoload\**" />
     <Compile Remove="src\gameplay\**" />
     <Compile Remove="assets\hud\**" />
+    <Compile Remove="src\scenes\gameplay\charteditor\**" />
+    <Compile Remove="src\scenes\gameplay\objects\classes\**" />
+    <Compile Remove="src\backend\notification\**" />
+    <Compile Remove=".godot\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="Source\Tools\AdobeJsonConverter\**" />
@@ -552,13 +558,11 @@
     <EmbeddedResource Remove="src\scenes\debugmenu\scenes\**" />
     <EmbeddedResource Remove="src\scenes\debugmenu\**" />
     <EmbeddedResource Remove="src\debugmenu\**" />
-    <EmbeddedResource Remove="src\scenes\charteditor\**" />
     <EmbeddedResource Remove="src\scenes\freeplay\Elements\**" />
     <EmbeddedResource Remove="src\scenes\freeplay\elements\**" />
     <EmbeddedResource Remove="src\charteditor\**" />
     <EmbeddedResource Remove="src\gameplay\elements\**" />
     <EmbeddedResource Remove="src\backend\scripts\filesystems\**" />
-    <EmbeddedResource Remove="src\backend\scripts\**" />
     <EmbeddedResource Remove="src\backend\autoload\**" />
     <EmbeddedResource Remove="src\common\**" />
     <EmbeddedResource Remove="common\stages\base\**" />
@@ -593,6 +597,10 @@
     <EmbeddedResource Remove="common\autoload\**" />
     <EmbeddedResource Remove="src\gameplay\**" />
     <EmbeddedResource Remove="assets\hud\**" />
+    <EmbeddedResource Remove="src\scenes\gameplay\charteditor\**" />
+    <EmbeddedResource Remove="src\scenes\gameplay\objects\classes\**" />
+    <EmbeddedResource Remove="src\backend\notification\**" />
+    <EmbeddedResource Remove=".godot\**" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\**\*.tscn" />
@@ -618,13 +626,11 @@
     <None Remove="src\scenes\debugmenu\scenes\**" />
     <None Remove="src\scenes\debugmenu\**" />
     <None Remove="src\debugmenu\**" />
-    <None Remove="src\scenes\charteditor\**" />
     <None Remove="src\scenes\freeplay\Elements\**" />
     <None Remove="src\scenes\freeplay\elements\**" />
     <None Remove="src\charteditor\**" />
     <None Remove="src\gameplay\elements\**" />
     <None Remove="src\backend\scripts\filesystems\**" />
-    <None Remove="src\backend\scripts\**" />
     <None Remove="src\backend\autoload\**" />
     <None Remove="src\common\**" />
     <None Remove="src\scenes\options\buttons\keybind\**" />
@@ -652,6 +658,9 @@
     <None Remove="src\backend\paths\**" />
     <None Remove="src\backend\ui\**" />
     <None Remove="src\gameplay\**" />
+    <None Remove="src\scenes\gameplay\charteditor\**" />
+    <None Remove="src\scenes\gameplay\objects\classes\**" />
+    <None Remove="src\backend\notification\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="**\*.import" />

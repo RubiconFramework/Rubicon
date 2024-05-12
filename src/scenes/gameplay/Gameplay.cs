@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using Rubicon.backend;
+using Rubicon.backend.scripts;
 using AudioManager = Rubicon.autoload.AudioManager;
-using Character2D = Rubicon.scenes.gameplay.objects.classes.Character2D;
-using Chart = Rubicon.scenes.gameplay.objects.classes.Chart;
+using Character2D = Rubicon.backend.scripts.Character2D;
+using Chart = Rubicon.backend.scripts.Chart;
 using Note = Rubicon.scenes.gameplay.objects.strumlines.Note;
 using NoteGroup = Rubicon.scenes.gameplay.objects.strumlines.NoteGroup;
-using ScriptGroup = Rubicon.scenes.gameplay.objects.classes.ScriptGroup;
-using Section = Rubicon.scenes.gameplay.objects.classes.Section;
-using SectionNote = Rubicon.scenes.gameplay.objects.classes.SectionNote;
+using ScriptGroup = Rubicon.backend.scripts.ScriptGroup;
+using Section = Rubicon.backend.scripts.Section;
+using SectionNote = Rubicon.backend.scripts.SectionNote;
 using Stage = Rubicon.common.stages.basestage.Stage;
 using StrumLine = Rubicon.scenes.gameplay.objects.strumlines.StrumLine;
-using UIStyle = Rubicon.scenes.gameplay.objects.classes.UIStyle;
+using UIStyle = Rubicon.backend.scripts.UIStyle;
 
 namespace Rubicon.scenes.gameplay;
 

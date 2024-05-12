@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using Rubicon.backend.notification;
 using Rubicon.scenes.options.objects.sections;
 using DiscordRichPresence = Rubicon.autoload.DiscordRichPresence;
 using TransitionManager = Rubicon.autoload.TransitionManager;

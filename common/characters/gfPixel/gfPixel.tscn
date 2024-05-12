@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://clbxgbt7pa4wq"]
 
-[ext_resource type="Script" path="res://src/scenes/gameplay/objects/classes/Character2D.cs" id="1_mbwa4"]
+[ext_resource type="Script" path="res://src/backend/scripts/Character2D.cs" id="1_mbwa4"]
 [ext_resource type="Texture2D" uid="uid://d4gyhlwiiwup2" path="res://common/characters/gf/icon.png" id="2_y7fxc"]
 [ext_resource type="SpriteFrames" uid="uid://b03qqn8lsd1im" path="res://common/characters/gfPixel/images/pixel.res" id="3_ig2bv"]
-[ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_l23jr"]
+[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_l23jr"]
 
 [sub_resource type="Animation" id="Animation_epq6v"]
 resource_name = "danceLeft"

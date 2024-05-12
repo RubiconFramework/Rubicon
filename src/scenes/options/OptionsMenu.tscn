@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cx352arf7ejqx"]
+[gd_scene load_steps=22 format=3 uid="uid://cx352arf7ejqx"]
 
 [ext_resource type="Script" path="res://src/scenes/options/OptionsMenu.cs" id="1_025u3"]
 [ext_resource type="Texture2D" uid="uid://b01atyh6h5pkt" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cnxj6k6gqye8h" path="res://src/scenes/options/objects/sections/video/Video.tscn" id="7_mhcac"]
 [ext_resource type="PackedScene" uid="uid://c4hlnqsvubucn" path="res://src/scenes/options/objects/sections/misc/Misc.tscn" id="8_2efem"]
 [ext_resource type="PackedScene" uid="uid://dbdfpnvlhkxlo" path="res://src/scenes/options/objects/sections/keybinds/Keybinds.tscn" id="9_htkdd"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jex1q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkw33"]
 bg_color = Color(0, 0, 0, 0.745098)
@@ -313,7 +311,7 @@ size_flags_horizontal = 4
 script = ExtResource("1_025u3")
 
 [node name="BG" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_jex1q")
+modulate = Color(0.360668, 0.19705, 0.531946, 1)
 position = Vector2(659, 355)
 scale = Vector2(1.06221, 1.05205)
 texture = ExtResource("3_dq5lv")
@@ -414,7 +412,7 @@ focus_mode = 1
 theme = ExtResource("5_aor24")
 metadata/_edit_lock_ = true
 
-[node name="SubmenuIndicator" type="Label" parent="LeftPanel"]
+[node name="SectionIndicator" type="Label" parent="LeftPanel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -429,23 +427,22 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_n8aga")
 text = "Gameplay"
 horizontal_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/SubmenuIndicator"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/SectionIndicator"]
 libraries = {
 "": SubResource("AnimationLibrary_k2ed3"),
 "KeybindPicking": SubResource("AnimationLibrary_cg8qp"),
-"SubmenuTransition": SubResource("AnimationLibrary_2np2o")
+"SectionTransition": SubResource("AnimationLibrary_2np2o")
 }
 
-[node name="weird stupid line" type="HSeparator" parent="LeftPanel/SubmenuIndicator/AnimationPlayer"]
+[node name="weird stupid line" type="HSeparator" parent="LeftPanel/SectionIndicator/AnimationPlayer"]
 offset_left = 311.0
 offset_top = 69.0
 offset_right = 1342.0
 offset_bottom = 73.0
-pivot_offset = Vector2(1031, 0)
 size_flags_stretch_ratio = 0.0
 theme = ExtResource("5_aor24")
 
-[node name="KeybindLabel" type="Label" parent="LeftPanel/SubmenuIndicator/AnimationPlayer"]
+[node name="KeybindLabel" type="Label" parent="LeftPanel/SectionIndicator/AnimationPlayer"]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5

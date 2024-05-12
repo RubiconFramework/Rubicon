@@ -1,11 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://v36c2nyp63w7"]
+[gd_scene load_steps=9 format=3 uid="uid://v36c2nyp63w7"]
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_dut1v"]
 [ext_resource type="Script" path="res://src/scenes/options/objects/sections/gameplay/Gameplay.cs" id="1_l386l"]
 [ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/objects/buttons/slider/LabelSlider.tscn" id="3_8cjpt"]
+[ext_resource type="PackedScene" uid="uid://cm5uby17wlrao" path="res://src/scenes/options/objects/sections/gameplay/menus/GameplayModifiers.tscn" id="4_d2eu6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
+
+[sub_resource type="Animation" id="Animation_8gk8r"]
+resource_name = "In"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container/GameplayModifiers/GameplayModifiers:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.225313, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/GameplayModifiers/GameplayModifiers:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yl38r"]
+resource_name = "Out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Container/GameplayModifiers/GameplayModifiers:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 0.225313),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Container/GameplayModifiers/GameplayModifiers:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwnya"]
+_data = {
+"In": SubResource("Animation_8gk8r"),
+"Out": SubResource("Animation_yl38r")
+}
 
 [node name="Gameplay" type="ScrollContainer"]
 offset_right = 957.0
@@ -77,14 +140,34 @@ text = "/// super horror mario  🖕 🖕 🖕 🖕 🖕 ///"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameplayModifiers" type="Button" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_dut1v")
+text = "Open Gameplay Modifiers Menu"
+
+[node name="GameplayModifiers" parent="Container/GameplayModifiers" instance=ExtResource("4_d2eu6")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -227.0
+offset_right = 570.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="GameplayOffsets" type="Button" parent="Container"]
 layout_mode = 2
 theme = ExtResource("1_dut1v")
 text = "Open Gameplay Offsets Menu"
 
-[node name="GameplayModifiers" type="Button" parent="Container"]
-layout_mode = 2
-theme = ExtResource("1_dut1v")
-text = "Open Gameplay Modifiers Menu"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iwnya")
+}
 
 [editable path="Container/ScrollSpeed"]

@@ -1,4 +1,4 @@
-using UIStyle = Rubicon.scenes.gameplay.objects.classes.UIStyle;
+using UIStyle = Rubicon.backend.scripts.UIStyle;
 
 namespace Rubicon.scenes.gameplay.objects.strumlines;
 

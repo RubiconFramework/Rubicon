@@ -135,5 +135,5 @@ public partial class FreeplayMenu : Conductor
         ColorTween.TweenProperty(BackgroundSprite, "modulate", song.BackgroundColor, 1);
     }
 
-    private void OnPlayButtonPressed() => TransitionManager.Instance.ChangeScene("res://src/scenes/gameplay/GameplayScene.tscn");
+    private void OnPlayButtonPressed() => TransitionManager.Instance.ChangeScene("res://src/scenes/gameplay/Gameplay.tscn");
 }

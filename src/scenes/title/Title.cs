@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Rubicon.autoload.enums;
-using Rubicon.backend.notification;
 using AudioManager = Rubicon.autoload.AudioManager;
 using TransitionManager = Rubicon.autoload.TransitionManager;
 

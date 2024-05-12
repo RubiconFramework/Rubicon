@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxtnoyq5t0e18"]
 
-[ext_resource type="Script" path="res://src/scenes/gameplay/objects/classes/Character2D.cs" id="1_ue7c4"]
-[ext_resource type="Script" path="res://src/backend/PlayerSprite2D.cs" id="4_33ay0"]
+[ext_resource type="Script" path="res://src/backend/scripts/Character2D.cs" id="1_ue7c4"]
+[ext_resource type="Script" path="res://src/backend/scripts/PlayerSprite2D.cs" id="4_33ay0"]
 [ext_resource type="SpriteFrames" uid="uid://b217ww8ob6va3" path="res://common/characters/bfPixel/images/dead.res" id="6_qcw8p"]
 
 [sub_resource type="Animation" id="Animation_j4ny0"]

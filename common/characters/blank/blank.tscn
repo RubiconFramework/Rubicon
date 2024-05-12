@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3p6cg58tlfpy"]
 
-[ext_resource type="Script" path="res://src/scenes/gameplay/objects/classes/Character2D.cs" id="1_p8mbv"]
+[ext_resource type="Script" path="res://src/backend/scripts/Character2D.cs" id="1_p8mbv"]
 
 [sub_resource type="Animation" id="Animation_bynva"]
 resource_name = "idle"

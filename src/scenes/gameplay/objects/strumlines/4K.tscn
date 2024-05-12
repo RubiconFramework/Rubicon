@@ -21,6 +21,7 @@ direction = 1
 [node name="up" parent="." instance=ExtResource("2_g58p1")]
 position = Vector2(48, 0)
 scale = Vector2(0.6, 0.6)
+animation = &"up"
 direction = 2
 
 [node name="right" parent="." instance=ExtResource("2_g58p1")]

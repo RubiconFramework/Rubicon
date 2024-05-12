@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bk28fsl6i7j2g"]
 
-[ext_resource type="Script" path="res://src/scenes/gameplay/GameplayScene.cs" id="1_rnm3k"]
-[ext_resource type="Script" path="res://src/scenes/gameplay/objects/strumlines/NoteGroup.cs" id="2_ij2xm"]
-[ext_resource type="Script" path="res://src/scenes/gameplay/objects/classes/ScriptGroup.cs" id="2_omdla"]
-[ext_resource type="FontFile" uid="uid://b1m8hjji3xc1p" path="res://assets/fonts/vcr.ttf" id="3_103p8"]
-[ext_resource type="Texture2D" uid="uid://bjukhv0eyct8a" path="res://common/characters/blank/icon.png" id="5_6x0h2"]
+[ext_resource type="Script" path="res://src/scenes/gameplay/Gameplay.cs" id="1_sccye"]
+[ext_resource type="Script" path="res://src/backend/scripts/ScriptGroup.cs" id="2_2ghsm"]
+[ext_resource type="Texture2D" uid="uid://bjukhv0eyct8a" path="res://common/characters/blank/icon.png" id="3_xns66"]
+[ext_resource type="FontFile" uid="uid://b1m8hjji3xc1p" path="res://assets/fonts/vcr.ttf" id="4_l13ja"]
+[ext_resource type="Script" path="res://src/scenes/gameplay/objects/strumlines/NoteGroup.cs" id="5_xx8s0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abafg"]
 bg_color = Color(0, 1, 0, 1)
@@ -15,10 +15,10 @@ bg_color = Color(1, 0, 0, 1)
 corner_detail = 1
 
 [node name="Gameplay" type="Node"]
-script = ExtResource("1_rnm3k")
+script = ExtResource("1_sccye")
 
 [node name="Scripts" type="Node" parent="."]
-script = ExtResource("2_omdla")
+script = ExtResource("2_2ghsm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(683, 384)
@@ -66,14 +66,14 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerIcon" type="Sprite2D" parent="HUD/HealthBarBG/HealthBar"]
 position = Vector2(347, 6)
-texture = ExtResource("5_6x0h2")
+texture = ExtResource("3_xns66")
 flip_h = true
 region_enabled = true
 region_rect = Rect2(0, 0, 150, 150)
 
 [node name="OppIcon" type="Sprite2D" parent="HUD/HealthBarBG/HealthBar"]
 position = Vector2(241, 6)
-texture = ExtResource("5_6x0h2")
+texture = ExtResource("3_xns66")
 region_enabled = true
 region_rect = Rect2(0, 0, 150, 150)
 
@@ -93,7 +93,7 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("3_103p8")
+theme_override_fonts/font = ExtResource("4_l13ja")
 theme_override_font_sizes/font_size = 20
 text = "Score: 0 - Combo Breaks: 0 - Accuracy: N/A% - Rating: N/A"
 horizontal_alignment = 1
@@ -102,7 +102,7 @@ metadata/_edit_use_anchors_ = true
 [node name="StrumGroup" type="Node2D" parent="HUD"]
 
 [node name="NoteGroup" type="Node2D" parent="HUD"]
-script = ExtResource("2_ij2xm")
+script = ExtResource("5_xx8s0")
 
 [node name="CountdownSprite" type="Sprite2D" parent="HUD"]
 

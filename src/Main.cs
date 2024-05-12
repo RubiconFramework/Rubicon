@@ -8,12 +8,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Rubicon.autoload.enums;
-using Rubicon.backend.notification;
 using AudioManager = Rubicon.autoload.AudioManager;
-using Chart = Rubicon.scenes.gameplay.objects.classes.Chart;
+using Chart = Rubicon.backend.scripts.Chart;
 using DiscordRichPresence = Rubicon.autoload.DiscordRichPresence;
 
 namespace Rubicon;
+
+public enum NotificationType
+{
+	Info,
+	Warning,
+	Error
+}
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class Main : CanvasLayer
@@ -42,35 +48,14 @@ public partial class Main : CanvasLayer
 	{
 		this.OnReady();
 		Instance = this;
-		AudioManager.Instance.PlayAudio(AudioType.Music, "rubiconMenu", 0.5f, true);
-		
+		SetupProject();
 		RubiconSettings.Load(SettingsFilePath);
+		
+		AudioManager.Instance.PlayAudio(AudioType.Music, "rubiconMenu", 0.5f, true);
 		RenderingServer.SetDefaultClearColor(new(0,0,0));
+		
 		TranslationServer.SetLocale(RubiconSettings.Misc.Languages.ToString().ToLower());
-
-		if ((bool)ProjectSettings.GetSetting("use_project_name_user_dir",true)){
-			var dir = ProjectSettings.GetSetting("application/config/custom_user_dir_name", "Rubicon/Engine").ToString();
-			var projectName = ProjectSettings.GetSetting("application/config/name", "Rubicon").ToString();
-
-			if (dir == "Rubicon/Engine" && projectName != "Rubicon")
-			{
-				SendNotification("New project name has been found. Reload project.godot for it to apply.");
-				ProjectSettings.SetSetting("application/config/custom_user_dir_name", $"Rubicon/{projectName}");
-				ProjectSettings.Save();
-			}
-			else
-			{
-				if (dir != "Rubicon/Engine" && projectName == "Rubicon")
-				{
-					SendNotification("Base engine detected. Reload project.godot for it to apply.");
-					ProjectSettings.SetSetting("application/config/custom_user_dir_name", "Rubicon/Engine");
-					ProjectSettings.Save();
-				}
-				else SendNotification($"Data stored at: user://{dir}");
-			}
-		}
-
-		DiscordRichPresence.Instance.Toggle(true);
+		DiscordRichPresence.Instance.Toggle(RubiconSettings.Misc.DiscordRichPresence);
 	}
 
 	public override void _ExitTree()
@@ -94,13 +79,31 @@ public partial class Main : CanvasLayer
             else notificationQueue.Enqueue((panel, duration));
         }
     }
-    
-    private void OnNotificationTimeout(Panel p)
+
+    private void SetupProject()
     {
-	    notificationQueue = new(notificationQueue.Where(item => item.Item1 != p));
-	    p.QueueFree();
-	    notificationPositions.Remove(p);
-	    UpdateNotificationPositions();
+		if ((bool)ProjectSettings.GetSetting("use_project_name_user_dir",true))
+		{
+			var dir = ProjectSettings.GetSetting("application/config/custom_user_dir_name", "Rubicon/Engine").ToString();
+			var projectName = ProjectSettings.GetSetting("application/config/name", "Rubicon").ToString();
+
+			if (dir == "Rubicon/Engine" && projectName != "Rubicon")
+			{
+				SendNotification("New project name has been found. Reload project.godot for it to apply.", true, NotificationType.Warning);
+				ProjectSettings.SetSetting("application/config/custom_user_dir_name", $"Rubicon/{projectName}");
+				ProjectSettings.Save();
+			}
+			else
+			{
+				if (dir != "Rubicon/Engine" && projectName == "Rubicon")
+				{
+					SendNotification("Base engine detected. Reload project.godot for it to apply.", true, NotificationType.Warning);
+					ProjectSettings.SetSetting("application/config/custom_user_dir_name", "Rubicon/Engine");
+					ProjectSettings.Save();
+				}
+				else SendNotification($"Data stored at: user://{dir}");
+			}
+		}
     }
     
     public Node CreateAlphabet(Node parentNode, string text, bool bold, bool isMenuItem, int targetY)
@@ -114,6 +117,15 @@ public partial class Main : CanvasLayer
 	    parentNode.AddChild(alphabetNode);
 	    return alphabetNode;
     }
+    
+    private void OnNotificationTimeout(Panel p)
+    {
+	    notificationQueue = new(notificationQueue.Where(item => item.Item1 != p));
+	    p.QueueFree();
+	    notificationPositions.Remove(p);
+	    UpdateNotificationPositions();
+    }
+    
 
     public void SendNotification(string message, bool printToConsole = true, NotificationType type = NotificationType.Info, float duration = 5.0f)
     {
@@ -143,7 +155,7 @@ public partial class Main : CanvasLayer
 	                if (printToConsole)
 	                {
 		                GD.PushWarning(fullMessage);
-		                GD.PrintRich($"[color=YELLOW][pulse]{fullMessage}[/pulse][/color]");
+		                GD.PrintRich($"[color=ORANGE][pulse]{fullMessage}[/pulse][/color]");
 	                }
 	                progressBar.Modulate = WarningNotificationColor;
                     break;

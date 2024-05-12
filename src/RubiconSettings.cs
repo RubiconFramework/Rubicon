@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Rubicon.autoload.enums;
-using Rubicon.backend.notification;
 using Rubicon.scenes.gameplay;
 
 namespace Rubicon;

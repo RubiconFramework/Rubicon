@@ -2,10 +2,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using Newtonsoft.Json;
-using Rubicon.backend;
 using FileAccess = Godot.FileAccess;
 
-namespace Rubicon.scenes.gameplay.objects.classes;
+namespace Rubicon.backend.scripts;
 
 public class Song
 {
