@@ -104,7 +104,7 @@ public partial class GameplayBase : Node
 		}
 		if(OS.IsDebugBuild()) {
 			if(Input.IsActionJustPressed("debug_reset"))
-				LoadingHandler.ChangeScene("res://source/menus/debug/SongSelect.tscn");
+				GetTree().ChangeSceneToFile("res://source/menus/debug/SongSelect.tscn");
 			if(Input.IsActionJustPressed("debug_autoplay"))
 				Hud.strumHandler.FocusedStrumline.AutoPlay = !Hud.strumHandler.FocusedStrumline.AutoPlay;
 			if(Input.IsActionJustPressed("debug_swap")){
@@ -171,7 +171,7 @@ public partial class GameplayBase : Node
 		Conductor.SongDuration = inst.Stream.GetLength();
 
 		GetNotesFromChart();
-		GetEventsFromChart();
+		//GetEventsFromChart();
 	}
 
 	public void GetNotesFromChart(double skipTime = -1)
@@ -194,21 +194,25 @@ public partial class GameplayBase : Node
 					PlayerSection = rawNote.PlayerSection
 				};
 
-				string NoteTypePath = $"res://assets/gameplay/noteTypes/{rawNote.Type.ToLower()}.tscn";
+				string NoteTypePath = $"res://assets/gameplay/noteTypes/{NewNote.Type.ToLower()}.tscn";
 				if(!ResourceLoader.Exists(NoteTypePath)) {
 					NoteTypePath = "res://assets/gameplay/noteTypes/default.tscn";
-					if(!NoteCache.ContainsKey(rawNote.Type))
-						GD.PrintErr($"Unable to find note type: {rawNote.Type}. Replacing with default notes.");
+					if(!NoteCache.ContainsKey(NewNote.Type))
+						GD.PrintErr($"Unable to find note type: {NewNote.Type}. Replacing with default notes.");
 				}
-				NoteCache[rawNote.Type] = GD.Load<PackedScene>(NoteTypePath).Instantiate<Note>();
-				if(NoteCache[rawNote.Type].SplashTexture is not null) {
-					SplashCache[rawNote.Type+"Splash"] = new(){
-						SpriteFrames = NoteCache[rawNote.Type].SplashTexture
+
+				if(!NoteCache.ContainsKey(NewNote.Type)) {
+					NoteCache[NewNote.Type] = GD.Load<PackedScene>(NoteTypePath).Instantiate<Note>();
+				}
+
+				if(NoteCache[NewNote.Type].SplashTexture is not null && !SplashCache.ContainsKey(NewNote.Type+"Splash")) {
+					SplashCache[NewNote.Type+"Splash"] = new(){
+						SpriteFrames = NoteCache[NewNote.Type].SplashTexture
 					};
 				}
-				if(NoteCache[rawNote.Type].SustainSplashTexture is not null) {
-					SplashCache[rawNote.Type+"Sustain"] = new(){
-						SpriteFrames = NoteCache[rawNote.Type].SustainSplashTexture
+				if(NoteCache[NewNote.Type].SustainSplashTexture is not null && !SplashCache.ContainsKey(NewNote.Type+"Sustain")) {
+					SplashCache[NewNote.Type+"Sustain"] = new(){
+						SpriteFrames = NoteCache[NewNote.Type].SustainSplashTexture
 					};
 				}
 					
@@ -364,7 +368,12 @@ public partial class GameplayBase : Node
 		Conductor.BeatHitEvent -= BeatHit;
 		Conductor.SectionHitEvent -= SectionHit;
 
+		foreach(KeyValuePair<string, Note> cachedNote in NoteCache)
+			cachedNote.Value.QueueFree();
+
+		foreach(KeyValuePair<string, AnimatedSprite2D> cachedSplash in SplashCache)
+			cachedSplash.Value.QueueFree();
+
 		Input.MouseMode = Input.MouseModeEnum.Visible;
-		ChartHandler.CurrentChart.Dispose();
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 #endregion
 
 namespace Rubicon.Backend.Classes.ChartType;
-public partial class DefaultChartData : Node
+public partial class DefaultChartData : Resource
 {
 	//raw data
 	public class RawSong

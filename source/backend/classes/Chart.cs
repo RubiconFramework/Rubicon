@@ -35,7 +35,7 @@ public enum ChartTypeEnum
 
 // unhandled stuff
 // this is briefly explained, all the chart types mashed into a nicely formatted one for later digestion
-public partial class RawNote : Resource
+public class RawNote
 {
     public float Time;
     public int Direction;
@@ -45,7 +45,7 @@ public partial class RawNote : Resource
     public bool PlayerSection;
 }
 
-public partial class RawEvent : Resource
+public class RawEvent
 {
     public float Time;
     public string EventName;
@@ -53,7 +53,7 @@ public partial class RawEvent : Resource
 }
 
 //handled stuff
-public partial class Section : Resource
+public class Section
 {
     public float Bpm;
     public bool ChangeBpm;

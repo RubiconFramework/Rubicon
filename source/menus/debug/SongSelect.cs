@@ -20,7 +20,7 @@ public partial class SongSelect : Control
 		if(songName != null) {
 			if(difficulty.Text is null || difficulty.Text == "") difficulty.Text = "normal";
 			ChartHandler.NewChart(songName.Text, difficulty.Text);
-			LoadingHandler.ChangeScene("res://source/gameplay/Gameplay2D.tscn");
+			GetTree().ChangeSceneToFile("res://source/gameplay/Gameplay2D.tscn");
 		}
 		else
 			GD.PrintErr("No chart name entered.");
