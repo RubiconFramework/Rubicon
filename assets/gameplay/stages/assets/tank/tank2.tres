@@ -1,0 +1,83 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://b8l2uckbgxqve"]
+
+[ext_resource type="Texture2D" uid="uid://t0dce8uid080" path="res://assets/gameplay/stages/assets/tank/tank2.png" id="1_ugv05"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug6u3"]
+atlas = ExtResource("1_ugv05")
+region = Rect2(595, 327, 293, 305)
+margin = Rect2(2, 17, 2, 17)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1txm"]
+atlas = ExtResource("1_ugv05")
+region = Rect2(0, 331, 288, 310)
+margin = Rect2(4, 12, 7, 12)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nym3q"]
+atlas = ExtResource("1_ugv05")
+region = Rect2(595, 0, 288, 317)
+margin = Rect2(1, 5, 7, 5)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xcgx"]
+atlas = ExtResource("1_ugv05")
+region = Rect2(0, 0, 288, 321)
+margin = Rect2(0, 1, 7, 1)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2j0a"]
+atlas = ExtResource("1_ugv05")
+region = Rect2(298, 0, 287, 322)
+margin = Rect2(0, 0, 8, 0)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug6u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug6u3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1txm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1txm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nym3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nym3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xcgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xcgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2j0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2j0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2j0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2j0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2j0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2j0a")
+}],
+"loop": false,
+"name": &"foreground man 3 instance 1",
+"speed": 24.0
+}]

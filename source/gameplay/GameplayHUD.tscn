@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://kjhvho6l45fw"]
+
+[ext_resource type="Script" path="res://source/gameplay/GameplayHUD.cs" id="1_f7opr"]
+[ext_resource type="Script" path="res://source/gameplay/classes/notes/NoteHandler.cs" id="2_rgdof"]
+[ext_resource type="Script" path="res://source/gameplay/classes/strums/StrumHandler.cs" id="3_7c8wo"]
+[ext_resource type="Script" path="res://source/gameplay/classes/elements/JudgementSprite.cs" id="4_7nymx"]
+[ext_resource type="SpriteFrames" uid="uid://dd14ijvk2upc5" path="res://assets/gameplay/hudStyles/default/score/judgements.tres" id="4_hyyl1"]
+[ext_resource type="FontFile" uid="uid://dic6hpsn128nm" path="res://assets/fonts/vcr.ttf" id="6_05g2f"]
+
+[node name="GameplayHUD" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_f7opr")
+
+[node name="HudModulate" type="CanvasModulate" parent="."]
+
+[node name="JudgementGroup" type="Control" parent="."]
+z_index = -1
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+
+[node name="JudgementTemplate" type="RigidBody2D" parent="JudgementGroup"]
+visible = false
+position = Vector2(640, -216)
+collision_layer = 0
+collision_mask = 0
+mass = 50.0
+lock_rotation = true
+freeze = true
+script = ExtResource("4_7nymx")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="JudgementGroup/JudgementTemplate"]
+scale = Vector2(0.7, 0.7)
+sprite_frames = ExtResource("4_hyyl1")
+animation = &"sick"
+metadata/_edit_lock_ = true
+
+[node name="StrumHandler" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_7c8wo")
+
+[node name="NoteHandler" type="Node" parent="."]
+script = ExtResource("2_rgdof")
+
+[node name="JudgementText" type="RichTextLabel" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -29.0
+offset_right = 1278.0
+offset_bottom = 79.0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("6_05g2f")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[left][outline_color=1e303c][color=39de65]		S: 0[/color][/outline_color]
+[outline_color=1c1b69][color=28b4e7]		G: 0[/color][/outline_color]
+[outline_color=903c20][color=f0af37]		B: 0[/color][/outline_color]
+[outline_color=4c0a26][color=de3a38]		S: 0[/color][/outline_color]
+[outline_color=4c0a26][color=9448c4]		M: 0[/color][/outline_color]
+[color=ffffff38]		(temporal)[/color][/left]"
+fit_content = true
+scroll_active = false
+text_direction = 1

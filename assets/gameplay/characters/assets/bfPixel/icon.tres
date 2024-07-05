@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cky1nkjxbc5gf"]
+
+[ext_resource type="Texture2D" uid="uid://bkbidfr0rxjg4" path="res://assets/gameplay/characters/assets/bfPixel/icon.png" id="1_mqmtf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8trj"]
+atlas = ExtResource("1_mqmtf")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efhj8"]
+atlas = ExtResource("1_mqmtf")
+region = Rect2(150, 0, 150, 150)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8trj")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efhj8")
+}],
+"loop": false,
+"name": &"lose",
+"speed": 1.0
+}]

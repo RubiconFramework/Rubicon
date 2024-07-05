@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciffymw323qgi"]
+
+[ext_resource type="Script" path="res://source/gameplay/resources/events/FocusCamera.cs" id="1_1hpcw"]
+
+[node name="FocusCamera" type="Node"]
+script = ExtResource("1_1hpcw")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv27couohfexy"]
+
+[ext_resource type="Script" path="res://source/gameplay/classes/strums/StrumLine.cs" id="1_05jpt"]
+[ext_resource type="PackedScene" uid="uid://bhchpcybr6y31" path="res://source/gameplay/resources/strumlines/strums/Strum.tscn" id="1_mnpga"]
+
+[node name="4Keys" type="Node2D"]
+script = ExtResource("1_05jpt")
+
+[node name="left" parent="." instance=ExtResource("1_mnpga")]
+position = Vector2(-144, 0)
+scale = Vector2(0.6, 0.6)
+
+[node name="down" parent="." instance=ExtResource("1_mnpga")]
+position = Vector2(-48, 0)
+scale = Vector2(0.6, 0.6)
+animation = &"down static"
+
+[node name="up" parent="." instance=ExtResource("1_mnpga")]
+position = Vector2(48, 0)
+scale = Vector2(0.6, 0.6)
+animation = &"up static"
+
+[node name="right" parent="." instance=ExtResource("1_mnpga")]
+position = Vector2(144, 0)
+scale = Vector2(0.6, 0.6)
+animation = &"right static"

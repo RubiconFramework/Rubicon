@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5jdf8vlqbm32"]
+
+[ext_resource type="Script" path="res://old src/backend/audiovisualizer/AudioVisualizer.gd" id="1_3vns7"]
+
+[node name="AudioVisualizer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3vns7")
+
+[node name="ColorRects" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1366.0
+offset_top = 768.0
+offset_right = 2732.0
+offset_bottom = 1536.0
+rotation = 3.14159
+theme_override_constants/separation = 16
+
+[node name="ColorRect" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect4" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect5" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect6" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect7" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect8" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect9" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect10" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect11" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect12" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect13" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect14" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect15" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect16" type="ColorRect" parent="ColorRects"]
+layout_mode = 2
+size_flags_horizontal = 3

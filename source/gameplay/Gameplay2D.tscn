@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bugtqcvim1d16"]
+
+[ext_resource type="PackedScene" uid="uid://kjhvho6l45fw" path="res://source/gameplay/GameplayHUD.tscn" id="1_q4ka4"]
+[ext_resource type="Script" path="res://source/gameplay/Gameplay2D.cs" id="1_s4xur"]
+[ext_resource type="Script" path="res://source/backend/classes/SmoothCamera2D.cs" id="2_s8prq"]
+[ext_resource type="Script" path="res://source/gameplay/classes/events/EventHandler.cs" id="4_lc123"]
+
+[node name="Gameplay2D" type="Node2D"]
+script = ExtResource("1_s4xur")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(683, 384)
+position_smoothing_enabled = true
+script = ExtResource("2_s8prq")
+SmoothZoomSpeed = 3.0
+
+[node name="GameplayHUD" parent="." instance=ExtResource("1_q4ka4")]
+
+[node name="CharacterGroup" type="Node" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="ScriptGroup" type="Node" parent="."]
+
+[node name="EventHandler" type="Node" parent="."]
+script = ExtResource("4_lc123")
+
+[node name="Song" type="Node" parent="."]
+
+[node name="Inst" type="AudioStreamPlayer" parent="Song"]
+bus = &"Inst"
+
+[node name="Vocals" type="AudioStreamPlayer" parent="Song"]
+bus = &"Vocals"

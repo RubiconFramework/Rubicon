@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://di7x34vvtqhec"]
+
+[ext_resource type="Script" path="res://source/backend/autoload/DebugInfo.cs" id="1_1mvc5"]
+[ext_resource type="FontFile" uid="uid://dd1kmotkx8hg" path="res://assets/fonts/funkin.ttf" id="1_2wdc7"]
+
+[node name="FPS" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+script = ExtResource("1_1mvc5")
+
+[node name="FPS" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 452.0
+offset_bottom = 749.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/normal_font = ExtResource("1_2wdc7")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "FPS: 0"
+fit_content = true
+
+[node name="Info" type="Label" parent="FPS"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 26.0
+offset_right = 403.0
+offset_bottom = 767.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_2wdc7")
+theme_override_font_sizes/font_size = 20
+text = "> Memory Info
+RAM: 0b / 0b
+VRAM: 0b / 0b"
+
+[node name="Keys" type="Label" parent="."]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -155.0
+offset_right = 643.0
+offset_bottom = -8.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_2wdc7")
+theme_override_font_sizes/font_size = 28
+text = "DEBUG KEYS
+> F1: Toggle Debug Key Cheatsheet
+> F2: Toggle FPS Counter
+> F3: Toggle Memory Info
+> F4: Toggle Autoplay on the current focused strumline
+> F5: Swap between Player and Opponent strumlines"
+vertical_alignment = 2

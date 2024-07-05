@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://di7hok3sttww8"]
-
-[ext_resource type="SpriteFrames" uid="uid://jkkyxos2ehqo" path="res://common/notes/default/Assets/default/strums/assets.tres" id="1_d6mo1"]
-[ext_resource type="Script" path="res://src/scenes/gameplay/objects/strumlines/Strum.cs" id="2_sa6hl"]
-
-[node name="Strum" type="AnimatedSprite2D"]
-sprite_frames = ExtResource("1_d6mo1")
-animation = &"left pressed"
-script = ExtResource("2_sa6hl")

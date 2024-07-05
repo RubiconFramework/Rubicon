@@ -1,0 +1,193 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8kx0lbjm1hj"]
+
+[ext_resource type="Script" path="res://addons/flashimport/Importers/XMLSpritesheet.cs" id="1_jnv0x"]
+[ext_resource type="Theme" uid="uid://14vqd4l3ryru" path="res://assets/theme/default.tres" id="2_b1xoh"]
+[ext_resource type="Script" path="res://addons/flashimport/Importers/JSONSpritesheet.cs" id="3_gxduc"]
+[ext_resource type="Script" path="res://addons/flashimport/Importers/SpriteAtlas.cs" id="4_u7ol0"]
+
+[node name="FlashImport" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 2
+
+[node name="XML Spritesheet" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("1_jnv0x")
+
+[node name="SpritePath" type="LineEdit" parent="TabContainer/XML Spritesheet"]
+layout_mode = 1
+offset_left = 11.0
+offset_top = 16.0
+offset_right = 270.0
+offset_bottom = 54.0
+theme = ExtResource("2_b1xoh")
+placeholder_text = "res://*Sprite.png"
+
+[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/SpritePath"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 7.0
+offset_right = 94.0
+offset_bottom = 30.0
+text = "Sprite Path:"
+
+[node name="Label2" type="Label" parent="TabContainer/XML Spritesheet/SpritePath"]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layout_mode = 0
+offset_top = 36.0
+offset_right = 299.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 10
+text = "*Fill with a directory to automatically convert every sprite in it"
+
+[node name="Label2 2" type="Label" parent="TabContainer/XML Spritesheet/SpritePath"]
+modulate = Color(1, 1, 0, 0.529412)
+layout_mode = 0
+offset_top = 52.0
+offset_right = 299.0
+offset_bottom = 66.0
+theme_override_font_sizes/font_size = 10
+text = "*XML Atlas and sprite need to have the same name"
+
+[node name="FPS" type="LineEdit" parent="TabContainer/XML Spritesheet"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 96.0
+offset_right = 263.063
+offset_bottom = 128.0
+theme = ExtResource("2_b1xoh")
+text = "24"
+max_length = 3
+virtual_keyboard_type = 2
+
+[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/FPS"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 27.0
+text = "FPS:"
+
+[node name="Loop" type="CheckBox" parent="TabContainer/XML Spritesheet"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 184.0
+offset_right = 216.0
+offset_bottom = 215.0
+text = " Loop?"
+
+[node name="Stack" type="CheckBox" parent="TabContainer/XML Spritesheet"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 144.0
+offset_right = 242.0
+offset_bottom = 175.0
+button_pressed = true
+text = "Stack Frames?"
+
+[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/Stack"]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 23.0
+offset_right = 268.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 10
+text = "*Recommended"
+
+[node name="Convert" type="Button" parent="TabContainer/XML Spritesheet"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 93.0
+offset_right = 96.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 20
+text = "Import"
+
+[node name="JSON Spritesheet" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("3_gxduc")
+
+[node name="Label" type="Label" parent="TabContainer/JSON Spritesheet"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 85.0
+offset_bottom = 42.0
+text = "not yet :("
+
+[node name="Sprite Atlas" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+script = ExtResource("4_u7ol0")
+
+[node name="SpritePath" type="LineEdit" parent="TabContainer/Sprite Atlas"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 16.0
+offset_right = 270.0
+offset_bottom = 54.0
+theme = ExtResource("2_b1xoh")
+placeholder_text = "res://*/SpriteAtlas/"
+
+[node name="Label" type="Label" parent="TabContainer/Sprite Atlas/SpritePath"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 7.0
+offset_right = 94.0
+offset_bottom = 30.0
+text = "Sprite Path:"
+
+[node name="Label2" type="Label" parent="TabContainer/Sprite Atlas/SpritePath"]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layout_mode = 0
+offset_top = 36.0
+offset_right = 299.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 10
+text = "*Fill with ONLY the directory of the Sprite Atlas"
+
+[node name="Scene" type="CheckBox" parent="TabContainer/Sprite Atlas"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 96.0
+offset_right = 216.0
+offset_bottom = 127.0
+text = "Make Scene?"
+
+[node name="Label2" type="Label" parent="TabContainer/Sprite Atlas/Scene"]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layout_mode = 0
+offset_top = 31.0
+offset_right = 299.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 10
+text = "*This will make a scene containing the
+AnimatedSprite2D nodes for every
+sprite in the spritemap"
+
+[node name="Convert" type="Button" parent="TabContainer/Sprite Atlas"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 93.0
+offset_right = 96.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 20
+text = "Import"
+
+[connection signal="pressed" from="TabContainer/XML Spritesheet/Convert" to="TabContainer/XML Spritesheet" method="OnButtonPress"]
+[connection signal="pressed" from="TabContainer/Sprite Atlas/Convert" to="TabContainer/Sprite Atlas" method="OnButtonPress"]

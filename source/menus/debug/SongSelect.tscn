@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0iaiq6a7b3mn"]
+
+[ext_resource type="Script" path="res://source/menus/debug/SongSelect.cs" id="1_ict8b"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ict8b")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 168.0
+offset_right = 840.0
+offset_bottom = 237.0
+theme_override_font_sizes/font_size = 50
+text = "debug menu"
+
+[node name="song" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 348.0
+offset_right = 641.0
+offset_bottom = 387.0
+theme_override_font_sizes/font_size = 22
+placeholder_text = "test"
+
+[node name="Label" type="Label" parent="song"]
+layout_mode = 0
+offset_top = -32.0
+offset_right = 40.0
+offset_bottom = -9.0
+text = "enter song name"
+
+[node name="diff" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 348.0
+offset_right = 865.0
+offset_bottom = 387.0
+theme_override_font_sizes/font_size = 22
+placeholder_text = "normal"
+
+[node name="Label" type="Label" parent="diff"]
+offset_top = -32.0
+offset_right = 40.0
+offset_bottom = -9.0
+text = "enter difficulty"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 612.0
+offset_top = 421.0
+offset_right = 703.0
+offset_bottom = 486.0
+theme_override_font_sizes/font_size = 41
+text = "play"
+
+[node name="settings" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = 122.0
+offset_bottom = 35.0
+text = "Quick Settings:"
+
+[node name="settings 2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 11.0
+offset_top = 36.0
+offset_right = 126.0
+offset_bottom = 59.0
+text = "👀"
+
+[connection signal="pressed" from="Button" to="." method="OnSongSelect"]

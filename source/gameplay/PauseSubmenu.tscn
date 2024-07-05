@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjm0nek1jc8b5"]
+
+[ext_resource type="Script" path="res://source/gameplay/PauseSubmenu.cs" id="1_trh7c"]
+
+[node name="PauseSubmenu" type="CanvasLayer"]
+process_mode = 3
+layer = 128
+script = ExtResource("1_trh7c")

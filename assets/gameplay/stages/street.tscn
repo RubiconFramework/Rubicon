@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://dbqiqeew2vwkf"]
+
+[ext_resource type="Script" path="res://source/gameplay/classes/elements/Stage2D.cs" id="1_lyrab"]
+[ext_resource type="Script" path="res://source/backend/classes/ParallaxNode.cs" id="2_jok3d"]
+[ext_resource type="Texture2D" uid="uid://c4rqujwkqq6qc" path="res://assets/gameplay/stages/assets/street/phillySkybox.png" id="3_b1l3t"]
+[ext_resource type="Texture2D" uid="uid://css30qlxhrty8" path="res://assets/gameplay/stages/assets/street/phillyHighwayLights.png" id="3_jj3j6"]
+[ext_resource type="Texture2D" uid="uid://c1u6u48d1cuxh" path="res://assets/gameplay/stages/assets/street/phillyForegroundCity.png" id="5_oiuif"]
+[ext_resource type="Texture2D" uid="uid://dg1443nyi0mr2" path="res://assets/gameplay/stages/assets/street/phillyHighway.png" id="5_sp4au"]
+[ext_resource type="Texture2D" uid="uid://cccwjlfv8fr0u" path="res://assets/gameplay/stages/assets/street/phillySkyline.png" id="6_2obr7"]
+[ext_resource type="Texture2D" uid="uid://bk5wmvjn4w7xc" path="res://assets/gameplay/stages/assets/street/phillyForeground.png" id="6_to450"]
+[ext_resource type="Texture2D" uid="uid://bes0ib725tsr8" path="res://assets/gameplay/stages/assets/street/phillyConstruction.png" id="7_gowkr"]
+[ext_resource type="Texture2D" uid="uid://dhi1dyya3lsgi" path="res://assets/gameplay/stages/assets/street/phillySmog.png" id="8_1uu30"]
+
+[node name="Stage" type="Node2D"]
+z_index = -5
+position = Vector2(-8, -24)
+script = ExtResource("1_lyrab")
+CameraZoom = 0.7
+
+[node name="BG 4" type="Node2D" parent="."]
+script = ExtResource("2_jok3d")
+ParallaxFactor = Vector2(0.4, 0.4)
+
+[node name="PhillySkybox" type="Sprite2D" parent="BG 4"]
+position = Vector2(636.236, 77.5)
+scale = Vector2(1.50296, 2.16017)
+texture = ExtResource("3_b1l3t")
+
+[node name="BG 2" type="Node2D" parent="."]
+script = ExtResource("2_jok3d")
+ParallaxFactor = Vector2(0.6, 0.6)
+
+[node name="PhillySkyline" type="Sprite2D" parent="BG 2"]
+position = Vector2(767, 114)
+texture = ExtResource("6_2obr7")
+
+[node name="BG 3" type="Node2D" parent="."]
+script = ExtResource("2_jok3d")
+ParallaxFactor = Vector2(0.8, 0.8)
+
+[node name="PhillyForegroundCity" type="Sprite2D" parent="BG 3"]
+position = Vector2(1047, 225)
+texture = ExtResource("5_oiuif")
+
+[node name="BG" type="Node2D" parent="."]
+script = ExtResource("2_jok3d")
+
+[node name="PhillyHighwayLights" type="Sprite2D" parent="BG"]
+position = Vector2(0, -152)
+texture = ExtResource("3_jj3j6")
+
+[node name="PhillyHighway" type="Sprite2D" parent="BG"]
+position = Vector2(201, -19)
+texture = ExtResource("5_sp4au")
+
+[node name="PhillyConstruction" type="Sprite2D" parent="BG"]
+position = Vector2(1612, 260)
+texture = ExtResource("7_gowkr")
+
+[node name="PhillySmog" type="Sprite2D" parent="BG"]
+position = Vector2(745, 216)
+texture = ExtResource("8_1uu30")
+
+[node name="PhillyForeground" type="Sprite2D" parent="BG"]
+light_mask = 0
+position = Vector2(681, 414)
+texture = ExtResource("6_to450")
+
+[node name="Positions" type="Node2D" parent="."]
+
+[node name="Watcher" type="Marker2D" parent="Positions"]
+position = Vector2(845, 536)
+
+[node name="CameraPos" type="Marker2D" parent="Positions/Watcher"]
+
+[node name="Opponent" type="Marker2D" parent="Positions"]
+position = Vector2(168, 664)
+
+[node name="CameraPos" type="Marker2D" parent="Positions/Opponent"]
+position = Vector2(457, -339)
+
+[node name="Player" type="Marker2D" parent="Positions"]
+position = Vector2(1409, 725)
+
+[node name="CameraPos" type="Marker2D" parent="Positions/Player"]
+position = Vector2(-502, -358)

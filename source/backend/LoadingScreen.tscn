@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyxkliby263by"]
+
+[ext_resource type="Script" path="res://source/backend/LoadingScreen.cs" id="1_k375o"]
+[ext_resource type="Texture2D" uid="uid://cg1gjpi4qy6n8" path="res://assets/misc/godot.svg" id="2_c3b36"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6nle"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lef4l"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="LoadingManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_k375o")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_v6nle")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lef4l")
+max_value = 1.0
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(683, 384)
+texture = ExtResource("2_c3b36")
