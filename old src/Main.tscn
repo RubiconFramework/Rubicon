@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://old src/Main.cs" id="1_5actk"]
 [ext_resource type="PackedScene" path="res://src/backend/alphabet/Alphabet.tscn" id="2_gakqs"]
-[ext_resource type="PackedScene" uid="uid://dvrifmg2wk0kt" path="res://old src/backend/Notification.tscn" id="2_omd1b"]
+[ext_resource type="PackedScene" uid="uid://dvrifmg2wk0kt" path="res://source/Main.tscn" id="2_omd1b"]
 
 [node name="Main" type="CanvasLayer"]
 script = ExtResource("1_5actk")

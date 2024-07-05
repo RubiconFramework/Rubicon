@@ -1,6 +1,4 @@
-#region Imports
 using Rubicon.Backend.Autoload;
-#endregion
 
 namespace Rubicon.Gameplay.Classes.Events;
 [GlobalClass]

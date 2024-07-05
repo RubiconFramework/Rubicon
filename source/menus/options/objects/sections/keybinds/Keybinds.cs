@@ -39,7 +39,7 @@ public partial class Keybinds : SettingsSectionBase
                 {
                     if (!isPickingKeybind)
                     {
-                        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickingKeybind");
+                        Rubicon.menus.options.OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickingKeybind");
                         isPickingKeybind = true;
                         currentKeybindButton = button;
                     }
@@ -81,7 +81,7 @@ public partial class Keybinds : SettingsSectionBase
 
         currentKeybindButton = null;
         isPickingKeybind = false;
-        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/RemovedKeybind");
+        Rubicon.menus.options.OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/RemovedKeybind");
     }
 
     private void SetKeybind(InputEventKey inputEventKey)
@@ -91,13 +91,13 @@ public partial class Keybinds : SettingsSectionBase
         InputEventKey keyEvent = new InputEventKey();
         keyEvent.Keycode = inputEventKey.Keycode;
         InputMap.ActionAddEvent(buttonKeybindings[currentKeybindButton], keyEvent);
-        OptionsMenu.Instance.KeybindLabel.Text = $"{keyEvent.Keycode} Selected.";
+        Rubicon.menus.options.OptionsMenu.Instance.KeybindLabel.Text = $"{keyEvent.Keycode} Selected.";
 
         InputMap.ActionEraseEvents(buttonKeybindings[currentKeybindButton]);
         //Main.Instance.SendNotification($"{OS.GetKeycodeString(inputEventKey.Keycode)} bound to {buttonKeybindings[currentKeybindButton]}");
         currentKeybindButton = null;
         isPickingKeybind = false;
-        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickedKeybind");
+        Rubicon.menus.options.OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickedKeybind");
     }
 
     public List<string> GetKeybinds(string action)

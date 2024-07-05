@@ -1,9 +1,7 @@
-#region Imports
 using Godot.Collections;
 using Rubicon.Backend.Autoload;
 using Rubicon.Gameplay.Classes.Strums;
 using Rubicon.Gameplay.Resources;
-#endregion
 
 namespace Rubicon.Gameplay.Classes.Notes;
 public partial class Note : Node2D

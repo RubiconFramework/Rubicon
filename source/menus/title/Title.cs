@@ -1,9 +1,8 @@
-using System.Collections.Generic;
-using OldRubicon.autoload.enums;
-using AudioManager = OldRubicon.autoload.AudioManager;
-using TransitionManager = OldRubicon.autoload.TransitionManager;
+using Rubicon.Backend.Autoload;
+using Rubicon.backend.autoload.enums;
+using AudioManager = Rubicon.backend.autoload.AudioManager;
 
-namespace OldRubicon.scenes.title;
+namespace Rubicon.menus.title;
 
 public partial class Title : Node
 {
@@ -50,8 +49,9 @@ public partial class Title : Node
 			GetNode<ColorRect>("hi").Visible = false;
 		};
 
-		LoadedIntroTexts = GetIntroTexts();
+		//LoadedIntroTexts = GetIntroTexts();
 		TitleEnter.Play("Press Enter to Begin");
+		Conductor.OnStepHit += OnStepHit;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -68,28 +68,32 @@ public partial class Title : Node
 
 				AudioManager.Instance.PlayAudio(AudioType.Sounds, "menus/confirmMenu");
 				SceneTreeTimer timer = GetTree().CreateTimer(2.0f);
-				timer.Timeout += () => TransitionManager.Instance.ChangeScene("res://src/scenes/mainmenu/MainMenu.tscn");
+				timer.Timeout += () => GetTree().ChangeSceneToFile("res://source/menus/mainmenu/MainMenu.tscn");
 			}
 		}
 	}
 
 	private bool isDancingLeft = true;
-	/*protected override void OnStepHit(int step)
+	private int OnStepHit(int step)
 	{
-		base.OnStepHit(step);
-
 		isDancingLeft = !isDancingLeft;
-		if (isDancingLeft) Girlfriend.Play("danceRight");
-		else Girlfriend.Play("danceLeft");
-
+		Girlfriend.Play(isDancingLeft ? "danceRight" : "danceLeft");
 		Logo.Play("BumpIn");
-	}*/
+		return step;
+	}
+	
+	private void SkipIntro()
+	{
+		skippedIntro = true;
+		//DeleteText();
+		TitleGroup.Visible = true;
+		NewgroundsSprite.Visible = false;
+		Flash.Play("Flash");
+	}
 
-	//protected override void OnBeatHit(int beat)
-	//{
+	/*protected override void OnBeatHit(int beat)
+	{
 		//base.OnBeatHit(beat);
-
-		/*
 		if (beatActions.TryGetValue(beat, out string action))
 		{
 			string[] parts = action.Split(':');
@@ -109,12 +113,14 @@ public partial class Title : Node
 						break;
 					}
 					case 1:
-						if (!parameters[0].StartsWith("LoadedIntroTexts[") || !parameters[0].EndsWith("]")) Call(methodName, parameters[0]);
+						if (!parameters[0].StartsWith("LoadedIntroTexts[") || !parameters[0].EndsWith("]"))
+							Call(methodName, parameters[0]);
 						else
 						{
 							int index = int.Parse(parameters[0].Substring(16, parameters[0].Length - 17));
 							Call(methodName, LoadedIntroTexts[index]);
 						}
+
 						break;
 					case 2:
 						Call(methodName, parameters[0], bool.Parse(parameters[1]));
@@ -122,24 +128,14 @@ public partial class Title : Node
 				}
 			}
 		}
-		*/
-	//}
-
-	private void SkipIntro()
-	{
-		skippedIntro = true;
-		DeleteText();
-		TitleGroup.Visible = true;
-		NewgroundsSprite.Visible = false;
-		Flash.Play("Flash");
 	}
 
-	//private void AddText(string text) => Main.Instance.CreateAlphabet(textGroup, text, true, false, 0);
+	private void AddText(string text) => Main.Instance.CreateAlphabet(textGroup, text, true, false, 0);
 
-	/*private void AddTextArray(string[] textArray)
+	private void AddTextArray(string[] textArray)
 	{
 		foreach (var text in textArray) AddText(text);
-	}*/
+	}
 
 	private void DeleteText()
 	{
@@ -163,4 +159,5 @@ public partial class Title : Node
 		//Main.Instance.SendNotification("Intro Texts file is null. Skipping.", true, NotificationType.Error);
 		return null;
 	}
+	*/
 }

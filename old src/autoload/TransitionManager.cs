@@ -1,6 +1,6 @@
 namespace OldRubicon.autoload;
 
-//[Icon("res://assets/miscicons/autoload.png")]
+[Icon("res://assets/miscicons/autoload.png")]
 public partial class TransitionManager : CanvasLayer
 {
     public static TransitionManager Instance { get; private set; }

@@ -1,11 +1,9 @@
-#region Imports
 using Rubicon.Gameplay.Classes;
 using Rubicon.Gameplay.Classes.Strums;
 using Rubicon.Backend.Autoload;
 using Rubicon.Gameplay.Classes.Notes;
 using Rubicon.Gameplay.Classes.Elements;
 using Rubicon.Gameplay.Resources;
-#endregion
 
 namespace Rubicon.Gameplay;
 public partial class GameplayHUD : CanvasLayer

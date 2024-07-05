@@ -1,8 +1,7 @@
-using OldRubicon.autoload.enums;
-using AudioManager = OldRubicon.autoload.AudioManager;
-using TransitionManager = OldRubicon.autoload.TransitionManager;
+using Rubicon.backend.autoload.enums;
+using AudioManager = Rubicon.backend.autoload.AudioManager;
 
-namespace OldRubicon.scenes.mainmenu;
+namespace Rubicon.menus.mainmenu;
 
 public partial class MainMenu : Node
 {
@@ -68,12 +67,12 @@ public partial class MainMenu : Node
 		string buttonName = buttonGroup.GetChild<AnimatedSprite2D>(curSelected).Name.ToString().ToLower();
 		switch (buttonName)
 		{
-			case "storymode": TransitionManager.Instance.ChangeScene("res://src/gameplay/GameplayScene.tscn"); break;
-			case "freeplay": TransitionManager.Instance.ChangeScene("res://src/scenes/freeplay/FreeplayMenu.tscn"); break;
-			case "options": TransitionManager.Instance.ChangeScene("res://src/scenes/options/OptionsMenu.tscn"); break;
+			case "storymode": GetTree().ChangeSceneToFile("res://source/menus/debug/SongSelect.tscn"); break;
+			case "freeplay": GetTree().ChangeSceneToFile("res://source/menus/freeplay/FreeplayMenu.tscn"); break;
+			case "options": GetTree().ChangeSceneToFile("res://source/menus/options/OptionsMenu.tscn"); break;
 			default:
 				//Main.Instance.SendNotification($"Scene {buttonName} not found lol", true, NotificationType.Warning);
-				TransitionManager.Instance.ChangeScene("res://src/scenes/title/Title.tscn");
+				GetTree().ChangeSceneToFile("res://source/menus/title/Title.tscn");
 				break;
 		}
 	}

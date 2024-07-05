@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
+using OldRubicon;
 using OldRubicon.scenes.options.objects.sections;
-using TransitionManager = OldRubicon.autoload.TransitionManager;
 
-namespace OldRubicon.scenes.options;
+namespace Rubicon.menus.options;
 enum OptionsMenuSections
 {
 	Gameplay,
@@ -65,8 +65,8 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				Main.RubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
-				Main.RubiconSettings.Save();
+				OldRubicon.Main.RubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
+				OldRubicon.Main.RubiconSettings.Save();
 				//Main.Instance.SendNotification("Settings imported.");
 			}
 			catch (Exception e)
@@ -79,7 +79,7 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(Main.RubiconSettings)));
+				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(OldRubicon.Main.RubiconSettings)));
 				//Main.Instance.SendNotification("Settings exported and copied to clipboard.");
 			}
 			catch (Exception e)
@@ -114,7 +114,7 @@ public partial class OptionsMenu : Control
 		int newSectionIndex = ((int)CurrentSection + direction + 5) % 5;
 		CurrentSection = (OptionsMenuSections)newSectionIndex;
     
-		if (Main.RubiconSettings.Misc.OptionsMenuAnimations)
+		if (OldRubicon.Main.RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
 			OptionsMenuAnimPlayer.Play("SectionTransition/StartTransition");
@@ -133,7 +133,7 @@ public partial class OptionsMenu : Control
 		if (IsAnimationPlaying) return;
 		CurrentSection = menuSections;
 
-		if (Main.RubiconSettings.Misc.OptionsMenuAnimations)
+		if (OldRubicon.Main.RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
 			OptionsMenuAnimPlayer.Play("SectionTransition/StartTransition");

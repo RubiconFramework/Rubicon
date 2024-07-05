@@ -1,8 +1,8 @@
-using OldRubicon.autoload.enums;
+using Rubicon.backend.autoload.enums;
 
-namespace OldRubicon.autoload;
+namespace Rubicon.backend.autoload;
 
-//[Icon("res://assets/miscicons/autoload.png")]
+[Icon("res://assets/miscicons/autoload.png")]
 public partial class AudioManager : Node
 {
 	public static AudioManager Instance { get; private set; }
@@ -94,7 +94,7 @@ public partial class AudioManager : Node
         return player;
     }
 
-    public AudioStreamPlayer PlayMusic(string path, float volume = 1f)
+    public static AudioStreamPlayer PlayMusic(string path, float volume = 1f)
     {
         AudioStreamPlayer player = new()
         {

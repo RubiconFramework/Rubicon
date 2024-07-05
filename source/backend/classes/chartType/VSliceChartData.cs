@@ -1,9 +1,6 @@
-#region Imports
 	using System.Collections.Generic;
-using Newtonsoft.Json;
-#endregion
 
-namespace Rubicon.Backend.Classes.ChartType;
+	namespace Rubicon.Backend.Classes.ChartType;
 public partial class VSliceChartData : Resource
 {
 	//VSlice chart support (pain in the ass)

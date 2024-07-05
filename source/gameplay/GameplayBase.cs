@@ -1,4 +1,3 @@
-#region Imports
 using Rubicon.Backend.Autoload;
 using Rubicon.Backend.Classes;
 using Rubicon.Gameplay.Classes;
@@ -9,7 +8,6 @@ using Rubicon.Gameplay.Classes.Strums;
 using System.Linq;
 using Rubicon.Gameplay.Classes.Elements;
 using Rubicon.Gameplay.Classes.Events;
-#endregion
 
 namespace Rubicon.Gameplay;
 public partial class GameplayBase : Node
@@ -60,9 +58,9 @@ public partial class GameplayBase : Node
 		Input.MouseMode = Input.MouseModeEnum.Hidden;
 
 		GenerateSong();
-		Conductor.StepHitEvent += StepHit;
-		Conductor.BeatHitEvent += BeatHit;
-		Conductor.SectionHitEvent += SectionHit;
+		Conductor.OnStepHit += StepHit;
+		Conductor.OnBeatHit += BeatHit;
+		Conductor.OnSectionHit += SectionHit;
 
 		ScrollSpeed = ChartHandler.CurrentChart.ScrollSpeed;
 		GD.Print($"Scroll Speed: {ScrollSpeed}");
@@ -336,37 +334,45 @@ public partial class GameplayBase : Node
 		GD.Print("Ended song.");
 	}
 
-	public void StepHit()
+	public int StepHit(int curstep)
 	{
 		//GD.Print($"step hit at step: {Conductor.CurStep}");
+		return curstep;
 	}
 
-	public void BeatHit()
+	public int BeatHit(int curbeat)
 	{
 		//GD.Print($"beat hit at beat: {Conductor.CurBeat}");
 
-		if(HudBumping && Conductor.CurBeat % HudBumpInterval == 0)
-			Hud.Scale += new Vector2(HudBumpAmount,HudBumpAmount);
+		if(HudBumping && Conductor.CurBeat % HudBumpInterval == 0) Hud.Scale += new Vector2(HudBumpAmount,HudBumpAmount);
 
-		if(IconBumping && Conductor.CurBeat % IconBumpInterval == 0) {
-			foreach(Icon icon in Hud.HealthBar.IconGroup.GetChildren())
-				icon.Scale = new Vector2(icon.DefaultScale.X+IconBumpAmount,icon.DefaultScale.Y+IconBumpAmount);
+		switch (IconBumping)
+		{
+			case true when Conductor.CurBeat % IconBumpInterval == 0:
+			{
+				foreach(Icon icon in Hud.HealthBar.IconGroup.GetChildren())
+					icon.Scale = new Vector2(icon.DefaultScale.X+IconBumpAmount,icon.DefaultScale.Y+IconBumpAmount);
+				break;
+			}
 		}
+		return curbeat;
 	}
 
-	public void SectionHit()
+	public int SectionHit(int cursection)
 	{
 		//GD.Print($"section hit at sec: {Conductor.CurSection}");
+		return cursection;
 	}
 
-	public override void _ExitTree() {
+	public override void _ExitTree() 
+	{
 		base._ExitTree();
 
 		Conductor.UpdatePosition = false;
 
-		Conductor.StepHitEvent -= StepHit;
-		Conductor.BeatHitEvent -= BeatHit;
-		Conductor.SectionHitEvent -= SectionHit;
+		Conductor.OnStepHit -= StepHit;
+		Conductor.OnBeatHit -= BeatHit;
+		Conductor.OnSectionHit -= SectionHit;
 
 		foreach(KeyValuePair<string, Note> cachedNote in NoteCache)
 			cachedNote.Value.QueueFree();

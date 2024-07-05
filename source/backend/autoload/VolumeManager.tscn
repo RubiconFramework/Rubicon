@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bkguktphrh1h5"]
 
-[ext_resource type="Script" path="res://old src/autoload/VolumeManager.cs" id="1_5v2rm"]
+[ext_resource type="Script" path="res://source/backend/autoload/VolumeManager.cs" id="1_5v2rm"]
 [ext_resource type="SpriteFrames" uid="uid://bxeqjq4qkvrla" path="res://assets/misc/volumeIcons.tres" id="3_b3kwp"]
 [ext_resource type="Theme" uid="uid://cnaffdtymkcv2" path="res://assets/themes/duo/AudioManager [Duo].tres" id="3_hqtuf"]
 

@@ -1,5 +1,3 @@
-using Godot;
-
 [Tool]
 public partial class FlashInitializer : EditorPlugin
 {

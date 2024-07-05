@@ -1,4 +1,4 @@
-namespace OldRubicon.autoload.enums;
+namespace Rubicon.backend.autoload.enums;
 
 public enum AudioOutputMode
 {

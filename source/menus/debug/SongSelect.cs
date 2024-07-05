@@ -1,28 +1,27 @@
-#region Imports 
 using Rubicon.Backend.Autoload;
-#endregion
 
-namespace Rubicon.Backend.Debug;
+namespace Rubicon.menus.debug;
+
 public partial class SongSelect : Control
 {
-	[NodePath("song")] LineEdit songName;
-	[NodePath("diff")] LineEdit difficulty;
-	public override void _Ready() => this.OnReady();
+    [NodePath("song")] LineEdit songName;
+    [NodePath("diff")] LineEdit difficulty;
+
+    public override void _Ready() => this.OnReady();
 
     public override void _Input(InputEvent @event)
     {
-		if(@event is InputEventKey && Input.IsActionJustPressed("menu_accept"))
-			OnSongSelect();
+        if (@event is InputEventKey && Input.IsActionJustPressed("menu_accept")) OnSongSelect();
     }
 
-    public void OnSongSelect() 
-	{
-		if(songName != null) {
-			if(difficulty.Text is null || difficulty.Text == "") difficulty.Text = "normal";
-			ChartHandler.NewChart(songName.Text, difficulty.Text);
-			GetTree().ChangeSceneToFile("res://source/gameplay/Gameplay2D.tscn");
-		}
-		else
-			GD.PrintErr("No chart name entered.");
-	}
+    public void OnSongSelect()
+    {
+        if (songName != null)
+        {
+            if (difficulty.Text is null or "") difficulty.Text = "normal";
+            ChartHandler.NewChart(songName.Text, difficulty.Text);
+            GetTree().ChangeSceneToFile("res://source/gameplay/Gameplay2D.tscn");
+        }
+        else GD.PrintErr("No chart name entered.");
+    }
 }

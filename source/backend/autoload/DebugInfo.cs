@@ -1,52 +1,81 @@
+using System.Diagnostics;
+using System.Globalization;
+using System.Text;
 
-using System.Threading;
+namespace Rubicon.backend.autoload;
 
-namespace Rubicon.Backend.Autoload;
+[Icon("res://assets/miscicons/autoload.png")]
 public partial class DebugInfo : CanvasLayer
 {
-	[NodePath("FPS")] private RichTextLabel fps;
-	[NodePath("FPS/Info")] private Label info;
-	[NodePath("Keys")] private Label keys;
+    [NodePath("InfoContainer/Performance/FPS")] private Label FPSLabel;
+    [NodePath("InfoContainer/Performance/RAM")] private Label RAMLabel;
+    [NodePath("InfoContainer/Performance/VRAM")] private Label VRAMLabel;
+    [NodePath("InfoContainer/Performance/NodeObjects")] private Label NodeObjectsLabel;
+    [NodePath("InfoContainer/Version")] private Label VersionLabel;
+    [NodePath("InfoContainer/Scene")] private Label SceneLabel;
+    [NodePath("InfoContainer/Conductor")] private Label ConductorLabel;
 
-	private float updateCooldown;
-	private float vramPeak;
-	public override void _Ready() {
-		this.OnReady();
-	}
+    private float updateTime;
+    private bool showDebugInfo;
+    private Process currentProcess = Process.GetCurrentProcess();
 
-	private float ByteToReadable(float bytes) => bytes / (1024 * 1024);
+    private double byteToMB(long bytes) => bytes / (1024.0 * 1024.0);
 
-	public override void _PhysicsProcess(double delta) 
-	{
-		if (updateCooldown <= 0)
-			updateCooldown = 0.5f;
-		else if (updateCooldown > 0 && Visible)
-			updateCooldown -= (float)delta;
+    public override void _Ready()
+    {
+        this.OnReady();
+        if (!OS.IsDebugBuild()) VRAMLabel.Text = "VRAM is Unavailable.";
+        VersionLabel.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+    }
 
-		if(Input.IsActionJustPressed("debug_fps")) fps.Visible = !fps.Visible;
-		if(Input.IsActionJustPressed("debug_info") && OS.IsDebugBuild())
-		{
-			fps.Visible = true;
-			info.Visible = !info.Visible && fps.Visible;
-		}
-		if(Input.IsActionJustPressed("debug_keys") && OS.IsDebugBuild()) keys.Visible = !keys.Visible; 
+    public override void _PhysicsProcess(double delta)
+    {
+        updateTime += (float)delta;
+        if (updateTime >= 1)
+        {
+            updateTime = 0;
+            UpdateText();
+        }
 
-		if (fps.Visible && updateCooldown <= 0)
-		{
-			string fpsColor = "white";
-			if (Engine.GetFramesPerSecond() < 60) fpsColor = "yellow";
-			if (Engine.GetFramesPerSecond() < 30) fpsColor = "red";
+        if (Input.IsActionJustPressed("debug_info")) showDebugInfo = !showDebugInfo;
+        SceneLabel.Visible = showDebugInfo;
+        ConductorLabel.Visible = showDebugInfo;
+        VersionLabel.Visible = showDebugInfo;
+    }
 
-			fps.Text = $"FPS: [color={fpsColor}]{Engine.GetFramesPerSecond()}";
-			if (info.Visible)
-			{
-				float currentVram = (float)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed);
-				if(currentVram > vramPeak) vramPeak = currentVram;
-				
-				info.Text = "> Memory Info" +
-				$"\nRAM: {Math.Round(ByteToReadable(OS.GetStaticMemoryUsage()), 2)}MB / {Math.Round(ByteToReadable(OS.GetStaticMemoryPeakUsage()), 2)}MB" +
-				$"\nVRAM: {Math.Round(ByteToReadable(currentVram), 2)}MB / {Math.Round(ByteToReadable(vramPeak), 2)}MB";
-			}
-		}
-	}
+    StringBuilder ConductorSB = new();
+
+    private void UpdateText()
+    {
+        ConductorSB.Clear();
+        
+        FPSLabel.Text = $"FPS: {Engine.GetFramesPerSecond().ToString(CultureInfo.InvariantCulture)}";
+        if (OS.IsDebugBuild())
+        {
+            RAMLabel.Text = $"RAM: {byteToMB((long)OS.GetStaticMemoryUsage()):F2} MB [A: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
+            VRAMLabel.Text = $"VRAM: {byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB";
+            SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
+            NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
+        }
+        else
+        {
+            RAMLabel.Text = $"RAM: {byteToMB(currentProcess.WorkingSet64):F2} MB [Alloc: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
+            SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
+            NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
+        }
+
+        /*if (Conductor.ConductorInstance != null)
+        {
+            ConductorSB.AppendLine($"BPM: {Conductor.B} // Song Position: {Conductor.ConductorInstance.position}")
+                .AppendLine($"Crochet: {Conductor.ConductorInstance.crochet} // StepCrochet: {Conductor.ConductorInstance.stepCrochet}")
+                .AppendLine($"Step: {Conductor.ConductorInstance.curStep} [Dec: {Conductor.ConductorInstance.curDecBeat}] // Beat: {Conductor.ConductorInstance.curBeat} [Dec: {Conductor.ConductorInstance.curDecStep}] // Section: {Conductor.ConductorInstance.curSection} [Dec: {Conductor.ConductorInstance.curDecSection}]");
+        }
+        else
+        {
+            ConductorLabel.Size = new (0,0);
+            ConductorSB.AppendLine("Conductor is Unavailable.");
+        }*/
+
+        ConductorLabel.Text = ConductorSB.ToString();
+    }
 }

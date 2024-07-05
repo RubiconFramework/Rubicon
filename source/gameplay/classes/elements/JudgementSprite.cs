@@ -1,7 +1,5 @@
-#region Imports
 using Rubicon.Backend.Autoload;
 using Rubicon.Gameplay.Resources;
-#endregion
 
 namespace Rubicon.Gameplay.Classes.Elements;
 public partial class JudgementSprite : RigidBody2D

@@ -16,7 +16,7 @@ public partial class Misc : SettingsSectionBase
         
         RegisterButton(SceneTransitions, _ => Main.RubiconSettings.Misc.SceneTransitions = !Main.RubiconSettings.Misc.SceneTransitions);
         RegisterButton(OptionsMenuAnimations, _ => Main.RubiconSettings.Misc.OptionsMenuAnimations = !Main.RubiconSettings.Misc.OptionsMenuAnimations);
-        RegisterButton(DiscordRichPresence, OptionsMenu.Instance.HelperMethods.SetDiscordRPC);
+        RegisterButton(DiscordRichPresence, Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetDiscordRPC);
         RegisterOptionButton(GameLanguage, i => Main.RubiconSettings.Misc.Languages = (GameLanguages)i);
         RegisterOptionButton(GameTransitions, i => Main.RubiconSettings.Misc.Transitions = (TransitionType)i);
     }

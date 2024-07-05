@@ -1,8 +1,8 @@
-using System.Collections.Generic;
+/*using System.Collections.Generic;
 
-namespace OldRubicon.autoload;
+namespace Rubicon.backend.autoload;
 
-//[Icon("res://assets/miscicons/autoload.png")]
+[Icon("res://assets/miscicons/autoload.png")]
 public partial class VolumeManager : CanvasLayer
 {
 	[NodePath("Player")] private AnimationPlayer AnimPlayer;
@@ -71,11 +71,11 @@ public partial class VolumeManager : CanvasLayer
 	    
 	    var valueTuples = new (Panel panel, Func<float> getVolume, Action<float> setVolume, string name)[]
         {
-            (MasterVolumePanel, () => Main.RubiconSettings.Audio.MasterVolume, volume => { MasterVolume = volume; }, "Master"),
-            (MusicVolumePanel, () => Main.RubiconSettings.Audio.MusicVolume, volume => { MusicVolume = volume; }, "Music"),
-            (SFXVolumePanel, () => Main.RubiconSettings.Audio.SFXVolume, volume => { SFXVolume = volume; }, "SFX"),
-            (InstVolumePanel, () => Main.RubiconSettings.Audio.InstVolume, volume => { InstVolume = volume; }, "Inst"),
-            (VoiceVolumePanel, () => Main.RubiconSettings.Audio.VoiceVolume, volume => { VoiceVolume = volume; }, "Voices")
+            (MasterVolumePanel, () => OldRubicon.Main.RubiconSettings.Audio.MasterVolume, volume => { MasterVolume = volume; }, "Master"),
+            (MusicVolumePanel, () => OldRubicon.Main.RubiconSettings.Audio.MusicVolume, volume => { MusicVolume = volume; }, "Music"),
+            (SFXVolumePanel, () => OldRubicon.Main.RubiconSettings.Audio.SFXVolume, volume => { SFXVolume = volume; }, "SFX"),
+            (InstVolumePanel, () => OldRubicon.Main.RubiconSettings.Audio.InstVolume, volume => { InstVolume = volume; }, "Inst"),
+            (VoiceVolumePanel, () => OldRubicon.Main.RubiconSettings.Audio.VoiceVolume, volume => { VoiceVolume = volume; }, "Voices")
         };
 
         foreach (var (panel, getVolume, setVolume, name) in valueTuples)
@@ -123,18 +123,18 @@ public partial class VolumeManager : CanvasLayer
     {
 	    base._PhysicsProcess(delta);
 	    if (MasterVolumeLabel.Visible)
-		    MasterVolumeBar.Value = Mathf.Lerp(MasterVolumeBar.Value, Main.RubiconSettings.Audio.MasterVolume, delta * 5);
+		    MasterVolumeBar.Value = Mathf.Lerp(MasterVolumeBar.Value, OldRubicon.Main.RubiconSettings.Audio.MasterVolume, delta * 5);
 
 	    if (Input.IsActionJustPressed("master_volume_up") && !isVolumePanelShown)
 	    {
-		    float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume + 10, 0, 100);
+		    float newVolume = Mathf.Clamp(OldRubicon.Main.RubiconSettings.Audio.MasterVolume + 10, 0, 100);
 		    MasterVolumeLabel.Text = $"Master Volume {newVolume}%";
 		    ChangeVolume(newVolume);
 		    PlayVolumeAnimation();
 	    }
 	    else if (Input.IsActionJustPressed("master_volume_down") && !isVolumePanelShown)
 	    {
-		    float newVolume = Mathf.Clamp(Main.RubiconSettings.Audio.MasterVolume - 10, 0, 100);
+		    float newVolume = Mathf.Clamp(OldRubicon.Main.RubiconSettings.Audio.MasterVolume - 10, 0, 100);
 		    MasterVolumeLabel.Text = $"Master Volume {newVolume}%";
 		    ChangeVolume(newVolume);
 		    PlayVolumeAnimation();
@@ -149,9 +149,9 @@ public partial class VolumeManager : CanvasLayer
 		    PlayVolumeAnimation();
 	    }
 	    
-	    GetNode<HSlider>("Containers/Master/HSlider").Value = Main.RubiconSettings.Audio.MasterVolume;
-	    UpdateLabel(GetNode<Label>("Containers/Master/HSlider/Label"), "Master", Main.RubiconSettings.Audio.MasterVolume);
-	    UpdateButtonSprite(GetNode<AnimatedSprite2D>("Containers/Master/Button/Icon"), Main.RubiconSettings.Audio.MasterVolume);
+	    GetNode<HSlider>("Containers/Master/HSlider").Value = OldRubicon.Main.RubiconSettings.Audio.MasterVolume;
+	    UpdateLabel(GetNode<Label>("Containers/Master/HSlider/Label"), "Master", OldRubicon.Main.RubiconSettings.Audio.MasterVolume);
+	    UpdateButtonSprite(GetNode<AnimatedSprite2D>("Containers/Master/Button/Icon"), OldRubicon.Main.RubiconSettings.Audio.MasterVolume);
 
 	    void PlayVolumeAnimation()
 	    {
@@ -230,28 +230,28 @@ public partial class VolumeManager : CanvasLayer
 		    {
 			    case 0:
 				    _masterVolume = volume;
-				    Main.RubiconSettings.Audio.MasterVolume = volume;
+				    OldRubicon.Main.RubiconSettings.Audio.MasterVolume = volume;
 				    break;
 			    case 1:
 				    _musicVolume = volume;
-				    Main.RubiconSettings.Audio.MusicVolume = volume;
+				    OldRubicon.Main.RubiconSettings.Audio.MusicVolume = volume;
 				    break;
 			    case 2:
 				    _sfxVolume = volume;
-				    Main.RubiconSettings.Audio.SFXVolume = volume;
+				    OldRubicon.Main.RubiconSettings.Audio.SFXVolume = volume;
 				    break;
 			    case 3:
 				    _instVolume = volume;
-				    Main.RubiconSettings.Audio.InstVolume = volume;
+				    OldRubicon.Main.RubiconSettings.Audio.InstVolume = volume;
 				    break;
 			    case 4:
 				    _voiceVolume = volume;
-				    Main.RubiconSettings.Audio.VoiceVolume = volume;
+				    OldRubicon.Main.RubiconSettings.Audio.VoiceVolume = volume;
 				    break;
 		    }
 	    }
 
-	    Main.RubiconSettings.Save();
+	    OldRubicon.Main.RubiconSettings.Save();
 	    UpdateVolume(busIndex, volumeToSet);
     }
 
@@ -264,3 +264,4 @@ public partial class VolumeManager : CanvasLayer
 	    UpdateButtonSprite(MasterVolumeIcon, volume);
     }
 }
+*/

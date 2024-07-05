@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://xmfla0tq4xbf"]
+
+[ext_resource type="Script" path="res://source/backend/autoload/AudioManager.cs" id="1_ilqme"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_ilqme")
+
+[node name="music" type="Node" parent="."]
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="menus" type="Node" parent="sounds"]

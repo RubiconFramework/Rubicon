@@ -1,6 +1,4 @@
-#region Includes
-	using System.Collections.Generic;
-#endregion
+using System.Collections.Generic;
 
 namespace Rubicon.Backend.Autoload;
 public partial class Preferences : Node

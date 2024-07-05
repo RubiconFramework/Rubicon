@@ -16,6 +16,49 @@
     <RootNamespace>Rubicon</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove=".godot\**" />
+    <Compile Include="old src\backend\mariomadnessreference\MariosMadnessReference.cs" />
+    <EmbeddedResource Remove=".godot\**" />
+    <Compile Remove="old src\autoload\enums\**" />
+    <EmbeddedResource Remove="old src\autoload\enums\**" />
+    <Compile Remove="source\backend\autoload\enums\**" />
+    <EmbeddedResource Remove="source\backend\autoload\enums\**" />
+    <Compile Remove="old src\backend\audiovisualizer\**" />
+    <EmbeddedResource Remove="old src\backend\audiovisualizer\**" />
+    <Compile Remove="old src\**" />
+    <EmbeddedResource Remove="old src\**" />
+    <Compile Remove="source\menus\options\**" />
+    <EmbeddedResource Remove="source\menus\options\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md" />
+    <Content Include="source\backend\autoload\AudioManager.tscn" />
+    <Content Include="source\backend\autoload\DebugInfo.tscn" />
+    <Content Include="source\backend\autoload\VolumeManager.tscn" />
+    <Content Include="source\Main.tscn" />
+    <Content Include="source\menus\title\objects\introTexts.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="project.godot" />
+    <None Include="Rubicon.sln" />
+    <None Include="source\backend\LoadingScreen.tscn" />
+    <None Include="source\gameplay\Gameplay2D.tscn" />
+    <None Include="source\gameplay\Gameplay3D.tscn" />
+    <None Include="source\gameplay\GameplayHUD.tscn" />
+    <None Include="source\gameplay\PauseSubmenu.tscn" />
+    <None Include="source\gameplay\resources\events\FocusCamera.tscn" />
+    <None Include="source\gameplay\resources\strumlines\4Keys.tscn" />
+    <None Include="source\gameplay\resources\strumlines\strums\Strum.tscn" />
+    <None Include="source\menus\debug\SongSelect.tscn" />
+    <None Include="source\menus\freeplay\FreeplayMenu.tscn" />
+    <None Include="source\menus\freeplay\resources\FreeplaySong.tres" />
+    <None Include="source\menus\mainmenu\MainMenu.tscn" />
+    <None Include="source\menus\title\Title.tscn" />
+    <None Include="source\Start.tscn" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

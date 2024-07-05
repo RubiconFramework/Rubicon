@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5jdf8vlqbm32"]
 
-[ext_resource type="Script" path="res://old src/backend/audiovisualizer/AudioVisualizer.gd" id="1_3vns7"]
+[ext_resource type="Script" path="res://source/menus/title/audiovisualizer/AudioVisualizer.gd" id="1_3vns7"]
 
 [node name="AudioVisualizer" type="Control"]
 layout_mode = 3

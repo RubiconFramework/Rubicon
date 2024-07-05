@@ -1,8 +1,3 @@
-#region Imports
-	using Rubicon.Gameplay.Classes.Elements;
-	using Rubicon.Backend.Autoload;
-#endregion
-
 namespace Rubicon.Gameplay;
 public partial class Gameplay3D : GameplayBase
 {

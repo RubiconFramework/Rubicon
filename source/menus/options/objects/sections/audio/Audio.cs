@@ -1,4 +1,4 @@
-using OldRubicon.autoload.enums;
+using Rubicon.backend.autoload.enums;
 
 namespace OldRubicon.scenes.options.objects.sections.audio;
 
@@ -17,11 +17,11 @@ public partial class Audio : SettingsSectionBase
         this.OnReady();
         LoadSettings();
         
-        RegisterSlider(MasterVolume, "Master Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MasterVolume, v), true);
-        RegisterSlider(MusicVolume, "Music Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MusicVolume, v), true);
-        RegisterSlider(SFXVolume, "SFX Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.SFXVolume, v), true);
-        RegisterSlider(InstVolume, "Inst Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.InstVolume, v), true);
-        RegisterSlider(VoiceVolume, "Voice Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.VoiceVolume, v), true);
+        RegisterSlider(MasterVolume, "Master Volume", v => Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MasterVolume, v), true);
+        RegisterSlider(MusicVolume, "Music Volume", v => Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MusicVolume, v), true);
+        RegisterSlider(SFXVolume, "SFX Volume", v => Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.SFXVolume, v), true);
+        RegisterSlider(InstVolume, "Inst Volume", v => Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.InstVolume, v), true);
+        RegisterSlider(VoiceVolume, "Voice Volume", v => Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.VoiceVolume, v), true);
         RegisterOptionButton(AudioOutputMode, i => Main.RubiconSettings.Audio.AudioOutputMode = (AudioOutputMode)i);
     }
     

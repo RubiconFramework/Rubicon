@@ -14,7 +14,7 @@ config/name="Rubicon"
 config/description="hi"
 config/version="1"
 config/tags=PackedStringArray("2d", "fnf", "framework", "rhythm")
-run/main_scene="res://source/menus/debug/SongSelect.tscn"
+run/main_scene="res://source/menus/title/Title.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Rubicon/Engine"
 config/features=PackedStringArray("4.2", "C#", "Mobile")
@@ -36,7 +36,7 @@ DebugInfo="*res://source/backend/autoload/DebugInfo.tscn"
 Preferences="*res://source/backend/autoload/Preferences.cs"
 LoadingHandler="*res://source/backend/autoload/LoadingHandler.cs"
 ChartHandler="*res://source/backend/autoload/ChartHandler.cs"
-VolumeHandler="*res://source/backend/autoload/VolumeHandler.tscn"
+AudioManager="*res://source/backend/autoload/AudioManager.tscn"
 
 [debug]
 

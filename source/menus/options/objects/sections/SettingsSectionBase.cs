@@ -12,7 +12,7 @@ public partial class SettingsSectionBase : ScrollContainer
             updateAction.Invoke(button.ButtonPressed);
             Main.RubiconSettings.Save();
         };
-        button.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
+        button.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
     }
 
     protected void RegisterOptionButton(OptionButton optionButton, Action<int> updateAction)
@@ -22,7 +22,7 @@ public partial class SettingsSectionBase : ScrollContainer
             updateAction.Invoke((int)index);
             Main.RubiconSettings.Save();
         };
-        optionButton.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
+        optionButton.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
     }
 
     protected void RegisterSlider(Label label, string settingName, Action<float> updateAction, bool showPercentage)
@@ -33,7 +33,7 @@ public partial class SettingsSectionBase : ScrollContainer
             updateAction.Invoke((float)v);
             Main.RubiconSettings.Save();
         };
-        label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
+        label.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
     
     protected void LoadButtonValue(Button button, bool v) => button.ButtonPressed = v;
@@ -51,6 +51,6 @@ public partial class SettingsSectionBase : ScrollContainer
             updateAction.Invoke(color);
             Main.RubiconSettings.Save();
         };
-        label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
+        label.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
 }

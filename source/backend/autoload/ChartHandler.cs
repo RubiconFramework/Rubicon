@@ -1,11 +1,9 @@
-#region Imports
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using FileAccess = Godot.FileAccess;
-    using Rubicon.Backend.Classes;
-    using static Rubicon.Backend.Classes.ChartType.DefaultChartData;
-    using static Rubicon.Backend.Classes.ChartType.VSliceChartData;
-#endregion
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using FileAccess = Godot.FileAccess;
+using Rubicon.Backend.Classes;
+using static Rubicon.Backend.Classes.ChartType.DefaultChartData;
+using static Rubicon.Backend.Classes.ChartType.VSliceChartData;
 
 namespace Rubicon.Backend.Autoload;
 public partial class ChartHandler : Node

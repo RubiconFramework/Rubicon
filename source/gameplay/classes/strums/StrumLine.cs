@@ -1,8 +1,6 @@
-#region Imports
 	using System.Collections.Generic;
 	using Rubicon.Gameplay.Classes.Notes;
 	using Rubicon.Gameplay.Resources;
-#endregion
 
 namespace Rubicon.Gameplay.Classes.Strums;
 

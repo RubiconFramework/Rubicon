@@ -1,5 +1,3 @@
-using Rubicon.Gameplay.Classes.Elements;
-
 namespace Rubicon.Gameplay.Resources;
 
 [GlobalClass]

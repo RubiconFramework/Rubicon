@@ -1,8 +1,6 @@
-#region Imports
 using Rubicon.Backend.Autoload;
 using Rubicon.Backend.Classes;
 using Rubicon.Gameplay.Classes.Elements;
-#endregion
 
 namespace Rubicon.Gameplay;
 public partial class Gameplay2D : GameplayBase
@@ -21,8 +19,8 @@ public partial class Gameplay2D : GameplayBase
 		this.OnReady();
 		base._Ready();
 
-		Conductor.BeatHitEvent += BeatHit;
-		Conductor.SectionHitEvent += SectionHit;
+		Conductor.OnBeatHit += BeatHit;
+		Conductor.OnSectionHit += SectionHit;
 
 		GenerateStage(ref Stage, ChartHandler.CurrentChart.Stage);
 
@@ -88,9 +86,8 @@ public partial class Gameplay2D : GameplayBase
 		//GD.Print($"Camera now focusing player: {character}.");
 	}
 
-	public new void BeatHit()
+	public int BeatHit(int beat)
 	{
-		base.BeatHit();
 
 		CharacterDance(ref Player);
 		CharacterDance(ref Watcher);
@@ -100,9 +97,10 @@ public partial class Gameplay2D : GameplayBase
 			Camera.Zoom += new Vector2(CameraBumpAmount,CameraBumpAmount);
 
 		//GD.Print("should dance");
+		return beat;
 	}
 
-	public new void SectionHit()
+	public int SectionHit(int cursection)
 	{
 		if (ChartHandler.CurrentChart.chartType == ChartTypeEnum.Default && CameraUpdating && ChartHandler.CurrentChart.Sections.Count-1 >= Conductor.CurSection && !EndedSong)
 		{
@@ -110,12 +108,14 @@ public partial class Gameplay2D : GameplayBase
 			string charToFocus = section ? "Player" : "Opponent";
 			FocusCharacterCamera(charToFocus);
 		}
+
+		return cursection;
 	}
 
 	public override void _ExitTree() {
 		base._ExitTree();
 
-		Conductor.BeatHitEvent -= BeatHit;
-		Conductor.SectionHitEvent -= SectionHit;
+		Conductor.OnBeatHit -= BeatHit;
+		Conductor.OnSectionHit -= SectionHit;
 	}
 }

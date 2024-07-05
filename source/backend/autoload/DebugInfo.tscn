@@ -1,61 +1,91 @@
-[gd_scene load_steps=3 format=3 uid="uid://di7x34vvtqhec"]
+[gd_scene load_steps=5 format=3 uid="uid://bditr4686af55"]
 
-[ext_resource type="Script" path="res://source/backend/autoload/DebugInfo.cs" id="1_1mvc5"]
-[ext_resource type="FontFile" uid="uid://dd1kmotkx8hg" path="res://assets/fonts/funkin.ttf" id="1_2wdc7"]
+[ext_resource type="Script" path="res://source/backend/autoload/DebugInfo.cs" id="1_kpyvy"]
 
-[node name="FPS" type="CanvasLayer"]
-process_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rmx7"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcq7a"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yvj1"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[node name="DebugInfo" type="CanvasLayer"]
 layer = 128
-script = ExtResource("1_1mvc5")
+script = ExtResource("1_kpyvy")
 
-[node name="FPS" type="RichTextLabel" parent="."]
-visible = false
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 452.0
-offset_bottom = 749.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/normal_font = ExtResource("1_2wdc7")
-theme_override_font_sizes/normal_font_size = 28
-bbcode_enabled = true
+[node name="InfoContainer" type="VBoxContainer" parent="."]
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 541.0
+offset_bottom = 210.0
+
+[node name="Performance" type="HBoxContainer" parent="InfoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="FPS" type="Label" parent="InfoContainer/Performance"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
 text = "FPS: 0"
-fit_content = true
 
-[node name="Info" type="Label" parent="FPS"]
-visible = false
-layout_mode = 0
-offset_left = 5.0
-offset_top = 26.0
-offset_right = 403.0
-offset_bottom = 767.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_2wdc7")
-theme_override_font_sizes/font_size = 20
-text = "> Memory Info
-RAM: 0b / 0b
-VRAM: 0b / 0b"
+[node name="RAM" type="Label" parent="InfoContainer/Performance"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_xcq7a")
+text = "RAM: 0 MB [A: 0 MB]"
 
-[node name="Keys" type="Label" parent="."]
-visible = false
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -155.0
-offset_right = 643.0
-offset_bottom = -8.0
-grow_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("1_2wdc7")
-theme_override_font_sizes/font_size = 28
-text = "DEBUG KEYS
-> F1: Toggle Debug Key Cheatsheet
-> F2: Toggle FPS Counter
-> F3: Toggle Memory Info
-> F4: Toggle Autoplay on the current focused strumline
-> F5: Swap between Player and Opponent strumlines"
-vertical_alignment = 2
+[node name="VRAM" type="Label" parent="InfoContainer/Performance"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "VRAM: 0 MB"
+
+[node name="NodeObjects" type="Label" parent="InfoContainer/Performance"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Node Objects: 0"
+
+[node name="Version" type="Label" parent="InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "Rubicon Framework 1"
+
+[node name="Scene" type="Label" parent="InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "Scene: res://src/autoload/debug/DebugInfo.tscn"
+
+[node name="Conductor" type="Label" parent="InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "BPM: 0 // Song Position: 0  
+Crochet: 0 // StepCrochet: 0
+Step:0 [Dec:0] // Beat:0 [Dec:0] // Section:0  [Dec: 0]"

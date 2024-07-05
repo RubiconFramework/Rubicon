@@ -1,10 +1,8 @@
-#region Includes
 using System.Collections.Generic;
 using System.Linq;
 using Rubicon.Backend.Autoload;
 using Rubicon.Gameplay.Classes.Elements;
 using Rubicon.Gameplay.Classes.Notes;
-#endregion
 
 namespace Rubicon.Gameplay.Classes.Strums;
 [GlobalClass]

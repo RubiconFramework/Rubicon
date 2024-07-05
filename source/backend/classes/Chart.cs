@@ -1,6 +1,4 @@
-#region Imports
     using System.Collections.Generic;
-#endregion
 
 namespace Rubicon.Backend.Classes;
 
