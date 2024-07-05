@@ -1,6 +1,6 @@
-using Rubicon.autoload.enums;
+using OldRubicon.autoload.enums;
 
-namespace Rubicon.scenes.options.objects.sections.audio;
+namespace OldRubicon.scenes.options.objects.sections.audio;
 
 public partial class Audio : SettingsSectionBase
 {

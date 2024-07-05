@@ -1,10 +1,10 @@
 #region Imports
-using FNFGodot.Backend.Autoload;
-using FNFGodot.Backend.Classes;
-using FNFGodot.Gameplay.Classes.Elements;
+using Rubicon.Backend.Autoload;
+using Rubicon.Backend.Classes;
+using Rubicon.Gameplay.Classes.Elements;
 #endregion
 
-namespace FNFGodot.Gameplay;
+namespace Rubicon.Gameplay;
 public partial class Gameplay2D : GameplayBase
 {
 	/*	This class handles all 2D specific / 2D sensitive stuff.

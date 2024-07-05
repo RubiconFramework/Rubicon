@@ -1,6 +1,6 @@
-using Rubicon.autoload.enums;
+using OldRubicon.autoload.enums;
 
-namespace Rubicon.autoload;
+namespace OldRubicon.autoload;
 
 //[Icon("res://assets/miscicons/autoload.png")]
 public partial class AudioManager : Node

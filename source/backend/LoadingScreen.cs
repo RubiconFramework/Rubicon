@@ -1,6 +1,6 @@
-using FNFGodot.Backend.Autoload;
+using Rubicon.Backend.Autoload;
 
-namespace FNFGodot.Backend;
+namespace Rubicon.Backend;
 public partial class LoadingScreen : Node
 {
 	[NodePath("ProgressBar")] ProgressBar progressBar;

@@ -1,8 +1,8 @@
 #region Imports 
-using FNFGodot.Backend.Autoload;
+using Rubicon.Backend.Autoload;
 #endregion
 
-namespace FNFGodot.Backend.Debug;
+namespace Rubicon.Backend.Debug;
 public partial class SongSelect : Control
 {
 	[NodePath("song")] LineEdit songName;

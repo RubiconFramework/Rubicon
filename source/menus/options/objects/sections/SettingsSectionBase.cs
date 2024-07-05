@@ -1,6 +1,6 @@
 using Button = Godot.Button;
 
-namespace Rubicon.scenes.options.objects.sections;
+namespace OldRubicon.scenes.options.objects.sections;
 
 [Icon("res://assets/miscicons/settingsbutton.png")]
 public partial class SettingsSectionBase : ScrollContainer

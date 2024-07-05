@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using FNFGodot.Gameplay.Classes.Elements;
+using Rubicon.Gameplay.Classes.Elements;
 
 public partial class NeneSpeaker : Character2D
 {

@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 
-namespace Rubicon.autoload;
+namespace OldRubicon.autoload;
 
 //[Icon("res://assets/miscicons/autoload.png")]
 public partial class DebugInfo : CanvasLayer

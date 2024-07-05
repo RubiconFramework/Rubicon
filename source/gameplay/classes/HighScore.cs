@@ -1,9 +1,9 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using FNFGodot.Gameplay.Resources;
+using Rubicon.Gameplay.Resources;
 
-namespace FNFGodot.Gameplay.Classes;
+namespace Rubicon.Gameplay.Classes;
 public partial class HighScore : Node
 {
 	public int Score = 0;

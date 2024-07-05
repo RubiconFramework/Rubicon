@@ -1,4 +1,4 @@
-namespace Rubicon.scenes.options.objects.sections.gameplay;
+namespace OldRubicon.scenes.options.objects.sections.gameplay;
 
 public partial class Gameplay : SettingsSectionBase
 {

@@ -47,6 +47,7 @@ theme_override_font_sizes/font_size = 22
 placeholder_text = "normal"
 
 [node name="Label" type="Label" parent="diff"]
+layout_mode = 0
 offset_top = -32.0
 offset_right = 40.0
 offset_bottom = -9.0

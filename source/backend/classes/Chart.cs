@@ -2,7 +2,7 @@
     using System.Collections.Generic;
 #endregion
 
-namespace FNFGodot.Backend.Classes;
+namespace Rubicon.Backend.Classes;
 
 [Serializable]
 public partial class Chart : Resource

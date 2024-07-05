@@ -3,7 +3,7 @@
 using Newtonsoft.Json;
 #endregion
 
-namespace FNFGodot.Backend.Classes.ChartType;
+namespace Rubicon.Backend.Classes.ChartType;
 public partial class VSliceChartData : Node
 {
 	//VSlice chart support (pain in the ass)

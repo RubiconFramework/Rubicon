@@ -1,4 +1,4 @@
-namespace Rubicon.scenes.options.objects.sections.video;
+namespace OldRubicon.scenes.options.objects.sections.video;
 
 public partial class Video : SettingsSectionBase
 {

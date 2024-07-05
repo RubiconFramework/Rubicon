@@ -1,4 +1,4 @@
-namespace Rubicon.autoload.enums;
+namespace OldRubicon.autoload.enums;
 
 public enum AudioType
 {

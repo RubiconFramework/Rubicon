@@ -1,10 +1,10 @@
 using System.IO;
 using System.IO.Compression;
 using System.Text;
-using Rubicon.autoload.enums;
-using VolumeManager = Rubicon.autoload.VolumeManager;
+using OldRubicon.autoload.enums;
+using VolumeManager = OldRubicon.autoload.VolumeManager;
 
-namespace Rubicon.scenes.options.objects.sections;
+namespace OldRubicon.scenes.options.objects.sections;
 
 public class HelperMethods
 {

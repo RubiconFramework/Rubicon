@@ -1,10 +1,10 @@
 #region Imports
 	using System.Collections.Generic;
-	using FNFGodot.Gameplay.Classes.Notes;
-	using FNFGodot.Gameplay.Resources;
+	using Rubicon.Gameplay.Classes.Notes;
+	using Rubicon.Gameplay.Resources;
 #endregion
 
-namespace FNFGodot.Gameplay.Classes.Strums;
+namespace Rubicon.Gameplay.Classes.Strums;
 
 public partial class StrumLine : Node2D
 {

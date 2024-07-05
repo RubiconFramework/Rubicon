@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 #endregion
 
-namespace FNFGodot.Backend.Classes.ChartType;
+namespace Rubicon.Backend.Classes.ChartType;
 public partial class DefaultChartData : Node
 {
 	//raw data

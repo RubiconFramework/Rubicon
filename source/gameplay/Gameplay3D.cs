@@ -1,9 +1,9 @@
 #region Imports
-	using FNFGodot.Gameplay.Classes.Elements;
-	using FNFGodot.Backend.Autoload;
+	using Rubicon.Gameplay.Classes.Elements;
+	using Rubicon.Backend.Autoload;
 #endregion
 
-namespace FNFGodot.Gameplay;
+namespace Rubicon.Gameplay;
 public partial class Gameplay3D : GameplayBase
 {
 	/*	Just as Gameplay2D, but handles all 3D stuff.

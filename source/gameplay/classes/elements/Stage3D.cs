@@ -1,5 +1,5 @@
 
-namespace FNFGodot.Gameplay.Classes.Elements;
+namespace Rubicon.Gameplay.Classes.Elements;
 public partial class Stage3D : Node3D
 {
 	[Export] public float CameraFov = 1;

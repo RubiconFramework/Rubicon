@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
-using Rubicon.scenes.options.objects.sections;
-using TransitionManager = Rubicon.autoload.TransitionManager;
+using OldRubicon.scenes.options.objects.sections;
+using TransitionManager = OldRubicon.autoload.TransitionManager;
 
-namespace Rubicon.scenes.options;
+namespace OldRubicon.scenes.options;
 enum OptionsMenuSections
 {
 	Gameplay,

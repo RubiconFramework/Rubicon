@@ -1,9 +1,9 @@
 #region Imports
-using FNFGodot.Backend.Autoload;
-using FNFGodot.Gameplay.Resources;
+using Rubicon.Backend.Autoload;
+using Rubicon.Gameplay.Resources;
 #endregion
 
-namespace FNFGodot.Gameplay.Classes.Elements;
+namespace Rubicon.Gameplay.Classes.Elements;
 public partial class JudgementSprite : RigidBody2D
 {
 	[NodePath("Sprite")] private AnimatedSprite2D Sprite;

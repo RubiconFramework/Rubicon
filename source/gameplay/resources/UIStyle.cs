@@ -1,6 +1,6 @@
-using FNFGodot.Gameplay.Classes.Elements;
+using Rubicon.Gameplay.Classes.Elements;
 
-namespace FNFGodot.Gameplay.Resources;
+namespace Rubicon.Gameplay.Resources;
 
 [GlobalClass]
 public partial class UIStyle : Resource

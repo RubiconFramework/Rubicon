@@ -1,12 +1,12 @@
 #region Imports
 using System.Collections.Generic;
-using FNFGodot.Backend.Autoload;
-using FNFGodot.Gameplay.Classes.Elements;
-using FNFGodot.Gameplay.Classes.Strums;
-using FNFGodot.Gameplay.Resources;
+using Rubicon.Backend.Autoload;
+using Rubicon.Gameplay.Classes.Elements;
+using Rubicon.Gameplay.Classes.Strums;
+using Rubicon.Gameplay.Resources;
 #endregion
 
-namespace FNFGodot.Gameplay.Classes.Notes;
+namespace Rubicon.Gameplay.Classes.Notes;
 [GlobalClass]
 public partial class NoteHandler : Node
 {

@@ -1,4 +1,4 @@
-namespace FNFGodot.Gameplay.Classes.Elements;
+namespace Rubicon.Gameplay.Classes.Elements;
 
 [Tool]
 [GlobalClass]

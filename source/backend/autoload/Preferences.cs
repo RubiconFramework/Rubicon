@@ -2,7 +2,7 @@
 	using System.Collections.Generic;
 #endregion
 
-namespace FNFGodot.Backend.Autoload;
+namespace Rubicon.Backend.Autoload;
 public partial class Preferences : Node
 {
     public static Dictionary<string, dynamic> placeholderSettings = new Dictionary<string, dynamic>();

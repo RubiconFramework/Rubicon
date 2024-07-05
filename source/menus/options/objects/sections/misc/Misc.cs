@@ -1,4 +1,4 @@
-namespace Rubicon.scenes.options.objects.sections.misc;
+namespace OldRubicon.scenes.options.objects.sections.misc;
 
 public partial class Misc : SettingsSectionBase
 {

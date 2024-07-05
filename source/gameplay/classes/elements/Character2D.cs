@@ -1,6 +1,6 @@
-using FNFGodot.Backend.Autoload;
+using Rubicon.Backend.Autoload;
 
-namespace FNFGodot.Gameplay.Classes.Elements;
+namespace Rubicon.Gameplay.Classes.Elements;
 
 public partial class Character2D : Node2D
 {

@@ -1,4 +1,4 @@
-namespace Rubicon.backend.mariomadnessreference;
+namespace OldRubicon.backend.mariomadnessreference;
 
 public partial class MariosMadnessReference : Control
 {

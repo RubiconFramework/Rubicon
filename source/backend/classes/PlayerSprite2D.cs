@@ -1,4 +1,4 @@
-namespace FNFGodot.Backend.Classes;
+namespace Rubicon.Backend.Classes;
 
 [Tool]
 public partial class PlayerSprite2D : AnimatedSprite2D

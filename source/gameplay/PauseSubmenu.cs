@@ -1,5 +1,5 @@
 
-namespace FNFGodot.Gameplay;
+namespace Rubicon.Gameplay;
 public partial class PauseSubmenu : CanvasLayer
 {
     [NodePath("../")] GameplayBase Gameplay;

@@ -1,5 +1,5 @@
 
-namespace FNFGodot.Gameplay.Resources;
+namespace Rubicon.Gameplay.Resources;
 [GlobalClass]
 public partial class Judgement : Resource
 {

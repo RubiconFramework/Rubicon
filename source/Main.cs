@@ -5,7 +5,7 @@
     using System.Collections.Generic;
 #endregion
 
-namespace FNFGodot;
+namespace Rubicon;
 public partial class Main : Node
 {
 	/*   The average global class that has utilities and sometimes holds useful variables.	*/

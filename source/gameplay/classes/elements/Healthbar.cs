@@ -1,5 +1,5 @@
 
-namespace FNFGodot.Gameplay.Classes.Elements;
+namespace Rubicon.Gameplay.Classes.Elements;
 public partial class Healthbar : ProgressBar
 {
     [Export] public bool ColorableBar = true;

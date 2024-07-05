@@ -1,13 +1,13 @@
 #region Imports
-using FNFGodot.Gameplay.Classes;
-using FNFGodot.Gameplay.Classes.Strums;
-using FNFGodot.Backend.Autoload;
-using FNFGodot.Gameplay.Classes.Notes;
-using FNFGodot.Gameplay.Classes.Elements;
-using FNFGodot.Gameplay.Resources;
+using Rubicon.Gameplay.Classes;
+using Rubicon.Gameplay.Classes.Strums;
+using Rubicon.Backend.Autoload;
+using Rubicon.Gameplay.Classes.Notes;
+using Rubicon.Gameplay.Classes.Elements;
+using Rubicon.Gameplay.Resources;
 #endregion
 
-namespace FNFGodot.Gameplay;
+namespace Rubicon.Gameplay;
 public partial class GameplayHUD : CanvasLayer
 {
 	/*	Contains all code for the HUD.

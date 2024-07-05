@@ -2,12 +2,12 @@
     using System.Collections.Generic;
     using Newtonsoft.Json;
     using FileAccess = Godot.FileAccess;
-    using FNFGodot.Backend.Classes;
-    using static FNFGodot.Backend.Classes.ChartType.DefaultChartData;
-    using static FNFGodot.Backend.Classes.ChartType.VSliceChartData;
+    using Rubicon.Backend.Classes;
+    using static Rubicon.Backend.Classes.ChartType.DefaultChartData;
+    using static Rubicon.Backend.Classes.ChartType.VSliceChartData;
 #endregion
 
-namespace FNFGodot.Backend.Autoload;
+namespace Rubicon.Backend.Autoload;
 public partial class ChartHandler : Node
 {
     public static Chart CurrentChart;

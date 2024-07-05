@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rubicon.scenes.options.objects.sections.keybinds;
+namespace OldRubicon.scenes.options.objects.sections.keybinds;
 
 public partial class Keybinds : SettingsSectionBase
 {

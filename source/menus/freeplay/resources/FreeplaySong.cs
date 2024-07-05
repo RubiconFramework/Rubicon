@@ -1,6 +1,6 @@
 using Godot.Collections;
 
-namespace Rubicon.scenes.freeplay.resources;
+namespace OldRubicon.scenes.freeplay.resources;
 
 [GlobalClass]
 public partial class FreeplaySong : Resource

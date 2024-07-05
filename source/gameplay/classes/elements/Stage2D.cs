@@ -1,5 +1,5 @@
 
-namespace FNFGodot.Gameplay.Classes.Elements;
+namespace Rubicon.Gameplay.Classes.Elements;
 public partial class Stage2D : Node2D
 {
 	/*	im tired of these stupid ass descriptions bruh

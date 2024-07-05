@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Rubicon.autoload.enums;
-using AudioManager = Rubicon.autoload.AudioManager;
-using TransitionManager = Rubicon.autoload.TransitionManager;
+using OldRubicon.autoload.enums;
+using AudioManager = OldRubicon.autoload.AudioManager;
+using TransitionManager = OldRubicon.autoload.TransitionManager;
 
-namespace Rubicon.scenes.title;
+namespace OldRubicon.scenes.title;
 
 public partial class Title : Node
 {

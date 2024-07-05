@@ -1,8 +1,8 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Rubicon.autoload.enums;
+using OldRubicon.autoload.enums;
 
-namespace Rubicon;
+namespace OldRubicon;
 
 public class RubiconSettings
 {

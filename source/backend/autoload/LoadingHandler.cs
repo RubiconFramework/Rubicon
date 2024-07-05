@@ -1,4 +1,4 @@
-namespace FNFGodot.Backend.Autoload;
+namespace Rubicon.Backend.Autoload;
 public partial class LoadingHandler : Node
 {
 	public static string LastScenePath = "";

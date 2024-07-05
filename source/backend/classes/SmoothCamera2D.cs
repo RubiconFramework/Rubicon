@@ -1,5 +1,5 @@
 
-namespace FNFGodot.Backend.Classes;
+namespace Rubicon.Backend.Classes;
 public partial class SmoothCamera2D : Camera2D
 {
 	[ExportGroup("Camera Smoothing")]

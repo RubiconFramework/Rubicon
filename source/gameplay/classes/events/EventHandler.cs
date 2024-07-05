@@ -1,8 +1,8 @@
 #region Imports
-using FNFGodot.Backend.Autoload;
+using Rubicon.Backend.Autoload;
 #endregion
 
-namespace FNFGodot.Gameplay.Classes.Events;
+namespace Rubicon.Gameplay.Classes.Events;
 [GlobalClass]
 public partial class EventHandler : Node
 {

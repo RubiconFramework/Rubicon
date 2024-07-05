@@ -1,12 +1,12 @@
 #region Includes
 using System.Collections.Generic;
 using System.Linq;
-using FNFGodot.Backend.Autoload;
-using FNFGodot.Gameplay.Classes.Elements;
-using FNFGodot.Gameplay.Classes.Notes;
+using Rubicon.Backend.Autoload;
+using Rubicon.Gameplay.Classes.Elements;
+using Rubicon.Gameplay.Classes.Notes;
 #endregion
 
-namespace FNFGodot.Gameplay.Classes.Strums;
+namespace Rubicon.Gameplay.Classes.Strums;
 [GlobalClass]
 public partial class StrumHandler : Node
 {

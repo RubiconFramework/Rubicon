@@ -1,4 +1,4 @@
-using FNFGodot.Gameplay.Classes.Events;
+using Rubicon.Gameplay.Classes.Events;
 
 public partial class FocusCamera : SongEvent
 {

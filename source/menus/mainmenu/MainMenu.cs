@@ -1,8 +1,8 @@
-using Rubicon.autoload.enums;
-using AudioManager = Rubicon.autoload.AudioManager;
-using TransitionManager = Rubicon.autoload.TransitionManager;
+using OldRubicon.autoload.enums;
+using AudioManager = OldRubicon.autoload.AudioManager;
+using TransitionManager = OldRubicon.autoload.TransitionManager;
 
-namespace Rubicon.scenes.mainmenu;
+namespace OldRubicon.scenes.mainmenu;
 
 public partial class MainMenu : Node
 {

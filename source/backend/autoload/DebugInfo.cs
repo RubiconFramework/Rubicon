@@ -1,7 +1,7 @@
 
 using System.Threading;
 
-namespace FNFGodot.Backend.Autoload;
+namespace Rubicon.Backend.Autoload;
 public partial class DebugInfo : CanvasLayer
 {
 	[NodePath("FPS")] private RichTextLabel fps;

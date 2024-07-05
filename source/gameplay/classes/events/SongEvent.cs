@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 
-namespace FNFGodot.Gameplay.Classes.Events;
+namespace Rubicon.Gameplay.Classes.Events;
 [GlobalClass]
 public partial class SongEvent : Node
 {

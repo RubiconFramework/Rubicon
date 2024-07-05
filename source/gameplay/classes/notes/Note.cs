@@ -1,11 +1,11 @@
 #region Imports
 using Godot.Collections;
-using FNFGodot.Backend.Autoload;
-using FNFGodot.Gameplay.Classes.Strums;
-using FNFGodot.Gameplay.Resources;
+using Rubicon.Backend.Autoload;
+using Rubicon.Gameplay.Classes.Strums;
+using Rubicon.Gameplay.Resources;
 #endregion
 
-namespace FNFGodot.Gameplay.Classes.Notes;
+namespace Rubicon.Gameplay.Classes.Notes;
 public partial class Note : Node2D
 {
 	[Export] public bool ShouldHit = true;

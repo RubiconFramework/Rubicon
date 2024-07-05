@@ -1,4 +1,4 @@
-using FNFGodot.Gameplay.Classes.Elements;
+using Rubicon.Gameplay.Classes.Elements;
 
 public partial class Speakers : Character2D
 {

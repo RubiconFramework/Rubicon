@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Godot.Collections;
-using Rubicon.autoload.enums;
-using AudioManager = Rubicon.autoload.AudioManager;
-using FreeplaySong = Rubicon.scenes.freeplay.resources.FreeplaySong;
-using TransitionManager = Rubicon.autoload.TransitionManager;
+using OldRubicon.autoload.enums;
+using AudioManager = OldRubicon.autoload.AudioManager;
+using FreeplaySong = OldRubicon.scenes.freeplay.resources.FreeplaySong;
+using TransitionManager = OldRubicon.autoload.TransitionManager;
 
-namespace Rubicon.scenes.freeplay;
+namespace OldRubicon.scenes.freeplay;
 
 public partial class FreeplayMenu : Node
 {

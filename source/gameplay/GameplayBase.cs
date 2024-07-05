@@ -1,17 +1,17 @@
 #region Imports
-using FNFGodot.Backend.Autoload;
-using FNFGodot.Backend.Classes;
-using FNFGodot.Gameplay.Classes;
-using FNFGodot.Gameplay.Resources;
-using FNFGodot.Gameplay.Classes.Notes;
+using Rubicon.Backend.Autoload;
+using Rubicon.Backend.Classes;
+using Rubicon.Gameplay.Classes;
+using Rubicon.Gameplay.Resources;
+using Rubicon.Gameplay.Classes.Notes;
 using System.Collections.Generic;
-using FNFGodot.Gameplay.Classes.Strums;
+using Rubicon.Gameplay.Classes.Strums;
 using System.Linq;
-using FNFGodot.Gameplay.Classes.Elements;
-using FNFGodot.Gameplay.Classes.Events;
+using Rubicon.Gameplay.Classes.Elements;
+using Rubicon.Gameplay.Classes.Events;
 #endregion
 
-namespace FNFGodot.Gameplay;
+namespace Rubicon.Gameplay;
 public partial class GameplayBase : Node
 {
 	/*	The base class that both Gameplay2D and Gameplay3D inherit from.
