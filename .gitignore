@@ -12,7 +12,6 @@ Imported translations (automatically generated from CSV files)
 
 Mono-specific ignores
 .mono/
-data/
 mono_crash..json
 Backup/
 UpgradeLog.htm
