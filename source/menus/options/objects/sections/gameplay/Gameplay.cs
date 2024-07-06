@@ -1,4 +1,6 @@
-namespace OldRubicon.scenes.options.objects.sections.gameplay;
+using Rubicon.Backend.Autoload;
+
+namespace Rubicon.menus.options.objects.sections.gameplay;
 
 public partial class Gameplay : SettingsSectionBase
 {
@@ -12,15 +14,15 @@ public partial class Gameplay : SettingsSectionBase
         this.OnReady();
         LoadSettings();
         
-        RegisterButton(Downscroll, _ => Main.RubiconSettings.Gameplay.Downscroll = !Main.RubiconSettings.Gameplay.Downscroll);
-        RegisterOptionButton(ScrollSpeedType, i => Main.RubiconSettings.Gameplay.ScrollSpeedType = (ScrollSpeedType)i);
-        RegisterSlider(ScrollSpeed, "Scroll Speed", v => Main.RubiconSettings.Gameplay.ScrollSpeed = v, false);
+        RegisterButton(Downscroll, _ => RubiconSettings.Gameplay.Downscroll = !RubiconSettings.Gameplay.Downscroll);
+        RegisterOptionButton(ScrollSpeedType, i => RubiconSettings.Gameplay.ScrollSpeedType = (ScrollSpeedType)i);
+        RegisterSlider(ScrollSpeed, "Scroll Speed", v => RubiconSettings.Gameplay.ScrollSpeed = v, false);
     }
     
     private void LoadSettings()
     {
-        LoadButtonValue(Downscroll, Main.RubiconSettings.Gameplay.Downscroll);
-        LoadOptionButtonValue(ScrollSpeedType, (int)Main.RubiconSettings.Gameplay.ScrollSpeedType);
-        LoadSliderValue(ScrollSpeed, "Scroll Speed", Main.RubiconSettings.Gameplay.ScrollSpeed);
+        LoadButtonValue(Downscroll, RubiconSettings.Gameplay.Downscroll);
+        LoadOptionButtonValue(ScrollSpeedType, (int)RubiconSettings.Gameplay.ScrollSpeedType);
+        LoadSliderValue(ScrollSpeed, "Scroll Speed", RubiconSettings.Gameplay.ScrollSpeed);
     }
 }

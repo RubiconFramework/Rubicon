@@ -1,6 +1,6 @@
+using Rubicon.Backend.Autoload;
 using Rubicon.Gameplay.Classes;
 using Rubicon.Gameplay.Classes.Strums;
-using Rubicon.Backend.Autoload;
 using Rubicon.Gameplay.Classes.Notes;
 using Rubicon.Gameplay.Classes.Elements;
 using Rubicon.Gameplay.Resources;
@@ -91,8 +91,7 @@ public partial class GameplayHUD : CanvasLayer
 		AddChild(HealthBar);
 		HealthBar.Value = (float)(HealthBar.MaxValue/2);
 
-		// Repositioning HUD
-		if(Preferences.placeholderSettings["downscroll"])
+		if(RubiconSettings.Gameplay.Downscroll)
 		{
 			HealthBar.SetPosition(HealthBar.BarDownscrollPos);
 			HealthBar.ScoreLabel.SetPosition(HealthBar.ScoreLabelDownscrollPos);

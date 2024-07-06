@@ -158,7 +158,7 @@ material = ExtResource("2_ilohj")
 position = Vector2(169, 636)
 sprite_frames = ExtResource("6_gvhw7")
 animation = &"Press Enter to Begin"
-frame_progress = 0.932352
+frame_progress = 0.994164
 centered = false
 script = ExtResource("4_li603")
 

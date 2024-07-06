@@ -1,8 +1,13 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Rubicon.backend.autoload.enums;
 
-namespace OldRubicon;
+namespace Rubicon.Backend.Autoload;
+
+public enum AudioOutputMode
+{
+    Stereo,
+    Mono
+}
 
 public enum StrumSides
 {
@@ -31,12 +36,18 @@ public enum TransitionType
     DiamondShapes
 }
 
-public class RubiconSettings
+public partial class RubiconSettings : Node
 {
-    public readonly GameplaySettings Gameplay = new();
-    public readonly AudioSettings Audio = new();
-    public readonly VideoSettings Video = new();
-    public readonly MiscSettings Misc = new();
+    public static RubiconSettings Instance;
+    private GameplaySettings _Gameplay { get; set; } = new();
+    private AudioSettings _Audio { get; set; } = new();
+    private VideoSettings _Video { get; set; } = new();
+    private MiscSettings _Misc { get; set; } = new();
+    
+    public static GameplaySettings Gameplay => Instance._Gameplay;
+    public static AudioSettings Audio => Instance._Audio;
+    public static VideoSettings Video => Instance._Video;
+    public static MiscSettings Misc => Instance._Misc;
 
     public class GameplaySettings
     {
@@ -94,17 +105,15 @@ public class RubiconSettings
         public bool SceneTransitions { get; set; } = true;
     }
 
-    public RubiconSettings GetDefaultSettings()
+    public static RubiconSettings GetDefaultSettings()
     {
-        RubiconSettings defaultSettings = new();
-        return defaultSettings;
+        return new RubiconSettings();
     }
 
     public void Load(string path)
     {
         try
         {
-            RubiconSettings rubiconSettings = new();
             if (FileAccess.FileExists(path))
             {
                 var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);
@@ -112,24 +121,23 @@ public class RubiconSettings
 
                 if (!string.IsNullOrEmpty(json))
                 {
-                    rubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(json);
-                    if (rubiconSettings != null)
+                    var loadedSettings = JsonConvert.DeserializeObject<RubiconSettings>(json);
+                    if (loadedSettings != null)
                     {
-                        Main.RubiconSettings = rubiconSettings;
+                        Instance = loadedSettings;
                         GD.Print($"Settings loaded from file. [{path}]");
                     }
                 }
             }
             else
             {
-                //Main.Instance.SendNotification("Settings file not found. Writing default settings to file.");
-                rubiconSettings.GetDefaultSettings().Save();
-                Main.RubiconSettings = rubiconSettings;
+                GetDefaultSettings().Save();
+                GD.Print($"Settings file not found. Writing default settings to file.");
             }
         }
         catch (Exception e)
         {
-            //Main.Instance.SendNotification($"Failed to load or write default settings: {e.Message}", true, NotificationType.Error);
+            GD.PrintErr($"Failed to load or write default settings: {e.Message}");
             throw;
         }
     }
@@ -141,16 +149,26 @@ public class RubiconSettings
             var settings = new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                Formatting = Formatting.Indented
+                Formatting = Formatting.Indented,
             };
 
-            string jsonData = JsonConvert.SerializeObject(Main.RubiconSettings, settings);
-            using var file = FileAccess.Open(Main.SettingsFilePath, FileAccess.ModeFlags.Write);
+            string jsonData = JsonConvert.SerializeObject(Instance, settings);
+            using var file = FileAccess.Open("user://settings.json", FileAccess.ModeFlags.Write);
             file.StoreString(jsonData);
         }
         catch (Exception e)
         {
-            //Main.Instance.SendNotification($"Failed to save settings: {e.Message}", true, NotificationType.Error);
+            GD.PrintErr($"Failed to save settings: {e.Message}");
         }
+    }
+
+    public override void _EnterTree()
+    {
+        Instance ??= this;
+    }
+
+    public override void _ExitTree()
+    {
+        if (Instance == this) Instance = null;
     }
 }

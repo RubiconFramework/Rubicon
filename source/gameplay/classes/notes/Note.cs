@@ -46,7 +46,8 @@ public partial class Note : Node2D
     [NodePath("SustainMask/SustainPiece")] public Line2D SustainPiece;
     [NodePath("SustainMask/SustainPiece/SustainEnd")] public Sprite2D SustainEnd;
 
-    public override void _Ready() {
+    public override void _Ready() 
+    {
         base._Ready();
         this.OnReady();
 
@@ -56,7 +57,7 @@ public partial class Note : Node2D
         SustainPiece.Texture = SustainTexture.GetFrameTexture($"{DirectionName}",0);
         SustainEnd.Texture = SustainTexture.GetFrameTexture($"{DirectionName}",1);
 
-        DownscrollMultiplier = Preferences.placeholderSettings["downscroll"] ? -1 : 1;
+        DownscrollMultiplier = RubiconSettings.Gameplay.Downscroll ? -1 : 1;
     
         if(SustainLength < 50) SustainMask.QueueFree();
         SustainMask.Size = new Vector2(SustainMask.Size.X, Main.WindowSize.Y / Scale.Y);

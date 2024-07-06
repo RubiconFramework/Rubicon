@@ -10,6 +10,7 @@ public partial class ChartHandler : Node
 {
     public static Chart CurrentChart;
     public static string CurrentDifficulty = "normal";
+    
     public static void NewChart(string songName, string difficulty)
     {
         CurrentDifficulty = difficulty;

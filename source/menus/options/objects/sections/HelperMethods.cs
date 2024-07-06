@@ -1,10 +1,10 @@
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using Rubicon.Backend.Autoload;
 using Rubicon.backend.autoload.enums;
-using VolumeManager = Rubicon.backend.autoload.VolumeManager;
 
-namespace OldRubicon.scenes.options.objects.sections;
+namespace Rubicon.menus.options.objects.sections;
 
 public class HelperMethods
 {
@@ -13,37 +13,37 @@ public class HelperMethods
         switch (volumeType)
         {
             case VolumeType.MasterVolume:
-                Main.RubiconSettings.Audio.MasterVolume = v;
-                VolumeManager.Instance.ChangeVolume(v);
+                RubiconSettings.Audio.MasterVolume = v;
+                //VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.MusicVolume:
-                Main.RubiconSettings.Audio.MusicVolume = v;
-                VolumeManager.Instance.ChangeVolume(v);
+                RubiconSettings.Audio.MusicVolume = v;
+                //VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.SFXVolume:
-                Main.RubiconSettings.Audio.SFXVolume = v;
-                VolumeManager.Instance.ChangeVolume(v);
+                RubiconSettings.Audio.SFXVolume = v;
+                //VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.InstVolume:
-                Main.RubiconSettings.Audio.InstVolume = v;
-                VolumeManager.Instance.ChangeVolume(v);
+                RubiconSettings.Audio.InstVolume = v;
+                //VolumeManager.Instance.ChangeVolume(v);
                 break;
             case VolumeType.VoiceVolume:
-                Main.RubiconSettings.Audio.VoiceVolume = v;
-                VolumeManager.Instance.ChangeVolume(v);
+                RubiconSettings.Audio.VoiceVolume = v;
+                //VolumeManager.Instance.ChangeVolume(v);
                 break;
         }
     }
 
     public void SetVSync(DisplayServer.VSyncMode v)
     {
-        Main.RubiconSettings.Video.VSync = v;
+        RubiconSettings.Video.VSync = v;
         DisplayServer.Singleton.WindowSetVsyncMode(v);
     }
 
     public void SetWindowMode(DisplayServer.WindowMode v)
     {
-        Main.RubiconSettings.Video.WindowMode = v;
+        RubiconSettings.Video.WindowMode = v;
         DisplayServer.Singleton.WindowSetMode(v);
     }
 
@@ -51,18 +51,18 @@ public class HelperMethods
     {
         if ((int)v == 1500)
         {
-            Main.RubiconSettings.Video.MaxFPS = 1500;
+            RubiconSettings.Video.MaxFPS = 1500;
             Engine.Singleton.MaxFps = 0;
             return;
         }
         
-        Main.RubiconSettings.Video.MaxFPS = (int)v;
+        RubiconSettings.Video.MaxFPS = (int)v;
         Engine.Singleton.MaxFps = (int)v;
     }
     
     public void SetDiscordRPC(bool v)
     {
-        Main.RubiconSettings.Misc.DiscordRichPresence = v;
+        RubiconSettings.Misc.DiscordRichPresence = v;
         //DiscordRichPresence.Instance.Toggle(v);
     }
     

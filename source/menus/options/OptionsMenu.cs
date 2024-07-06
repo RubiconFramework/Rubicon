@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
-using OldRubicon;
-using OldRubicon.scenes.options.objects.sections;
+using Rubicon.Backend.Autoload;
+using Rubicon.menus.options.objects.sections;
 
 namespace Rubicon.menus.options;
 enum OptionsMenuSections
@@ -65,13 +65,13 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				OldRubicon.Main.RubiconSettings = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
-				OldRubicon.Main.RubiconSettings.Save();
-				//Main.Instance.SendNotification("Settings imported.");
+				RubiconSettings.Instance = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
+				RubiconSettings.Instance.Save();
+				GD.Print("Settings imported.");
 			}
 			catch (Exception e)
 			{
-				//Main.Instance.SendNotification($"Failed to import settings: {e.Message}", true, NotificationType.Error);
+				GD.Print($"Failed to import settings: {e.Message}");
 			}
 		};
 
@@ -79,19 +79,19 @@ public partial class OptionsMenu : Control
 		{
 			try
 			{
-				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(OldRubicon.Main.RubiconSettings)));
-				//Main.Instance.SendNotification("Settings exported and copied to clipboard.");
+				DisplayServer.ClipboardSet(HelperMethods.CompressString(JsonConvert.SerializeObject(RubiconSettings.Instance)));
+				GD.Print("Settings exported and copied to clipboard.");
 			}
 			catch (Exception e)
 			{
-				//Main.Instance.SendNotification($"Failed to export settings: {e.Message}", true, NotificationType.Error);
+				GD.Print($"Failed to export settings: {e.Message}");
 			}
 		};
 	}
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("menu_return")) TransitionManager.Instance.ChangeScene("res://src/scenes/mainmenu/MainMenu.tscn");
+		if (@event.IsActionPressed("menu_return")) GetTree().ChangeSceneToFile("res://source/menus/mainmenu/MainMenu.tscn");
 
 		if (@event is not InputEventKey { Pressed: true } eventKey) return;
 		switch (eventKey.KeyLabel)
@@ -114,7 +114,7 @@ public partial class OptionsMenu : Control
 		int newSectionIndex = ((int)CurrentSection + direction + 5) % 5;
 		CurrentSection = (OptionsMenuSections)newSectionIndex;
     
-		if (OldRubicon.Main.RubiconSettings.Misc.OptionsMenuAnimations)
+		if (RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
 			OptionsMenuAnimPlayer.Play("SectionTransition/StartTransition");
@@ -133,7 +133,7 @@ public partial class OptionsMenu : Control
 		if (IsAnimationPlaying) return;
 		CurrentSection = menuSections;
 
-		if (OldRubicon.Main.RubiconSettings.Misc.OptionsMenuAnimations)
+		if (RubiconSettings.Misc.OptionsMenuAnimations)
 		{
 			IsAnimationPlaying = true;
 			OptionsMenuAnimPlayer.Play("SectionTransition/StartTransition");

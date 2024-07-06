@@ -27,8 +27,6 @@
     <EmbeddedResource Remove="old src\backend\audiovisualizer\**" />
     <Compile Remove="old src\**" />
     <EmbeddedResource Remove="old src\**" />
-    <Compile Remove="source\menus\options\**" />
-    <EmbeddedResource Remove="source\menus\options\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
@@ -36,6 +34,19 @@
     <Content Include="source\backend\autoload\DebugInfo.tscn" />
     <Content Include="source\backend\autoload\VolumeManager.tscn" />
     <Content Include="source\Main.tscn" />
+    <Content Include="source\menus\options\objects\buttons\colorpicker\ColorPickerButton.tscn" />
+    <Content Include="source\menus\options\objects\buttons\filepicker\FilePickerButton.tscn" />
+    <Content Include="source\menus\options\objects\buttons\slider\LabelSlider.tscn" />
+    <Content Include="source\menus\options\objects\sections\audio\Audio.tscn" />
+    <Content Include="source\menus\options\objects\sections\gameplay\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
+    <Content Include="source\menus\options\objects\sections\gameplay\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg.import" />
+    <Content Include="source\menus\options\objects\sections\gameplay\Gameplay.tscn" />
+    <Content Include="source\menus\options\objects\sections\gameplay\menus\GameplayModifiers.tscn" />
+    <Content Include="source\menus\options\objects\sections\gameplay\menus\GameplayOffsets.tscn" />
+    <Content Include="source\menus\options\objects\sections\keybinds\Keybinds.tscn" />
+    <Content Include="source\menus\options\objects\sections\misc\Misc.tscn" />
+    <Content Include="source\menus\options\objects\sections\video\Video.tscn" />
+    <Content Include="source\menus\options\OptionsMenu.tscn" />
     <Content Include="source\menus\title\objects\introTexts.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -56,7 +67,6 @@
     <None Include="source\menus\freeplay\resources\FreeplaySong.tres" />
     <None Include="source\menus\mainmenu\MainMenu.tscn" />
     <None Include="source\menus\title\Title.tscn" />
-    <None Include="source\Start.tscn" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />

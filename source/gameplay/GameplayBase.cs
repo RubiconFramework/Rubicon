@@ -74,7 +74,7 @@ public partial class GameplayBase : Node
 
 		// Generating strumlines
 		float StrumY = -(Main.WindowSize.Y/2) + 100;
-		if (Preferences.placeholderSettings["downscroll"]) StrumY = (Main.WindowSize.Y/2) - 100;
+		if (RubiconSettings.Gameplay.Downscroll) StrumY = (Main.WindowSize.Y/2) - 100;
 		Hud.GenerateStrum(ref Hud.PlayerStrums, ChartHandler.CurrentChart.KeyCount, new Vector2(380, StrumY), true);
 		Hud.GenerateStrum(ref Hud.CpuStrums, ChartHandler.CurrentChart.KeyCount, new Vector2(-380, StrumY));
 

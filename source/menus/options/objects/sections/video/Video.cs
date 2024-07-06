@@ -1,4 +1,6 @@
-namespace OldRubicon.scenes.options.objects.sections.video;
+using Rubicon.Backend.Autoload;
+
+namespace Rubicon.menus.options.objects.sections.video;
 
 public partial class Video : SettingsSectionBase
 {
@@ -12,15 +14,15 @@ public partial class Video : SettingsSectionBase
         this.OnReady();
         LoadSettings();
         
-        RegisterOptionButton(VSync, i => Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetVSync((DisplayServer.VSyncMode)i));
-        RegisterOptionButton(WindowMode, i => Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetWindowMode((DisplayServer.WindowMode)i));
-        RegisterSlider(MaxFPS, "Max FPS", Rubicon.menus.options.OptionsMenu.Instance.HelperMethods.SetMaxFPS, false);
+        RegisterOptionButton(VSync, i => OptionsMenu.Instance.HelperMethods.SetVSync((DisplayServer.VSyncMode)i));
+        RegisterOptionButton(WindowMode, i => OptionsMenu.Instance.HelperMethods.SetWindowMode((DisplayServer.WindowMode)i));
+        RegisterSlider(MaxFPS, "Max FPS", OptionsMenu.Instance.HelperMethods.SetMaxFPS, false);
     }
     
     private void LoadSettings()
     {
-        LoadOptionButtonValue(VSync, (int)Main.RubiconSettings.Video.VSync);
-        LoadOptionButtonValue(WindowMode, (int)Main.RubiconSettings.Video.WindowMode);
-        LoadSliderValue(MaxFPS, "Max FPS", Main.RubiconSettings.Video.MaxFPS);
+        LoadOptionButtonValue(VSync, (int)RubiconSettings.Video.VSync);
+        LoadOptionButtonValue(WindowMode, (int)RubiconSettings.Video.WindowMode);
+        LoadSliderValue(MaxFPS, "Max FPS", RubiconSettings.Video.MaxFPS);
     }
 }

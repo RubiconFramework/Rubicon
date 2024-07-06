@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OldRubicon.scenes.options.objects.sections.keybinds;
+namespace Rubicon.menus.options.objects.sections.keybinds;
 
 public partial class Keybinds : SettingsSectionBase
 {
@@ -39,7 +39,7 @@ public partial class Keybinds : SettingsSectionBase
                 {
                     if (!isPickingKeybind)
                     {
-                        Rubicon.menus.options.OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickingKeybind");
+                        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickingKeybind");
                         isPickingKeybind = true;
                         currentKeybindButton = button;
                     }
@@ -81,7 +81,7 @@ public partial class Keybinds : SettingsSectionBase
 
         currentKeybindButton = null;
         isPickingKeybind = false;
-        Rubicon.menus.options.OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/RemovedKeybind");
+        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/RemovedKeybind");
     }
 
     private void SetKeybind(InputEventKey inputEventKey)
@@ -91,13 +91,13 @@ public partial class Keybinds : SettingsSectionBase
         InputEventKey keyEvent = new InputEventKey();
         keyEvent.Keycode = inputEventKey.Keycode;
         InputMap.ActionAddEvent(buttonKeybindings[currentKeybindButton], keyEvent);
-        Rubicon.menus.options.OptionsMenu.Instance.KeybindLabel.Text = $"{keyEvent.Keycode} Selected.";
+        OptionsMenu.Instance.KeybindLabel.Text = $"{keyEvent.Keycode} Selected.";
 
         InputMap.ActionEraseEvents(buttonKeybindings[currentKeybindButton]);
         //Main.Instance.SendNotification($"{OS.GetKeycodeString(inputEventKey.Keycode)} bound to {buttonKeybindings[currentKeybindButton]}");
         currentKeybindButton = null;
         isPickingKeybind = false;
-        Rubicon.menus.options.OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickedKeybind");
+        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickedKeybind");
     }
 
     public List<string> GetKeybinds(string action)

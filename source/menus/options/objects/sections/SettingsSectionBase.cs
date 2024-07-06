@@ -1,6 +1,7 @@
+using Rubicon.Backend.Autoload;
 using Button = Godot.Button;
 
-namespace OldRubicon.scenes.options.objects.sections;
+namespace Rubicon.menus.options.objects.sections;
 
 [Icon("res://assets/miscicons/settingsbutton.png")]
 public partial class SettingsSectionBase : ScrollContainer
@@ -10,9 +11,9 @@ public partial class SettingsSectionBase : ScrollContainer
         button.Pressed += () =>
         {
             updateAction.Invoke(button.ButtonPressed);
-            Main.RubiconSettings.Save();
+            RubiconSettings.Instance.Save();
         };
-        button.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
+        button.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
     }
 
     protected void RegisterOptionButton(OptionButton optionButton, Action<int> updateAction)
@@ -20,9 +21,9 @@ public partial class SettingsSectionBase : ScrollContainer
         optionButton.ItemSelected += index =>
         {
             updateAction.Invoke((int)index);
-            Main.RubiconSettings.Save();
+            RubiconSettings.Instance.Save();
         };
-        optionButton.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
+        optionButton.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
     }
 
     protected void RegisterSlider(Label label, string settingName, Action<float> updateAction, bool showPercentage)
@@ -31,9 +32,9 @@ public partial class SettingsSectionBase : ScrollContainer
         {
             label.Text = showPercentage ? $"{settingName}: [{(int)v}%]" : $"{settingName} [{(float)v}]";
             updateAction.Invoke((float)v);
-            Main.RubiconSettings.Save();
+            RubiconSettings.Instance.Save();
         };
-        label.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
+        label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
     
     protected void LoadButtonValue(Button button, bool v) => button.ButtonPressed = v;
@@ -49,8 +50,8 @@ public partial class SettingsSectionBase : ScrollContainer
         label.GetNode<ColorPickerButton>("Picker").ColorChanged += color =>
         {
             updateAction.Invoke(color);
-            Main.RubiconSettings.Save();
+            RubiconSettings.Instance.Save();
         };
-        label.MouseEntered += () => Rubicon.menus.options.OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
+        label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
 }

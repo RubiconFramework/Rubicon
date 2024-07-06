@@ -7,7 +7,9 @@ public partial class LoadingHandler : Node
 	public static Godot.Collections.Array LoadingProgress = new();
 	private static LoadingHandler StaticInstance;
 	private static bool transitioning = false;
-	public LoadingHandler(){
+	
+	public LoadingHandler()
+	{
 		StaticInstance = this;
 	}
 
