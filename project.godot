@@ -61,6 +61,7 @@ naming/node_name_num_separator=1
 naming/default_signal_callback_name="On{signal_name}"
 naming/default_signal_callback_to_self_name="On{signal_name}"
 naming/scene_name_casing=1
+export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
