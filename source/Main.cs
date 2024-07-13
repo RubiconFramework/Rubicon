@@ -25,7 +25,6 @@ public partial class Main : Node
     
     public override void _Ready()
     {
-        RubiconSettings.Instance.Load("user://settings.json");
         RenderingServer.SetDefaultClearColor(new Color(0, 0, 0, 1)); //godot should have an editor-only background override or something this shits annoying
     }
 
@@ -68,12 +67,13 @@ public partial class Main : Node
                 else GD.Print("Another audio file was found, but will not be used");
             }
         }
-        if (ResourceLoader.Exists(finalPath)) return GD.Load<AudioStream>(finalPath);
-        else
-        {
-            if (throwError) GD.PrintErr($"No audio file was found with the provided path: {filePath}");
-            return null;
-        }
+        
+        if (ResourceLoader.Exists(finalPath))
+            return GD.Load<AudioStream>(finalPath);
+        
+        if (throwError)
+            GD.PrintErr($"No audio file was found with the provided path: {filePath}");
+        return null;
     }
     
     #region Notification Shit

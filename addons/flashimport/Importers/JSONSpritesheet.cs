@@ -19,8 +19,10 @@ namespace FlashImport.Importers;
 
 		List<string> spriteList = new();
 
-		if(!spritePath.EndsWith(".png")){
-			if(!spritePath.EndsWith("/")){
+		if(!spritePath.EndsWith(".png"))
+		{
+			if(!spritePath.EndsWith("/"))
+			{
 				spritePath += "/";
 			}
 			

@@ -66,7 +66,7 @@ public partial class OptionsMenu : Control
 			try
 			{
 				RubiconSettings.Instance = JsonConvert.DeserializeObject<RubiconSettings>(HelperMethods.DecompressString(DisplayServer.ClipboardGet()));
-				RubiconSettings.Instance.Save();
+                RubiconSettings.Save();
 				GD.Print("Settings imported.");
 			}
 			catch (Exception e)

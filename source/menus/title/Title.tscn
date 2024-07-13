@@ -134,8 +134,6 @@ material = ExtResource("2_ilohj")
 position = Vector2(605, 58)
 sprite_frames = ExtResource("3_2bhit")
 animation = &"gfDance"
-frame = 29
-frame_progress = 1.0
 centered = false
 script = ExtResource("4_li603")
 
@@ -148,8 +146,6 @@ libraries = {
 position = Vector2(-82, -72)
 sprite_frames = ExtResource("5_t5b0g")
 animation = &"BumpIn"
-frame = 14
-frame_progress = 1.0
 centered = false
 script = ExtResource("4_li603")
 

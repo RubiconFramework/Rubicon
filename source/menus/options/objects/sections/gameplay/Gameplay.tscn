@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://v36c2nyp63w7"]
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_dut1v"]
-[ext_resource type="Script" path="res://src/scenes/options/objects/sections/gameplay/Gameplay.cs" id="1_l386l"]
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/objects/buttons/slider/LabelSlider.tscn" id="3_8cjpt"]
-[ext_resource type="PackedScene" uid="uid://cm5uby17wlrao" path="res://src/scenes/options/objects/sections/gameplay/menus/GameplayModifiers.tscn" id="4_d2eu6"]
+[ext_resource type="Script" path="res://source/menus/options/objects/sections/gameplay/Gameplay.cs" id="1_l386l"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://source/menus/options/objects/buttons/slider/LabelSlider.tscn" id="3_8cjpt"]
+[ext_resource type="PackedScene" uid="uid://cm5uby17wlrao" path="res://source/menus/options/objects/sections/gameplay/menus/GameplayModifiers.tscn" id="4_d2eu6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)

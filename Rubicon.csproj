@@ -27,6 +27,8 @@
     <EmbeddedResource Remove="old src\backend\audiovisualizer\**" />
     <Compile Remove="old src\**" />
     <EmbeddedResource Remove="old src\**" />
+    <Compile Remove="source\menus\title\objects\**" />
+    <EmbeddedResource Remove="source\menus\title\objects\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
@@ -47,7 +49,9 @@
     <Content Include="source\menus\options\objects\sections\misc\Misc.tscn" />
     <Content Include="source\menus\options\objects\sections\video\Video.tscn" />
     <Content Include="source\menus\options\OptionsMenu.tscn" />
-    <Content Include="source\menus\title\objects\introTexts.txt" />
+    <Content Include="source\menus\title\audiovisualizer\AudioVisualizer.gd" />
+    <Content Include="source\menus\title\audiovisualizer\AudioVisualizer.tscn" />
+    <Content Include="source\menus\title\introTexts.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />

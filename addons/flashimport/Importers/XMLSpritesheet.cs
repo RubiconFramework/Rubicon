@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FlashImport.Importers;
 [Tool] public partial class XMLSpritesheet : Node
@@ -20,34 +21,25 @@ namespace FlashImport.Importers;
 		List<string> spriteList = new();
 
 		if(!spritePath.EndsWith(".png")){
-			if(!spritePath.EndsWith("/")){
-				spritePath += "/";
-			}
-			
+			if(!spritePath.EndsWith("/")) spritePath += "/";
 			List<string> folderSprites = ImportUtils.ListDirectory(spritePath);
-			foreach(string sprite in folderSprites){
-				if(sprite.EndsWith(".png") && FileAccess.FileExists(spritePath+sprite.Replace(".png",".xml")))
-					spriteList.Add(spritePath+sprite);
-			}
+			spriteList.AddRange(from sprite in folderSprites where sprite.EndsWith(".png") && FileAccess.FileExists(spritePath + sprite.Replace(".png", ".xml")) select spritePath + sprite);
 		}
-		else
-			spriteList.Add(spritePath);
+		else spriteList.Add(spritePath);
 
-		foreach(string sprite in spriteList) {
-			if(ResourceLoader.Exists(sprite)) {
+		foreach(string sprite in spriteList) 
+		{
+			if(ResourceLoader.Exists(sprite)) 
+			{
 				Texture2D texture = GD.Load<Texture2D>(sprite);
 
 				string atlas = sprite.Replace(".png",".xml");
-
 				XmlParser xml = new();
 				xml.Open(atlas);
-
 				GD.Print($"Sprite Path: {sprite}\nAtlas Path: {atlas}");
-
 				ConvertSprite(texture,xml);
 			}
-			else
-				GD.PrintErr($"No sprite found with the given path: {sprite}");
+			else GD.PrintErr($"No sprite found with the given path: {sprite}");
 		}
 	}
 
@@ -61,82 +53,83 @@ namespace FlashImport.Importers;
 		Rect2 rectDupe = new();
 		AtlasTexture atlasDupe = new();
 
-		while(xml.Read() == Error.Failed)
+		while (xml.Read() == Error.Failed)
 		{
-			GD.PrintErr($"Atlas failed loading at given path");
+			GD.PrintErr("Atlas failed loading at given path");
 			return;
 		}
 
 		while (xml.Read() == Error.Ok)
 		{
-			if (xml.GetNodeType() != XmlParser.NodeType.Text)
+			if (xml.GetNodeType() == XmlParser.NodeType.Text) continue;
+			StringName nodeName = xml.GetNodeName();
+
+			if (nodeName != "SubTexture") continue;
+			AtlasTexture frameData;
+
+			var animName = xml.GetNamedAttributeValue("name");
+			animName = animName.Left(animName.Length - 4);
+
+			Rect2 frameRect = new(
+				new(xml.GetNamedAttributeValue("x").ToFloat(), xml.GetNamedAttributeValue("y").ToFloat()),
+				new(xml.GetNamedAttributeValue("width").ToFloat(), xml.GetNamedAttributeValue("height").ToFloat())
+			);
+
+			if (stackFrames && rectDupe == frameRect)
 			{
-				StringName nodeName = xml.GetNodeName();
-
-				if (nodeName == "SubTexture")
-				{
-					AtlasTexture frameData;
-
-					var animName = xml.GetNamedAttributeValue("name");
-					animName = animName.Left(animName.Length-4);
-
-					Rect2 frameRect = new(
-						new(xml.GetNamedAttributeValue("x").ToFloat(), xml.GetNamedAttributeValue("y").ToFloat()),
-						new(xml.GetNamedAttributeValue("width").ToFloat(), xml.GetNamedAttributeValue("height").ToFloat())
-						);
-					
-
-					if (stackFrames && rectDupe == frameRect) {
-						duppedFrameCount++;
-						frameData = atlasDupe;
-					}
-					else
-					{
-						frameData = new();
-						frameData.Atlas = texture;
-						frameData.Region = frameRect;
-
-						if (xml.HasAttribute("frameX"))
-						{
-							int rawFrameX = xml.GetNamedAttributeValue("frameX").ToInt();
-							int rawFrameY = xml.GetNamedAttributeValue("frameY").ToInt();
-
-							int rawFrameWidth = xml.GetNamedAttributeValue("frameWidth").ToInt();
-							int rawFrameHeight = xml.GetNamedAttributeValue("frameHeight").ToInt();
-
-							Vector2 frameSizeData = new(rawFrameWidth, rawFrameHeight);
-							if (frameSizeData == Vector2.Zero)
-								frameSizeData = frameRect.Size;
-
-							Rect2 margin = new(
-								new(-rawFrameX, -rawFrameY),
-								new(rawFrameWidth - frameRect.Size.X, rawFrameHeight - frameRect.Size.Y));
-
-							if (margin.Size.X < Math.Abs(margin.Position.X))
-								margin.Size = new(Math.Abs(margin.Position.X), margin.Size.Y);
-							if (margin.Size.Y < Math.Abs(margin.Position.Y))
-								margin.Size = new(margin.Size.X, Math.Abs(margin.Position.Y));
-
-							frameData.Margin = margin;
-						}
-
-						frameData.FilterClip = true;
-
-						atlasDupe = frameData;
-						rectDupe = frameRect;
-					}
-					if (!spriteFrame.HasAnimation(animName))
-					{
-						spriteFrame.AddAnimation(animName);
-						spriteFrame.SetAnimationLoop(animName, loop);
-						spriteFrame.SetAnimationSpeed(animName, fps.ToInt());
-					}
-					spriteFrame.AddFrame(animName, frameData);
-				}
+				duppedFrameCount++;
+				frameData = atlasDupe;
 			}
+			else
+			{
+				frameData = new();
+				frameData.Atlas = texture;
+				frameData.Region = frameRect;
+
+				if (xml.HasAttribute("frameX"))
+				{
+					int rawFrameX = xml.GetNamedAttributeValue("frameX").ToInt();
+					int rawFrameY = xml.GetNamedAttributeValue("frameY").ToInt();
+
+					int rawFrameWidth = xml.GetNamedAttributeValue("frameWidth").ToInt();
+					int rawFrameHeight = xml.GetNamedAttributeValue("frameHeight").ToInt();
+
+					float[] frameSizeData = { rawFrameWidth, rawFrameHeight };
+					if (frameSizeData[0] == 0 && frameSizeData[1] == 0)
+					{
+						frameSizeData[0] = frameRect.Size[0];
+						frameSizeData[1] = frameRect.Size[1];
+					}
+
+					float[] marginPosition = { -rawFrameX, -rawFrameY };
+					float[] marginSize = { rawFrameWidth - frameRect.Size[0], rawFrameHeight - frameRect.Size[1] };
+
+					if (marginSize[0] < Math.Abs(marginPosition[0]))
+						marginSize[0] = Math.Abs(marginPosition[0]);
+					if (marginSize[1] < Math.Abs(marginPosition[1]))
+						marginSize[1] = Math.Abs(marginPosition[1]);
+					
+					frameData.Margin = new(new(marginPosition[0], marginPosition[1]), new(marginSize[0], marginSize[1]));;
+				}
+
+				frameData.FilterClip = true;
+				atlasDupe = frameData;
+				rectDupe = frameRect;
+			}
+
+			if (!spriteFrame.HasAnimation(animName))
+			{
+				spriteFrame.AddAnimation(animName);
+				spriteFrame.SetAnimationLoop(animName, loop);
+				spriteFrame.SetAnimationSpeed(animName, fps.ToInt());
+			}
+
+			spriteFrame.AddFrame(animName, frameData);
 		}
+
 		string resPath = texture.ResourcePath.GetBaseName() + ".tres";
-        ResourceSaver.Save(spriteFrame, resPath);
-		if (ResourceLoader.Exists(resPath)) GD.Print($"SpriteFrame succesfully created at path: {resPath}\nFound {duppedFrameCount} dupped frames.");
+		ResourceSaver.Save(spriteFrame, resPath);
+		if (ResourceLoader.Exists(resPath))
+			GD.Print($"SpriteFrame successfully created at path: {resPath}\nFound {duppedFrameCount} dupped frames.");
 	}
 }

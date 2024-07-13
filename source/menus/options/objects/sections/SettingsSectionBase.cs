@@ -11,7 +11,7 @@ public partial class SettingsSectionBase : ScrollContainer
         button.Pressed += () =>
         {
             updateAction.Invoke(button.ButtonPressed);
-            RubiconSettings.Instance.Save();
+            RubiconSettings.Save();
         };
         button.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
     }
@@ -21,7 +21,7 @@ public partial class SettingsSectionBase : ScrollContainer
         optionButton.ItemSelected += index =>
         {
             updateAction.Invoke((int)index);
-            RubiconSettings.Instance.Save();
+            RubiconSettings.Save();
         };
         optionButton.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
     }
@@ -32,7 +32,7 @@ public partial class SettingsSectionBase : ScrollContainer
         {
             label.Text = showPercentage ? $"{settingName}: [{(int)v}%]" : $"{settingName} [{(float)v}]";
             updateAction.Invoke((float)v);
-            RubiconSettings.Instance.Save();
+            RubiconSettings.Save();
         };
         label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }
@@ -50,7 +50,7 @@ public partial class SettingsSectionBase : ScrollContainer
         label.GetNode<ColorPickerButton>("Picker").ColorChanged += color =>
         {
             updateAction.Invoke(color);
-            RubiconSettings.Instance.Save();
+            RubiconSettings.Save();
         };
         label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
     }

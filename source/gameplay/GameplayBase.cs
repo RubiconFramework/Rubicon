@@ -23,7 +23,9 @@ public partial class GameplayBase : Node
 	[NodePath("ScriptGroup")] public Node ScriptGroup;
 	[NodePath("EventHandler")] public Node eventHandler;
 
-	public bool StartedSong, StartedCountdown, EndedSong = false;
+	public bool StartedSong;
+	public bool StartedCountdown;
+	public bool EndedSong;
 	float SongStartDelay;
 
 	public float HealthLossOnMiss = 0.0675f;
@@ -246,56 +248,66 @@ public partial class GameplayBase : Node
 
 	public void GenerateNotes()
 	{
-		foreach (RawNote note in RawNoteData.ToList())
+		foreach (RawNote note in RawNoteData.ToList().TakeWhile(note => !(note.Time > Conductor.SongPosition + (NoteSpawnOffset*1000/ScrollSpeed))))
 		{
-			if(note.Time > Conductor.SongPosition + (NoteSpawnOffset*1000/ScrollSpeed)) break;
 			if(note.Direction < 0)
-			{
 				RawNoteData.Remove(note);
-			}
-			string FinalNoteType = NoteCache.ContainsKey(note.Type) ? note.Type : "default";
 
-			Note HandledNote = NoteCache[note.Type].Duplicate() as Note;
-			HandledNote.PlayerNote = note.PlayerSection;
-			HandledNote.CurrentStrumline = HandledNote.PlayerNote ? Hud.PlayerStrums : Hud.CpuStrums;
-			
-			HandledNote.Direction = note.Direction % ChartHandler.CurrentChart.KeyCount;
-			HandledNote.Position = new Vector2(HandledNote.CurrentStrumline.GetChild<Strum>(HandledNote.Direction).GlobalPosition.X, -9999);
-			HandledNote.Scale = new Vector2(Style.NoteScale,Style.NoteScale);
+			if (NoteCache[note.Type].Duplicate() is Note HandledNote)
+			{
+				HandledNote.PlayerNote = note.PlayerSection;
+				HandledNote.CurrentStrumline = HandledNote.PlayerNote ? Hud.PlayerStrums : Hud.CpuStrums;
 
-			HandledNote.Time = note.Time;
-			HandledNote.SustainLength = note.Length*0.85f;
+				HandledNote.Direction = note.Direction % ChartHandler.CurrentChart.KeyCount;
+				HandledNote.Position =
+					new Vector2(HandledNote.CurrentStrumline.GetChild<Strum>(HandledNote.Direction).GlobalPosition.X,
+						-9999);
+				HandledNote.Scale = new Vector2(Style.NoteScale, Style.NoteScale);
 
-			HandledNote.NoteType = FinalNoteType;
-			HandledNote.RawType = note.Type;
-			HandledNote.uiStyle = Style;
+				HandledNote.Time = note.Time;
+				HandledNote.SustainLength = note.Length * 0.85f;
 
-			Strum strum = HandledNote.CurrentStrumline.GetChild<Strum>(HandledNote.Direction);
+				HandledNote.NoteType = NoteCache.ContainsKey(note.Type) ? note.Type : "default";;
+				HandledNote.RawType = note.Type;
+				HandledNote.uiStyle = Style;
 
-			if(SplashCache[HandledNote.RawType+"Splash"] is not null && !strum.HasNode($"{HandledNote.RawType}Splash")) {
-				AnimatedSprite2D NewSplash = SplashCache[HandledNote.RawType+"Splash"].Duplicate() as AnimatedSprite2D;
-				NewSplash.Name = $"{HandledNote.RawType}Splash";
-				NewSplash.Visible = false;
-				NewSplash.ZIndex = 1;
-				NewSplash.Connect("animation_finished", Callable.From(() => NewSplash.Visible = false));
-				strum.AddChild(NewSplash);
-			}
-			if(SplashCache[HandledNote.RawType+"Sustain"] is not null && !strum.HasNode($"{HandledNote.RawType}Sustain")) {
-				AnimatedSprite2D SusSplash = SplashCache[HandledNote.RawType+"Sustain"].Duplicate() as AnimatedSprite2D;
-				SusSplash.Name = $"{HandledNote.RawType}Sustain";
-				SusSplash.Visible = false;
-				SusSplash.ZIndex = 1;
-				SusSplash.Connect("animation_finished", Callable.From(() => {
-					if(SusSplash.Animation.ToString().EndsWith("end"))
+				Strum strum = HandledNote.CurrentStrumline.GetChild<Strum>(HandledNote.Direction);
+
+				if (SplashCache[HandledNote.RawType + "Splash"] is not null && !strum.HasNode($"{HandledNote.RawType}Splash"))
+				{
+					if (SplashCache[HandledNote.RawType + "Splash"].Duplicate() is AnimatedSprite2D NewSplash)
+					{
+						NewSplash.Name = $"{HandledNote.RawType}Splash";
+						NewSplash.Visible = false;
+						NewSplash.ZIndex = 1;
+						NewSplash.Connect("animation_finished", Callable.From(() => NewSplash.Visible = false));
+						strum.AddChild(NewSplash);
+					}
+				}
+
+				if (SplashCache[HandledNote.RawType + "Sustain"] is not null && !strum.HasNode($"{HandledNote.RawType}Sustain"))
+				{
+					if (SplashCache[HandledNote.RawType + "Sustain"].Duplicate() is AnimatedSprite2D SusSplash)
+					{
+						SusSplash.Name = $"{HandledNote.RawType}Sustain";
 						SusSplash.Visible = false;
-					else
-						SusSplash.Play($"{strum.Name} hold");
-						SusSplash.Offset = HandledNote.SustainSplashOffset["hold"];
-					}));
-				strum.AddChild(SusSplash);
+						SusSplash.ZIndex = 1;
+						SusSplash.Connect("animation_finished", Callable.From(() =>
+						{
+							if (SusSplash.Animation.ToString().EndsWith("end")) SusSplash.Visible = false;
+							else
+							{
+								SusSplash.Play($"{strum.Name} hold");
+								SusSplash.Offset = HandledNote.SustainSplashOffset["hold"];
+							}
+						}));
+						strum.AddChild(SusSplash);
+					}
+				}
+
+				Hud.noteHandler.AddChild(HandledNote);
 			}
-			
-			Hud.noteHandler.AddChild(HandledNote);
+
 			RawNoteData.Remove(note);
 		}
 	}
@@ -305,30 +317,37 @@ public partial class GameplayBase : Node
 	{
 		// Resyncs the damn things
 		double FixedPos = AudioServer.GetTimeSinceLastMix() + songGroup.GetChild<AudioStreamPlayer>(0).GetPlaybackPosition() * 1000;
-        if (Mathf.Abs(FixedPos-PosToSeek) > LatencyThreshold && songGroup.GetChild<AudioStreamPlayer>(0).Playing) {
-			GD.Print("Desynchronization found, Resyncing song...");
-			foreach(AudioStreamPlayer player in songGroup.GetChildren()) {
-				player.Seek(PosToSeek/1000);
-			}
-		}
+		if (!(Mathf.Abs(FixedPos - PosToSeek) > LatencyThreshold) || !songGroup.GetChild<AudioStreamPlayer>(0).Playing) return;
+		GD.Print("Desynchronization found, Resyncing song...");
+        foreach(var node in songGroup.GetChildren())
+        {
+	        var player = (AudioStreamPlayer)node;
+	        player.Seek(PosToSeek/1000);
+        }
 	}
 
 	public void StartSong()
 	{
 		StartedSong = true;
 		Conductor.SongPosition = 0;
-		foreach (AudioStreamPlayer player in songGroup.GetChildren())
+		foreach (var node in songGroup.GetChildren())
+		{
+			var player = (AudioStreamPlayer)node;
 			player.Play((float)Conductor.SongPosition);
-		
+		}
+
 		GD.Print("Started song.");
 	}
 
 	public void EndSong()
 	{
 		EndedSong = true;
-		foreach (AudioStreamPlayer player in songGroup.GetChildren())
+		foreach (var node in songGroup.GetChildren())
+		{
+			var player = (AudioStreamPlayer)node;
 			player.Stop();
-		
+		}
+
 		LoadingHandler.ChangeScene("res://source/menus/debug/SongSelect.tscn");
 
 		GD.Print("Ended song.");

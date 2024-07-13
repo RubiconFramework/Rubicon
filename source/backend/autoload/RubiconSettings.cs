@@ -39,15 +39,19 @@ public enum TransitionType
 public partial class RubiconSettings : Node
 {
     public static RubiconSettings Instance;
-    private GameplaySettings _Gameplay { get; set; } = new();
-    private AudioSettings _Audio { get; set; } = new();
-    private VideoSettings _Video { get; set; } = new();
-    private MiscSettings _Misc { get; set; } = new();
+    public GameplaySettings gameplay { get; set; } = new();
+    public AudioSettings audio { get; set; } = new();
+    public VideoSettings video { get; set; } = new();
+    public MiscSettings misc { get; set; } = new();
     
-    public static GameplaySettings Gameplay => Instance._Gameplay;
-    public static AudioSettings Audio => Instance._Audio;
-    public static VideoSettings Video => Instance._Video;
-    public static MiscSettings Misc => Instance._Misc;
+    [JsonIgnore]
+    public static GameplaySettings Gameplay => Instance.gameplay;
+    [JsonIgnore]
+    public static AudioSettings Audio => Instance.audio;
+    [JsonIgnore]
+    public static VideoSettings Video => Instance.video;
+    [JsonIgnore]
+    public static MiscSettings Misc => Instance.misc;
 
     public class GameplaySettings
     {
@@ -110,13 +114,13 @@ public partial class RubiconSettings : Node
         return new RubiconSettings();
     }
 
-    public void Load(string path)
+    public static void Load()
     {
         try
         {
-            if (FileAccess.FileExists(path))
+            if (FileAccess.FileExists("user://settings.json"))
             {
-                var jsonData = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+                var jsonData = FileAccess.Open("user://settings.json", FileAccess.ModeFlags.Read);
                 string json = jsonData.GetAsText();
 
                 if (!string.IsNullOrEmpty(json))
@@ -125,13 +129,14 @@ public partial class RubiconSettings : Node
                     if (loadedSettings != null)
                     {
                         Instance = loadedSettings;
-                        GD.Print($"Settings loaded from file. [{path}]");
+                        GD.Print("Settings loaded from file. [user://settings.json]");
                     }
                 }
             }
             else
             {
-                GetDefaultSettings().Save();
+                Instance = GetDefaultSettings();
+                Save();
                 GD.Print($"Settings file not found. Writing default settings to file.");
             }
         }
@@ -142,7 +147,7 @@ public partial class RubiconSettings : Node
         }
     }
 
-    public void Save()
+    public static void Save()
     {
         try
         {
@@ -162,13 +167,8 @@ public partial class RubiconSettings : Node
         }
     }
 
-    public override void _EnterTree()
+    public override void _Ready()
     {
-        Instance ??= this;
-    }
-
-    public override void _ExitTree()
-    {
-        if (Instance == this) Instance = null;
+        Load();
     }
 }
