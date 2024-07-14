@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvrifmg2wk0kt"]
+[gd_scene load_steps=8 format=3 uid="uid://dvrifmg2wk0kt"]
 
+[ext_resource type="Script" path="res://source/Main.cs" id="1_6noy1"]
 [ext_resource type="Theme" uid="uid://b1qc2jc1jged7" path="res://assets/themes/duo/ScreenNotifier [Duo].tres" id="1_eexnj"]
 
 [sub_resource type="SystemFont" id="SystemFont_hkiql"]
@@ -48,14 +49,17 @@ _data = {
 "out": SubResource("Animation_fi6yn")
 }
 
-[node name="Notification" type="Panel"]
+[node name="Main" type="Node"]
+script = ExtResource("1_6noy1")
+
+[node name="Notification" type="Panel" parent="."]
 offset_left = 32.0
 offset_top = 36.0
 offset_right = 300.0
 offset_bottom = 67.0
 theme = ExtResource("1_eexnj")
 
-[node name="Message" type="Label" parent="."]
+[node name="Message" type="Label" parent="Notification"]
 layout_mode = 0
 offset_right = 268.0
 offset_bottom = 31.0
@@ -66,7 +70,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 visible_characters_behavior = 3
 
-[node name="DurationBar" type="ProgressBar" parent="."]
+[node name="DurationBar" type="ProgressBar" parent="Notification"]
 layout_mode = 0
 offset_top = 31.0
 offset_right = 268.0
@@ -75,7 +79,7 @@ theme = ExtResource("1_eexnj")
 value = 50.0
 show_percentage = false
 
-[node name="animalationtolongplayer" type="AnimationPlayer" parent="."]
+[node name="animalationtolongplayer" type="AnimationPlayer" parent="Notification"]
 libraries = {
 "": SubResource("AnimationLibrary_t4u7u")
 }

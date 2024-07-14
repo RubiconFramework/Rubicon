@@ -85,9 +85,11 @@ public partial class GameplayBase : Node
 		timer.Connect("timeout", Callable.From(StartSong));
 	}
 
-	private bool debugSwap = false;
-	public override void _Process(double delta) {
-		if (!EndedSong) {
+    private bool debugSwap;
+	public override void _Process(double delta)
+	{
+		if (!EndedSong) 
+		{
 			Conductor.UpdatePosition = true;
 			if(Conductor.SongPosition > 0) SeekPosition((float)Conductor.SongPosition);
 		}
@@ -98,11 +100,14 @@ public partial class GameplayBase : Node
 		if(Conductor.SongPosition/1000 >= Conductor.SongDuration && !EndedSong)
 			EndSong();
 		
-		if(Input.IsActionJustPressed("menu_pause")) {
+		if(Input.IsActionJustPressed("menu_pause")) 
+		{
 			AddChild(GD.Load<PackedScene>("res://source/gameplay/PauseSubmenu.tscn").Instantiate<PauseSubmenu>());
 			GetTree().Paused = true;
 		}
-		if(OS.IsDebugBuild()) {
+		
+		if(OS.IsDebugBuild()) 
+		{
 			if(Input.IsActionJustPressed("debug_reset"))
 				GetTree().ChangeSceneToFile("res://source/menus/debug/SongSelect.tscn");
 			if(Input.IsActionJustPressed("debug_autoplay"))
@@ -129,7 +134,7 @@ public partial class GameplayBase : Node
 	{
 		// Conductor/Song stuff
 		if (ChartHandler.CurrentChart is null) ChartHandler.NewChart("test","normal");
-		Conductor.UpdateBpm(ChartHandler.CurrentChart.Bpm);
+		Conductor.UpdateBpm(ChartHandler.CurrentChart!.Bpm);
 		Conductor.SongPosition = -SongStartDelay;
 
 		// i LOVE changing fnf's folder structure!
@@ -144,30 +149,30 @@ public partial class GameplayBase : Node
 		// then figures out if theres vocals file per character or just one
 		bool FilePerCharacter = Main.SearchAllAudioFormats($"{songFolder+FinalVocalName}-Player",false) is not null;
 
-		if(!FilePerCharacter)
-			mainVocals.Stream = Main.SearchAllAudioFormats(songFolder+FinalVocalName,false);
-		else {
-			AudioStreamPlayer opponentVocals = mainVocals.Duplicate() as AudioStreamPlayer;
-			opponentVocals.Name = "VocalsOpponent";
-			opponentVocals.Bus = new StringName("VocalsOpponent");
-			songGroup.AddChild(opponentVocals);
+		if(!FilePerCharacter) mainVocals.Stream = Main.SearchAllAudioFormats(songFolder+FinalVocalName,false);
+		else 
+		{
+			if (mainVocals.Duplicate() is AudioStreamPlayer opponentVocals)
+			{
+				opponentVocals.Name = "VocalsOpponent";
+				opponentVocals.Bus = new StringName("VocalsOpponent");
+				songGroup.AddChild(opponentVocals);
 
-			mainVocals.Stream = Main.SearchAllAudioFormats($"{songFolder+FinalVocalName}-Player",false);
-			opponentVocals.Stream = Main.SearchAllAudioFormats($"{songFolder+FinalVocalName}-Opponent",false);
+				mainVocals.Stream = Main.SearchAllAudioFormats($"{songFolder + FinalVocalName}-Player", false);
+				opponentVocals.Stream = Main.SearchAllAudioFormats($"{songFolder + FinalVocalName}-Opponent", false);
+			}
 		}
 
-		if(inst.Stream is null) {
+		if (inst.Stream is null) 
+		{
 			GD.PushError("Could not find inst with any file type.\nReturning...");
 			return;
-		} else GD.Print("Inst found.");
-
-		if(mainVocals.Stream is null)
-			GD.PushWarning($"Vocal file not found on path:{songFolder}\nInst will continue playing.");
-		else {
-			if(FilePerCharacter) GD.Print("Vocals found for each character.");
-			else GD.Print("Vocals found in a single file.");
 		}
 
+		GD.Print("Inst found.");
+
+		if(mainVocals.Stream is null) GD.PushWarning($"Vocal file not found on path:{songFolder}\nInst will continue playing.");
+		else GD.Print(FilePerCharacter ? "Vocals found for each character." : "Vocals found in a single file.");
 		Conductor.SongDuration = inst.Stream.GetLength();
 
 		GetNotesFromChart();

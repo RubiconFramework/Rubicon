@@ -36,11 +36,15 @@ public partial class LoadingHandler : Node
 		else GD.PushError("New scene file was not found.");
 	}
 
-	public override void _Process(double delta) {
-		if(IsLoading) {
-			ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(NewScenePath, LoadingProgress);
-			GD.Print($"Loading Progress: {LoadingProgress[0]}");
-			if(status == ResourceLoader.ThreadLoadStatus.Loaded && !transitioning) {
+	public override void _Process(double delta)
+	{
+		if (!IsLoading) return;
+		ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(NewScenePath, LoadingProgress);
+		GD.Print($"Loading Progress: {LoadingProgress[0]}");
+		switch (status)
+		{
+			case ResourceLoader.ThreadLoadStatus.Loaded when !transitioning:
+			{
 				GD.Print("New scene loaded.");
 				transitioning = true;
 				IsLoading = false;
@@ -51,10 +55,11 @@ public partial class LoadingHandler : Node
 					transitioning = false;
 					GetTree().ChangeSceneToPacked((PackedScene)LoadedScene);
 				}));
+				break;
 			}
-			else if(status == ResourceLoader.ThreadLoadStatus.InvalidResource)
+			case ResourceLoader.ThreadLoadStatus.InvalidResource:
 				GD.Print("fuck");
-				
+				break;
 		}
 	}
 }

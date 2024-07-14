@@ -27,7 +27,7 @@ public enum GameLanguages
     English,
     Spanish
 }
-    
+
 public enum TransitionType
 {
     Vanilla,

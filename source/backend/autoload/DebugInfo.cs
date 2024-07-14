@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
+using Rubicon.Backend.Autoload;
 
 namespace Rubicon.backend.autoload;
 
@@ -18,14 +19,12 @@ public partial class DebugInfo : CanvasLayer
     private float updateTime;
     private bool showDebugInfo;
     private Process currentProcess = Process.GetCurrentProcess();
-
-    private double byteToMB(long bytes) => bytes / (1024.0 * 1024.0);
-
+    
     public override void _Ready()
     {
         this.OnReady();
         if (!OS.IsDebugBuild()) VRAMLabel.Text = "VRAM is Unavailable.";
-        VersionLabel.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+        VersionLabel.Text = $"Rubicon {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
     }
 
     public override void _PhysicsProcess(double delta)
@@ -52,29 +51,22 @@ public partial class DebugInfo : CanvasLayer
         FPSLabel.Text = $"FPS: {Engine.GetFramesPerSecond().ToString(CultureInfo.InvariantCulture)}";
         if (OS.IsDebugBuild())
         {
-            RAMLabel.Text = $"RAM: {byteToMB((long)OS.GetStaticMemoryUsage()):F2} MB [A: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
-            VRAMLabel.Text = $"VRAM: {byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB";
+            RAMLabel.Text = $"RAM: {Main.byteToMB((long)OS.GetStaticMemoryUsage()):F2} MB [A: {Main.byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
+            VRAMLabel.Text = $"VRAM: {Main.byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB";
             SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
             NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
         }
         else
         {
-            RAMLabel.Text = $"RAM: {byteToMB(currentProcess.WorkingSet64):F2} MB [Alloc: {byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
+            RAMLabel.Text = $"RAM: {Main.byteToMB(currentProcess.WorkingSet64):F2} MB [Alloc: {Main.byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
             SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
             NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
         }
 
-        /*if (Conductor.ConductorInstance != null)
-        {
-            ConductorSB.AppendLine($"BPM: {Conductor.B} // Song Position: {Conductor.ConductorInstance.position}")
-                .AppendLine($"Crochet: {Conductor.ConductorInstance.crochet} // StepCrochet: {Conductor.ConductorInstance.stepCrochet}")
-                .AppendLine($"Step: {Conductor.ConductorInstance.curStep} [Dec: {Conductor.ConductorInstance.curDecBeat}] // Beat: {Conductor.ConductorInstance.curBeat} [Dec: {Conductor.ConductorInstance.curDecStep}] // Section: {Conductor.ConductorInstance.curSection} [Dec: {Conductor.ConductorInstance.curDecSection}]");
-        }
-        else
-        {
-            ConductorLabel.Size = new (0,0);
-            ConductorSB.AppendLine("Conductor is Unavailable.");
-        }*/
+        ConductorSB.AppendLine($"BPM: {Conductor.BPM} // Song Position: {Conductor.SongPosition}")
+            .AppendLine($"Step: {Conductor.CurStep} [{Conductor.StepDuration}] ")
+            .AppendLine($"Beat: {Conductor.CurBeat} [{Conductor.BeatDuration}]")
+            .AppendLine($"Section: {Conductor.CurSection} [{Conductor.SectionDuration}]");
 
         ConductorLabel.Text = ConductorSB.ToString();
     }
