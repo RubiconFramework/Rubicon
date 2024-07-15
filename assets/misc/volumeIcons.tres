@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bxeqjq4qkvrla"]
 
-[ext_resource type="Texture2D" uid="uid://ctdujcp63bqws" path="res://assets/misc/volumeIcons.png" id="1_cwgpi"]
+[ext_resource type="Texture2D" uid="uid://objvfrbc3cta" path="res://assets/misc/volumeIcons.png" id="1_cwgpi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqve6"]
 atlas = ExtResource("1_cwgpi")
@@ -12,16 +12,6 @@ atlas = ExtResource("1_cwgpi")
 region = Rect2(81, 2, 77, 82)
 filter_clip = true
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iwuch"]
-atlas = ExtResource("1_cwgpi")
-region = Rect2(160, 2, 85, 83)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mougd"]
-atlas = ExtResource("1_cwgpi")
-region = Rect2(2, 87, 85, 83)
-filter_clip = true
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_gul8n"]
 atlas = ExtResource("1_cwgpi")
 region = Rect2(89, 87, 69, 82)
@@ -30,6 +20,16 @@ filter_clip = true
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmmef"]
 atlas = ExtResource("1_cwgpi")
 region = Rect2(160, 87, 69, 82)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwuch"]
+atlas = ExtResource("1_cwgpi")
+region = Rect2(160, 2, 85, 83)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mougd"]
+atlas = ExtResource("1_cwgpi")
+region = Rect2(2, 87, 85, 83)
 filter_clip = true
 
 [resource]
@@ -47,10 +47,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iwuch")
+"texture": SubResource("AtlasTexture_gul8n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mougd")
+"texture": SubResource("AtlasTexture_cmmef")
 }],
 "loop": false,
 "name": &"mid",
@@ -58,10 +58,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gul8n")
+"texture": SubResource("AtlasTexture_iwuch")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cmmef")
+"texture": SubResource("AtlasTexture_mougd")
 }],
 "loop": false,
 "name": &"mute",

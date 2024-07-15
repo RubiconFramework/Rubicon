@@ -13,7 +13,7 @@ public partial class Title : Node
 	[NodePath("TextGroup")] private Node2D textGroup;
 	[NodePath("NewgroundsSprite")] private Sprite2D NewgroundsSprite;
 	[NodePath("Flash/AnimationPlayer")] private AnimationPlayer Flash;
-	[NodePath("Camera2D")] private Camera2D camera;
+	[NodePath("Camera2D")] private Camera2D Camera;
 
 	private string[] LoadedIntroTexts = { "yoooo swag shit", "ball shit" };
 	private bool skippedIntro = true;
@@ -35,24 +35,33 @@ public partial class Title : Node
 		{ 15, "AddText:Funkin" },
 		{ 16, "SkipIntro" }
 	};
-	
+
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		Conductor.OnBeatHit += OnBeatHit;
+		Conductor.OnSectionHit += OnSectionHit;
+	}
+
+	public override void _ExitTree()
+	{
+		base._ExitTree();
+		Conductor.OnBeatHit -= OnBeatHit;
+		Conductor.OnSectionHit -= OnSectionHit;	
+	}
+
 	public override void _Ready()
 	{
 		base._Ready();
 		this.OnReady();
 
 		AudioManager.Play(AudioType.Music, "MainMenuMusic", 1f, true);
-		AnimationPlayer anim = GetNode<AnimationPlayer>("hi/AnimationPlayer");
-		//anim.Play("Intro");
-		anim.AnimationFinished += _ =>
-		{
-			Flash.Play("Flash");
-			GetNode<ColorRect>("hi").Visible = false;
-		};
+		Conductor.UpdateBpm(180);
+		Conductor.UpdatePosition = true;
+		Flash.Play("Flash");
 
 		//LoadedIntroTexts = GetIntroTexts();
 		TitleEnter.Play("Press Enter to Begin");
-		Conductor.OnBeatHit += OnBeatHit;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -73,12 +82,18 @@ public partial class Title : Node
 	}
 
 	private bool isDancingLeft = true;
-	private int OnBeatHit(int step)
+	private int OnBeatHit(int beat)
 	{
 		isDancingLeft = !isDancingLeft;
 		Girlfriend.Play(isDancingLeft ? "danceRight" : "danceLeft");
 		Logo.Play("BumpIn");
-		return step;
+		return beat;
+	}
+
+	private int OnSectionHit(int section)
+	{
+		Camera.Zoom = new(1.03f, 1.03f);
+		return section;
 	}
 	
 	private void SkipIntro()
@@ -88,6 +103,12 @@ public partial class Title : Node
 		TitleGroup.Visible = true;
 		NewgroundsSprite.Visible = false;
 		Flash.Play("Flash");
+	}
+
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		Camera.Zoom = new(Mathf.Lerp(Camera.Zoom.X, 1, Mathf.Clamp(((float)delta * 3), 0f, 1f)),Mathf.Lerp(Camera.Zoom.X, 1, Mathf.Clamp(((float)delta * 3), 0f, 1f)));
 	}
 
 	/*protected override void OnBeatHit(int beat)

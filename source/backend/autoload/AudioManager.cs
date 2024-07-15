@@ -24,7 +24,7 @@ public partial class AudioManager : Node
         
         if (player != null)
         {
-            player.VolumeDb = LinearToDB(volume);
+            player.VolumeDb = Mathf.LinearToDb(volume);
             UpdateLoopSettings(player.Stream, loop);
 
             if (!restart && player.Playing) return player;
@@ -75,7 +75,7 @@ public partial class AudioManager : Node
         return new AudioStreamPlayer
         {
             Stream = stream,
-            VolumeDb = LinearToDB(volume),
+            VolumeDb = Mathf.LinearToDb(volume),
             Autoplay = false
         };
     }
@@ -173,11 +173,5 @@ public partial class AudioManager : Node
         }
         dir.ListDirEnd();
         return string.Empty;
-    }
-
-    public static float LinearToDB(float linear)
-    {
-        if (linear <= 0) return -80.0f;
-        return (float)Math.Log10(linear) * 20;
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://duhqsh5l5bbtm"]
+[gd_scene load_steps=13 format=3 uid="uid://duhqsh5l5bbtm"]
 
 [ext_resource type="Script" path="res://source/menus/title/Title.cs" id="1_hc00q"]
 [ext_resource type="Material" uid="uid://dlwbyy60pp0e2" path="res://assets/shaders/TitleScreenShaderMaterial.tres" id="2_ilohj"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://source/backend/classes/PlayerSprite2D.cs" id="4_li603"]
 [ext_resource type="SpriteFrames" uid="uid://cd1x8dun4uocr" path="res://assets/menus/titlescreen/logoBumpin.res" id="5_t5b0g"]
 [ext_resource type="SpriteFrames" uid="uid://6vecp03qpxmj" path="res://assets/menus/titlescreen/titleEnter.res" id="6_gvhw7"]
-[ext_resource type="PackedScene" uid="uid://b5jdf8vlqbm32" path="res://source/menus/title/audiovisualizer/AudioVisualizer.tscn" id="7_ow66y"]
 [ext_resource type="Texture2D" uid="uid://d0f7mm6xm8lf3" path="res://assets/menus/titlescreen/newgrounds_logo.png" id="8_6jyex"]
 
 [sub_resource type="Animation" id="Animation_ldyfc"]
@@ -126,9 +125,6 @@ position = Vector2(683, 384)
 
 [node name="TitleGroup" type="Node2D" parent="."]
 
-[node name="AudioVisualizer" parent="TitleGroup" instance=ExtResource("7_ow66y")]
-modulate = Color(1, 1, 1, 0.141176)
-
 [node name="Girlfriend" type="AnimatedSprite2D" parent="TitleGroup"]
 material = ExtResource("2_ilohj")
 position = Vector2(605, 58)
@@ -154,7 +150,7 @@ material = ExtResource("2_ilohj")
 position = Vector2(169, 636)
 sprite_frames = ExtResource("6_gvhw7")
 animation = &"Press Enter to Begin"
-frame_progress = 0.994164
+frame_progress = 0.513099
 centered = false
 script = ExtResource("4_li603")
 

@@ -55,6 +55,8 @@
     <Compile Update="source\backend\autoload\LoadingHandler.cs">
       <DependentUpon>LoadingHandler.tscn</DependentUpon>
     </Compile>
+    <Compile Remove="source\menus\title\audiovisualizer\**" />
+    <EmbeddedResource Remove="source\menus\title\audiovisualizer\**" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
@@ -76,8 +78,6 @@
     <Content Include="source\menus\options\objects\sections\misc\Misc.tscn" />
     <Content Include="source\menus\options\objects\sections\video\Video.tscn" />
     <Content Include="source\menus\options\OptionsMenu.tscn" />
-    <Content Include="source\menus\title\audiovisualizer\AudioVisualizer.gd" />
-    <Content Include="source\menus\title\audiovisualizer\AudioVisualizer.tscn" />
     <Content Include="source\menus\title\introTexts.txt" />
   </ItemGroup>
   <ItemGroup>

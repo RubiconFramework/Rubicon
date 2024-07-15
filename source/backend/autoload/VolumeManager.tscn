@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://source/backend/autoload/VolumeManager.cs" id="1_5v2rm"]
 [ext_resource type="SpriteFrames" uid="uid://bxeqjq4qkvrla" path="res://assets/misc/volumeIcons.tres" id="3_b3kwp"]
 [ext_resource type="Theme" uid="uid://cnaffdtymkcv2" path="res://assets/themes/duo/AudioManager [Duo].tres" id="3_hqtuf"]
+[ext_resource type="FontFile" uid="uid://r1uoqejoteb3" path="res://assets/fonts/funkin.ttf" id="4_w3leu"]
 
 [sub_resource type="Animation" id="Animation_spay7"]
 length = 0.001
@@ -184,9 +185,6 @@ _data = {
 "Out": SubResource("Animation_uux61")
 }
 
-[sub_resource type="SystemFont" id="SystemFont_g7okm"]
-font_names = PackedStringArray("Cascadia Code")
-
 [sub_resource type="SystemFont" id="SystemFont_tul1h"]
 font_names = PackedStringArray("Cascadia Mono")
 
@@ -214,6 +212,7 @@ libraries = {
 }
 
 [node name="Rect" type="ColorRect" parent="Player"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -222,10 +221,10 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 0.639216)
 
 [node name="Containers" type="HBoxContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -260,7 +259,7 @@ theme = ExtResource("3_hqtuf")
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("3_b3kwp")
-animation = &"mid"
+animation = &"mute"
 
 [node name="HSlider" type="HSlider" parent="Containers/Master"]
 layout_mode = 0
@@ -286,8 +285,8 @@ offset_top = -133.0
 offset_right = 90.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = SubResource("SystemFont_g7okm")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("4_w3leu")
+theme_override_font_sizes/font_size = 34
 text = "Master [50%]"
 horizontal_alignment = 1
 
@@ -310,7 +309,7 @@ theme = ExtResource("3_hqtuf")
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("3_b3kwp")
-animation = &"mid"
+animation = &"mute"
 
 [node name="HSlider" type="HSlider" parent="Containers/Music"]
 layout_mode = 0
@@ -336,8 +335,8 @@ offset_top = -133.0
 offset_right = 90.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = SubResource("SystemFont_g7okm")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("4_w3leu")
+theme_override_font_sizes/font_size = 34
 text = "Music [50%]"
 horizontal_alignment = 1
 
@@ -360,7 +359,7 @@ theme = ExtResource("3_hqtuf")
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("3_b3kwp")
-animation = &"mid"
+animation = &"mute"
 
 [node name="HSlider" type="HSlider" parent="Containers/SFX"]
 layout_mode = 0
@@ -386,8 +385,8 @@ offset_top = -133.0
 offset_right = 90.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = SubResource("SystemFont_g7okm")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("4_w3leu")
+theme_override_font_sizes/font_size = 34
 text = "SFX [50%]"
 horizontal_alignment = 1
 
@@ -410,7 +409,7 @@ theme = ExtResource("3_hqtuf")
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("3_b3kwp")
-animation = &"mid"
+animation = &"mute"
 
 [node name="HSlider" type="HSlider" parent="Containers/Inst"]
 layout_mode = 0
@@ -436,8 +435,8 @@ offset_top = -133.0
 offset_right = 90.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = SubResource("SystemFont_g7okm")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("4_w3leu")
+theme_override_font_sizes/font_size = 34
 text = "Inst [50%]"
 horizontal_alignment = 1
 
@@ -460,7 +459,7 @@ theme = ExtResource("3_hqtuf")
 position = Vector2(65, 50)
 scale = Vector2(1.16123, 0.903963)
 sprite_frames = ExtResource("3_b3kwp")
-animation = &"mid"
+animation = &"mute"
 
 [node name="HSlider" type="HSlider" parent="Containers/Voices"]
 layout_mode = 0
@@ -486,8 +485,8 @@ offset_top = -133.0
 offset_right = 90.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = SubResource("SystemFont_g7okm")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("4_w3leu")
+theme_override_font_sizes/font_size = 34
 text = "Voices [50%]"
 horizontal_alignment = 1
 
@@ -502,10 +501,11 @@ offset_right = 189.0
 offset_bottom = 69.0
 grow_horizontal = 2
 scale = Vector2(1e-05, 1)
+pivot_offset = Vector2(188.5, 0)
 theme_override_fonts/font = SubResource("SystemFont_tul1h")
 theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = SubResource("StyleBoxFlat_o7du1")
-text = "Master Volume: XX%"
+text = "XX%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -533,4 +533,4 @@ show_percentage = false
 position = Vector2(33, 20)
 scale = Vector2(0.376755, 0.26391)
 sprite_frames = ExtResource("3_b3kwp")
-animation = &"mid"
+animation = &"mute"
