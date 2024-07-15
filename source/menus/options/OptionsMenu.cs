@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Rubicon.backend.autoload;
 using Rubicon.Backend.Autoload;
 using Rubicon.menus.options.objects.sections;
 
@@ -46,8 +47,8 @@ public partial class OptionsMenu : Control
 
 	public override void _ExitTree()
 	{
-		//if (Main.RubiconSettings.Misc.DiscordRichPresence)
-			//DiscordRichPresence.Client.UpdateState(string.Empty);
+		if (RubiconSettings.Misc.DiscordRichPresence)
+			DiscordRichPresence.Client.UpdateState(string.Empty);
 	}
 	
 	public override void _Ready()
@@ -159,7 +160,8 @@ public partial class OptionsMenu : Control
 
 	private void UpdateSectionUI()
 	{
-		//if (Main.RubiconSettings.Misc.DiscordRichPresence) DiscordRichPresence.Client.UpdateState($"Current Section: {CurrentSection}");
+		if (RubiconSettings.Misc.DiscordRichPresence) 
+			DiscordRichPresence.Client.UpdateState($"Current Section: {CurrentSection}");
 		
 		GameplaySectionButton.Text = "Gameplay";
 		VideoSectionButton.Text = "Video";

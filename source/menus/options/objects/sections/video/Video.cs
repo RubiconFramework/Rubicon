@@ -12,17 +12,14 @@ public partial class Video : SettingsSectionBase
     {
         base._Ready();
         this.OnReady();
-        LoadSettings();
         
-        RegisterOptionButton(VSync, i => OptionsMenu.Instance.HelperMethods.SetVSync((DisplayServer.VSyncMode)i));
-        RegisterOptionButton(WindowMode, i => OptionsMenu.Instance.HelperMethods.SetWindowMode((DisplayServer.WindowMode)i));
-        RegisterSlider(MaxFPS, "Max FPS", OptionsMenu.Instance.HelperMethods.SetMaxFPS, false);
-    }
-    
-    private void LoadSettings()
-    {
-        LoadOptionButtonValue(VSync, (int)RubiconSettings.Video.VSync);
-        LoadOptionButtonValue(WindowMode, (int)RubiconSettings.Video.WindowMode);
-        LoadSliderValue(MaxFPS, "Max FPS", RubiconSettings.Video.MaxFPS);
+        SetupOptionButton(VSync, i => HelperMethods.SetVSync((DisplayServer.VSyncMode)i), 
+            (int)RubiconSettings.Video.VSync);
+        
+        SetupOptionButton(WindowMode, i => HelperMethods.SetWindowMode((DisplayServer.WindowMode)i), 
+            (int)RubiconSettings.Video.WindowMode);
+        
+        SetupSlider(MaxFPS, "Max FPS", HelperMethods.SetMaxFPS, 
+            RubiconSettings.Video.MaxFPS);
     }
 }

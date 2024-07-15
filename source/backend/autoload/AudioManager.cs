@@ -10,18 +10,18 @@ namespace Rubicon.backend.autoload;
 public partial class AudioManager : Node
 {
     public static AudioManager Instance { get; private set; }
+    public static readonly string[] AudioFileTypes = { ".ogg", ".mp3", ".wav" };
 
     public override void _EnterTree() => Instance = this;
     public override void _Ready() => this.OnReady();
 
-    public static AudioStreamPlayer Play(AudioType type, string path, float volume = 1, bool loop = false, bool restart = false) 
-        => Instance.PlayAudio(type, path, volume, loop, restart);
+    public static AudioStreamPlayer Play(AudioType type, string path, float volume = 1, bool loop = false, bool restart = false) => Instance.PlayAudio(type, path, volume, loop, restart);
 
     private AudioStreamPlayer PlayAudio(AudioType type, string path, float volume = 1, bool loop = false, bool restart = false)
     {
         string audioName = Path.GetFileNameWithoutExtension(path);
         AudioStreamPlayer player = FindExistingPlayer(type, audioName);
-        
+
         if (player != null)
         {
             player.VolumeDb = Mathf.LinearToDb(volume);
@@ -131,7 +131,7 @@ public partial class AudioManager : Node
     {
         string baseDir = $"res://assets/audio/{type.ToString().ToLower()}";
         
-        foreach (var format in Main.AudioFileTypes)
+        foreach (var format in AudioFileTypes)
         {
             string formattedPath = $"{baseDir.PathJoin(path)}{format}";
             if (ResourceLoader.Exists(formattedPath)) 
@@ -164,7 +164,8 @@ public partial class AudioManager : Node
                     return result;
                 }
             }
-            else if (Path.GetFileNameWithoutExtension(filePath).Equals(fileName, StringComparison.OrdinalIgnoreCase))
+            else if (Path.GetFileNameWithoutExtension(filePath).Equals(fileName, StringComparison.OrdinalIgnoreCase) 
+                     && AudioFileTypes.Contains(Path.GetExtension(filePath).ToLower()))
             {
                 dir.ListDirEnd();
                 return directory.PathJoin(filePath);

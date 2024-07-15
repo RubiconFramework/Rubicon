@@ -6,48 +6,46 @@ namespace Rubicon.menus.options.objects.sections;
 [Icon("res://assets/miscicons/settingsbutton.png")]
 public partial class SettingsSectionBase : ScrollContainer
 {
-    protected void RegisterButton(Button button, Action<bool> updateAction)
+    protected void SetupButton(Button button, Action<bool> updateAction, bool initialValue)
     {
-        button.Pressed += () =>
+        button.Pressed += () => 
         {
             updateAction.Invoke(button.ButtonPressed);
             RubiconSettings.Save();
         };
         button.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{button.Name}%");
+        button.ButtonPressed = initialValue;
     }
 
-    protected void RegisterOptionButton(OptionButton optionButton, Action<int> updateAction)
+    protected void SetupOptionButton(OptionButton optionButton, Action<int> updateAction, int initialValue)
     {
-        optionButton.ItemSelected += index =>
+        optionButton.ItemSelected += index => 
         {
             updateAction.Invoke((int)index);
             RubiconSettings.Save();
         };
         optionButton.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{optionButton.Name}%");
+        optionButton.Selected = initialValue;
     }
 
-    protected void RegisterSlider(Label label, string settingName, Action<float> updateAction, bool showPercentage)
+    protected void SetupSlider(Label label, string settingName, Action<float> updateAction, float initialValue, bool showPercentage = false)
     {
-        label.GetNode<HSlider>("Slider").ValueChanged += v =>
+        var slider = label.GetNode<HSlider>("Slider");
+        slider.ValueChanged += v => 
         {
             label.Text = showPercentage ? $"{settingName}: [{(int)v}%]" : $"{settingName} [{(float)v}]";
             updateAction.Invoke((float)v);
             RubiconSettings.Save();
         };
         label.MouseEntered += () => OptionsMenu.Instance.OptionDescriptionLabel.Text = Tr($"%{label.Name}%");
-    }
-    
-    protected void LoadButtonValue(Button button, bool v) => button.ButtonPressed = v;
-    protected void LoadOptionButtonValue(OptionButton optionButton, int v) => optionButton.Selected = v;
-    protected void LoadSliderValue(Label parent, string settingName, float v, bool showPercentage = false)
-    {
-        parent.GetNode<Slider>("Slider").Value = v;
-        parent.Text = showPercentage ? $"{settingName}: [{(int)v}%]" : $"{settingName} [{v}]";
+        slider.Value = initialValue;
+        label.Text = showPercentage ? $"{settingName}: [{(int)initialValue}%]" : $"{settingName} [{initialValue}]";
     }
 
     protected void RegisterColorPicker(Label label, Action<Color> updateAction)
     {
-        label.GetNode<ColorPickerButton>("Picker").ColorChanged += color =>
+        var colorPicker = label.GetNode<ColorPickerButton>("Picker");
+        colorPicker.ColorChanged += color =>
         {
             updateAction.Invoke(color);
             RubiconSettings.Save();

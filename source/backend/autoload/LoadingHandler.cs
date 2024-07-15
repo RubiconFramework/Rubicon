@@ -1,3 +1,5 @@
+using Rubicon.backend.autoload;
+
 namespace Rubicon.Backend.Autoload;
 
 [Icon("res://assets/miscicons/autoload.png")]
@@ -110,6 +112,7 @@ public partial class LoadingHandler : CanvasLayer
                     player.Play("Start");
                     await ToSignal(player, "animation_finished");
                     GetTree().ChangeSceneToPacked((PackedScene)loadedScene);
+                    if (DiscordRichPresence.Client.IsInitialized) DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
                     player.Play("End");
                 }));
                 break;

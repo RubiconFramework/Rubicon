@@ -34,6 +34,7 @@ Main="*res://source/Main.cs"
 Conductor="*res://source/backend/autoload/Conductor.cs"
 RubiconSettings="*res://source/backend/autoload/RubiconSettings.cs"
 LoadingHandler="*res://source/backend/autoload/LoadingHandler.tscn"
+DiscordRichPresence="*res://source/backend/autoload/DiscordRichPresence.cs"
 DebugInfo="*res://source/backend/autoload/DebugInfo.tscn"
 ChartHandler="*res://source/backend/autoload/ChartHandler.cs"
 VolumeManager="*res://source/backend/autoload/VolumeManager.tscn"
@@ -75,7 +76,6 @@ folder_colors={
 "res://assets/": "green",
 "res://assets/audio/": "red",
 "res://export/": "gray",
-"res://old src/": "gray",
 "res://source/": "blue"
 }
 

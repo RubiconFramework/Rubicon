@@ -64,6 +64,8 @@ public partial class VolumeManager : CanvasLayer
 
     public static VolumeManager Instance { get; private set; }
 
+    public static void SetVolume(float value, int busIndex = 0, bool mute = false) => Instance.ChangeVolume(value, busIndex, mute);
+
     public override void _EnterTree() => Instance = this;
 
     public override void _Ready()

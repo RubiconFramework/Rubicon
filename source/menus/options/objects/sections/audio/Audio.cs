@@ -1,39 +1,52 @@
 using Rubicon.Backend.Autoload;
 using Rubicon.backend.autoload.enums;
-using Rubicon.Backend.Classes;
-
-namespace Rubicon.menus.options.objects.sections.audio;
+using Rubicon.menus.options.objects.sections;
 
 public partial class Audio : SettingsSectionBase
 {
-    [NodePath("Container/AudioOutputMode")] private OptionButton AudioOutputMode;
-    [NodePath("Container/MasterVolume")] private Label MasterVolume;
-    [NodePath("Container/MusicVolume")] private Label MusicVolume;
-    [NodePath("Container/SFXVolume")] private Label SFXVolume;
-    [NodePath("Container/InstVolume")] private Label InstVolume;
-    [NodePath("Container/VoiceVolume")] private Label VoiceVolume;
-    
+    [NodePath("Container/AudioOutputMode")]
+    private OptionButton AudioOutputMode;
+
+    [NodePath("Container/MasterVolume")]
+    private Label MasterVolume;
+
+    [NodePath("Container/MusicVolume")]
+    private Label MusicVolume;
+
+    [NodePath("Container/SFXVolume")]
+    private Label SFXVolume;
+
+    [NodePath("Container/InstVolume")]
+    private Label InstVolume;
+
+    [NodePath("Container/VoiceVolume")]
+    private Label VoiceVolume;
+
     public override void _Ready()
     {
         base._Ready();
         this.OnReady();
-        LoadSettings();
-        
-        RegisterSlider(MasterVolume, "Master Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MasterVolume, v), true);
-        RegisterSlider(MusicVolume, "Music Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.MusicVolume, v), true);
-        RegisterSlider(SFXVolume, "SFX Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.SFXVolume, v), true);
-        RegisterSlider(InstVolume, "Inst Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.InstVolume, v), true);
-        RegisterSlider(VoiceVolume, "Voice Volume", v => OptionsMenu.Instance.HelperMethods.SetVolume(VolumeType.VoiceVolume, v), true);
-        RegisterOptionButton(AudioOutputMode, i => RubiconSettings.Audio.AudioOutputMode = (AudioOutputMode)i);
+        SetupControls();
     }
-    
-    private void LoadSettings()
+
+    private void SetupControls()
     {
-        LoadSliderValue(MasterVolume, "Master Volume", RubiconSettings.Audio.MasterVolume, true);
-        LoadSliderValue(MusicVolume, "Music Volume", RubiconSettings.Audio.MusicVolume, true);
-        LoadSliderValue(SFXVolume, "SFX Volume", RubiconSettings.Audio.SFXVolume, true);
-        LoadSliderValue(InstVolume, "Inst Volume", RubiconSettings.Audio.InstVolume, true);
-        LoadSliderValue(VoiceVolume, "Voice Volume", RubiconSettings.Audio.VoiceVolume, true);
-        LoadOptionButtonValue(AudioOutputMode, (int)RubiconSettings.Audio.AudioOutputMode);
+        SetupSlider(MasterVolume, "Master Volume", 
+            v => HelperMethods.SetVolume(VolumeType.MasterVolume, v), RubiconSettings.Audio.MasterVolume, true);
+
+        SetupSlider(MusicVolume, "Music Volume", 
+            v => HelperMethods.SetVolume(VolumeType.MusicVolume, v), RubiconSettings.Audio.MusicVolume, true);
+
+        SetupSlider(SFXVolume, "SFX Volume", 
+            v => HelperMethods.SetVolume(VolumeType.SFXVolume, v), RubiconSettings.Audio.SFXVolume, true);
+
+        SetupSlider(InstVolume, "Inst Volume", 
+            v => HelperMethods.SetVolume(VolumeType.InstVolume, v), RubiconSettings.Audio.InstVolume, true);
+
+        SetupSlider(VoiceVolume, "Voice Volume", 
+            v => HelperMethods.SetVolume(VolumeType.VoiceVolume, v), RubiconSettings.Audio.VoiceVolume, true);
+
+        SetupOptionButton(AudioOutputMode, 
+            i => RubiconSettings.Audio.AudioOutputMode = (AudioOutputMode)i, (int)RubiconSettings.Audio.AudioOutputMode);
     }
 }

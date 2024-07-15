@@ -10,26 +10,25 @@ public partial class Misc : SettingsSectionBase
     [NodePath("Container/DiscordRPC")] private CheckBox DiscordRichPresence;
     [NodePath("Container/SceneTransitions")] private CheckBox SceneTransitions;
     [NodePath("Container/OptionsMenuAnimations")] private CheckBox OptionsMenuAnimations;
-    
+
     public override void _Ready()
     {
         base._Ready();
         this.OnReady();
-        LoadSettings();
         
-        RegisterButton(SceneTransitions, _ => RubiconSettings.Misc.SceneTransitions = !RubiconSettings.Misc.SceneTransitions);
-        RegisterButton(OptionsMenuAnimations, _ => RubiconSettings.Misc.OptionsMenuAnimations = !RubiconSettings.Misc.OptionsMenuAnimations);
-        RegisterButton(DiscordRichPresence, OptionsMenu.Instance.HelperMethods.SetDiscordRPC);
-        RegisterOptionButton(GameLanguage, i => RubiconSettings.Misc.Languages = (GameLanguages)i);
-        RegisterOptionButton(GameTransitions, i => RubiconSettings.Misc.Transitions = (TransitionType)i);
-    }
-    
-    private void LoadSettings()
-    {
-        LoadButtonValue(SceneTransitions, RubiconSettings.Misc.SceneTransitions);
-        LoadButtonValue(OptionsMenuAnimations, RubiconSettings.Misc.OptionsMenuAnimations);
-        LoadButtonValue(DiscordRichPresence, RubiconSettings.Misc.DiscordRichPresence);
-        LoadOptionButtonValue(GameLanguage, (int)RubiconSettings.Misc.Languages);
-        LoadOptionButtonValue(GameTransitions, (int)RubiconSettings.Misc.Transitions);
+        SetupButton(SceneTransitions, _ => RubiconSettings.Misc.SceneTransitions = !RubiconSettings.Misc.SceneTransitions, 
+            RubiconSettings.Misc.SceneTransitions);
+        
+        SetupButton(OptionsMenuAnimations, _ => RubiconSettings.Misc.OptionsMenuAnimations = !RubiconSettings.Misc.OptionsMenuAnimations, 
+            RubiconSettings.Misc.OptionsMenuAnimations);
+        
+        SetupButton(DiscordRichPresence, HelperMethods.SetDiscordRPC,
+            RubiconSettings.Misc.DiscordRichPresence);
+        
+        SetupOptionButton(GameLanguage, i => RubiconSettings.Misc.Languages = (GameLanguages)i, 
+            (int)RubiconSettings.Misc.Languages);
+        
+        SetupOptionButton(GameTransitions, i => RubiconSettings.Misc.Transitions = (TransitionType)i, 
+            (int)RubiconSettings.Misc.Transitions);
     }
 }

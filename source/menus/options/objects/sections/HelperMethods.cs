@@ -1,6 +1,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using Rubicon.backend.autoload;
 using Rubicon.Backend.Autoload;
 using Rubicon.backend.autoload.enums;
 
@@ -8,46 +9,46 @@ namespace Rubicon.menus.options.objects.sections;
 
 public class HelperMethods
 {
-    public void SetVolume(VolumeType volumeType, float v)
+    public static void SetVolume(VolumeType volumeType, float v)
     {
         switch (volumeType)
         {
             case VolumeType.MasterVolume:
                 RubiconSettings.Audio.MasterVolume = v;
-                //VolumeManager.Instance.ChangeVolume(v);
+                VolumeManager.SetVolume(v);
                 break;
             case VolumeType.MusicVolume:
                 RubiconSettings.Audio.MusicVolume = v;
-                //VolumeManager.Instance.ChangeVolume(v);
+                VolumeManager.SetVolume(v);
                 break;
             case VolumeType.SFXVolume:
                 RubiconSettings.Audio.SFXVolume = v;
-                //VolumeManager.Instance.ChangeVolume(v);
+                VolumeManager.SetVolume(v);
                 break;
             case VolumeType.InstVolume:
                 RubiconSettings.Audio.InstVolume = v;
-                //VolumeManager.Instance.ChangeVolume(v);
+                VolumeManager.SetVolume(v);
                 break;
             case VolumeType.VoiceVolume:
                 RubiconSettings.Audio.VoiceVolume = v;
-                //VolumeManager.Instance.ChangeVolume(v);
+                VolumeManager.SetVolume(v);
                 break;
         }
     }
 
-    public void SetVSync(DisplayServer.VSyncMode v)
+    public static void SetVSync(DisplayServer.VSyncMode v)
     {
         RubiconSettings.Video.VSync = v;
         DisplayServer.Singleton.WindowSetVsyncMode(v);
     }
 
-    public void SetWindowMode(DisplayServer.WindowMode v)
+    public static void SetWindowMode(DisplayServer.WindowMode v)
     {
         RubiconSettings.Video.WindowMode = v;
         DisplayServer.Singleton.WindowSetMode(v);
     }
 
-    public void SetMaxFPS(float v)
+    public static void SetMaxFPS(float v)
     {
         if ((int)v == 1500)
         {
@@ -60,10 +61,10 @@ public class HelperMethods
         Engine.Singleton.MaxFps = (int)v;
     }
     
-    public void SetDiscordRPC(bool v)
+    public static void SetDiscordRPC(bool v)
     {
         RubiconSettings.Misc.DiscordRichPresence = v;
-        //DiscordRichPresence.Instance.Toggle(v);
+        DiscordRichPresence.Instance.Toggle(v);
     }
     
     public static string CompressString(string text)

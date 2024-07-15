@@ -4,6 +4,7 @@ global using Godot.Sharp.Extras;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Rubicon.backend.autoload;
 using Rubicon.Backend.Autoload;
 
 namespace Rubicon;
@@ -21,7 +22,6 @@ public partial class Main : Node
 
     public static readonly string RubiconVersion = ProjectSettings.Singleton.GetSetting("application/config/version", "1").ToString();
     public static Vector2 WindowSize { get; set; } = new Vector2((float)ProjectSettings.GetSetting("display/window/size/viewport_width"), (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
-    public static string[] AudioFileTypes = { ".ogg", ".mp3", ".wav", ".flac" };
     
     //godot should have an editor-only background override or something this shits annoying
     public override void _Ready() => RenderingServer.SetDefaultClearColor(new Color(0, 0, 0, 1)); 
@@ -58,7 +58,7 @@ public partial class Main : Node
     {
         string finalPath = "";
 
-        foreach (string type in AudioFileTypes)
+        foreach (string type in AudioManager.AudioFileTypes)
         {
             if (ResourceLoader.Exists(filePath + type))
             {
