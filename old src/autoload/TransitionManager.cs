@@ -17,7 +17,6 @@ public partial class TransitionManager : CanvasLayer
         {
             GetTree().ChangeSceneToFile(path);
             await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
-            //DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
             return;
         }
         
@@ -30,7 +29,6 @@ public partial class TransitionManager : CanvasLayer
             GetTree().ChangeSceneToFile(path);
             player.Play("End");
             await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
-            //DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
         }
     }
     
@@ -40,7 +38,6 @@ public partial class TransitionManager : CanvasLayer
         {
             GetTree().ChangeSceneToFile(path);
             await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-            //DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
             return;
         }
 
@@ -53,7 +50,6 @@ public partial class TransitionManager : CanvasLayer
             GetTree().ChangeSceneToFile(path);
             player.Play("End");
             await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-            //DiscordRichPresence.Client.UpdateDetails(GetTree().CurrentScene.Name);
         }
     }
 }

@@ -109,7 +109,7 @@ public partial class GameplayBase : Node
 		if(OS.IsDebugBuild()) 
 		{
 			if(Input.IsActionJustPressed("debug_reset"))
-				GetTree().ChangeSceneToFile("res://source/menus/debug/SongSelect.tscn");
+				LoadingHandler.ChangeScene("res://source/menus/debug/SongSelect.tscn");
 			if(Input.IsActionJustPressed("debug_autoplay"))
 				Hud.strumHandler.FocusedStrumline.AutoPlay = !Hud.strumHandler.FocusedStrumline.AutoPlay;
 			if(Input.IsActionJustPressed("debug_swap")){
@@ -353,7 +353,7 @@ public partial class GameplayBase : Node
 			player.Stop();
 		}
 
-		LoadingHandler.ChangeScene("res://source/menus/debug/SongSelect.tscn");
+		LoadingHandler.ChangeScene("res://source/menus/debug/SongSelect.tscn", true);
 
 		GD.Print("Ended song.");
 	}

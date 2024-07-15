@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Text;
 using Rubicon.Backend.Autoload;
 using Rubicon.Gameplay.Classes;
 using Rubicon.Gameplay.Classes.Strums;
@@ -11,7 +13,7 @@ public partial class GameplayHUD : CanvasLayer
 	/*	Contains all code for the HUD.
 		Some methods are executed in GameplayBase.	*/
 
-	public GameplayBase Gameplay;
+	public GameplayBase GameplayBase;
 
 	public Healthbar HealthBar;
 	[NodePath("JudgementText")] public RichTextLabel judgementText;
@@ -26,19 +28,20 @@ public partial class GameplayHUD : CanvasLayer
 	public StrumLine CpuStrums;
 
 	// modcharting purposes only
-	public Vector2 BasePosition {get; set;} = new(0,0);
+	public Vector2 BasePosition { get; set; } = new(0,0);
 	public bool LerpScale = true;
 	public float LerpScaleSpeed = 9;
 	public float LerpScaleStatic = 1;
 
+	[SuppressMessage("ReSharper", "PossibleLossOfFraction")] //SHUT THE FUCK UP RESHARPER
 	public override void _Ready()
 	{
 		this.OnReady();
-		BasePosition = new Vector2(GetWindow().Size.X/2, GetWindow().Size.Y/2);
+		BasePosition = new(GetWindow().Size.X/2, GetWindow().Size.Y/2);
 
 		base._Ready();
 		// Checking that you're not being silly and using this class on a non GameplayBase inheritor
-		Gameplay = GetParentOrNull<dynamic>();
+		GameplayBase = GetParentOrNull<dynamic>();
 		try {
 			//what do i test this with bruh i removed almost everything here
 		}
@@ -50,9 +53,10 @@ public partial class GameplayHUD : CanvasLayer
 
 	public override void _Process(double delta)
 	{
-		if(LerpScale) {
+		if (LerpScale) 
+		{
 			float FinalSpeed = (float)Mathf.Clamp(delta * LerpScaleSpeed, 0, 1);
-			Scale = new Vector2(Mathf.Lerp(Scale.X, LerpScaleStatic, FinalSpeed),Mathf.Lerp(Scale.Y, LerpScaleStatic, FinalSpeed));
+			Scale = new(Mathf.Lerp(Scale.X, LerpScaleStatic, FinalSpeed),Mathf.Lerp(Scale.Y, LerpScaleStatic, FinalSpeed));
 			CenterPosition();
 		}
 
@@ -60,15 +64,12 @@ public partial class GameplayHUD : CanvasLayer
 		PositionIcon(ref HealthBar.OpponentIcon);
 	}
 
-	public void CenterPosition()
-	{
-		Offset = BasePosition*-(Scale - new Vector2(LerpScaleStatic,LerpScaleStatic));
-	}
+	private void CenterPosition() => Offset = BasePosition*-(Scale - new Vector2(LerpScaleStatic,LerpScaleStatic));
 
 	private void PositionIcon(ref Icon icon)
 	{
 		float iconX = HealthBar.Size.X + (HealthBar.Size.X * (float)(-HealthBar.Value/HealthBar.MaxValue));
-		icon.Position = new Vector2(iconX,0);
+		icon.Position = new(iconX,0);
 		icon.Position += new Vector2(icon.IsPlayer ? HealthBar.PlayerXOffset : HealthBar.OpponentXOffset, 0);
 		icon.FlipH = icon.IsPlayer;
 	}
@@ -76,13 +77,13 @@ public partial class GameplayHUD : CanvasLayer
 	public void GenerateStrum(ref StrumLine strumline, int KeyCount, Vector2 Position, bool Playable = false)
 	{
 		string path = $"res://source/gameplay/resources/strumlines/{KeyCount}Keys.tscn";
-		string defaultPath = "res://source/gameplay/resources/strumlines/4Keys.tscn";
+		const string defaultPath = "res://source/gameplay/resources/strumlines/4Keys.tscn";
 		strumline = ResourceLoader.Exists(path) ? GD.Load<PackedScene>(path).Instantiate<StrumLine>() : GD.Load<PackedScene>(defaultPath).Instantiate<StrumLine>();
 		strumline.Position = Position;
-		strumline.ApplyStyle(Gameplay.Style);
+		strumline.ApplyStyle(GameplayBase.Style);
 		strumHandler.AddChild(strumline);
 
-		if(Playable) strumHandler.FocusStrumline(ref strumline);
+		if (Playable) strumHandler.FocusStrumline(ref strumline);
 	}
 
 	public void GenerateHealthbar(UIStyle Style)
@@ -91,11 +92,11 @@ public partial class GameplayHUD : CanvasLayer
 		AddChild(HealthBar);
 		HealthBar.Value = (float)(HealthBar.MaxValue/2);
 
-		if(RubiconSettings.Gameplay.Downscroll)
+		if (RubiconSettings.Gameplay.Downscroll)
 		{
 			HealthBar.SetPosition(HealthBar.BarDownscrollPos);
 			HealthBar.ScoreLabel.SetPosition(HealthBar.ScoreLabelDownscrollPos);
-			JudgementTemplate.Position = new Vector2(JudgementTemplate.Position.X,-JudgementTemplate.Position.Y);
+			JudgementTemplate.Position = new(JudgementTemplate.Position.X,-JudgementTemplate.Position.Y);
 		}
 
 		UpdateScoreLabel();
@@ -103,7 +104,7 @@ public partial class GameplayHUD : CanvasLayer
 
 	public void UpdateScoreLabel()
 	{
-		HighScore hs = Gameplay.highScore;
+		HighScore hs = GameplayBase.highScore;
 		string finalRank = "N/A";
 		HealthBar.ScoreLabel.Text = $"[center]Score: {hs.Score} • Breaks: {hs.Misses+hs.JudgementHitList["shit"]} • Rating: {hs.Rating} • [{finalRank}]";
 

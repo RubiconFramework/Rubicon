@@ -1,3 +1,4 @@
+using Rubicon.Backend.Autoload;
 using Rubicon.backend.autoload.enums;
 using AudioManager = Rubicon.backend.autoload.AudioManager;
 
@@ -27,13 +28,26 @@ public partial class MainMenu : Node
 		float cameraSpeed = Mathf.Clamp(((float)delta * 3), 0f, 1f);
 		float camZoom = Mathf.Lerp(camera.Zoom.X, 1, cameraSpeed);
 		camera.Zoom = new(camZoom, camZoom);
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
 		
 		if (selected) return;
-		if (Input.IsActionJustPressed("menu_up")) changeSelected(-1);
-		if (Input.IsActionJustPressed("menu_down")) changeSelected(1);
-		if (Input.IsActionJustReleased("menu_accept") && curSelected >= 0) selectOption();
+		if (Input.IsActionJustPressed("menu_up"))
+			changeSelected(-1);
+		
+		if (Input.IsActionJustPressed("menu_down")) 
+			changeSelected(1);
+		
+		if (Input.IsActionJustReleased("menu_accept") && curSelected >= 0) 
+			selectOption();
+		
+		if (Input.IsActionJustPressed("menu_return"))
+			LoadingHandler.ChangeScene("res://source/menus/title/Title.tscn");
 	}
-	
+
 	/*protected override void OnBeatHit(int beat)
 	{
 		base.OnBeatHit(beat);
@@ -44,7 +58,7 @@ public partial class MainMenu : Node
 	private async void selectOption()
 	{
 		selected = true;
-		AudioManager.Instance.PlayAudio(AudioType.Sounds,"menus/confirmMenu");
+		AudioManager.Play(AudioType.Sounds,"menus/confirmMenu");
 		bgAnim.Play("press");
 		
 		buttonAnim.RootNode = buttonGroup.GetChild<AnimatedSprite2D>(curSelected).GetPath();
@@ -67,12 +81,12 @@ public partial class MainMenu : Node
 		string buttonName = buttonGroup.GetChild<AnimatedSprite2D>(curSelected).Name.ToString().ToLower();
 		switch (buttonName)
 		{
-			case "storymode": GetTree().ChangeSceneToFile("res://source/menus/debug/SongSelect.tscn"); break;
-			case "freeplay": GetTree().ChangeSceneToFile("res://source/menus/freeplay/FreeplayMenu.tscn"); break;
-			case "options": GetTree().ChangeSceneToFile("res://source/menus/options/OptionsMenu.tscn"); break;
+			case "storymode": LoadingHandler.ChangeScene("res://source/menus/debug/SongSelect.tscn"); break;
+			case "freeplay": LoadingHandler.ChangeScene("res://source/menus/freeplay/FreeplayMenu.tscn"); break;
+			case "options": LoadingHandler.ChangeScene("res://source/menus/options/OptionsMenu.tscn"); break;
 			default:
 				//Main.Instance.SendNotification($"Scene {buttonName} not found lol", true, NotificationType.Warning);
-				GetTree().ChangeSceneToFile("res://source/menus/title/Title.tscn");
+				LoadingHandler.ChangeScene("res://source/menus/title/Title.tscn");
 				break;
 		}
 	}
@@ -96,7 +110,7 @@ public partial class MainMenu : Node
 			}
 		}
 
-		if (sound) AudioManager.Instance.PlayAudio(AudioType.Sounds, "menus/scrollMenu");
+		if (sound) AudioManager.Play(AudioType.Sounds, "menus/scrollMenu");
 	}
 
 	private void FocusButton(int focused) => changeSelected(focused, true); 

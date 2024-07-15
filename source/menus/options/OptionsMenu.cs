@@ -91,7 +91,7 @@ public partial class OptionsMenu : Control
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("menu_return")) GetTree().ChangeSceneToFile("res://source/menus/mainmenu/MainMenu.tscn");
+		if (@event.IsActionPressed("menu_return")) LoadingHandler.ChangeScene("res://source/menus/mainmenu/MainMenu.tscn");
 
 		if (@event is not InputEventKey { Pressed: true } eventKey) return;
 		switch (eventKey.KeyLabel)

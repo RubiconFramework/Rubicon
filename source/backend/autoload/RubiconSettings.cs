@@ -39,20 +39,18 @@ public enum TransitionType
 public partial class RubiconSettings : Node
 {
     public static RubiconSettings Instance;
-    public GameplaySettings gameplay { get; set; } = new();
-    public AudioSettings audio { get; set; } = new();
-    public VideoSettings video { get; set; } = new();
-    public MiscSettings misc { get; set; } = new();
+    [JsonProperty] public GameplaySettings gameplay { get; set; } = new();
+    [JsonProperty] public AudioSettings audio { get; set; } = new();
+    [JsonProperty] public VideoSettings video { get; set; } = new();
+    [JsonProperty] public MiscSettings misc { get; set; } = new();
     
-    [JsonIgnore]
     public static GameplaySettings Gameplay => Instance.gameplay;
-    [JsonIgnore]
     public static AudioSettings Audio => Instance.audio;
-    [JsonIgnore]
     public static VideoSettings Video => Instance.video;
-    [JsonIgnore]
     public static MiscSettings Misc => Instance.misc;
 
+    public const string SettingsPath = "user://settings.json";
+    
     public class GameplaySettings
     {
         public readonly GameplayModifiers Modifiers = new();
@@ -118,9 +116,9 @@ public partial class RubiconSettings : Node
     {
         try
         {
-            if (FileAccess.FileExists("user://settings.json"))
+            if (FileAccess.FileExists(SettingsPath))
             {
-                var jsonData = FileAccess.Open("user://settings.json", FileAccess.ModeFlags.Read);
+                var jsonData = FileAccess.Open(SettingsPath, FileAccess.ModeFlags.Read);
                 string json = jsonData.GetAsText();
 
                 if (!string.IsNullOrEmpty(json))
@@ -129,7 +127,7 @@ public partial class RubiconSettings : Node
                     if (loadedSettings != null)
                     {
                         Instance = loadedSettings;
-                        GD.Print("Settings loaded from file. [user://settings.json]");
+                        GD.Print($"Settings loaded from file. [{SettingsPath}]");
                     }
                 }
             }
@@ -158,7 +156,7 @@ public partial class RubiconSettings : Node
             };
 
             string jsonData = JsonConvert.SerializeObject(Instance, settings);
-            using var file = FileAccess.Open("user://settings.json", FileAccess.ModeFlags.Write);
+            using var file = FileAccess.Open(SettingsPath, FileAccess.ModeFlags.Write);
             file.StoreString(jsonData);
         }
         catch (Exception e)
@@ -167,8 +165,5 @@ public partial class RubiconSettings : Node
         }
     }
 
-    public override void _Ready()
-    {
-        Load();
-    }
+    public override void _Ready() => Load();
 }

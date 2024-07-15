@@ -1,8 +1,8 @@
 [gd_scene load_steps=20 format=3 uid="uid://bd6rfrayedosy"]
 
-[ext_resource type="Script" path="res://src/autoload/TransitionManager.cs" id="1_owh6s"]
-[ext_resource type="Shader" path="res://assets/shaders/Diamond.gdshader" id="2_22krj"]
-[ext_resource type="Shader" path="res://assets/shaders/saw.gdshader" id="2_y2hyg"]
+[ext_resource type="Script" path="res://source/backend/autoload/LoadingHandler.cs" id="1_hn1rf"]
+[ext_resource type="Shader" path="res://assets/shaders/saw.gdshader" id="2_wjol3"]
+[ext_resource type="Shader" path="res://assets/shaders/Diamond.gdshader" id="3_77u2n"]
 
 [sub_resource type="Animation" id="Animation_5fuo7"]
 resource_name = "End"
@@ -91,7 +91,7 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pyonq"]
-shader = ExtResource("2_y2hyg")
+shader = ExtResource("2_wjol3")
 shader_parameter/saw_b_shift = -0.267
 shader_parameter/saw_a_interval = 1.0
 shader_parameter/saw_b_interval = 2.0
@@ -100,7 +100,7 @@ shader_parameter/saw_b_scale = 0.821
 shader_parameter/uv_scale = Vector2(3, 8)
 shader_parameter/color = Color(0, 0, 0, 1)
 shader_parameter/right = 7.0
-shader_parameter/left = 8.0
+shader_parameter/left = -1.0
 
 [sub_resource type="Animation" id="Animation_5vn5j"]
 resource_name = "End"
@@ -108,7 +108,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionManager/Fade/Rect:modulate")
+tracks/0/path = NodePath("LoadingHandler/Fade/Rect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -120,7 +120,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TransitionManager/Fade/Rect:visible")
+tracks/1/path = NodePath("LoadingHandler/Fade/Rect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -136,7 +136,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionManager/Fade/Rect:modulate")
+tracks/0/path = NodePath("LoadingHandler/Fade/Rect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -148,7 +148,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TransitionManager/Fade/Rect:visible")
+tracks/1/path = NodePath("LoadingHandler/Fade/Rect:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -170,7 +170,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/progress")
+tracks/0/path = NodePath("LoadingHandler/DiamondShapes/Rect:material:shader_parameter/progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -182,7 +182,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/rotationAngle")
+tracks/1/path = NodePath("LoadingHandler/DiamondShapes/Rect:material:shader_parameter/rotationAngle")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -194,7 +194,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TransitionManager/DiamondShapes/Rect:visible")
+tracks/2/path = NodePath("LoadingHandler/DiamondShapes/Rect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -210,7 +210,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/progress")
+tracks/0/path = NodePath("LoadingHandler/DiamondShapes/Rect:material:shader_parameter/progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -222,7 +222,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TransitionManager/DiamondShapes/Rect:material:shader_parameter/rotationAngle")
+tracks/1/path = NodePath("LoadingHandler/DiamondShapes/Rect:material:shader_parameter/rotationAngle")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -234,7 +234,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TransitionManager/DiamondShapes/Rect:visible")
+tracks/2/path = NodePath("LoadingHandler/DiamondShapes/Rect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -251,7 +251,7 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ahxgy"]
-shader = ExtResource("2_22krj")
+shader = ExtResource("3_77u2n")
 shader_parameter/progress = 0.325
 shader_parameter/diamondPixelSize = 10.0
 shader_parameter/transitionDirection = Vector2(1, 1)
@@ -351,9 +351,9 @@ _data = {
 "Start": SubResource("Animation_3p7ne")
 }
 
-[node name="TransitionManager" type="CanvasLayer"]
+[node name="LoadingHandler" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_owh6s")
+script = ExtResource("1_hn1rf")
 
 [node name="SawnOff" type="AnimationPlayer" parent="."]
 root_node = NodePath("../DiamondShapes")

@@ -8,66 +8,114 @@ namespace Rubicon.backend.autoload;
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class DebugInfo : CanvasLayer
 {
-    [NodePath("InfoContainer/Performance/FPS")] private Label FPSLabel;
-    [NodePath("InfoContainer/Performance/RAM")] private Label RAMLabel;
-    [NodePath("InfoContainer/Performance/VRAM")] private Label VRAMLabel;
-    [NodePath("InfoContainer/Performance/NodeObjects")] private Label NodeObjectsLabel;
-    [NodePath("InfoContainer/Version")] private Label VersionLabel;
-    [NodePath("InfoContainer/Scene")] private Label SceneLabel;
-    [NodePath("InfoContainer/Conductor")] private Label ConductorLabel;
+    /*Main Info (Always Visible)*/
+    //Performance
+    [NodePath("InfoContainer/MainInformation/FPS")] private Label FPS;
+    [NodePath("InfoContainer/MainInformation/RAM")] private Label RAM;
+    [NodePath("InfoContainer/MainInformation/VRAM")] private Label VRAM;
+    
+    /*Debug Info*/
+    //Scene Tree
+    [NodePath("InfoContainer/DebugInformation/Objects/AllObjects")] private Label AllObjects;
+    [NodePath("InfoContainer/DebugInformation/Objects/NodeObjects")] private Label NodeObjects;
+    [NodePath("InfoContainer/DebugInformation/Objects/ResourceObjects")] private Label ResourceObjects;
+    
+    //Versions
+    [NodePath("InfoContainer/DebugInformation/Versions/Rubicon")] private Label RubiconVersion;
+    [NodePath("InfoContainer/DebugInformation/Versions/Godot")] private Label GodotVersion;
+    
+    //Misc
+    [NodePath("InfoContainer/DebugInformation/Scene")] private Label CurrentScene;
+    [NodePath("InfoContainer/DebugInformation/Conductor")] private Label ConductorInfo;
 
-    private float updateTime;
-    private bool showDebugInfo;
-    private Process currentProcess = Process.GetCurrentProcess();
+    private Process CurrentProcess = Process.GetCurrentProcess();
+
+    [NodePath("InfoContainer/DebugInformation")] private VBoxContainer DebugInformation; //for visibility
+    
+    private float RAMUpdateTime;
+    private float ObjectUpdateTime;
     
     public override void _Ready()
     {
         this.OnReady();
-        if (!OS.IsDebugBuild()) VRAMLabel.Text = "VRAM is Unavailable.";
-        VersionLabel.Text = $"Rubicon {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+        if (!OS.IsDebugBuild()) VRAM.Visible = false;
+        DebugInformation.Visible = false;
+        DebugInformation.VisibilityChanged += () =>
+        {
+            if (!DebugInformation.Visible) return;
+            UpdateObjects();
+            UpdateScene();
+        };
+        RubiconVersion.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+        GodotVersion.Text = $"Godot Engine {Engine.GetVersionInfo()["major"]}.{Engine.GetVersionInfo()["minor"]}.{Engine.GetVersionInfo()["patch"]} [{Engine.GetVersionInfo()["status"]}]";
     }
 
+    private static string byteToReadableUnit(long bytes)
+    {
+        double size = bytes;
+        string unit = "MB";
+        size /= (1024.0 * 1024.0);
+        if (size >= 1024.0)
+        {
+            size /= 1024.0;
+            unit = "GB";
+        }
+        return $"{size:F2} {unit}";
+    }
+    
     public override void _PhysicsProcess(double delta)
     {
-        updateTime += (float)delta;
-        if (updateTime >= 1)
+        if (Input.IsActionJustPressed("debug_info")) DebugInformation.Visible = !DebugInformation.Visible;
+        
+        UpdateFPS();
+        
+        RAMUpdateTime += (float)delta;
+        if (RAMUpdateTime >= 1f)
         {
-            updateTime = 0;
-            UpdateText();
+            UpdateRAM();
+            if (VRAM.Visible) UpdateVRAM();
+            RAMUpdateTime = 0f;
         }
 
-        if (Input.IsActionJustPressed("debug_info")) showDebugInfo = !showDebugInfo;
-        SceneLabel.Visible = showDebugInfo;
-        ConductorLabel.Visible = showDebugInfo;
-        VersionLabel.Visible = showDebugInfo;
+        if (!DebugInformation.Visible) return;
+        
+        ObjectUpdateTime += (float)delta;
+        if (ObjectUpdateTime >= 2f)
+        {
+            UpdateObjects();
+            UpdateScene();
+            CurrentScene.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
+            ObjectUpdateTime = 0f;
+        }
+        
+        UpdateConductor();
+    }
+    
+    private void UpdateFPS() => FPS.Text = $"FPS: {Engine.GetFramesPerSecond()}";
+
+    private void UpdateRAM() => RAM.Text = OS.IsDebugBuild() ? $"RAM: {byteToReadableUnit((long)OS.GetStaticMemoryUsage())} [{byteToReadableUnit(CurrentProcess.PrivateMemorySize64)}]" : $"RAM: {byteToReadableUnit(CurrentProcess.WorkingSet64)} [{byteToReadableUnit(CurrentProcess.PrivateMemorySize64)}]";
+
+    private void UpdateVRAM() => VRAM.Text = $"VRAM: {byteToReadableUnit((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed))}";
+
+    private void UpdateScene() => CurrentScene.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
+
+    private void UpdateObjects()
+    {
+        AllObjects.Text = $"All Instantiated Objects: {Performance.GetMonitor(Performance.Monitor.ObjectCount)}";
+        ResourceObjects.Text = $"Resource Objects in Use: {Performance.GetMonitor(Performance.Monitor.ObjectResourceCount)}";
+        NodeObjects.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)} (Orphan Nodes: {Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount)})";
     }
 
-    StringBuilder ConductorSB = new();
-
-    private void UpdateText()
+    private readonly StringBuilder ConductorSB = new();
+    private void UpdateConductor()
     {
         ConductorSB.Clear();
         
-        FPSLabel.Text = $"FPS: {Engine.GetFramesPerSecond().ToString(CultureInfo.InvariantCulture)}";
-        if (OS.IsDebugBuild())
-        {
-            RAMLabel.Text = $"RAM: {Main.byteToMB((long)OS.GetStaticMemoryUsage()):F2} MB [A: {Main.byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
-            VRAMLabel.Text = $"VRAM: {Main.byteToMB((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed)):F2} MB";
-            SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
-            NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
-        }
-        else
-        {
-            RAMLabel.Text = $"RAM: {Main.byteToMB(currentProcess.WorkingSet64):F2} MB [Alloc: {Main.byteToMB(currentProcess.PrivateMemorySize64):F2} MB]";
-            SceneLabel.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
-            NodeObjectsLabel.Text = $"Node Objects: {Performance.GetMonitor(Performance.Monitor.ObjectNodeCount)}";
-        }
+        ConductorSB.AppendLine($"Conductor BPM: {Conductor.BPM} --- Song Position: {Conductor.SongPosition}")
+            .AppendLine($"CurStep: {Conductor.CurStep} [Duration: {Conductor.StepDuration}]")
+            .AppendLine($"CurBeat: {Conductor.CurBeat} [Duration: {Conductor.BeatDuration}]")
+            .AppendLine($"CurSection: {Conductor.CurSection} [Duration: {Conductor.SectionDuration}]");
 
-        ConductorSB.AppendLine($"BPM: {Conductor.BPM} // Song Position: {Conductor.SongPosition}")
-            .AppendLine($"Step: {Conductor.CurStep} [{Conductor.StepDuration}] ")
-            .AppendLine($"Beat: {Conductor.CurBeat} [{Conductor.BeatDuration}]")
-            .AppendLine($"Section: {Conductor.CurSection} [{Conductor.SectionDuration}]");
-
-        ConductorLabel.Text = ConductorSB.ToString();
+        ConductorInfo.Text = ConductorSB.ToString();
     }
 }

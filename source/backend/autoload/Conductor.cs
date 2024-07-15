@@ -47,21 +47,10 @@ public partial class Conductor : Node
             CurSection = CurStep / 16;
         }
 
-        if (PrevStep != CurStep)
-        {
-            int stepHitResult = OnStepHit?.Invoke(CurStep) ?? 0;
-            Console.WriteLine($"Step Hit Result: {stepHitResult}");
-        }
-        if (PrevStep / 4 != CurBeat)
-        {
-            int beatHitResult = OnBeatHit?.Invoke(CurBeat) ?? 0;
-            Console.WriteLine($"Beat Hit Result: {beatHitResult}");
-        }
-        if (PrevStep / 16 != CurSection)
-        {
-            int sectionHitResult = OnSectionHit?.Invoke(CurSection) ?? 0;
-            Console.WriteLine($"Section Hit Result: {sectionHitResult}");
-        }
+        if (PrevStep != CurStep) OnStepHit?.Invoke(CurStep);
+        if (PrevStep / 4 != CurBeat) OnBeatHit?.Invoke(CurBeat);
+        if (PrevStep / 16 != CurSection) OnSectionHit?.Invoke(CurSection);
+        
         PrevStep = CurStep;
     }
 }

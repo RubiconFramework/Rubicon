@@ -22,10 +22,9 @@ public partial class StrumHandler : Node
 	{
 		if(FocusedStrumline is not null)
 		{
-			if(setupFocusedChar) {
-				foreach(Character2D character in FocusedStrumline.FocusedCharacters)
-					character.IsPlayer = false;
-			}
+			if (setupFocusedChar) 
+				foreach(Character2D character in FocusedStrumline.FocusedCharacters) character.IsPlayer = false;
+			
 			foreach(Strum strum in FocusedStrumline.GetChildren())
 			{
 				strum.PlayAnim("static");
@@ -40,13 +39,10 @@ public partial class StrumHandler : Node
 		foreach(Strum strum in strumline.GetChildren())
 			Controls.Add($"note_{strum.Name.ToString().ToLower()}");
 
-		if(setupFocusedChar) {
-				foreach(Character2D character in FocusedStrumline.FocusedCharacters)
-					character.IsPlayer = true;
-			}
-
-		if(Controls.Count > 0) GD.Print("StrumHandler recieved the strumline correctly.");
-		else GD.Print("StrumHandler recieved an empty strumline.");
+		if (setupFocusedChar) 
+			foreach(Character2D character in FocusedStrumline.FocusedCharacters) character.IsPlayer = true;
+		
+		GD.Print(Controls.Count > 0 ? "StrumHandler recieved the strumline correctly." : "StrumHandler recieved an empty strumline.");
 	}
 
 	public override void _Input(InputEvent @event) {
@@ -57,25 +53,22 @@ public partial class StrumHandler : Node
 				if(Input.IsActionJustPressed(Controls[strum.Direction]))
 				{
 					strum.Pressed = true;
-					//GD.Print($"pressed strum: {strum.Name}");
 					strum.PlayAnim("pressed");
 					
 					if(FocusedStrumline.NotesToHit.Count > 0){
 						List<Note> ClosestNotes = FocusedStrumline.NotesToHit.Where(note => note.Direction == strum.Direction).ToList();
 
 						Note ClosestNote = null;
-						if(ClosestNotes.Count > 0) {
+						if(ClosestNotes.Count > 0)
+						{
 							ClosestNote = ClosestNotes.OrderBy(note => Math.Abs(note.Time - Conductor.SongPosition)).First();
-							foreach(Note note in ClosestNotes) {
-								if(note.Time/2 < ClosestNote.Time && note.TimeToHit && !note.WasHit) {
-									//note.GetParent<NoteHandler>().NoteMiss(note,false);
-									FocusedStrumline.NotesToHit.Remove(note);
-								}
+							foreach (var note in ClosestNotes.Where(note => note.Time/2 < ClosestNote.Time && note.TimeToHit && !note.WasHit))
+							{
+								//note.GetParent<NoteHandler>().NoteMiss(note,false);
+								FocusedStrumline.NotesToHit.Remove(note);
 							}
 						}
-						if(ClosestNote is not null && !ClosestNote.WasMissed) {
-							noteHandler.NoteHit(ClosestNote);
-						}
+						if (ClosestNote is not null && !ClosestNote.WasMissed) noteHandler.NoteHit(ClosestNote);
 					}
 				}
 			}
@@ -84,8 +77,9 @@ public partial class StrumHandler : Node
 
 	public override void _PhysicsProcess(double delta)
 	{
-		foreach(Strum strum in FocusedStrumline.GetChildren())
+		foreach(var node in FocusedStrumline.GetChildren())
 		{
+			var strum = (Strum)node;
 			if(strum.Pressed && !Input.IsActionPressed(Controls[strum.Direction]))
 			{
 				strum.Pressed = false;
@@ -97,13 +91,12 @@ public partial class StrumHandler : Node
 		foreach(Strum strum in FocusedStrumline.GetChildren())
 			if(strum.Pressed) IsPressingNote = true;
 		
-		if(!IsPressingNote){
-			foreach(dynamic character in FocusedStrumline.FocusedCharacters){
-				if(character.LastAnim.StartsWith("sing") && character.SingTimer >= Conductor.StepDuration * (character.SingDuration * 0.0011))
-				{
-					character.Dance(true);
-					character.SingTimer = 0;
-				}
+		if(!IsPressingNote)
+		{
+			foreach (var character in FocusedStrumline.FocusedCharacters.Where(character => character.LastAnim.StartsWith("sing") && character.SingTimer >= Conductor.StepDuration * (character.SingDuration * 0.0011)))
+			{
+				character.Dance(true);
+				character.SingTimer = 0;
 			}
 		}
 	}

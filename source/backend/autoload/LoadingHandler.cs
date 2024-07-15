@@ -1,65 +1,127 @@
 namespace Rubicon.Backend.Autoload;
-public partial class LoadingHandler : Node
+
+[Icon("res://assets/miscicons/autoload.png")]
+public partial class LoadingHandler : CanvasLayer
 {
-	public static string LastScenePath = "";
-	public static string NewScenePath = "";
-	public static bool IsLoading = false;
-	public static Godot.Collections.Array LoadingProgress = new();
-	private static LoadingHandler StaticInstance;
-	private static bool transitioning = false;
-	
-	public LoadingHandler()
-	{
-		StaticInstance = this;
-	}
+    public static LoadingHandler Instance { get; private set; }
+    public static string LastScenePath = "";
+    public static string NewScenePath = "";
+    public static bool IsLoading;
+    public static readonly Godot.Collections.Array LoadingProgress = new();
+    private static bool transitioning = false;
 
-	public static void ChangeScene(string NewScene){
-		NewScenePath = NewScene;
-		StaticInstance.LoadScene();
-	}
+    public LoadingHandler()
+    {
+        Instance = this;
+    }
 
-	private void LoadScene()
-	{
-		var LastScene = GetTree().CurrentScene;
-		LastScenePath = LastScene.SceneFilePath;
+    public static void ChangeScene(string newScene, bool loadingScreen = false)
+    {
+        NewScenePath = newScene;
+        Instance.ChangeSceneWithTransition(loadingScreen ? "res://source/backend/LoadingScreen.tscn" : newScene);
+    }
+    
+    public static void ChangeScene(string newScene, TransitionType forcedTransitionType, bool loadingScreen = false)
+    {
+        NewScenePath = newScene;
+        Instance.ChangeSceneWithTransition(loadingScreen ? "res://source/backend/LoadingScreen.tscn" : newScene, forcedTransitionType);
+    }
 
-		GetTree().CallDeferred("change_scene_to_file","res://source/backend/LoadingScreen.tscn");
+    public async void ChangeSceneWithTransition(string path)
+    {
+        if (!RubiconSettings.Misc.SceneTransitions)
+        {
+            GetTree().ChangeSceneToFile(path);
+            await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
+            if (path == "res://source/backend/LoadingScreen.tscn") LoadScene();
+            return;
+        }
 
-		if(ResourceLoader.Exists(NewScenePath)) {
-			ResourceLoader.LoadThreadedRequest(NewScenePath, "", true, ResourceLoader.CacheMode.Ignore);
+        AnimationPlayer player = GetNode<AnimationPlayer>(RubiconSettings.Misc.Transitions.ToString());
+        player.Play("Start");
+        player.AnimationFinished += TransitionFinished;
 
-			IsLoading = true;
-			LoadingProgress.Clear();
+        async void TransitionFinished(StringName animName)
+        {
+            player.AnimationFinished -= TransitionFinished;
+            GetTree().ChangeSceneToFile(path);
+            player.Play("End");
+            await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
 
-			GD.Print("Loading new scene...");
-		}
-		else GD.PushError("New scene file was not found.");
-	}
+            if (path == "res://source/backend/LoadingScreen.tscn") LoadScene();
+        }
+    }
 
-	public override void _Process(double delta)
-	{
-		if (!IsLoading) return;
-		ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(NewScenePath, LoadingProgress);
-		GD.Print($"Loading Progress: {LoadingProgress[0]}");
-		switch (status)
-		{
-			case ResourceLoader.ThreadLoadStatus.Loaded when !transitioning:
-			{
-				GD.Print("New scene loaded.");
-				transitioning = true;
-				IsLoading = false;
+    public async void ChangeSceneWithTransition(string path, TransitionType forcedTransitionType)
+    {
+        if (!RubiconSettings.Misc.SceneTransitions)
+        {
+            GetTree().ChangeSceneToFile(path);
+            await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+            if (path == "res://source/backend/LoadingScreen.tscn") LoadScene();
+            return;
+        }
 
-				Resource LoadedScene = ResourceLoader.LoadThreadedGet(NewScenePath);
-				SceneTreeTimer timer = GetTree().CreateTimer(1);
-				timer.Connect("timeout",Callable.From(() => {
-					transitioning = false;
-					GetTree().ChangeSceneToPacked((PackedScene)LoadedScene);
-				}));
-				break;
-			}
-			case ResourceLoader.ThreadLoadStatus.InvalidResource:
-				GD.Print("fuck");
-				break;
-		}
-	}
+        AnimationPlayer player = GetNode<AnimationPlayer>(forcedTransitionType.ToString());
+        player.Play("Start");
+        player.AnimationFinished += TransitionFinished;
+
+        async void TransitionFinished(StringName animName)
+        {
+            player.AnimationFinished -= TransitionFinished;
+            GetTree().ChangeSceneToFile(path);
+            player.Play("End");
+            await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+            if (path == "res://source/backend/LoadingScreen.tscn") LoadScene();
+        }
+    }
+
+    private static void LoadScene()
+    {
+        if (ResourceLoader.Exists(NewScenePath))
+        {
+            ResourceLoader.LoadThreadedRequest(NewScenePath, "", true, ResourceLoader.CacheMode.Ignore);
+            IsLoading = true;
+            LoadingProgress.Clear();
+            GD.Print("Loading new scene...");
+        }
+        else GD.PushError("New scene file was not found.");
+    }
+
+    public override void _Process(double delta)
+    {
+        if (!IsLoading) return;
+
+        ResourceLoader.ThreadLoadStatus status = ResourceLoader.LoadThreadedGetStatus(NewScenePath, LoadingProgress);
+        GD.Print($"Loading Progress: {(LoadingProgress.Count > 0 ? LoadingProgress[0].ToString() : "0")}");
+
+        switch (status)
+        {
+            case ResourceLoader.ThreadLoadStatus.Loaded when !transitioning:
+                GD.Print("New scene loaded.");
+                transitioning = true;
+                IsLoading = false;
+
+                Resource loadedScene = ResourceLoader.LoadThreadedGet(NewScenePath);
+                SceneTreeTimer timer = GetTree().CreateTimer(1);
+                timer.Connect("timeout", Callable.From(async () => {
+                    transitioning = false;
+                    AnimationPlayer player = GetNode<AnimationPlayer>(RubiconSettings.Misc.Transitions.ToString());
+                    player.Play("Start");
+                    await ToSignal(player, "animation_finished");
+                    GetTree().ChangeSceneToPacked((PackedScene)loadedScene);
+                    player.Play("End");
+                }));
+                break;
+
+            case ResourceLoader.ThreadLoadStatus.InProgress:
+                break;
+
+            case ResourceLoader.ThreadLoadStatus.InvalidResource:
+            case ResourceLoader.ThreadLoadStatus.Failed:
+            default:
+                GD.Print("Failed to load the new scene.");
+                break;
+        }
+    }
 }

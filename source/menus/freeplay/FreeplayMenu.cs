@@ -114,7 +114,7 @@ public partial class FreeplayMenu : Node
             alphabet.Set("target_y", GetTargetY(entry.Key, (selectedSongIndex + direction + songAlphabets.Count) % songAlphabets.Count));
         }
 
-        AudioManager.Instance.PlayAudio(AudioType.Sounds, "menus/scrollMenu");
+        AudioManager.Play(AudioType.Sounds, "menus/scrollMenu");
         selectedSongIndex = (selectedSongIndex + direction + songAlphabets.Count) % songAlphabets.Count;
         UpdateSongData(Songs[selectedSongIndex]);
         SongDataAnimPlayer.Stop();
@@ -144,7 +144,7 @@ public partial class FreeplayMenu : Node
     private void OnPlayButtonPressed()
     {
         ChartHandler.NewChart(CurrentFreeplaySong.SongName, selectedDifficultyIndex);
-        GetTree().ChangeSceneToFile("res://src/scenes/gameplay/Gameplay.tscn");
+        LoadingHandler.ChangeScene("res://src/scenes/gameplay/Gameplay.tscn");
     }
 
     private void OnDifficultyButtonSelected(long index)

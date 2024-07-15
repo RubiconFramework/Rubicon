@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cm5uby17wlrao"]
 
-[ext_resource type="Script" path="res://src/scenes/options/objects/sections/gameplay/menus/GameplayModifiers.cs" id="1_3d3eg"]
+[ext_resource type="Script" path="res://source/menus/options/objects/sections/gameplay/menus/GameplayModifiers.cs" id="2_o1nqe"]
 [ext_resource type="Theme" uid="uid://b6ecmfgqd2syw" path="res://assets/themes/duo/GameplayModifiers [Duo].tres" id="2_sm2pk"]
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://src/scenes/options/objects/buttons/slider/LabelSlider.tscn" id="3_3htfa"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://source/menus/options/objects/buttons/slider/LabelSlider.tscn" id="3_3htfa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf85w"]
 bg_color = Color(0, 0, 0, 0.2)
@@ -15,7 +15,7 @@ border_width_top = 2
 offset_right = 1140.0
 offset_bottom = 454.0
 theme = ExtResource("2_sm2pk")
-script = ExtResource("1_3d3eg")
+script = ExtResource("2_o1nqe")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

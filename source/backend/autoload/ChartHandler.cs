@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 using FileAccess = Godot.FileAccess;
 using Rubicon.Backend.Classes;
@@ -31,17 +32,18 @@ public partial class ChartHandler : Node
         GD.Print($"Attempting to load {chartType} chart: {chartPath}");
 
         var chartFile = FileAccess.Open(chartPath, FileAccess.ModeFlags.Read);
-        if (chartFile == null) {
+        if (chartFile == null) 
+        {
             GD.PrintErr($"Unable to load chart: {chartPath}");
             return null;
         }
         string chartString = chartFile.GetAsText();
         chartFile.Close();
 
-        FileAccess metadataFile = null;
-        string metadataString="";
-        if(chartType == ChartTypeEnum.VSlice) {
-            metadataFile = FileAccess.Open($"{basePath}metadata.json", FileAccess.ModeFlags.Read);
+        string metadataString = "";
+        if(chartType == ChartTypeEnum.VSlice)
+        {
+            var metadataFile = FileAccess.Open($"{basePath}metadata.json", FileAccess.ModeFlags.Read);
             metadataString = metadataFile.GetAsText();
         }
 
@@ -99,7 +101,7 @@ public partial class ChartHandler : Node
                     Length = (float)Note[2],
                 };
 
-                NewNote.PlayerSection = Note[1] < chart.KeyCount ? false : true;
+                NewNote.PlayerSection = Note[1] >= chart.KeyCount;
                 if(Section.mustHitSection) NewNote.PlayerSection = !NewNote.PlayerSection;
 
                 // this chart system deorganized as FUCK bruh
@@ -135,15 +137,14 @@ public partial class ChartHandler : Node
         //WDYM SECTIONS DONT EXIST HERE???
         // ^ it has grown on me now tbh
         chart.Sections = new();
-        foreach (RawVSliceNote rawNote in chartData.notes[CurrentDifficulty.ToCamelCase()])
+        foreach (RawNote newNote in chartData.notes[CurrentDifficulty.ToCamelCase()].Select(rawNote => new RawNote()
+                 {
+                     Time = rawNote.t,
+                     Length = rawNote.l,
+                     Direction = rawNote.d,
+                     Type = rawNote.k ?? "default"
+                 }))
         {
-            RawNote newNote = new()
-            {
-                Time = rawNote.t,
-                Length = rawNote.l,
-                Direction = rawNote.d,
-                Type = rawNote.k ?? "default"
-            };
             newNote.PlayerSection = newNote.Direction < chart.KeyCount ? true : false;
 
             if(newNote.Type == "Alt Animation"){

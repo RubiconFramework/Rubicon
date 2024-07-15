@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cx352arf7ejqx"]
+[gd_scene load_steps=22 format=3 uid="uid://cx352arf7ejqx"]
 
 [ext_resource type="Script" path="res://source/menus/options/OptionsMenu.cs" id="1_025u3"]
 [ext_resource type="Texture2D" uid="uid://ojbnvecky32n" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cnxj6k6gqye8h" path="res://source/menus/options/objects/sections/video/Video.tscn" id="7_mhcac"]
 [ext_resource type="PackedScene" uid="uid://c4hlnqsvubucn" path="res://source/menus/options/objects/sections/misc/Misc.tscn" id="8_2efem"]
 [ext_resource type="PackedScene" uid="uid://dbdfpnvlhkxlo" path="res://source/menus/options/objects/sections/keybinds/Keybinds.tscn" id="9_htkdd"]
-[ext_resource type="Script" path="res://source/menus/options/objects/sections/misc/Misc.cs" id="11_dg0lj"]
-[ext_resource type="Script" path="res://source/menus/options/objects/sections/keybinds/Keybinds.cs" id="13_lsdqi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkw33"]
 bg_color = Color(0, 0, 0, 0.745098)
@@ -517,7 +515,6 @@ layout_mode = 0
 offset_left = -0.5
 offset_right = 956.5
 offset_bottom = 514.0
-script = ExtResource("11_dg0lj")
 
 [node name="Keybinds" parent="LeftPanel/ScrollContainers" instance=ExtResource("9_htkdd")]
 visible = false
@@ -525,7 +522,6 @@ layout_mode = 0
 offset_left = -0.5
 offset_right = 957.5
 offset_bottom = 514.0
-script = ExtResource("13_lsdqi")
 
 [node name="DescriptionLabel" type="Label" parent="LeftPanel"]
 layout_mode = 1

@@ -17,7 +17,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove=".godot\**" />
-    <Compile Include="old src\backend\mariomadnessreference\MariosMadnessReference.cs" />
     <EmbeddedResource Remove=".godot\**" />
     <Compile Remove="old src\autoload\enums\**" />
     <EmbeddedResource Remove="old src\autoload\enums\**" />
@@ -25,15 +24,43 @@
     <EmbeddedResource Remove="source\backend\autoload\enums\**" />
     <Compile Remove="old src\backend\audiovisualizer\**" />
     <EmbeddedResource Remove="old src\backend\audiovisualizer\**" />
-    <Compile Remove="old src\**" />
-    <EmbeddedResource Remove="old src\**" />
     <Compile Remove="source\menus\title\objects\**" />
     <EmbeddedResource Remove="source\menus\title\objects\**" />
+    <Compile Update="source\backend\autoload\VolumeManager.cs">
+      <DependentUpon>VolumeManager.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\backend\autoload\DebugInfo.cs">
+      <DependentUpon>DebugInfo.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\backend\autoload\AudioManager.cs">
+      <DependentUpon>AudioManager.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\backend\LoadingScreen.cs">
+      <DependentUpon>LoadingScreen.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\gameplay\GameplayHUD.cs">
+      <DependentUpon>GameplayHUD.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\gameplay\PauseSubmenu.cs">
+      <DependentUpon>PauseSubmenu.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\gameplay\Gameplay3D.cs">
+      <DependentUpon>Gameplay3D.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\gameplay\Gameplay2D.cs">
+      <DependentUpon>Gameplay2D.tscn</DependentUpon>
+    </Compile>
+    <Compile Remove="old src\**" />
+    <EmbeddedResource Remove="old src\**" />
+    <Compile Update="source\backend\autoload\LoadingHandler.cs">
+      <DependentUpon>LoadingHandler.tscn</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
     <Content Include="source\backend\autoload\AudioManager.tscn" />
     <Content Include="source\backend\autoload\DebugInfo.tscn" />
+    <Content Include="source\backend\autoload\LoadingHandler.tscn" />
     <Content Include="source\backend\autoload\VolumeManager.tscn" />
     <Content Include="source\Main.tscn" />
     <Content Include="source\menus\options\objects\buttons\colorpicker\ColorPickerButton.tscn" />

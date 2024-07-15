@@ -5,8 +5,8 @@
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_ilqme")
 
-[node name="music" type="Node" parent="."]
+[node name="Music" type="Node" parent="."]
 
-[node name="sounds" type="Node" parent="."]
+[node name="Sounds" type="Node" parent="."]
 
-[node name="menus" type="Node" parent="sounds"]
+[node name="menus" type="Node" parent="Sounds"]

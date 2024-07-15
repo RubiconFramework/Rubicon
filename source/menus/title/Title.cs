@@ -15,7 +15,7 @@ public partial class Title : Node
 	[NodePath("Flash/AnimationPlayer")] private AnimationPlayer Flash;
 	[NodePath("Camera2D")] private Camera2D camera;
 
-	private string[] LoadedIntroTexts = new[] { "yoooo swag shit", "ball shit" };
+	private string[] LoadedIntroTexts = { "yoooo swag shit", "ball shit" };
 	private bool skippedIntro = true;
 	private bool transitioning;
 
@@ -41,8 +41,9 @@ public partial class Title : Node
 		base._Ready();
 		this.OnReady();
 
+		AudioManager.Play(AudioType.Music, "MainMenuMusic", 1f, true);
 		AnimationPlayer anim = GetNode<AnimationPlayer>("hi/AnimationPlayer");
-		anim.Play("Intro");
+		//anim.Play("Intro");
 		anim.AnimationFinished += _ =>
 		{
 			Flash.Play("Flash");
@@ -51,30 +52,28 @@ public partial class Title : Node
 
 		//LoadedIntroTexts = GetIntroTexts();
 		TitleEnter.Play("Press Enter to Begin");
-		Conductor.OnStepHit += OnStepHit;
+		Conductor.OnBeatHit += OnBeatHit;
 	}
 
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
 
-		if (@event.IsActionPressed("menu_accept"))
+		if (!@event.IsActionPressed("menu_accept")) return;
+		if (!skippedIntro) SkipIntro();
+		else if (!transitioning)
 		{
-			if (!skippedIntro) SkipIntro();
-			else if (!transitioning)
-			{
-				transitioning = true;
-				TitleEnter.Play("ENTER PRESSED");
+			transitioning = true;
+			TitleEnter.Play("ENTER PRESSED");
 
-				AudioManager.Instance.PlayAudio(AudioType.Sounds, "menus/confirmMenu");
-				SceneTreeTimer timer = GetTree().CreateTimer(2.0f);
-				timer.Timeout += () => GetTree().ChangeSceneToFile("res://source/menus/mainmenu/MainMenu.tscn");
-			}
+			AudioManager.Play(AudioType.Sounds, "menus/confirmMenu");
+			SceneTreeTimer timer = GetTree().CreateTimer(2.0f);
+			timer.Timeout += () => LoadingHandler.ChangeScene("res://source/menus/mainmenu/MainMenu.tscn", true);
 		}
 	}
 
 	private bool isDancingLeft = true;
-	private int OnStepHit(int step)
+	private int OnBeatHit(int step)
 	{
 		isDancingLeft = !isDancingLeft;
 		Girlfriend.Play(isDancingLeft ? "danceRight" : "danceLeft");

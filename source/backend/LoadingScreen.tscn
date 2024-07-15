@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyxkliby263by"]
 
 [ext_resource type="Script" path="res://source/backend/LoadingScreen.cs" id="1_k375o"]
-[ext_resource type="Texture2D" uid="uid://cg1gjpi4qy6n8" path="res://assets/misc/godot.svg" id="2_c3b36"]
+[ext_resource type="Texture2D" uid="uid://cvdbo6fny2heb" path="res://assets/misc/rubicon.png" id="2_o8bnx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6nle"]
 
@@ -27,4 +27,4 @@ show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(683, 384)
-texture = ExtResource("2_c3b36")
+texture = ExtResource("2_o8bnx")
