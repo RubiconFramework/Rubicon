@@ -1,5 +1,3 @@
-using Godot;
-using System;
 using System.IO;
 using System.Linq;
 using Rubicon.backend.autoload.enums;

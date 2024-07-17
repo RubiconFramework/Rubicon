@@ -1,4 +1,4 @@
-namespace Rubicon.Backend.Classes;
+namespace Rubicon.backend.classes;
 
 [Tool]
 public partial class PlayerSprite2D : AnimatedSprite2D

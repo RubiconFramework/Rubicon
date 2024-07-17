@@ -1,4 +1,6 @@
 
+namespace Rubicon.backend.classes;
+
 [Icon("res://assets/misc/parallax_node.svg")]
 [GlobalClass]
 public partial class ParallaxNode : Node2D
@@ -7,7 +9,7 @@ public partial class ParallaxNode : Node2D
 	// All credits to them, i just wanted that 100% c# repo
 
 	[Export] private Vector2 ParallaxFactor = new Vector2(1,1);
-	[Export] private bool PositionAsOffset = false;
+	[Export] private bool PositionAsOffset;
 	[Export] private bool IgnoreCameraChanges = true;
 
 	private Camera2D camera;
@@ -16,9 +18,7 @@ public partial class ParallaxNode : Node2D
 	public override void _Ready()
 	{
 		camera = GetViewport().GetCamera2D();
-
-		if(PositionAsOffset)
-			offset = Position;
+		if (PositionAsOffset) offset = Position;
 	}
 		
 	public override void _Process(double delta) => CallDeferred("UpdateCamera");
@@ -34,6 +34,6 @@ public partial class ParallaxNode : Node2D
 
 		if(IsInsideTree())
 			Position = offset + (camera.GetScreenCenterPosition() -
-			(GetViewportRect().Size / 2)) * (Vector2.One - ParallaxFactor);
+			                     (GetViewportRect().Size / 2)) * (Vector2.One - ParallaxFactor);
 	}
 }

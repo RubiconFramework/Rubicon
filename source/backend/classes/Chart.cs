@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-namespace Rubicon.Backend.Classes;
+
+namespace Rubicon.backend.classes;
 
 [Serializable]
 public partial class Chart : Resource

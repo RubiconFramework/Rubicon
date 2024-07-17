@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" path="res://source/backend/autoload/DebugInfo.cs" id="1_kpyvy"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yvj1"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rmx7"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
 corner_radius_top_left = 1
@@ -20,23 +29,42 @@ corner_radius_bottom_left = 1
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yvj1"]
-bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
-corner_radius_top_left = 1
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
-corner_radius_bottom_left = 1
-expand_margin_left = 5.0
-expand_margin_right = 5.0
-
 [node name="DebugInfo" type="CanvasLayer"]
 layer = 128
 script = ExtResource("1_kpyvy")
 
+[node name="KeybindsContainer" type="VBoxContainer" parent="."]
+offset_left = 872.0
+offset_top = 4.0
+offset_right = 1356.0
+offset_bottom = 90.0
+size_flags_horizontal = 8
+
+[node name="debug_reset" type="Label" parent="KeybindsContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Press {} to Return to the Song Select Menu"
+
+[node name="debug_autoplay" type="Label" parent="KeybindsContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Press {} to Enable Autoplay"
+
+[node name="debug_swap" type="Label" parent="KeybindsContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Press {} to Swap Strumline Focus"
+
 [node name="InfoContainer" type="VBoxContainer" parent="."]
 offset_left = 9.0
 offset_top = 4.0
-offset_right = 700.0
+offset_right = 1359.0
 offset_bottom = 213.0
 mouse_filter = 2
 

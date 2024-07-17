@@ -1,6 +1,6 @@
 	using System.Collections.Generic;
 
-	namespace Rubicon.Backend.Classes.ChartType;
+	namespace Rubicon.backend.classes.chartType;
 public partial class VSliceChartData : Resource
 {
 	//VSlice chart support (pain in the ass)

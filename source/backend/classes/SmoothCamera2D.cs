@@ -1,5 +1,5 @@
 
-namespace Rubicon.Backend.Classes;
+namespace Rubicon.backend.classes;
 public partial class SmoothCamera2D : Camera2D
 {
 	[ExportGroup("Camera Smoothing")]

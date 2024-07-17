@@ -107,10 +107,7 @@ public partial class RubiconSettings : Node
         public bool SceneTransitions { get; set; } = true;
     }
 
-    public static RubiconSettings GetDefaultSettings()
-    {
-        return new RubiconSettings();
-    }
+    public static RubiconSettings GetDefaultSettings() => new();
 
     public static void Load()
     {

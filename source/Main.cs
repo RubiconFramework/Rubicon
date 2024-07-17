@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Rubicon.backend.autoload;
-using Rubicon.Backend.Autoload;
 
 namespace Rubicon;
 

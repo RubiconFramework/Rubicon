@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
+using System.Linq;
 using System.Text;
 using Rubicon.Backend.Autoload;
 
@@ -14,7 +15,7 @@ public partial class DebugInfo : CanvasLayer
     [NodePath("InfoContainer/MainInformation/RAM")] private Label RAM;
     [NodePath("InfoContainer/MainInformation/VRAM")] private Label VRAM;
     
-    /*Debug Info*/
+    /*Debug Info (Keybind Based)*/
     //Scene Tree
     [NodePath("InfoContainer/DebugInformation/Objects/AllObjects")] private Label AllObjects;
     [NodePath("InfoContainer/DebugInformation/Objects/NodeObjects")] private Label NodeObjects;
@@ -27,11 +28,17 @@ public partial class DebugInfo : CanvasLayer
     //Misc
     [NodePath("InfoContainer/DebugInformation/Scene")] private Label CurrentScene;
     [NodePath("InfoContainer/DebugInformation/Conductor")] private Label ConductorInfo;
-
-    private Process CurrentProcess = Process.GetCurrentProcess();
-
-    [NodePath("InfoContainer/DebugInformation")] private VBoxContainer DebugInformation; //for visibility
     
+    //Keybinds
+    [NodePath("KeybindsContainer/debug_reset")] private Label ResetKeybind;
+    [NodePath("KeybindsContainer/debug_swap")] private Label SwapKeybind;
+    [NodePath("KeybindsContainer/debug_autoplay")] private Label AutoplayKeybind;
+
+    /*Visibility Shit*/
+    [NodePath("InfoContainer/DebugInformation")] private VBoxContainer DebugInformation; 
+    [NodePath("KeybindsContainer")] private VBoxContainer KeybindsContainer; 
+    
+    private Process CurrentProcess = Process.GetCurrentProcess();
     private float RAMUpdateTime;
     private float ObjectUpdateTime;
     
@@ -39,15 +46,15 @@ public partial class DebugInfo : CanvasLayer
     {
         this.OnReady();
         if (!OS.IsDebugBuild()) VRAM.Visible = false;
-        DebugInformation.Visible = false;
         DebugInformation.VisibilityChanged += () =>
         {
+            KeybindsContainer.Visible = DebugInformation.Visible;
             if (!DebugInformation.Visible) return;
             UpdateObjects();
             UpdateScene();
         };
-        RubiconVersion.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
-        GodotVersion.Text = $"Godot Engine {Engine.GetVersionInfo()["major"]}.{Engine.GetVersionInfo()["minor"]}.{Engine.GetVersionInfo()["patch"]} [{Engine.GetVersionInfo()["status"]}]";
+        DebugInformation.Visible = false;
+        UpdateStaticLabels();
     }
 
     private static string byteToReadableUnit(long bytes)
@@ -65,8 +72,9 @@ public partial class DebugInfo : CanvasLayer
     
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionJustPressed("debug_info")) DebugInformation.Visible = !DebugInformation.Visible;
-        
+        if (Input.IsActionJustPressed("debug_info")) 
+            DebugInformation.Visible = !DebugInformation.Visible;
+
         UpdateFPS();
         
         RAMUpdateTime += (float)delta;
@@ -90,7 +98,25 @@ public partial class DebugInfo : CanvasLayer
         
         UpdateConductor();
     }
-    
+
+    private void UpdateStaticLabels()
+    {
+        RubiconVersion.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+        GodotVersion.Text = $"Godot Engine {Engine.GetVersionInfo()["major"]}.{Engine.GetVersionInfo()["minor"]}.{Engine.GetVersionInfo()["patch"]} [{Engine.GetVersionInfo()["status"]}]";
+        AutoplayKeybind.Text = $"Press {GetKeybinds(AutoplayKeybind)} to Enable Autoplay";
+        SwapKeybind.Text = $"Press {GetKeybinds(SwapKeybind)} to Swap Strumline Focus";
+        ResetKeybind.Text = $"Press {GetKeybinds(ResetKeybind)} to Return to the Song Select Menu";
+        
+        string GetKeybinds(Node node)
+        {
+            var keybinds = InputMap.ActionGetEvents(node.Name)
+                .OfType<InputEventKey>()
+                .Select(key => key.AsTextPhysicalKeycode());
+
+            return string.Join(", ", keybinds);
+        }
+    }
+
     private void UpdateFPS() => FPS.Text = $"FPS: {Engine.GetFramesPerSecond()}";
 
     private void UpdateRAM() => RAM.Text = OS.IsDebugBuild() ? $"RAM: {byteToReadableUnit((long)OS.GetStaticMemoryUsage())} [{byteToReadableUnit(CurrentProcess.PrivateMemorySize64)}]" : $"RAM: {byteToReadableUnit(CurrentProcess.WorkingSet64)} [{byteToReadableUnit(CurrentProcess.PrivateMemorySize64)}]";

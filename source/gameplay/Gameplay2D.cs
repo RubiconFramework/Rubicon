@@ -1,6 +1,7 @@
 using Rubicon.Backend.Autoload;
-using Rubicon.Backend.Classes;
+using Rubicon.backend.classes;
 using Rubicon.Gameplay.Classes.Elements;
+using SmoothCamera2D = Rubicon.backend.classes.SmoothCamera2D;
 
 namespace Rubicon.Gameplay;
 public partial class Gameplay2D : GameplayBase
@@ -13,7 +14,10 @@ public partial class Gameplay2D : GameplayBase
 	[NodePath("Camera")] public SmoothCamera2D Camera;
 
 	public Stage2D Stage;
-	public Character2D Player, Opponent, Watcher;
+	public Character2D Player; 
+	public Character2D Opponent; 
+	public Character2D Watcher;
+	
 	public override void _Ready()
 	{
 		this.OnReady();

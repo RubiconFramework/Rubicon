@@ -1,11 +1,11 @@
 using Rubicon.Backend.Autoload;
-using Rubicon.Backend.Classes;
 using Rubicon.Gameplay.Classes;
 using Rubicon.Gameplay.Resources;
 using Rubicon.Gameplay.Classes.Notes;
 using System.Collections.Generic;
 using Rubicon.Gameplay.Classes.Strums;
 using System.Linq;
+using Rubicon.backend.classes;
 using Rubicon.Gameplay.Classes.Elements;
 using Rubicon.Gameplay.Classes.Events;
 
@@ -110,9 +110,12 @@ public partial class GameplayBase : Node
 		{
 			if(Input.IsActionJustPressed("debug_reset"))
 				LoadingHandler.ChangeScene("res://source/menus/debug/SongSelect.tscn");
+			
 			if(Input.IsActionJustPressed("debug_autoplay"))
 				Hud.strumHandler.FocusedStrumline.AutoPlay = !Hud.strumHandler.FocusedStrumline.AutoPlay;
-			if(Input.IsActionJustPressed("debug_swap")){
+			
+			if(Input.IsActionJustPressed("debug_swap"))
+			{
 				debugSwap = !debugSwap;
 				Hud.strumHandler.FocusStrumline(ref debugSwap ? ref Hud.CpuStrums : ref Hud.PlayerStrums);
 			}

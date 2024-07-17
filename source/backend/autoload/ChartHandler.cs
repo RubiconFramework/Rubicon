@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Rubicon.backend.classes;
 using FileAccess = Godot.FileAccess;
-using Rubicon.Backend.Classes;
-using static Rubicon.Backend.Classes.ChartType.DefaultChartData;
-using static Rubicon.Backend.Classes.ChartType.VSliceChartData;
+using static Rubicon.backend.classes.chartType.DefaultChartData;
+using static Rubicon.backend.classes.chartType.VSliceChartData;
+using Chart = Rubicon.backend.classes.Chart;
 
 namespace Rubicon.Backend.Autoload;
 public partial class ChartHandler : Node
