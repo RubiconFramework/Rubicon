@@ -1,6 +1,6 @@
 using Rubicon.Backend.Autoload;
 
-namespace Rubicon.Backend;
+namespace Rubicon.backend;
 public partial class LoadingScreen : Node
 {
     [NodePath("ProgressBar")] ProgressBar progressBar;

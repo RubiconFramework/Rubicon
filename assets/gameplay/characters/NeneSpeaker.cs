@@ -1,5 +1,7 @@
 using System.Collections.Generic;
-using Rubicon.Gameplay.Classes.Elements;
+using Rubicon.gameplay.classes.elements;
+
+namespace Rubicon.assets.gameplay.characters;
 
 public partial class NeneSpeaker : Character2D
 {

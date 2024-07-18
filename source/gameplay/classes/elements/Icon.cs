@@ -1,5 +1,5 @@
 
-namespace Rubicon.Gameplay.Classes.Elements;
+namespace Rubicon.gameplay.classes.elements;
 [GlobalClass]
 public partial class Icon : AnimatedSprite2D
 {

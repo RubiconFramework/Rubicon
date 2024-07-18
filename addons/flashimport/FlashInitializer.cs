@@ -1,3 +1,5 @@
+namespace Rubicon.addons.flashimport;
+
 [Tool]
 public partial class FlashInitializer : EditorPlugin
 {
@@ -6,8 +8,8 @@ public partial class FlashInitializer : EditorPlugin
 	public override void _EnterTree()
 	{
 		dockScene = GD.Load<PackedScene>("res://addons/flashimport/FlashImport.tscn").Instantiate<Control>();
-        AddControlToDock(DockSlot.LeftUr, dockScene);
-    }
+		AddControlToDock(DockSlot.LeftUr, dockScene);
+	}
 
 	public override void _ExitTree()
 	{

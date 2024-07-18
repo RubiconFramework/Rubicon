@@ -1,7 +1,7 @@
 
 using Godot.Collections;
 
-namespace Rubicon.Gameplay.Classes.Strums;
+namespace Rubicon.gameplay.classes.strums;
 public partial class Strum : AnimatedSprite2D
 {
 	public bool Pressed = false;

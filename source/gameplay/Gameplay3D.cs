@@ -1,4 +1,4 @@
-namespace Rubicon.Gameplay;
+namespace Rubicon.gameplay;
 public partial class Gameplay3D : GameplayBase
 {
 	/*	Just as Gameplay2D, but handles all 3D stuff.

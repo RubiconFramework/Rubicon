@@ -1,9 +1,8 @@
-
 using System.Collections.Generic;
 using System.Linq;
-using Rubicon.Gameplay.Resources;
+using Rubicon.gameplay.resources;
 
-namespace Rubicon.Gameplay.Classes;
+namespace Rubicon.gameplay.classes;
 public partial class HighScore : Node
 {
 	public int Score = 0;

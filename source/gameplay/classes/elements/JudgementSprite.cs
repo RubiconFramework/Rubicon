@@ -1,7 +1,7 @@
-using Rubicon.Backend.Autoload;
-using Rubicon.Gameplay.Resources;
+using Rubicon.backend.autoload;
+using Rubicon.gameplay.resources;
 
-namespace Rubicon.Gameplay.Classes.Elements;
+namespace Rubicon.gameplay.classes.elements;
 public partial class JudgementSprite : RigidBody2D
 {
 	[NodePath("Sprite")] private AnimatedSprite2D Sprite;

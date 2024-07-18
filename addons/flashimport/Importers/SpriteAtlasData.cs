@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 // im gonna kms this shits a mess i hate texture atlases
-namespace FlashImport.Importers;
+namespace Rubicon.addons.flashimport.Importers;
 public class SpriteAtlasData
 {
     // Sprite Data

@@ -1,5 +1,6 @@
 using Rubicon.Backend.Autoload;
 using Button = Godot.Button;
+using RubiconSettings = Rubicon.backend.autoload.RubiconSettings;
 
 namespace Rubicon.menus.options.objects.sections;
 

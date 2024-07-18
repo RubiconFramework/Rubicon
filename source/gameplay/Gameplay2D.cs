@@ -1,9 +1,9 @@
-using Rubicon.Backend.Autoload;
+using Rubicon.backend.autoload;
 using Rubicon.backend.classes;
-using Rubicon.Gameplay.Classes.Elements;
+using Rubicon.gameplay.classes.elements;
 using SmoothCamera2D = Rubicon.backend.classes.SmoothCamera2D;
 
-namespace Rubicon.Gameplay;
+namespace Rubicon.gameplay;
 public partial class Gameplay2D : GameplayBase
 {
 	/*	This class handles all 2D specific / 2D sensitive stuff.

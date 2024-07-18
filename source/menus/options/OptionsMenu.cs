@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using Rubicon.backend.autoload;
 using Rubicon.Backend.Autoload;
 using Rubicon.menus.options.objects.sections;
+using RubiconSettings = Rubicon.backend.autoload.RubiconSettings;
 
 namespace Rubicon.menus.options;
 enum OptionsMenuSections

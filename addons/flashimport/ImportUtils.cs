@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FlashImport;
+namespace Rubicon.addons.flashimport;
 public partial class ImportUtils
 {
     public static List<string> ListDirectory(string path)

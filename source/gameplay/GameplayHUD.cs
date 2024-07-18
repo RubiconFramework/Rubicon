@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
-using Rubicon.Backend.Autoload;
-using Rubicon.Gameplay.Classes;
-using Rubicon.Gameplay.Classes.Strums;
-using Rubicon.Gameplay.Classes.Notes;
-using Rubicon.Gameplay.Classes.Elements;
-using Rubicon.Gameplay.Resources;
+using Rubicon.backend.autoload;
+using Rubicon.gameplay.classes;
+using Rubicon.gameplay.classes.elements;
+using Rubicon.gameplay.classes.notes;
+using Rubicon.gameplay.classes.strums;
+using Rubicon.gameplay.resources;
 
-namespace Rubicon.Gameplay;
+namespace Rubicon.gameplay;
 public partial class GameplayHUD : CanvasLayer
 {
 	/*	Contains all code for the HUD.

@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Rubicon.Backend.Autoload;
+namespace Rubicon.backend.autoload;
 
 public enum AudioOutputMode
 {

@@ -1,6 +1,6 @@
-using Rubicon.Backend.Autoload;
+using Rubicon.backend.autoload;
 
-namespace Rubicon.Gameplay.Classes.Elements;
+namespace Rubicon.gameplay.classes.elements;
 
 public partial class Character2D : Node2D
 {

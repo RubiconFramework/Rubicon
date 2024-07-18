@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 
-namespace Rubicon.Gameplay.Classes.Events;
+namespace Rubicon.gameplay.classes.events;
 [GlobalClass]
 public partial class SongEvent : Node
 {

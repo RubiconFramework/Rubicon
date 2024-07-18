@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text.Json;
 
-namespace FlashImport.Importers;
+namespace Rubicon.addons.flashimport.Importers;
 [Tool] public partial class SpriteAtlas : Node
 {
     private string spritePath;

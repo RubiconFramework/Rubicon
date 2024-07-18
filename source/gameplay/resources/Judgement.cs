@@ -1,5 +1,5 @@
 
-namespace Rubicon.Gameplay.Resources;
+namespace Rubicon.gameplay.resources;
 [GlobalClass]
 public partial class Judgement : Resource
 {

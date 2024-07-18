@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using Rubicon.Backend.Autoload;
-using Rubicon.Gameplay.Classes.Elements;
-using Rubicon.Gameplay.Classes.Strums;
-using Rubicon.Gameplay.Resources;
+using Rubicon.backend.autoload;
+using Rubicon.gameplay.classes.elements;
+using Rubicon.gameplay.classes.strums;
+using Rubicon.gameplay.resources;
 
-namespace Rubicon.Gameplay.Classes.Notes;
+namespace Rubicon.gameplay.classes.notes;
 
 [GlobalClass]
 public partial class NoteHandler : Node

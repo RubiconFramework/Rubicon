@@ -1,4 +1,4 @@
-namespace OldRubicon.scenes.options.objects.buttons.filepicker;
+namespace Rubicon.backend.misc.settings;
 
 public partial class FilePickerButton : Button
 {

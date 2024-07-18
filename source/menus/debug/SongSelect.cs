@@ -1,4 +1,5 @@
 using Rubicon.Backend.Autoload;
+using ChartHandler = Rubicon.backend.autoload.ChartHandler;
 
 namespace Rubicon.menus.debug;
 

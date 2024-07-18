@@ -1,8 +1,13 @@
 using System.IO;
 using System.Linq;
-using Rubicon.backend.autoload.enums;
 
 namespace Rubicon.backend.autoload;
+
+public enum AudioType
+{
+    Music,
+    Sounds
+}
 
 [Icon("res://assets/miscicons/autoload.png")]
 public partial class AudioManager : Node

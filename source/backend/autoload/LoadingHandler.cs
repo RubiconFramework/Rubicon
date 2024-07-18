@@ -31,7 +31,7 @@ public partial class LoadingHandler : CanvasLayer
 
     public async void ChangeSceneWithTransition(string path)
     {
-        if (!RubiconSettings.Misc.SceneTransitions)
+        if (!backend.autoload.RubiconSettings.Misc.SceneTransitions)
         {
             GetTree().ChangeSceneToFile(path);
             await ToSignal(GetTree().CreateTimer(0.1f), SceneTreeTimer.SignalName.Timeout);
@@ -39,7 +39,7 @@ public partial class LoadingHandler : CanvasLayer
             return;
         }
 
-        AnimationPlayer player = GetNode<AnimationPlayer>(RubiconSettings.Misc.Transitions.ToString());
+        AnimationPlayer player = GetNode<AnimationPlayer>(backend.autoload.RubiconSettings.Misc.Transitions.ToString());
         player.Play("Start");
         player.AnimationFinished += TransitionFinished;
 
@@ -56,7 +56,7 @@ public partial class LoadingHandler : CanvasLayer
 
     public async void ChangeSceneWithTransition(string path, TransitionType forcedTransitionType)
     {
-        if (!RubiconSettings.Misc.SceneTransitions)
+        if (!backend.autoload.RubiconSettings.Misc.SceneTransitions)
         {
             GetTree().ChangeSceneToFile(path);
             await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
@@ -108,7 +108,7 @@ public partial class LoadingHandler : CanvasLayer
                 SceneTreeTimer timer = GetTree().CreateTimer(1);
                 timer.Connect("timeout", Callable.From(async () => {
                     transitioning = false;
-                    AnimationPlayer player = GetNode<AnimationPlayer>(RubiconSettings.Misc.Transitions.ToString());
+                    AnimationPlayer player = GetNode<AnimationPlayer>(backend.autoload.RubiconSettings.Misc.Transitions.ToString());
                     player.Play("Start");
                     await ToSignal(player, "animation_finished");
                     GetTree().ChangeSceneToPacked((PackedScene)loadedScene);

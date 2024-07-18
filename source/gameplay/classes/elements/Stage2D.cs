@@ -1,5 +1,5 @@
 
-namespace Rubicon.Gameplay.Classes.Elements;
+namespace Rubicon.gameplay.classes.elements;
 public partial class Stage2D : Node2D
 {
 	/*	im tired of these stupid ass descriptions bruh

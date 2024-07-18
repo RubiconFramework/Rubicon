@@ -1,5 +1,5 @@
+using Rubicon.backend.autoload;
 using Rubicon.Backend.Autoload;
-using Rubicon.backend.autoload.enums;
 using AudioManager = Rubicon.backend.autoload.AudioManager;
 
 namespace Rubicon.menus.mainmenu;
@@ -25,8 +25,7 @@ public partial class MainMenu : Node
 	{
 		base._Process(delta);
 
-		float cameraSpeed = Mathf.Clamp(((float)delta * 3), 0f, 1f);
-		float camZoom = Mathf.Lerp(camera.Zoom.X, 1, cameraSpeed);
+		float camZoom = Mathf.Lerp(camera.Zoom.X, 1, Mathf.Clamp(((float)delta * 3), 0f, 1f));
 		camera.Zoom = new(camZoom, camZoom);
 	}
 

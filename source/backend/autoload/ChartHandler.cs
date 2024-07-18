@@ -7,7 +7,7 @@ using static Rubicon.backend.classes.chartType.DefaultChartData;
 using static Rubicon.backend.classes.chartType.VSliceChartData;
 using Chart = Rubicon.backend.classes.Chart;
 
-namespace Rubicon.Backend.Autoload;
+namespace Rubicon.backend.autoload;
 public partial class ChartHandler : Node
 {
     public static Chart CurrentChart;

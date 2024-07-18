@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/menus/options/objects/sections/gameplay/menus/GameplayModifiers.cs" id="2_o1nqe"]
 [ext_resource type="Theme" uid="uid://b6ecmfgqd2syw" path="res://assets/themes/duo/GameplayModifiers [Duo].tres" id="2_sm2pk"]
-[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://source/menus/options/objects/buttons/slider/LabelSlider.tscn" id="3_3htfa"]
+[ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://source/backend/misc/settings/LabelSlider.tscn" id="3_cled4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf85w"]
 bg_color = Color(0, 0, 0, 0.2)
@@ -78,17 +78,17 @@ layout_mode = 2
 theme_override_constants/separation = 11
 theme_override_styles/separator = SubResource("StyleBoxFlat_e3aok")
 
-[node name="HealthGainMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_3htfa")]
+[node name="HealthGainMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_cled4")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
 text = "Health Gain Multiplier [1.0x] "
 
-[node name="HealthLossMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_3htfa")]
+[node name="HealthLossMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_cled4")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
 text = "Health Loss Multiplier [1.0x] "
 
-[node name="SongRate" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_3htfa")]
+[node name="SongRate" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_cled4")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
 text = "Song Rate [1.0x] "

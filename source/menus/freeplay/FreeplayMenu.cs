@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Godot.Collections;
+using Rubicon.backend.autoload;
 using Rubicon.Backend.Autoload;
-using Rubicon.backend.autoload.enums;
 using AudioManager = Rubicon.backend.autoload.AudioManager;
+using ChartHandler = Rubicon.backend.autoload.ChartHandler;
+using Conductor = Rubicon.backend.autoload.Conductor;
 using FreeplaySong = Rubicon.menus.freeplay.resources.FreeplaySong;
 
 namespace Rubicon.menus.freeplay;

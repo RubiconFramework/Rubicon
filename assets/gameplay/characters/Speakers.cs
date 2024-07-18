@@ -1,4 +1,6 @@
-using Rubicon.Gameplay.Classes.Elements;
+using Rubicon.gameplay.classes.elements;
+
+namespace Rubicon.assets.gameplay.characters;
 
 public partial class Speakers : Character2D
 {

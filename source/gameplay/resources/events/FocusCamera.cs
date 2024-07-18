@@ -1,4 +1,6 @@
-using Rubicon.Gameplay.Classes.Events;
+using Rubicon.gameplay.classes.events;
+
+namespace Rubicon.gameplay.resources.events;
 
 public partial class FocusCamera : SongEvent
 {

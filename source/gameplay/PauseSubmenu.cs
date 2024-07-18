@@ -1,5 +1,5 @@
 
-namespace Rubicon.Gameplay;
+namespace Rubicon.gameplay;
 public partial class PauseSubmenu : CanvasLayer
 {
     [NodePath("../")] GameplayBase Gameplay;

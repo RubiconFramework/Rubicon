@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Rubicon.Backend.Autoload;
-using Rubicon.Gameplay.Classes.Elements;
-using Rubicon.Gameplay.Classes.Notes;
+using Rubicon.backend.autoload;
+using Rubicon.gameplay.classes.elements;
+using Rubicon.gameplay.classes.notes;
 
-namespace Rubicon.Gameplay.Classes.Strums;
+namespace Rubicon.gameplay.classes.strums;
 [GlobalClass]
 public partial class StrumHandler : Node
 {

@@ -1,5 +1,5 @@
 
-namespace Rubicon.Gameplay.Classes.Elements;
+namespace Rubicon.gameplay.classes.elements;
 public partial class Healthbar : ProgressBar
 {
     [Export] public bool ColorableBar = true;

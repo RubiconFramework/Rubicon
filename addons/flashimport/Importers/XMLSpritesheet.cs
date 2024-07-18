@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FlashImport.Importers;
+namespace Rubicon.addons.flashimport.Importers;
 [Tool] public partial class XMLSpritesheet : Node
 {
     private string spritePath;

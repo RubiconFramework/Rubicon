@@ -1,4 +1,4 @@
-namespace Rubicon.Backend.Autoload;
+namespace Rubicon.backend.autoload;
 
 public partial class Conductor : Node
 {

@@ -3,38 +3,13 @@ using System.IO.Compression;
 using System.Text;
 using Rubicon.backend.autoload;
 using Rubicon.Backend.Autoload;
-using Rubicon.backend.autoload.enums;
+using RubiconSettings = Rubicon.backend.autoload.RubiconSettings;
 
 namespace Rubicon.menus.options.objects.sections;
 
 public class HelperMethods
 {
-    public static void SetVolume(VolumeType volumeType, float v)
-    {
-        switch (volumeType)
-        {
-            case VolumeType.MasterVolume:
-                RubiconSettings.Audio.MasterVolume = v;
-                VolumeManager.SetVolume(v);
-                break;
-            case VolumeType.MusicVolume:
-                RubiconSettings.Audio.MusicVolume = v;
-                VolumeManager.SetVolume(v);
-                break;
-            case VolumeType.SFXVolume:
-                RubiconSettings.Audio.SFXVolume = v;
-                VolumeManager.SetVolume(v);
-                break;
-            case VolumeType.InstVolume:
-                RubiconSettings.Audio.InstVolume = v;
-                VolumeManager.SetVolume(v);
-                break;
-            case VolumeType.VoiceVolume:
-                RubiconSettings.Audio.VoiceVolume = v;
-                VolumeManager.SetVolume(v);
-                break;
-        }
-    }
+    public static void SetVolume(VolumeType volumeType, float v) => VolumeManager.Instance.volumeButtons[volumeType].SetVolume(v);
 
     public static void SetVSync(DisplayServer.VSyncMode v)
     {

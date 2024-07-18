@@ -1,4 +1,4 @@
-namespace Rubicon.Gameplay.Classes.Elements;
+namespace Rubicon.gameplay.classes.elements;
 
 [Tool]
 [GlobalClass]

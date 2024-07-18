@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://33ned2004gs"]
 
-[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_bu5sw"]
+[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_j3lpb"]
 
 [node name="ColorPicker" type="Label"]
 offset_right = 487.0
 offset_bottom = 35.0
-theme = ExtResource("1_bu5sw")
+theme = ExtResource("1_j3lpb")
 theme_override_font_sizes/font_size = 22
 text = " Color Picker"
 
@@ -22,4 +22,4 @@ offset_right = -7.0
 offset_bottom = 8.5
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("1_bu5sw")
+theme = ExtResource("1_j3lpb")

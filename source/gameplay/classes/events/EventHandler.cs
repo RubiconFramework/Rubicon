@@ -1,6 +1,6 @@
-using Rubicon.Backend.Autoload;
+using Rubicon.backend.autoload;
 
-namespace Rubicon.Gameplay.Classes.Events;
+namespace Rubicon.gameplay.classes.events;
 [GlobalClass]
 public partial class EventHandler : Node
 {

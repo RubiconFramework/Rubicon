@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FlashImport.Importers;
+namespace Rubicon.addons.flashimport.Importers;
 [Tool] public partial class JSONSpritesheet : Node
 {
     private static string spritePath;

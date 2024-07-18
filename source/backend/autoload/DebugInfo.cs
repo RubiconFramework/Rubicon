@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -33,6 +32,7 @@ public partial class DebugInfo : CanvasLayer
     [NodePath("KeybindsContainer/debug_reset")] private Label ResetKeybind;
     [NodePath("KeybindsContainer/debug_swap")] private Label SwapKeybind;
     [NodePath("KeybindsContainer/debug_autoplay")] private Label AutoplayKeybind;
+    [NodePath("KeybindsContainer/volume_open")] private Label VolumeManagerKeybind;
 
     /*Visibility Shit*/
     [NodePath("InfoContainer/DebugInformation")] private VBoxContainer DebugInformation; 
@@ -103,18 +103,13 @@ public partial class DebugInfo : CanvasLayer
     {
         RubiconVersion.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
         GodotVersion.Text = $"Godot Engine {Engine.GetVersionInfo()["major"]}.{Engine.GetVersionInfo()["minor"]}.{Engine.GetVersionInfo()["patch"]} [{Engine.GetVersionInfo()["status"]}]";
+        
         AutoplayKeybind.Text = $"Press {GetKeybinds(AutoplayKeybind)} to Enable Autoplay";
         SwapKeybind.Text = $"Press {GetKeybinds(SwapKeybind)} to Swap Strumline Focus";
         ResetKeybind.Text = $"Press {GetKeybinds(ResetKeybind)} to Return to the Song Select Menu";
+        VolumeManagerKeybind.Text = $"Press {GetKeybinds(VolumeManagerKeybind)} to Open the Volume Manager";
         
-        string GetKeybinds(Node node)
-        {
-            var keybinds = InputMap.ActionGetEvents(node.Name)
-                .OfType<InputEventKey>()
-                .Select(key => key.AsTextPhysicalKeycode());
-
-            return string.Join(", ", keybinds);
-        }
+        string GetKeybinds(Node node) => string.Join(", ", InputMap.ActionGetEvents(node.Name).OfType<InputEventKey>().Select(key => key.AsTextPhysicalKeycode()));
     }
 
     private void UpdateFPS() => FPS.Text = $"FPS: {Engine.GetFramesPerSecond()}";

@@ -1,15 +1,18 @@
-using Rubicon.Backend.Autoload;
-using Rubicon.Gameplay.Classes;
-using Rubicon.Gameplay.Resources;
-using Rubicon.Gameplay.Classes.Notes;
 using System.Collections.Generic;
-using Rubicon.Gameplay.Classes.Strums;
 using System.Linq;
+using Rubicon.Backend.Autoload;
 using Rubicon.backend.classes;
-using Rubicon.Gameplay.Classes.Elements;
-using Rubicon.Gameplay.Classes.Events;
+using Rubicon.gameplay.classes;
+using Rubicon.gameplay.classes.elements;
+using Rubicon.gameplay.classes.events;
+using Rubicon.gameplay.classes.notes;
+using Rubicon.gameplay.classes.strums;
+using Rubicon.gameplay.resources;
+using ChartHandler = Rubicon.backend.autoload.ChartHandler;
+using Conductor = Rubicon.backend.autoload.Conductor;
+using RubiconSettings = Rubicon.backend.autoload.RubiconSettings;
 
-namespace Rubicon.Gameplay;
+namespace Rubicon.gameplay;
 public partial class GameplayBase : Node
 {
 	/*	The base class that both Gameplay2D and Gameplay3D inherit from.

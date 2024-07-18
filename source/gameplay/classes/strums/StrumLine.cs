@@ -1,8 +1,8 @@
-	using System.Collections.Generic;
-	using Rubicon.Gameplay.Classes.Notes;
-	using Rubicon.Gameplay.Resources;
+using System.Collections.Generic;
+using Rubicon.gameplay.classes.notes;
+using Rubicon.gameplay.resources;
 
-namespace Rubicon.Gameplay.Classes.Strums;
+namespace Rubicon.gameplay.classes.strums;
 
 public partial class StrumLine : Node2D
 {

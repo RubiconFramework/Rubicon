@@ -61,6 +61,13 @@ theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
 text = "Press {} to Swap Strumline Focus"
 
+[node name="volume_open" type="Label" parent="KeybindsContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Press {} to Open the Volume Manager"
+
 [node name="InfoContainer" type="VBoxContainer" parent="."]
 offset_left = 9.0
 offset_top = 4.0
