@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://k8kx0lbjm1hj"]
+[gd_scene load_steps=4 format=3 uid="uid://k8kx0lbjm1hj"]
 
 [ext_resource type="Script" path="res://addons/flashimport/Importers/XMLSpritesheet.cs" id="1_jnv0x"]
 [ext_resource type="Theme" uid="uid://14vqd4l3ryru" path="res://assets/theme/default.tres" id="2_b1xoh"]
 [ext_resource type="Script" path="res://addons/flashimport/Importers/JSONSpritesheet.cs" id="3_gxduc"]
-[ext_resource type="Script" path="res://addons/flashimport/Importers/SpriteAtlas.cs" id="4_u7ol0"]
 
 [node name="FlashImport" type="Control"]
 layout_mode = 3
@@ -133,9 +132,22 @@ text = "not yet :("
 
 [node name="Sprite Atlas" type="TabBar" parent="TabContainer"]
 layout_mode = 2
-script = ExtResource("4_u7ol0")
+
+[node name="Label" type="Label" parent="TabContainer/Sprite Atlas"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 85.0
+offset_bottom = 42.0
+text = "Json Deserializers do not work
+on tool classes
+
+This has been temporarily
+moved to:
+flashimport/Importers/SpriteAtlas.tscn"
 
 [node name="SpritePath" type="LineEdit" parent="TabContainer/Sprite Atlas"]
+visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = 16.0
@@ -145,6 +157,7 @@ theme = ExtResource("2_b1xoh")
 placeholder_text = "res://*/SpriteAtlas/"
 
 [node name="Label" type="Label" parent="TabContainer/Sprite Atlas/SpritePath"]
+visible = false
 layout_mode = 0
 offset_left = 4.0
 offset_top = 7.0
@@ -153,6 +166,7 @@ offset_bottom = 30.0
 text = "Sprite Path:"
 
 [node name="Label2" type="Label" parent="TabContainer/Sprite Atlas/SpritePath"]
+visible = false
 modulate = Color(0.423529, 0.423529, 0.423529, 1)
 layout_mode = 0
 offset_top = 36.0
@@ -162,6 +176,7 @@ theme_override_font_sizes/font_size = 10
 text = "*Fill with ONLY the directory of the Sprite Atlas"
 
 [node name="Scene" type="CheckBox" parent="TabContainer/Sprite Atlas"]
+visible = false
 layout_mode = 0
 offset_left = 104.0
 offset_top = 96.0
@@ -170,6 +185,7 @@ offset_bottom = 127.0
 text = "Make Scene?"
 
 [node name="Label2" type="Label" parent="TabContainer/Sprite Atlas/Scene"]
+visible = false
 modulate = Color(0.423529, 0.423529, 0.423529, 1)
 layout_mode = 0
 offset_top = 31.0
@@ -181,6 +197,7 @@ AnimatedSprite2D nodes for every
 sprite in the spritemap"
 
 [node name="Convert" type="Button" parent="TabContainer/Sprite Atlas"]
+visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = 93.0
@@ -190,4 +207,3 @@ theme_override_font_sizes/font_size = 20
 text = "Import"
 
 [connection signal="pressed" from="TabContainer/XML Spritesheet/Convert" to="TabContainer/XML Spritesheet" method="OnButtonPress"]
-[connection signal="pressed" from="TabContainer/Sprite Atlas/Convert" to="TabContainer/Sprite Atlas" method="OnButtonPress"]

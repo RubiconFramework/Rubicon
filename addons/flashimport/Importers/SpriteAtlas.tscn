@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://dufx3830dcjkh"]
+
+[ext_resource type="Theme" uid="uid://14vqd4l3ryru" path="res://assets/theme/default.tres" id="1_gn6fk"]
+[ext_resource type="Script" path="res://addons/flashimport/Importers/SpriteAtlas.cs" id="1_sfuc1"]
+[ext_resource type="Script" path="res://addons/flashimport/Importers/FolderButton.cs" id="3_428bq"]
+
+[node name="SpriteAtlas" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sfuc1")
+
+[node name="SpritePath" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 40.0
+offset_right = 665.0
+offset_bottom = 78.0
+theme = ExtResource("1_gn6fk")
+placeholder_text = "res://*/SpriteAtlas/"
+
+[node name="Label" type="Label" parent="SpritePath"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 7.0
+offset_right = 94.0
+offset_bottom = 30.0
+text = "Sprite Path:"
+
+[node name="Label2" type="Label" parent="SpritePath"]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layout_mode = 0
+offset_top = 36.0
+offset_right = 299.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 10
+text = "*Fill with ONLY the directory of the Sprite Atlas"
+
+[node name="Folder" type="Button" parent="SpritePath"]
+layout_mode = 0
+offset_left = -69.0
+offset_top = 3.0
+offset_right = -12.0
+offset_bottom = 34.0
+text = "Folder"
+script = ExtResource("3_428bq")
+
+[node name="FileDialog" type="FileDialog" parent="SpritePath/Folder"]
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(512, 512)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+root_subfolder = "assets"
+
+[node name="Scene" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 120.0
+offset_right = 232.0
+offset_bottom = 151.0
+text = "Make Scene?"
+
+[node name="Label2" type="Label" parent="Scene"]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layout_mode = 0
+offset_top = 31.0
+offset_right = 299.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 10
+text = "*This will make a scene containing the
+AnimatedSprite2D nodes for every
+sprite in the spritemap"
+
+[node name="Convert" type="Button" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 117.0
+offset_right = 96.0
+offset_bottom = 237.0
+theme_override_font_sizes/font_size = 20
+text = "Import"
+
+[connection signal="pressed" from="SpritePath/Folder" to="SpritePath/Folder" method="ButtonPress"]
+[connection signal="dir_selected" from="SpritePath/Folder/FileDialog" to="SpritePath/Folder" method="DirSelected"]
+[connection signal="pressed" from="Convert" to="." method="OnButtonPress"]

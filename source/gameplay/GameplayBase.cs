@@ -78,8 +78,8 @@ public partial class GameplayBase : Node
 		Hud.JudgementTemplate.GetChild<AnimatedSprite2D>(0).Modulate = new Color(1,1,1,Style.RatingTransparency);
 
 		// Generating strumlines
-		float StrumY = -(Main.WindowSize.Y/2) + 100;
-		if (RubiconSettings.Gameplay.Downscroll) StrumY = (Main.WindowSize.Y/2) - 100;
+		float StrumY = -(Main.ViewportSize.Y/2) + 100;
+		if (RubiconSettings.Gameplay.Downscroll) StrumY = (Main.ViewportSize.Y/2) - 100;
 		Hud.GenerateStrum(ref Hud.PlayerStrums, ChartHandler.CurrentChart.KeyCount, new Vector2(380, StrumY), true);
 		Hud.GenerateStrum(ref Hud.CpuStrums, ChartHandler.CurrentChart.KeyCount, new Vector2(-380, StrumY));
 

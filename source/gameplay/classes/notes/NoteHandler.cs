@@ -158,7 +158,13 @@ public partial class NoteHandler : Node
         foreach (dynamic character in note.CurrentStrumline.FocusedCharacters)
         {
             if (character.StaticSustain && note.IsSustainNote) return;
-            character.PlayAnim($"sing{strum.Name.ToString().ToUpper()}", false);
+            CharacterAnimation anim = new()
+            {
+                AnimName = $"sing{strum.Name.ToString().ToUpper()}",
+                OverrideDance = true,
+                Force = true
+            };
+            character.PlayAnim(anim);
             character.SingTimer = 0;
             character.HoldAnimTimer = 0;
         }
@@ -174,13 +180,20 @@ public partial class NoteHandler : Node
 
     public void NoteMiss(Note note, bool PlayAnimation = true, bool FakeMiss = false)
     {
-        GD.Print("missed note");
-
+        Strum strum = note.CurrentStrumline.GetChild<Strum>(note.Direction);
         note.WasMissed = true;
+        
         if (PlayAnimation)
             foreach (dynamic character in note.CurrentStrumline.FocusedCharacters)
             {
-                character.PlayAnim($"sing{note.CurrentStrumline.GetChild(note.Direction).Name.ToString().ToUpper()}miss", false);
+                CharacterAnimation anim = new()
+                {
+                    AnimName = $"sing{strum.Name.ToString().ToUpper()}",
+                    Suffix = "miss",
+                    OverrideDance = true,
+                    Force = true
+                };
+                character.PlayAnim(anim);
                 character.SingTimer = 0;
             }
         if (!note.CurrentStrumline.AutoPlay)
@@ -200,7 +213,6 @@ public partial class NoteHandler : Node
         if (note.IsSustainNote && note.WasHit)
         {
             note.Time += note.HoldTime;
-            Strum strum = note.CurrentStrumline.GetChild<Strum>(note.Direction);
             strum.GetNode<AnimatedSprite2D>($"{note.RawType}Sustain").Visible = false;
         }
 

@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Text.Json;
 
 namespace Rubicon.addons.flashimport.Importers;
-[Tool] public partial class SpriteAtlas : Node
+public partial class SpriteAtlas : Node
 {
     private string spritePath;
     private bool scene;
@@ -28,14 +28,6 @@ namespace Rubicon.addons.flashimport.Importers;
         var spritemapFile = FileAccess.Open(spritePath+"spritemap1.json", FileAccess.ModeFlags.Read);
         SpriteAtlasData spritemap = JsonSerializer.Deserialize<SpriteAtlasData>(spritemapFile.GetAsText());
         spritemapFile.Close();
-
-        //this is some random solution i found on github
-        //no idea how or where to use it
-        //but its not throwing the error anymore so ig we're good
-        var assembly = typeof(JsonSerializerOptions).Assembly;
-        var updateHandlerType = assembly.GetType("System.Text.Json.JsonSerializerOptionsUpdateHandler");
-        var clearCacheMethod = updateHandlerType?.GetMethod("ClearCache", BindingFlags.Static | BindingFlags.Public);
-        clearCacheMethod?.Invoke(null, new object?[] { null }); 
 
         Texture2D texture = GD.Load<Texture2D>(spritePath+"spritemap1.png");
 

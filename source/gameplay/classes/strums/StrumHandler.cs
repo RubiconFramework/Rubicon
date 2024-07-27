@@ -93,7 +93,7 @@ public partial class StrumHandler : Node
 		
 		if(!IsPressingNote)
 		{
-			foreach (var character in FocusedStrumline.FocusedCharacters.Where(character => character.LastAnim.StartsWith("sing") && character.SingTimer >= Conductor.StepDuration * (character.SingDuration * 0.0011)))
+			foreach (Character2D character in FocusedStrumline.FocusedCharacters.Where(character => character.LastAnim.AnimName.StartsWith("sing") && character.SingTimer >= Conductor.StepDuration * (character.SingDuration * 0.0011)))
 			{
 				character.Dance(true);
 				character.SingTimer = 0;

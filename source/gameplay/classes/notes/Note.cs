@@ -60,7 +60,7 @@ public partial class Note : Node2D
         DownscrollMultiplier = RubiconSettings.Gameplay.Downscroll ? -1 : 1;
     
         if(SustainLength < 50) SustainMask.QueueFree();
-        SustainMask.Size = new Vector2(SustainMask.Size.X, Main.WindowSize.Y / Scale.Y);
+        SustainMask.Size = new Vector2(SustainMask.Size.X, Main.ViewportSize.Y / Scale.Y);
         InitialLength = SustainLength;
     }
 

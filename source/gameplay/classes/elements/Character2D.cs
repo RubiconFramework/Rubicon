@@ -14,14 +14,13 @@ public partial class Character2D : Node2D
 	[Export] public Vector2 IconOffset = new Vector2(0,10);
 	
 	[ExportGroup("Animation Info")]
-	[Export] public string Prefix;
-	[Export] public string Suffix;
+	[Export] public string StaticPrefix;
+	[Export] public string StaticSuffix;
 	[Export] public string[] DanceList = {"idle"};
 	[Export] public float SingDuration = 4;
 	[Export] public bool StaticSustain = false;
-	private bool AnimFinished;
-	public string LastAnim = "";
-	public bool OverrideAnim = false;
+	public CharacterAnimation CurrentAnim = new();
+	public CharacterAnimation LastAnim = new();
 	public bool ShouldDance = true;
 
 	[ExportGroup("Character Info")]
@@ -46,15 +45,11 @@ public partial class Character2D : Node2D
 		FlipAnimations = IsPlayer != MirrorCharacter;
 	}	
 
-	private void AnimationFinished(StringName AnimName)
-	{
-		AnimFinished = true;
-		OverrideAnim = false;
-	}
+	private void AnimationFinished(StringName AnimName) => CurrentAnim.AnimFinished = true;
 
     public override void _PhysicsProcess(double delta)
     {
-		if(LastAnim.StartsWith("sing"))
+		if(CurrentAnim != null && CurrentAnim.AnimName.StartsWith("sing"))
 		{
 			SingTimer += (float)delta;
 			if(!IsPlayer && SingTimer >= Conductor.StepDuration * (SingDuration * 0.0011)) {
@@ -67,41 +62,70 @@ public partial class Character2D : Node2D
 	private int DanceStep = 0;
 	public void Dance(bool Force = false)
 	{
-		if(!Force && !AnimFinished || OverrideAnim) return;
-		if(LastAnim.StartsWith("sing") && !Force) return; 
+		if(!Force && !CurrentAnim.AnimFinished || CurrentAnim.OverrideDance && !Force) return;
+		if(CurrentAnim.AnimName.StartsWith("sing") && !Force) return; 
 
-		PlayAnim(DanceList[DanceStep]);
+		PlayAnimByString(DanceList[DanceStep], true);
 
 		DanceStep++;
 		if (DanceStep > DanceList.Length-1) DanceStep = 0;
 	}
 
-	public void PlayAnim(string AnimName, bool Force = false)
+	public void PlayAnimByString(string anim, bool force = false)
 	{
-		if(!(Force || !OverrideAnim || AnimFinished)) return;
-
-		if (FlipAnimations) AnimName = FlipAnim(AnimName);
-
-		if (AnimPlayer.HasAnimation(Prefix+AnimName+Suffix))
-			AnimName = Prefix+AnimName+Suffix;
-		
-		if(!AnimPlayer.HasAnimation(AnimName) && AnimName != "" && !AnimName.EndsWith("miss"))
+		CharacterAnimation newAnim = new()
 		{
-			GD.PushWarning($"There is no animation called {AnimName}");
+			AnimName = anim,
+			Force = force
+		};
+
+		PlayAnim(newAnim);
+	}
+
+	public void PlayAnim(CharacterAnimation anim)
+	{
+		if(!(anim.Force || !CurrentAnim.OverrideAnim || CurrentAnim.AnimFinished)) return;
+
+		if (FlipAnimations) anim.AnimName = FlipAnim(anim.AnimName);
+
+		string FinalPrefix = anim.Prefix != "" ? anim.Prefix : StaticPrefix;
+		string FinalSuffix = anim.Suffix != "" ? anim.Suffix : StaticSuffix;
+
+		if (AnimPlayer.HasAnimation(FinalPrefix+anim.AnimName+FinalSuffix))
+			anim.AnimName = FinalPrefix+anim.AnimName+FinalSuffix;
+		
+		if(!AnimPlayer.HasAnimation(anim.AnimName) && anim.AnimName != "" && !anim.AnimName.EndsWith("miss"))
+		{
+			GD.PushWarning($"There is no animation called {anim.AnimName}");
 			return;
 		}
 
-		if (LastAnim == AnimName) AnimPlayer.Seek(0);
-		AnimFinished = false;
-		LastAnim = AnimName;
-		AnimPlayer.Play(AnimName);
+		if (CurrentAnim.AnimName == anim.AnimName) AnimPlayer.Seek(0);
+		LastAnim = CurrentAnim;
+		GD.Print(LastAnim.AnimFinished);
+		CurrentAnim = anim;
+		AnimPlayer.Play(anim.AnimName);
 	}
 
 	private static string FlipAnim(string anim)
     {
-        if (anim.Contains("singLEFT")) anim = "singRIGHT";
-        else if (anim.Contains("singRIGHT")) anim = "singLEFT";
+		string newAnim = anim.Contains("LEFT")
+		? anim.Replace("LEFT", "RIGHT")
+		: anim.Replace("RIGHT", "LEFT");
 
-        return anim;
+        return newAnim;
     }
+}
+
+public class CharacterAnimation
+{
+	public string AnimName = "idle";
+	public bool Force = false;
+	public bool OverrideDance = false;
+	public bool OverrideAnim = false;
+	public bool AnimFinished = false;
+	
+	// these override the static ones.
+	public string Prefix;
+	public string Suffix;
 }
