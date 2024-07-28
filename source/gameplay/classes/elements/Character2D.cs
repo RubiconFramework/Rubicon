@@ -102,7 +102,6 @@ public partial class Character2D : Node2D
 
 		if (CurrentAnim.AnimName == anim.AnimName) AnimPlayer.Seek(0);
 		LastAnim = CurrentAnim;
-		GD.Print(LastAnim.AnimFinished);
 		CurrentAnim = anim;
 		AnimPlayer.Play(anim.AnimName);
 	}
