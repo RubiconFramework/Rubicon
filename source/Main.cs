@@ -29,7 +29,6 @@ public partial class Main : Node
         
     }
     
-    
     // i know this is in FlashImporter too
     // its done this way so the FlashImporter plugin can be used in other projects
     // (as an actual plugin and stuff)

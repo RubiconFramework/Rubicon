@@ -39,7 +39,7 @@ public partial class Keybinds : SettingsSectionBase
                 {
                     if (!isPickingKeybind)
                     {
-                        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickingKeybind");
+                        OptionsMenu.Instance.AnimPlayer.Play("KeybindPicking/PickingKeybind");
                         isPickingKeybind = true;
                         currentKeybindButton = button;
                     }
@@ -81,7 +81,7 @@ public partial class Keybinds : SettingsSectionBase
 
         currentKeybindButton = null;
         isPickingKeybind = false;
-        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/RemovedKeybind");
+        OptionsMenu.Instance.AnimPlayer.Play("KeybindPicking/RemovedKeybind");
     }
 
     private void SetKeybind(InputEventKey inputEventKey)
@@ -97,7 +97,7 @@ public partial class Keybinds : SettingsSectionBase
         //Main.Instance.SendNotification($"{OS.GetKeycodeString(inputEventKey.Keycode)} bound to {buttonKeybindings[currentKeybindButton]}");
         currentKeybindButton = null;
         isPickingKeybind = false;
-        OptionsMenu.Instance.OptionsMenuAnimPlayer.Play("KeybindPicking/PickedKeybind");
+        OptionsMenu.Instance.AnimPlayer.Play("KeybindPicking/PickedKeybind");
     }
 
     public List<string> GetKeybinds(string action)

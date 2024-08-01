@@ -2,12 +2,11 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 using Rubicon.backend.autoload;
-using Rubicon.Backend.Autoload;
 using RubiconSettings = Rubicon.backend.autoload.RubiconSettings;
 
 namespace Rubicon.menus.options.objects.sections;
 
-public class HelperMethods
+public static class HelperMethods
 {
     public static void SetVolume(VolumeType volumeType, float v) => VolumeManager.Instance.volumeButtons[volumeType].SetVolume(v);
 

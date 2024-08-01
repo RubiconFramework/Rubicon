@@ -1,11 +1,10 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Rubicon.Backend.Autoload;
 
 namespace Rubicon.backend.autoload;
 
-[Icon("res://assets/miscicons/autoload.png")]
+[Icon("res://assets/misc/autoload.png")]
 public partial class DebugInfo : CanvasLayer
 {
     /*Main Info (Always Visible)*/

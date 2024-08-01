@@ -9,11 +9,11 @@ script = ExtResource("1_05jpt")
 [node name="left" parent="." instance=ExtResource("1_mnpga")]
 position = Vector2(-144, 0)
 scale = Vector2(0.6, 0.6)
+animation = &"left static"
 
 [node name="down" parent="." instance=ExtResource("1_mnpga")]
 position = Vector2(-48, 0)
 scale = Vector2(0.6, 0.6)
-animation = &"down static"
 
 [node name="up" parent="." instance=ExtResource("1_mnpga")]
 position = Vector2(48, 0)

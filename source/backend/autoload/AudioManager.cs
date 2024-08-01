@@ -9,7 +9,7 @@ public enum AudioType
     Sounds
 }
 
-[Icon("res://assets/miscicons/autoload.png")]
+[Icon("res://assets/misc/autoload.png")]
 public partial class AudioManager : Node
 {
     public static AudioManager Instance { get; private set; }

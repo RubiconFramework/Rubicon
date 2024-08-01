@@ -2,9 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_aodu4"]
 [ext_resource type="Script" path="res://source/menus/options/objects/sections/misc/Misc.cs" id="1_tgalg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
-bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
+[ext_resource type="Theme" uid="uid://0vvnjax75t7e" path="res://source/menus/options/objects/SectionSeparator.tres" id="2_2fh16"]
 
 [node name="Misc" type="ScrollContainer"]
 offset_right = 957.0
@@ -15,22 +13,20 @@ script = ExtResource("1_tgalg")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_constants/separation = 5
 
-[node name="SectionSeparator" type="Label" parent="Container"]
+[node name="SectionSeparator1" type="Label" parent="Container"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// General Miscellaneous Settings ///"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme = ExtResource("2_2fh16")
+text = " << General Miscellaneous Settings >>"
 
 [node name="GameLanguage" type="OptionButton" parent="Container"]
 layout_mode = 2
 theme = ExtResource("1_aodu4")
 theme_override_font_sizes/font_size = 22
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = " Game Language: English"
-popup/item_0/id = 0
 popup/item_1/text = " Game Language: Spanish"
 popup/item_1/id = 1
 
@@ -38,10 +34,9 @@ popup/item_1/id = 1
 layout_mode = 2
 theme = ExtResource("1_aodu4")
 theme_override_font_sizes/font_size = 22
-item_count = 4
 selected = 0
+item_count = 4
 popup/item_0/text = " Game Transitions: Vanilla"
-popup/item_0/id = 0
 popup/item_1/text = " Game Transitions: Fade"
 popup/item_1/id = 1
 popup/item_2/text = " Game Transitions: Sawn Off"
@@ -57,10 +52,8 @@ text = "Discord Rich Presence"
 
 [node name="SectionSeparator2" type="Label" parent="Container"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// Menu Animations ///"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme = ExtResource("2_2fh16")
+text = " << Menu Settings >>"
 
 [node name="SceneTransitions" type="CheckBox" parent="Container"]
 layout_mode = 2
@@ -73,3 +66,20 @@ layout_mode = 2
 theme = ExtResource("1_aodu4")
 keep_pressed_outside = true
 text = "Options Menu Animations"
+
+[node name="SectionSeparator3" type="Label" parent="Container"]
+layout_mode = 2
+theme = ExtResource("2_2fh16")
+text = " << Other Settings >>"
+
+[node name="ExportSettings" type="Button" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_aodu4")
+text = " Export Current Settings to Clipboard"
+alignment = 0
+
+[node name="ImportSettings" type="Button" parent="Container"]
+layout_mode = 2
+theme = ExtResource("1_aodu4")
+text = " Import Settings from Clipboard"
+alignment = 0

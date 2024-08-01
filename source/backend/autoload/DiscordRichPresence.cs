@@ -1,6 +1,5 @@
 using DiscordRPC;
 using DiscordRPC.Logging;
-using Rubicon.Backend.Autoload;
 
 namespace Rubicon.backend.autoload;
 

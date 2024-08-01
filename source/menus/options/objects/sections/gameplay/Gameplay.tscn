@@ -2,11 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_dut1v"]
 [ext_resource type="Script" path="res://source/menus/options/objects/sections/gameplay/Gameplay.cs" id="1_l386l"]
+[ext_resource type="Theme" uid="uid://0vvnjax75t7e" path="res://source/menus/options/objects/SectionSeparator.tres" id="2_je6nt"]
 [ext_resource type="PackedScene" uid="uid://dlbq1suq2t0j3" path="res://source/backend/misc/settings/LabelSlider.tscn" id="3_8cjpt"]
 [ext_resource type="PackedScene" uid="uid://cm5uby17wlrao" path="res://source/menus/options/objects/sections/gameplay/menus/GameplayModifiers.tscn" id="4_d2eu6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khf3y"]
-bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.572549)
 
 [sub_resource type="Animation" id="Animation_8gk8r"]
 resource_name = "In"
@@ -79,12 +77,12 @@ script = ExtResource("1_l386l")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_constants/separation = 5
 
 [node name="SectionSeparator" type="Label" parent="Container"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// General Gameplay Settings ///"
-horizontal_alignment = 1
+theme = ExtResource("2_je6nt")
+text = "<< Gameplay Settings >>"
 vertical_alignment = 1
 
 [node name="DisableOpponentStrums" type="CheckBox" parent="Container"]
@@ -107,9 +105,8 @@ text = "Middlescroll"
 
 [node name="SectionSeparator2" type="Label" parent="Container"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// part 2 ///"
-horizontal_alignment = 1
+theme = ExtResource("2_je6nt")
+text = " << Note Settings >>"
 vertical_alignment = 1
 
 [node name="ScrollSpeed" parent="Container" instance=ExtResource("3_8cjpt")]
@@ -125,27 +122,26 @@ value = 1.5
 [node name="ScrollSpeedType" type="OptionButton" parent="Container"]
 layout_mode = 2
 theme = ExtResource("1_dut1v")
-theme_override_font_sizes/font_size = 22
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "Scroll Speed Type: Constant"
-popup/item_0/id = 0
 popup/item_1/text = "Scroll Speed Type: Multiplier"
 popup/item_1/id = 1
 
 [node name="SectionSeparator3" type="Label" parent="Container"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_khf3y")
-text = "/// super horror mario  🖕 🖕 🖕 🖕 🖕 ///"
-horizontal_alignment = 1
+theme = ExtResource("2_je6nt")
+text = "<< Other >>"
 vertical_alignment = 1
 
 [node name="GameplayModifiers" type="Button" parent="Container"]
 layout_mode = 2
 theme = ExtResource("1_dut1v")
-text = "Open Gameplay Modifiers Menu"
+text = " Open Gameplay Modifiers Menu"
+alignment = 0
 
 [node name="GameplayModifiers" parent="Container/GameplayModifiers" instance=ExtResource("4_d2eu6")]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
@@ -163,7 +159,8 @@ grow_vertical = 2
 [node name="GameplayOffsets" type="Button" parent="Container"]
 layout_mode = 2
 theme = ExtResource("1_dut1v")
-text = "Open Gameplay Offsets Menu"
+text = " Open Gameplay Offsets Menu"
+alignment = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

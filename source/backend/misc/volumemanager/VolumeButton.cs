@@ -1,5 +1,3 @@
-using Godot;
-using System;
 using Rubicon.backend.autoload;
 
 namespace Rubicon.backend.misc.volumemanager;

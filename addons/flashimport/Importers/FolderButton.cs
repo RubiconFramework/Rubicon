@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 public partial class FolderButton : Button
 {
     public void ButtonPress()

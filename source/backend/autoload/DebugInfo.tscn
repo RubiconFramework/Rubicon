@@ -99,6 +99,12 @@ theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
 text = "VRAM: 0 MB"
 
+[node name="what" type="Label" parent="InfoContainer/MainInformation"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "i cant stop listening to kyary pamyu pamyu"
+
 [node name="DebugInformation" type="VBoxContainer" parent="InfoContainer"]
 layout_mode = 2
 size_flags_horizontal = 0

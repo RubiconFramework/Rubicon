@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cyxkliby263by"]
 
 [ext_resource type="Script" path="res://source/backend/LoadingScreen.cs" id="1_k375o"]
-[ext_resource type="Texture2D" uid="uid://bv1q7pt6qnwr6" path="res://assets/misc/rubicon.png" id="2_o8bnx"]
+[ext_resource type="Texture2D" uid="uid://cvdbo6fny2heb" path="res://assets/misc/rubicon.png" id="2_o8bnx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6nle"]
 

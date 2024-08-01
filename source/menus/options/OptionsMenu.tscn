@@ -1,202 +1,65 @@
-[gd_scene load_steps=22 format=3 uid="uid://cx352arf7ejqx"]
+[gd_scene load_steps=21 format=3 uid="uid://cx352arf7ejqx"]
 
 [ext_resource type="Script" path="res://source/menus/options/OptionsMenu.cs" id="1_025u3"]
 [ext_resource type="Texture2D" uid="uid://ojbnvecky32n" path="res://assets/menus/menuBGDesat.png" id="3_dq5lv"]
-[ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="5_aor24"]
-[ext_resource type="Texture2D" uid="uid://cdt6vmur4rdoa" path="res://source/menus/options/objects/sections/gameplay/assets/aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" id="5_bkr6p"]
 [ext_resource type="PackedScene" uid="uid://v36c2nyp63w7" path="res://source/menus/options/objects/sections/gameplay/Gameplay.tscn" id="5_f4aaq"]
 [ext_resource type="PackedScene" uid="uid://cvqw4i11yg6m0" path="res://source/menus/options/objects/sections/audio/Audio.tscn" id="6_bm6i0"]
 [ext_resource type="PackedScene" uid="uid://cnxj6k6gqye8h" path="res://source/menus/options/objects/sections/video/Video.tscn" id="7_mhcac"]
 [ext_resource type="PackedScene" uid="uid://c4hlnqsvubucn" path="res://source/menus/options/objects/sections/misc/Misc.tscn" id="8_2efem"]
 [ext_resource type="PackedScene" uid="uid://dbdfpnvlhkxlo" path="res://source/menus/options/objects/sections/keybinds/Keybinds.tscn" id="9_htkdd"]
+[ext_resource type="Theme" uid="uid://c6an4678x4xvj" path="res://source/menus/options/objects/OptionsMenu.tres" id="10_fit2m"]
+[ext_resource type="FontFile" uid="uid://r1uoqejoteb3" path="res://assets/fonts/funkin.ttf" id="11_cl7et"]
+[ext_resource type="Texture2D" uid="uid://cq1reriwmg7kb" path="res://assets/misc/options/gameplay.png" id="11_rdi8c"]
+[ext_resource type="Texture2D" uid="uid://bmcvoyytv5tas" path="res://assets/misc/options/video.png" id="12_6x6sj"]
+[ext_resource type="Texture2D" uid="uid://c5attvrfiluw3" path="res://assets/misc/options/audio.png" id="13_j5llk"]
+[ext_resource type="Texture2D" uid="uid://3dbq7twmt3s6" path="res://assets/misc/options/keybinds.png" id="14_24a3a"]
+[ext_resource type="Texture2D" uid="uid://cwy2arysmaqu0" path="res://assets/misc/options/miscellaneous.png" id="14_863f3"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkw33"]
-bg_color = Color(0, 0, 0, 0.745098)
+[sub_resource type="Gradient" id="Gradient_2eowc"]
+offsets = PackedFloat32Array(0, 0.995305)
+colors = PackedColorArray(0.666667, 0.243137, 0.227451, 0.741176, 1, 0.392157, 0.0745098, 0.564706)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8aga"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0kqny"]
+gradient = SubResource("Gradient_2eowc")
 
-[sub_resource type="Animation" id="Animation_pr51e"]
+[sub_resource type="Animation" id="Animation_qtidl"]
 length = 0.001
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2ed3"]
-_data = {
-"RESET": SubResource("Animation_pr51e")
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SectionContainer:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_nr7nc"]
-resource_name = "PickedKeybind"
+[sub_resource type="Animation" id="Animation_tai1b"]
+resource_name = "Return to Main Menu"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/KeybindLabel:modulate")
+tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(0.241484, 0.0218166),
 "update": 0,
-"values": [Color(0, 1, 0, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(1.7, 1.6), Vector2(1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../..:modulate")
+tracks/1/path = NodePath("SectionButtons:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/weird stupid line:modulate")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_h13jm"]
-resource_name = "PickingKeybind"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/KeybindLabel:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../..:modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.270588, 0.270588, 0.270588, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/weird stupid line:modulate")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.270588, 0.270588, 0.270588, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/KeybindLabel:text")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Press a Key, or Press Backspace to Remove the Bind."]
-}
-
-[sub_resource type="Animation" id="Animation_ba2f5"]
-resource_name = "RemovedKeybind"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimationPlayer/KeybindLabel:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../..:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/weird stupid line:modulate")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.270588, 0.270588, 0.270588, 1), Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/KeybindLabel:text")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["Removed Keybind."]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg8qp"]
-_data = {
-"PickedKeybind": SubResource("Animation_nr7nc"),
-"PickingKeybind": SubResource("Animation_h13jm"),
-"RemovedKeybind": SubResource("Animation_ba2f5")
-}
-
-[sub_resource type="Animation" id="Animation_ycuxq"]
-resource_name = "ChangeIndicatorLabelStart"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../ScrollContainers:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.233333, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -204,51 +67,63 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/weird stupid line:scale")
+tracks/2/path = NodePath("SectionButtons:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 1), Vector2(1, 1)]
+"times": PackedFloat32Array(0.233333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/weird stupid line:pivot_offset")
+tracks/3/path = NodePath("SectionContainer:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1031, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_j62gs"]
-resource_name = "ChangeIndicatorLabelStart"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SectionContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_yk7ui"]
+resource_name = "Selected Section"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0.166667, 0.6),
+"transitions": PackedFloat32Array(0.297302, 2.46229),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.7, 1.6)]
+}
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../ScrollContainers:modulate")
+tracks/1/path = NodePath("SectionButtons:modulate")
 tracks/1/interp = 1
-tracks/1/loop_wrap = true
+tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.166667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -256,76 +131,95 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimationPlayer/weird stupid line:scale")
+tracks/2/path = NodePath("SectionButtons:visible")
 tracks/2/interp = 1
-tracks/2/loop_wrap = true
+tracks/2/loop_wrap = false
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.166667),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1)]
+"update": 1,
+"values": [true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AnimationPlayer/weird stupid line:pivot_offset")
+tracks/3/path = NodePath("SectionContainer:modulate")
 tracks/3/interp = 1
-tracks/3/loop_wrap = true
+tracks/3/loop_wrap = false
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.366667, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SectionContainer:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2np2o"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wcqjn"]
 _data = {
-"EndTransition": SubResource("Animation_ycuxq"),
-"StartTransition": SubResource("Animation_j62gs")
+"RESET": SubResource("Animation_qtidl"),
+"Return to Main Menu": SubResource("Animation_tai1b"),
+"Selected Section": SubResource("Animation_yk7ui")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nbql"]
-bg_color = Color(0.0196078, 0.0196078, 0.0196078, 0.462745)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[node name="Options Menu" type="Control"]
+[node name="OptionsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -659.0
-offset_top = -355.0
-offset_right = 659.0
-offset_bottom = 355.0
+offset_left = -683.0
+offset_top = -384.0
+offset_right = 683.0
+offset_bottom = 384.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_025u3")
 
-[node name="BG" type="Sprite2D" parent="."]
-modulate = Color(0.360668, 0.19705, 0.531946, 1)
-position = Vector2(659, 355)
-scale = Vector2(1.06221, 1.05205)
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+position = Vector2(683.5, 384)
+scale = Vector2(1.06299, 1.05205)
 texture = ExtResource("3_dq5lv")
 
-[node name="RightPanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -355.0
-offset_right = 1298.0
-offset_bottom = -311.0
-grow_vertical = 2
-focus_mode = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_mkw33")
+[node name="Gradient" type="Sprite2D" parent="Background"]
+position = Vector2(6.10352e-05, -0.476206)
+scale = Vector2(5.02344, 730.952)
+texture = SubResource("GradientTexture1D_0kqny")
 
-[node name="UpperVBox" type="HBoxContainer" parent="RightPanel"]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -385.0
+offset_top = -213.5
+offset_right = 385.0
+offset_bottom = 213.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(385, 213)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel"]
+libraries = {
+"": SubResource("AnimationLibrary_wcqjn")
+}
+
+[node name="SectionButtons" type="Control" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -333,234 +227,216 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameplaySection" type="Button" parent="RightPanel/UpperVBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 20
-text = "Gameplay"
-
-[node name="AudioSection" type="Button" parent="RightPanel/UpperVBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 20
-text = "Audio"
-
-[node name="VideoSection" type="Button" parent="RightPanel/UpperVBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 20
-text = "Video"
-
-[node name="MiscSection" type="Button" parent="RightPanel/UpperVBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 20
-text = "Miscellaneous"
-
-[node name="KeybindsSection" type="Button" parent="RightPanel/UpperVBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 20
-text = "Keybinds"
-
-[node name="LowerVBox" type="HBoxContainer" parent="RightPanel"]
+[node name="MainContainer" type="VBoxContainer" parent="Panel/SectionButtons"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -342.0
-offset_top = 646.0
-offset_right = 342.0
-offset_bottom = 678.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 22
-alignment = 1
-
-[node name="ImportFromCode" type="Button" parent="RightPanel/LowerVBox"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 20
-text = "Import Settings from Clipboard"
-
-[node name="ExportToCode" type="Button" parent="RightPanel/LowerVBox"]
-layout_mode = 2
-theme = ExtResource("5_aor24")
-theme_override_font_sizes/font_size = 20
-text = "Export Settings to Clipboard"
-
-[node name="LeftPanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.071
-anchor_top = 0.004
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -93.578
-offset_top = 64.16
-offset_right = -20.0
-offset_bottom = -34.0
-grow_horizontal = 0
+grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 1
-theme = ExtResource("5_aor24")
 
-[node name="SectionIndicator" type="Label" parent="LeftPanel"]
+[node name="Gameplay" type="Button" parent="Panel/SectionButtons/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_fit2m")
+text = "
+Gameplay
+
+"
+icon_alignment = 1
+
+[node name="Icon" type="Sprite2D" parent="Panel/SectionButtons/MainContainer/Gameplay"]
+position = Vector2(132, 42)
+scale = Vector2(0.15602, 0.158027)
+texture = ExtResource("11_rdi8c")
+
+[node name="Video" type="Button" parent="Panel/SectionButtons/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_fit2m")
+text = "
+Video
+
+"
+
+[node name="Icon" type="Sprite2D" parent="Panel/SectionButtons/MainContainer/Video"]
+position = Vector2(130, 42)
+scale = Vector2(0.113281, 0.0859375)
+texture = ExtResource("12_6x6sj")
+
+[node name="Misc" type="Button" parent="Panel/SectionButtons/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_fit2m")
+text = "
+Miscellaneous
+
+"
+
+[node name="Icon" type="Sprite2D" parent="Panel/SectionButtons/MainContainer/Misc"]
+position = Vector2(130, 42)
+scale = Vector2(0.137818, 0.138012)
+texture = ExtResource("14_863f3")
+
+[node name="Audio" type="Button" parent="Panel/SectionButtons/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("10_fit2m")
+text = "
+Audio
+
+"
+
+[node name="Icon" type="Sprite2D" parent="Panel/SectionButtons/MainContainer/Audio"]
+position = Vector2(130, 42)
+scale = Vector2(0.0996095, 0.086914)
+texture = ExtResource("13_j5llk")
+
+[node name="Keybinds" type="Button" parent="Panel/SectionButtons/MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("10_fit2m")
+text = "
+Keybinds
+
+"
+
+[node name="Icon" type="Sprite2D" parent="Panel/SectionButtons/MainContainer/Keybinds"]
+position = Vector2(130, 42)
+scale = Vector2(0.136719, 0.115234)
+texture = ExtResource("14_24a3a")
+
+[node name="SectionContainer" type="Control" parent="Panel"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Current Section" type="Label" parent="Panel/SectionContainer"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -85.5
-offset_top = 3.0
-offset_right = 85.5
-offset_bottom = 41.0
+offset_left = -54.0
+offset_top = 16.0
+offset_right = 54.0
+offset_bottom = 35.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_cl7et")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxEmpty_n8aga")
-text = "Gameplay"
-horizontal_alignment = 1
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/SectionIndicator"]
-libraries = {
-"": SubResource("AnimationLibrary_k2ed3"),
-"KeybindPicking": SubResource("AnimationLibrary_cg8qp"),
-"SectionTransition": SubResource("AnimationLibrary_2np2o")
-}
-
-[node name="weird stupid line" type="HSeparator" parent="LeftPanel/SectionIndicator/AnimationPlayer"]
-offset_left = 24.0
-offset_top = 137.0
-offset_right = 1322.0
-offset_bottom = 141.0
-size_flags_stretch_ratio = 0.0
-theme = ExtResource("5_aor24")
-
-[node name="KeybindLabel" type="Label" parent="LeftPanel/SectionIndicator/AnimationPlayer"]
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -67.0
-offset_top = -21.0
-offset_right = 67.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 30
-text = "Press a Key, or Press Backspace to Remove the Bind."
+text = "Gameplay Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameplayStrums" type="Control" parent="LeftPanel"]
+[node name="Keybind Label" type="Label" parent="Panel/SectionContainer"]
 visible = false
-anchors_preset = 0
-offset_left = -109.997
-offset_top = 3.0
-offset_right = 1090.0
-offset_bottom = 710.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.0
+offset_top = 16.0
+offset_right = 54.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_cl7et")
+theme_override_font_sizes/font_size = 24
+text = "Gameplay Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="imagine these are the strums" type="Sprite2D" parent="LeftPanel/GameplayStrums"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(995.75, 331)
-scale = Vector2(1.77989, 2.98913)
-texture = ExtResource("5_bkr6p")
+[node name="Option Description" type="Label" parent="Panel/SectionContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.0
+offset_top = 16.0
+offset_right = 54.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_cl7et")
+theme_override_font_sizes/font_size = 24
+text = "Gameplay Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ScrollContainers" type="Control" parent="LeftPanel"]
+[node name="ScrollContainers" type="Control" parent="Panel/SectionContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -611.0
-offset_top = -263.5
-offset_right = 612.0
-offset_bottom = 231.5
+offset_left = -371.0
+offset_top = -152.5
+offset_right = 444.0
+offset_bottom = 224.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 
-[node name="Gameplay" parent="LeftPanel/ScrollContainers" instance=ExtResource("5_f4aaq")]
+[node name="Gameplay" parent="Panel/SectionContainer/ScrollContainers" instance=ExtResource("5_f4aaq")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 23.0
 offset_right = 0.0
-offset_bottom = 23.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Audio" parent="LeftPanel/ScrollContainers" instance=ExtResource("6_bm6i0")]
+[node name="Audio" parent="Panel/SectionContainer/ScrollContainers" instance=ExtResource("6_bm6i0")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 23.0
-offset_right = 0.0
-offset_bottom = 23.0
+offset_right = 90.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 
-[node name="Video" parent="LeftPanel/ScrollContainers" instance=ExtResource("7_mhcac")]
+[node name="Video" parent="Panel/SectionContainer/ScrollContainers" instance=ExtResource("7_mhcac")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 23.0
-offset_right = 0.0
-offset_bottom = 23.0
+offset_right = 90.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 
-[node name="Misc" parent="LeftPanel/ScrollContainers" instance=ExtResource("8_2efem")]
+[node name="Misc" parent="Panel/SectionContainer/ScrollContainers" instance=ExtResource("8_2efem")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 19.0
-offset_right = 0.0
-offset_bottom = 19.0
+offset_right = 90.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 
-[node name="Keybinds" parent="LeftPanel/ScrollContainers" instance=ExtResource("9_htkdd")]
+[node name="Keybinds" parent="Panel/SectionContainer/ScrollContainers" instance=ExtResource("9_htkdd")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 0.0
-offset_top = 23.0
-offset_right = 0.0
-offset_bottom = 23.0
+offset_right = 90.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="DescriptionLabel" type="Label" parent="LeftPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = 566.0
-offset_right = -4.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_7nbql")
-text = "the rot consumes i suppose"
-horizontal_alignment = 1
-vertical_alignment = 1
+scale = Vector2(0.9, 0.9)

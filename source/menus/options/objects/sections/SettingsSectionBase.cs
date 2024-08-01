@@ -1,10 +1,9 @@
-using Rubicon.Backend.Autoload;
 using Button = Godot.Button;
 using RubiconSettings = Rubicon.backend.autoload.RubiconSettings;
 
 namespace Rubicon.menus.options.objects.sections;
 
-[Icon("res://assets/miscicons/settingsbutton.png")]
+[Icon("res://assets/misc/settingsbutton.png")]
 public partial class SettingsSectionBase : ScrollContainer
 {
     protected void SetupButton(Button button, Action<bool> updateAction, bool initialValue)

@@ -2,7 +2,7 @@ using Rubicon.backend.autoload;
 
 namespace Rubicon.Backend.Autoload;
 
-[Icon("res://assets/miscicons/autoload.png")]
+[Icon("res://assets/misc/autoload.png")]
 public partial class LoadingHandler : CanvasLayer
 {
     public static LoadingHandler Instance { get; private set; }
