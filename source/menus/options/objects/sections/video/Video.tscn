@@ -20,7 +20,7 @@ theme_override_constants/separation = 5
 [node name="SectionSeparator" type="Label" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_2o8gt")
-text = " << General Video Settings >>"
+text = "<< General Video Settings >>"
 
 [node name="MaxFPS" parent="Container" instance=ExtResource("1_n3lqj")]
 layout_mode = 2

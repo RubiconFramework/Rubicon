@@ -19,7 +19,7 @@ theme_override_constants/separation = 5
 [node name="SectionSeparator" type="Label" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_v5iyh")
-text = " << General Audio Settings >>"
+text = "<< General Audio Settings >>"
 
 [node name="MasterVolume" parent="Container" instance=ExtResource("1_ffoxu")]
 layout_mode = 2
@@ -38,7 +38,7 @@ popup/item_1/id = 1
 [node name="SectionSeparator2" type="Label" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_v5iyh")
-text = " << Menu Audio >>"
+text = "<< Menu Audio >>"
 
 [node name="MusicVolume" parent="Container" instance=ExtResource("1_ffoxu")]
 layout_mode = 2
@@ -51,7 +51,7 @@ text = "SFX Volume [50%]"
 [node name="SectionSeparator3" type="Label" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_v5iyh")
-text = " << Gameplay Audio >>"
+text = "<< Gameplay Audio >>"
 
 [node name="InstVolume" parent="Container" instance=ExtResource("1_ffoxu")]
 layout_mode = 2

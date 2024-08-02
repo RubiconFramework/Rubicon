@@ -18,7 +18,7 @@ theme_override_constants/separation = 5
 [node name="SectionSeparator1" type="Label" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_2fh16")
-text = " << General Miscellaneous Settings >>"
+text = "<< General Miscellaneous Settings >>"
 
 [node name="GameLanguage" type="OptionButton" parent="Container"]
 layout_mode = 2
@@ -53,7 +53,7 @@ text = "Discord Rich Presence"
 [node name="SectionSeparator2" type="Label" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_2fh16")
-text = " << Menu Settings >>"
+text = "<< Menu Settings >>"
 
 [node name="SceneTransitions" type="CheckBox" parent="Container"]
 layout_mode = 2
@@ -70,7 +70,7 @@ text = "Options Menu Animations"
 [node name="SectionSeparator3" type="Label" parent="Container"]
 layout_mode = 2
 theme = ExtResource("2_2fh16")
-text = " << Other Settings >>"
+text = "<< Other Settings >>"
 
 [node name="ExportSettings" type="Button" parent="Container"]
 layout_mode = 2
