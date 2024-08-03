@@ -18,13 +18,13 @@ public partial class Character2D : Node2D
 	[Export] public string StaticSuffix;
 	[Export] public string[] DanceList = {"idle"};
 	[Export] public float SingDuration = 4;
-	[Export] public bool StaticSustain = false;
+	[Export] public bool StaticSustain;
 	public CharacterAnimation CurrentAnim = new();
 	public CharacterAnimation LastAnim = new();
 	public bool ShouldDance = true;
 
 	[ExportGroup("Character Info")]
-	[Export] public bool MirrorCharacter = false;
+	[Export] public bool MirrorCharacter;
 	public bool FlipAnimations;
 	public bool IsPlayer = false;
 	public float SingTimer;
@@ -59,7 +59,7 @@ public partial class Character2D : Node2D
 		}
     }
 
-	private int DanceStep = 0;
+	private int DanceStep;
 	public void Dance(bool Force = false)
 	{
 		if(!Force && !CurrentAnim.AnimFinished || CurrentAnim.OverrideDance && !Force) return;
@@ -119,10 +119,10 @@ public partial class Character2D : Node2D
 public class CharacterAnimation
 {
 	public string AnimName = "idle";
-	public bool Force = false;
+	public bool Force;
 	public bool OverrideDance = false;
 	public bool OverrideAnim = false;
-	public bool AnimFinished = false;
+	public bool AnimFinished;
 	
 	// these override the static ones.
 	public string Prefix;

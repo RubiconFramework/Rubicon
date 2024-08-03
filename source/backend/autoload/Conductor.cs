@@ -32,7 +32,7 @@ public partial class Conductor : Node
         SectionDuration = StepDuration * 16;
     }
 
-    private int PrevStep = 0;
+    private int PrevStep;
 
     public override void _Process(double delta)
     {

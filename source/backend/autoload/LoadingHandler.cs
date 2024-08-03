@@ -10,7 +10,7 @@ public partial class LoadingHandler : CanvasLayer
     public static string NewScenePath = "";
     public static bool IsLoading;
     public static readonly Godot.Collections.Array LoadingProgress = new();
-    private static bool transitioning = false;
+    private static bool transitioning;
 
     public LoadingHandler()
     {

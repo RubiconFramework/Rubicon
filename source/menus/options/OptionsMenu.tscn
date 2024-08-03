@@ -23,11 +23,11 @@ colors = PackedColorArray(1, 0.360784, 0, 0.564706, 0.619608, 0.0666667, 0.02745
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0kqny"]
 gradient = SubResource("Gradient_2eowc")
 
-[sub_resource type="Animation" id="Animation_u3ae2"]
-resource_name = "thing"
-
 [sub_resource type="Animation" id="Animation_evl5x"]
 length = 0.001
+
+[sub_resource type="Animation" id="Animation_u3ae2"]
+resource_name = "thing"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5yxic"]
 _data = {

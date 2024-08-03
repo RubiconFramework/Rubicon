@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ujly2nl20e8c"]
+
+[ext_resource type="Script" path="res://source/backend/misc/animatedfont/AnimatedFont.cs" id="1_aoumc"]
+[ext_resource type="SpriteFrames" path="res://assets/fonts/alphabet/default.res" id="2_j2evs"]
+[ext_resource type="SpriteFrames" path="res://assets/fonts/alphabet/bold.res" id="3_xq0ru"]
+
+[node name="AnimatedFont" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 221.0
+offset_top = 131.0
+offset_right = 221.0
+offset_bottom = 131.0
+script = ExtResource("1_aoumc")
+NormalFont = ExtResource("2_j2evs")
+BoldFont = ExtResource("3_xq0ru")
+IsBold = true

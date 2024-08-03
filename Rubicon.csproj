@@ -47,6 +47,17 @@
     <EmbeddedResource Remove="source\menus\title\audiovisualizer\**" />
     <Compile Remove="source\backend\enums\**" />
     <EmbeddedResource Remove="source\backend\enums\**" />
+    <Compile Remove="source\menus\options\objects\buttons\**" />
+    <EmbeddedResource Remove="source\menus\options\objects\buttons\**" />
+    <Compile Update="source\backend\AnimatedFont.cs">
+      <DependentUpon>AnimatedFont.tscn</DependentUpon>
+    </Compile>
+    <Compile Update="source\backend\AnimatedFontCharacter.cs">
+      <DependentUpon>AnimatedFontCharacter.tres</DependentUpon>
+    </Compile>
+    <Compile Update="source\backend\misc\animatedfont\AnimatedFontCharacter.cs">
+      <DependentUpon>AnimatedFont.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
@@ -62,6 +73,10 @@
     <Content Include="source\backend\autoload\VolumeManager.tscn">
       <DependentUpon>VolumeManager.cs</DependentUpon>
     </Content>
+    <Content Include="source\backend\misc\animatedfont\AnimatedFont.tscn" />
+    <Content Include="source\backend\misc\animatedfont\AnimatedFontCharacter.tres">
+      <DependentUpon>AnimatedFont.cs</DependentUpon>
+    </Content>
     <Content Include="source\backend\misc\settings\ColorPickerButton.tscn" />
     <Content Include="source\backend\misc\settings\FilePickerButton.tscn">
       <DependentUpon>FilePickerButton.cs</DependentUpon>
@@ -71,9 +86,6 @@
       <DependentUpon>VolumeButton.cs</DependentUpon>
     </Content>
     <Content Include="source\Main.tscn" />
-    <Content Include="source\menus\options\objects\buttons\colorpicker\ColorPickerButton.tscn" />
-    <Content Include="source\menus\options\objects\buttons\filepicker\FilePickerButton.tscn" />
-    <Content Include="source\menus\options\objects\buttons\slider\LabelSlider.tscn" />
     <Content Include="source\menus\options\objects\sections\audio\Audio.tscn" />
     <Content Include="source\menus\options\objects\sections\gameplay\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
     <Content Include="source\menus\options\objects\sections\gameplay\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg.import" />

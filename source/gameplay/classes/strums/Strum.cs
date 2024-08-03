@@ -5,7 +5,7 @@ namespace Rubicon.gameplay.classes.strums;
 public partial class Strum : AnimatedSprite2D
 {
 	public bool Pressed = false;
-    private bool IsPlayingAnim = false;
+    private bool IsPlayingAnim;
 	public float idleTransparency = 0.7f;
     public int Direction = 0;
     [Export] public bool OptimizedStrum = true;
@@ -81,6 +81,6 @@ public partial class Strum : AnimatedSprite2D
 
 public partial class OptimizedStrumData
 {
-    [Export] public Color color = new();
+    [Export] public Color color;
     [Export] public float rotation;
 }

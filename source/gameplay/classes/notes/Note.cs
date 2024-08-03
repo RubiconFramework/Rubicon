@@ -12,7 +12,7 @@ public partial class Note : Node2D
     public bool WasHit = false;
     public bool WasMissed = false;
 
-    [Export] public bool AltAnim = false;
+    [Export] public bool AltAnim;
     public string NoteType = "default";
     public string RawType = "default";
     public UIStyle uiStyle;
@@ -26,7 +26,7 @@ public partial class Note : Node2D
     public int Direction = 0;
     public float ScrollSpeed = 1;
     public float SustainLength = 0;
-    public float InitialLength = 0;
+    public float InitialLength;
     public float HoldTime = 0;
     public bool IsSustainNote = false;
     public int DownscrollMultiplier = 1;
@@ -36,9 +36,9 @@ public partial class Note : Node2D
     [Export] public bool ShouldSplash = true;
     public bool HasCustomSplash = false;
     [Export] public SpriteFrames SustainTexture { get; set; } = GD.Load<SpriteFrames>("res://assets/gameplay/noteTypes/assets/default/defaultSustain.tres");
-    [Export] public SpriteFrames SustainSplashTexture { get; set; } = null;
+    [Export] public SpriteFrames SustainSplashTexture { get; set; }
     [Export] public Dictionary<string,Vector2> SustainSplashOffset { get; set; }
-    [Export] public SpriteFrames SplashTexture { get; set; } = null;
+    [Export] public SpriteFrames SplashTexture { get; set; }
     [Export] public int SplashAnimRange = 1;
 
     [NodePath("Sprite")] public AnimatedSprite2D Sprite;

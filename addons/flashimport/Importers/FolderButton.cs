@@ -1,3 +1,5 @@
+namespace Rubicon.addons.flashimport.Importers;
+
 public partial class FolderButton : Button
 {
     public void ButtonPress()

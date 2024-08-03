@@ -15,14 +15,14 @@ public partial class Character3D : Node3D
 	[Export] public string Suffix;
 	[Export] private string[] DanceList = {"idle"};
 	[Export] public float SingDuration = 4;
-	[Export] public bool StaticSustain = false;
+	[Export] public bool StaticSustain;
 	private bool AnimFinished;
 	public string LastAnim = "";
-	public bool OverrideAnim = false;
+	public bool OverrideAnim;
 	public float AnimTimer;
 
 	[ExportGroup("Character Info")]
-	[Export] public bool MirrorCharacter = false;
+	[Export] public bool MirrorCharacter;
 	public bool IsPlayer = false;
 	public float HoldTimer;
 
@@ -61,7 +61,7 @@ public partial class Character3D : Node3D
 		}
     }
 
-	private int DanceStep = 0;
+	private int DanceStep;
 	public void Dance(bool Force = false)
 	{
 		if(!Force && OverrideAnim) return;
