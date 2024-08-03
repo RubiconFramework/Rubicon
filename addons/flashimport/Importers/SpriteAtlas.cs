@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using System.Text.Json;
+
+using Newtonsoft.Json;
 
 namespace Rubicon.addons.flashimport.Importers;
 public partial class SpriteAtlas : Node
@@ -21,11 +22,11 @@ public partial class SpriteAtlas : Node
             spritePath += "/";
 
         FileAccess animationFile = FileAccess.Open(spritePath+"Animation.json", FileAccess.ModeFlags.Read);
-        SpriteAtlasAnimation animation = JsonSerializer.Deserialize<SpriteAtlasAnimation>(animationFile.GetAsText());
+        SpriteAtlasAnimation animation = JsonConvert.DeserializeObject<SpriteAtlasAnimation>(animationFile.GetAsText());
         animationFile.Close();
 
         var spritemapFile = FileAccess.Open(spritePath+"spritemap1.json", FileAccess.ModeFlags.Read);
-        SpriteAtlasData spritemap = JsonSerializer.Deserialize<SpriteAtlasData>(spritemapFile.GetAsText());
+        SpriteAtlasData spritemap = JsonConvert.DeserializeObject<SpriteAtlasData>(spritemapFile.GetAsText());
         spritemapFile.Close();
 
         Texture2D texture = GD.Load<Texture2D>(spritePath+"spritemap1.png");

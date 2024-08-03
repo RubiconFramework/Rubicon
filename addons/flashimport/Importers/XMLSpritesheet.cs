@@ -5,7 +5,7 @@ namespace Rubicon.addons.flashimport.Importers;
 [Tool] public partial class XMLSpritesheet : Node
 {
     private string spritePath;
-	private string fps;
+	private int fps;
 	private bool loop;
 	private bool stackFrames;
 
@@ -14,8 +14,8 @@ namespace Rubicon.addons.flashimport.Importers;
 		GD.Print("Converting XML Spritesheet...");
 
 		spritePath = GetNode<LineEdit>("SpritePath").Text;
-		fps = GetNode<LineEdit>("FPS").Text;
-        loop = GetNode<Button>("Loop").ButtonPressed;
+		fps = (int)GetNode<SpinBox>("FPS").Value;
+        loop = GetNode<Button>("Stack/Loop").ButtonPressed;
         stackFrames = GetNode<Button>("Stack").ButtonPressed;
 
 		List<string> spriteList = new();
@@ -121,7 +121,7 @@ namespace Rubicon.addons.flashimport.Importers;
 			{
 				spriteFrame.AddAnimation(animName);
 				spriteFrame.SetAnimationLoop(animName, loop);
-				spriteFrame.SetAnimationSpeed(animName, fps.ToInt());
+				spriteFrame.SetAnimationSpeed(animName, fps);
 			}
 
 			spriteFrame.AddFrame(animName, frameData);
