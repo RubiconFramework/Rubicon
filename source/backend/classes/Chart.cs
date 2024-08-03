@@ -32,7 +32,7 @@ public enum ChartTypeEnum
 }
 
 // unhandled stuff
-// this is briefly explained, all the chart types mashed into a nicely formatted one for later digestion
+// basically, all the chart types mashed into a nicely formatted one for later digestion
 public class RawNote
 {
     public float Time;
