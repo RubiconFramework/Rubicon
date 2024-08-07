@@ -14,6 +14,13 @@ namespace Konkon.Data
 
         #region Settings
         
+        #region Appearance
+        /// <summary>
+        /// The note skin to use in-game. Can be overridden by other scripts.
+        /// </summary>
+        public string Noteskin = "funkin";
+        #endregion
+        
         #region Gameplay
         /// <summary>
         /// Controls whether the notes go down or up.

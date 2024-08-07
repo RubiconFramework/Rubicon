@@ -20,6 +20,8 @@ namespace Konkon.Data
         public static float LosingThreshold = 0.30f;
         public static float WinningThreshold = 0.70f;
 
+        public static string AssetsFolder = "assets";
+
         public static float MaxScore = 1000000f;
     }
 }

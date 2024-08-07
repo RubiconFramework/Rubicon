@@ -14,6 +14,10 @@ config/name="Konkon"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ConductorSingleton="*res://source/Konkon.Game/Conductor.cs"
+
 [display]
 
 window/size/viewport_width=1440
