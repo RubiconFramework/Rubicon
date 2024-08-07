@@ -21,6 +21,16 @@ namespace Konkon.Game.Chart
         /// The type of note which equals one beat in this chart.
         /// </summary>
         public int TimeSigDenominator = 4;
+
+        /// <summary>
+        /// The index for which chart to select to be the opponent.
+        /// </summary>
+        public int OpponentChartIndex = 0;
+
+        /// <summary>
+        /// The index for which chart to select to be playable.
+        /// </summary>
+        public int PlayerChartIndex = 1;
         
         /// <summary>
         /// A list of BPM changes.
@@ -36,6 +46,11 @@ namespace Konkon.Game.Chart
         /// Whether to enable the countdown or not.
         /// </summary>
         public bool Countdown = true;
+
+        /// <summary>
+        /// Turning this on will use the camera positions preset on the stage. If set to false, the camera will follow the individual character camera positions.
+        /// </summary>
+        public bool UsePresetPositions = false;
         
         /// <summary>
         /// The chart offset.

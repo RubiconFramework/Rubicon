@@ -4,7 +4,7 @@ using Konkon.Game.Chart;
 namespace Konkon.Game
 {
     /// <summary>
-    /// The global Conductor class.
+    /// The global Conductor class, which keeps track of most of the time-related things.
     /// </summary>
     [GlobalClass]
     public partial class Conductor : Node
