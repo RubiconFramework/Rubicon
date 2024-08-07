@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace Konkon.Data
@@ -102,6 +103,16 @@ namespace Konkon.Data
         /// Indicates whether Discord RPC should be on.
         /// </summary>
         public bool DiscordRichPresence = true;
+        #endregion
+        
+        #region Binds
+        /// <summary>
+        /// The key binds used for each lane count.
+        /// </summary>
+        public Dictionary<int, Key[]> Keybinds = new()
+        {
+            { 4, new Key[] { Key.D, Key.F, Key.J, Key.K } }
+        };
         #endregion
         
         #endregion

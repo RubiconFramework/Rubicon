@@ -6,6 +6,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Konkon.UI\Konkon.UI.csproj" />
     <ProjectReference Include="..\Konkon\Konkon.csproj" />
   </ItemGroup>
 </Project>

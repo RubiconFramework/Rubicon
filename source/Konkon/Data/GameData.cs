@@ -14,7 +14,7 @@ namespace Konkon.Data
     {
         public static string[] NoteSpriteSkins = { "funkin" };
         public static NoteHitType[] HitTypes = { NoteHitType.Perfect, NoteHitType.Great, NoteHitType.Good, NoteHitType.Bad };
-        public static float[] HitWindows = { 25f, 50f, 90f, 135f };
+        public static double[] HitWindows = { 25d, 50d, 90d, 135d };
         public static int MashThreshold = 6;
         public static float MinHoldLength = 90f;
         public static float LosingThreshold = 0.30f;
