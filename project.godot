@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Konkon"
+run/main_scene="res://scenes/PlayScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-ConductorSingleton="*res://source/Konkon.Game/Conductor.cs"
+ConductorSingleton="*res://source/Konkon.Core/Conductor.cs"
 
 [display]
 

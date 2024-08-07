@@ -115,6 +115,20 @@ namespace Konkon.Core.Objects
         private NoteSkin _noteSkin;
         private float _scrollSpeed = 1f;
         #endregion
+        
+        public void Initialize(NoteData[] notes, int lane, ChartController parentController, bool autoplay = true)
+        {
+            Autoplay = autoplay;
+            Lane = lane;
+            Notes = notes;
+            ParentController = parentController;
+
+            NoteContainer = new Control();
+            NoteContainer.Name = "Note Container";
+			
+            AddChild(NoteContainer);
+            ChangeNoteSkin(parentController.NoteSkin);
+        }
 
         #region Public Methods
         
