@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Konkon.Data;
 
-namespace Konkon.API.Notes
+namespace Konkon.Game.API
 {
     /// <summary>
     /// Flags for NoteEventResult. Will prevent the action from being activated.

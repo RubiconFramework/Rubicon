@@ -3,7 +3,8 @@ using System.Linq;
 using Godot;
 using Konkon.Data;
 using Konkon.Game.Chart;
-using Konkon.UI.Noteskins;
+using Konkon.Game.UI.Noteskins;
+using Konkon.Utilities;
 
 namespace Konkon.Game.Objects
 {

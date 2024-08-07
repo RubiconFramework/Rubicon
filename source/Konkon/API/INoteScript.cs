@@ -2,7 +2,7 @@ using Konkon.Data;
 using Konkon.Game.Chart;
 using Konkon.Game.Objects;
 
-namespace Konkon.API.Notes
+namespace Konkon.Game.API
 {
     /// <summary>
     /// An interface to be inherited by any C# note types.

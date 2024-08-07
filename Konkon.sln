@@ -1,16 +1,16 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.API", "source\Konkon.API\Konkon.API.csproj", "{6114E7D8-0333-406C-A3BE-B608F69144EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.Stage.2D", "source\Konkon.Stage.2D\Konkon.Stage.2D.csproj", "{11E5EAC1-A4F8-43D1-B857-A5795313C9FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.Stage", "source\Konkon.Stage\Konkon.Stage.csproj", "{11E5EAC1-A4F8-43D1-B857-A5795313C9FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.Stage.3D", "source\Konkon.Stage.3D\Konkon.Stage.3D.csproj", "{11E5EAC1-A4F8-43D1-B857-A5795313C9FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.Game", "source\Konkon.Game\Konkon.Game.csproj", "{B1D787E0-6B53-4538-9FEA-D0697FC1D7A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon", "source\Konkon\Konkon.csproj", "{3499F5FD-E18F-43FC-B6F4-493235B6BCC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.UI", "source\Konkon.UI\Konkon.UI.csproj", "{4518E789-4495-4193-9193-963BBCCFA6BF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.Menus", "source\Konkon.Menus\Konkon.Menus.csproj", "{02732019-35AF-4B31-8111-554347A4BBD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konkon.Extras", "source\Konkon.Extras\Konkon.Extras.csproj", "{02732019-35AF-4B31-8111-554347A4BBD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

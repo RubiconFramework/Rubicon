@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Konkon.Utilities;
 
 namespace Konkon.Game.Chart
 {
@@ -207,7 +208,7 @@ namespace Konkon.Game.Chart
         public HoloChart ConvertData()
         {
             for (int i = 1; i < Bpms.Length; i++)
-                Bpms[i].MsTime = Bpms[i - 1].MsTime + Util.MeasureToMs(Bpms[i].Time - Bpms[i - 1].Time, Bpms[i - 1].Bpm, Bpms[i].TimeSignatureNumerator);
+                Bpms[i].MsTime = Bpms[i - 1].MsTime + ConductorUtil.MeasureToMs(Bpms[i].Time - Bpms[i - 1].Time, Bpms[i - 1].Bpm, Bpms[i].TimeSignatureNumerator);
 
             for (int i = 0; i < Charts.Length; i++)
                 for (int n = 0; n < Charts[i].Notes.Length; n++)

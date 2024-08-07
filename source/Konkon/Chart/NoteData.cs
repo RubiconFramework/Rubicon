@@ -1,5 +1,6 @@
 using System.Linq;
 using Godot;
+using Konkon.Utilities;
 
 namespace Konkon.Game.Chart
 {
@@ -60,8 +61,8 @@ namespace Konkon.Game.Chart
                 }
             }
 
-            MsTime = Util.MeasureToMs(Time - bpm.Time, bpm.Bpm, bpm.TimeSignatureNumerator) + bpm.MsTime;
-            MsLength = Util.MeasureToMs(Length, bpm.Bpm, bpm.TimeSignatureNumerator);
+            MsTime = ConductorUtil.MeasureToMs(Time - bpm.Time, bpm.Bpm, bpm.TimeSignatureNumerator) + bpm.MsTime;
+            MsLength = ConductorUtil.MeasureToMs(Length, bpm.Bpm, bpm.TimeSignatureNumerator);
         }
 
         /// <summary>

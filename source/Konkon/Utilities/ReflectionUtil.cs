@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Konkon.API.Utilities
+namespace Konkon.Utilities
 {
     /// <summary>
     /// A utility that helps with Reflection things. http://answers.unity.com/answers/983130/view.html
