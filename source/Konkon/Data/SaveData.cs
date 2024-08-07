@@ -41,6 +41,16 @@ namespace Konkon.Data
         /// Controls the scroll speed of the notes globally. Setting this to 0 will default to the chart's scroll speed.
         /// </summary>
         public float ScrollSpeed = 0.0f;
+
+        /// <summary>
+        /// Offset (help me write a better description for this)
+        /// </summary>
+        public double Offset = 0.0d;
+
+        /// <summary>
+        /// Offset but visually (help me write a better description for this)
+        /// </summary>
+        public float VisualOffset = 0.0f;
         #endregion
         
         #region Audio
