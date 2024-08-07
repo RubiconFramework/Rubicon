@@ -5,6 +5,9 @@ using Konkon.UI.Noteskins;
 
 namespace Konkon.Game.Objects
 {
+    /// <summary>
+    /// The Note object displayed graphically!
+    /// </summary>
     [GlobalClass]
     public partial class Note : Control
     {
@@ -50,6 +53,13 @@ namespace Konkon.Game.Objects
 
         [ExportGroup("Debug"), Export] private float _tailOffset = 0f;
 
+        /// <summary>
+        /// Usually called to set up the Note for the first time.
+        /// </summary>
+        /// <param name="noteData">The note data provided</param>
+        /// <param name="parent">The parent NoteLaneController</param>
+        /// <param name="notePair">The note pair that comes with the note skin</param>
+        /// <param name="material">The material, if the note skin requires the RGB shader.</param>
         public void Initialize(NoteData noteData, NoteLaneController parent, NotePair notePair, Material material = null)
         {
             Data = noteData;
@@ -100,12 +110,17 @@ namespace Konkon.Game.Objects
                 QueueFree();
         }
 
+        /// <summary>
+        /// Changes the look of the note from the provided note pair.
+        /// </summary>
+        /// <param name="notePair">The note pair, usually comes from a note skin.</param>
+        /// <param name="mat">The material, if the note skin needs the RGB shader.</param>
         public void ChangeNotePair(NotePair notePair, Material mat = null)
         {
             _notePair = notePair;
             
             NoteGraphic?.QueueFree();
-            TailGraphic.QueueFree();
+            TailGraphic?.QueueFree();
 
             NoteGraphic = _notePair.Note.Instantiate<Control>();
             if (mat != null)
@@ -129,6 +144,9 @@ namespace Konkon.Game.Objects
             AddChild(TailGraphic);
         }
         
+        /// <summary>
+        /// Called when the scroll speed is adjusted!
+        /// </summary>
         public void AdjustScrollSpeed()
         {
             if (TailGraphic == null)
@@ -147,6 +165,10 @@ namespace Konkon.Game.Objects
             tailSpr.Size = new Vector2(tailWidth, tailSpr.Size.Y);
         }
         
+        /// <summary>
+        /// Called when initialized and when the note is being held.
+        /// </summary>
+        /// <param name="length">The length of the note</param>
         public void AdjustTailLength(double length)
         {
             if (TailGraphic == null)
@@ -176,6 +198,9 @@ namespace Konkon.Game.Objects
             }
         }
 
+        /// <summary>
+        /// Usually called when the note was let go too early.
+        /// </summary>
         public void UnsetHold()
         {
             // Should be based on time, NOT note Y position

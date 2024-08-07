@@ -7,9 +7,13 @@ using Konkon.UI.Noteskins;
 
 namespace Konkon.Game.Objects
 {
+    /// <summary>
+    /// The individual lane that controls scrolling notes and hitting notes! Also referred to some as a "strum" or a "receptor".
+    /// </summary>
     [GlobalClass]
     public partial class NoteLaneController : Control
     {
+        #region Exported Variables
         /// <summary>
         /// Indicates which lane this controller is.
         /// </summary>
@@ -104,14 +108,21 @@ namespace Konkon.Game.Objects
         /// The lane's material, if the note skin requires the RGB shader.
         /// </summary>
         [Export] private Material _noteMaterial;
+        #endregion
 
+        #region Private Variables
         private NoteSkin _noteSkin;
         private float _scrollSpeed = 1f;
+        #endregion
 
         #region Public Methods
         
         #region Godot Overrides
         
+        /// <summary>
+        /// Updates every frame. The graphical note spawner and autoplay relies on this!
+        /// </summary>
+        /// <param name="delta"></param>
         public override void _Process(double delta)
         {
             base._Process(delta);
@@ -226,8 +237,10 @@ namespace Konkon.Game.Objects
         }
         #endregion
         
-        
-        
+        /// <summary>
+        /// Changes the general note skin on this specific lane.
+        /// </summary>
+        /// <param name="noteSkin">The note skin to switch to</param>
         public void ChangeNoteSkin(NoteSkin noteSkin)
         {
             int laneCount = ParentController.Lanes.Length;
