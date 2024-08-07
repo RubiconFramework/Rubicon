@@ -5,7 +5,7 @@ using Godot.Collections;
 namespace Konkon.UI.Noteskins
 {
     /// <summary>
-    /// A NoteSkin resource that contains the graphics for lanes, notes, and splashes. Can also use materials if it is dependent on the RGB shader.
+    /// A resource that contains the graphics for lanes, notes, and splashes. Can also use materials if it is dependent on the RGB shader.
     /// </summary>
     [GlobalClass]
     public partial class NoteSkin : Resource

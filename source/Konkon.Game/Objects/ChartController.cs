@@ -13,6 +13,8 @@ namespace Konkon.Game.Objects
         //[Signal] public delegate void NoteMissEventHandler(ChartController chartCtrl, NoteData noteData, float hitMs, NoteEventResult result);
         //[Signal] public delegate void PressedEventHandler(ChartController chartCtrl);
         
+        //public void Initialize()
+        
         public void OnNoteHit(NoteData noteData, NoteHitType hitType, double distanceFromTime, bool held = false)
         {
             
