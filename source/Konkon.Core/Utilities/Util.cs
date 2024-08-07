@@ -1,7 +1,7 @@
 using System.Linq;
 using Godot;
 
-namespace Konkon.Utilities
+namespace Konkon.Core.Utilities
 {
     /// <summary>
     /// General utility class for the engine.

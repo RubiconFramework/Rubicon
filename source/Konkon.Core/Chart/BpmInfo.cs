@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Konkon.Game.Chart
+namespace Konkon.Core.Chart
 {
     [GlobalClass]
     public partial class BpmInfo : RefCounted

@@ -1,7 +1,7 @@
 using Godot;
-using Konkon.Game.Chart;
+using Konkon.Core.Chart;
 
-namespace Konkon.Game
+namespace Konkon.Core
 {
     /// <summary>
     /// The global Conductor class, which keeps track of most of the time-related things.

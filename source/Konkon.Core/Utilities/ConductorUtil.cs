@@ -1,4 +1,4 @@
-namespace Konkon.Utilities
+namespace Konkon.Core.Utilities
 {
     /// <summary>
     /// Helper functions for Conductor and time-based stuff.

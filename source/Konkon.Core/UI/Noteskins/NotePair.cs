@@ -1,7 +1,7 @@
 using Godot;
 using Konkon.Game;
 
-namespace Konkon.Game.UI.Noteskins
+namespace Konkon.Core.UI.Noteskins
 {
     /// <summary>
     /// A resource that links to note and tail scenes. Used for noteskins.

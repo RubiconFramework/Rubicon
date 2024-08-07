@@ -1,7 +1,7 @@
 using Godot;
 using Konkon.Data;
 
-namespace Konkon.Game
+namespace Konkon.Core.Chart
 {
     /// <summary>
     /// A class to track statistics for each chart controller.

@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
-namespace Konkon.Game.UI.Noteskins
+namespace Konkon.Core.UI.Noteskins
 {
     /// <summary>
     /// A resource that contains the graphics for lanes, notes, and splashes. Can also use materials if it is dependent on the RGB shader.

@@ -1,6 +1,6 @@
 using Konkon.Data;
-using Konkon.Game.Chart;
-using Konkon.Game.Objects;
+using Konkon.Core.Chart;
+using Konkon.Core.Objects;
 
 namespace Konkon.Game.API
 {

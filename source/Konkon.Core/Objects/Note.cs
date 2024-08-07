@@ -1,9 +1,9 @@
 using Godot;
 using Konkon.Data;
-using Konkon.Game.Chart;
-using Konkon.Game.UI.Noteskins;
+using Konkon.Core.Chart;
+using Konkon.Core.UI.Noteskins;
 
-namespace Konkon.Game.Objects
+namespace Konkon.Core.Objects
 {
     /// <summary>
     /// The Note object displayed graphically!

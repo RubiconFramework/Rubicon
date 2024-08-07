@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using Godot;
 using Konkon.Data;
-using Konkon.Game.Chart;
-using Konkon.Game.UI.Noteskins;
-using Konkon.Utilities;
+using Konkon.Core.Chart;
+using Konkon.Core.UI.Noteskins;
+using Konkon.Core.Utilities;
 
-namespace Konkon.Game.Objects
+namespace Konkon.Core.Objects
 {
     /// <summary>
     /// The individual lane that controls scrolling notes and hitting notes! Also referred to some as a "strum" or a "receptor".

@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Konkon.Game.Chart
+namespace Konkon.Core.Chart
 {
     /// <summary>
     /// A class to store data for individual charts (referred to as "strumlines" for some).

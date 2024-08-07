@@ -1,4 +1,5 @@
-Konkon - Bare minimum for the engine, should be independent of everything else
+Konkon - Points to the rest of the files, like assets
+Konkon.Core - Bare minimum for the engine, should be independent of everything else
 Konkon.Extras - Extra events n stuff to include with the engine, like a Hey! event or some shit like that
 Konkon.Game - The rest of the game, basically PlayState
 Konkon.Menus - Menus

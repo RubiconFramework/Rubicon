@@ -1,8 +1,8 @@
 using System.Linq;
 using Godot;
-using Konkon.Utilities;
+using Konkon.Core.Utilities;
 
-namespace Konkon.Game.Chart
+namespace Konkon.Core.Chart
 {
     /// <summary>
     /// Used for storing a note's data values. Is not the actual Note object.

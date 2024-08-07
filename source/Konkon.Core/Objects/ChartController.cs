@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using Godot;
 using Konkon.Game.API;
 using Konkon.Data;
-using Konkon.Game.Chart;
-using Konkon.Game.UI.Noteskins;
+using Konkon.Game;
+using Konkon.Core.Chart;
+using Konkon.Core.UI.Noteskins;
 
-namespace Konkon.Game.Objects
+namespace Konkon.Core.Objects
 {
     [GlobalClass]
     public partial class ChartController : Control

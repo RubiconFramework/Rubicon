@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Konkon.Utilities;
+using Konkon.Core.Utilities;
 
-namespace Konkon.Game.Chart
+namespace Konkon.Core.Chart
 {
     /// <summary>
     /// The general chart format for this engine.
