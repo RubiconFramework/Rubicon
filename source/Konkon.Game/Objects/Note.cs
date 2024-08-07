@@ -8,20 +8,44 @@ namespace Konkon.Game.Objects
     [GlobalClass]
     public partial class Note : Control
     {
+        /// <summary>
+        /// Whether the note was missed.
+        /// </summary>
         [ExportGroup("Status"), Export] public bool Missed = false;
         
+        /// <summary>
+        /// The data containing the time and length of this note.
+        /// </summary>
         [ExportGroup("Settings"), Export] public NoteData Data { get; private set; }
 
+        /// <summary>
+        /// The alpha value of the graphic's Modulate.
+        /// </summary>
         [Export] public float Alpha = 1f;
 
+        /// <summary>
+        /// Multiplies the scroll speed by whatever this value's set to.
+        /// </summary>
         [Export] public float ScrollMultiplier = 1f;
-
+        
+        /// <summary>
+        /// The note pair containing the note skin's note and tail graphics.
+        /// </summary>
         [Export] private NotePair _notePair;
 
+        /// <summary>
+        /// The parent NoteLaneController that this note belongs to.
+        /// </summary>
         [ExportGroup("References"), Export] public NoteLaneController ParentLane { get; private set; }
 
+        /// <summary>
+        /// The graphic for this note.
+        /// </summary>
         [ExportSubgroup("Note"), Export] public Control NoteGraphic;
 
+        /// <summary>
+        /// The graphic for this note's tail, provided the length of this note is longer than 0.
+        /// </summary>
         [Export] public Control TailGraphic;
 
         [ExportGroup("Debug"), Export] private float _tailOffset = 0f;
