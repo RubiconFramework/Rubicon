@@ -252,7 +252,7 @@ namespace Konkon.Game
                 return _cachedStep;
 
             if (Bpms.Length <= 1)
-                return Time / (60 / (Bpm * 4));
+                return Time / (60d / (Bpm * TimeSigDenominator));
 
             _cachedStepTime = Time;
             _cachedStep = (Time - Bpms[BpmIndex].MsTime / 1000d) / (60 / (Bpm * TimeSigDenominator)) + (Bpms[BpmIndex].Time * TimeSigNumerator * TimeSigDenominator);
@@ -269,10 +269,10 @@ namespace Konkon.Game
                 return _cachedBeat;
 
             if (Bpms.Length <= 1)
-                return Time / (60 / Bpm);
+                return Time / (60d / Bpm);
 
             _cachedBeatTime = Time;
-            _cachedBeat = (Time - Bpms[BpmIndex].MsTime / 1000f) / (60 / Bpm) + Bpms[BpmIndex].Time * TimeSigNumerator;
+            _cachedBeat = (Time - Bpms[BpmIndex].MsTime / 1000d) / (60d / Bpm) + Bpms[BpmIndex].Time * TimeSigNumerator;
             return _cachedBeat;
         }
 
@@ -286,10 +286,10 @@ namespace Konkon.Game
                 return _cachedMeasure;
 
             if (Bpms.Length <= 1)
-                return Time / (60 / (Bpm / TimeSigNumerator));
+                return Time / (60d / (Bpm / TimeSigNumerator));
 
             _cachedMeasureTime = Time;
-            _cachedMeasure = (Time - Bpms[BpmIndex].MsTime / 1000f) / (60 / (Bpm / TimeSigNumerator)) + Bpms[BpmIndex].Time;
+            _cachedMeasure = (Time - Bpms[BpmIndex].MsTime / 1000d) / (60d / (Bpm / TimeSigNumerator)) + Bpms[BpmIndex].Time;
             return _cachedMeasure;
         }
 

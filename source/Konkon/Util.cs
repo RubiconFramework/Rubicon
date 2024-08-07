@@ -47,7 +47,7 @@ namespace Konkon
         /// <returns>The measure, in milliseconds.</returns>
         public static double MeasureToMs(double measure, double bpm, double timeSignatureNumerator = 4f)
         {
-            return MeasureToBeats(measure, timeSignatureNumerator) * 60000f / bpm;
+            return measure * (60000d / (bpm / timeSignatureNumerator));
         }
 
         /// <summary>

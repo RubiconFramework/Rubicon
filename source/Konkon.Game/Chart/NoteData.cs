@@ -48,8 +48,7 @@ namespace Konkon.Game.Chart
         /// Converts the pre-existing Time and Length variables to milliseconds and stores them in MsTime and MsLength, using the provided BpmInfo.
         /// </summary>
         /// <param name="bpmInfo">An Array of BpmInfos</param>
-        /// <param name="timeSignatureNumerator">The number of beats in a measure.</param>
-        public void ConvertData(BpmInfo[] bpmInfo, float timeSignatureNumerator)
+        public void ConvertData(BpmInfo[] bpmInfo)
         {
             BpmInfo bpm = bpmInfo.Last();
             for (int i = 0; i < bpmInfo.Length; i++)
@@ -61,8 +60,8 @@ namespace Konkon.Game.Chart
                 }
             }
 
-            MsTime = Util.MeasureToMs(Time - bpm.Time, bpm.Bpm, timeSignatureNumerator) + bpm.MsTime;
-            MsLength = Util.MeasureToMs(Length, bpm.Bpm, timeSignatureNumerator);
+            MsTime = Util.MeasureToMs(Time - bpm.Time, bpm.Bpm, bpm.TimeSignatureNumerator) + bpm.MsTime;
+            MsLength = Util.MeasureToMs(Length, bpm.Bpm, bpm.TimeSignatureNumerator);
         }
 
         /// <summary>

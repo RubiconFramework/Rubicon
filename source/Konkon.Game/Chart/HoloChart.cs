@@ -13,16 +13,6 @@ namespace Konkon.Game.Chart
     {
         #region Public Variables
         /// <summary>
-        /// The number of beats in a measure in this chart.
-        /// </summary>
-        public int TimeSigNumerator = 4;
-        
-        /// <summary>
-        /// The type of note which equals one beat in this chart.
-        /// </summary>
-        public int TimeSigDenominator = 4;
-
-        /// <summary>
         /// The index for which chart to select to be the opponent.
         /// </summary>
         public int OpponentChartIndex = 0;
@@ -87,13 +77,14 @@ namespace Konkon.Game.Chart
             HoloChart chart = new HoloChart();
 
             // Simple stuff outta the way first
-            chart.TimeSigNumerator = parsedDict["timeSigNumerator"].AsInt32();
-            chart.TimeSigDenominator = parsedDict["timeSigDenominator"].AsInt32();
             chart.ScrollSpeed = parsedDict["scrollSpeed"].AsSingle();
             chart.Countdown = parsedDict["countdown"].AsBool();
+            chart.UsePresetPositions = parsedDict["usePresetPositions"].AsBool();
             chart.Offset = parsedDict["offset"].AsSingle();
             chart.Stage = parsedDict["stage"].AsString();
             chart.UiStyle = parsedDict["uiStyle"].AsString();
+            chart.OpponentChartIndex = parsedDict["opponentChartIndex"].AsInt32();
+            chart.PlayerChartIndex = parsedDict["playerChartIndex"].AsInt32();
 
             // bpms
             Godot.Collections.Array parsedBpms = parsedDict["bpms"].AsGodotArray();
@@ -104,6 +95,8 @@ namespace Konkon.Game.Chart
                 BpmInfo bpm = new BpmInfo();
                 bpm.Time = parsedBpmInfo["time"].AsSingle();
                 bpm.Bpm = parsedBpmInfo["bpm"].AsSingle();
+                bpm.TimeSignatureNumerator = parsedBpmInfo["timeSigNumerator"].AsInt32();
+                bpm.TimeSignatureDenominator = parsedBpmInfo["timeSigDenominator"].AsInt32();
 
                 bpms[i] = bpm;
             }
@@ -121,6 +114,7 @@ namespace Konkon.Game.Chart
                 curCharChart.Visible = curParsedChart["visible"].AsBool();
                 curCharChart.SpawnPointIndex = curParsedChart["spawnPointIndex"].AsInt32();
                 curCharChart.Characters = curParsedChart["characters"].AsStringArray();
+                curCharChart.Lanes = curParsedChart["lanes"].AsInt32();
 
                 // notes
                 Godot.Collections.Array parsedNotes = curParsedChart["notes"].AsGodotArray();
@@ -157,13 +151,14 @@ namespace Konkon.Game.Chart
             Godot.Collections.Dictionary serializedChart = new Godot.Collections.Dictionary();
 
             // Simple stuff
-            serializedChart.Add("timeSigNumerator", TimeSigNumerator);
-            serializedChart.Add("timeSigDenominator", TimeSigDenominator);
             serializedChart.Add("scrollSpeed", ScrollSpeed);
             serializedChart.Add("countdown", Countdown);
+            serializedChart.Add("usePresetPositions", UsePresetPositions);
             serializedChart.Add("offset", Offset);
             serializedChart.Add("stage", Stage);
             serializedChart.Add("uiStyle", UiStyle);
+            serializedChart.Add("opponentChartIndex", OpponentChartIndex);
+            serializedChart.Add("playerChartIndex", PlayerChartIndex);
 
             // bpms
             Godot.Collections.Array serializedBpms = new Godot.Collections.Array();
@@ -172,6 +167,8 @@ namespace Konkon.Game.Chart
                 Godot.Collections.Dictionary serializedBpmInfo = new Godot.Collections.Dictionary();
                 serializedBpmInfo.Add("time", Bpms[i].Time);
                 serializedBpmInfo.Add("bpm", Bpms[i].Bpm);
+                serializedBpmInfo.Add("timeSigNumerator", Bpms[i].TimeSignatureNumerator);
+                serializedBpmInfo.Add("timeSigDenominator", Bpms[i].TimeSignatureDenominator);
                 serializedBpms.Add(serializedBpmInfo);
             }
 
@@ -210,11 +207,11 @@ namespace Konkon.Game.Chart
         public HoloChart ConvertData()
         {
             for (int i = 1; i < Bpms.Length; i++)
-                Bpms[i].MsTime = Bpms[i - 1].MsTime + Util.MeasureToMs(Bpms[i].Time - Bpms[i - 1].Time, Bpms[i - 1].Bpm, TimeSigNumerator);
+                Bpms[i].MsTime = Bpms[i - 1].MsTime + Util.MeasureToMs(Bpms[i].Time - Bpms[i - 1].Time, Bpms[i - 1].Bpm, Bpms[i].TimeSignatureNumerator);
 
             for (int i = 0; i < Charts.Length; i++)
                 for (int n = 0; n < Charts[i].Notes.Length; n++)
-                    Charts[i].Notes[n].ConvertData(Bpms, TimeSigNumerator);
+                    Charts[i].Notes[n].ConvertData(Bpms);
 
             return this;
         }
