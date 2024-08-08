@@ -7,7 +7,6 @@ script = ExtResource("1_lgtnn")
 SongName = "konkonbeats"
 Difficulty = "normal"
 DownScroll = true
-TargetController = 1
 ChartManagers = NodePath("Game HUD/Chart Managers")
 Instrumental = NodePath("Instrumental")
 Vocals = NodePath("Vocals")
