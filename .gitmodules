@@ -1,0 +1,3 @@
+[submodule "source/Promise.Framework"]
+	path = source/Promise.Framework
+	url = https://github.com/Binpuki/Promise.Framework.git
