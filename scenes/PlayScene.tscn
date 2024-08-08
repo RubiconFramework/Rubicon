@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dicd8kbfejo5f"]
 
-[ext_resource type="Script" path="res://source/Konkon.Game/GameMaster.cs" id="1_lgtnn"]
+[ext_resource type="Script" path="res://source/Rubicon.Game/GameMaster.cs" id="1_lgtnn"]
 
 [node name="GameMaster" type="Node"]
 script = ExtResource("1_lgtnn")
