@@ -6,4 +6,8 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Rubicon.Extras</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
+    <ProjectReference Include="..\Rubicon.Game\Rubicon.Game.csproj" />
+  </ItemGroup>
 </Project>
