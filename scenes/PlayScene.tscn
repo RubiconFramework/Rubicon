@@ -2,5 +2,33 @@
 
 [ext_resource type="Script" path="res://source/Rubicon.Game/GameMaster.cs" id="1_lgtnn"]
 
-[node name="GameMaster" type="Node"]
+[node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals")]
 script = ExtResource("1_lgtnn")
+SongName = "konkonbeats"
+Difficulty = "normal"
+DownScroll = true
+TargetController = 1
+ChartManagers = NodePath("Game HUD/Chart Managers")
+Instrumental = NodePath("Instrumental")
+Vocals = NodePath("Vocals")
+
+[node name="Game HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Chart Managers" type="Control" parent="Game HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 144.0
+offset_bottom = 144.0
+grow_horizontal = 2
+
+[node name="Instrumental" type="AudioStreamPlayer" parent="."]
+
+[node name="Vocals" type="AudioStreamPlayer" parent="."]

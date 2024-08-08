@@ -17,7 +17,7 @@ SpawnPointIndex = 1
 [sub_resource type="Resource" id="Resource_1fwci"]
 script = ExtResource("1_g4pd7")
 Characters = PackedStringArray("gf")
-SpawnPointIndex = 0
+SpawnPointIndex = 2
 
 [sub_resource type="Resource" id="Resource_ai1vl"]
 script = ExtResource("2_b7uhi")
@@ -33,7 +33,7 @@ script = ExtResource("2_58vsw")
 Name = "Test"
 Artist = "Kawai Sprite"
 Week = ""
-UseVocals = false
+UseVocals = true
 OnlyPlayerMode = false
 Stage = "stage"
 UiStyle = "funkin"
@@ -47,4 +47,4 @@ PlayerChartIndex = 1
 SpeakerChartIndex = 2
 Countdown = true
 UsePresetPositions = false
-AudioExtension = ".ogg"
+AudioExtension = 0

@@ -25,11 +25,10 @@ InitialDifficulty = "normal"
 Difficulties = [SubResource("Resource_xf3ac")]
 RequireUnlock = false
 UnlockConditions = PackedStringArray()
-Characters = [Object(RefCounted,"script":Resource("res://source/Rubicon.Game/Data/CharacterChart.cs"),"Characters":PackedStringArray(),"SpawnPointIndex":0)
-]
+Characters = []
 OpponentChartIndex = -1
 PlayerChartIndex = 0
 SpeakerChartIndex = -1
 Countdown = true
 UsePresetPositions = false
-AudioExtension = ".ogg"
+AudioExtension = 0

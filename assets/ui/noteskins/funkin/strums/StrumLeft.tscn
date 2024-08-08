@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpi4c8c6kjyd7"]
 
 [ext_resource type="Texture2D" uid="uid://mqfh4qaxvlf" path="res://assets/ui/noteskins/funkin/assets/strumIdle.atlastex" id="1_i53c8"]
-[ext_resource type="AnimationLibrary" uid="uid://d2fuuydwityy8" path="res://assets/ui/noteskins/funkin/NoteSkinAnimLibrary.tres" id="2_k2ug2"]
+[ext_resource type="AnimationLibrary" uid="uid://3117qn6pgcdd" path="res://assets/ui/noteskins/funkin/NoteSkinAnimLibrary.tres" id="2_k2ug2"]
 
 [node name="StrumLeft" type="CenterContainer"]
 anchors_preset = 8

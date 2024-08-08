@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bv7xcbccqerhq"]
 
 [ext_resource type="Texture2D" uid="uid://dpwue5k280gxd" path="res://assets/ui/noteskins/funkin/note_tail.png" id="1_0hril"]
-[ext_resource type="Texture2D" uid="uid://chykqe2yf785w" path="res://assets/ui/noteskins/funkin/note_tailEnd.png" id="2_u5erx"]
+[ext_resource type="Texture2D" uid="uid://ga8ykjqw6inm" path="res://assets/ui/noteskins/funkin/assets/tailEnd.atlastex" id="2_ikhsk"]
 
 [node name="Tail" type="Control"]
 layout_mode = 3
@@ -68,5 +68,5 @@ offset_right = 64.0
 offset_bottom = 25.0
 grow_vertical = 2
 pivot_offset = Vector2(0, 25)
-texture = ExtResource("2_u5erx")
+texture = ExtResource("2_ikhsk")
 expand_mode = 1

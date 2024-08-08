@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Rubicon.Game.Data;
+using Rubicon.Game.Utilities;
 
 namespace Rubicon.Game.Chart
 {
@@ -103,6 +106,41 @@ namespace Rubicon.Game.Chart
         /// <summary>
         /// The audio file's extension.
         /// </summary>
-        [Export] public string AudioExtension = ".ogg";
+        [Export] public AudioStreamUtil.AudioStreamType AudioExtension = AudioStreamUtil.AudioStreamType.OggVorbis;
+        
+        public SongDifficulty GetDifficulty(int index)
+        {
+            return Difficulties[Mathf.Clamp(index, 0, Difficulties.Length - 1)];
+        }
+
+        public SongDifficulty GetDifficulty(string name)
+        {
+            if (!HasDifficulty(name))
+            {
+                if (HasDifficulty(InitialDifficulty))
+                    return GetDifficulty(InitialDifficulty);
+                else
+                    return null;
+            }
+
+            IEnumerable<SongDifficulty> result = Difficulties.Where(x => x.InternalName == name);
+            return result.FirstOrDefault();
+        }
+
+        public int FindDifficulty(string name)
+        {
+            for (int i = 0; i < Difficulties.Length; i++)
+                if (Difficulties[i].InternalName == name)
+                    return i;
+            return -1;
+        }
+
+        public bool HasDifficulty(string name)
+        {
+            for (int i = 0; i < Difficulties.Length; i++)
+                if (Difficulties[i].InternalName == name)
+                    return true;
+            return false;
+        }
     }
 }

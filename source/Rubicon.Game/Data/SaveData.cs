@@ -26,12 +26,17 @@ namespace Rubicon.Game.Data
         /// <summary>
         /// Controls whether the notes go down or up.
         /// </summary>
-        public bool Downscroll = false;
+        public bool DownScroll = false;
         
         /// <summary>
         /// Controls whether the player's notes are in the middle.
         /// </summary>
-        public bool Middlescroll = false;
+        public bool MiddleScroll = false;
+
+        /// <summary>
+        /// Enabling this has the computer take over for the player.
+        /// </summary>
+        public bool BotPlay = false;
         
         /// <summary>
         /// Controls whether the opponent's chart is hidden. Setting this to true will hide them.
