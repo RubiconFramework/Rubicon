@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="SongMetadata" load_steps=4 format=3 uid="uid://cubg5r5627r1y"]
+
+[ext_resource type="Script" path="res://source/Rubicon.Game/Data/SongMetadata.cs" id="1_c3gk0"]
+[ext_resource type="Script" path="res://source/Rubicon.Game/Data/SongDifficulty.cs" id="1_d4r25"]
+
+[sub_resource type="Resource" id="Resource_xf3ac"]
+script = ExtResource("1_d4r25")
+InternalName = "normal"
+DisplayName = "Normal"
+ChartPath = "res://assets/songs/konkonbeats/konkonbeats.json"
+Color = Color(0, 0, 0, 1)
+Charter = "firubii"
+Hidden = false
+
+[resource]
+script = ExtResource("1_c3gk0")
+Name = "KONKON Beats!"
+Artist = "Shirakami Fubuki"
+Week = ""
+UseVocals = false
+OnlyPlayerMode = false
+Stage = "stage"
+UiStyle = "funkin"
+InitialDifficulty = "normal"
+Difficulties = [SubResource("Resource_xf3ac")]
+RequireUnlock = false
+UnlockConditions = PackedStringArray()
+Characters = [Object(RefCounted,"script":Resource("res://source/Rubicon.Game/Data/CharacterChart.cs"),"Characters":PackedStringArray(),"SpawnPointIndex":0)
+]
+OpponentChartIndex = -1
+PlayerChartIndex = 0
+SpeakerChartIndex = -1
+Countdown = true
+UsePresetPositions = false
+AudioExtension = ".ogg"

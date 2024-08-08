@@ -7,16 +7,16 @@ namespace Rubicon.Game.Data
     /// Contains information about the characters.
     /// </summary>
     [GlobalClass]
-    public partial class CharacterChart : RefCounted
+    public partial class CharacterChart : Resource
     {
         /// <summary>
         /// The character list to spawn.
         /// </summary>
-        public string[] Characters = Array.Empty<string>();
+        [Export] public string[] Characters = Array.Empty<string>();
 
         /// <summary>
         /// The index where the game will spawn these characters at.
         /// </summary>
-        public int SpawnPointIndex = 0;
+        [Export] public int SpawnPointIndex = 0;
     }
 }
