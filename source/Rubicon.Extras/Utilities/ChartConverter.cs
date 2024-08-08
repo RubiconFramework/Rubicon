@@ -119,7 +119,7 @@ namespace Rubicon.Extras.Utilities
                     Lanes = 4
                 },
                 new IndividualChart() {
-                    Visible = true,
+                    Visible = false,
                     Notes = speakerNotes.ToArray(),
                     Lanes = 4
                 }
