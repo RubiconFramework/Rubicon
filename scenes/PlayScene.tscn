@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dicd8kbfejo5f"]
+[gd_scene load_steps=4 format=3 uid="uid://dicd8kbfejo5f"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Game/GameMaster.cs" id="1_lgtnn"]
+[ext_resource type="Script" path="res://source/Rubicon.Game/API/Controllers/SongCoroutineController.cs" id="2_rm5yx"]
+[ext_resource type="Script" path="res://source/Rubicon.Game/UI/UiBounce.cs" id="3_n21dw"]
 
-[node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals")]
+[node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "CoroutineController")]
 script = ExtResource("1_lgtnn")
 SongName = "astrogirl"
 Difficulty = "normal"
@@ -10,6 +12,13 @@ DownScroll = true
 ChartManagers = NodePath("Game HUD/Chart Managers")
 Instrumental = NodePath("Instrumental")
 Vocals = NodePath("Vocals")
+UI = NodePath("Game HUD")
+CoroutineController = NodePath("API/CoroutineController")
+
+[node name="API" type="Node" parent="."]
+
+[node name="CoroutineController" type="Node" parent="API"]
+script = ExtResource("2_rm5yx")
 
 [node name="Game HUD" type="Control" parent="."]
 layout_mode = 3
@@ -18,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_n21dw")
 
 [node name="Chart Managers" type="Control" parent="Game HUD"]
 layout_mode = 1

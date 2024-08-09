@@ -5,8 +5,10 @@ using Promise.Framework;
 using Promise.Framework.Chart;
 using Promise.Framework.Objects;
 using Promise.Framework.UI.Noteskins;
+using Rubicon.Game.API.Controllers;
 using Rubicon.Game.Chart;
 using Rubicon.Game.Data;
+using Rubicon.Game.UI;
 using Rubicon.Game.Utilities;
 
 namespace Rubicon.Game
@@ -34,6 +36,10 @@ namespace Rubicon.Game
         [Export] public AudioStreamPlayer Instrumental;
 
         [Export] public AudioStreamPlayer Vocals;
+
+        [Export] public UiBounce UI;
+
+        [ExportSubgroup("API Controllers"), Export] public SongCoroutineController CoroutineController;
         
         public override void _Ready()
         {
@@ -94,6 +100,9 @@ namespace Rubicon.Game
                 if (chartCtrl.Visible)
                     visIdx++;
             }
+            
+            // Load coroutines
+            CoroutineController.Load(SongName, meta.Stage);
             
             Instrumental.Play(0);
             if (meta.UseVocals)

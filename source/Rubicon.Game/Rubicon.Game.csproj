@@ -6,6 +6,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\addons\HCoroutines\HCoroutines.csproj" />
     <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
     <ProjectReference Include="..\Promise.Framework\Promise.Framework\Promise.Framework.csproj" />
   </ItemGroup>
