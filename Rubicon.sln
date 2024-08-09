@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.Stage.2D", "source\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.Stage.3D", "source\Rubicon.Stage.3D\Rubicon.Stage.3D.csproj", "{28395DD0-93B1-4B93-8617-80E4362477EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCoroutines", "addons\HCoroutines\HCoroutines.csproj", "{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,12 @@ Global
 		{28395DD0-93B1-4B93-8617-80E4362477EE}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{28395DD0-93B1-4B93-8617-80E4362477EE}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{28395DD0-93B1-4B93-8617-80E4362477EE}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6114E7D8-0333-406C-A3BE-B608F69144EB} = {EA68565E-B684-450E-A2F5-B94FF372226D}

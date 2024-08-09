@@ -4,7 +4,7 @@
 
 [node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals")]
 script = ExtResource("1_lgtnn")
-SongName = "konkonbeats"
+SongName = "astrogirl"
 Difficulty = "normal"
 DownScroll = true
 ChartManagers = NodePath("Game HUD/Chart Managers")

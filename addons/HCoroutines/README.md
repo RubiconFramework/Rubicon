@@ -1,0 +1,229 @@
+# HCoroutines
+
+![Godot 4.2.0](https://img.shields.io/badge/Godot-4.2.0-blue?logo=godot-engine&logoColor=white&style=for-the-badge)
+![CSharp](https://img.shields.io/badge/Godot-C%23-green?logo=csharp&style=for-the-badge)
+![MIT License](https://img.shields.io/github/license/BangL/HCoroutines?style=for-the-badge)
+![Release](https://img.shields.io/github/v/release/BangL/HCoroutines?style=for-the-badge)
+
+HCoroutines is a library that helps you write game logic in an **intuitive** way by bringing the concept of **hierarchical coroutines** to Godot (C#). Its built-in coroutine types are specifically designed for Godot, **reducing boilerplate** code and increasing **readability**. At the same time, **async methods** can also be seamlessly integrated with coroutines.
+
+Coroutines are functions that can be paused during execution and then resumed  once some condition is met. This allows you to write game logic in sequential steps, defining what logic should be performed when.
+
+This library extends the idea of normal coroutines by allowing them to spawn child coroutines. When the parent coroutine is killed, the child coroutines are also stopped.
+
+---
+
+HCoroutines implements this concept in an efficient and optimised way.
+
+- Regardless of how deep the hierarchy of coroutines gets, the engine only updates the currently active ones, and not ones that are waiting.
+
+- The coroutines themselves are implemented as linked lists, allowing for `O(1)` addition and removal of child coroutines. Because each coroutine is itself a node in the linked list data structure, no additional memory allocations are required.
+
+---
+
+## Example
+
+```csharp
+using System.Collections;
+using System.Threading.Tasks;
+using Godot;
+using HCoroutines;
+
+public partial class Demo : Node2D {
+    /// <summary>
+    /// Spawn a new coroutine that is managed by
+    /// the default CoroutineManager.
+    /// </summary>
+    public override void _Ready() {
+        Co.Run(PlayAnimation());
+    }
+
+    private IEnumerator PlayAnimation() {
+        GD.Print("Starting animation");
+
+        // Wait one frame.
+        yield return null;
+
+        // Wait for the GoTo task to finish before continuing.
+        yield return GoTo(new Vector2(100, 100), 2);
+
+        // Wait for two seconds.
+        yield return Co.Wait(2);
+
+        // Wait for the parallel coroutine to finish.
+        // The parallel coroutine waits until all of its
+        // sub-coroutines have finished.
+        yield return Co.Parallel(
+          Co.Coroutine(GoTo(new Vector2(0, 0), 2)),
+          Co.Coroutine(Turn(1))
+        );
+
+        // Await an async task that waits for 100ms
+        yield return Co.Await(Task.Delay(100));
+
+        // Await and use the result of an async task
+        AwaitCoroutine<int> fetch = Co.Await(FetchNumber());
+        yield return fetch;
+        int number = fetch.Task.Result;
+
+        // Wait for a tween to animate some properties.
+        // Change the modulate color over two seconds.
+        yield return Co.Tween(tween => tween.TweenProperty(this, "modulate", new Color(1, 0, 0), 2));
+
+        // Waits for a signal to be emitted before continuing.
+        yield return Co.WaitForSignal(this, "some_signal");
+    }
+
+    private IEnumerator GoTo(Vector2 target, float duration) {
+        float speed = Position.DistanceTo(target) / duration;
+
+        while (Position.DistanceTo(target) > 0.01f) {
+            // delta time can be accessed via Co.DeltaTime.
+            Position = Position.MoveToward(target, speed * Co.DeltaTime);
+            yield return null;
+        }
+    }
+
+    private IEnumerator Turn(float duration) {
+        const float fullRotation = 2 * Mathf.Pi;
+        float angularSpeed = fullRotation / duration;
+        float angle = 0;
+
+        while (angle < fullRotation) {
+            angle += angularSpeed * Co.DeltaTime;
+            Rotation = angle;
+            yield return null;
+        }
+    }
+
+    private static async Task<int> FetchNumber() {
+        await Task.Delay(100);
+        return 0;
+    }
+}
+```
+
+For a complete working example, you can see the demo scene.
+
+## Setup (! Important !)
+
+In order for the coroutines to be automatically managed and updated each frame, some helper scripts have to be loaded for each scene: Simply go to <kbd>Project</kbd>/<kbd>Project Settings...</kbd> and select the <kbd>AutoLoad</kbd> tab. Then select the path to the `./addons/HCoroutines/CoroutineManager.tscn` file and press <kbd>Add</kbd>.
+
+![](./docs/AutoLoad.png)
+
+## Feature overview
+
+The `Co` class is a static class with useful helper methods to create and run the built-in coroutines. It helps reduce the amount of boilerplate code required to run common coroutines (such as waiting).
+
+Starting a coroutine:
+
+```csharp
+Co.Run(coroutine);
+```
+
+Stopping a coroutine:
+
+```csharp
+coroutine.Kill();
+```
+
+ Removing the coroutine from the list of coroutines that are updated each frame:
+
+```csharp
+coroutine.PauseUpdates();
+```
+
+Adding the coroutine to the update loop again:
+
+```csharp
+coroutine.ResumeUpdates();
+```
+
+To access the delta time from within a coroutine:
+
+```csharp
+float deltaTime = Co.DeltaTime;
+```
+
+.. or:
+
+```csharp
+double deltaTime = Co.DeltaTimeDouble;
+```
+
+.. if double precision is wanted
+
+All coroutines inherit from the `CoroutineBase` class. To define a coroutine in the intuitive / standard way with `IEnumerators`, you can use the `Coroutine` class which wraps the `IEnumerator` (Either via `Co.Coroutine(...)` or `new Coroutine(...)`).
+
+Features of the `Coroutine` class:
+
+- When returning `null`, the coroutine waits for one frame.
+
+- When returning another `IEnumerator`, it is automatically converted into a `Coroutine` and then it waits for it to complete.
+
+- When returning a coroutine (any class that inherits from `CoroutineBase`), it waits until the coroutine is finished before continuing the execution of the `IEnumerator`.
+
+## Coroutine Types
+
+- `CoroutineBase`
+  
+  - Base class of all coroutines
+
+- `Coroutine`
+  
+  - `Co.Coroutine(IEnumerator)`
+  
+  - Default coroutine type for running `IEnumerator`s
+
+- `ParallelCoroutine`
+  
+  - `Co.Parallel(co1, co2, ...)`
+  
+  - Runs multiple coroutines in parallel and waits for all to finish
+
+- `SequentialCoroutine`
+  
+  - `Co.Sequence(co1, co2, ...)`
+  
+  - Runs the passed coroutines in sequence, one after another
+
+- `RepeatCoroutine`
+  
+  - `Co.Repeat(n, co)`: Repeats a coroutine `n` times
+  - `Co.RepeatInfinitely(co)`: Repeats a coroutine infinitely
+
+- `WaitDelayCoroutine`
+  
+  - `Co.Wait(delay)`
+  
+  - Waits for a certain delay in seconds
+
+- `WaitWhileCoroutine`
+  
+  - `Co.WaitWhile( () => x < 5 )`
+  
+  - Waits while a certain condition is true
+
+- `WaitUntilCoroutine`
+  
+  - `Co.WaitUntil( () => x < 5 )`
+  
+  - Waits until a certain condition is true
+
+- `WaitForSignalCoroutine`
+  
+  - `Co.WaitForSignal(obj, signal)`
+  
+  - Waits for a signal to be emitted
+
+- `AwaitCoroutine`
+  
+  - `Co.Await(task)`: Awaits an async task
+  
+  - `Co.Await<T>(task)`: Awaits an async task that returns some value
+
+- `TweenCoroutine`
+  
+  - `Co.Tween(tween => { ... set up the tween here ... } )`
+  
+  - Special coroutine that manages a tween instance. Waits until the tween has stopped playing.

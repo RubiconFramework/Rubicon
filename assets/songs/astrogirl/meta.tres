@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="SongMetadata" load_steps=4 format=3 uid="uid://d1qmcnpfmhqe"]
+
+[ext_resource type="Script" path="res://source/Rubicon.Game/Data/SongDifficulty.cs" id="1_78bbu"]
+[ext_resource type="Script" path="res://source/Rubicon.Game/Data/SongMetadata.cs" id="2_gw18a"]
+
+[sub_resource type="Resource" id="Resource_ruew0"]
+script = ExtResource("1_78bbu")
+InternalName = "normal"
+DisplayName = "Normal"
+ChartPath = "res://assets/songs/astrogirl/astrogirl.json"
+Color = Color(0, 0, 0, 1)
+Charter = "Binpuki"
+Hidden = false
+
+[resource]
+script = ExtResource("2_gw18a")
+Name = "Astrogirl"
+Artist = "Tsukumo Sana"
+Week = ""
+UseVocals = false
+OnlyPlayerMode = false
+Stage = "stage"
+UiStyle = "funkin"
+InitialDifficulty = "normal"
+Difficulties = [SubResource("Resource_ruew0")]
+RequireUnlock = false
+UnlockConditions = PackedStringArray()
+Characters = []
+OpponentChartIndex = -1
+PlayerChartIndex = 0
+SpeakerChartIndex = -1
+Countdown = true
+UsePresetPositions = false
+AudioExtension = 0
