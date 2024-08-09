@@ -114,10 +114,10 @@ namespace Rubicon.Game
                     Paused = !Paused;
                     if (!Paused)
                     {
-                        Instrumental.Play((float)Conductor.Instance.Time);
+                        Instrumental.Play((float)(Conductor.Instance.RawTime));
 
                         if (Vocals.Stream != null)
-                            Vocals.Play((float)Conductor.Instance.Time);
+                            Vocals.Play((float)(Conductor.Instance.RawTime));
                         
                         Conductor.Instance.Play();
                     }

@@ -24,17 +24,17 @@ layout_mode = 1
 offset_top = -101.0
 offset_bottom = -101.0
 
-[node name="ComboDisplay" parent="." instance=ExtResource("3_1vhqb")]
-layout_mode = 1
-offset_top = -167.0
-offset_bottom = -167.0
-
 [node name="Judgment" parent="." instance=ExtResource("5_v0jb0")]
 layout_mode = 0
-offset_top = -251.0
-offset_bottom = -251.0
+offset_top = -250.0
+offset_bottom = -250.0
 Perfect = "perfect"
 Great = "great"
 Good = "good"
 Bad = "bad"
 Miss = "miss"
+
+[node name="ComboDisplay" parent="." instance=ExtResource("3_1vhqb")]
+layout_mode = 1
+offset_top = -163.0
+offset_bottom = -163.0
