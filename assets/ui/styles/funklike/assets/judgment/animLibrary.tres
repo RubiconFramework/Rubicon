@@ -1,0 +1,18 @@
+[gd_resource type="AnimationLibrary" load_steps=7 format=3 uid="uid://cfusnnbhmi7cl"]
+
+[ext_resource type="Animation" uid="uid://bephwv3fjtbnn" path="res://assets/ui/styles/funklike/assets/judgment/great.tres" id="1_tnwev"]
+[ext_resource type="Animation" uid="uid://1b58wq5fwgii" path="res://assets/ui/styles/funklike/assets/judgment/perfect.tres" id="2_cqk5u"]
+[ext_resource type="Animation" uid="uid://d0ghq6rn00hwu" path="res://assets/ui/styles/funklike/assets/judgment/good.tres" id="3_mmk26"]
+[ext_resource type="Animation" uid="uid://dwftmvwmv5c14" path="res://assets/ui/styles/funklike/assets/judgment/bad.tres" id="4_kuegr"]
+[ext_resource type="Animation" uid="uid://dp3ipxq8gy167" path="res://assets/ui/styles/funklike/assets/judgment/miss.tres" id="5_eeq7f"]
+[ext_resource type="Animation" uid="uid://cj87yrdoa66oo" path="res://assets/ui/styles/funklike/assets/judgment/RESET.tres" id="6_76fh0"]
+
+[resource]
+_data = {
+"RESET": ExtResource("6_76fh0"),
+"bad": ExtResource("4_kuegr"),
+"good": ExtResource("3_mmk26"),
+"great": ExtResource("1_tnwev"),
+"miss": ExtResource("5_eeq7f"),
+"perfect": ExtResource("2_cqk5u")
+}

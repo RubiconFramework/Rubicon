@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promise.Framework", "source\Promise.Framework\Promise.Framework.csproj", "{BDA9AFAF-62FD-4B83-92C4-92C41D2A8112}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promise.Framework", "source\Promise.Framework\Promise.Framework\Promise.Framework.csproj", "{BDA9AFAF-62FD-4B83-92C4-92C41D2A8112}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.Extras", "source\Rubicon.Extras\Rubicon.Extras.csproj", "{53CF0A03-8F28-411A-ABC5-AE7A6EB72631}"
 EndProject

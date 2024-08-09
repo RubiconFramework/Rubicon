@@ -60,6 +60,7 @@ namespace Rubicon.Game
             
             // Necessary
             PromiseData.DefaultNoteSkin = GD.Load<NoteSkin>("res://assets/ui/noteskins/funkin/noteskin.tres");
+            PromiseData.DefaultChartHud = GD.Load<PackedScene>("res://assets/ui/styles/funklike/ChartHUD.tscn");
             
             Control chartMan = ChartManagers;
             chartMan.SetAnchorsPreset(SaveData.Data.DownScroll ? Control.LayoutPreset.CenterBottom : Control.LayoutPreset.CenterTop);
@@ -73,6 +74,7 @@ namespace Rubicon.Game
 
                 ChartController chartCtrl = new ChartController();
                 chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Data.BotPlay || i != TargetController, chart.ScrollSpeed);
+                chartCtrl.ChartHud.SwitchDirection(SaveData.Data.DownScroll);
                 chartCtrl.Visible = curChart.Visible;
                 chartCtrl.Name = "ChartController " + i;
                 

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ConductorSingleton="*res://source/Promise.Framework/Conductor.cs"
+ConductorSingleton="*res://source/Promise.Framework/Promise.Framework/Conductor.cs"
 
 [display]
 
@@ -32,6 +32,10 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="Rubicon"
+
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
 
 [input]
 

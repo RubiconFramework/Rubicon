@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2mpkmftbgcx7"]
+
+[ext_resource type="Shader" path="res://source/Promise.Framework/assets/shaders/BarShader.gdshader" id="1_d3q4f"]
+
+[resource]
+shader = ExtResource("1_d3q4f")
+shader_parameter/black = Color(1, 0, 0, 1)
+shader_parameter/white = Color(1, 1, 1, 1)
+shader_parameter/value = 0.5

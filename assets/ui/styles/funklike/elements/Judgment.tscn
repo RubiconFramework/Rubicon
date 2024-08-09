@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://clhy4u4yv82t1"]
+
+[ext_resource type="Script" path="res://source/Promise.Framework/Promise.Framework/UI/Judgment.cs" id="1_l6f0l"]
+[ext_resource type="Texture2D" uid="uid://boxo8poh8ibsh" path="res://assets/ui/styles/funkin/assets/judgment/sick.webp" id="2_qrp5a"]
+[ext_resource type="Material" uid="uid://byaifhksowva3" path="res://assets/ui/styles/funklike/assets/materials/perfect.tres" id="2_w837s"]
+[ext_resource type="AnimationLibrary" uid="uid://cfusnnbhmi7cl" path="res://assets/ui/styles/funklike/assets/judgment/animLibrary.tres" id="4_6og4u"]
+
+[node name="Judgment" type="CenterContainer" node_paths=PackedStringArray("AnimationPlayer")]
+scale = Vector2(0.666, 0.666)
+use_top_left = true
+script = ExtResource("1_l6f0l")
+Perfect = null
+Great = null
+Good = null
+Bad = null
+Miss = null
+AnimationPlayer = NodePath("AnimationPlayer")
+
+[node name="Texture" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = ExtResource("2_w837s")
+layout_mode = 2
+texture = ExtResource("2_qrp5a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("4_6og4u")
+}
