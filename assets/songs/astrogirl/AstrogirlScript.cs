@@ -1,3 +1,4 @@
+#if PROMISE
 using System;
 using System.Collections;
 using Godot;
@@ -684,3 +685,4 @@ namespace HoloFunk
         }
     }
 }
+#endif
