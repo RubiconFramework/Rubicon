@@ -2927,7 +2927,7 @@
 	{
 	  "Lanes": 4,
 	  "Notes": [],
-	  "Visible": true
+	  "Visible": false
 	}
   ],
   "Offset": 0,
