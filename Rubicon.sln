@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.Stage.3D", "source\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HCoroutines", "addons\HCoroutines\HCoroutines.csproj", "{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transcendence.Framework", "source\Transcendence.Framework\Transcendence.Framework.csproj", "{73BA4A6D-C5B8-4F21-80CF-577C9414B964}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F745B39A-128E-4737-A824-9039873FBFF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,15 +83,11 @@ Global
 		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-		{73BA4A6D-C5B8-4F21-80CF-577C9414B964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73BA4A6D-C5B8-4F21-80CF-577C9414B964}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73BA4A6D-C5B8-4F21-80CF-577C9414B964}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{73BA4A6D-C5B8-4F21-80CF-577C9414B964}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{73BA4A6D-C5B8-4F21-80CF-577C9414B964}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{73BA4A6D-C5B8-4F21-80CF-577C9414B964}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6114E7D8-0333-406C-A3BE-B608F69144EB} = {EA68565E-B684-450E-A2F5-B94FF372226D}
 		{4518E789-4495-4193-9193-963BBCCFA6BF} = {E227DE4F-CC2F-4F4A-AF82-3E1AB0F642E9}
+		{BDA9AFAF-62FD-4B83-92C4-92C41D2A8112} = {F745B39A-128E-4737-A824-9039873FBFF4}
+		{C9469CA9-3788-4EC0-8E5D-8E4766CE6126} = {F745B39A-128E-4737-A824-9039873FBFF4}
 	EndGlobalSection
 EndGlobal

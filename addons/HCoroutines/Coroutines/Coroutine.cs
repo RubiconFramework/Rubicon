@@ -1,7 +1,7 @@
-namespace HCoroutines;
-
 using System;
 using System.Collections;
+
+namespace HCoroutines.Coroutines;
 
 /// <summary>
 /// Runs an IEnumerator as a coroutine (like Unity).

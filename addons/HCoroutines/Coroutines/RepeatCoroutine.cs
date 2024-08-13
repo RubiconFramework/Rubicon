@@ -1,6 +1,6 @@
-namespace HCoroutines;
-
 using System;
+
+namespace HCoroutines.Coroutines;
 
 /// <summary>
 /// Runs a coroutine multiple times. Each time the coroutine is finished,

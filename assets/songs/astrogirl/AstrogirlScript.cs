@@ -15,16 +15,16 @@ namespace HoloFunk
     [SongBind("astrogirl")]
     public class AstrogirlScript : IGameCoroutine
     {
-        private ChartController chartCtrl = GameMaster.Instance.ChartControllers[0];
+        private ChartController chartCtrl = RubiconGame.Instance.ChartControllers[0];
         private Vector2[] OGNotePositions = new Vector2[4];
         private float[] OGRotations = new float[4];
         
         public IEnumerator Execute()
         {
-            UiBounce hudBounce = GameMaster.Instance.UI;
+            UiBounce hudBounce = RubiconGame.Instance.UI;
             hudBounce.EnableMajorBounce = false;
 
-            chartCtrl = GameMaster.Instance.ChartControllers[0];
+            chartCtrl = RubiconGame.Instance.ChartControllers[0];
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
                 NoteLaneController noteCtrl = chartCtrl.Lanes[i];
@@ -36,7 +36,7 @@ namespace HoloFunk
 
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
-                GameMaster.Instance.CoroutineController.Run(SineArrowX(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(15.5f)));
+                RubiconGame.Instance.CoroutineController.Run(SineArrowX(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(15.5f)));
                 yield return new WaitTime(0.1f);
             }
 
@@ -44,23 +44,23 @@ namespace HoloFunk
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
                 //chartCtrl.Lanes[i].DOComplete();
-                GameMaster.Instance.CoroutineController.Run(StartIntenseBeat(chartCtrl.Lanes[i], 60f, ConductorUtil.MeasureToBeats(24f)));
+                RubiconGame.Instance.CoroutineController.Run(StartIntenseBeat(chartCtrl.Lanes[i], 60f, ConductorUtil.MeasureToBeats(24f)));
             }
 
             yield return new WaitForMeasure(24f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true));
 
             yield return new WaitForMeasure(26f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(false));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(false));
 
             yield return new WaitForMeasure(28f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true, 0.49f));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true, 0.49f));
 
             yield return new WaitForMeasure(29f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(false, 0.49f));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(false, 0.49f));
 
             yield return new WaitForMeasure(30f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true));
             hudBounce.Bounce(0.06f);
 
             yield return new WaitForMeasure(30.38f);
@@ -70,7 +70,7 @@ namespace HoloFunk
             hudBounce.Bounce(0.06f);
 
             yield return new WaitForMeasure(32f);
-            GameMaster.Instance.CoroutineController.Run(StartVerticalHUDBounce(ConductorUtil.MeasureToBeats(38.88f), 15f));
+            RubiconGame.Instance.CoroutineController.Run(StartVerticalHUDBounce(ConductorUtil.MeasureToBeats(38.88f), 15f));
 
             yield return new WaitForMeasure(38.25f);
             SpinArrow(2, 0.11f, false);
@@ -102,18 +102,18 @@ namespace HoloFunk
             yield return new WaitForMeasure(40f);
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
-                GameMaster.Instance.CoroutineController.Run(SineArrowX(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(47.44f)));
+                RubiconGame.Instance.CoroutineController.Run(SineArrowX(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(47.44f)));
                 yield return new WaitTime(0.1f);
             }
 
             yield return new WaitForMeasure(44f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(46f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(46f)));
 
             yield return new WaitForMeasure(46f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(47f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(47f)));
 
             yield return new WaitForMeasure(47f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(47.44f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(47.44f)));
 
             yield return new WaitForMeasure(47.38f);
             SpinArrow(3, 0.11f, false);
@@ -141,13 +141,13 @@ namespace HoloFunk
             SpinArrows(0.11f, false);
 
             yield return new WaitForMeasure(52f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(54f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(54f)));
 
             yield return new WaitForMeasure(54f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(55f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(55f)));
 
             yield return new WaitForMeasure(55f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(55.38f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(55.38f)));
 
             yield return new WaitForMeasure(55.31f);
             SpinArrow(3, 0.11f, false);
@@ -177,12 +177,12 @@ namespace HoloFunk
             hudBounce.MinorBounceBeat = 1;
             hudBounce.EnableMajorBounce = true;
             hudBounce.EnableMinorBounce = true;
-            GameMaster.Instance.CoroutineController.Run(CameraSway(ConductorUtil.MeasureToSteps(72f)));
-            GameMaster.Instance.CoroutineController.Run(DelayedIntenseBeat(1f, 60f, ConductorUtil.MeasureToBeats(72f)));
+            RubiconGame.Instance.CoroutineController.Run(CameraSway(ConductorUtil.MeasureToSteps(72f)));
+            RubiconGame.Instance.CoroutineController.Run(DelayedIntenseBeat(1f, 60f, ConductorUtil.MeasureToBeats(72f)));
 
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
-                GameMaster.Instance.CoroutineController.Run(SineArrowY(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(79.5f)));
+                RubiconGame.Instance.CoroutineController.Run(SineArrowY(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(79.5f)));
                 yield return new WaitTime(0.2f);
             }
 
@@ -191,43 +191,43 @@ namespace HoloFunk
             hudBounce.EnableMinorBounce = false;
 
             yield return new WaitForMeasure(76f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(78f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(78f)));
 
             yield return new WaitForMeasure(78f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(79f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(79f)));
 
             yield return new WaitForMeasure(79f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(79.5f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(79.5f)));
 
             yield return new WaitForMeasure(80f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true));
 
             yield return new WaitForMeasure(82f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(false));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(false));
 
             yield return new WaitForMeasure(84f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true, 0.49f));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true, 0.49f));
 
             yield return new WaitForMeasure(85f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(false, 0.49f));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(false, 0.49f));
 
             yield return new WaitForMeasure(86f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true));
 
             yield return new WaitForMeasure(88f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(false));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(false));
 
             yield return new WaitForMeasure(90f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true));
 
             yield return new WaitForMeasure(92f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(false, 0.49f));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(false, 0.49f));
 
             yield return new WaitForMeasure(93f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(true, 0.49f));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(true, 0.49f));
 
             yield return new WaitForMeasure(94f);
-            GameMaster.Instance.CoroutineController.Run(SineShakeNotes(false));
+            RubiconGame.Instance.CoroutineController.Run(SineShakeNotes(false));
             hudBounce.Bounce(0.06f);
 
             yield return new WaitForMeasure(94.38f);
@@ -264,27 +264,27 @@ namespace HoloFunk
             yield return new WaitForMeasure(96f);
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
-                GameMaster.Instance.CoroutineController.Run(SineArrowX(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(103.38f)));
+                RubiconGame.Instance.CoroutineController.Run(SineArrowX(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(103.38f)));
                 yield return new WaitTime(0.1f);
             }
 
             yield return new WaitForMeasure(100f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(102f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(102f)));
 
             yield return new WaitForMeasure(102f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(103f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(103f)));
 
             yield return new WaitForMeasure(103f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(103.38f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(103.38f)));
 
             yield return new WaitForMeasure(108f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(110f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(1f, 0.03f, ConductorUtil.MeasureToBeats(110f)));
 
             yield return new WaitForMeasure(110f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(111f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(111f)));
 
             yield return new WaitForMeasure(111f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(111.44f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(111.44f)));
 
             yield return new WaitForMeasure(111.38f);
             SpinArrow(1, 0.11f, false);
@@ -313,12 +313,12 @@ namespace HoloFunk
             SpinArrows(0.11f, false);
             hudBounce.EnableMajorBounce = true;
             hudBounce.EnableMinorBounce = true;
-            GameMaster.Instance.CoroutineController.Run(CameraSway(ConductorUtil.MeasureToSteps(128f)));
-            GameMaster.Instance.CoroutineController.Run(DelayedIntenseBeat(1f, 60f, ConductorUtil.MeasureToBeats(128f)));
+            RubiconGame.Instance.CoroutineController.Run(CameraSway(ConductorUtil.MeasureToSteps(128f)));
+            RubiconGame.Instance.CoroutineController.Run(DelayedIntenseBeat(1f, 60f, ConductorUtil.MeasureToBeats(128f)));
 
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
-                GameMaster.Instance.CoroutineController.Run(SineArrowY(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(136f)));
+                RubiconGame.Instance.CoroutineController.Run(SineArrowY(chartCtrl.Lanes[i], ConductorUtil.MeasureToBeats(136f)));
                 yield return new WaitTime(0.2f);
             }
 
@@ -329,16 +329,16 @@ namespace HoloFunk
             yield return new WaitForMeasure(132.25f);
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
             {
-                GameMaster.Instance.CoroutineController.Run(StartIntenseBeat(chartCtrl.Lanes[i], 60f, ConductorUtil.MeasureToBeats(135.46f)));
+                RubiconGame.Instance.CoroutineController.Run(StartIntenseBeat(chartCtrl.Lanes[i], 60f, ConductorUtil.MeasureToBeats(135.46f)));
             }
             
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(1, 0.03f, ConductorUtil.MeasureToBeats(134d)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(1, 0.03f, ConductorUtil.MeasureToBeats(134d)));
 
             yield return new WaitForMeasure(134f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(135f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.5f, 0.03f, ConductorUtil.MeasureToBeats(135f)));
 
             yield return new WaitForMeasure(135f);
-            GameMaster.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(135.46f)));
+            RubiconGame.Instance.CoroutineController.Run(StartHUDBounceScale(0.25f, 0.03f, ConductorUtil.MeasureToBeats(135.46f)));
 
             yield return new WaitForMeasure(135.38f);
             SpinArrow(3, 0.11f, false);
@@ -378,7 +378,7 @@ namespace HoloFunk
 				DOTween.To(() => curLane.alpha, (x) => curLane.alpha = x, 0f, 1f).SetEase(Ease.OutCirc);
 				curLane.transform.DOLocalMoveY((15f * (SaveData.Data.Downscroll ? 1f : -1f)), 1f).SetEase(Ease.OutCirc);
 
-				yield return new WaitForSeconds(60f / GameMaster.Instance.BPM / 2f);
+				yield return new WaitForSeconds(60f / RubiconGame.Instance.BPM / 2f);
 			}
 			*/
 
@@ -392,7 +392,7 @@ namespace HoloFunk
             int indexInArray = Array.IndexOf(chartCtrl.Lanes, noteCtrl);
             while (Conductor.Instance.CurrentBeat < endingBeat - 2d)
             {
-                curSineVal += (float)GameMaster.Instance.GetProcessDeltaTime();
+                curSineVal += (float)RubiconGame.Instance.GetProcessDeltaTime();
 
                 noteCtrl.Position = new Vector2(OGNotePositions[indexInArray].X + (Mathf.Sin(Mathf.Pi * curSineVal) * 30f), noteCtrl.Position.Y);
                 //noteCtrl.transform.localPosition = new Vector2(OGNotePositions[indexInArray].x + (Mathf.Sin(Mathf.PI * curSineVal) * 30f), noteCtrl.transform.localPosition.y);
@@ -406,7 +406,7 @@ namespace HoloFunk
             tween.SetTrans(Tween.TransitionType.Sine);
             tween.Play();
             
-            //noteCtrl.transform.DOLocalMoveX(OGNotePositions[indexInArray].x, (60f / GameMaster.Instance.BPM) * 2f).SetEase(Ease.OutSine);
+            //noteCtrl.transform.DOLocalMoveX(OGNotePositions[indexInArray].x, (60f / RubiconGame.Instance.BPM) * 2f).SetEase(Ease.OutSine);
             yield break;
         }
 
@@ -416,7 +416,7 @@ namespace HoloFunk
             int indexInArray = Array.IndexOf(chartCtrl.Lanes, noteCtrl);
             while (Conductor.Instance.CurrentBeat < endingBeat - 2f)
             {
-                curSineVal += (float)GameMaster.Instance.GetProcessDeltaTime();
+                curSineVal += (float)RubiconGame.Instance.GetProcessDeltaTime();
 
                 noteCtrl.Position = new Vector2(noteCtrl.Position.X,
                     OGNotePositions[indexInArray].Y + (Mathf.Sin(Mathf.Pi * curSineVal) * 30f));
@@ -431,7 +431,7 @@ namespace HoloFunk
             tween.SetTrans(Tween.TransitionType.Sine);
             tween.Play();
 
-            //noteCtrl.transform.DOLocalMoveY(OGNotePositions[indexInArray].y, (60f / GameMaster.Instance.BPM) * 2f).SetEase(Ease.OutSine);
+            //noteCtrl.transform.DOLocalMoveY(OGNotePositions[indexInArray].y, (60f / RubiconGame.Instance.BPM) * 2f).SetEase(Ease.OutSine);
             yield break;
         }
 
@@ -443,7 +443,7 @@ namespace HoloFunk
 
             double deltaTime = 0d;
             
-            //DOTween.To(() => curSineVal, x => curSineVal = x, (2 * (Mathf.PI)) * speed, ((60 / GameMaster.Instance.BPM)) * lastingBeats * speed).SetEase(Ease.OutCubic);
+            //DOTween.To(() => curSineVal, x => curSineVal = x, (2 * (Mathf.PI)) * speed, ((60 / RubiconGame.Instance.BPM)) * lastingBeats * speed).SetEase(Ease.OutCubic);
             while (Conductor.Instance.CurrentBeat <= lastBeat + (lastingBeats * speed))
             {
                 curSineVal = EaseOutCubic((float)deltaTime, 0f, (2 * (Mathf.Pi)) * (float)speed,
@@ -453,7 +453,7 @@ namespace HoloFunk
                 
                 noteCtrl.Position = new Vector2(noteCtrl.Position.X, OGNotePositions[indexInArray].Y + (Mathf.Sin(Mathf.Pi * curSineVal) * intensity));
                 //noteCtrl.transform.localPosition = new Vector2(noteCtrl.transform.localPosition.x, OGNotePositions[indexInArray].y + (Mathf.Sin(Mathf.PI * curSineVal) * intensity));
-                deltaTime += GameMaster.Instance.GetProcessDeltaTime();
+                deltaTime += RubiconGame.Instance.GetProcessDeltaTime();
                 yield return null;
             }
 
@@ -506,7 +506,7 @@ namespace HoloFunk
                         }
                     }
 
-                    GameMaster.Instance.CoroutineController.Run(IntenseBeatReturn(noteCtrl));
+                    RubiconGame.Instance.CoroutineController.Run(IntenseBeatReturn(noteCtrl));
                     multiplier *= -1f;
                 }
 
@@ -547,23 +547,23 @@ namespace HoloFunk
         {
             yield return new WaitBeats(beatDelay);
             for (int i = 0; i < chartCtrl.Lanes.Length; i++)
-                GameMaster.Instance.CoroutineController.Run(StartIntenseBeat(chartCtrl.Lanes[i], intensity, endingBeat));
+                RubiconGame.Instance.CoroutineController.Run(StartIntenseBeat(chartCtrl.Lanes[i], intensity, endingBeat));
         }
         #endregion
 
         #region HUD Bounce
         private IEnumerator StartVerticalHUDBounce(double endingBeat, float intensity, float speed = 1f)
         {
-            UiBounce hudBounce = GameMaster.Instance.UI;
+            UiBounce hudBounce = RubiconGame.Instance.UI;
             float curSineVal = 0f;
             double deltaTime = 0d;
             int loops = (int)endingBeat - (int)Conductor.Instance.CurrentBeat - 1;
             
-            //Tween hudTween = DOTween.To(() => curSineVal, x => curSineVal = x, Mathf.PI, (60 / GameMaster.Instance.BPM) * speed).SetLoops((int)endingBeat - (int)GameMaster.Instance.Beat - 1).SetEase(Ease.InOutCirc);
+            //Tween hudTween = DOTween.To(() => curSineVal, x => curSineVal = x, Mathf.PI, (60 / RubiconGame.Instance.BPM) * speed).SetLoops((int)endingBeat - (int)RubiconGame.Instance.Beat - 1).SetEase(Ease.InOutCirc);
             while (Conductor.Instance.CurrentBeat < endingBeat - 2f && loops > 0)
             {
                 hudBounce.Position = new Vector2(0f, Mathf.Abs(Mathf.Sin(curSineVal)) * intensity);
-                deltaTime += GameMaster.Instance.GetProcessDeltaTime();
+                deltaTime += RubiconGame.Instance.GetProcessDeltaTime();
                 curSineVal = (float)(deltaTime / ((60 / Conductor.Instance.Bpm) * speed)) * Mathf.Pi;
 
                 if (deltaTime >= (60 / Conductor.Instance.Bpm) * speed)
@@ -579,14 +579,14 @@ namespace HoloFunk
             finishTween.TweenProperty(hudBounce, "position", Vector2.Zero, (60d / Conductor.Instance.Bpm) * 2d);
             finishTween.SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Circ);
             finishTween.Play();
-            //hudBounce.transform.DOLocalMove(Vector3.zero, (60f / GameMaster.Instance.BPM) * 2f).SetEase(Ease.InCirc);
+            //hudBounce.transform.DOLocalMove(Vector3.zero, (60f / RubiconGame.Instance.BPM) * 2f).SetEase(Ease.InCirc);
 
             yield break;
         }
 
         public IEnumerator StartHUDBounceScale(int bounceBeat, float intensity, double endingBeat)
         {
-            UiBounce hud = GameMaster.Instance.UI;
+            UiBounce hud = RubiconGame.Instance.UI;
             while (Mathf.FloorToInt(Conductor.Instance.CurrentBeat) < endingBeat)
             {
                 hud.Bounce(intensity);
@@ -596,7 +596,7 @@ namespace HoloFunk
 
         public IEnumerator StartHUDBounceScale(float bounceBeat, float intensity, double endingBeat)
         {
-            UiBounce hud = GameMaster.Instance.UI;
+            UiBounce hud = RubiconGame.Instance.UI;
             while (Conductor.Instance.CurrentBeat < endingBeat)
             {
                 hud.Bounce(intensity);
@@ -609,7 +609,7 @@ namespace HoloFunk
         private void SpinArrow(int lane, double time, bool backwards)
         {
 			float sign = backwards ? -1f : 1f;
-			for (int i = 0; i < GameMaster.Instance.ChartControllers.Count; i++)
+			for (int i = 0; i < RubiconGame.Instance.ChartControllers.Count; i++)
 			{
                 Control noteLane = chartCtrl.Lanes[lane].LaneGraphic;
                 Tween tween = noteLane.CreateTween();
@@ -630,12 +630,12 @@ namespace HoloFunk
         IEnumerator CameraSway(double untilStep)
         {
 			//CameraScript camera = GameObject.FindObjectOfType<CameraScript>();
-            UiBounce hud = GameMaster.Instance.UI;
+            UiBounce hud = RubiconGame.Instance.UI;
 
 			while (Conductor.Instance.CurrentStep < untilStep)
             {
-				//camera.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Sin(GameMaster.Instance.Beat / 1.5f));
-				//hud.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Sin(GameMaster.Instance.Beat / 1.5f));
+				//camera.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Sin(RubiconGame.Instance.Beat / 1.5f));
+				//hud.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Sin(RubiconGame.Instance.Beat / 1.5f));
                 hud.RotationDegrees = Mathf.Sin((float)Conductor.Instance.CurrentBeat / 1.5f);
                 
 				yield return null;
@@ -662,7 +662,7 @@ namespace HoloFunk
                 for (int i = 0; i < chartCtrl.Lanes.Length; i++)
                 {
                     //chartCtrl.Lanes[i].DOComplete();
-                    GameMaster.Instance.CoroutineController.Run(SineArrowShakeY(chartCtrl.Lanes[i], 0.75d * time, 12f, 8f));
+                    RubiconGame.Instance.CoroutineController.Run(SineArrowShakeY(chartCtrl.Lanes[i], 0.75d * time, 12f, 8f));
                     yield return new WaitTime(0.05d);
                 }
             }
@@ -671,7 +671,7 @@ namespace HoloFunk
                 for (int i = chartCtrl.Lanes.Length - 1; i >= 0; i--)
                 {
                     //chartCtrl.Lanes[i].DOComplete();
-                    GameMaster.Instance.CoroutineController.Run(SineArrowShakeY(chartCtrl.Lanes[i], 0.75d * time, -12f, 8f));
+                    RubiconGame.Instance.CoroutineController.Run(SineArrowShakeY(chartCtrl.Lanes[i], 0.75d * time, -12f, 8f));
                     yield return new WaitTime(0.05d);
                 }
             }

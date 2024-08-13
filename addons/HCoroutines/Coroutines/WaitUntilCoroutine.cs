@@ -1,6 +1,6 @@
-namespace HCoroutines;
-
 using System;
+
+namespace HCoroutines.Coroutines;
 
 /// <summary>
 /// Waits until a certain condition is true.

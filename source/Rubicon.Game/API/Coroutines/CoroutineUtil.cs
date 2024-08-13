@@ -1,171 +1,170 @@
 using HCoroutines;
 using Promise.Framework;
 
-namespace Rubicon.Game.API.Coroutines
+namespace Rubicon.Game.API.Coroutines;
+
+/// <summary>
+/// A coroutine that waits until the global Conductor's measure passes the provided measure.
+/// </summary>
+public class WaitForMeasure : CoroutineBase
 {
-    /// <summary>
-    /// A coroutine that waits until the global Conductor's measure passes the provided measure.
-    /// </summary>
-    public class WaitForMeasure : CoroutineBase
-    {
-        protected double Measure;
+    protected double Measure;
         
-        public WaitForMeasure(double measure)
-        {
-            Measure = measure;
-        }
-
-        public override void OnEnter() 
-        {
-            CheckTime();
-            if (IsAlive)
-                ResumeUpdates();
-        }
-
-        public override void Update() 
-        {
-            CheckTime();
-        }
-
-        private void CheckTime() 
-        {
-            if (Conductor.Instance.CurrentMeasure >= Measure)
-                Kill();
-        }
+    public WaitForMeasure(double measure)
+    {
+        Measure = measure;
     }
 
-    /// <summary>
-    /// A coroutine that waits for a set amount of measures.
-    /// </summary>
-    public class WaitMeasures : WaitForMeasure
+    public override void OnEnter() 
     {
-        public WaitMeasures(double measure) : base(measure)
-        {
-            Measure = Conductor.Instance.CurrentMeasure + measure;
-        }
+        CheckTime();
+        if (IsAlive)
+            ResumeUpdates();
     }
 
-    /// <summary>
-    /// A coroutine that waits until the global Conductor's beat passes the provided beat.
-    /// </summary>
-    public class WaitForBeat : CoroutineBase
+    public override void Update() 
     {
-        protected double Beat;
+        CheckTime();
+    }
+
+    private void CheckTime() 
+    {
+        if (Conductor.Instance.CurrentMeasure >= Measure)
+            Kill();
+    }
+}
+
+/// <summary>
+/// A coroutine that waits for a set amount of measures.
+/// </summary>
+public class WaitMeasures : WaitForMeasure
+{
+    public WaitMeasures(double measure) : base(measure)
+    {
+        Measure = Conductor.Instance.CurrentMeasure + measure;
+    }
+}
+
+/// <summary>
+/// A coroutine that waits until the global Conductor's beat passes the provided beat.
+/// </summary>
+public class WaitForBeat : CoroutineBase
+{
+    protected double Beat;
         
-        public WaitForBeat(double beat)
-        {
-            Beat = beat;
-        }
-
-        public override void OnEnter() 
-        {
-            CheckTime();
-            if (IsAlive)
-                ResumeUpdates();
-        }
-
-        public override void Update() 
-        {
-            CheckTime();
-        }
-
-        private void CheckTime() 
-        {
-            if (Conductor.Instance.CurrentBeat >= Beat)
-                Kill();
-        }
+    public WaitForBeat(double beat)
+    {
+        Beat = beat;
     }
 
-    /// <summary>
-    /// A coroutine that waits for a set amount of beats.
-    /// </summary>
-    public class WaitBeats : WaitForBeat
+    public override void OnEnter() 
     {
-        public WaitBeats(double beats) : base(beats)
-        {
-            Beat = Conductor.Instance.CurrentBeat + beats;
-        }
+        CheckTime();
+        if (IsAlive)
+            ResumeUpdates();
     }
 
-    /// <summary>
-    /// A coroutine that waits until the global Conductor's step passes the provided step.
-    /// </summary>
-    public class WaitForStep : CoroutineBase
+    public override void Update() 
     {
-        protected double Step;
+        CheckTime();
+    }
+
+    private void CheckTime() 
+    {
+        if (Conductor.Instance.CurrentBeat >= Beat)
+            Kill();
+    }
+}
+
+/// <summary>
+/// A coroutine that waits for a set amount of beats.
+/// </summary>
+public class WaitBeats : WaitForBeat
+{
+    public WaitBeats(double beats) : base(beats)
+    {
+        Beat = Conductor.Instance.CurrentBeat + beats;
+    }
+}
+
+/// <summary>
+/// A coroutine that waits until the global Conductor's step passes the provided step.
+/// </summary>
+public class WaitForStep : CoroutineBase
+{
+    protected double Step;
         
-        public WaitForStep(double step)
-        {
-            Step = step;
-        }
-
-        public override void OnEnter() 
-        {
-            CheckTime();
-            if (IsAlive)
-                ResumeUpdates();
-        }
-
-        public override void Update() 
-        {
-            CheckTime();
-        }
-
-        private void CheckTime() 
-        {
-            if (Conductor.Instance.CurrentStep >= Step)
-                Kill();
-        }
-    }
-
-    /// <summary>
-    /// A coroutine that waits for a set amount of steps.
-    /// </summary>
-    public class WaitSteps : WaitForStep
+    public WaitForStep(double step)
     {
-        public WaitSteps(double steps) : base(steps)
-        {
-            Step = Conductor.Instance.CurrentStep + steps;
-        }
+        Step = step;
     }
+
+    public override void OnEnter() 
+    {
+        CheckTime();
+        if (IsAlive)
+            ResumeUpdates();
+    }
+
+    public override void Update() 
+    {
+        CheckTime();
+    }
+
+    private void CheckTime() 
+    {
+        if (Conductor.Instance.CurrentStep >= Step)
+            Kill();
+    }
+}
+
+/// <summary>
+/// A coroutine that waits for a set amount of steps.
+/// </summary>
+public class WaitSteps : WaitForStep
+{
+    public WaitSteps(double steps) : base(steps)
+    {
+        Step = Conductor.Instance.CurrentStep + steps;
+    }
+}
 
    
-    public class WaitForTime : CoroutineBase
-    {
-        protected double Time;
+public class WaitForTime : CoroutineBase
+{
+    protected double Time;
         
-        public WaitForTime(double time)
-        {
-            Time = time;
-        }
-
-        public override void OnEnter() 
-        {
-            CheckTime();
-            if (IsAlive)
-                ResumeUpdates();
-        }
-
-        public override void Update() 
-        {
-            CheckTime();
-        }
-
-        private void CheckTime() 
-        {
-            if (Conductor.Instance.Time >= Time)
-                Kill();
-        }
+    public WaitForTime(double time)
+    {
+        Time = time;
     }
 
-    /// <summary>
-    /// A coroutine that waits for a set amount of seconds.
-    /// </summary>
-    public class WaitTime : WaitForTime
+    public override void OnEnter() 
     {
-        public WaitTime(double seconds) : base(seconds)
-        {
-            Time = Conductor.Instance.Time + seconds;
-        }
+        CheckTime();
+        if (IsAlive)
+            ResumeUpdates();
+    }
+
+    public override void Update() 
+    {
+        CheckTime();
+    }
+
+    private void CheckTime() 
+    {
+        if (Conductor.Instance.Time >= Time)
+            Kill();
+    }
+}
+
+/// <summary>
+/// A coroutine that waits for a set amount of seconds.
+/// </summary>
+public class WaitTime : WaitForTime
+{
+    public WaitTime(double seconds) : base(seconds)
+    {
+        Time = Conductor.Instance.Time + seconds;
     }
 }

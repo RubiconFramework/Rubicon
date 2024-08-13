@@ -1,6 +1,8 @@
 // Hierarchical Coroutines v2.0.2 for Godot
 // by @Inspiaaa, @BangL
 
+using HCoroutines.Coroutines;
+
 namespace HCoroutines;
 
 using System;

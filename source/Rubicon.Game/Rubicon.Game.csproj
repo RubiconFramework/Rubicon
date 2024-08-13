@@ -10,4 +10,7 @@
     <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
     <ProjectReference Include="..\Promise.Framework\Promise.Framework\Promise.Framework.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Remove="GodotSharp" />
+  </ItemGroup>
 </Project>

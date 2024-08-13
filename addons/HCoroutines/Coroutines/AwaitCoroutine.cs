@@ -1,6 +1,6 @@
-namespace HCoroutines;
-
 using System.Threading.Tasks;
+
+namespace HCoroutines.Coroutines;
 
 /// <summary>
 /// A coroutine that waits until an asynchronous task has been completed.

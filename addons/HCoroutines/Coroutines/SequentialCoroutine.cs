@@ -1,4 +1,4 @@
-namespace HCoroutines;
+namespace HCoroutines.Coroutines;
 
 /// <summary>
 /// Runs multiple coroutines one after another. Waits until the first

@@ -1,6 +1,6 @@
-namespace HCoroutines;
+using HCoroutines.Util;
 
-using Util;
+namespace HCoroutines.Coroutines;
 
 /// <summary>
 /// Waits until a certain delay has passed.

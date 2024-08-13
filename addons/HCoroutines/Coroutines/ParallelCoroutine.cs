@@ -1,4 +1,4 @@
-namespace HCoroutines;
+namespace HCoroutines.Coroutines;
 
 /// <summary>
 /// Runs multiple coroutines in parallel and exits once all have completed.

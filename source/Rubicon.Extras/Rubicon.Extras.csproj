@@ -11,4 +11,7 @@
     <ProjectReference Include="..\Promise.Framework\Promise.Framework\Promise.Framework.csproj" />
     <ProjectReference Include="..\Rubicon.Game\Rubicon.Game.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Remove="GodotSharp" />
+  </ItemGroup>
 </Project>
