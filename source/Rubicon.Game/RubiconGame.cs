@@ -88,6 +88,7 @@ public partial class RubiconGame : Node
             chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Data.BotPlay || i != TargetController, chart.ScrollSpeed, null, chartHud);
             chartCtrl.ChartHud.SwitchDirection(SaveData.Data.DownScroll);
             chartCtrl.Visible = curChart.Visible;
+            chartCtrl.ChartHud.Visible = i == TargetController;
             chartCtrl.Name = "ChartController " + i;
                 
             for (int j = 0; j < curChart.Lanes; j++)
