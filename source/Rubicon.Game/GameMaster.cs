@@ -1,13 +1,3 @@
-
-#define PROMISE
-//#define TRANSCENDENCE
-
-#if PROMISE && TRANSCENDENCE
-#error You can not both Promise.Framework and Transcendence.Framework running at the same time. Please define only PROMISE or TRANSCENDENCE.
-#elif !PROMISE && !TRANSCENDENCE
-#error You need either PROMISE (for Promise.Framework) or TRANSCENDENCE (for Transcendence.Framework) defined in order to have the game run successfully.
-#endif
-
 using System.Linq;
 using Godot;
 using Godot.Collections;
@@ -16,13 +6,10 @@ using Rubicon.Game.Chart;
 using Rubicon.Game.Data;
 using Rubicon.Game.UI;
 using Rubicon.Game.Utilities;
-
-#if PROMISE
 using Promise.Framework;
 using Promise.Framework.Chart;
 using Promise.Framework.Objects;
 using Promise.Framework.UI.Noteskins;
-#endif
 
 namespace Rubicon.Game
 {
@@ -38,11 +25,7 @@ namespace Rubicon.Game
 
         [Export] public bool DownScroll = false;
 
-#if PROMISE
-        [ExportGroup("Promise"), Export] public Array<ChartController> ChartControllers = new Array<ChartController>();
-#elif TRANSCENDENCE
-        // Transcendence specific exports here
-#endif
+        [ExportGroup("Status"), Export] public Array<ChartController> ChartControllers = new Array<ChartController>();
 
         [Export] public bool Paused { get; private set; } = false;
 
@@ -78,23 +61,7 @@ namespace Rubicon.Game
             
             ChartManagers.SetAnchorsPreset(SaveData.Data.DownScroll ? Control.LayoutPreset.CenterBottom : Control.LayoutPreset.CenterTop);
             ChartManagers.Position = new Vector2(ChartManagers.Position.X, SaveData.Data.DownScroll ? 940f : 140f);
-
-#if PROMISE
-            SetupPromise(meta);
-#elif TRANSCENDENCE
-            SetupTranscendence(meta);
-#endif
-            // Load coroutines
-            CoroutineController.Load(SongName, meta.Stage);
             
-            Instrumental.Play(0);
-            if (meta.UseVocals)
-                Vocals.Play(0);
-        }
-
-#if PROMISE
-        private void SetupPromise(SongMetadata meta)
-        {
             // Necessary for now
             PromiseData.DefaultNoteSkin = GD.Load<NoteSkin>("res://assets/ui/noteskins/funkin/noteskin.tres");
             PromiseData.DefaultChartHud = GD.Load<PackedScene>("res://assets/ui/styles/funklike/ChartHUD.tscn");
@@ -135,6 +102,24 @@ namespace Rubicon.Game
             Conductor.Instance.ChartOffset = chart.Offset;
             Conductor.Instance.SetBpms(chart.BpmInfo);
             Conductor.Instance.Start(0);
+
+#if PROMISE
+            SetupPromise(meta);
+#elif TRANSCENDENCE
+            SetupTranscendence(meta);
+#endif
+            // Load coroutines
+            CoroutineController.Load(SongName, meta.Stage);
+            
+            Instrumental.Play(0);
+            if (meta.UseVocals)
+                Vocals.Play(0);
+        }
+
+#if PROMISE
+        private void SetupPromise(SongMetadata meta)
+        {
+            
         }
 #elif TRANSCENDENCE
         private void SetupTranscendence(SongMetadata meta)

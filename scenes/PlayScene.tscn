@@ -6,10 +6,9 @@
 
 [node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "CoroutineController")]
 script = ExtResource("1_lgtnn")
-SongName = "test"
+SongName = "astrogirl"
 Difficulty = "normal"
 DownScroll = true
-TargetController = 1
 ChartManagers = NodePath("Game HUD/Chart Managers")
 Instrumental = NodePath("Instrumental")
 Vocals = NodePath("Vocals")
@@ -43,6 +42,5 @@ grow_horizontal = 2
 
 [node name="Vocals" type="AudioStreamPlayer" parent="."]
 
-[node name="Stage2D" type="Node2D" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="Stage2D"]
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
