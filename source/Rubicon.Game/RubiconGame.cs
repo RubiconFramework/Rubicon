@@ -4,6 +4,7 @@ using Godot.Collections;
 using Promise.Framework;
 using Promise.Framework.Chart;
 using Promise.Framework.Objects;
+using Promise.Framework.UI;
 using Promise.Framework.UI.Noteskins;
 using Rubicon.Game.API.Controllers;
 using Rubicon.Game.Data;
@@ -24,8 +25,10 @@ public partial class RubiconGame : Node
     [Export] public string Difficulty;
 
     [Export] public bool DownScroll = false;
+
+    [Export] public string UiStyle = "funklike";
         
-    [ExportGroup("Promise"), Export] public Array<ChartController> ChartControllers = new Array<ChartController>();
+    [ExportGroup("Status"), Export] public Array<ChartController> ChartControllers = new Array<ChartController>();
 
     [Export] public bool Paused { get; private set; } = false;
 
@@ -65,6 +68,11 @@ public partial class RubiconGame : Node
         // Necessary for now
         PromiseData.DefaultNoteSkin = GD.Load<NoteSkin>("res://assets/ui/noteskins/funkin/noteskin.tres");
         PromiseData.DefaultChartHud = GD.Load<PackedScene>("res://assets/ui/styles/funklike/ChartHUD.tscn");
+        
+        // Find current ChartHud
+        ChartHud chartHud = FileAccess.FileExists($"res://assets/ui/styles/{UiStyle}/ChartHUD.tscn")
+            ? GD.Load<PackedScene>($"res://assets/ui/styles/{UiStyle}/ChartHUD.tscn").Instantiate<ChartHud>()
+            : null;
 
         SongDifficulty diff = meta.GetDifficulty(Difficulty);
         using FileAccess chartFile = FileAccess.Open(diff.ChartPath, FileAccess.ModeFlags.Read);
@@ -77,7 +85,7 @@ public partial class RubiconGame : Node
             IndividualChart curChart = chart.Charts[i];
 
             ChartController chartCtrl = new ChartController();
-            chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Data.BotPlay || i != TargetController, chart.ScrollSpeed);
+            chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Data.BotPlay || i != TargetController, chart.ScrollSpeed, null, chartHud);
             chartCtrl.ChartHud.SwitchDirection(SaveData.Data.DownScroll);
             chartCtrl.Visible = curChart.Visible;
             chartCtrl.Name = "ChartController " + i;

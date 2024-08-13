@@ -1,0 +1,43 @@
+[gd_resource type="Animation" load_steps=3 format=3 uid="uid://c5ijfe2oeebq4"]
+
+[ext_resource type="Texture2D" uid="uid://boxo8poh8ibsh" path="res://assets/ui/styles/funkin/assets/judgment/sick.webp" id="1_jlh7l"]
+[ext_resource type="Material" uid="uid://byaifhksowva3" path="res://assets/ui/styles/funklike/assets/materials/perfect.tres" id="2_ay2o0"]
+
+[resource]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("1_jlh7l")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("2_ay2o0")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}

@@ -1,0 +1,44 @@
+[gd_resource type="Animation" load_steps=3 format=3 uid="uid://c3dfx6p1cny1i"]
+
+[ext_resource type="Texture2D" uid="uid://bpof43067qex7" path="res://assets/ui/styles/funkin/assets/judgment/shit.webp" id="1_k3oco"]
+[ext_resource type="Material" uid="uid://d2mpkmftbgcx7" path="res://assets/ui/styles/funklike/assets/materials/miss.tres" id="2_4401x"]
+
+[resource]
+resource_name = "miss"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_k3oco")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_4401x")]
+}

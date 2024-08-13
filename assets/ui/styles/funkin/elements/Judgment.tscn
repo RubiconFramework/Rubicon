@@ -1,0 +1,35 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfax4eoejtq5r"]
+
+[ext_resource type="Script" path="res://source/Rubicon.Extras/UI/FunkinJudgment.cs" id="1_bxd43"]
+[ext_resource type="Material" uid="uid://byaifhksowva3" path="res://assets/ui/styles/funklike/assets/materials/perfect.tres" id="2_upqnj"]
+[ext_resource type="Texture2D" uid="uid://boxo8poh8ibsh" path="res://assets/ui/styles/funkin/assets/judgment/sick.webp" id="3_7str0"]
+[ext_resource type="Animation" uid="uid://c5ijfe2oeebq4" path="res://assets/ui/styles/funkin/assets/judgment/anims/RESET.tres" id="4_qcjlk"]
+[ext_resource type="Animation" uid="uid://clid24kgpgbnc" path="res://assets/ui/styles/funkin/assets/judgment/anims/perfect.tres" id="5_isafx"]
+[ext_resource type="Animation" uid="uid://c3dfx6p1cny1i" path="res://assets/ui/styles/funkin/assets/judgment/anims/miss.tres" id="6_c34l7"]
+[ext_resource type="Animation" uid="uid://qiuh5e330nbb" path="res://assets/ui/styles/funkin/assets/judgment/anims/great.tres" id="7_6fhcg"]
+[ext_resource type="Animation" uid="uid://kpqddpjd4rrq" path="res://assets/ui/styles/funkin/assets/judgment/anims/good.tres" id="8_sf5yx"]
+[ext_resource type="Animation" uid="uid://duj43ldn3cv0a" path="res://assets/ui/styles/funkin/assets/judgment/anims/bad.tres" id="9_xvugr"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ts0ni"]
+_data = {
+"RESET": ExtResource("4_qcjlk"),
+"bad": ExtResource("9_xvugr"),
+"good": ExtResource("8_sf5yx"),
+"great": ExtResource("7_6fhcg"),
+"miss": ExtResource("6_c34l7"),
+"perfect": ExtResource("5_isafx")
+}
+
+[node name="Judgment" type="TextureRect"]
+self_modulate = Color(1, 1, 1, 0)
+material = ExtResource("2_upqnj")
+offset_right = 240.0
+offset_bottom = 142.0
+texture = ExtResource("3_7str0")
+stretch_mode = 2
+script = ExtResource("1_bxd43")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ts0ni")
+}

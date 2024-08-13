@@ -1,0 +1,28 @@
+[gd_scene load_steps=13 format=3 uid="uid://rs0tj16lc561"]
+
+[ext_resource type="Material" uid="uid://cosl7ae1c8okf" path="res://assets/ui/styles/funklike/assets/combo/ComboMaterial.tres" id="1_cscbr"]
+[ext_resource type="Script" path="res://source/Rubicon.Extras/UI/FunkinCombo.cs" id="2_mq7a4"]
+[ext_resource type="Texture2D" uid="uid://cq2he0a6hycf4" path="res://assets/ui/styles/funkin/assets/combo/num0.webp" id="3_mxq6m"]
+[ext_resource type="Texture2D" uid="uid://dkmdaga6dbal3" path="res://assets/ui/styles/funkin/assets/combo/num1.webp" id="4_3sxba"]
+[ext_resource type="Texture2D" uid="uid://coilledyfxeoa" path="res://assets/ui/styles/funkin/assets/combo/num2.webp" id="5_plqri"]
+[ext_resource type="Texture2D" uid="uid://c4g5tlia30l3u" path="res://assets/ui/styles/funkin/assets/combo/num3.webp" id="6_yv07u"]
+[ext_resource type="Texture2D" uid="uid://drf56vbmosjym" path="res://assets/ui/styles/funkin/assets/combo/num4.webp" id="7_a2sce"]
+[ext_resource type="Texture2D" uid="uid://ccbf8b1utupbn" path="res://assets/ui/styles/funkin/assets/combo/num5.webp" id="8_1ckn1"]
+[ext_resource type="Texture2D" uid="uid://dngim8ydltjni" path="res://assets/ui/styles/funkin/assets/combo/num6.webp" id="9_ss755"]
+[ext_resource type="Texture2D" uid="uid://glfa3pea6b5v" path="res://assets/ui/styles/funkin/assets/combo/num7.webp" id="10_fkyle"]
+[ext_resource type="Texture2D" uid="uid://cdy3o30nn3ii0" path="res://assets/ui/styles/funkin/assets/combo/num8.webp" id="11_yltk2"]
+[ext_resource type="Texture2D" uid="uid://cmqkrd1nauo50" path="res://assets/ui/styles/funkin/assets/combo/num9.webp" id="12_3ys3x"]
+
+[node name="ComboDisplay" type="Control"]
+material = ExtResource("1_cscbr")
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.715, 0.715)
+script = ExtResource("2_mq7a4")
+Textures = Array[Texture2D]([ExtResource("3_mxq6m"), ExtResource("4_3sxba"), ExtResource("5_plqri"), ExtResource("6_yv07u"), ExtResource("7_a2sce"), ExtResource("8_1ckn1"), ExtResource("9_ss755"), ExtResource("10_fkyle"), ExtResource("11_yltk2"), ExtResource("12_3ys3x")])
