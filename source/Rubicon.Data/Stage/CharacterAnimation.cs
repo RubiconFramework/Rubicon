@@ -12,6 +12,11 @@ public partial class CharacterAnimation : Resource
     /// The name of the animation.
     /// </summary>
     [Export] public string Name = "";
+
+    /// <summary>
+    /// Whether to interrupt the idle playing animation when this is played.
+    /// </summary>
+    [Export] public bool IdleInterrupt = false;
     
     /// <summary>
     /// Whether to interrupt the note playing animation when this is played.

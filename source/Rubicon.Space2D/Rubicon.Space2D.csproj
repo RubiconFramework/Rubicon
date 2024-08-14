@@ -11,4 +11,8 @@
     <PackageReference Update="GodotSharp" Version="4.2.2" />
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
+    <ProjectReference Include="..\Rubicon.Data\Rubicon.Data.csproj" />
+  </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@ using Rubicon.Data.Meta;
 using Rubicon.Game.API.Controllers;
 using Rubicon.Game.UI;
 using Rubicon.Game.Utilities;
+using Rubicon.Space2D;
 
 namespace Rubicon.Game;
 
@@ -41,6 +42,8 @@ public partial class RubiconGame : Node
     [Export] public AudioStreamPlayer Vocals;
 
     [Export] public UiBounce UI;
+
+    [ExportSubgroup("Stages"), Export] public Stage2D Stage2D;
 
     [ExportSubgroup("API Controllers"), Export] public SongCoroutineController CoroutineController;
         

@@ -7,6 +7,7 @@ namespace Rubicon.Data.Stage;
 /// <summary>
 /// A resource that contains everything needed for a character to function.
 /// </summary>
+[GlobalClass]
 public partial class CharacterData : Resource
 {
     /// <summary>
