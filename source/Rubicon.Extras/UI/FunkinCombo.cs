@@ -58,7 +58,7 @@ public partial class FunkinCombo : ComboDisplay
             
             comboSpr.Position = new Vector2(i * generalSize, 0) - comboSpr.PivotOffset;
             
-            _comboVelocities.Add(comboSpr, new Vector2((float)GD.RandRange(-5d, 5d), GD.RandRange(-160, -140)));
+            _comboVelocities.Add(comboSpr, new Vector2(GD.RandRange(1, 15), GD.RandRange(-160, -140)));
             _comboAccelerations.Add(comboSpr, GD.RandRange(300, 450));
 
             Tween fadeTween = comboSpr.CreateTween();

@@ -45,7 +45,7 @@ public partial class FunkinJudgment : Judgment
         newJudge.IsChildJudgment = true;
         newJudge.Size = Vector2.One;
         newJudge.Position = Vector2.Zero;
-        newJudge.Velocity = new Vector2(GD.RandRange(-15, 0), GD.RandRange(-262, -52));
+        newJudge.Velocity = new Vector2(GD.RandRange(0, 25), GD.RandRange(-262, -52));
         newJudge.PlayAnimation(rating);
         AddChild(newJudge);
 

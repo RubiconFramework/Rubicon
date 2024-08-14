@@ -9,6 +9,7 @@ script = ExtResource("1_lgtnn")
 SongName = "astrogirl"
 Difficulty = "normal"
 DownScroll = true
+UiStyle = "funkin"
 ChartManagers = NodePath("Game HUD/Chart Managers")
 Instrumental = NodePath("Instrumental")
 Vocals = NodePath("Vocals")
