@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://clcjne6rblrcm"]
 
-[ext_resource type="Script" path="res://source/Promise.Framework/Promise.Framework/UI/HitDistance.cs" id="1_liuyo"]
+[ext_resource type="Script" path="res://source/Promise.Framework/UI/HitDistance.cs" id="1_liuyo"]
 [ext_resource type="LabelSettings" uid="uid://bx7k6pm6skf6c" path="res://assets/ui/styles/funklike/assets/hitdistance/labelSettings/perfect.tres" id="2_kubjk"]
 [ext_resource type="AnimationLibrary" uid="uid://jcuk7y45b8v4" path="res://assets/ui/styles/funklike/assets/hitdistance/animLibrary.tres" id="3_6uh05"]
 

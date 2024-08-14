@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://4yvlf3lg3cd4"]
 
 [ext_resource type="Material" uid="uid://cosl7ae1c8okf" path="res://assets/ui/styles/funklike/assets/combo/ComboMaterial.tres" id="1_7ytj3"]
-[ext_resource type="Script" path="res://source/Promise.Framework/Promise.Framework/UI/ComboDisplay.cs" id="1_k0h1s"]
+[ext_resource type="Script" path="res://source/Promise.Framework/UI/ComboDisplay.cs" id="1_k0h1s"]
 [ext_resource type="Texture2D" uid="uid://cq2he0a6hycf4" path="res://assets/ui/styles/funkin/assets/combo/num0.webp" id="2_5ka0a"]
 [ext_resource type="Texture2D" uid="uid://dkmdaga6dbal3" path="res://assets/ui/styles/funkin/assets/combo/num1.webp" id="3_vytyf"]
 [ext_resource type="Texture2D" uid="uid://coilledyfxeoa" path="res://assets/ui/styles/funkin/assets/combo/num2.webp" id="4_81kke"]

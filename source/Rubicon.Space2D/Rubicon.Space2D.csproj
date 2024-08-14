@@ -6,4 +6,9 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Rubicon.Space2D</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Update="Godot.SourceGenerators" Version="4.2.2" />
+    <PackageReference Update="GodotSharp" Version="4.2.2" />
+    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+  </ItemGroup>
 </Project>

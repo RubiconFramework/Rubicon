@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://btuuuflunrx0i"]
 
-[ext_resource type="Script" path="res://source/Promise.Framework/Promise.Framework/UI/ChartHud.cs" id="1_gnyvw"]
+[ext_resource type="Script" path="res://source/Promise.Framework/UI/ChartHud.cs" id="1_gnyvw"]
 [ext_resource type="PackedScene" uid="uid://clcjne6rblrcm" path="res://assets/ui/styles/funklike/elements/HitDistance.tscn" id="2_n7xha"]
 [ext_resource type="PackedScene" uid="uid://4yvlf3lg3cd4" path="res://assets/ui/styles/funklike/elements/ComboDisplay.tscn" id="3_1vhqb"]
 [ext_resource type="PackedScene" uid="uid://clhy4u4yv82t1" path="res://assets/ui/styles/funklike/elements/Judgment.tscn" id="5_v0jb0"]

@@ -7,6 +7,12 @@
     <RootNamespace>Rubicon.Data</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
     <ProjectReference Include="..\Promise.Framework\Promise.Framework\Promise.Framework.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Godot.SourceGenerators" Version="4.2.2" />
+    <PackageReference Update="GodotSharp" Version="4.2.2" />
+    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
   </ItemGroup>
 </Project>

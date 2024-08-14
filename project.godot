@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ConductorSingleton="*res://source/Promise.Framework/Promise.Framework/Conductor.cs"
+ConductorSingleton="*res://source/Promise.Framework/Conductor.cs"
 CoroutineManager="*res://addons/HCoroutines/CoroutineManager.tscn"
 
 [display]

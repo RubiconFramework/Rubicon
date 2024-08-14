@@ -13,5 +13,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Remove="GodotSharp" />
+    <PackageReference Update="GodotSharp" Version="4.2.2" />
+    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Update="Godot.SourceGenerators" Version="4.2.2" />
   </ItemGroup>
 </Project>
