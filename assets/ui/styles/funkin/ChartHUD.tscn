@@ -38,15 +38,15 @@ grow_vertical = 2
 
 [node name="Judgment" parent="ComboContainer" node_paths=PackedStringArray("AnimationPlayer") instance=ExtResource("4_yxuos")]
 layout_mode = 0
-offset_left = -175.0
+offset_left = -120.0
 offset_top = -131.0
-offset_right = 171.0
+offset_right = 226.0
 offset_bottom = 8.0
 AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="ComboDisplay" parent="ComboContainer" instance=ExtResource("3_jp41j")]
 layout_mode = 1
-offset_left = 29.0
+offset_left = -180.0
 offset_top = -2.0
-offset_right = 29.0
+offset_right = -180.0
 offset_bottom = -2.0

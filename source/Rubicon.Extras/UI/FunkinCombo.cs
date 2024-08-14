@@ -41,9 +41,9 @@ public partial class FunkinCombo : ComboDisplay
         if (combo == 0 && _wasZero)
             return;
         
-        int[] splitDigits = new int[combo.ToString().Length];
+        int[] splitDigits = new int[combo.ToString("D3").Length];
         for (int i = 0; i < splitDigits.Length; i++)
-            splitDigits[i] = int.Parse(combo.ToString().ToCharArray()[i].ToString());
+            splitDigits[i] = int.Parse(combo.ToString("D3").ToCharArray()[i].ToString());
         
         float generalSize = Spacing;
         for (int i = 0; i < splitDigits.Length; i++)
@@ -56,8 +56,7 @@ public partial class FunkinCombo : ComboDisplay
             comboSpr.UseParentMaterial = true;
             AddChild(comboSpr);
             
-            comboSpr.Position = new Vector2(i * generalSize - ((splitDigits.Length - 1) * generalSize / 2), 0) -
-                                comboSpr.PivotOffset;
+            comboSpr.Position = new Vector2(i * generalSize, 0) - comboSpr.PivotOffset;
             
             _comboVelocities.Add(comboSpr, new Vector2((float)GD.RandRange(-5d, 5d), GD.RandRange(-160, -140)));
             _comboAccelerations.Add(comboSpr, GD.RandRange(300, 450));
