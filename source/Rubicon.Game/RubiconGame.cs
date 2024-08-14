@@ -76,6 +76,9 @@ public partial class RubiconGame : Node
         SongDifficulty diff = meta.GetDifficulty(Difficulty);
         using FileAccess chartFile = FileAccess.Open(diff.ChartPath, FileAccess.ModeFlags.Read);
         HoloChart chart = HoloChart.ParseString(chartFile.GetAsText());
+        
+        Conductor.Instance.ChartOffset = chart.Offset;
+        Conductor.Instance.SetBpms(chart.BpmInfo);
             
         int visIdx = 0;
         int visibleAmt = chart.Charts.Count(x => x.Visible);
@@ -92,7 +95,7 @@ public partial class RubiconGame : Node
                 
             for (int j = 0; j < curChart.Lanes; j++)
             {
-                chartCtrl.Lanes[j].ActionName = $"M_{curChart.Lanes}K_{j}";
+                chartCtrl.Lanes[j].ActionName = $"MANIA_{curChart.Lanes}K_{j}";
                 chartCtrl.Lanes[j].DirectionAngle =
                     SaveData.Data.DownScroll ? Mathf.DegToRad(270f) : Mathf.DegToRad(90f);
             }
@@ -105,9 +108,7 @@ public partial class RubiconGame : Node
             if (chartCtrl.Visible)
                 visIdx++;
         }
-            
-        Conductor.Instance.ChartOffset = chart.Offset;
-        Conductor.Instance.SetBpms(chart.BpmInfo);
+        
         Conductor.Instance.Start(0);
 
         // Load coroutines
@@ -116,5 +117,31 @@ public partial class RubiconGame : Node
         Instrumental.Play(0);
         if (meta.UseVocals)
             Vocals.Play(0);
+    }
+    
+    public void Pause()
+    {
+        if (Paused)
+            return;
+
+        Paused = true;
+	        
+        ProcessMode = ProcessModeEnum.Disabled;
+        Conductor.Instance.Pause();
+        Instrumental.Stop();
+        Vocals.Stop();
+    }
+
+    public void Resume()
+    {
+        if (!Paused)
+            return;
+
+        Paused = false;
+
+        ProcessMode = ProcessModeEnum.Inherit;
+        Instrumental.Play((float)Conductor.Instance.RawTime);
+        Vocals.Play((float)Conductor.Instance.RawTime);
+        Conductor.Instance.Play();
     }
 }

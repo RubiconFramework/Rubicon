@@ -1,8 +1,77 @@
-[gd_scene load_steps=4 format=3 uid="uid://dicd8kbfejo5f"]
+[gd_scene load_steps=15 format=3 uid="uid://dicd8kbfejo5f"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Game/RubiconGame.cs" id="1_lgtnn"]
 [ext_resource type="Script" path="res://source/Rubicon.Game/API/Controllers/SongCoroutineController.cs" id="2_rm5yx"]
 [ext_resource type="Script" path="res://source/Rubicon.Game/UI/UiBounce.cs" id="3_n21dw"]
+[ext_resource type="Script" path="res://source/Rubicon.Menus/PauseMenu.cs" id="4_avp1g"]
+[ext_resource type="FontFile" uid="uid://cudhbwf5fi86x" path="res://assets/fonts/VCR OSD Mono.ttf" id="5_htpvq"]
+[ext_resource type="Script" path="res://source/Rubicon.Menus/MenuOption.cs" id="5_rbwdx"]
+[ext_resource type="AudioStream" uid="uid://tob5nwpcmbot" path="res://assets/audio/sfx/scrollMenu.ogg" id="6_dgq4a"]
+
+[sub_resource type="Resource" id="Resource_2gn2l"]
+script = ExtResource("5_rbwdx")
+SelectedAnimation = "selected"
+DeselectedAnimation = "deselected"
+PathToObject = NodePath("Resume")
+PathToAnimationPlayer = NodePath("Resume/AnimationPlayer")
+
+[sub_resource type="Resource" id="Resource_bs2ui"]
+script = ExtResource("5_rbwdx")
+SelectedAnimation = "selected"
+DeselectedAnimation = "deselected"
+PathToObject = NodePath("Restart")
+PathToAnimationPlayer = NodePath("Restart/AnimationPlayer")
+
+[sub_resource type="Resource" id="Resource_s8d8h"]
+script = ExtResource("5_rbwdx")
+SelectedAnimation = "selected"
+DeselectedAnimation = "deselected"
+PathToObject = NodePath("Exit")
+PathToAnimationPlayer = NodePath("Exit/AnimationPlayer")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6yw4t"]
+font = ExtResource("5_htpvq")
+font_size = 50
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_d22xv"]
+resource_name = "selected"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pntm5"]
+resource_name = "deselected"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qal3f"]
+_data = {
+"deselected": SubResource("Animation_pntm5"),
+"selected": SubResource("Animation_d22xv")
+}
 
 [node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "CoroutineController")]
 script = ExtResource("1_lgtnn")
@@ -10,10 +79,10 @@ SongName = "astrogirl"
 Difficulty = "normal"
 DownScroll = true
 UiStyle = "funkin"
-ChartManagers = NodePath("Game HUD/Chart Managers")
+ChartManagers = NodePath("GameHUD/ChartManagers")
 Instrumental = NodePath("Instrumental")
 Vocals = NodePath("Vocals")
-UI = NodePath("Game HUD")
+UI = NodePath("GameHUD")
 CoroutineController = NodePath("API/CoroutineController")
 
 [node name="API" type="Node" parent="."]
@@ -21,7 +90,18 @@ CoroutineController = NodePath("API/CoroutineController")
 [node name="CoroutineController" type="Node" parent="API"]
 script = ExtResource("2_rm5yx")
 
-[node name="Game HUD" type="Control" parent="."]
+[node name="GameContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="GameViewport" type="SubViewport" parent="GameContainer"]
+size = Vector2i(1440, 1080)
+
+[node name="GameHUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,7 +110,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_n21dw")
 
-[node name="Chart Managers" type="Control" parent="Game HUD"]
+[node name="ChartManagers" type="Control" parent="GameHUD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -43,5 +123,83 @@ grow_horizontal = 2
 
 [node name="Vocals" type="AudioStreamPlayer" parent="."]
 
-[node name="SubViewport" type="SubViewport" parent="."]
-disable_3d = true
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_avp1g")
+Options = Array[Object]([SubResource("Resource_2gn2l"), SubResource("Resource_bs2ui"), SubResource("Resource_s8d8h")])
+MoveCursor = ExtResource("6_dgq4a")
+
+[node name="BG" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.243137)
+
+[node name="Title" type="Label" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 86.0
+offset_right = 431.0
+offset_bottom = 130.0
+text = "rubykonkonm"
+label_settings = SubResource("LabelSettings_6yw4t")
+
+[node name="Resume" type="Label" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 255.0
+offset_right = 315.0
+offset_bottom = 299.0
+text = "resujme"
+label_settings = SubResource("LabelSettings_6yw4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu/Resume"]
+libraries = {
+"": SubResource("AnimationLibrary_qal3f")
+}
+autoplay = "deselected"
+
+[node name="Restart" type="Label" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 321.0
+offset_right = 344.0
+offset_bottom = 365.0
+text = "resattrt"
+label_settings = SubResource("LabelSettings_6yw4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu/Restart"]
+libraries = {
+"": SubResource("AnimationLibrary_qal3f")
+}
+autoplay = "deselected"
+
+[node name="Exit" type="Label" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 378.0
+offset_right = 547.0
+offset_bottom = 422.0
+text = "return to lobby"
+label_settings = SubResource("LabelSettings_6yw4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu/Exit"]
+libraries = {
+"": SubResource("AnimationLibrary_qal3f")
+}
+autoplay = "deselected"
+
+[connection signal="ConfirmPressed" from="PauseMenu" to="PauseMenu" method="OnConfirmPressed"]
+[connection signal="DownPressed" from="PauseMenu" to="PauseMenu" method="OnDownPressed"]
+[connection signal="PauseOpened" from="PauseMenu" to="PauseMenu" method="OnPauseOpened"]
+[connection signal="UpPressed" from="PauseMenu" to="PauseMenu" method="OnUpPressed"]

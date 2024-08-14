@@ -6,4 +6,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Rubicon.Menus</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rubicon.Game\Rubicon.Game.csproj" />
+  </ItemGroup>
 </Project>

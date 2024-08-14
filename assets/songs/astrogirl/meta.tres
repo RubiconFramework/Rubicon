@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SongMetadata" load_steps=4 format=3 uid="uid://d1qmcnpfmhqe"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Game/Data/SongDifficulty.cs" id="1_78bbu"]
-[ext_resource type="Script" path="res://source/Rubicon.Game/Data/SongMetadata.cs" id="2_gw18a"]
+[ext_resource type="Script" path="res://source/Rubicon.Data/Meta/SongDifficulty.cs" id="1_78bbu"]
+[ext_resource type="Script" path="res://source/Rubicon.Data/Meta/SongMetadata.cs" id="2_gw18a"]
 
 [sub_resource type="Resource" id="Resource_ruew0"]
 script = ExtResource("1_78bbu")
