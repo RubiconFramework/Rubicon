@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Rubicon.Game.Data;
+namespace Rubicon.Data.Meta;
 
 /// <summary>
 /// Contains information about the characters.

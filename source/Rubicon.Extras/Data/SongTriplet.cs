@@ -1,6 +1,6 @@
 using Promise.Framework.Chart;
-using Rubicon.Game.Chart;
-using Rubicon.Game.Data;
+using Rubicon.Data.Events;
+using Rubicon.Data.Meta;
 
 namespace Rubicon.Extras.Data;
 

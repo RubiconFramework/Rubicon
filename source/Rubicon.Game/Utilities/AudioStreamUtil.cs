@@ -1,17 +1,11 @@
 using System.IO;
 using Godot;
+using Rubicon.Data;
 
 namespace Rubicon.Game.Utilities;
 
 public static class AudioStreamUtil
 {
-    public enum AudioStreamType
-    {
-        OggVorbis,
-        Mp3,
-        Wav
-    }
-        
     /// <summary>
     /// Loads an audio stream from the provided path and returns the audio stream retrieved.
     /// </summary>
@@ -23,11 +17,11 @@ public static class AudioStreamUtil
         switch (Path.GetExtension(path))
         {
             case ".ogg":
-                return LoadStream(pathNoExt, AudioStreamType.OggVorbis);
+                return LoadStream(pathNoExt, AudioFormat.OggVorbis);
             case ".wav":
-                return LoadStream(pathNoExt, AudioStreamType.Wav);
+                return LoadStream(pathNoExt, AudioFormat.Wav);
             case ".mp3":
-                return LoadStream(pathNoExt, AudioStreamType.Mp3);
+                return LoadStream(pathNoExt, AudioFormat.Mp3);
         }
 
         GD.Print($"Path \"{path}\" does not contain a valid extension!");
@@ -40,11 +34,11 @@ public static class AudioStreamUtil
     /// <param name="path">The path</param>
     /// <param name="type">The type of audio file</param>
     /// <returns>The AudioStream retrieved</returns>
-    public static AudioStream LoadStream(string path, AudioStreamType type)
+    public static AudioStream LoadStream(string path, AudioFormat type)
     {
         switch (type)
         {
-            case AudioStreamType.OggVorbis:
+            case AudioFormat.OggVorbis:
             {
                 if (!ResourceLoader.Exists(path + ".ogg"))
                 {
@@ -55,7 +49,7 @@ public static class AudioStreamUtil
                 return GD.Load<AudioStreamOggVorbis>(path + ".ogg");
             }
 
-            case AudioStreamType.Mp3:
+            case AudioFormat.Mp3:
             {
                 if (!ResourceLoader.Exists(path + ".mp3"))
                 {
@@ -65,7 +59,7 @@ public static class AudioStreamUtil
                     
                 return GD.Load<AudioStreamMP3>(path + ".mp3");
             }
-            case AudioStreamType.Wav:
+            case AudioFormat.Wav:
             {
                 if (!ResourceLoader.Exists(path + ".wav"))
                 {
@@ -85,7 +79,7 @@ public static class AudioStreamUtil
         return CreatePlayer(LoadStream(resPath), destroyOnComplete);
     }
         
-    public static AudioStreamPlayer CreatePlayer(string resPath, AudioStreamType type, bool destroyOnComplete = true)
+    public static AudioStreamPlayer CreatePlayer(string resPath, AudioFormat type, bool destroyOnComplete = true)
     {
         return CreatePlayer(LoadStream(resPath, type), destroyOnComplete);
     }

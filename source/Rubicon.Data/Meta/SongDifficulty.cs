@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Rubicon.Game.Data;
+namespace Rubicon.Data.Meta;
 
 [GlobalClass]
 public partial class SongDifficulty : Resource

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 
-namespace Rubicon.Game.Data;
+namespace Rubicon.Data;
 
 /// <summary>
 /// Save data for the engine.

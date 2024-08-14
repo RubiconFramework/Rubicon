@@ -4,6 +4,6 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>Rubicon.Stage.3D</RootNamespace>
+    <RootNamespace>Rubicon.Space3D</RootNamespace>
   </PropertyGroup>
 </Project>

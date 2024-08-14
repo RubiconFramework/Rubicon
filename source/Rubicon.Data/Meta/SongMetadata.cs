@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Rubicon.Game.Utilities;
 
-namespace Rubicon.Game.Data;
+namespace Rubicon.Data.Meta;
 
 /// <summary>
 /// Used to hold important information about a song.
@@ -105,7 +104,7 @@ public partial class SongMetadata : Resource
     /// <summary>
     /// The audio file's extension.
     /// </summary>
-    [Export] public AudioStreamUtil.AudioStreamType AudioExtension = AudioStreamUtil.AudioStreamType.OggVorbis;
+    [Export] public AudioFormat AudioExtension = AudioFormat.OggVorbis;
         
     public SongDifficulty GetDifficulty(int index)
     {

@@ -6,11 +6,11 @@ using Promise.Framework.Chart;
 using Promise.Framework.Objects;
 using Promise.Framework.UI;
 using Promise.Framework.UI.Noteskins;
+using Rubicon.Data;
+using Rubicon.Data.Meta;
 using Rubicon.Game.API.Controllers;
-using Rubicon.Game.Data;
 using Rubicon.Game.UI;
 using Rubicon.Game.Utilities;
-using SongMetadata = Rubicon.Game.Data.SongMetadata;
 
 namespace Rubicon.Game;
 

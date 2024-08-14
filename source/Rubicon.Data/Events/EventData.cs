@@ -5,7 +5,7 @@ using Promise.Framework.Chart;
 using Promise.Framework.Utilities;
 using Array = System.Array;
 
-namespace Rubicon.Game.Chart;
+namespace Rubicon.Data.Events;
 
 /// <summary>
 /// Used for storing a note's data values. Is not the actual Note object.

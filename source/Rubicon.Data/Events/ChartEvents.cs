@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 using Array = System.Array;
 
-namespace Rubicon.Game.Chart;
+namespace Rubicon.Data.Events;
 
 /// <summary>
 /// Contains multiple EventData instances for use in-game.
