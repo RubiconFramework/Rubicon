@@ -1,9 +1,8 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cg2fdt8e2nwi3"]
 
-[ext_resource type="Shader" path="res://source/Promise.Framework/assets/shaders/BarShader.gdshader" id="1_qyao3"]
+[ext_resource type="Shader" path="res://assets/shaders/GradientShader.gdshader" id="1_y80iw"]
 
 [resource]
-shader = ExtResource("1_qyao3")
-shader_parameter/black = Color(0, 0.886275, 0, 1)
-shader_parameter/white = Color(1, 1, 1, 1)
-shader_parameter/value = 0.5
+shader = ExtResource("1_y80iw")
+shader_parameter/black_color = Color(0, 0.886275, 0, 1)
+shader_parameter/white_color = Color(1, 1, 1, 1)
