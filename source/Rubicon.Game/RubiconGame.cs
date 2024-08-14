@@ -70,9 +70,8 @@ public partial class RubiconGame : Node
         PromiseData.DefaultChartHud = GD.Load<PackedScene>("res://assets/ui/styles/funklike/ChartHUD.tscn");
         
         // Find current ChartHud
-        ChartHud chartHud = FileAccess.FileExists($"res://assets/ui/styles/{UiStyle}/ChartHUD.tscn")
-            ? GD.Load<PackedScene>($"res://assets/ui/styles/{UiStyle}/ChartHUD.tscn").Instantiate<ChartHud>()
-            : null;
+        PackedScene packedChartHud = FileAccess.FileExists($"res://assets/ui/styles/{UiStyle}/ChartHUD.tscn")
+            ? GD.Load<PackedScene>($"res://assets/ui/styles/{UiStyle}/ChartHUD.tscn") : null;
 
         SongDifficulty diff = meta.GetDifficulty(Difficulty);
         using FileAccess chartFile = FileAccess.Open(diff.ChartPath, FileAccess.ModeFlags.Read);
@@ -85,7 +84,7 @@ public partial class RubiconGame : Node
             IndividualChart curChart = chart.Charts[i];
 
             ChartController chartCtrl = new ChartController();
-            chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Data.BotPlay || i != TargetController, chart.ScrollSpeed, null, chartHud);
+            chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Data.BotPlay || i != TargetController, chart.ScrollSpeed, null, packedChartHud?.Instantiate<ChartHud>());
             chartCtrl.ChartHud.SwitchDirection(SaveData.Data.DownScroll);
             chartCtrl.Visible = curChart.Visible;
             chartCtrl.ChartHud.Visible = i == TargetController;
