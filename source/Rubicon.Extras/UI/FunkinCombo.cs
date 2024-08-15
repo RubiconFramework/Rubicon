@@ -63,7 +63,7 @@ public partial class FunkinCombo : ComboDisplay
 
             Tween fadeTween = comboSpr.CreateTween();
             fadeTween.TweenProperty(comboSpr, "self_modulate", Colors.Transparent, 0.2d)
-                .SetDelay(60d / Conductor.Instance.Bpm * 2d);
+                .SetDelay(60d / Conductor.Bpm * 2d);
             fadeTween.Finished += () => DeleteComboSprite(comboSpr);
             fadeTween.Play();
         }

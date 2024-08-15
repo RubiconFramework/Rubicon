@@ -29,7 +29,7 @@ public class WaitForMeasure : CoroutineBase
 
     private void CheckTime() 
     {
-        if (Conductor.Instance.CurrentMeasure >= Measure)
+        if (Conductor.CurrentMeasure >= Measure)
             Kill();
     }
 }
@@ -41,7 +41,7 @@ public class WaitMeasures : WaitForMeasure
 {
     public WaitMeasures(double measure) : base(measure)
     {
-        Measure = Conductor.Instance.CurrentMeasure + measure;
+        Measure = Conductor.CurrentMeasure + measure;
     }
 }
 
@@ -71,7 +71,7 @@ public class WaitForBeat : CoroutineBase
 
     private void CheckTime() 
     {
-        if (Conductor.Instance.CurrentBeat >= Beat)
+        if (Conductor.CurrentBeat >= Beat)
             Kill();
     }
 }
@@ -83,7 +83,7 @@ public class WaitBeats : WaitForBeat
 {
     public WaitBeats(double beats) : base(beats)
     {
-        Beat = Conductor.Instance.CurrentBeat + beats;
+        Beat = Conductor.CurrentBeat + beats;
     }
 }
 
@@ -113,7 +113,7 @@ public class WaitForStep : CoroutineBase
 
     private void CheckTime() 
     {
-        if (Conductor.Instance.CurrentStep >= Step)
+        if (Conductor.CurrentStep >= Step)
             Kill();
     }
 }
@@ -125,7 +125,7 @@ public class WaitSteps : WaitForStep
 {
     public WaitSteps(double steps) : base(steps)
     {
-        Step = Conductor.Instance.CurrentStep + steps;
+        Step = Conductor.CurrentStep + steps;
     }
 }
 
@@ -153,7 +153,7 @@ public class WaitForTime : CoroutineBase
 
     private void CheckTime() 
     {
-        if (Conductor.Instance.Time >= Time)
+        if (Conductor.Time >= Time)
             Kill();
     }
 }
@@ -165,6 +165,6 @@ public class WaitTime : WaitForTime
 {
     public WaitTime(double seconds) : base(seconds)
     {
-        Time = Conductor.Instance.Time + seconds;
+        Time = Conductor.Time + seconds;
     }
 }

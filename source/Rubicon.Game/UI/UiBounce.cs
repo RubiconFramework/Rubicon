@@ -28,7 +28,7 @@ public partial class UiBounce : Control
         // Correct pivot to center
         PivotOffset = Size / 2f;
 
-        int beat = Mathf.FloorToInt(Mathf.Abs(Conductor.Instance.CurrentBeat));
+        int beat = Mathf.FloorToInt(Mathf.Abs(Conductor.CurrentBeat));
         if (beat != _lastBeat)
         {
             if (EnableMajorBounce && beat % MajorBounceBeat == 0)

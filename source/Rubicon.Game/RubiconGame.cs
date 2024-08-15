@@ -80,8 +80,8 @@ public partial class RubiconGame : Node
         using FileAccess chartFile = FileAccess.Open(diff.ChartPath, FileAccess.ModeFlags.Read);
         HoloChart chart = HoloChart.ParseString(chartFile.GetAsText());
         
-        Conductor.Instance.ChartOffset = chart.Offset;
-        Conductor.Instance.SetBpms(chart.BpmInfo);
+        Conductor.ChartOffset = chart.Offset;
+        Conductor.BpmList = chart.BpmInfo;
             
         int visIdx = 0;
         int visibleAmt = chart.Charts.Count(x => x.Visible);
@@ -112,7 +112,7 @@ public partial class RubiconGame : Node
                 visIdx++;
         }
         
-        Conductor.Instance.Start(0);
+        Conductor.Start(0);
 
         // Load coroutines
         CoroutineController.Load(SongName, meta.Stage);
@@ -130,7 +130,7 @@ public partial class RubiconGame : Node
         Paused = true;
 	        
         ProcessMode = ProcessModeEnum.Disabled;
-        Conductor.Instance.Pause();
+        Conductor.Pause();
         Instrumental.Stop();
         Vocals.Stop();
     }
@@ -143,8 +143,8 @@ public partial class RubiconGame : Node
         Paused = false;
 
         ProcessMode = ProcessModeEnum.Inherit;
-        Instrumental.Play((float)Conductor.Instance.RawTime);
-        Vocals.Play((float)Conductor.Instance.RawTime);
-        Conductor.Instance.Play();
+        Instrumental.Play((float)Conductor.RawTime);
+        Vocals.Play((float)Conductor.RawTime);
+        Conductor.Play();
     }
 }

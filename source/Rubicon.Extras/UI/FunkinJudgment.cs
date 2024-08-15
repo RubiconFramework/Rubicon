@@ -50,7 +50,7 @@ public partial class FunkinJudgment : Judgment
         AddChild(newJudge);
 
         Tween fadeTween = newJudge.CreateTween();
-        fadeTween.TweenProperty(newJudge, "self_modulate", Colors.Transparent, 0.2).SetDelay(60d / Conductor.Instance.Bpm);
+        fadeTween.TweenProperty(newJudge, "self_modulate", Colors.Transparent, 0.2).SetDelay(60d / Conductor.Bpm);
         fadeTween.Finished += () => newJudge.QueueFree();
         fadeTween.Play();
 

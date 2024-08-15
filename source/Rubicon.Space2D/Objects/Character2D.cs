@@ -58,8 +58,8 @@ public partial class Character2D : Node2D, ICharacter
     {
         base._Process(delta);
         
-        int beat = Mathf.FloorToInt(Conductor.Instance.CurrentBeat);
-        int step = Mathf.FloorToInt(Conductor.Instance.CurrentStep);
+        int beat = Mathf.FloorToInt(Conductor.CurrentBeat);
+        int step = Mathf.FloorToInt(Conductor.CurrentStep);
             
         if (CanIdle && !(NoteLocked && Data.NoteAnimations[LaneCount].Contains(CurrentAnimation)) && !_justChangedState && beat != _lastBeat && beat % Data.IdleBeat == 0)
             PlayIdleAnim();
@@ -85,7 +85,7 @@ public partial class Character2D : Node2D, ICharacter
     public void PlayIdleAnim()
     {
         // this for the sans loopinng shit
-        string currentIdle = Data.IdleAnimation[Mathf.FloorToInt(Mathf.Abs(Conductor.Instance.CurrentBeat)) / Data.IdleBeat % Data.IdleAnimation.Length];
+        string currentIdle = Data.IdleAnimation[Mathf.FloorToInt(Mathf.Abs(Conductor.CurrentBeat)) / Data.IdleBeat % Data.IdleAnimation.Length];
         if (AnimationPlayer.GetAnimation(currentIdle).LoopMode != Animation.LoopModeEnum.None && CurrentAnimation == currentIdle) 
             return;
 

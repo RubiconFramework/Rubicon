@@ -61,7 +61,7 @@ public partial class CameraController2D : Node2D
     {
         base._Process(delta);
 
-        int beat = Mathf.FloorToInt(Mathf.Abs(Conductor.Instance.CurrentBeat));
+        int beat = Mathf.FloorToInt(Mathf.Abs(Conductor.CurrentBeat));
         if (beat != _lastBeat)
         {
             if (EnableMajorBounce && beat % MajorBounceBeat == 0)
