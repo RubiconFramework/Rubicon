@@ -390,7 +390,7 @@ namespace HoloFunk
         {
             float curSineVal = 0f;
             int indexInArray = Array.IndexOf(chartCtrl.Lanes, noteCtrl);
-            while (Conductor.Instance.CurrentBeat < endingBeat - 2d)
+            while (Conductor.CurrentBeat < endingBeat - 2d)
             {
                 curSineVal += (float)RubiconGame.Instance.GetProcessDeltaTime();
 
@@ -401,7 +401,7 @@ namespace HoloFunk
 
             Tween tween = noteCtrl.CreateTween();
             tween.TweenProperty(noteCtrl, "position:x", OGNotePositions[indexInArray].X,
-                (60d / Conductor.Instance.Bpm) * 2d);
+                (60d / Conductor.Bpm) * 2d);
             tween.SetEase(Tween.EaseType.Out);
             tween.SetTrans(Tween.TransitionType.Sine);
             tween.Play();
@@ -414,7 +414,7 @@ namespace HoloFunk
         {
             float curSineVal = 0f;
             int indexInArray = Array.IndexOf(chartCtrl.Lanes, noteCtrl);
-            while (Conductor.Instance.CurrentBeat < endingBeat - 2f)
+            while (Conductor.CurrentBeat < endingBeat - 2f)
             {
                 curSineVal += (float)RubiconGame.Instance.GetProcessDeltaTime();
 
@@ -426,7 +426,7 @@ namespace HoloFunk
             
             Tween tween = noteCtrl.CreateTween();
             tween.TweenProperty(noteCtrl, "position:y", OGNotePositions[indexInArray].Y,
-                (60d / Conductor.Instance.Bpm) * 2d);
+                (60d / Conductor.Bpm) * 2d);
             tween.SetEase(Tween.EaseType.Out);
             tween.SetTrans(Tween.TransitionType.Sine);
             tween.Play();
@@ -437,18 +437,18 @@ namespace HoloFunk
 
         private IEnumerator SineArrowShakeY(NoteLaneController noteCtrl, double speed, float intensity, double lastingBeats)
         {
-            double lastBeat = Conductor.Instance.CurrentBeat;
+            double lastBeat = Conductor.CurrentBeat;
             float curSineVal = 0f;
             int indexInArray = Array.IndexOf(chartCtrl.Lanes, noteCtrl);
 
             double deltaTime = 0d;
             
             //DOTween.To(() => curSineVal, x => curSineVal = x, (2 * (Mathf.PI)) * speed, ((60 / RubiconGame.Instance.BPM)) * lastingBeats * speed).SetEase(Ease.OutCubic);
-            while (Conductor.Instance.CurrentBeat <= lastBeat + (lastingBeats * speed))
+            while (Conductor.CurrentBeat <= lastBeat + (lastingBeats * speed))
             {
                 curSineVal = EaseOutCubic((float)deltaTime, 0f, (2 * (Mathf.Pi)) * (float)speed,
-                    (float)(((60 / Conductor.Instance.Bpm)) * lastingBeats * speed));
-                //double val = deltaTime / ((60 / Conductor.Instance.Bpm)) * lastingBeats * speed;
+                    (float)(((60 / Conductor.Bpm)) * lastingBeats * speed));
+                //double val = deltaTime / ((60 / Conductor.Bpm)) * lastingBeats * speed;
                 //curSineVal = (float)(val * ((2 * (Mathf.Pi)) * speed));
                 
                 noteCtrl.Position = new Vector2(noteCtrl.Position.X, OGNotePositions[indexInArray].Y + (Mathf.Sin(Mathf.Pi * curSineVal) * intensity));
@@ -467,13 +467,13 @@ namespace HoloFunk
             int lane = Array.IndexOf(chartCtrl.Lanes, noteCtrl);
             float multiplier = 1f;
 
-            int lastGameBeat = Mathf.FloorToInt(Conductor.Instance.CurrentBeat);
+            int lastGameBeat = Mathf.FloorToInt(Conductor.CurrentBeat);
 
             int lastBeat = -1;
             int curBeat = 0;
-            while (Conductor.Instance.CurrentBeat < endingBeat)
+            while (Conductor.CurrentBeat < endingBeat)
             {
-                if (lastGameBeat != Mathf.FloorToInt(Conductor.Instance.CurrentBeat))
+                if (lastGameBeat != Mathf.FloorToInt(Conductor.CurrentBeat))
                     curBeat++;
 
                 // terrible i know, but too lazy :3
@@ -511,7 +511,7 @@ namespace HoloFunk
                 }
 
                 lastBeat = curBeat;
-                lastGameBeat = Mathf.FloorToInt(Conductor.Instance.CurrentBeat);
+                lastGameBeat = Mathf.FloorToInt(Conductor.CurrentBeat);
 
                 yield return null;
             }
@@ -523,7 +523,7 @@ namespace HoloFunk
         {
             yield return new WaitBeats(0.5f);
             int lane = Array.IndexOf(chartCtrl.Lanes, noteCtrl);
-            double time = (60f / Conductor.Instance.Bpm);
+            double time = (60f / Conductor.Bpm);
 
             Tween rotTween = noteCtrl.LaneGraphic.CreateTween();
             rotTween.SetEase(Tween.EaseType.InOut).SetTrans(Tween.TransitionType.Circ);
@@ -557,16 +557,16 @@ namespace HoloFunk
             UiBounce hudBounce = RubiconGame.Instance.UI;
             float curSineVal = 0f;
             double deltaTime = 0d;
-            int loops = (int)endingBeat - (int)Conductor.Instance.CurrentBeat - 1;
+            int loops = (int)endingBeat - (int)Conductor.CurrentBeat - 1;
             
             //Tween hudTween = DOTween.To(() => curSineVal, x => curSineVal = x, Mathf.PI, (60 / RubiconGame.Instance.BPM) * speed).SetLoops((int)endingBeat - (int)RubiconGame.Instance.Beat - 1).SetEase(Ease.InOutCirc);
-            while (Conductor.Instance.CurrentBeat < endingBeat - 2f && loops > 0)
+            while (Conductor.CurrentBeat < endingBeat - 2f && loops > 0)
             {
                 hudBounce.Position = new Vector2(0f, Mathf.Abs(Mathf.Sin(curSineVal)) * intensity);
                 deltaTime += RubiconGame.Instance.GetProcessDeltaTime();
-                curSineVal = (float)(deltaTime / ((60 / Conductor.Instance.Bpm) * speed)) * Mathf.Pi;
+                curSineVal = (float)(deltaTime / ((60 / Conductor.Bpm) * speed)) * Mathf.Pi;
 
-                if (deltaTime >= (60 / Conductor.Instance.Bpm) * speed)
+                if (deltaTime >= (60 / Conductor.Bpm) * speed)
                 {
                     loops--;
                     deltaTime = 0;
@@ -576,7 +576,7 @@ namespace HoloFunk
             }
 
             Tween finishTween = hudBounce.CreateTween();
-            finishTween.TweenProperty(hudBounce, "position", Vector2.Zero, (60d / Conductor.Instance.Bpm) * 2d);
+            finishTween.TweenProperty(hudBounce, "position", Vector2.Zero, (60d / Conductor.Bpm) * 2d);
             finishTween.SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Circ);
             finishTween.Play();
             //hudBounce.transform.DOLocalMove(Vector3.zero, (60f / RubiconGame.Instance.BPM) * 2f).SetEase(Ease.InCirc);
@@ -587,7 +587,7 @@ namespace HoloFunk
         public IEnumerator StartHUDBounceScale(int bounceBeat, float intensity, double endingBeat)
         {
             UiBounce hud = RubiconGame.Instance.UI;
-            while (Mathf.FloorToInt(Conductor.Instance.CurrentBeat) < endingBeat)
+            while (Mathf.FloorToInt(Conductor.CurrentBeat) < endingBeat)
             {
                 hud.Bounce(intensity);
                 yield return new WaitBeats(bounceBeat);
@@ -597,7 +597,7 @@ namespace HoloFunk
         public IEnumerator StartHUDBounceScale(float bounceBeat, float intensity, double endingBeat)
         {
             UiBounce hud = RubiconGame.Instance.UI;
-            while (Conductor.Instance.CurrentBeat < endingBeat)
+            while (Conductor.CurrentBeat < endingBeat)
             {
                 hud.Bounce(intensity);
                 yield return new WaitBeats(bounceBeat);
@@ -632,11 +632,11 @@ namespace HoloFunk
 			//CameraScript camera = GameObject.FindObjectOfType<CameraScript>();
             UiBounce hud = RubiconGame.Instance.UI;
 
-			while (Conductor.Instance.CurrentStep < untilStep)
+			while (Conductor.CurrentStep < untilStep)
             {
 				//camera.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Sin(RubiconGame.Instance.Beat / 1.5f));
 				//hud.transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Sin(RubiconGame.Instance.Beat / 1.5f));
-                hud.RotationDegrees = Mathf.Sin((float)Conductor.Instance.CurrentBeat / 1.5f);
+                hud.RotationDegrees = Mathf.Sin((float)Conductor.CurrentBeat / 1.5f);
                 
 				yield return null;
 			}
