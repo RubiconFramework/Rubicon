@@ -5,11 +5,10 @@ using Godot;
 using HCoroutines;
 using HCoroutines.Coroutines;
 using Promise.Framework.Utilities;
-using Rubicon.Game.API.Coroutines;
 
-namespace Rubicon.Game.API.Controllers;
+namespace Rubicon.API.Coroutines;
 
-public partial class SongCoroutineController : Node
+public partial class CoroutineController : Node
 {
     public Dictionary<IGameCoroutine, Coroutine> SongCoroutines = new Dictionary<IGameCoroutine, Coroutine>();
     public Dictionary<IEnumerator, Coroutine> Coroutines = new Dictionary<IEnumerator, Coroutine>();

@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
-namespace Rubicon.Space2D.Objects;
+namespace Rubicon.Space2D;
 
 /// <summary>
 /// A class that contains characters, as well as give extra functions.
 /// </summary>
-public partial class CharacterGroup2D : Node2D
+public partial class CharacterGroup2D : RefCounted
 {
     /// <summary>
     /// Either allows or denies all the characters in this CharacterGroup to idle.
@@ -18,6 +18,18 @@ public partial class CharacterGroup2D : Node2D
         { 
             foreach (Character2D chara in Characters) 
                 chara.CanIdle = value;
+        }
+    }
+
+    /// <summary>
+    /// Determines whether all characters in this group is holding a note.
+    /// </summary>
+    public bool Holding
+    {
+        set
+        {
+            foreach (Character2D chara in Characters)
+                chara.Holding = value;
         }
     }
     

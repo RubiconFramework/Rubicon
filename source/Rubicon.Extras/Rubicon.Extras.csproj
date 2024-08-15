@@ -1,4 +1,4 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.2.1">
+﻿<Project Sdk="Godot.NET.Sdk/4.2.2">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
@@ -8,10 +8,10 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
+    <ProjectReference Include="..\Rubicon.API\Rubicon.API.csproj" />
     <ProjectReference Include="..\Rubicon.Game\Rubicon.Game.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Remove="GodotSharp" />
     <PackageReference Update="GodotSharp" Version="4.2.2" />
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
     <PackageReference Update="Godot.SourceGenerators" Version="4.2.2" />

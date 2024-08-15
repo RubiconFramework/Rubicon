@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "attack"
-length = 0.250004
+length = 0.291671
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false

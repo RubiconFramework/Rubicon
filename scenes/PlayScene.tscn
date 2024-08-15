@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dicd8kbfejo5f"]
+[gd_scene load_steps=17 format=3 uid="uid://dicd8kbfejo5f"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Game/RubiconGame.cs" id="1_lgtnn"]
-[ext_resource type="Script" path="res://source/Rubicon.Game/API/Controllers/SongCoroutineController.cs" id="2_rm5yx"]
+[ext_resource type="Script" path="res://source/Rubicon.API/Coroutines/CoroutineController.cs" id="2_wljy6"]
+[ext_resource type="Script" path="res://source/Rubicon.API/Events/EventController.cs" id="3_estp2"]
 [ext_resource type="Script" path="res://source/Rubicon.Game/UI/UiBounce.cs" id="3_n21dw"]
+[ext_resource type="Script" path="res://source/Rubicon.Space2D/CameraController2D.cs" id="3_y86i6"]
 [ext_resource type="Script" path="res://source/Rubicon.Menus/PauseMenu.cs" id="4_avp1g"]
 [ext_resource type="FontFile" uid="uid://cudhbwf5fi86x" path="res://assets/fonts/VCR OSD Mono.ttf" id="5_htpvq"]
 [ext_resource type="Script" path="res://source/Rubicon.Menus/MenuOption.cs" id="5_rbwdx"]
@@ -35,22 +37,6 @@ font_size = 50
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_d22xv"]
-resource_name = "selected"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_pntm5"]
 resource_name = "deselected"
 length = 0.001
@@ -67,28 +53,53 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_d22xv"]
+resource_name = "selected"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qal3f"]
 _data = {
 "deselected": SubResource("Animation_pntm5"),
 "selected": SubResource("Animation_d22xv")
 }
 
-[node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "CoroutineController")]
+[node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "Space2D", "CameraController2D", "Viewport", "ViewportContainer", "CoroutineController", "EventController")]
 script = ExtResource("1_lgtnn")
-SongName = "astrogirl"
+SongName = "test"
 Difficulty = "normal"
 DownScroll = true
-UiStyle = "funkin"
+UiStyle = ""
+TargetController = -1
 ChartManagers = NodePath("GameHUD/ChartManagers")
 Instrumental = NodePath("Instrumental")
 Vocals = NodePath("Vocals")
 UI = NodePath("GameHUD")
+Space2D = NodePath("GameContainer/GameViewport/2DSpace")
+CameraController2D = NodePath("GameContainer/GameViewport/2DSpace/CameraController")
+Viewport = NodePath("GameContainer/GameViewport")
+ViewportContainer = NodePath("GameContainer")
 CoroutineController = NodePath("API/CoroutineController")
+EventController = NodePath("API/EventController")
 
 [node name="API" type="Node" parent="."]
 
 [node name="CoroutineController" type="Node" parent="API"]
-script = ExtResource("2_rm5yx")
+script = ExtResource("2_wljy6")
+
+[node name="EventController" type="Node" parent="API"]
+script = ExtResource("3_estp2")
 
 [node name="GameContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -99,7 +110,20 @@ grow_vertical = 2
 stretch = true
 
 [node name="GameViewport" type="SubViewport" parent="GameContainer"]
+handle_input_locally = false
 size = Vector2i(1440, 1080)
+render_target_update_mode = 4
+
+[node name="2DSpace" type="Node2D" parent="GameContainer/GameViewport"]
+
+[node name="CameraController" type="Node2D" parent="GameContainer/GameViewport/2DSpace" node_paths=PackedStringArray("Camera")]
+script = ExtResource("3_y86i6")
+MajorBounceIntensity = 0.015
+Camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="GameContainer/GameViewport/2DSpace/CameraController"]
+
+[node name="3DSpace" type="Node3D" parent="GameContainer/GameViewport"]
 
 [node name="GameHUD" type="Control" parent="."]
 layout_mode = 3

@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "preattack"
-length = 0.166671
+length = 0.208338
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false

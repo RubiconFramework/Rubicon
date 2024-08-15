@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F745B39A-1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.Data", "source\Rubicon.Data\Rubicon.Data.csproj", "{A3BBF994-17F6-463A-85C2-945847899A77}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.API", "source\Rubicon.API\Rubicon.API.csproj", "{32936F4A-43E6-4F3F-8A0E-2CFF6844F727}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,12 @@ Global
 		{A3BBF994-17F6-463A-85C2-945847899A77}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{A3BBF994-17F6-463A-85C2-945847899A77}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{A3BBF994-17F6-463A-85C2-945847899A77}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{32936F4A-43E6-4F3F-8A0E-2CFF6844F727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32936F4A-43E6-4F3F-8A0E-2CFF6844F727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32936F4A-43E6-4F3F-8A0E-2CFF6844F727}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{32936F4A-43E6-4F3F-8A0E-2CFF6844F727}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{32936F4A-43E6-4F3F-8A0E-2CFF6844F727}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{32936F4A-43E6-4F3F-8A0E-2CFF6844F727}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6114E7D8-0333-406C-A3BE-B608F69144EB} = {EA68565E-B684-450E-A2F5-B94FF372226D}

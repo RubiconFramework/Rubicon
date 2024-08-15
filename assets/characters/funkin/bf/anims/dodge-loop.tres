@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "dodge-loop"
-length = 0.125004
+length = 0.166671
 loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"

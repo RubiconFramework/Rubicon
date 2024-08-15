@@ -1,5 +1,7 @@
 using Godot;
 using Godot.Collections;
+using Promise.Framework.Chart;
+using Promise.Framework.Utilities;
 using Array = System.Array;
 
 namespace Rubicon.Data.Events;
@@ -14,6 +16,22 @@ public partial class ChartEvents : RefCounted
     /// The individual events stored.
     /// </summary>
     public EventData[] Events = Array.Empty<EventData>();
+    
+    /// <summary>
+    /// Converts the events in this chart to millisecond format.
+    /// </summary>
+    /// <param name="bpmList">A list of bpm changes</param>
+    /// <returns>Itself</returns>
+    public ChartEvents ConvertData(BpmInfo[] bpmList)
+    {
+        for (int i = 1; i < bpmList.Length; i++)
+            bpmList[i].MsTime = bpmList[i - 1].MsTime + ConductorUtil.MeasureToMs(bpmList[i].Time - bpmList[i - 1].Time, bpmList[i - 1].Bpm, bpmList[i].TimeSignatureNumerator);
+
+        for (int i = 0; i < Events.Length; i++)
+            Events[i].ConvertData(bpmList);
+
+        return this;
+    }
         
     #region JSON Methods
     /// <summary>

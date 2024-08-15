@@ -1,7 +1,8 @@
 using System.Linq;
+using System.Numerics;
 using Godot;
 using Promise.Framework;
-using Rubicon.Space2D.Objects;
+using Vector2 = Godot.Vector2;
 
 namespace Rubicon.Space2D;
 
@@ -96,7 +97,47 @@ public partial class CameraController2D : Node2D
             return;
         }
 
-        CameraFocusPoint2D camPoint = UseCharacterCameras ? Stage.CharacterGroups[idx].Characters.FirstOrDefault(x => x.Active).FocusPoint : Stage.FocusPoints[idx];
+        // checks
+        CameraFocusPoint2D camPoint = Stage.FocusPoints[idx];
+        if (UseCharacterCameras && idx < Stage.CharacterGroups.Count &&
+            Stage.CharacterGroups[idx].Characters.Count > 0 && Stage.CharacterGroups[idx].Characters.Any(x => x.Active))
+        {
+            Character2D firstActive = Stage.CharacterGroups[idx].Characters.FirstOrDefault(x => x.Active);
+            camPoint = firstActive.FocusPoint;
+        }
+        
+        /*
+        TargetPosition = Stage.Position;
+        TargetRotation = 0;
+            
+        NodePath pathToPoint = Stage.GetPathTo(camPoint);
+        string[] splitPath = pathToPoint.ToString().Split('/');
+        string currentPath = splitPath[0];
+        for (int i = 0; i < splitPath.Length; i++)
+        {
+            Node curNode = Stage.GetNode(currentPath);
+
+            if (curNode is SpawnPoint2D spawnPoint)
+            {
+                TargetPosition += spawnPoint.StartingPosition;
+                TargetRotation += spawnPoint.Rotation;
+            }
+            if (curNode is Node2D node2D and not ParallaxLayer)
+            {
+                TargetPosition += node2D.Position;
+                TargetRotation += node2D.Rotation;
+            }
+            else if (curNode is Control control)
+            {
+                TargetPosition += control.Position;
+                TargetRotation += control.Rotation;
+            }
+
+            if (i + 1 < splitPath.Length)
+                currentPath += "/" + splitPath[i + 1];
+        }
+        */
+
         TargetPosition = camPoint.GlobalPosition;
         TargetRotation = camPoint.GlobalRotation;
 

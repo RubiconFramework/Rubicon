@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Rubicon.Space2D.Objects;
+namespace Rubicon.Space2D;
 
 /// <summary>
 /// A focus point for the camera in 2D spaces, used for characters and stages.

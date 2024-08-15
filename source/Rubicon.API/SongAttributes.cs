@@ -1,6 +1,6 @@
 using System;
 
-namespace Rubicon.Game.API;
+namespace Rubicon.API;
 
 /// <summary>
 /// An attribute to put on an ISongCoroutine to allow usage on a specific song.

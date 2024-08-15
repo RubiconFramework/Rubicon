@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://b3ap7y2g747rf"]
+[gd_scene load_steps=21 format=3 uid="uid://b3ap7y2g747rf"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Space2D/Objects/Character2D.cs" id="1_32wir"]
+[ext_resource type="Script" path="res://source/Rubicon.Space2D/Character2D.cs" id="1_32wir"]
 [ext_resource type="SpriteFrames" uid="uid://dj7a035kejd13" path="res://assets/characters/funkin/bf/BOYFRIEND.xml" id="1_q3ttk"]
 [ext_resource type="Script" path="res://source/Rubicon.Data/Stage/CharacterAnimation.cs" id="3_c6bf2"]
 [ext_resource type="Script" path="res://source/Rubicon.Data/Stage/CharacterData.cs" id="4_26q50"]
+[ext_resource type="Script" path="res://source/Rubicon.Space2D/CameraFocusPoint2D.cs" id="5_2rtmm"]
 [ext_resource type="AnimationLibrary" uid="uid://cjcrieutxa50j" path="res://assets/characters/funkin/bf/AnimationLibrary.tres" id="5_sxbwm"]
 
 [sub_resource type="Resource" id="Resource_whorp"]
@@ -175,7 +176,7 @@ LeftFacing = true
 HealthColors = PackedColorArray(1, 1, 1, 1)
 DeathMusicBpm = 100.0
 
-[node name="bf" type="AnimatedSprite2D" node_paths=PackedStringArray("AnimationPlayer")]
+[node name="bf" type="AnimatedSprite2D" node_paths=PackedStringArray("AnimationPlayer", "FocusPoint")]
 sprite_frames = ExtResource("1_q3ttk")
 animation = &"BF idle dance"
 frame = 8
@@ -183,6 +184,11 @@ offset = Vector2(0, -180)
 script = ExtResource("1_32wir")
 Data = SubResource("Resource_smgew")
 AnimationPlayer = NodePath("AnimationPlayer")
+FocusPoint = NodePath("FocusPoint")
+
+[node name="FocusPoint" type="Node2D" parent="."]
+position = Vector2(-55, -218)
+script = ExtResource("5_2rtmm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

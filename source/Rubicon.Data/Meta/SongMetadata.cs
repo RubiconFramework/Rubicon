@@ -40,6 +40,11 @@ public partial class SongMetadata : Resource
     /// Locks Opponent and Speaker mode out.
     /// </summary>
     [Export] public bool OnlyPlayerMode = false;
+
+    /// <summary>
+    /// If turned on when the song loads, the game will load into a 3D stage instead of a 2D one. Only use when you need to, 3D spaces can be expensive on the computer.
+    /// </summary>
+    [Export] public bool Enable3D = false;
         
     /// <summary>
     /// The stage to spawn in for this chart.

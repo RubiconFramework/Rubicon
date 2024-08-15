@@ -60,7 +60,8 @@ public partial class EventData : RefCounted
     public Dictionary Serialize() => new Dictionary()
     {
         { "Time", Time },
-        { "Name", Name }
+        { "Name", Name },
+        { "Arguments", Arguments }
     };
 
     /// <summary>
@@ -71,7 +72,8 @@ public partial class EventData : RefCounted
     public static EventData Deserialize(Dictionary info) => new EventData()
     {
         Time = info["Time"].AsDouble(),
-        Name = info["Name"].AsString()
+        Name = info["Name"].AsString(),
+        Arguments = info["Arguments"].AsStringArray()
     };
         
     /// <summary>

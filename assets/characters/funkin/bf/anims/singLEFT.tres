@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "singLEFT"
-length = 0.0833375
+length = 0.125004
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false

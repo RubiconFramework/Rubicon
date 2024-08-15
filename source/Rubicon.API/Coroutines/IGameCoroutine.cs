@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace Rubicon.Game.API.Coroutines;
+namespace Rubicon.API.Coroutines;
 
 /// <summary>
 /// An interface utilizing coroutines to be inherited by any C# classes to be used for songs or stages.

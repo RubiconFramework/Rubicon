@@ -5,7 +5,7 @@ using Promise.Framework;
 using Rubicon.Data.Interfaces;
 using Rubicon.Data.Stage;
 
-namespace Rubicon.Space2D.Objects;
+namespace Rubicon.Space2D;
 
 /// <summary>
 /// A character class to be used in 2D spaces.
@@ -17,6 +17,8 @@ public partial class Character2D : Node2D, ICharacter
 
     [ExportGroup("Status"), Export] public string CurrentAnimation { get; set; } = "";
 
+    [Export] public bool Holding { get; set; } = false;
+    
     [Export] public bool NoteLocked { get; set; } = false;
 
     [Export] public bool Losing { get; set; } = false;
@@ -61,16 +63,13 @@ public partial class Character2D : Node2D, ICharacter
         int beat = Mathf.FloorToInt(Conductor.CurrentBeat);
         int step = Mathf.FloorToInt(Conductor.CurrentStep);
             
-        if (CanIdle && !(NoteLocked && Data.NoteAnimations[LaneCount].Contains(CurrentAnimation)) && !_justChangedState && beat != _lastBeat && beat % Data.IdleBeat == 0)
+        if (CanIdle && !(NoteLocked && Data.NoteAnimations[LaneCount].Contains(CurrentState)) && !_justChangedState && beat != _lastBeat && beat % Data.IdleBeat == 0)
             PlayIdleAnim();
 
         bool regularNoteHolding = !Data.StepRepeat && AnimationPlayer.CurrentAnimationPosition >= AnimationPlayer.CurrentAnimationLength * 0.125f;
         bool stepNoteHolding = Data.StepRepeat && step != _lastStep;
-        if (!_justChangedState && Data.NoteAnimations[LaneCount].Contains(CurrentAnimation) && AnimationPlayer.CurrentAnimation == CurrentState && (regularNoteHolding || stepNoteHolding))
-        {
-            AnimationPlayer.Play(AnimationPlayer.CurrentAnimation);
+        if (!_justChangedState && Data.NoteAnimations[LaneCount].Contains(CurrentState) && Holding && (regularNoteHolding || stepNoteHolding))
             AnimationPlayer.Seek(0f, true);
-        }
 
         if (((Winning != _lastWinning && Data.Animations.Count(x => x.OverrideAnimation == CurrentAnimation && x.Winning) > 0) || (Losing != _lastLosing && Data.Animations.Count(x => x.OverrideAnimation == CurrentAnimation && x.Losing) > 0)) && !Dead)
             PrepareAndPlay(CurrentAnimation, Missed, (float)AnimationPlayer.CurrentAnimationPosition);
@@ -127,6 +126,7 @@ public partial class Character2D : Node2D, ICharacter
                     || (Winning && Data.Animations[i].Winning))
                 {
                     nextAnim = Data.Animations[i];
+                    GD.Print($"{Name}: Overriding {state} with {nextAnim.Name}; Miss = {miss && Data.Animations[i].Miss}, Losing = {Losing && Data.Animations[i].Losing}, Winning: {Winning && Data.Animations[i].Winning}");
                     state = nextAnim.Name;
                     break;
                 }

@@ -22,6 +22,11 @@ public interface ICharacter
     /// The current animation being played by this character.
     /// </summary>
     public string CurrentAnimation { get; set; }
+    
+    /// <summary>
+    /// Whether the character is holding a note or not.
+    /// </summary>
+    public bool Holding { get; set; }
 
     /// <summary>
     /// If the character is note locked (aka currently pressing a key), the character will not idle.
