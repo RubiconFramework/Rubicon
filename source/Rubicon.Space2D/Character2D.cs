@@ -126,7 +126,6 @@ public partial class Character2D : Node2D, ICharacter
                     || (Winning && Data.Animations[i].Winning))
                 {
                     nextAnim = Data.Animations[i];
-                    GD.Print($"{Name}: Overriding {state} with {nextAnim.Name}; Miss = {miss && Data.Animations[i].Miss}, Losing = {Losing && Data.Animations[i].Losing}, Winning: {Winning && Data.Animations[i].Winning}");
                     state = nextAnim.Name;
                     break;
                 }
