@@ -131,6 +131,7 @@ public partial class RubiconGame : Node
 
                 Stage2D = packedStage.Instantiate<Stage2D>();
                 CameraController2D.Stage = Stage2D;
+                CameraController2D.TargetZoom = Stage2D.DefaultZoom;
                 Stage2D.CameraController = CameraController2D;
 
                 for (int i = 0; i < Metadata.Characters.Length; i++)
@@ -181,7 +182,6 @@ public partial class RubiconGame : Node
         CoroutineController.Load(SongName, Metadata.Stage);
         
         // Fuckin camera stuff is a load of bull
-        /*
         // Event stuff after everythin's been initiailized
         string eventsPath = $"res://{GameData.AssetsFolder}/songs/{SongName}/events.json";
         if (FileAccess.FileExists(eventsPath))
@@ -189,7 +189,7 @@ public partial class RubiconGame : Node
             using FileAccess eventFile = FileAccess.Open(eventsPath, FileAccess.ModeFlags.Read);
             ChartEvents eventData = ChartEvents.ParseString(eventFile.GetAsText()).ConvertData(chart.BpmInfo);
             EventController.Load(eventData);
-        }*/
+        }
             
         Instrumental.Play(0);
         if (Metadata.UseVocals)

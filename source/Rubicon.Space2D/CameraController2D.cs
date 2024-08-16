@@ -106,7 +106,6 @@ public partial class CameraController2D : Node2D
             camPoint = firstActive.FocusPoint;
         }
         
-        /*
         TargetPosition = Stage.Position;
         TargetRotation = 0;
             
@@ -116,30 +115,40 @@ public partial class CameraController2D : Node2D
         for (int i = 0; i < splitPath.Length; i++)
         {
             Node curNode = Stage.GetNode(currentPath);
-
-            if (curNode is SpawnPoint2D spawnPoint)
-            {
-                TargetPosition += spawnPoint.StartingPosition;
-                TargetRotation += spawnPoint.Rotation;
-            }
+            
             if (curNode is Node2D node2D and not ParallaxLayer)
             {
-                TargetPosition += node2D.Position;
                 TargetRotation += node2D.Rotation;
+
+                Vector2 pos = node2D.Position.Rotated(node2D.Rotation);
+                Node parent = node2D.GetParent();
+                if (parent is Node2D parent2D and not ParallaxLayer)
+                    pos *= parent2D.Scale;
+                else if (parent is Control parentControl)
+                    pos *= parentControl.Scale;
+
+                TargetPosition += pos;
             }
             else if (curNode is Control control)
             {
-                TargetPosition += control.Position;
                 TargetRotation += control.Rotation;
+                
+                Vector2 pos = control.Position.Rotated(control.Rotation);
+                Node parent = control.GetParent();
+                if (parent is Node2D parent2D and not ParallaxLayer)
+                    pos *= parent2D.Scale;
+                else if (parent is Control parentControl)
+                    pos *= parentControl.Scale;
+
+                TargetPosition += pos;
             }
 
             if (i + 1 < splitPath.Length)
                 currentPath += "/" + splitPath[i + 1];
         }
-        */
 
-        TargetPosition = camPoint.GlobalPosition;
-        TargetRotation = camPoint.GlobalRotation;
+        //TargetPosition = camPoint.GlobalPosition;
+        //TargetRotation = camPoint.GlobalRotation;
 
         if (camPoint.UseCustomZoom)
             TargetZoom = camPoint.Zoom;

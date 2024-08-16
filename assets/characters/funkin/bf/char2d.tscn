@@ -187,7 +187,7 @@ AnimationPlayer = NodePath("AnimationPlayer")
 FocusPoint = NodePath("FocusPoint")
 
 [node name="FocusPoint" type="Node2D" parent="."]
-position = Vector2(-55, -218)
+position = Vector2(-97, -267)
 script = ExtResource("5_2rtmm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

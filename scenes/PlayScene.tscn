@@ -82,16 +82,20 @@ Difficulty = "normal"
 DownScroll = true
 UiStyle = ""
 TargetController = -1
-ChartManagers = NodePath("GameHUD/ChartManagers")
+ChartManagers = NodePath("UI/GameHUD/ChartManagers")
 Instrumental = NodePath("Instrumental")
 Vocals = NodePath("Vocals")
-UI = NodePath("GameHUD")
-Space2D = NodePath("GameContainer/GameViewport/2DSpace")
-CameraController2D = NodePath("GameContainer/GameViewport/2DSpace/CameraController")
-Viewport = NodePath("GameContainer/GameViewport")
-ViewportContainer = NodePath("GameContainer")
+UI = NodePath("UI/GameHUD")
+Space2D = NodePath("Game/GameContainer/GameViewport/2DSpace")
+CameraController2D = NodePath("Game/GameContainer/GameViewport/2DSpace/CameraController")
+Viewport = NodePath("Game/GameContainer/GameViewport")
+ViewportContainer = NodePath("Game/GameContainer")
 CoroutineController = NodePath("API/CoroutineController")
 EventController = NodePath("API/EventController")
+
+[node name="Instrumental" type="AudioStreamPlayer" parent="."]
+
+[node name="Vocals" type="AudioStreamPlayer" parent="."]
 
 [node name="API" type="Node" parent="."]
 
@@ -101,7 +105,9 @@ script = ExtResource("2_wljy6")
 [node name="EventController" type="Node" parent="API"]
 script = ExtResource("3_estp2")
 
-[node name="GameContainer" type="SubViewportContainer" parent="."]
+[node name="Game" type="CanvasLayer" parent="."]
+
+[node name="GameContainer" type="SubViewportContainer" parent="Game"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -109,23 +115,30 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="GameViewport" type="SubViewport" parent="GameContainer"]
+[node name="GameViewport" type="SubViewport" parent="Game/GameContainer"]
 handle_input_locally = false
 size = Vector2i(1440, 1080)
 render_target_update_mode = 4
 
-[node name="2DSpace" type="Node2D" parent="GameContainer/GameViewport"]
+[node name="2DSpace" type="Node2D" parent="Game/GameContainer/GameViewport"]
 
-[node name="CameraController" type="Node2D" parent="GameContainer/GameViewport/2DSpace" node_paths=PackedStringArray("Camera")]
+[node name="CameraController" type="Node2D" parent="Game/GameContainer/GameViewport/2DSpace" node_paths=PackedStringArray("Camera")]
 script = ExtResource("3_y86i6")
+FollowSpeed = 0.04
 MajorBounceIntensity = 0.015
 Camera = NodePath("Camera2D")
 
-[node name="Camera2D" type="Camera2D" parent="GameContainer/GameViewport/2DSpace/CameraController"]
+[node name="Camera2D" type="Camera2D" parent="Game/GameContainer/GameViewport/2DSpace/CameraController"]
 
-[node name="3DSpace" type="Node3D" parent="GameContainer/GameViewport"]
+[node name="3DSpace" type="Node3D" parent="Game/GameContainer/GameViewport"]
 
-[node name="GameHUD" type="Control" parent="."]
+[node name="GameOverlays" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="GameHUD" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,7 +147,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_n21dw")
 
-[node name="ChartManagers" type="Control" parent="GameHUD"]
+[node name="ChartManagers" type="Control" parent="UI/GameHUD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -143,11 +156,13 @@ offset_top = 144.0
 offset_bottom = 144.0
 grow_horizontal = 2
 
-[node name="Instrumental" type="AudioStreamPlayer" parent="."]
+[node name="UIOverlays" type="CanvasLayer" parent="."]
+layer = 4
 
-[node name="Vocals" type="AudioStreamPlayer" parent="."]
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+layer = 100
 
-[node name="PauseMenu" type="Control" parent="."]
+[node name="PauseMenu" type="Control" parent="PauseLayer"]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -160,7 +175,7 @@ script = ExtResource("4_avp1g")
 Options = Array[Object]([SubResource("Resource_2gn2l"), SubResource("Resource_bs2ui"), SubResource("Resource_s8d8h")])
 MoveCursor = ExtResource("6_dgq4a")
 
-[node name="BG" type="ColorRect" parent="PauseMenu"]
+[node name="BG" type="ColorRect" parent="PauseLayer/PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,7 +184,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.243137)
 
-[node name="Title" type="Label" parent="PauseMenu"]
+[node name="Title" type="Label" parent="PauseLayer/PauseMenu"]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 86.0
@@ -178,7 +193,7 @@ offset_bottom = 130.0
 text = "rubykonkonm"
 label_settings = SubResource("LabelSettings_6yw4t")
 
-[node name="Resume" type="Label" parent="PauseMenu"]
+[node name="Resume" type="Label" parent="PauseLayer/PauseMenu"]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 255.0
@@ -187,13 +202,13 @@ offset_bottom = 299.0
 text = "resujme"
 label_settings = SubResource("LabelSettings_6yw4t")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu/Resume"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseLayer/PauseMenu/Resume"]
 libraries = {
 "": SubResource("AnimationLibrary_qal3f")
 }
 autoplay = "deselected"
 
-[node name="Restart" type="Label" parent="PauseMenu"]
+[node name="Restart" type="Label" parent="PauseLayer/PauseMenu"]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 321.0
@@ -202,13 +217,13 @@ offset_bottom = 365.0
 text = "resattrt"
 label_settings = SubResource("LabelSettings_6yw4t")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu/Restart"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseLayer/PauseMenu/Restart"]
 libraries = {
 "": SubResource("AnimationLibrary_qal3f")
 }
 autoplay = "deselected"
 
-[node name="Exit" type="Label" parent="PauseMenu"]
+[node name="Exit" type="Label" parent="PauseLayer/PauseMenu"]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 378.0
@@ -217,13 +232,13 @@ offset_bottom = 422.0
 text = "return to lobby"
 label_settings = SubResource("LabelSettings_6yw4t")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseMenu/Exit"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PauseLayer/PauseMenu/Exit"]
 libraries = {
 "": SubResource("AnimationLibrary_qal3f")
 }
 autoplay = "deselected"
 
-[connection signal="ConfirmPressed" from="PauseMenu" to="PauseMenu" method="OnConfirmPressed"]
-[connection signal="DownPressed" from="PauseMenu" to="PauseMenu" method="OnDownPressed"]
-[connection signal="PauseOpened" from="PauseMenu" to="PauseMenu" method="OnPauseOpened"]
-[connection signal="UpPressed" from="PauseMenu" to="PauseMenu" method="OnUpPressed"]
+[connection signal="ConfirmPressed" from="PauseLayer/PauseMenu" to="PauseLayer/PauseMenu" method="OnConfirmPressed"]
+[connection signal="DownPressed" from="PauseLayer/PauseMenu" to="PauseLayer/PauseMenu" method="OnDownPressed"]
+[connection signal="PauseOpened" from="PauseLayer/PauseMenu" to="PauseLayer/PauseMenu" method="OnPauseOpened"]
+[connection signal="UpPressed" from="PauseLayer/PauseMenu" to="PauseLayer/PauseMenu" method="OnUpPressed"]
