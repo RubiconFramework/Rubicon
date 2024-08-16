@@ -75,9 +75,9 @@ _data = {
 "selected": SubResource("Animation_d22xv")
 }
 
-[node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "Space2D", "CameraController2D", "Viewport", "ViewportContainer", "CoroutineController", "EventController")]
+[node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "Space2D", "CameraController2D", "GameLayer", "GameOverlays", "UiLayer", "UiOverlays", "Viewport", "ViewportContainer", "CoroutineController", "EventController")]
 script = ExtResource("1_lgtnn")
-SongName = "test"
+SongName = "astrogirl"
 Difficulty = "normal"
 DownScroll = true
 UiStyle = ""
@@ -88,6 +88,10 @@ Vocals = NodePath("Vocals")
 UI = NodePath("UI/GameHUD")
 Space2D = NodePath("Game/GameContainer/GameViewport/2DSpace")
 CameraController2D = NodePath("Game/GameContainer/GameViewport/2DSpace/CameraController")
+GameLayer = NodePath("Game")
+GameOverlays = NodePath("GameOverlays")
+UiLayer = NodePath("UI")
+UiOverlays = NodePath("UIOverlays")
 Viewport = NodePath("Game/GameContainer/GameViewport")
 ViewportContainer = NodePath("Game/GameContainer")
 CoroutineController = NodePath("API/CoroutineController")

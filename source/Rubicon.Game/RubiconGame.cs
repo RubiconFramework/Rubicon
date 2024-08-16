@@ -58,6 +58,14 @@ public partial class RubiconGame : Node
     //[ExportSubgroup("3D"), Export] public Node2D Space3D;
     
     //[Export] public Stage2D Stage3D;
+
+    [ExportSubgroup("Layers"), Export] public CanvasLayer GameLayer;
+
+    [Export] public CanvasLayer GameOverlays;
+
+    [Export] public CanvasLayer UiLayer;
+
+    [Export] public CanvasLayer UiOverlays;
     
     [ExportSubgroup("Sub Viewports"), Export] public SubViewport Viewport;
 

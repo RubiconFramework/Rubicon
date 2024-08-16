@@ -16,8 +16,8 @@ public class AstrogirlVideo : IGameCoroutine
             GD.Load<PackedScene>($"res://{GameData.AssetsFolder}/songs/astrogirl/VideoScene.tscn");
 
         Control videoScene = packedVideo.Instantiate<Control>();
-        RubiconGame.Instance.AddChild(videoScene);
-        RubiconGame.Instance.MoveChild(videoScene, RubiconGame.Instance.ViewportContainer.GetIndex() + 1);
+        RubiconGame.Instance.GameLayer.AddChild(videoScene);
+        RubiconGame.Instance.GameLayer.MoveChild(videoScene, RubiconGame.Instance.ViewportContainer.GetIndex() + 1);
 
         VideoStreamPlayer video = videoScene.GetNode<VideoStreamPlayer>("AspectRatioContainer/VideoStreamPlayer");
         video.Volume = 0;
