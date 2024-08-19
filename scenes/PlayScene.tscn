@@ -77,7 +77,7 @@ _data = {
 
 [node name="GameMaster" type="Node" node_paths=PackedStringArray("ChartManagers", "Instrumental", "Vocals", "UI", "Space2D", "CameraController2D", "GameLayer", "GameOverlays", "UiLayer", "UiOverlays", "Viewport", "ViewportContainer", "CoroutineController", "EventController")]
 script = ExtResource("1_lgtnn")
-SongName = "astrogirl"
+SongName = "test"
 Difficulty = "normal"
 DownScroll = true
 UiStyle = ""

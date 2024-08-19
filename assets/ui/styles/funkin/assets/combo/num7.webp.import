@@ -3,26 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://glfa3pea6b5v"
-path.bptc="res://.godot/imported/num7.webp-b44906b4be260899e113873cbc92a9f8.bptc.ctex"
+path="res://.godot/imported/num7.webp-b44906b4be260899e113873cbc92a9f8.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/ui/styles/funkin/assets/combo/num7.webp"
-dest_files=["res://.godot/imported/num7.webp-b44906b4be260899e113873cbc92a9f8.bptc.ctex"]
+dest_files=["res://.godot/imported/num7.webp-b44906b4be260899e113873cbc92a9f8.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

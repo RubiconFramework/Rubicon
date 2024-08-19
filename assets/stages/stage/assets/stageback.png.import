@@ -2,29 +2,28 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bml6yd5ov82hn"
-path.bptc="res://.godot/imported/stageback.png-19cbdb945959f765a2688c31764076c9.bptc.ctex"
+uid="uid://d0ohk3rsee5gu"
+path="res://.godot/imported/stageback.png-19cbdb945959f765a2688c31764076c9.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/stages/stage/assets/stageback.png"
-dest_files=["res://.godot/imported/stageback.png-19cbdb945959f765a2688c31764076c9.bptc.ctex"]
+dest_files=["res://.godot/imported/stageback.png-19cbdb945959f765a2688c31764076c9.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=0
 compress/normal_map=2
 compress/channel_pack=1
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=false
 process/premult_alpha=false

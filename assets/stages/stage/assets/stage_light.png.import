@@ -2,29 +2,28 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnqf6pqt22xyi"
-path.bptc="res://.godot/imported/stage_light.png-fa04fc0fae39badbc537e9ff749e2562.bptc.ctex"
+uid="uid://dn08wd700egwx"
+path="res://.godot/imported/stage_light.png-fa04fc0fae39badbc537e9ff749e2562.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/stages/stage/assets/stage_light.png"
-dest_files=["res://.godot/imported/stage_light.png-fa04fc0fae39badbc537e9ff749e2562.bptc.ctex"]
+dest_files=["res://.godot/imported/stage_light.png-fa04fc0fae39badbc537e9ff749e2562.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=0
-compress/normal_map=2
+compress/normal_map=0
 compress/channel_pack=1
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false

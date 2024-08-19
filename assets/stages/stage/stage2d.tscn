@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bllblj4v8lit7"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Space2D/Stage2D.cs" id="1_vgtcd"]
-[ext_resource type="Texture2D" uid="uid://bml6yd5ov82hn" path="res://assets/stages/stage/assets/stageback.png" id="2_yenvn"]
-[ext_resource type="Texture2D" uid="uid://bo1cb28vlfudy" path="res://assets/stages/stage/assets/stagefront.png" id="3_6cssj"]
-[ext_resource type="Texture2D" uid="uid://dnqf6pqt22xyi" path="res://assets/stages/stage/assets/stage_light.png" id="4_y6u30"]
-[ext_resource type="Texture2D" uid="uid://d1votys2u1m2" path="res://assets/stages/stage/assets/stagecurtains.png" id="5_bifh1"]
+[ext_resource type="Texture2D" uid="uid://d0ohk3rsee5gu" path="res://assets/stages/stage/assets/stageback.png" id="2_yenvn"]
+[ext_resource type="Texture2D" uid="uid://bwb2f64k0ufa1" path="res://assets/stages/stage/assets/stagefront.png" id="3_6cssj"]
+[ext_resource type="Texture2D" uid="uid://dn08wd700egwx" path="res://assets/stages/stage/assets/stage_light.png" id="4_y6u30"]
+[ext_resource type="Texture2D" uid="uid://brnukv7skdyal" path="res://assets/stages/stage/assets/stagecurtains.png" id="5_bifh1"]
 [ext_resource type="Script" path="res://source/Rubicon.Space2D/SpawnPoint2D.cs" id="6_vtxti"]
 [ext_resource type="Script" path="res://source/Rubicon.Space2D/CameraFocusPoint2D.cs" id="7_wu0pe"]
 

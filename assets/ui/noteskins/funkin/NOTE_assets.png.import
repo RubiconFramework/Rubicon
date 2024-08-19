@@ -3,26 +3,25 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6nf3xlm7m5l2"
-path.bptc="res://.godot/imported/NOTE_assets.png-7830264facaa36612c3d9ba3bd9fb27c.bptc.ctex"
+path="res://.godot/imported/NOTE_assets.png-7830264facaa36612c3d9ba3bd9fb27c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/ui/noteskins/funkin/NOTE_assets.png"
-dest_files=["res://.godot/imported/NOTE_assets.png-7830264facaa36612c3d9ba3bd9fb27c.bptc.ctex"]
+dest_files=["res://.godot/imported/NOTE_assets.png-7830264facaa36612c3d9ba3bd9fb27c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=1
 compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=0
 compress/normal_map=2
 compress/channel_pack=1
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
