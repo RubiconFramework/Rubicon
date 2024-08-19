@@ -140,7 +140,6 @@ public partial class RubiconGame : Node
                 Stage2D = packedStage.Instantiate<Stage2D>();
                 CameraController2D.Stage = Stage2D;
                 CameraController2D.TargetZoom = Stage2D.DefaultZoom;
-                Stage2D.CameraController = CameraController2D;
 
                 for (int i = 0; i < Metadata.Characters.Length; i++)
                     Stage2D.CreateCharacterGroup(Metadata.Characters[i].Characters, Metadata.Characters[i].SpawnPointIndex);
@@ -164,6 +163,7 @@ public partial class RubiconGame : Node
             chartCtrl.Visible = curChart.Visible;
             chartCtrl.ChartHud.Visible = i == TargetController;
             chartCtrl.Name = "ChartController " + i;
+            chartCtrl.Index = i;
                 
             for (int j = 0; j < curChart.Lanes; j++)
             {
@@ -230,10 +230,10 @@ public partial class RubiconGame : Node
         Conductor.Play();
     }
 
-    private void OnNoteHit(ChartController chartCtrl, NoteData noteData, int hitType, double distanceFromTime, bool held, NoteEventResult result)
+    private void OnNoteHit(ChartController chartCtrl, NoteData noteData, NoteEventResult result, double distanceFromTime, bool held)
     {
-        int controlIndex = ChartControllers.IndexOf(chartCtrl);
-        if (!result.ProcessFlags.HasFlag(NoteEventProcessFlags.Animation))
+        int controlIndex = chartCtrl.Index;
+        if (!result.HasFlag(RubiconNoteFlags.Animation))
         {
             if (!Metadata.Enable3D && Stage2D != null)
             {
@@ -246,10 +246,10 @@ public partial class RubiconGame : Node
             Vocals.VolumeDb = Mathf.LinearToDb(1.0f);
     }
     
-    public void OnNoteMiss(ChartController chartCtrl, NoteData noteData, double hitMs, NoteEventResult noteEventResult)
+    public void OnNoteMiss(ChartController chartCtrl, NoteData noteData, NoteEventResult result, double distanceFromTime, bool held)
     {
-        int controlIndex = ChartControllers.IndexOf(chartCtrl);
-        if (!noteEventResult.ProcessFlags.HasFlag(NoteEventProcessFlags.Animation))
+        int controlIndex = chartCtrl.Index;
+        if (!result.HasFlag(RubiconNoteFlags.Animation))
         {
             if (!Metadata.Enable3D && Stage2D != null)
             {
@@ -258,7 +258,7 @@ public partial class RubiconGame : Node
             }
         }
 
-        if (noteEventResult.Hit != NoteHitType.None && Metadata.UseVocals)
+        if (result.Hit != NoteHitType.None && Metadata.UseVocals)
             Vocals.VolumeDb = Mathf.LinearToDb(0.0f);
     }
 

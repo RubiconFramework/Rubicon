@@ -13,8 +13,8 @@ public class CameraFocusEvent : ISongEvent
         bool snap = args.Length > 1 && args[2].ToLower() == "true";
         if (int.TryParse(args[0], out int idx))
         {
-            if (Stage2D.Instance != null)
-                Stage2D.Instance.CameraController.FocusOnCameraPoint(idx, snap);
+            if (RubiconGame.Instance != null)
+                RubiconGame.Instance.CameraController2D.FocusOnCameraPoint(idx, snap);
         }
         else
         {

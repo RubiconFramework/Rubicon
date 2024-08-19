@@ -7,10 +7,6 @@ namespace Rubicon.Space2D;
 
 public partial class Stage2D : Node2D
 {
-    public static Stage2D Instance;
-
-    public CameraController2D CameraController;
-
     [Export] public float DefaultZoom = 1.575f;
     
     [Export] public SpawnPoint2D[] SpawnPoints;
@@ -20,18 +16,6 @@ public partial class Stage2D : Node2D
     [ExportGroup("Focus Points"), Export] public int MainFocus = 2; 
     
     [Export] public CameraFocusPoint2D[] FocusPoints;
-
-    public override void _Ready()
-    {
-        if (Instance != null)
-        {
-            QueueFree();
-            return;
-        }
-
-        Instance = this;
-        base._Ready();
-    }
 
     public CharacterGroup2D CreateCharacterGroup(string[] characterNames, int spawnPoint)
     {
