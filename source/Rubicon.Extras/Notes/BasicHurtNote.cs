@@ -22,9 +22,7 @@ public class BasicHurtNote : INoteScript
     /// </summary>
     public void BeforeNoteCreate(ChartController chartCtrl, NoteData noteData)
     {
-        // I just set it for all chart controllers to miss this note, but if you want the opponent to miss,
-        // remove true from this and erase the comment.
-        noteData.ShouldMiss = true; // RubiconGame.Instance.Metadata.OpponentChartIndex != chartCtrl.Index;
+        noteData.ShouldMiss = true;
     }
 
     /// <summary>
