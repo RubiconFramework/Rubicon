@@ -34,6 +34,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Rubicon"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg")
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false
@@ -111,8 +115,3 @@ GAME_PAUSE={
 [input_devices]
 
 buffering/agile_event_flushing=true
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
