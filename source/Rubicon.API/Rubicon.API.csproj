@@ -8,8 +8,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Update="GodotSharp" Version="4.3.0" />
-    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Update="Godot.SourceGenerators" Version="4.3.0" />
+    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\addons\HCoroutines\HCoroutines.csproj" />

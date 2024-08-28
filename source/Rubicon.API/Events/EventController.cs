@@ -5,14 +5,12 @@ using Godot;
 using Promise.Framework;
 using Promise.Framework.Utilities;
 using Rubicon.Data.Events;
-using Rubicon.Data.Meta;
 
 namespace Rubicon.API.Events;
 
 public partial class EventController : Node
 {
     [Export] public int EventTriggerIndex = 0;
-
     [Export] public ChartEvents EventData;
     
     public List<ISongEvent> Events;
@@ -23,16 +21,14 @@ public partial class EventController : Node
         Events = new List<ISongEvent>();
 
         Type[] eventTypes = AppDomain.CurrentDomain.GetTypesWithInterface<ISongEvent>();
-        for (int i = 0; i < eventTypes.Length; i++)
+        foreach (var t in eventTypes)
         {
-            ISongEvent songEvent = (ISongEvent)eventTypes[i].GetConstructor(new Type[] { }).Invoke(new object[] { });
+            ISongEvent songEvent = (ISongEvent)t.GetConstructor(new Type[] { }).Invoke(new object[] { });
             EventData[] matchingEvents = EventData.Events.Where(x => x.Name == songEvent.Name).ToArray();
             if (matchingEvents.Length > 0)
             {
                 Events.Add(songEvent);
-                    
-                for (int j = 0; j < matchingEvents.Length; j++)
-                    songEvent.OnReady(matchingEvents[j]);
+                foreach (var t1 in matchingEvents) songEvent.OnReady(t1);
             }
         }
     }

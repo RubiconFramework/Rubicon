@@ -1,0 +1,58 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bxoc0s43ojpt2"]
+
+[ext_resource type="Texture2D" uid="uid://cko5ghk0sga3b" path="res://assets/gameplay/stages/assets/street/phillyCars.png" id="1_kyc51"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by4lm"]
+atlas = ExtResource("1_kyc51")
+region = Rect2(2, 496, 438, 197)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78fof"]
+atlas = ExtResource("1_kyc51")
+region = Rect2(2, 698, 470, 175)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdo6h"]
+atlas = ExtResource("1_kyc51")
+region = Rect2(2, 2, 463, 237)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq7kn"]
+atlas = ExtResource("1_kyc51")
+region = Rect2(2, 244, 443, 247)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by4lm")
+}],
+"loop": false,
+"name": &"car1",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78fof")
+}],
+"loop": false,
+"name": &"car2",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdo6h")
+}],
+"loop": false,
+"name": &"car3",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq7kn")
+}],
+"loop": false,
+"name": &"car4",
+"speed": 24.0
+}]

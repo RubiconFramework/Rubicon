@@ -1,0 +1,489 @@
+[gd_scene load_steps=18 format=3 uid="uid://dh6hbnu7rv3qu"]
+
+[ext_resource type="Script" path="res://source/Rubicon.Menus/Freeplay/FreeplayMenu.cs" id="1_3kwjh"]
+[ext_resource type="Script" path="res://source/Rubicon.Menus/Freeplay/resources/FreeplaySong.cs" id="2_o64g5"]
+[ext_resource type="Texture2D" uid="uid://ctcej0itlui1n" path="res://assets/menus/menuBGDesat.png" id="3_mbm3f"]
+[ext_resource type="Theme" uid="uid://bhiai7ytosyn4" path="res://assets/themes/duo/Freeplay [Duo].tres" id="4_iu2x7"]
+[ext_resource type="PackedScene" uid="uid://cm5uby17wlrao" path="res://source/Rubicon.Menus/Options/objects/sections/gameplay/menus/GameplayModifiers.tscn" id="5_m7ccm"]
+[ext_resource type="FontFile" uid="uid://bp6p0x1hi6ywo" path="res://assets/fonts/funkin.ttf" id="6_kue15"]
+
+[sub_resource type="Resource" id="Resource_aa6wv"]
+script = ExtResource("2_o64g5")
+SongDisplayName = "hiiii"
+SongName = ""
+Difficulties = ["Hard"]
+BPM = 100
+BackgroundColor = Color(1, 1, 1, 1)
+SongDescription = ""
+IsCameraBopping = false
+
+[sub_resource type="Resource" id="Resource_nhsvd"]
+script = ExtResource("2_o64g5")
+SongDisplayName = "hellooooooooooo"
+SongName = ""
+Difficulties = ["Hard", "Normal", "Easy"]
+BPM = 50
+BackgroundColor = Color(1, 0, 0, 1)
+SongDescription = ""
+IsCameraBopping = true
+
+[sub_resource type="Resource" id="Resource_v1vx0"]
+script = ExtResource("2_o64g5")
+SongDisplayName = "AOKDFMAOKSDMF"
+SongName = ""
+Difficulties = ["Easy"]
+BPM = 120
+BackgroundColor = Color(0, 0.458824, 0, 1)
+SongDescription = ""
+IsCameraBopping = true
+
+[sub_resource type="Resource" id="Resource_yltld"]
+script = ExtResource("2_o64g5")
+SongDisplayName = "im wil"
+SongName = ""
+Difficulties = ["Hard", "Normal", "Easy"]
+BPM = 200
+BackgroundColor = Color(0, 0, 0.733333, 1)
+SongDescription = ""
+IsCameraBopping = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvgob"]
+bg_color = Color(0, 0, 0, 0.478431)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_smd0s"]
+resource_name = "ChangePanelSong"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stats/SongDisplayName:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Stats/SongScore:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Stats/SongDescription:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmmu2"]
+_data = {
+"ChangePanelSong": SubResource("Animation_smd0s")
+}
+
+[sub_resource type="Animation" id="Animation_bmlrn"]
+resource_name = "End"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.18359, 0.18359, 0.18359, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["Press ESC to Exit this Menu", "Press Space to Open the Gameplay Modifiers Menu"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../GameplayModifiers:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GameplayModifiers:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SongData:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../SongList:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.470588), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_01r0x"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_2cltc"]
+resource_name = "Start"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.18359, 0.18359, 0.18359, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.662745, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": ["Press Space to Open the Gameplay Modifiers Menu", "Press ESC to Exit this Menu"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../GameplayModifiers:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../GameplayModifiers:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../SongData:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../SongList:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.470588)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uimm2"]
+_data = {
+"End": SubResource("Animation_bmlrn"),
+"RESET": SubResource("Animation_01r0x"),
+"Start": SubResource("Animation_2cltc")
+}
+
+[node name="Freeplay Menu" type="Node"]
+script = ExtResource("1_3kwjh")
+Songs = [SubResource("Resource_aa6wv"), SubResource("Resource_nhsvd"), SubResource("Resource_v1vx0"), SubResource("Resource_yltld")]
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(683, 384)
+scale = Vector2(1.06221, 1.05205)
+texture = ExtResource("3_mbm3f")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(683, 384)
+scale = Vector2(1.06221, 1.05205)
+
+[node name="SongList" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -636.0
+offset_top = -343.0
+offset_right = 636.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SongData" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1009.0
+offset_top = 202.5
+offset_right = 1321.0
+offset_bottom = 561.5
+
+[node name="Panel" type="Panel" parent="SongData"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.05, 1.05)
+pivot_offset = Vector2(156, 179)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yvgob")
+
+[node name="icon placeholder" type="Label" parent="SongData/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.138
+anchor_right = 0.5
+anchor_bottom = 0.138
+offset_left = -65.0
+offset_top = -15.896
+offset_right = 65.0
+offset_bottom = 16.104
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_iu2x7")
+text = "icon goes here"
+horizontal_alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="SongData/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -71.0
+offset_right = 131.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="SongDisplayName" type="Label" parent="SongData/Panel/Stats"]
+layout_mode = 2
+size_flags_vertical = 2
+theme = ExtResource("4_iu2x7")
+text = "Song Name"
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="SongScore" type="Label" parent="SongData/Panel/Stats"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("4_iu2x7")
+text = "Score: 0"
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="SongDescription" type="Label" parent="SongData/Panel/Stats"]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("4_iu2x7")
+text = "Song Description"
+horizontal_alignment = 1
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Buttons" type="VBoxContainer" parent="SongData/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -146.0
+offset_top = -82.0
+offset_right = 147.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DifficultiesButton" type="OptionButton" parent="SongData/Panel/Buttons"]
+layout_mode = 2
+theme = ExtResource("4_iu2x7")
+theme_override_fonts/font = ExtResource("6_kue15")
+theme_override_font_sizes/font_size = 27
+alignment = 1
+item_count = 3
+selected = 0
+allow_reselect = true
+popup/item_0/text = " Hard"
+popup/item_0/id = 0
+popup/item_1/text = " Normal"
+popup/item_1/id = 1
+popup/item_2/text = " Easy"
+popup/item_2/id = 2
+
+[node name="PlayButton" type="Button" parent="SongData/Panel/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_iu2x7")
+text = "Play"
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="SongData"]
+root_node = NodePath("../Panel")
+libraries = {
+"": SubResource("AnimationLibrary_gmmu2")
+}
+
+[node name="GameplayModifiersLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -495.0
+offset_top = -37.0
+offset_right = -26.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_kue15")
+theme_override_font_sizes/font_size = 22
+text = "Press Space to Open the Gameplay Modifiers Menu"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="GameplayModifiersLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_uimm2")
+}
+
+[node name="GameplayModifiers" parent="." instance=ExtResource("5_m7ccm")]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -570.0
+offset_top = -227.0
+offset_right = 570.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -12,7 +12,6 @@ using Rubicon.API.Events;
 using Rubicon.Data;
 using Rubicon.Data.Events;
 using Rubicon.Data.Meta;
-using Rubicon.Game.API.Coroutines;
 using Rubicon.Game.UI;
 using Rubicon.Game.Utilities;
 using Rubicon.Space2D;
@@ -82,10 +81,10 @@ public partial class RubiconGame : Node
             QueueFree();
             return;
         }
-
+        
         Instance = this;
             
-        SaveData.Data.DownScroll = DownScroll;
+        SaveData.Gameplay.Downscroll = DownScroll;
         Input.UseAccumulatedInput = false;
             
         Metadata = ResourceLoader.Load<SongMetadata>($"res://{GameData.AssetsFolder}/songs/{SongName}/meta.tres");
@@ -100,8 +99,8 @@ public partial class RubiconGame : Node
         if (!LoadingFromEditor || LoadingFromEditor && UiStyle == "")
             UiStyle = Metadata.UiStyle;
             
-        ChartManagers.SetAnchorsPreset(SaveData.Data.DownScroll ? Control.LayoutPreset.CenterBottom : Control.LayoutPreset.CenterTop);
-        ChartManagers.Position = new Vector2(ChartManagers.Position.X, SaveData.Data.DownScroll ? 940f : 140f);
+        ChartManagers.SetAnchorsPreset(SaveData.Gameplay.Downscroll ? Control.LayoutPreset.CenterBottom : Control.LayoutPreset.CenterTop);
+        ChartManagers.Position = new Vector2(ChartManagers.Position.X, SaveData.Gameplay.Downscroll ? 940f : 140f);
             
         // Necessary for now
         PromiseData.DefaultNoteSkin = GD.Load<NoteSkin>($"res://{GameData.AssetsFolder}/ui/noteskins/funkin/noteskin.tres");
@@ -126,11 +125,9 @@ public partial class RubiconGame : Node
                 Viewport.Disable3D = true;
 
                 string stagePath = $"res://{GameData.AssetsFolder}/stages/{Metadata.Stage}/stage2d.tscn";
-                PackedScene packedStage = null;
-                if (ResourceLoader.Exists(stagePath))
-                {
+                PackedScene packedStage;
+                if (ResourceLoader.Exists(stagePath)) 
                     packedStage = GD.Load<PackedScene>(stagePath);
-                }
                 else
                 {
                     GD.PrintErr($"Stage {Metadata.Stage} at path {stagePath} does not exist! Defaulting to stage");
@@ -158,8 +155,8 @@ public partial class RubiconGame : Node
             IndividualChart curChart = chart.Charts[i];
 
             ChartController chartCtrl = new ChartController();
-            chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Data.BotPlay || i != TargetController, chart.ScrollSpeed, null, packedChartHud?.Instantiate<ChartHud>());
-            chartCtrl.ChartHud.SwitchDirection(SaveData.Data.DownScroll);
+            chartCtrl.Initialize(curChart.Lanes, curChart, SaveData.Gameplay.BotPlay || i != TargetController, chart.ScrollSpeed, null, packedChartHud?.Instantiate<ChartHud>());
+            chartCtrl.ChartHud.SwitchDirection(SaveData.Gameplay.Downscroll);
             chartCtrl.Visible = curChart.Visible;
             chartCtrl.ChartHud.Visible = i == TargetController;
             chartCtrl.Name = "ChartController " + i;
@@ -169,7 +166,7 @@ public partial class RubiconGame : Node
             {
                 chartCtrl.Lanes[j].ActionName = $"MANIA_{curChart.Lanes}K_{j}";
                 chartCtrl.Lanes[j].DirectionAngle =
-                    SaveData.Data.DownScroll ? Mathf.DegToRad(270f) : Mathf.DegToRad(90f);
+                    SaveData.Gameplay.Downscroll ? Mathf.DegToRad(270f) : Mathf.DegToRad(90f);
             }
 
             chartCtrl.Position = new Vector2(visIdx * 720f - (visibleAmt - 1) * 720f / 2f, 0f);;

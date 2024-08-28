@@ -1,0 +1,82 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dv5f8oqe320hx"]
+
+[ext_resource type="Texture2D" uid="uid://c7dgcp06vfwwg" path="res://assets/gameplay/characters/assets/nene/Nene_speaker.png" id="1_gcsw0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvote"]
+atlas = ExtResource("1_gcsw0")
+region = Rect2(2, 363, 812, 358)
+margin = Rect2(2, 1, 2, 1)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uer7h"]
+atlas = ExtResource("1_gcsw0")
+region = Rect2(2, 2, 814, 359)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ayqs"]
+atlas = ExtResource("1_gcsw0")
+region = Rect2(816, 363, 812, 358)
+margin = Rect2(2, 1, 2, 1)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axonf"]
+atlas = ExtResource("1_gcsw0")
+region = Rect2(818, 2, 812, 358)
+margin = Rect2(2, 1, 2, 1)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvote")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uer7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uer7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ayqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axonf")
+}],
+"loop": false,
+"name": &"Abot System",
+"speed": 24.0
+}]

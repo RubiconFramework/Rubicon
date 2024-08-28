@@ -1,15 +1,12 @@
 using System;
 using System.Collections;
 using Godot;
-using HCoroutines;
 using Promise.Framework;
 using Promise.Framework.Objects;
 using Promise.Framework.Utilities;
 using Rubicon.API;
 using Rubicon.API.Coroutines;
 using Rubicon.Game;
-using Rubicon.Game.API;
-using Rubicon.Game.API.Coroutines;
 using Rubicon.Game.UI;
 
 namespace HoloFunk

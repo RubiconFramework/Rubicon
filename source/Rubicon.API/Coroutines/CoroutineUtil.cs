@@ -1,7 +1,7 @@
 using HCoroutines;
 using Promise.Framework;
 
-namespace Rubicon.Game.API.Coroutines;
+namespace Rubicon.API.Coroutines;
 
 /// <summary>
 /// A coroutine that waits until the global Conductor's measure passes the provided measure.

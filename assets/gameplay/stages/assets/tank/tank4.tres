@@ -1,0 +1,83 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://dysidjry8he43"]
+
+[ext_resource type="Texture2D" uid="uid://l4lb34jcl4fc" path="res://assets/gameplay/stages/assets/tank/tank4.png" id="1_ko1gr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nntcp"]
+atlas = ExtResource("1_ko1gr")
+region = Rect2(0, 0, 399, 319)
+margin = Rect2(0, 11, 2, 11)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3qgb"]
+atlas = ExtResource("1_ko1gr")
+region = Rect2(0, 329, 393, 322)
+margin = Rect2(4, 8, 8, 8)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt1sw"]
+atlas = ExtResource("1_ko1gr")
+region = Rect2(403, 329, 391, 320)
+margin = Rect2(8, 4, 10, 10)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wthia"]
+atlas = ExtResource("1_ko1gr")
+region = Rect2(403, 659, 390, 320)
+margin = Rect2(10, 1, 11, 10)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_551mb"]
+atlas = ExtResource("1_ko1gr")
+region = Rect2(0, 661, 390, 319)
+margin = Rect2(11, 0, 11, 11)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nntcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nntcp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3qgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3qgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt1sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt1sw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wthia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wthia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_551mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_551mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_551mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_551mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_551mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_551mb")
+}],
+"loop": false,
+"name": &"fg tankman bobbin 3 instance 1",
+"speed": 24.0
+}]

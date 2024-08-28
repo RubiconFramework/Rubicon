@@ -7,7 +7,7 @@ namespace Rubicon.Menus;
 /// <summary>
 /// Basic Rubicon pause menu.
 /// </summary>
-public partial class PauseMenu : BasePauseMenu
+public partial class PauseMenu : API.BasePauseMenu
 {
     /// <summary>
     /// Should activate when PauseOpened is invoked.

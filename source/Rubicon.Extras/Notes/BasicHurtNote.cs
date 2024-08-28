@@ -4,7 +4,6 @@ using Promise.Framework.API;
 using Promise.Framework.Chart;
 using Promise.Framework.Objects;
 using Rubicon.Data;
-using Rubicon.Game;
 
 namespace Rubicon.Extras.Notes;
 
@@ -20,7 +19,7 @@ public class BasicHurtNote : INoteScript
     /// <summary>
     /// Lets the game know that the chart should miss this note.
     /// </summary>
-    public void BeforeNoteCreate(ChartController chartCtrl, NoteData noteData)
+    public void OnNoteCreate(ChartController chartCtrl, NoteData noteData)
     {
         noteData.ShouldMiss = true;
     }
@@ -28,7 +27,7 @@ public class BasicHurtNote : INoteScript
     /// <summary>
     /// Changes the note graphic to the hurt note graphic.
     /// </summary>
-    public void OnNoteCreate(ChartController chartCtrl, Note note)
+    public void OnNoteSpawn(ChartController chartCtrl, Note note)
     {
         if (_noteMaterial == null)
             _noteMaterial = GD.Load<ShaderMaterial>("res://assets/ui/notetypes/hurt/HurtNoteMaterial.tres");

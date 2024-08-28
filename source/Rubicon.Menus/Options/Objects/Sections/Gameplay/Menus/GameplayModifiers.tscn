@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm5uby17wlrao"]
+
+[ext_resource type="Script" path="res://source/Rubicon.Menus/Options/objects/sections/gameplay/menus/GameplayModifiers.cs" id="2_o1nqe"]
+[ext_resource type="Theme" uid="uid://b6ecmfgqd2syw" path="res://assets/themes/duo/GameplayModifiers [Duo].tres" id="2_sm2pk"]
+[ext_resource type="PackedScene" path="res://source/Rubicon.Menus/Options/objects/buttons/LabelSlider.tscn" id="3_cled4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf85w"]
+bg_color = Color(0, 0, 0, 0.2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3aok"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 2
+
+[node name="GameplayModifiers" type="Panel"]
+offset_right = 1140.0
+offset_bottom = 454.0
+theme = ExtResource("2_sm2pk")
+script = ExtResource("2_o1nqe")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -534.0
+offset_top = 143.0
+offset_right = 534.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+theme_override_styles/normal = SubResource("StyleBoxFlat_xf85w")
+text = "Cool Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -534.0
+offset_top = -199.0
+offset_right = 534.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="NoMissMode" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_sm2pk")
+text = "No Miss Mode"
+
+[node name="PFCOnly" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("2_sm2pk")
+text = "PFC Only"
+
+[node name="CoolMechanic" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("2_sm2pk")
+text = "Cool Mechanic"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 11
+theme_override_styles/separator = SubResource("StyleBoxFlat_e3aok")
+
+[node name="HealthGainMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_cled4")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Health Gain Multiplier [1.0x] "
+
+[node name="HealthLossMult" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_cled4")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Health Loss Multiplier [1.0x] "
+
+[node name="SongRate" parent="ScrollContainer/VBoxContainer" instance=ExtResource("3_cled4")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "Song Rate [1.0x] "
+
+[node name="Slider" parent="ScrollContainer/VBoxContainer/SongRate" index="0"]
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_e3aok")
+
+[node name="SoundOutputMode" type="OptionButton" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_sm2pk")
+theme_override_font_sizes/font_size = 24
+item_count = 3
+selected = 0
+popup/item_0/text = "Strum Side: Player (Boyfriend)"
+popup/item_0/id = 0
+popup/item_1/text = "Strum Side: Spectator (Girlfriend)"
+popup/item_1/id = 1
+popup/item_2/text = "Strum Side: Opponent (Dad)"
+popup/item_2/id = 2
+
+[editable path="ScrollContainer/VBoxContainer/SongRate"]

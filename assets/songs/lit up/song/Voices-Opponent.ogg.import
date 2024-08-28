@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b02e6qcwj6wq6"
+path="res://.godot/imported/Voices-Opponent.ogg-ebe2d0cd10c54c05500567ce65363461.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/lit up/song/Voices-Opponent.ogg"
+dest_files=["res://.godot/imported/Voices-Opponent.ogg-ebe2d0cd10c54c05500567ce65363461.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

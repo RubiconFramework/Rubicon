@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cvox624okpgdv"
+path="res://.godot/imported/Inst.ogg-901f8762512b9f18a4aecc0f4053d9fa.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/high erect/song/Inst.ogg"
+dest_files=["res://.godot/imported/Inst.ogg-901f8762512b9f18a4aecc0f4053d9fa.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

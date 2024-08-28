@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://df7igx5bv0hyu"
+path="res://.godot/imported/Voices-Opponent.ogg-ac2f091048f4562c83b99f80eff5bb31.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/spookeez erect/song/Voices-Opponent.ogg"
+dest_files=["res://.godot/imported/Voices-Opponent.ogg-ac2f091048f4562c83b99f80eff5bb31.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

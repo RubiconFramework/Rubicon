@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4h8tmoedxi8o"]
+
+[ext_resource type="Theme" uid="uid://cnaffdtymkcv2" path="res://assets/themes/duo/AudioManager [Duo].tres" id="1_bso8t"]
+[ext_resource type="Script" path="res://source/backend/misc/volumemanager/VolumeButton.cs" id="2_jk2lj"]
+[ext_resource type="SpriteFrames" uid="uid://bxeqjq4qkvrla" path="res://assets/misc/volumeIcons.tres" id="3_5h2p7"]
+[ext_resource type="FontFile" uid="uid://r1uoqejoteb3" path="res://assets/fonts/funkin.ttf" id="4_ft7xu"]
+
+[node name="VolumeButton" type="Panel"]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_bso8t")
+script = ExtResource("2_jk2lj")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 12.0
+offset_top = -31.0
+offset_right = 91.0
+offset_bottom = 32.0
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_bso8t")
+
+[node name="Icon" type="AnimatedSprite2D" parent="Button"]
+position = Vector2(39.5, 31.5)
+scale = Vector2(0.929412, 0.759036)
+sprite_frames = ExtResource("3_5h2p7")
+animation = &"mute"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -599.0
+offset_top = -8.0
+offset_right = -20.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_bso8t")
+step = 5.0
+value = 50.0
+rounded = true
+
+[node name="Label" type="Label" parent="HSlider"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -19.0
+offset_right = 157.0
+offset_bottom = 14.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ft7xu")
+theme_override_font_sizes/font_size = 34
+text = "Music [50%]"
+vertical_alignment = 1

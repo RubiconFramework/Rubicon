@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using Rubicon.Data;
-using Array = System.Array;
 
 namespace Rubicon.Space2D;
 

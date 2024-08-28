@@ -1,4 +1,3 @@
-using Godot;
 using Promise.Framework;
 using Promise.Framework.API;
 using Promise.Framework.Chart;
@@ -14,9 +13,9 @@ namespace Rubicon.Extras.Notes;
 [NoteTypeBind("hey")]
 public class HeyAnimationNote : INoteScript
 {
-    public void BeforeNoteCreate(ChartController chartCtrl, NoteData noteData) { }
+    public void OnNoteCreate(ChartController chartCtrl, NoteData noteData) { }
 
-    public void OnNoteCreate(ChartController chartCtrl, Note note) { }
+    public void OnNoteSpawn(ChartController chartCtrl, Note note) { }
 
     /// <summary>
     /// Makes the assigned characters play the hey animation if the note was hit! (and NOT the end of a hold note!)

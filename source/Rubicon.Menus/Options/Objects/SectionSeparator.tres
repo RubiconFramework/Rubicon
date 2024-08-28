@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://0vvnjax75t7e"]
+
+[ext_resource type="FontFile" uid="uid://syxju0xifu4k" path="res://assets/fonts/vcr.ttf" id="1_5hlg3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mwo22"]
+content_margin_left = 30.0
+content_margin_top = 15.0
+content_margin_bottom = 15.0
+
+[resource]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 23
+Label/fonts/font = ExtResource("1_5hlg3")
+Label/styles/normal = SubResource("StyleBoxEmpty_mwo22")

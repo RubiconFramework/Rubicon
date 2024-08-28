@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bf8ssgqun5pu5"
+path="res://.godot/imported/Voices-Player.ogg-bef42cf3401e1be09ca003799f63a70d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/fresh erect/song/Voices-Player.ogg"
+dest_files=["res://.godot/imported/Voices-Player.ogg-bef42cf3401e1be09ca003799f63a70d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

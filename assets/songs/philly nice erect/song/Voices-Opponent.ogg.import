@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bhirve1pltm46"
+path="res://.godot/imported/Voices-Opponent.ogg-9eea49a69f6624615659ec7511268692.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/philly nice erect/song/Voices-Opponent.ogg"
+dest_files=["res://.godot/imported/Voices-Opponent.ogg-9eea49a69f6624615659ec7511268692.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,80 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bj78ig8wmdiaf"]
+
+[ext_resource type="Texture2D" uid="uid://can6a8oh8pcwq" path="res://assets/gameplay/stages/assets/tank/tank1.png" id="1_52dug"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go5uu"]
+atlas = ExtResource("1_52dug")
+region = Rect2(0, 388, 472, 113)
+margin = Rect2(0, 9, 0, 9)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxwxx"]
+atlas = ExtResource("1_52dug")
+region = Rect2(0, 262, 468, 116)
+margin = Rect2(2, 6, 4, 6)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q2uq"]
+atlas = ExtResource("1_52dug")
+region = Rect2(0, 132, 460, 120)
+margin = Rect2(6, 2, 12, 2)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16rfm"]
+atlas = ExtResource("1_52dug")
+region = Rect2(0, 0, 459, 122)
+margin = Rect2(6, 0, 13, 0)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go5uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go5uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxwxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxwxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q2uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q2uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16rfm")
+}],
+"loop": false,
+"name": &"fg tankhead 5 instance 1",
+"speed": 24.0
+}]

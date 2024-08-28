@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://bmaslyf0vfg3y"]
+
+[ext_resource type="Texture2D" uid="uid://dlqgoceoecf7c" path="res://assets/gameplay/characters/assets/placeholder/icon.png" id="1_occag"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh8ya"]
+atlas = ExtResource("1_occag")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlk1q"]
+atlas = ExtResource("1_occag")
+region = Rect2(150, 0, 150, 150)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh8ya")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlk1q")
+}],
+"loop": false,
+"name": &"lose",
+"speed": 1.0
+}]

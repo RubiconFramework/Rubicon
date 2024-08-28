@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://7n464srbarm4"]
+
+[ext_resource type="Texture2D" uid="uid://b3ehppmvq8u1g" path="res://assets/gameplay/characters/assets/pico/icon.png" id="1_5rbt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ca5c"]
+atlas = ExtResource("1_5rbt1")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7swwh"]
+atlas = ExtResource("1_5rbt1")
+region = Rect2(150, 0, 150, 150)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ca5c")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7swwh")
+}],
+"loop": false,
+"name": &"lose",
+"speed": 1.0
+}]

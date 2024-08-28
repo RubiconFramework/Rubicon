@@ -1,0 +1,57 @@
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://cnaffdtymkcv2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nby7s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nsuo0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jpy4b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aheed"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5ybqe"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1fqm8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6w01o"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yni6w"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_othvs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2u7ro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gxk8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrk0f"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kwe5p"]
+bg_color = Color(0, 0, 0, 0.239216)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.858824, 0.858824, 0.858824, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxEmpty_nby7s")
+Button/styles/focus = SubResource("StyleBoxEmpty_nsuo0")
+Button/styles/hover = SubResource("StyleBoxEmpty_jpy4b")
+Button/styles/normal = SubResource("StyleBoxEmpty_aheed")
+Button/styles/pressed = SubResource("StyleBoxEmpty_5ybqe")
+HSlider/icons/grabber = SubResource("CanvasTexture_1fqm8")
+HSlider/icons/grabber_disabled = SubResource("CanvasTexture_6w01o")
+HSlider/icons/grabber_highlight = SubResource("CanvasTexture_yni6w")
+HSlider/icons/tick = SubResource("CanvasTexture_othvs")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_2u7ro")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_7gxk8")
+HSlider/styles/slider = SubResource("StyleBoxFlat_lrk0f")
+Panel/styles/panel = SubResource("StyleBoxFlat_kwe5p")

@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://dd14ijvk2upc5"]
+
+[ext_resource type="Texture2D" uid="uid://3v6pawhx3ydg" path="res://assets/gameplay/hudStyles/default/score/judgements.png" id="1_2q0d1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gek40"]
+atlas = ExtResource("1_2q0d1")
+region = Rect2(0, 326, 500, 163)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y06r"]
+atlas = ExtResource("1_2q0d1")
+region = Rect2(0, 163, 500, 163)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6par"]
+atlas = ExtResource("1_2q0d1")
+region = Rect2(0, 489, 500, 163)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vmee"]
+atlas = ExtResource("1_2q0d1")
+region = Rect2(0, 0, 500, 163)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gek40")
+}],
+"loop": false,
+"name": &"bad",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y06r")
+}],
+"loop": false,
+"name": &"good",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6par")
+}],
+"loop": false,
+"name": &"shit",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vmee")
+}],
+"loop": false,
+"name": &"sick",
+"speed": 1.0
+}]

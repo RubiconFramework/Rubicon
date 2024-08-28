@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://oy5mstcgdc81"]
+
+[ext_resource type="Texture2D" uid="uid://crqghf0sc13ga" path="res://assets/gameplay/characters/assets/darnell/icon.png" id="1_cts2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ui7u"]
+atlas = ExtResource("1_cts2m")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s6cr"]
+atlas = ExtResource("1_cts2m")
+region = Rect2(150, 0, 150, 150)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ui7u")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8s6cr")
+}],
+"loop": false,
+"name": &"lose",
+"speed": 1.0
+}]

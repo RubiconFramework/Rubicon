@@ -1,0 +1,80 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://dr48k6pfn5jac"]
+
+[ext_resource type="Texture2D" uid="uid://k2won0iilkmi" path="res://assets/gameplay/hudStyles/default/strums/optimizedStrums.png" id="1_j4apw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsq75"]
+atlas = ExtResource("1_j4apw")
+region = Rect2(2, 2, 236, 232)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksipb"]
+atlas = ExtResource("1_j4apw")
+region = Rect2(240, 2, 236, 232)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hyxh"]
+atlas = ExtResource("1_j4apw")
+region = Rect2(2, 236, 214, 211)
+margin = Rect2(11, 10, 22, 21)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8rxd"]
+atlas = ExtResource("1_j4apw")
+region = Rect2(2, 449, 144, 141)
+margin = Rect2(5, 4, 9, 9)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5no4i"]
+atlas = ExtResource("1_j4apw")
+region = Rect2(218, 392, 153, 150)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ul5c"]
+atlas = ExtResource("1_j4apw")
+region = Rect2(218, 236, 157, 154)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsq75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksipb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hyxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hyxh")
+}],
+"loop": false,
+"name": &"confirm",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8rxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8rxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5no4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5no4i")
+}],
+"loop": false,
+"name": &"pressed",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ul5c")
+}],
+"loop": false,
+"name": &"static",
+"speed": 24.0
+}]

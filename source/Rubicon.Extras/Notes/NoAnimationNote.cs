@@ -12,9 +12,9 @@ namespace Rubicon.Extras.Notes;
 [NoteTypeBind("no_anim")]
 public class NoAnimationNote : INoteScript
 {
-    public void BeforeNoteCreate(ChartController chartCtrl, NoteData noteData) { }
+    public void OnNoteCreate(ChartController chartCtrl, NoteData noteData) { }
     
-    public void OnNoteCreate(ChartController chartCtrl, Note note) { }
+    public void OnNoteSpawn(ChartController chartCtrl, Note note) { }
     
     /// <summary>
     /// Returns a result that contains the RubiconNoteFlags.Animation flag, disabling any animation.

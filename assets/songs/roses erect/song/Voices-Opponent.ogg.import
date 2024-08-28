@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dixccsku5b2gy"
+path="res://.godot/imported/Voices-Opponent.ogg-660d30a4caa55c98e487be7b2fa599a8.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/roses erect/song/Voices-Opponent.ogg"
+dest_files=["res://.godot/imported/Voices-Opponent.ogg-660d30a4caa55c98e487be7b2fa599a8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

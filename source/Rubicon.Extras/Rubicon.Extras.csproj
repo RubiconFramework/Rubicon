@@ -10,10 +10,13 @@
     <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
     <ProjectReference Include="..\Rubicon.API\Rubicon.API.csproj" />
     <ProjectReference Include="..\Rubicon.Game\Rubicon.Game.csproj" />
+    <ProjectReference Include="..\Rubicon.Space2D\Rubicon.Space2D.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="GodotSharp" Version="4.3.0" />
-    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Update="Godot.SourceGenerators" Version="4.3.0" />
+    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>

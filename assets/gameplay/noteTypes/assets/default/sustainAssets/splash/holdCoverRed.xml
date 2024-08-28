@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="holdCoverRed.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="right end0000" x="2" y="2" width="256" height="229"/>
+	<SubTexture name="right end0001" x="2" y="2" width="256" height="229"/>
+	<SubTexture name="right end0002" x="2" y="233" width="256" height="229"/>
+	<SubTexture name="right end0003" x="260" y="2" width="256" height="229"/>
+	<SubTexture name="right end0004" x="260" y="2" width="256" height="229"/>
+	<SubTexture name="right end0005" x="260" y="233" width="256" height="229"/>
+	<SubTexture name="right end0006" x="518" y="2" width="256" height="229"/>
+	<SubTexture name="right end0007" x="518" y="233" width="256" height="229"/>
+	<SubTexture name="right hold0000" x="776" y="2" width="161" height="125"/>
+	<SubTexture name="right hold0001" x="776" y="129" width="161" height="125"/>
+	<SubTexture name="right hold0002" x="776" y="256" width="161" height="125"/>
+</TextureAtlas>

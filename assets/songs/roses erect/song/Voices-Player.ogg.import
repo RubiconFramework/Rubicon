@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bgh0d7smlaxog"
+path="res://.godot/imported/Voices-Player.ogg-222bdeae5d4797dd1d8791c2d8c61a48.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/songs/roses erect/song/Voices-Player.ogg"
+dest_files=["res://.godot/imported/Voices-Player.ogg-222bdeae5d4797dd1d8791c2d8c61a48.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

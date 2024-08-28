@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://source/Rubicon.Space2D/CameraController2D.cs" id="3_y86i6"]
 [ext_resource type="Script" path="res://source/Rubicon.Menus/PauseMenu.cs" id="4_avp1g"]
 [ext_resource type="FontFile" uid="uid://cudhbwf5fi86x" path="res://assets/fonts/VCR OSD Mono.ttf" id="5_htpvq"]
-[ext_resource type="Script" path="res://source/Rubicon.Menus/MenuOption.cs" id="5_rbwdx"]
+[ext_resource type="Script" path="res://source/Rubicon.Menus/API/MenuOption.cs" id="5_rbwdx"]
 [ext_resource type="AudioStream" uid="uid://tob5nwpcmbot" path="res://assets/audio/sfx/scrollMenu.ogg" id="6_dgq4a"]
 
 [sub_resource type="Resource" id="Resource_2gn2l"]

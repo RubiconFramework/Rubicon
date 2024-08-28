@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbdfpnvlhkxlo"]
+
+[ext_resource type="Script" path="res://source/Rubicon.Menus/Options/objects/sections/keybinds/Keybinds.cs" id="1_3jr24"]
+
+[node name="Keybinds" type="ScrollContainer"]
+offset_left = 1.0
+offset_right = 959.0
+offset_bottom = 551.0
+script = ExtResource("1_3jr24")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 5

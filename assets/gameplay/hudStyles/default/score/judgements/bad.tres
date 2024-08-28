@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Judgement" load_steps=2 format=3 uid="uid://kmy61uxfeu27"]
+
+[ext_resource type="Script" path="res://source/gameplay/resources/Judgement.cs" id="1_e1nii"]
+
+[resource]
+script = ExtResource("1_e1nii")
+JudgementName = "bad"
+Time = 125.0
+ScoreAdd = -50
+RatingAdd = 0.0
+HealthAdd = 0.0
+ValidHit = true
+ShouldSplash = false

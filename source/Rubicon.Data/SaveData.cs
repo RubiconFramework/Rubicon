@@ -1,142 +1,169 @@
-using System.Collections.Generic;
+using System;
 using Godot;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Rubicon.Data;
 
-/// <summary>
-/// Save data for the engine.
-/// </summary>
-public class SaveData
+public enum AudioOutputMode
 {
-    /// <summary>
-    /// The current instance of SaveData being used.
-    /// </summary>
-    public static SaveData Data { get; private set; } = new SaveData(); // TODO: Actually load a file...
+    Stereo,
+    Mono
+}
 
-    #region Settings
-        
-    #region Appearance
-    /// <summary>
-    /// The note skin to use in-game. Can be overridden by other scripts.
-    /// </summary>
-    public string Noteskin = "funkin";
-    #endregion
-        
-    #region Gameplay
-    /// <summary>
-    /// Controls whether the notes go down or up.
-    /// </summary>
-    public bool DownScroll = false;
-        
-    /// <summary>
-    /// Controls whether the player's notes are in the middle.
-    /// </summary>
-    public bool MiddleScroll = false;
+public enum StrumSides
+{
+    Opponent,
+    Spectator,
+    Player
+}
 
-    /// <summary>
-    /// Enabling this has the computer take over for the player.
-    /// </summary>
-    public bool BotPlay = false;
-        
-    /// <summary>
-    /// Controls whether the opponent's chart is hidden. Setting this to true will hide them.
-    /// </summary>
-    public bool HideOpponentChart = false;
+public enum ScrollSpeedType
+{
+    Multiplier,
+    Constant
+}
+    
+public enum GameLanguages
+{
+    English,
+    Spanish
+}
 
-    /// <summary>
-    /// Controls the scroll speed of the notes globally. Setting this to 0 will default to the chart's scroll speed.
-    /// </summary>
-    public float ScrollSpeed = 0.0f;
+public enum TransitionType
+{
+    Vanilla,
+    Fade,
+    SawnOff,
+    DiamondShapes
+}
 
-    /// <summary>
-    /// Offset (help me write a better description for this)
-    /// </summary>
-    public double Offset = 0.0d;
+public partial class SaveData : Node
+{
+    public static SaveData Instance;
+    [JsonProperty] public GameplaySettings gameplay { get; set; } = new();
+    [JsonProperty] public AudioSettings audio { get; set; } = new();
+    [JsonProperty] public VideoSettings video { get; set; } = new();
+    [JsonProperty] public MiscSettings misc { get; set; } = new();
+    
+    public static GameplaySettings Gameplay => Instance.gameplay;
+    public static AudioSettings Audio => Instance.audio;
+    public static VideoSettings Video => Instance.video;
+    public static MiscSettings Misc => Instance.misc;
 
-    /// <summary>
-    /// Offset but visually (help me write a better description for this)
-    /// </summary>
-    public float VisualOffset = 0.0f;
-    #endregion
-        
-    #region Audio
-    /// <summary>
-    /// Controls the overall volume of the game.
-    /// </summary>
-    public float MasterVolume = 50;
-        
-    /// <summary>
-    /// Boolean for turning on and off stereo sound. Turning this false will have the game output mono audio.
-    /// </summary>
-    public bool StereoMode = true;
-        
-    /// <summary>
-    /// Controls the volume for the music tracks played in-game. This includes the instrumental for songs.
-    /// </summary>
-    public float MusicVolume = 100;
-        
-    /// <summary>
-    /// Controls the volume for the vocal tracks played with songs that have them in-game.
-    /// </summary>
-    public float VocalsVolume = 100;
-        
-    /// <summary>
-    /// Controls the volume for the sound effects played in-game.
-    /// </summary>
-    public float SoundEffectsVolume = 100;
-    #endregion
-        
-    #region Video
-    /// <summary>
-    /// The Max FPS the game will attempt to run at.
-    /// </summary>
-    public int MaxFps { get; set; } = 144;
-        
-    /// <summary>
-    /// The Window mode this game is in.
-    /// </summary>
-    public DisplayServer.WindowMode WindowMode { get; set; } = DisplayServer.WindowMode.Windowed;
-        
-    /// <summary>
-    /// The V-Sync mode this game is running with.
-    /// </summary>
-    public DisplayServer.VSyncMode VSync { get; set; } = DisplayServer.VSyncMode.Disabled;
-    #endregion
-        
-    #region Miscellaneous
-    /// <summary>
-    /// Indicates whether Discord RPC should be on.
-    /// </summary>
-    public bool DiscordRichPresence = true;
-    #endregion
-        
-    #region Binds
-    /// <summary>
-    /// The key binds used for each lane count.
-    /// </summary>
-    public Dictionary<int, Key[]> Keybinds = new()
+    public const string SettingsPath = "user://settings.json";
+    
+    public class GameplaySettings
     {
-        { 4, new Key[] { Key.D, Key.F, Key.J, Key.K } }
-    };
-    #endregion
-        
-    #endregion
+        public readonly GameplayModifiers Modifiers = new();
+        public readonly GameplayOffsets Offsets = new();
 
-    /// <summary>
-    /// Updates the game when a setting in the save data requires it.
-    /// </summary>
-    public void Update()
-    {
-        Engine.MaxFps = MaxFps;
-        DisplayServer.Singleton.WindowSetMode(WindowMode);
-        DisplayServer.Singleton.WindowSetVsyncMode(VSync);
+        public bool Downscroll { get; set; }
+        public bool Middlescroll { get; set; }
+        public bool DisableOpponentStrums { get; set; }
+        public bool BotPlay { get; set; }
+        public float ScrollSpeed { get; set; } = 1.0f;
+        public ScrollSpeedType ScrollSpeedType { get; set; } = ScrollSpeedType.Constant;
+
+        public class GameplayModifiers
+        {
+            public bool NoMissMode { get; set; }
+            public bool PFCOnly { get; set; }
+            public bool CoolMechanic { get; set; }
+            public float HealthGainMult { get; set; } = 1.0f;
+            public float HealthLossMult { get; set; } = 1.0f;
+            public float SongRate { get; set; } = 1.0f;
+            public StrumSides StrumSides { get; set; } = StrumSides.Player;
+        }
+
+        public class GameplayOffsets
+        {
+            public float SoundOffset { get; set; } = 1.0f;
+            public Vector2 RatingsPosition { get; set; } = new(0, 0);
+            public Vector2 ComboPosition { get; set; } = new(0, 0);
+        }
     }
 
-    /// <summary>
-    /// Saves the current settings to the disk.
-    /// </summary>
-    public void Save()
+    public class AudioSettings
     {
-        // TODO: Actually save the data...
+        public float MasterVolume { get; set; } = 50;
+        public AudioOutputMode AudioOutputMode { get; set; } = AudioOutputMode.Stereo;
+        public float MusicVolume { get; set; } = 100;
+        public float SFXVolume { get; set; } = 100;
+        public float InstVolume { get; set; } = 100;
+        public float VoiceVolume { get; set; } = 100;
     }
+
+    public class VideoSettings
+    {
+        public int MaxFPS { get; set; } = 144;
+        public DisplayServer.WindowMode WindowMode { get; set; } = DisplayServer.WindowMode.Windowed;
+        public DisplayServer.VSyncMode VSync { get; set; } = DisplayServer.VSyncMode.Disabled;
+    }
+
+    public class MiscSettings
+    {
+        public GameLanguages Languages { get; set; } = GameLanguages.English;
+        public TransitionType Transitions { get; set; } = TransitionType.Vanilla;
+        public bool DiscordRichPresence { get; set; } = true;
+        public bool OptionsMenuAnimations { get; set; } = true;
+        public bool SceneTransitions { get; set; } = true;
+    }
+
+    public static SaveData GetDefaultSettings() => new();
+
+    public static void Load()
+    {
+        try
+        {
+            if (FileAccess.FileExists(SettingsPath))
+            {
+                var jsonData = FileAccess.Open(SettingsPath, FileAccess.ModeFlags.Read);
+                string json = jsonData.GetAsText();
+
+                if (!string.IsNullOrEmpty(json))
+                {
+                    var loadedSettings = JsonConvert.DeserializeObject<SaveData>(json);
+                    if (loadedSettings != null)
+                    {
+                        Instance = loadedSettings;
+                        GD.Print($"Settings loaded from file. [{SettingsPath}]");
+                    }
+                }
+            }
+            else
+            {
+                Instance = GetDefaultSettings();
+                Save();
+                GD.Print("Settings file not found. Writing default settings to file.");
+            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to load or write default settings: {e.Message}");
+            throw;
+        }
+    }
+
+    public static void Save()
+    {
+        try
+        {
+            var settings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                Formatting = Formatting.Indented,
+            };
+
+            string jsonData = JsonConvert.SerializeObject(Instance, settings);
+            using var file = FileAccess.Open(SettingsPath, FileAccess.ModeFlags.Write);
+            file.StoreString(jsonData);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Failed to save settings: {e.Message}");
+        }
+    }
+
+    public override void _Ready() => Load();
 }

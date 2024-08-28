@@ -1,8 +1,8 @@
 using Godot;
 using Rubicon.API.Events;
-using Rubicon.Space2D;
+using Rubicon.Game;
 
-namespace Rubicon.Game.Events;
+namespace Rubicon.Extras.Events;
 
 public class CameraFocusEvent : ISongEvent
 {

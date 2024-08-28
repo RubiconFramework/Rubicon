@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="freeplay.png">
+	<!-- Created with Adobe Flash CS6 version 12.0.0.481 -->
+	<!-- http://www.adobe.com/products/flash.html -->
+	<SubTexture name="idle0000" x="643" y="5" width="485" height="123"/>
+	<SubTexture name="idle0001" x="643" y="5" width="485" height="123"/>
+	<SubTexture name="idle0002" x="643" y="5" width="485" height="123"/>
+	<SubTexture name="idle0003" x="643" y="133" width="485" height="123"/>
+	<SubTexture name="idle0004" x="643" y="133" width="485" height="123"/>
+	<SubTexture name="idle0005" x="643" y="133" width="485" height="123"/>
+	<SubTexture name="idle0006" x="643" y="261" width="485" height="123"/>
+	<SubTexture name="idle0007" x="643" y="261" width="485" height="123"/>
+	<SubTexture name="idle0008" x="643" y="261" width="485" height="123"/>
+	<SubTexture name="selected0000" x="5" y="360" width="627" height="170" frameX="0" frameY="0" frameWidth="635" frameHeight="175"/>
+	<SubTexture name="selected0001" x="5" y="184" width="633" height="171" frameX="-2" frameY="-1" frameWidth="635" frameHeight="175"/>
+	<SubTexture name="selected0002" x="5" y="5" width="630" height="174" frameX="-3" frameY="-1" frameWidth="635" frameHeight="175"/>
+</TextureAtlas>

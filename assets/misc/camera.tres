@@ -1,0 +1,28 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://dck7rmn27st5n"]
+
+[ext_resource type="Texture2D" uid="uid://4q5c7823qkxm" path="res://assets/misc/camera.png" id="1_6q585"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxhu6"]
+atlas = ExtResource("1_6q585")
+region = Rect2(2, 2, 118, 48)
+margin = Rect2(0, 0, 1, 0)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2lei"]
+atlas = ExtResource("1_6q585")
+region = Rect2(122, 2, 119, 48)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxhu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2lei")
+}],
+"loop": false,
+"name": &"camera",
+"speed": 24.0
+}]
