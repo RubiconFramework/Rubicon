@@ -4,18 +4,11 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net7.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
-    <RootNamespace>Rubicon.API</RootNamespace>
+    <RootNamespace>Rubicon.Core</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Update="GodotSharp" Version="4.3.0" />
-    <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Update="Godot.SourceGenerators" Version="4.3.0" />
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\addons\HCoroutines\HCoroutines.csproj" />
-    <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
-    <ProjectReference Include="..\Rubicon.Data\Rubicon.Data.csproj" />
   </ItemGroup>
 </Project>
