@@ -8,7 +8,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
-    <ProjectReference Include="..\Rubicon.Autoload\Rubicon.Autoload.csproj" />
     <ProjectReference Include="..\Rubicon.Game\Rubicon.Game.csproj" />
   </ItemGroup>
   <ItemGroup>

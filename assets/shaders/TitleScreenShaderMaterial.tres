@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dlwbyy60pp0e2"]
-
-[ext_resource type="Shader" path="res://assets/shaders/TitleScreenShader.gdshader" id="1_jueo3"]
-
-[resource]
-shader = ExtResource("1_jueo3")
-shader_parameter/time = 0.0

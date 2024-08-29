@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2mpkmftbgcx7"]
-
-[ext_resource type="Shader" path="res://assets/shaders/GradientShader.gdshader" id="1_ldpv4"]
-
-[resource]
-shader = ExtResource("1_ldpv4")
-shader_parameter/black_color = Color(1, 0, 0, 1)
-shader_parameter/white_color = Color(1, 1, 1, 1)

@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ry3nfhtlgdta"]
-
-[ext_resource type="Script" path="res://source/Rubicon.Extras/Tests/ScuffedChartConverter.cs" id="1_aunt3"]
-
-[node name="ScuffedChartConverter" type="Node"]
-script = ExtResource("1_aunt3")
-SaveFolder = "res://assets/songs/test/"
-FileName = "test"
-FunkinChartPath = "res://assets/songs/test/test-fnf.json"

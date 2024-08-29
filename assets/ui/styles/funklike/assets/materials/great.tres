@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cyg3yq1gkccfe"]
-
-[ext_resource type="Shader" path="res://assets/shaders/GradientShader.gdshader" id="1_udymy"]
-
-[resource]
-shader = ExtResource("1_udymy")
-shader_parameter/black_color = Color(1, 0.580392, 0, 1)
-shader_parameter/white_color = Color(1, 1, 1, 1)

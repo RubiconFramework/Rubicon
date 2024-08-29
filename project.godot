@@ -16,14 +16,6 @@ config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
 
-[autoload]
-
-ConductorSingleton="*res://source/Promise.Framework/Conductor.cs"
-CoroutineManager="*res://addons/HCoroutines/CoroutineManager.tscn"
-AudioManager="*res://source/Rubicon.Autoload/API/AudioManager.tscn"
-DebugInfo="*res://source/Rubicon.Autoload/API/DebugInfo.tscn"
-SaveData="*res://source/Rubicon.Data/SaveData.cs"
-
 [display]
 
 window/size/viewport_width=1440
@@ -44,9 +36,10 @@ enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://source/Promise.Framework/": "purple",
 "res://source/Rubicon.API/": "red",
 "res://source/Rubicon.Autoload/": "red",
+"res://source/Rubicon.Autoloads/": "red",
+"res://source/Rubicon.Core/": "red",
 "res://source/Rubicon.Data/": "yellow",
 "res://source/Rubicon.Extras/": "yellow",
 "res://source/Rubicon.Game/": "yellow",

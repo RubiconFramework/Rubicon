@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="camera.png">
-	<!-- Created with Adobe Animate version 22.0.3.179 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="camera0000" x="2" y="2" width="118" height="48" frameX="0" frameY="0" frameWidth="119" frameHeight="48"/>
-	<SubTexture name="camera0001" x="122" y="2" width="119" height="48"/>
-</TextureAtlas>

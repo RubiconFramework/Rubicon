@@ -1,9 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bq6h5phvegmsv"]
-
-[ext_resource type="FontFile" uid="uid://cudhbwf5fi86x" path="res://assets/fonts/VCR OSD Mono.ttf" id="1_ivxq7"]
-
-[resource]
-font = ExtResource("1_ivxq7")
-font_size = 32
-outline_size = 6
-outline_color = Color(0.505882, 0, 0.694118, 1)
