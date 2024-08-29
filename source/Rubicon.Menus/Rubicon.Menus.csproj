@@ -17,19 +17,4 @@
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Freeplay\FreeplayMenu.tscn" />
-    <Content Include="Freeplay\Resources\FreeplaySong.tres" />
-    <Content Include="MainMenu\MainMenu.tscn" />
-    <Content Include="Options\Objects\OptionsMenu.tres" />
-    <Content Include="Options\Objects\SectionSeparator.tres" />
-    <Content Include="Options\Objects\Sections\Gameplay\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg" />
-    <Content Include="Options\Objects\Sections\Gameplay\assets\aed2db85f01bc0b810f7cc4e8f475a3c533a6254_full.jpg.import" />
-    <Content Include="Options\Objects\Sections\Gameplay\Gameplay.tscn" />
-    <Content Include="Options\Objects\Sections\Gameplay\Menus\GameplayModifiers.tscn" />
-    <Content Include="Options\Objects\Sections\Gameplay\Menus\GameplayOffsets.tscn" />
-    <Content Include="Options\OptionsMenu.tscn" />
-    <Content Include="Title\introTexts.txt" />
-    <Content Include="Title\Title.tscn" />
-  </ItemGroup>
 </Project>
