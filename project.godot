@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Rubicon"
-run/main_scene="res://source/Rubicon.Menus/MainMenu/MainMenu.tscn"
+run/main_scene="res://scenes/PlayScene.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
