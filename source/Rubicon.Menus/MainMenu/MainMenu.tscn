@@ -111,8 +111,8 @@ scale = Vector2(1.10137, 1.10137)
 texture = ExtResource("2_6l477")
 
 [node name="MenuBg" type="Sprite2D" parent="BG"]
-position = Vector2(688, 387)
-scale = Vector2(1.10137, 1.10137)
+position = Vector2(685, 387)
+scale = Vector2(1.12131, 1.10137)
 texture = ExtResource("3_fl4fl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BG"]

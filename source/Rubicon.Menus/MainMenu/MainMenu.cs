@@ -34,16 +34,16 @@ public partial class MainMenu : Node
 		base._Input(@event);
 		
 		if (selected) return;
-		if (Input.IsActionJustPressed("menu_up"))
+		if (Input.IsActionJustPressed("MENU_UP"))
 			changeSelected(-1);
 		
-		if (Input.IsActionJustPressed("menu_down")) 
+		if (Input.IsActionJustPressed("MENU_DOWN")) 
 			changeSelected(1);
 		
-		if (Input.IsActionJustReleased("menu_accept") && curSelected >= 0) 
+		if (Input.IsActionJustReleased("MENU_CONFIRM") && curSelected >= 0) 
 			selectOption();
 		
-		if (Input.IsActionJustPressed("menu_return"))
+		if (Input.IsActionJustPressed("MENU_BACK"))
 			LoadingHandler.ChangeScene("res://source/menus/title/Title.tscn");
 	}
 

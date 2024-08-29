@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://d1miihidqd7ky" path="res://assets/themes/duo/OptionsMenu [Duo].tres" id="1_aodu4"]
 [ext_resource type="Script" path="res://source/Rubicon.Menus/Options/objects/sections/misc/Misc.cs" id="1_tgalg"]
-[ext_resource type="Theme" uid="uid://0vvnjax75t7e" path="res://source/Rubicon.Menus/Options/objects/SectionSeparator.tres" id="2_2fh16"]
+[ext_resource type="Theme" uid="uid://0vvnjax75t7e" path="res://source/Rubicon.Menus/Options/Objects/SectionSeparator.tres" id="2_2fh16"]
 
 [node name="Misc" type="ScrollContainer"]
 offset_right = 957.0

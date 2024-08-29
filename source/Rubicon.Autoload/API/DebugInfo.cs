@@ -74,7 +74,7 @@ public partial class DebugInfo : CanvasLayer
     
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionJustPressed("debug_info")) 
+        if (Input.IsActionJustPressed("DEBUG_INFO")) 
             DebugInformation.Visible = !DebugInformation.Visible;
 
         UpdateFPS();

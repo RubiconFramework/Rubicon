@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bd6rfrayedosy"]
 
-[ext_resource type="Script" path="res://source/backend/autoload/LoadingHandler.cs" id="1_hn1rf"]
+[ext_resource type="Script" path="res://source/Rubicon.Autoload/API/LoadingHandler.cs" id="1_hn1rf"]
 [ext_resource type="Shader" path="res://assets/shaders/saw.gdshader" id="2_wjol3"]
 [ext_resource type="Shader" path="res://assets/shaders/Diamond.gdshader" id="3_77u2n"]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=20 format=3 uid="uid://bkguktphrh1h5"]
 
-[ext_resource type="Script" path="res://source/backend/autoload/VolumeManager.cs" id="1_5v2rm"]
+[ext_resource type="Script" path="res://source/Rubicon.Autoload/API/VolumeManager.cs" id="1_5v2rm"]
 [ext_resource type="SpriteFrames" uid="uid://bxeqjq4qkvrla" path="res://assets/misc/volumeIcons.tres" id="3_b3kwp"]
 [ext_resource type="Theme" uid="uid://cnaffdtymkcv2" path="res://assets/themes/duo/AudioManager [Duo].tres" id="3_hqtuf"]
-[ext_resource type="Script" path="res://source/backend/misc/volumemanager/VolumeButton.cs" id="3_ijg7a"]
-[ext_resource type="FontFile" uid="uid://r1uoqejoteb3" path="res://assets/fonts/funkin.ttf" id="4_w3leu"]
+[ext_resource type="Script" path="res://source/Rubicon.Autoload/Resources/VolumeButton.cs" id="3_ijg7a"]
+[ext_resource type="FontFile" uid="uid://bp6p0x1hi6ywo" path="res://assets/fonts/funkin.ttf" id="4_w3leu"]
 
 [sub_resource type="Animation" id="Animation_spay7"]
 length = 0.001
