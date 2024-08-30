@@ -6,8 +6,9 @@
     <RootNamespace>Rubicon.Menus</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Promise.Framework\Promise.Framework.csproj" />
-    <ProjectReference Include="..\Rubicon.Game\Rubicon.Game.csproj" />
+    <!-- Root the assemblies to avoid trimming. -->
+    <TrimmerRootAssembly Include="GodotSharp" />
+    <TrimmerRootAssembly Include="$(TargetName)" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Update="GodotSharp" Version="4.3.0" />
