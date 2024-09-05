@@ -1,8 +1,14 @@
-# Godot 4+ specific ignores
+# Godot specific ignores
 .godot/
+.import/
+.mono/
+exclude/
 
 # macOS
 .DS_Store
 
-# Rider
+# IDE Specific ignores
 .idea/
+.vs/
+.vscode/
+*DotSettings.user
