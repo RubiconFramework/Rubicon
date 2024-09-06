@@ -31,7 +31,7 @@ public partial class Character2D : Node2D
     
     // This array contains the "idle" or "dance" animation sequence
     // Every beat that is played goes to the next one on the array
-    // Useful for left and right animations like Gf 
+    // Useful for left and right animations like Gf
     [Export] public string[] DanceList = {"idle"};
     public int DanceStep = 0;
 
