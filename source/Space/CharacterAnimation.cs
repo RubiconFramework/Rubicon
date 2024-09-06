@@ -1,4 +1,5 @@
-using Godot;
+
+namespace Rubicon.Space;
 
 public class CharacterAnimation
 {

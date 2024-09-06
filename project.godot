@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Main="*res://source/Rubicon.Autoloads/Main.cs"
+Main="*res://source/Autoload/Main.cs"
 
 [display]
 

@@ -1,5 +1,6 @@
-using Godot;
 using Godot.Sharp.Extras;
+
+namespace Rubicon.Space;
 
 public partial class Character2D : Node2D
 {
@@ -50,7 +51,7 @@ public partial class Character2D : Node2D
 
     [ExportGroup("Healthbar Info")]
 
-    // A SpriteFrames resource that should contain an "idle" and "lose" animation
+    // A SpriteFrames resource that should contain an "idle" animation and optionally, "lose" and "win"
     [Export] public SpriteFrames CharacterIcon { get; set; } = GD.Load<SpriteFrames>("res://assets/characters/placeholder/icon.tres");
     [Export] public Vector2 IconOffset = new Vector2(0,10);
     [Export] public Color HealthColor = new("#A1A1A1");

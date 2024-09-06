@@ -1,7 +1,7 @@
-using Godot;
 
-[Tool]
-public partial class PlayerSprite2D : AnimatedSprite2D
+namespace Rubicon.Space;
+
+[Tool] public partial class PlayerSprite2D : AnimatedSprite2D
 {
 	[Export] public bool Playing
 	{

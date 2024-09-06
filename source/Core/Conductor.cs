@@ -1,5 +1,4 @@
 using System;
-using Godot;
 using Rubicon.Core.Chart;
 
 namespace Rubicon.Core;
