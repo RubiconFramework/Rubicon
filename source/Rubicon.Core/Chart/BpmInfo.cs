@@ -11,7 +11,7 @@ namespace Rubicon.Core.Chart;
 public partial class BpmInfo : Resource
 {
     /// <summary>
-    /// The exact time this change happens in milliseconds. Should not be serialized.
+    /// The exact time this change happens in milliseconds.
     /// </summary>
     public double MsTime = 0d;
 

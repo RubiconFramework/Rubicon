@@ -33,18 +33,29 @@ public partial class RubiChart : Resource
 
     #region Public Methods
     /// <summary>
-    /// Converts the notes in this chart to millisecond format.
+    /// Converts everything in this chart to millisecond format.
     /// </summary>
     /// <returns>Itself</returns>
     public RubiChart ConvertData()
     {
+        // Takes care of setting bpm and time signature's exact millisecond time.
         for (int i = 1; i < BpmInfo.Length; i++)
             BpmInfo[i].MsTime = BpmInfo[i - 1].MsTime + ConductorUtility.MeasureToMs(BpmInfo[i].Time - BpmInfo[i - 1].Time, BpmInfo[i - 1].Bpm, BpmInfo[i].TimeSignatureNumerator);
 
-        for (int i = 0; i < Charts.Length; i++)
-        for (int n = 0; n < Charts[i].Notes.Length; n++)
-            Charts[i].Notes[n].ConvertData(BpmInfo);
+        foreach (IndividualChart curChart in Charts)
+        {
+            for (int n = 0; n < curChart.Notes.Length; n++)
+                curChart.Notes[n].ConvertData(BpmInfo);
 
+            for (int s = 0; s < curChart.SvChanges.Length; s++)
+            {
+                SvChange currentChange = curChart.SvChanges[s];
+                SvChange previousChange = s != 0 ? curChart.SvChanges[s - 1] : null;
+
+                currentChange.ConvertData(BpmInfo, previousChange);
+            }
+        }
+        
         return this;
     }
 

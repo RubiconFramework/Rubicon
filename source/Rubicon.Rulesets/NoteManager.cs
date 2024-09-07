@@ -30,12 +30,7 @@ public partial class NoteManager : Control
     /// <summary>
     /// The scroll speed for this note manager.
     /// </summary>
-    [Export]
-    public float ScrollSpeed
-    {
-        get => _scrollSpeed;
-        set => SetScrollSpeed(value);
-    }
+    [Export] public float ScrollSpeed = 1f;
     
     /// <summary>
     /// Is true when the manager has gone through all notes present in <see cref="Chart">Chart</see>.
@@ -60,19 +55,19 @@ public partial class NoteManager : Control
 
     [Export] public int ScrollVelocityIndex = 0;
 
-    private float _scrollSpeed = 0f;
-
     public override void _Process(double delta)
     {
         base._Process(delta);
         
-        double time = Conductor.Time * 1000d;
-        DistanceOffset = -(float)time; // Bad coding, but just for now cuz scroll velocities can come later.
-        
         // Handle SV changes
+        double time = Conductor.Time * 1000d;
         if (ScrollVelocityIndex < Chart.SvChanges.Length)
             while (ScrollVelocityIndex < Chart.SvChanges.Length && Chart.SvChanges[ScrollVelocityIndex].MsTime - time <= 0)
                 ScrollVelocityIndex++;
+        
+        // Handle distance offset
+        SvChange currentScrollVel = Chart.SvChanges[ScrollVelocityIndex];
+        DistanceOffset = -(float)(currentScrollVel.Position + (Conductor.Time - currentScrollVel.MsTime) * currentScrollVel.Multiplier) * ScrollSpeed;
         
         // Handle note spawning
         if (NoteSpawnIndex < Chart.Notes.Length && Visible)
@@ -112,23 +107,6 @@ public partial class NoteManager : Control
         {
             OnNoteMiss(curNoteData, -EngineSettings.BadHitWindow - 1, false);
             NoteHitIndex++;
-        }
-    }
-
-    protected void SetScrollSpeed(float scrollSpeed)
-    {
-        _scrollSpeed = scrollSpeed;
-
-        if (Chart.SvChanges.Length <= 1)
-            return;
-
-        for (int i = 1; i < Chart.SvChanges.Length; i++)
-        {
-            SvChange currentChange = Chart.SvChanges[i];
-            SvChange previousChange = Chart.SvChanges[i - 1];
-
-            currentChange.StartingPosition =
-                (float)(previousChange.StartingPosition + (currentChange.MsTime - previousChange.MsTime)) * scrollSpeed;
         }
     }
 

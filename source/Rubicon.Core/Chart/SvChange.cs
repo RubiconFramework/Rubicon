@@ -14,9 +14,9 @@ public partial class SvChange : Resource
     public double MsTime = 0d;
 
     /// <summary>
-    /// The starting position of this scroll velocity change. Is set by <see cref="NoteManager.SetScrollSpeed">NoteManager.SetScrollSpeed</see>.
+    /// The starting position of this scroll velocity change. Is set by <see cref="RubiChart.ConvertData">RubiChart.ConvertData</see>.
     /// </summary>
-    public float StartingPosition = 0f;
+    public float Position = 0f;
     
     /// <summary>
     /// The measure to execute this scroll velocity change.
@@ -28,7 +28,7 @@ public partial class SvChange : Resource
     /// </summary>
     [Export] public float Multiplier = 1f;
 
-    public void ConvertData(BpmInfo[] bpmInfo)
+    public void ConvertData(BpmInfo[] bpmInfo, SvChange previousChange = null)
     {
         BpmInfo bpm = bpmInfo.Last();
         for (int i = 0; i < bpmInfo.Length; i++)
@@ -41,5 +41,7 @@ public partial class SvChange : Resource
         }
 
         MsTime = ConductorUtility.MeasureToMs(Time - bpm.Time, bpm.Bpm, bpm.TimeSignatureNumerator) + bpm.MsTime;
+        if (previousChange != null)
+            Position = (float)(previousChange.Position + (MsTime - previousChange.MsTime) * Multiplier);
     }
 }
