@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Main="*res://source/Autoload/Main.cs"
+Main="*res://source/Rubicon.Autoload/Main.cs"
 
 [display]
 
@@ -35,7 +35,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg", "res://addons/rubicon_chart_importer/plugin.cfg")
 
 [file_customization]
 

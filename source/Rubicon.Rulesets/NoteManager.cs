@@ -31,6 +31,11 @@ public partial class NoteManager : Control
     /// The scroll speed for this note manager.
     /// </summary>
     [Export] public float ScrollSpeed = 1f;
+
+    /// <summary>
+    /// This note manager's parent bar line.
+    /// </summary>
+    [Export] public BarLine ParentBarLine;
     
     /// <summary>
     /// Is true when the manager has gone through all notes present in <see cref="Chart">Chart</see>.
@@ -111,6 +116,12 @@ public partial class NoteManager : Control
     }
 
     #region Virtual (Overridable) Methods
+    protected virtual void Setup(IndividualChart chart, BarLine parentBarLine)
+    {
+        Chart = chart;
+        ParentBarLine = parentBarLine;
+    }
+    
     protected virtual Note SpawnNote(NoteData data, SvChange svChange)
     {
         return null;
