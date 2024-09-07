@@ -23,5 +23,5 @@ public partial class IndividualChart : Resource
     /// <summary>
     /// Stores data about scroll velocity changes.
     /// </summary>
-    [Export] public SvChange[] SvChanges = [];
+    [Export] public SvChange[] SvChanges = [ new SvChange() ];
 }
