@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c53ngot5f2vu8"
-path="res://.godot/imported/fnf.png-9003d6db667d83f768a0e5f22853770a.ctex"
+uid="uid://dm8m328axmhya"
+path="res://.godot/imported/set.png-65c8ba03dafea040851ca336fa702610.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/misc/fnf.png"
-dest_files=["res://.godot/imported/fnf.png-9003d6db667d83f768a0e5f22853770a.ctex"]
+source_file="res://assets/ui/hud/default/intro/set.png"
+dest_files=["res://.godot/imported/set.png-65c8ba03dafea040851ca336fa702610.ctex"]
 
 [params]
 

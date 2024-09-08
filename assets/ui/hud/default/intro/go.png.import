@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd7umokykvfyi"
-path="res://.godot/imported/defaultStrums.png-956b997ab09b4169cb74a054bb6ab741.ctex"
+uid="uid://c0eu8egnawfwr"
+path="res://.godot/imported/go.png-8ed503baf236756276f02d9513dbdce8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/default/strums/defaultStrums.png"
-dest_files=["res://.godot/imported/defaultStrums.png-956b997ab09b4169cb74a054bb6ab741.ctex"]
+source_file="res://assets/ui/hud/default/intro/go.png"
+dest_files=["res://.godot/imported/go.png-8ed503baf236756276f02d9513dbdce8.ctex"]
 
 [params]
 

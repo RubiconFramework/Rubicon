@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3450r6jymynd"
-path="res://.godot/imported/combo.png-b5452343df7204102f8ed362bcaa8ba2.ctex"
+uid="uid://cd7umokykvfyi"
+path="res://.godot/imported/defaultStrums.png-4b9511ce107243b800da5f256620b01a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/default/score/combo.png"
-dest_files=["res://.godot/imported/combo.png-b5452343df7204102f8ed362bcaa8ba2.ctex"]
+source_file="res://assets/ui/noteskins/funkin/defaultStrums.png"
+dest_files=["res://.godot/imported/defaultStrums.png-4b9511ce107243b800da5f256620b01a.ctex"]
 
 [params]
 

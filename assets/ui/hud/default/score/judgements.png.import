@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm8m328axmhya"
-path="res://.godot/imported/set.png-9cff58d30b33885dcfc0427a890227d9.ctex"
+uid="uid://c7detcr7truqj"
+path="res://.godot/imported/judgements.png-f5fe1a38f8b8b598d36274bd9447678e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/default/intro/set.png"
-dest_files=["res://.godot/imported/set.png-9cff58d30b33885dcfc0427a890227d9.ctex"]
+source_file="res://assets/ui/hud/default/score/judgements.png"
+dest_files=["res://.godot/imported/judgements.png-f5fe1a38f8b8b598d36274bd9447678e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpfkgaqr1sgrj"
-path="res://.godot/imported/menuBGBlue.png-7305940f47ed12de8df101d9815c3eaf.ctex"
+uid="uid://b3450r6jymynd"
+path="res://.godot/imported/combo.png-dc501026417364b6c1311091cc2015d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menus/menuBGBlue.png"
-dest_files=["res://.godot/imported/menuBGBlue.png-7305940f47ed12de8df101d9815c3eaf.ctex"]
+source_file="res://assets/ui/hud/default/score/combo.png"
+dest_files=["res://.godot/imported/combo.png-dc501026417364b6c1311091cc2015d0.ctex"]
 
 [params]
 
