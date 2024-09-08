@@ -1,4 +1,4 @@
-namespace Rubicon.Rulesets;
+namespace Rubicon.Modes;
 
 public partial class BarLine : Control
 {

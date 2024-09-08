@@ -3,7 +3,7 @@ using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Data;
 
-namespace Rubicon.Rulesets;
+namespace Rubicon.Modes;
 
 public partial class NoteManager : Control
 {

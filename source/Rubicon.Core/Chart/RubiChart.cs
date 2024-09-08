@@ -11,6 +11,11 @@ public partial class RubiChart : Resource
 {
     #region Public Variables
     /// <summary>
+    /// The Rubicon Engine version this chart was created on.
+    /// </summary>
+    [Export] public uint Version = RubiconEngine.Version;
+    
+    /// <summary>
     /// A list of BPM changes.
     /// </summary>
     [Export] public BpmInfo[] BpmInfo = [];

@@ -55,7 +55,10 @@ public partial class FunkinChartPlugin : EditorImportPlugin
 
 		Dictionary json = Json.ParseString(file.GetAsText()).AsGodotDictionary();
 		if (!json.ContainsKey("song"))
+		{
+			GD.PrintErr($"The JSON file given at {sourceFile.GetBaseName()} is not a Funkin' Chart!");	
 			return Error.InvalidData;
+		}
 		
 		RubiChart chart = new RubiChart();
         Dictionary swagSong = json["song"].AsGodotDictionary();

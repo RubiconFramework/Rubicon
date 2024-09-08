@@ -1,6 +1,6 @@
 using Rubicon.Core.Chart;
 
-namespace Rubicon.Rulesets.Mania;
+namespace Rubicon.Modes.Mania;
 
 public partial class ManiaNote : Note
 {

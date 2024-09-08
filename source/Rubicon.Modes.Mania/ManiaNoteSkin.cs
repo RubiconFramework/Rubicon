@@ -1,4 +1,4 @@
-namespace Rubicon.Rulesets.Mania;
+namespace Rubicon.Modes.Mania;
 
 public partial class ManiaNoteSkin : Resource
 {
@@ -6,9 +6,7 @@ public partial class ManiaNoteSkin : Resource
     
     [Export] public SpriteFrames NoteTextures;
 
-    [Export] public SpriteFrames LaneTextures;
+    [Export] public PackedScene LaneScene;
 
     [Export] public CanvasItem.TextureFilterEnum Filter = CanvasItem.TextureFilterEnum.Linear;
-
-    [Export] public string[] Directions = ["LEFT", "DOWN", "UP", "RIGHT"];
 }

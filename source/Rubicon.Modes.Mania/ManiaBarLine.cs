@@ -1,4 +1,4 @@
-namespace Rubicon.Rulesets.Mania;
+namespace Rubicon.Modes.Mania;
 
 public partial class ManiaBarLine : BarLine
 {
