@@ -44,6 +44,16 @@ public partial class NoteData : Resource
     /// Basically tells the autoplay whether to miss this note or not. Should be ignored when serialized.
     /// </summary>
     public bool ShouldMiss = false;
+    
+    /// <summary>
+    /// True if the note has already been hit.
+    /// </summary>
+    public bool WasHit = false;
+
+    /// <summary>
+    /// True if the note was spawned.
+    /// </summary>
+    public bool WasSpawned = false;
 
     /// <summary>
     /// Converts the pre-existing Time and Length variables to milliseconds and stores them in MsTime and MsLength, using the provided BpmInfo.

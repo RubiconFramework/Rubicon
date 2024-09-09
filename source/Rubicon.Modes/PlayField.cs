@@ -2,6 +2,9 @@ using Rubicon.Core.Chart;
 
 namespace Rubicon.Modes;
 
+/// <summary>
+/// A control node with all general gameplay-related functions.
+/// </summary>
 public partial class PlayField : Control
 {
     [Export] public uint Health = 0;

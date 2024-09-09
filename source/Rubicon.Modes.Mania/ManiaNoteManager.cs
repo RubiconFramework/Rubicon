@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Data;
@@ -7,62 +9,57 @@ namespace Rubicon.Modes.Mania;
 public partial class ManiaNoteManager : NoteManager
 {
     [Export] public int Lane = 0;
+
+    [Export] public string Direction = "";
      
     [Export] public NoteData NoteHeld;
     
     [Export] public float DirectionAngle = 90f;
 
-    [ExportGroup("Graphics"), Export] public SpriteFrames NoteAtlas;
+    [Export] public ManiaNoteSkin NoteSkin;
 
-    [Export] public string NoteGraphicName = "green";
+    private Texture2D _tiledHoldGraphic;
+    private Image _tiledHoldImage;
 
-    [Export] public string HoldGraphicName = "green hold piece";
-
-    [Export] public string TailGraphicName = "green hold end";
-
-    [Export] public bool IsTiledHold = false;
-
-    private Texture2D _noteGraphic;
-    private Texture2D _holdGraphic;
-    private Texture2D _tailGraphic;
-
-    private Image _holdImage;
-
-    public void Setup()
+    public void Setup(ManiaBarLine parent, int lane, ManiaNoteSkin noteSkin)
     {
-        ChangeNoteGraphics(NoteAtlas, NoteGraphicName, HoldGraphicName, TailGraphicName);
+        ParentBarLine = parent;
+        Lane = lane;
+        Direction = noteSkin.GetDirection(lane, parent.Chart.Lanes);
+        ChangeNoteSkin(noteSkin);
+
+        Notes = parent.Chart.Notes.Where(x => x.Lane == Lane).ToArray();
+        Array.Sort(Notes, (a, b) =>
+        {
+            if (a.Time < b.Time)
+                return -1;
+            if (a.Time > b.Time)
+                return 1;
+            
+            return 0;
+        });
     }
 
-    public void ChangeNoteGraphics(SpriteFrames atlas, string noteName, string holdName, string tailName)
+    public void ChangeNoteSkin(ManiaNoteSkin noteSkin)
     {
-        _noteGraphic = null;
-        _tailGraphic = null;
+        NoteSkin = noteSkin;
+        _tiledHoldGraphic = null;
+        _tiledHoldImage = null;
 
-        if (_holdImage != null)
-        {
-            _holdGraphic.Free();
-            _holdImage.Free();
-        }
-        _holdGraphic = null;
+        if (!NoteSkin.UseTiledHold)
+            return;
 
-        NoteAtlas = atlas;
-        
-        NoteGraphicName = noteName;
-        HoldGraphicName = holdName;
-        TailGraphicName = tailName;
-        
-        // Create textures to use
-        _noteGraphic = NoteAtlas.GetFrameTexture(NoteGraphicName, 0);
-        _tailGraphic = NoteAtlas.GetFrameTexture(TailGraphicName, 0);
+        _tiledHoldGraphic = noteSkin.HoldAtlas.GetFrameTexture($"{Direction}NoteHold", 0);
+        if (_tiledHoldGraphic is not AtlasTexture atlasTexture)
+            return;
 
-        _holdGraphic = NoteAtlas.GetFrameTexture(HoldGraphicName, 0);
-        if (_holdGraphic is AtlasTexture atlasTex)
-        {
-            _holdImage = Image.CreateEmpty((int)atlasTex.Region.Size.X, (int)atlasTex.Region.Size.Y, false, Image.Format.Rgba8);
-            _holdImage.BlitRect(atlasTex.Atlas.GetImage(), (Rect2I)atlasTex.Region, Vector2I.Zero);
-            ImageTexture tex = ImageTexture.CreateFromImage(_holdImage);
-            _holdGraphic = tex;
-        }
+        int xPos = (int)atlasTexture.Region.Position.X;
+        int yPos = (int)atlasTexture.Region.Position.Y;
+        int width = (int)atlasTexture.Region.Size.X;
+        int height = (int)atlasTexture.Region.Size.Y;
+        _tiledHoldImage = Image.CreateEmpty(width, height, false, Image.Format.Rgba8);
+        _tiledHoldImage.BlitRect(atlasTexture.GetImage(), new Rect2I(xPos, yPos, width, height), Vector2I.Zero);
+        _tiledHoldGraphic = ImageTexture.CreateFromImage(_tiledHoldImage);
     }
     
     protected override Note SpawnNote(NoteData data, SvChange svChange)
@@ -93,7 +90,7 @@ public partial class ManiaNoteManager : NoteManager
 
         if (@event.IsPressed())
         {
-            NoteData[] notes = Chart.Notes;
+            NoteData[] notes = Notes;
             if (NoteHitIndex >= notes.Length)
             {
                 // Play pressed animation

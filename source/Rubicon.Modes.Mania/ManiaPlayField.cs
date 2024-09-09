@@ -2,6 +2,9 @@ using Rubicon.Core.Chart;
 
 namespace Rubicon.Modes.Mania;
 
+/// <summary>
+/// A <see cref="PlayField"/> class with Mania-related gameplay incorporated. Also the main mode for Rubicon Engine.
+/// </summary>
 public partial class ManiaPlayField : PlayField
 {
     [Export] public ManiaBarLine[] BarLines;

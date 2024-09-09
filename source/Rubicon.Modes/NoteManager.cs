@@ -10,12 +10,7 @@ public partial class NoteManager : Control
     /// <summary>
     /// Contains the individual chart for this manager.
     /// </summary>
-    [Export] public IndividualChart Chart;
-
-    /// <summary>
-    /// The distance to offset notes by position-wise.
-    /// </summary>
-    [Export] public float DistanceOffset;
+    [Export] public NoteData[] Notes;
 
     /// <summary>
     /// If true, the computer will hit the notes that come by.
@@ -40,12 +35,12 @@ public partial class NoteManager : Control
     /// <summary>
     /// Is true when the manager has gone through all notes present in <see cref="Chart">Chart</see>.
     /// </summary>
-    public bool IsComplete => NoteHitIndex >= Chart.Notes.Length;
+    public bool IsComplete => NoteHitIndex >= Notes.Length;
 
     /// <summary>
     /// Is true when the manager has no notes to hit for at least a measure.
     /// </summary>
-    public bool OnBreak => !IsComplete && Chart.Notes[NoteHitIndex].MsTime - Conductor.Time * 1000d >
+    public bool OnBreak => !IsComplete && Notes[NoteHitIndex].MsTime - Conductor.Time * 1000d >
         ConductorUtility.MeasureToMs(Conductor.CurrentMeasure, Conductor.Bpm, Conductor.TimeSigNumerator);
     
     /// <summary>
@@ -58,35 +53,26 @@ public partial class NoteManager : Control
     /// </summary>
     [Export] public int NoteSpawnIndex = 0;
 
-    [Export] public int ScrollVelocityIndex = 0;
-
     public override void _Process(double delta)
     {
         base._Process(delta);
         
-        // Handle SV changes
-        double time = Conductor.Time * 1000d;
-        if (ScrollVelocityIndex < Chart.SvChanges.Length)
-            while (ScrollVelocityIndex < Chart.SvChanges.Length && Chart.SvChanges[ScrollVelocityIndex].MsTime - time <= 0)
-                ScrollVelocityIndex++;
-        
-        // Handle distance offset
-        SvChange currentScrollVel = Chart.SvChanges[ScrollVelocityIndex];
-        DistanceOffset = -(float)(currentScrollVel.Position + (Conductor.Time - currentScrollVel.MsTime) * currentScrollVel.Multiplier) * ScrollSpeed;
-        
         // Handle note spawning
-        if (NoteSpawnIndex < Chart.Notes.Length && Visible)
+        double time = Conductor.Time * 1000d;
+        SvChange currentScrollVel = ParentBarLine.Chart.SvChanges[ParentBarLine.ScrollVelocityIndex];
+        if (NoteSpawnIndex < Notes.Length && Visible)
         {
-            while (NoteSpawnIndex < Chart.Notes.Length && Chart.Notes[NoteSpawnIndex].MsTime - time <= 2000)
+            while (NoteSpawnIndex < Notes.Length && Notes[NoteSpawnIndex].MsTime - time <= 2000)
             {
-                if (Chart.Notes[NoteSpawnIndex].MsTime - time < 0)
+                if (Notes[NoteSpawnIndex].MsTime - time < 0 || Notes[NoteSpawnIndex].WasSpawned)
                 {
                     NoteSpawnIndex++;
                     continue;
                 }
 
-                Note note = SpawnNote(Chart.Notes[NoteSpawnIndex], Chart.SvChanges[ScrollVelocityIndex]);
+                Note note = SpawnNote(Notes[NoteSpawnIndex], currentScrollVel);
                 AddChild(note);
+                Notes[NoteSpawnIndex].WasSpawned = true;
                 NoteSpawnIndex++;
             }
         }
@@ -95,16 +81,16 @@ public partial class NoteManager : Control
         if (IsComplete)
             return;
         
-        NoteData curNoteData = Chart.Notes[NoteHitIndex];
+        NoteData curNoteData = Notes[NoteHitIndex];
         if (Autoplay && InputsEnabled)
         {
             while (curNoteData.MsTime - time <= 0)
             {
-                if (!Chart.Notes[NoteHitIndex].ShouldMiss)
+                if (!Notes[NoteHitIndex].ShouldMiss)
                     OnNoteHit(curNoteData, 0, curNoteData.MsLength > 0);
-
+                
                 NoteHitIndex++;
-                curNoteData = Chart.Notes[NoteHitIndex];
+                curNoteData = Notes[NoteHitIndex];
             }
         }
 
@@ -116,12 +102,6 @@ public partial class NoteManager : Control
     }
 
     #region Virtual (Overridable) Methods
-    protected virtual void Setup(IndividualChart chart, BarLine parentBarLine)
-    {
-        Chart = chart;
-        ParentBarLine = parentBarLine;
-    }
-    
     protected virtual Note SpawnNote(NoteData data, SvChange svChange)
     {
         return null;
@@ -129,12 +109,12 @@ public partial class NoteManager : Control
 
     protected virtual void OnNoteHit(NoteData note, double distance, bool holding)
     {
-        
+        note.WasHit = true;
     }
     
     protected virtual void OnNoteMiss(NoteData note, double distance, bool holding)
     {
-        
+        note.WasHit = true;
     }
     #endregion
 }

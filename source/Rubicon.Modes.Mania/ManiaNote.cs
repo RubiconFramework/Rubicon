@@ -21,7 +21,7 @@ public partial class ManiaNote : Note
     
     public override void UpdatePosition()
     {
-        float startingPos = ParentManager.DistanceOffset;
+        float startingPos = ParentManager.ParentBarLine.DistanceOffset;
         float distance = (float)(Info.MsTime - SvChange.MsTime) * ParentManager.ScrollSpeed;
         Vector2 posMult = new Vector2(Mathf.Cos(ParentManager.DirectionAngle), Mathf.Sin(ParentManager.DirectionAngle));
         Position = Vector2.One * (startingPos + distance) * posMult; // TODO: Do holding.
