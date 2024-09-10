@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3450r6jymynd"
-path="res://.godot/imported/combo.png-dc501026417364b6c1311091cc2015d0.ctex"
+uid="uid://dm8m328axmhya"
+path="res://.godot/imported/set.png-d7d0abd477aa9a762168f7a92bd90f2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/hud/default/score/combo.png"
-dest_files=["res://.godot/imported/combo.png-dc501026417364b6c1311091cc2015d0.ctex"]
+source_file="res://assets/ui/styles/funkin/intro/set.png"
+dest_files=["res://.godot/imported/set.png-d7d0abd477aa9a762168f7a92bd90f2b.ctex"]
 
 [params]
 

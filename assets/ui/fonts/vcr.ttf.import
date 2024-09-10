@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dmry837rc1437"
-path="res://.godot/imported/funkin.ttf-0677fe02cebc8c4393f927314ba56765.fontdata"
+uid="uid://c5vbys8rxft6p"
+path="res://.godot/imported/vcr.ttf-4c8ac1042a00dc33cf105a2880a83cd5.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/funkin.ttf"
-dest_files=["res://.godot/imported/funkin.ttf-0677fe02cebc8c4393f927314ba56765.fontdata"]
+source_file="res://assets/ui/fonts/vcr.ttf"
+dest_files=["res://.godot/imported/vcr.ttf-4c8ac1042a00dc33cf105a2880a83cd5.fontdata"]
 
 [params]
 

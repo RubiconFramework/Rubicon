@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8dubbc1c1a4d"]
+
+[ext_resource type="PackedScene" uid="uid://j014di55rsba" path="res://scenes/RubiconGameHUD.tscn" id="1_chxdu"]
+
+[node name="Game2D" type="Node2D"]
+
+[node name="Characters" type="Node" parent="."]
+
+[node name="GameHUD" parent="." instance=ExtResource("1_chxdu")]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7detcr7truqj"
-path="res://.godot/imported/judgements.png-f5fe1a38f8b8b598d36274bd9447678e.ctex"
+uid="uid://c0eu8egnawfwr"
+path="res://.godot/imported/go.png-143dc706bb281ad52093d539f3e76638.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/hud/default/score/judgements.png"
-dest_files=["res://.godot/imported/judgements.png-f5fe1a38f8b8b598d36274bd9447678e.ctex"]
+source_file="res://assets/ui/styles/funkin/intro/go.png"
+dest_files=["res://.godot/imported/go.png-143dc706bb281ad52093d539f3e76638.ctex"]
 
 [params]
 

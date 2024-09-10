@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ch42nuiw15uh6"]
 
-[ext_resource type="Script" path="res://source/Space/Character2D.cs" id="1_deaeb"]
+[ext_resource type="Script" path="res://source/Rubicon.Space/Character2D.cs" id="1_deaeb"]
 [ext_resource type="SpriteFrames" uid="uid://dbld6aokhw543" path="res://assets/characters/bf/boyfriend.xml" id="2_lw8ua"]
 
 [sub_resource type="Animation" id="Animation_ylsds"]
