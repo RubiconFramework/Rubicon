@@ -38,8 +38,8 @@ enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg")
 folder_colors={
 "res://source/Rubicon.Autoload/": "pink",
 "res://source/Rubicon.Core/": "pink",
-"res://source/Rubicon.Modes.Mania/": "teal",
-"res://source/Rubicon.Modes/": "teal",
+"res://source/Rubicon.Rulesets/": "teal",
+"res://source/Rubicon.Rulesets/Mania/": "teal",
 "res://source/Rubicon.Space/": "teal"
 }
 

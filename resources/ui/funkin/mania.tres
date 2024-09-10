@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ManiaNoteSkin" load_steps=5 format=3 uid="uid://c7awjbb7h120n"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Modes.Mania/ManiaDirection.cs" id="1_ovin8"]
+[ext_resource type="Script" path="res://source/Rubicon.Rulesets/Mania/ManiaDirection.cs" id="1_ovin8"]
 [ext_resource type="SpriteFrames" uid="uid://bdtfwgijye378" path="res://assets/ui/styles/funkin/NOTE_assets.xml" id="2_vjhu8"]
-[ext_resource type="Script" path="res://source/Rubicon.Modes.Mania/ManiaNoteSkin.cs" id="2_wyt6f"]
+[ext_resource type="Script" path="res://source/Rubicon.Rulesets/Mania/ManiaNoteSkin.cs" id="2_wyt6f"]
 
 [sub_resource type="Resource" id="Resource_5m0m8"]
 script = ExtResource("1_ovin8")
