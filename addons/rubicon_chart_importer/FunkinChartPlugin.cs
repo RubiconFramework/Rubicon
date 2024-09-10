@@ -3,6 +3,7 @@ using Godot.Collections;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Meta;
+using Array = Godot.Collections.Array;
 
 namespace Rubicon.Extras;
 
@@ -117,27 +118,19 @@ public partial class FunkinChartPlugin : EditorImportPlugin
                 uint lane = parsedNote[1].AsUInt32();
                 if (lane <= 3)
                 {
-                    if (playerSection)
-                    {
-                        playerNotes.Add(note);
-                    }
+                    if (playerSection) playerNotes.Add(note);
                     else
                     {
-                        if (gfSection)
-                            speakerNotes.Add(note);
-                        else
-                            opponentNotes.Add(note);
+                        if (gfSection) speakerNotes.Add(note);
+                        else opponentNotes.Add(note);
                     }
                 }
                 else if (lane <= 7)
                 {
-                    if (playerSection)
-                        opponentNotes.Add(note);
-                    else
-                        playerNotes.Add(note);
+                    if (playerSection) opponentNotes.Add(note);
+                    else playerNotes.Add(note);
                 }
-                else
-                    speakerNotes.Add(note);
+                else speakerNotes.Add(note);
             }
             
             measureTime += ConductorUtility.MeasureToMs(1d, measureBpm, 4d);

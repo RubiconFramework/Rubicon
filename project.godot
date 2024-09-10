@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SettingsManager="*res://source/Rubicon.Autoload/SettingsManager.cs"
+Settings="*res://source/Rubicon.Autoload/Settings.cs"
 
 [display]
 
@@ -40,8 +40,13 @@ enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://source/Rubicon.API/": "pink",
 "res://source/Rubicon.Autoload/": "pink",
 "res://source/Rubicon.Core/": "pink",
+"res://source/Rubicon.Data/": "teal",
+"res://source/Rubicon.Extras/": "teal",
+"res://source/Rubicon.Game/": "teal",
+"res://source/Rubicon.Menus/": "teal",
 "res://source/Rubicon.Rulesets/": "teal",
 "res://source/Rubicon.Rulesets/Mania/": "teal",
 "res://source/Rubicon.Space/": "teal"

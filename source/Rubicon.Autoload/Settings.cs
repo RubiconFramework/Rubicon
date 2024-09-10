@@ -1,10 +1,14 @@
 using Rubicon.Data;
 
 namespace Rubicon.Autoload;
-public partial class SettingsManager : Node
+public partial class Settings : Node
 {
-    public static ClientSettings clientSettings = new();
-
+    private static ClientSettings ClientSettings = new();
+    public static GameplaySettings Gameplay = ClientSettings.GameplaySettings;
+    public static VideoSettings Video = ClientSettings.VideoSettings;
+    public static AudioSettings Audio = ClientSettings.AudioSettings;
+    public static MiscSettings Misc = ClientSettings.MiscSettings;
+    
     public override void _Ready()
     {
         base._Ready();
@@ -16,12 +20,12 @@ public partial class SettingsManager : Node
         if (!ResourceLoader.Exists(Main.SettingsFilePath))
             SaveSettings();
 
-        clientSettings = GD.Load<ClientSettings>(Main.SettingsFilePath);
+        ClientSettings = GD.Load<ClientSettings>(Main.SettingsFilePath);
     }
 
     public static void SaveSettings()
     {
-        ResourceSaver.Save(clientSettings, Main.SettingsFilePath);
+        ResourceSaver.Save(ClientSettings, Main.SettingsFilePath);
         GD.Print($"Succesfully saved settings to file: {Main.SettingsFilePath}");
     }
 }
