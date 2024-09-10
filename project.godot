@@ -31,12 +31,16 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg", "res://addons/rubicon_chart_importer/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
-"res://source/Rubicon.Autoload/": "red"
+"res://source/Rubicon.Autoload/": "pink",
+"res://source/Rubicon.Core/": "pink",
+"res://source/Rubicon.Modes.Mania/": "teal",
+"res://source/Rubicon.Modes/": "teal",
+"res://source/Rubicon.Space/": "teal"
 }
 
 [gui]
