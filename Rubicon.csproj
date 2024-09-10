@@ -14,4 +14,18 @@
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="resources\characters\bf.tscn" />
+    <Content Include="resources\ui\funkin\mania.tres" />
+    <Content Include="resources\ui\funkin\style.tres" />
+    <Content Include="scenes\RubiconGame2D.tscn" />
+    <Content Include="scenes\RubiconGameHUD.tscn" />
+    <Content Include="songs\test\data\normal.json" />
+    <Content Include="songs\test\data\normal.json.import" />
+    <Content Include="songs\test\meta.tres" />
+    <Content Include="songs\test\song\Inst.ogg" />
+    <Content Include="songs\test\song\Inst.ogg.import" />
+    <Content Include="songs\test\song\Vocals.ogg" />
+    <Content Include="songs\test\song\Vocals.ogg.import" />
+  </ItemGroup>
 </Project>

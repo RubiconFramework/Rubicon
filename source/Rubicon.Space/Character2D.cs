@@ -98,10 +98,7 @@ public partial class Character2D : Node2D
 
 	private static string FlipAnim(string anim)
     {
-		string newAnim = anim.Contains("LEFT")
-		? anim.Replace("LEFT", "RIGHT")
-		: anim.Replace("RIGHT", "LEFT");
-
+		string newAnim = anim.Contains("LEFT") ? anim.Replace("LEFT", "RIGHT") : anim.Replace("RIGHT", "LEFT");
         return newAnim;
     }
 }

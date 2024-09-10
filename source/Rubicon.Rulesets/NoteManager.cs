@@ -110,9 +110,9 @@ public partial class NoteManager : Control
             }
         }
 
-        if (curNoteData.MsTime - time <= -EngineSettings.BadHitWindow)
+        if (curNoteData.MsTime - time <= -(float)ProjectSettings.GetSetting("global/BadHitWindow"))
         {
-            OnNoteMiss(curNoteData, -EngineSettings.BadHitWindow - 1, false);
+            OnNoteMiss(curNoteData, -(float)ProjectSettings.GetSetting("global/BadHitWindow") - 1, false);
             NoteHitIndex++;
         }
     }

@@ -84,20 +84,20 @@ public partial class ManiaNoteManager : NoteManager
             }
 
             double songPos = Conductor.Time * 1000d; // calling it once since this can lag the game HORRIBLY if used without caution
-            while (notes[NoteHitIndex].MsTime - songPos <= -EngineSettings.BadHitWindow)
+            while (notes[NoteHitIndex].MsTime - songPos <= -(float)ProjectSettings.GetSetting("global/BadHitWindow"))
             {
                 // Miss every note thats too late first
-                OnNoteMiss(notes[NoteHitIndex], -EngineSettings.BadHitWindow - 1, false);
+                OnNoteMiss(notes[NoteHitIndex], -(float)ProjectSettings.GetSetting("global/BadHitWindow") - 1, false);
                 NoteHitIndex++;
             }
 
             double hitTime = notes[NoteHitIndex].MsTime - songPos;
-            if (Mathf.Abs(hitTime) <= EngineSettings.BadHitWindow) // Literally any other rating
+            if (Mathf.Abs(hitTime) <= (float)ProjectSettings.GetSetting("global/BadHitWindow")) // Literally any other rating
             {
                 OnNoteHit(notes[NoteHitIndex], hitTime, notes[NoteHitIndex].Length > 0);
                 NoteHitIndex++;
             }
-            else if (hitTime < -EngineSettings.BadHitWindow) // Your Miss / "SHIT" rating
+            else if (hitTime < -(float)ProjectSettings.GetSetting("global/BadHitWindow")) // Your Miss / "SHIT" rating
             {
                 // Do confirm thing
                 OnNoteMiss(notes[NoteHitIndex], hitTime, true);
@@ -113,7 +113,7 @@ public partial class ManiaNoteManager : NoteManager
             if (NoteHeld != null)
             {
                 double length = NoteHeld.MsTime + NoteHeld.MsLength - (Conductor.Time * 1000d);
-                if (length <= EngineSettings.BadHitWindow)
+                if (length <= (float)ProjectSettings.GetSetting("global/BadHitWindow"))
                     OnNoteHit(NoteHeld, length, false);
                 else
                     OnNoteMiss(NoteHeld, length, true);

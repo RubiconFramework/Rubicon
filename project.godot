@@ -43,6 +43,13 @@ folder_colors={
 "res://source/Rubicon.Space/": "teal"
 }
 
+[global]
+
+PerfectHitWindow=25.0
+GreatHitWindow=50.0
+GoodHitWindow=90.0
+BadHitWindow=135.0
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false

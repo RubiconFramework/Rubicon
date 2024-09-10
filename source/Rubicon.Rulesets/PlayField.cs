@@ -3,7 +3,8 @@ using Rubicon.Core.Chart;
 namespace Rubicon.Modes;
 
 /// <summary>
-/// A control node with all general gameplay-related functions.
+/// A control node with all general gameplay-related functions. -binpuki
+/// this is just playstate. -duo
 /// </summary>
 public partial class PlayField : Control
 {
@@ -43,7 +44,7 @@ public partial class PlayField : Control
     }
 
     /// <summary>
-    /// Instantly kills the player and emits the sinal.
+    /// Instantly kills the player and emits the signal.
     /// </summary>
     public void Fail()
     {
