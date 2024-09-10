@@ -18,9 +18,6 @@ public partial class ManiaNoteManager : NoteManager
 
     [Export] public ManiaNoteSkin NoteSkin;
 
-    private Texture2D _tiledHoldGraphic;
-    private Image _tiledHoldImage;
-
     public void Setup(ManiaBarLine parent, int lane, ManiaNoteSkin noteSkin)
     {
         ParentBarLine = parent;
@@ -43,31 +40,20 @@ public partial class ManiaNoteManager : NoteManager
     public void ChangeNoteSkin(ManiaNoteSkin noteSkin)
     {
         NoteSkin = noteSkin;
-        _tiledHoldGraphic = null;
-        _tiledHoldImage = null;
-
         if (!NoteSkin.UseTiledHold)
             return;
-
-        _tiledHoldGraphic = noteSkin.HoldAtlas.GetFrameTexture($"{Direction}NoteHold", 0);
-        if (_tiledHoldGraphic is not AtlasTexture atlasTexture)
-            return;
-
-        int xPos = (int)atlasTexture.Region.Position.X;
-        int yPos = (int)atlasTexture.Region.Position.Y;
-        int width = (int)atlasTexture.Region.Size.X;
-        int height = (int)atlasTexture.Region.Size.Y;
-        _tiledHoldImage = Image.CreateEmpty(width, height, false, Image.Format.Rgba8);
-        _tiledHoldImage.BlitRect(atlasTexture.GetImage(), new Rect2I(xPos, yPos, width, height), Vector2I.Zero);
-        _tiledHoldGraphic = ImageTexture.CreateFromImage(_tiledHoldImage);
+        
+        NoteSkin.InitializeTileHolds();
     }
     
-    protected override Note SpawnNote(NoteData data, SvChange svChange)
+    protected override Note CreateNote() => new ManiaNote();
+
+    protected override void SetupNote(Note note, NoteData data, SvChange svChange)
     {
-        ManiaNote note = new ManiaNote();
-        //note.Setup(data, svChange);
+        if (note is not ManiaNote maniaNote)
+            return;
         
-        return base.SpawnNote(data, svChange);
+        maniaNote.Setup(data, svChange, this, NoteSkin);
     }
 
     protected override void OnNoteHit(NoteData note, double distance, bool holding)

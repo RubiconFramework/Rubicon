@@ -12,9 +12,20 @@ public partial class Note : Control
     /// </summary>
     [Export] public NoteData Info;
 
+    /// <summary>
+    /// If false, this note is ready to be recycled.
+    /// </summary>
+    [Export] public bool Active = true;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [Export] public bool Missed = false;
+
     public override void _Process(double delta)
     {
-        base._Process(delta);
+        if (!Active)
+            return;
         
         UpdatePosition();
     }

@@ -27,11 +27,32 @@ public partial class PlayField : Control
     
     [Export] public int TargetBarLine = 0;
     
+    [Signal] public delegate void OnFailEventHandler();
     
-
     public virtual void Setup(RubiChart chart)
     {
         Chart = chart;
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+        
+        if (GetFailCondition())
+            Fail();
+    }
+
+    /// <summary>
+    /// Instantly kills the player and emits the sinal.
+    /// </summary>
+    public void Fail()
+    {
+        EmitSignal(SignalName.OnFail);
+    }
+
+    public virtual void UpdateOptions()
+    {
+        
     }
 
     public virtual void UpdateScore()

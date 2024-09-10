@@ -34,12 +34,15 @@ public partial class BarLine : Control
     /// A signal that is emitted every time a manager in this bar line misses a note.
     /// </summary>
     [Signal] public delegate void NoteMissEventHandler(BarLine barLine, int lane, NoteData noteData, double distance);
-
+    
     public override void _Process(double delta)
     {
         base._Process(delta);
         
         // Handle SV changes
+        if (Chart?.SvChanges == null)
+            return;
+        
         double time = Conductor.Time * 1000d;
         if (ScrollVelocityIndex < Chart.SvChanges.Length)
             while (ScrollVelocityIndex < Chart.SvChanges.Length && Chart.SvChanges[ScrollVelocityIndex].MsTime - time <= 0)

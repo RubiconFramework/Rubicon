@@ -14,10 +14,20 @@ public partial class ManiaPlayField : PlayField
         base.Setup(chart);
 
         BarLines = new ManiaBarLine[chart.Charts.Length];
-        foreach (var indChart in chart.Charts)
+        // REALLY SHITTY, REPLACE BELOW LATER !!!
+        ManiaNoteSkin noteSkin = GD.Load<ManiaNoteSkin>("res://resources/ui/funkin/mania.tres");
+        for (int i = 0; i < chart.Charts.Length; i++)
         {
+            IndividualChart indChart = chart.Charts[i];
             ManiaBarLine curBarLine = new ManiaBarLine();
+            curBarLine.Setup(indChart, noteSkin, chart.ScrollSpeed);
+            curBarLine.Name = "Mania Bar Line " + i;
             
+            // Using Council positioning for now, sorry :/
+            curBarLine.Position = new Vector2(i * 480f - (chart.Charts.Length - 1) * 480f / 2f, 0f);
+            
+            AddChild(curBarLine);
+            BarLines[i] = curBarLine;
         }
     }
     

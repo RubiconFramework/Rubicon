@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot.Collections;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
@@ -8,9 +9,14 @@ namespace Rubicon.Modes;
 public partial class NoteManager : Control
 {
     /// <summary>
-    /// Contains the individual chart for this manager.
+    /// Contains the individual notes for this manager.
     /// </summary>
     [Export] public NoteData[] Notes;
+
+    /// <summary>
+    /// Contains the visual hit objects for this manager. Notes are recycled.
+    /// </summary>
+    [Export] public Array<Note> HitObjects;
 
     /// <summary>
     /// If true, the computer will hit the notes that come by.
@@ -70,8 +76,18 @@ public partial class NoteManager : Control
                     continue;
                 }
 
-                Note note = SpawnNote(Notes[NoteSpawnIndex], currentScrollVel);
-                AddChild(note);
+                Note note = HitObjects.FirstOrDefault(x => x.Active);
+                if (note == null)
+                {
+                    note = CreateNote();
+                    AddChild(note);
+                }
+                else
+                {
+                    note.MoveToFront();
+                }
+                
+                SetupNote(note, Notes[NoteSpawnIndex], currentScrollVel);
                 Notes[NoteSpawnIndex].WasSpawned = true;
                 NoteSpawnIndex++;
             }
@@ -102,9 +118,22 @@ public partial class NoteManager : Control
     }
 
     #region Virtual (Overridable) Methods
-    protected virtual Note SpawnNote(NoteData data, SvChange svChange)
+
+    /// <summary>
+    /// Is called when creating a new note. Override to replace with a type that inherits from <see cref="Note"/>.
+    /// </summary>
+    /// <returns>A new note.</returns>
+    protected virtual Note CreateNote() => new Note();
+
+    /// <summary>
+    /// Called when setting up a note. Notes will be recycled.
+    /// </summary>
+    /// <param name="note">The note passed in</param>
+    /// <param name="data">The note data</param>
+    /// <param name="svChange">The SV change associated</param>
+    protected virtual void SetupNote(Note note, NoteData data, SvChange svChange)
     {
-        return null;
+        
     }
 
     protected virtual void OnNoteHit(NoteData note, double distance, bool holding)

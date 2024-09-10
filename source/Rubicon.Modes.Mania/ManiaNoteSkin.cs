@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Rubicon.Modes.Mania;
@@ -47,6 +48,61 @@ public partial class ManiaNoteSkin : Resource
     /// Specifies direction names for each lane count.
     /// </summary>
     [Export] public ManiaDirection[] Directions = [new ManiaDirection()];
+
+    private Dictionary<int, Texture2D[]> _tiledHoldGraphics = new();
+    
+    /// <summary>
+    /// Initializes tiled hold graphics. Automatically called by <see cref="GetTiledHold"/> if it hasn't been called already.
+    /// </summary>
+    public void InitializeTileHolds()
+    {
+        if (!UseTiledHold || _tiledHoldGraphics.Count != 0)
+            return;
+        
+        foreach (ManiaDirection direction in Directions)
+        {
+            int laneCount = direction.LaneCount;
+
+            Texture2D[] textures = new Texture2D[laneCount];
+            for (int i = 0; i < laneCount; i++)
+            {
+                string curDirection = direction.Directions[i];
+                Texture2D curTexture = HoldAtlas.GetFrameTexture($"{curDirection}NoteHold", 0);
+                if (curTexture is not AtlasTexture atlasTexture)
+                {
+                    textures[i] = curTexture;
+                    continue;
+                }
+                
+                int xPos = (int)atlasTexture.Region.Position.X;
+                int yPos = (int)atlasTexture.Region.Position.Y;
+                int width = (int)atlasTexture.Region.Size.X;
+                int height = (int)atlasTexture.Region.Size.Y;
+                Image curHoldImage = Image.CreateEmpty(width, height, false, Image.Format.Rgba8);
+                curHoldImage.BlitRect(atlasTexture.GetImage(), new Rect2I(xPos, yPos, width, height), Vector2I.Zero);
+                textures[i] = ImageTexture.CreateFromImage(curHoldImage);
+            }
+            
+            _tiledHoldGraphics.Add(laneCount, textures);
+        }
+    }
+    
+    /// <summary>
+    /// Gets a tiled hold graphic based on lane count and lane number if tiled holds are active.
+    /// </summary>
+    /// <param name="lane">The lane index</param>
+    /// <param name="laneCount">The amount of lanes.</param>
+    /// <returns>A Texture2D compatible with tiling.</returns>
+    public Texture2D GetTiledHold(int lane, int laneCount = 4)
+    {
+        if (!UseTiledHold)
+            return null;
+
+        if (_tiledHoldGraphics.Count == 0)
+            InitializeTileHolds();
+
+        return _tiledHoldGraphics[laneCount][lane];
+    }
 
     /// <summary>
     /// Gets a direction name based on lane count and lane number.
