@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 run/max_fps=144
 config/icon="res://icon.svg"
 
+[autoload]
+
+SettingsManager="*res://source/Rubicon.Autoload/SettingsManager.cs"
+
 [display]
 
 window/size/viewport_width=960
