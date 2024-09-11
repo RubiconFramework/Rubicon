@@ -13,7 +13,7 @@ public partial class Conductor : Node
     /// <summary>
     /// The current instance of the Conductor class.
     /// </summary>
-    private static Conductor _instance;
+    public static Conductor _instance;
     #endregion
 
     #region Status Variables

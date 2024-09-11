@@ -23,7 +23,7 @@ public partial class Settings : Node
 
     public static void SaveSettings()
     {
-        ResourceSaver.Save((Resource)ClientSettings, SettingsFilePath);
+        ResourceSaver.Save(ClientSettings, SettingsFilePath);
         GD.Print($"Succesfully saved settings to file: {SettingsFilePath}");
     }
 }

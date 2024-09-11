@@ -18,6 +18,7 @@ config/icon="res://assets/ui/misc/fnf.png"
 
 [autoload]
 
+DebugInfo="*res://source/Rubicon.Autoload/DebugInfo.tscn"
 Settings="*res://source/Rubicon.Autoload/Settings.cs"
 
 [display]

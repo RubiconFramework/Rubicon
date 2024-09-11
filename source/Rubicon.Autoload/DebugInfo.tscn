@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=3 uid="uid://bditr4686af55"]
+
+[ext_resource type="Script" path="res://source/Rubicon.Autoload/DebugInfo.cs" id="1_kpyvy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rmx7"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcq7a"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yvj1"]
+bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[node name="DebugInfo" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_kpyvy")
+
+[node name="InfoContainer" type="VBoxContainer" parent="."]
+offset_left = 9.0
+offset_top = 4.0
+offset_right = 1359.0
+offset_bottom = 213.0
+mouse_filter = 2
+
+[node name="MainInformation" type="HBoxContainer" parent="InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 13
+
+[node name="FPS" type="Label" parent="InfoContainer/MainInformation"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "FPS: 0"
+
+[node name="RAM" type="Label" parent="InfoContainer/MainInformation"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_xcq7a")
+text = "RAM: 0 MB [0 MB]"
+
+[node name="VRAM" type="Label" parent="InfoContainer/MainInformation"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "VRAM: 0 MB"
+
+[node name="DebugInformation" type="VBoxContainer" parent="InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Objects" type="HBoxContainer" parent="InfoContainer/DebugInformation"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 13
+
+[node name="AllObjects" type="Label" parent="InfoContainer/DebugInformation/Objects"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "All Instantiated Objects: 0"
+
+[node name="ResourceObjects" type="Label" parent="InfoContainer/DebugInformation/Objects"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Resource Objects in Use: 0"
+
+[node name="NodeObjects" type="Label" parent="InfoContainer/DebugInformation/Objects"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8yvj1")
+text = "Node Objects: 0 (Orphan Nodes: 0)"
+
+[node name="Versions" type="HBoxContainer" parent="InfoContainer/DebugInformation"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 13
+
+[node name="Rubicon" type="Label" parent="InfoContainer/DebugInformation/Versions"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "Rubicon Framework 1 [Debug]"
+
+[node name="Godot" type="Label" parent="InfoContainer/DebugInformation/Versions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "Godot Engine 4.2.2 [stable]"
+
+[node name="Scene" type="Label" parent="InfoContainer/DebugInformation"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "Current Scene: res://src/autoload/debug/DebugInfo.tscn"
+
+[node name="Conductor" type="Label" parent="InfoContainer/DebugInformation"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "Conductor BPM: 0 --- Song Position: 0  
+CurStep: 0 [Duration: 0] 
+CurBeat: 0 [Duration: 0]
+CurSection: 0 [Duration: 0]"
