@@ -59,9 +59,25 @@ public partial class NoteManager : Control
     /// </summary>
     [Export] public int NoteSpawnIndex = 0;
 
+    /// <summary>
+    /// Where NoteData objects queue up to have their graphics killed.
+    /// </summary>
+    [Export] public Array<NoteData> RecycleQueue = new();
+
     public override void _Process(double delta)
     {
         base._Process(delta);
+        
+        // Process recycle queue
+        for (int i = 0; i < RecycleQueue.Count; i++)
+        {
+            foreach (Note note in HitObjects.Where(x => x.Info == RecycleQueue[i]))
+            {
+                note.Active = false;
+                note.Visible = false;
+            }
+        }
+        RecycleQueue.Clear();
         
         // Handle note spawning
         double time = Conductor.Time * 1000d;
@@ -110,9 +126,9 @@ public partial class NoteManager : Control
             }
         }
 
-        if (curNoteData.MsTime - time <= -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window"))
+        if (curNoteData.MsTime - time <= -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
         {
-            OnNoteMiss(curNoteData, -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window") - 1, false);
+            OnNoteMiss(curNoteData, -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble() - 1, false);
             NoteHitIndex++;
         }
     }

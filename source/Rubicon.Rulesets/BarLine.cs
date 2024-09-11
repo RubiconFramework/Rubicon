@@ -29,7 +29,7 @@ public partial class BarLine : Control
     /// <summary>
     /// A signal that is emitted every time a manager in this bar line hits a note. Can be a miss.
     /// </summary>
-    [Signal] public delegate void NoteHitEventHandler(BarLine barLine, int lane, NoteData noteData, HitType hitType, double distance, bool holding);
+    [Signal] public delegate void NoteHitEventHandler(BarLine barLine, int lane, NoteData noteData, int hitType, double distance, bool holding);
     
     public override void _Process(double delta)
     {
@@ -46,5 +46,10 @@ public partial class BarLine : Control
         
         SvChange currentScrollVel = Chart.SvChanges[ScrollVelocityIndex];
         DistanceOffset = -(float)(currentScrollVel.Position + (Conductor.Time - currentScrollVel.MsTime) * currentScrollVel.Multiplier);
+    }
+
+    public void OnNoteHit(int lane, NoteData noteData, HitType hit, double distance, bool holding)
+    {
+        EmitSignal(SignalName.NoteHit, this, lane, noteData, (int)hit, distance, holding);
     }
 }

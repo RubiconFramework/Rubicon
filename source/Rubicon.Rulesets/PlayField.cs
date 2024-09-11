@@ -33,6 +33,7 @@ public partial class PlayField : Control
     public virtual void Setup(RubiChart chart)
     {
         Chart = chart;
+        SetAnchorsPreset(LayoutPreset.FullRect);
     }
 
     public override void _Process(double delta)

@@ -2,12 +2,10 @@ using Rubicon.Core;
 
 namespace Rubicon.Rulesets.Mania;
 
-public class ManiaRuleSet : RuleSet
+[GlobalClass]
+public partial class ManiaRuleSet : RuleSet
 {
-    /// <summary>
-    /// This ruleset is the default, so zero.
-    /// </summary>
-    public override uint Id => 0x0;
+    public override string Uid => "mania";
     
     /// <summary>
     /// Full name of the Mania ruleset.

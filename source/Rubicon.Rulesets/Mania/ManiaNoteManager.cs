@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+using Godot.Collections;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Data;
+using Array = System.Array;
 
 namespace Rubicon.Rulesets.Mania;
 
@@ -59,11 +61,29 @@ public partial class ManiaNoteManager : NoteManager
     protected override void OnNoteHit(NoteData note, double distance, bool holding)
     {
         base.OnNoteHit(note, distance, holding);
-    }
 
-    protected override void OnNoteMiss(NoteData note, double distance, bool holding)
-    {
-        base.OnNoteMiss(note, distance, holding);
+        // Let's just pretend there's hit windows for now
+        //HitType[] hitTypes = [ HitType.Perfect, HitType.Great, HitType.Good, HitType.Bad ];
+        double[] hitWindows = [ 
+            ProjectSettings.GetSetting("rubicon/judgments/perfect_hit_window").AsDouble(),
+            ProjectSettings.GetSetting("rubicon/judgments/great_hit_window").AsDouble(),
+            ProjectSettings.GetSetting("rubicon/judgments/good_hit_window").AsDouble(),
+            ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()
+        ];
+        int hit = hitWindows.Length - 1;
+        for (int i = 0; i < hitWindows.Length; i++)
+        {
+            if (Mathf.Abs(distance) <= hitWindows[i])
+            {
+                hit = i;
+                break;
+            }
+        }
+        
+        if (!holding)
+            RecycleQueue.Add(note);
+        
+        ParentBarLine.OnNoteHit(Lane, note, (HitType)hit, distance, holding);
     }
 
     public override void _Input(InputEvent @event)
@@ -87,17 +107,17 @@ public partial class ManiaNoteManager : NoteManager
             while (notes[NoteHitIndex].MsTime - songPos <= -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window"))
             {
                 // Miss every note thats too late first
-                OnNoteMiss(notes[NoteHitIndex], -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window") - 1, false);
+                OnNoteMiss(notes[NoteHitIndex], -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble() - 1, false);
                 NoteHitIndex++;
             }
 
             double hitTime = notes[NoteHitIndex].MsTime - songPos;
-            if (Mathf.Abs(hitTime) <= (float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window")) // Literally any other rating
+            if (Mathf.Abs(hitTime) <= ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()) // Literally any other rating
             {
                 OnNoteHit(notes[NoteHitIndex], hitTime, notes[NoteHitIndex].Length > 0);
                 NoteHitIndex++;
             }
-            else if (hitTime < -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window")) // Your Miss / "SHIT" rating
+            else if (hitTime < -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()) // Your Miss / "SHIT" rating
             {
                 // Do confirm thing
                 OnNoteMiss(notes[NoteHitIndex], hitTime, true);
@@ -113,7 +133,7 @@ public partial class ManiaNoteManager : NoteManager
             if (NoteHeld != null)
             {
                 double length = NoteHeld.MsTime + NoteHeld.MsLength - (Conductor.Time * 1000d);
-                if (length <= (float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window"))
+                if (length <= ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
                     OnNoteHit(NoteHeld, length, false);
                 else
                     OnNoteMiss(NoteHeld, length, true);

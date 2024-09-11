@@ -38,7 +38,7 @@ public partial class ManiaNote : Note
         if (Info.MsLength <= 0)
             return;
         
-        AdjustScrollSpeed();
+        AdjustTailSize();
         AdjustTailLength(Info.MsLength);
     }
 
@@ -144,24 +144,38 @@ public partial class ManiaNote : Note
         {
             TiledHold.Texture = noteSkin.GetTiledHold(lane, laneCount);
             TiledHold.Visible = true;
+
+            float holdOffset = TiledHold.Texture.GetHeight() / 2f;
+            TiledHold.PivotOffset = new Vector2(Hold.Offset.X, -holdOffset);
+            
             if (Hold != null)
                 Hold.Visible = false;
         }
         else
         {
+            Hold.Centered = false;
             Hold.SpriteFrames = noteSkin.HoldAtlas;
             Hold.Play($"{direction}NoteHold");
             Hold.Visible = true;
+            
+            // Set offset too
+            float holdOffset = Hold.SpriteFrames.GetFrameTexture($"{direction}NoteHold", 0).GetHeight() / 2f;
+            Hold.Offset = new Vector2(Hold.Offset.X, -holdOffset);
+            
             if (TiledHold != null)
                 TiledHold.Visible = false;
         }
 
+        Tail.Centered = false;
         Tail.SpriteFrames = noteSkin.HoldAtlas;
         Tail.Play($"{direction}NoteTail");
         Tail.Visible = true;
+        
+        float tailOffset = Tail.SpriteFrames.GetFrameTexture($"{direction}NoteTail", 0).GetHeight() / 2f;
+        Hold.Offset = new Vector2(Hold.Offset.X, -tailOffset);
     }
     
-    public void AdjustScrollSpeed()
+    public void AdjustTailSize()
     {
         // Rough code, might clean up later if possible
         string direction = NoteSkin.GetDirection(ParentManager.Lane, ParentManager.ParentBarLine.Chart.Lanes).ToLower();
