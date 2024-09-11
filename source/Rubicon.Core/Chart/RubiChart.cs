@@ -14,6 +14,11 @@ public partial class RubiChart : Resource
     /// The Rubicon Engine version this chart was created on.
     /// </summary>
     [Export] public uint Version = RubiconEngine.Version;
+
+    /// <summary>
+    /// The default mode for this chart. Is 0 by default since that's the Mania ruleset's ID.
+    /// </summary>
+    [Export] public uint Mode = 0x0;
     
     /// <summary>
     /// A list of BPM changes.

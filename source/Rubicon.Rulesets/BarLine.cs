@@ -1,7 +1,8 @@
 using Rubicon.Core;
 using Rubicon.Core.Chart;
+using Rubicon.Core.Data;
 
-namespace Rubicon.Modes;
+namespace Rubicon.Rulesets;
 
 public partial class BarLine : Control
 {
@@ -26,14 +27,9 @@ public partial class BarLine : Control
     [Export] public int ScrollVelocityIndex = 0;
     
     /// <summary>
-    /// A signal that is emitted every time a manager in this bar line hits a note successfully.
+    /// A signal that is emitted every time a manager in this bar line hits a note. Can be a miss.
     /// </summary>
-    [Signal] public delegate void NoteHitEventHandler(BarLine barLine, int lane, NoteData noteData, double distance, bool holding);
-    
-    /// <summary>
-    /// A signal that is emitted every time a manager in this bar line misses a note.
-    /// </summary>
-    [Signal] public delegate void NoteMissEventHandler(BarLine barLine, int lane, NoteData noteData, double distance);
+    [Signal] public delegate void NoteHitEventHandler(BarLine barLine, int lane, NoteData noteData, HitType hitType, double distance, bool holding);
     
     public override void _Process(double delta)
     {

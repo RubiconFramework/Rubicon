@@ -1,6 +1,6 @@
 using Rubicon.Core.Chart;
 
-namespace Rubicon.Modes.Mania;
+namespace Rubicon.Rulesets.Mania;
 
 /// <summary>
 /// A <see cref="PlayField"/> class with Mania-related gameplay incorporated. Also the main mode for Rubicon Engine.

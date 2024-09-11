@@ -99,19 +99,26 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 13
 
+[node name="Game" type="Label" parent="InfoContainer/DebugInformation/Versions"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
+text = "Game Name [Debug]"
+
 [node name="Rubicon" type="Label" parent="InfoContainer/DebugInformation/Versions"]
 layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
-text = "Rubicon Framework 1 [Debug]"
+text = "Rubicon Engine 0.1.0.0-SmthMaybe"
 
 [node name="Godot" type="Label" parent="InfoContainer/DebugInformation/Versions"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
-text = "Godot Engine 4.2.2 [stable]"
+text = "Godot Engine 4.4 [dev2]"
 
 [node name="Scene" type="Label" parent="InfoContainer/DebugInformation"]
 layout_mode = 2

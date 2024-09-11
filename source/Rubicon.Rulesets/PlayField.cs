@@ -1,6 +1,6 @@
 using Rubicon.Core.Chart;
 
-namespace Rubicon.Modes;
+namespace Rubicon.Rulesets;
 
 /// <summary>
 /// A control node with all general gameplay-related functions. -binpuki

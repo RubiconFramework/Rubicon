@@ -1,6 +1,6 @@
 using Rubicon.Core.Chart;
 
-namespace Rubicon.Modes.Mania;
+namespace Rubicon.Rulesets.Mania;
 
 public partial class ManiaBarLine : BarLine
 {

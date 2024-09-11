@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Rubicon.Modes.Mania;
+namespace Rubicon.Rulesets.Mania;
 
 /// <summary>
 /// A resource that holds important information for Mania-related graphics.

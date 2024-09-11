@@ -1,6 +1,6 @@
 using Rubicon.Core.Chart;
 
-namespace Rubicon.Modes;
+namespace Rubicon.Rulesets;
 
 /// <summary>
 /// A control node used to visualize a note meant to be hit on-screen.

@@ -6,7 +6,7 @@ using Rubicon.Core;
 
 namespace Rubicon.backend.autoload;
 
-[Icon("res://assets/misc/autoload.png")]
+//[Icon("res://assets/misc/autoload.png")]
 public partial class DebugInfo : CanvasLayer
 {
     /*Main Info (Always Visible)*/
@@ -22,6 +22,7 @@ public partial class DebugInfo : CanvasLayer
     [NodePath("InfoContainer/DebugInformation/Objects/ResourceObjects")] private Label ResourceObjects;
     
     //Versions
+    [NodePath("InfoContainer/DebugInformation/Versions/Game")] private Label GameVersion;
     [NodePath("InfoContainer/DebugInformation/Versions/Rubicon")] private Label RubiconVersion;
     [NodePath("InfoContainer/DebugInformation/Versions/Godot")] private Label GodotVersion;
     
@@ -49,25 +50,25 @@ public partial class DebugInfo : CanvasLayer
         DebugInformation.Visible = false;
         UpdateStaticLabels();
     }
-
-    private static string byteToReadableUnit(long bytes)
+    
+    private static string ConvertToMemoryFormat(long mem)
     {
-        double size = bytes;
-        string unit = "MB";
-        size /= (1024.0 * 1024.0);
-        if (size >= 1024.0)
-        {
-            size /= 1024.0;
-            unit = "GB";
-        }
-        return $"{size:F2} {unit}";
+        // Stole this from holofunk lol
+        if (mem >= 0x40000000)
+            return (float)Math.Round(mem / 1024f / 1024f / 1024f, 2) + " GB";
+        if (mem >= 0x100000)
+            return (float)Math.Round(mem / 1024f / 1024f, 2) + " MB";
+        if (mem >= 0x400)
+            return (float)Math.Round(mem / 1024f, 2) + " KB";
+
+        return mem + " B";
     }
     
     public override void _PhysicsProcess(double delta)
     {
         if (Input.IsActionJustPressed("DEBUG_INFO")) 
             DebugInformation.Visible = !DebugInformation.Visible;
-
+        
         UpdateFPS();
         
         RAMUpdateTime += (float)delta;
@@ -99,7 +100,8 @@ public partial class DebugInfo : CanvasLayer
 
     private void UpdateStaticLabels()
     {
-        RubiconVersion.Text = $"Rubicon Framework {Main.RubiconVersion} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+        GameVersion.Text = $"{ProjectSettings.GetSetting("application/config/name").AsString()} {ProjectSettings.GetSetting("application/config/version").AsString()} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
+        RubiconVersion.Text = $"Rubicon Engine {RubiconEngine.VersionString}";
         GodotVersion.Text = $"Godot Engine {Engine.GetVersionInfo()["major"]}.{Engine.GetVersionInfo()["minor"]}.{Engine.GetVersionInfo()["patch"]} [{Engine.GetVersionInfo()["status"]}]";
         
         string GetKeybinds(Node node) => string.Join(", ", InputMap.ActionGetEvents(node.Name).OfType<InputEventKey>().Select(key => key.AsTextPhysicalKeycode()));
@@ -107,9 +109,9 @@ public partial class DebugInfo : CanvasLayer
 
     private void UpdateFPS() => FPS.Text = $"FPS: {Engine.GetFramesPerSecond()}";
 
-    private void UpdateRAM() => RAM.Text = $"RAM: {byteToReadableUnit(CurrentProcess.WorkingSet64)} [{byteToReadableUnit(CurrentProcess.PrivateMemorySize64)}]";
+    private void UpdateRAM() => RAM.Text = $"RAM: {ConvertToMemoryFormat(CurrentProcess.WorkingSet64)} [{ConvertToMemoryFormat(CurrentProcess.PrivateMemorySize64)}]";
 
-    private void UpdateVRAM() => VRAM.Text = $"VRAM: {byteToReadableUnit((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed))}";
+    private void UpdateVRAM() => VRAM.Text = $"VRAM: {ConvertToMemoryFormat((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed))}";
 
     private void UpdateScene() => CurrentScene.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
 
@@ -125,10 +127,11 @@ public partial class DebugInfo : CanvasLayer
     {
         ConductorSB.Clear();
         
-        ConductorSB.AppendLine($"Conductor BPM: {Conductor.Bpm} --- Song Position: {Conductor.RawTime}")
-            .AppendLine($"CurStep: {Conductor.CurrentStep}")
-            .AppendLine($"CurBeat: {Conductor.CurrentBeat}")
-            .AppendLine($"CurSection: {Conductor.CurrentMeasure}");
+        ConductorSB.AppendLine($"Conductor BPM: {Conductor.Bpm} --- Current Position (s): {Conductor.RawTime}")
+            .AppendLine($"BPM List: " + Conductor.BpmList)
+            .AppendLine($"Current Step: {Conductor.CurrentStep}")
+            .AppendLine($"Current Beat: {Conductor.CurrentBeat}")
+            .AppendLine($"Current Section: {Conductor.CurrentMeasure}");
 
         ConductorInfo.Text = ConductorSB.ToString();
     }

@@ -1,6 +1,7 @@
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 namespace Rubicon.Core.Chart;
 
@@ -26,9 +27,14 @@ public partial class NoteData : Resource
     [Export] public double Time;
 
     /// <summary>
-    /// Ending point of the note. Stored on disk in measures.
+    /// Length of the note. Stored on disk in measures.
     /// </summary>
     [Export] public double Length;
+
+    /// <summary>
+    /// Any extra parameters will be stored here.
+    /// </summary>
+    [Export] public Dictionary<string, Array> Parameters = new();
         
     /// <summary>
     /// Length of the note converted to milliseconds. Should be ignored when serialized.

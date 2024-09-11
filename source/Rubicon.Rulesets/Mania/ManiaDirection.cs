@@ -1,4 +1,4 @@
-namespace Rubicon.Modes.Mania;
+namespace Rubicon.Rulesets.Mania;
 
 /// <summary>
 /// Resource used to specify directions for a <see cref="ManiaNoteSkin"/>.

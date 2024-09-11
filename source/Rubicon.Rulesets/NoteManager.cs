@@ -4,7 +4,7 @@ using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Data;
 
-namespace Rubicon.Modes;
+namespace Rubicon.Rulesets;
 
 public partial class NoteManager : Control
 {
@@ -110,9 +110,9 @@ public partial class NoteManager : Control
             }
         }
 
-        if (curNoteData.MsTime - time <= -(float)ProjectSettings.GetSetting("global/BadHitWindow"))
+        if (curNoteData.MsTime - time <= -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window"))
         {
-            OnNoteMiss(curNoteData, -(float)ProjectSettings.GetSetting("global/BadHitWindow") - 1, false);
+            OnNoteMiss(curNoteData, -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window") - 1, false);
             NoteHitIndex++;
         }
     }

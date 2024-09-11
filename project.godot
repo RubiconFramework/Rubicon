@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Rubicon"
+config/version="some version idk"
 run/main_scene="res://scenes/RubiconGame2D.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 run/max_fps=144
@@ -52,13 +53,6 @@ folder_colors={
 "res://source/Rubicon.Rulesets/Mania/": "teal",
 "res://source/Rubicon.Space/": "teal"
 }
-
-[global]
-
-PerfectHitWindow=25.0
-GreatHitWindow=50.0
-GoodHitWindow=90.0
-BadHitWindow=135.0
 
 [gui]
 
@@ -161,3 +155,10 @@ VOL_OPENMENU={
 [input_devices]
 
 buffering/agile_event_flushing=true
+
+[rubicon]
+
+judgments/perfect_hit_window=25.0
+judgments/great_hit_window=50.0
+judgments/good_hit_window=90.0
+judgments/bad_hit_window=135.0
