@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/fnf.png-a701b26029dcb7e1f4f2255afc361355.ctex
 [params]
 
 compress/mode=1
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

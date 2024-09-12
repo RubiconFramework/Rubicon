@@ -111,10 +111,11 @@ public partial class ManiaNoteManager : NoteManager
 	/// <inheritdoc/>
 	protected override void OnNoteHit(NoteData note, double distance, bool holding)
 	{
-		LaneObject.Play($"{Direction}ManagerConfirm");
+		LaneObject.Animation = $"{Direction}ManagerConfirm";
 		if (!holding)
 		{
 			NoteHeld = null;
+			LaneObject.Play();
 			note.HitObject?.PrepareRecycle();
 		}
 		else
@@ -156,7 +157,9 @@ public partial class ManiaNoteManager : NoteManager
 			NoteData[] notes = Notes;
 			if (NoteHitIndex >= notes.Length)
 			{
-				LaneObject.Play($"{Direction}ManagerPress", 1f, true);
+				if (LaneObject.Animation != $"{Direction}ManagerPress")
+					LaneObject.Play($"{Direction}ManagerPress");
+				
 				return;
 			}
 
@@ -176,13 +179,15 @@ public partial class ManiaNoteManager : NoteManager
 			}
 			else if (hitTime < -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()) // Your Miss / "SHIT" rating
 			{
-				LaneObject.Play($"{Direction}ManagerConfirm", 1f, true);
+				LaneObject.Animation = $"{Direction}ManagerConfirm";
+				LaneObject.Play();
 				OnNoteMiss(notes[NoteHitIndex], hitTime, true);
 				NoteHitIndex++;
 			}
 			else
 			{
-				LaneObject.Play($"{Direction}ManagerPress", 1f, true);
+				if (LaneObject.Animation != $"{Direction}ManagerPress")
+					LaneObject.Play($"{Direction}ManagerPress");
 			}
 		}
 		else if (@event.IsReleased())
@@ -196,7 +201,8 @@ public partial class ManiaNoteManager : NoteManager
 					OnNoteMiss(NoteHeld, length, true);
 			}
 
-			LaneObject.Play($"{Direction}ManagerNeutral", 1f, true);
+			if (LaneObject.Animation != $"{Direction}ManagerNeutral")
+				LaneObject.Play($"{Direction}ManagerNeutral", 1f, true);
 		}
 	}
 
@@ -208,7 +214,7 @@ public partial class ManiaNoteManager : NoteManager
 		if (!Autoplay || LaneObject.Animation != $"{Direction}ManagerConfirm")
 			return;
 
-		LaneObject.Play($"{Direction}ManagerNeutral");
-		LaneObject.Frame = 0;
+		if (LaneObject.Animation != $"{Direction}ManagerNeutral")
+			LaneObject.Play($"{Direction}ManagerNeutral");
 	}
 }
