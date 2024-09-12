@@ -87,7 +87,7 @@ public partial class RubiconGame : Node
 		Conductor.Pause();	
 		Instrumental.Stop();
 		Vocals.Stop();
-		PlayField.ProcessMode = ProcessModeEnum.Inherit;
+		PlayField.ProcessMode = ProcessModeEnum.Disabled;
 		Paused = true;
 	}
 

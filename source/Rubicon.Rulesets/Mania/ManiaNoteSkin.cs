@@ -51,6 +51,8 @@ public partial class ManiaNoteSkin : Resource
 
 	/// <summary>
 	/// Will get this texture instead of the animation in the hold atlas if tiling is enabled.
+	/// AtlasTextures are NOT supported, so that's why there's a roundabout way of doing this.
+	/// Ex: "downNoteHold" -> Separate Down Hold Texture somewhere
 	/// </summary>
 	[Export] public Dictionary<string, Texture2D> TileTextures = new();
 	
