@@ -11,7 +11,7 @@
 	<SubTexture name="downManagerPress0001" x="858" y="1" width="142" height="140" frameX="-3" frameY="-3" frameWidth="149" frameHeight="146"/>
 	<SubTexture name="downManagerPress0002" x="1001" y="1" width="149" height="146"/>
 	<SubTexture name="downManagerPress0003" x="1001" y="1" width="149" height="146"/>
-	<SubTexture name="downNoteHold0000" x="1151" y="1" width="44" height="50" pivotX="-3.25" pivotY="3.25"/>
+	<SubTexture name="downNoteHold0000" x="1151" y="1" width="43" height="50" pivotX="-3.25" pivotY="3.25"/>
 	<SubTexture name="downNoteNeutral0000" x="1196" y="1" width="157" height="154" pivotX="0" pivotY="0"/>
 	<SubTexture name="downNoteTail0000" x="1354" y="1" width="63" height="51" pivotX="6.85" pivotY="-6.85"/>
 	<SubTexture name="leftManagerConfirm0000" x="1418" y="1" width="228" height="231" pivotX="31.3" pivotY="31"/>
@@ -23,7 +23,7 @@
 	<SubTexture name="leftManagerPress0001" x="381" y="237" width="140" height="142" frameX="-3" frameY="-4" frameWidth="146" frameHeight="149"/>
 	<SubTexture name="leftManagerPress0002" x="522" y="237" width="146" height="149"/>
 	<SubTexture name="leftManagerPress0003" x="522" y="237" width="146" height="149"/>
-	<SubTexture name="leftNoteHold0000" x="669" y="237" width="44" height="50" pivotX="-3.25" pivotY="3.25"/>
+	<SubTexture name="leftNoteHold0000" x="669" y="237" width="43" height="50" pivotX="-3.25" pivotY="3.25"/>
 	<SubTexture name="leftNoteNeutral0000" x="714" y="237" width="154" height="157" pivotX="0" pivotY="0"/>
 	<SubTexture name="leftNoteTail0000" x="869" y="237" width="63" height="51" pivotX="6.85" pivotY="-6.85"/>
 	<SubTexture name="rightManagerConfirm0000" x="933" y="237" width="223" height="226" pivotX="30.9" pivotY="31" frameX="-1" frameY="-3" frameWidth="226" frameHeight="230"/>
@@ -35,7 +35,7 @@
 	<SubTexture name="rightManagerPress0001" x="1762" y="237" width="138" height="141" frameX="-5" frameY="-5" frameWidth="148" frameHeight="151"/>
 	<SubTexture name="rightManagerPress0002" x="1" y="468" width="148" height="151"/>
 	<SubTexture name="rightManagerPress0003" x="1" y="468" width="148" height="151"/>
-	<SubTexture name="rightNoteHold0000" x="150" y="468" width="44" height="50" pivotX="-3.25" pivotY="3.25"/>
+	<SubTexture name="rightNoteHold0000" x="150" y="468" width="43" height="50" pivotX="-3.25" pivotY="3.25"/>
 	<SubTexture name="rightNoteNeutral0000" x="195" y="468" width="154" height="157" pivotX="0" pivotY="0"/>
 	<SubTexture name="rightNoteTail0000" x="350" y="468" width="63" height="51" pivotX="6.85" pivotY="-6.85"/>
 	<SubTexture name="upManagerConfirm0000" x="414" y="468" width="236" height="232" pivotX="35" pivotY="34.95"/>
@@ -43,11 +43,11 @@
 	<SubTexture name="upManagerConfirm0002" x="888" y="468" width="214" height="211" frameX="-11" frameY="-10" frameWidth="236" frameHeight="232"/>
 	<SubTexture name="upManagerConfirm0003" x="888" y="468" width="214" height="211" frameX="-11" frameY="-10" frameWidth="236" frameHeight="232"/>
 	<SubTexture name="upManagerNeutral0000" x="1103" y="468" width="157" height="153" pivotX="77.25" pivotY="78.7"/>
-	<SubTexture name="upManagerPressed0000" x="1261" y="468" width="144" height="141" pivotX="0" pivotY="0" frameX="-5" frameY="-4" frameWidth="153" frameHeight="150"/>
-	<SubTexture name="upManagerPressed0001" x="1261" y="468" width="144" height="141" frameX="-5" frameY="-4" frameWidth="153" frameHeight="150"/>
-	<SubTexture name="upManagerPressed0002" x="1406" y="468" width="153" height="150"/>
-	<SubTexture name="upManagerPressed0003" x="1406" y="468" width="153" height="150"/>
-	<SubTexture name="upNoteHold0000" x="1560" y="468" width="44" height="50" pivotX="-3.25" pivotY="3.25"/>
+	<SubTexture name="upManagerPress0000" x="1261" y="468" width="144" height="141" pivotX="0" pivotY="0" frameX="-5" frameY="-4" frameWidth="153" frameHeight="150"/>
+	<SubTexture name="upManagerPress0001" x="1261" y="468" width="144" height="141" frameX="-5" frameY="-4" frameWidth="153" frameHeight="150"/>
+	<SubTexture name="upManagerPress0002" x="1406" y="468" width="153" height="150"/>
+	<SubTexture name="upManagerPress0003" x="1406" y="468" width="153" height="150"/>
+	<SubTexture name="upNoteHold0000" x="1560" y="468" width="43" height="50" pivotX="-3.25" pivotY="3.25"/>
 	<SubTexture name="upNoteNeutral0000" x="1605" y="468" width="157" height="154" pivotX="0" pivotY="0"/>
 	<SubTexture name="upNoteTail0000" x="1763" y="468" width="63" height="51" pivotX="6.85" pivotY="-6.85"/>
 </TextureAtlas>

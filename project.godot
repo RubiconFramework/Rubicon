@@ -21,11 +21,12 @@ config/icon="res://assets/ui/misc/fnf.png"
 
 DebugInfo="*res://source/Rubicon.Autoload/DebugInfo.tscn"
 Settings="*res://source/Rubicon.Autoload/Settings.cs"
+ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=720
+window/size/viewport_width=1400
+window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"

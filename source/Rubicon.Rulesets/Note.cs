@@ -34,4 +34,18 @@ public partial class Note : Control
     {
         
     }
+
+    public virtual void Reset()
+    {
+        Info = null;
+        Active = true;
+        Visible = true;
+        Missed = false;
+    }
+
+    public void PrepareRecycle()
+    {
+        Active = Visible = false;
+        Info.HitObject = null;
+    }
 }

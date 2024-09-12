@@ -1,6 +1,7 @@
 using System.Linq;
 using Godot;
 using Godot.Collections;
+using Rubicon.Rulesets;
 using Array = Godot.Collections.Array;
 
 namespace Rubicon.Core.Chart;
@@ -35,6 +36,11 @@ public partial class NoteData : Resource
     /// Any extra parameters will be stored here.
     /// </summary>
     [Export] public Dictionary<string, Array> Parameters = new();
+
+    /// <summary>
+    /// The associated hit object, if the note has spawned in-game.
+    /// </summary>
+    public Note HitObject;
         
     /// <summary>
     /// Length of the note converted to milliseconds. Should be ignored when serialized.

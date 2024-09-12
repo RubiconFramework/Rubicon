@@ -33,6 +33,7 @@ public partial class PlayField : Control
     public virtual void Setup(RubiChart chart)
     {
         Chart = chart;
+        Chart.ConvertData().Format();
         SetAnchorsPreset(LayoutPreset.FullRect);
     }
 
