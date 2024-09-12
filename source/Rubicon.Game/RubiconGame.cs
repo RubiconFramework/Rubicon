@@ -23,7 +23,7 @@ public partial class RubiconGame : Node
 	public override void _Ready()
 	{
 		// Shitty
-		SongMeta meta = GD.Load<SongMeta>("res://songs/test/meta.tres");
+		SongMeta meta = GD.Load<SongMeta>("res://songs/test/data/meta.tres");
 		RubiChart chart = GD.Load<RubiChart>("res://songs/test/data/normal.tres");
 
 		Conductor.Reset();
