@@ -42,7 +42,7 @@ public partial class ManiaNoteSkin : Resource
 	/// <summary>
 	/// Specifies direction names for each lane count.
 	/// </summary>
-	[Export] public ManiaDirection[] Directions = [new ManiaDirection()];
+	[Export] public Dictionary<int, string[]> Directions = new() { { 4, [ "left", "down", "up", "right" ] } };
 
 	/// <summary>
 	/// Whether to enable tiling on hold graphics. This will use a separate image from the hold atlas.
@@ -90,10 +90,10 @@ public partial class ManiaNoteSkin : Resource
 	/// <returns>An array of direction names. (Ex: ["left", "down", "up", "right"])</returns>
 	public string[] GetDirections(int laneCount = 4)
 	{
-		ManiaDirection direction = Directions.FirstOrDefault(x => x.LaneCount == laneCount);
+		string[] direction = Directions.ContainsKey(laneCount) ? Directions[laneCount] : null;
 		if (direction == null)
 			return [];
-		
-		return direction.Directions;
+
+		return direction;
 	}
 }
