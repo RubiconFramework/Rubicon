@@ -13,6 +13,11 @@ namespace Rubicon.Rulesets.Mania;
 /// </summary>
 public partial class ManiaNoteManager : NoteManager
 {
+	/// <summary>
+	/// The direction of this note manager.
+	/// </summary>
+	[Export] public string Direction = "";
+	
 	/// <inheritdoc/>
 	[Export] public override float ScrollSpeed
 	{
@@ -100,7 +105,7 @@ public partial class ManiaNoteManager : NoteManager
 	protected override Note CreateNote() => new ManiaNote();
 
 	/// <inheritdoc/>
-	protected override void SetupNote(Note note, NoteData data, SvChange svChange)
+	protected override void SetupNote(Note note, NoteData data, int svChange)
 	{
 		if (note is not ManiaNote maniaNote)
 			return;

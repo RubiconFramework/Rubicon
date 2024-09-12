@@ -1,4 +1,5 @@
 using Rubicon.Core.Chart;
+using Rubicon.Core.Data;
 
 namespace Rubicon.Rulesets.Mania;
 
@@ -35,6 +36,12 @@ public partial class ManiaBarLine : BarLine
             AddChild(noteMan);
             Managers[i] = noteMan;
         }
+    }
+    
+    /// <inheritdoc/>
+    public override void OnNoteHit(int lane, NoteData noteData, HitType hit, double distance, bool holding)
+    {
+        EmitSignal(SignalName.NoteHit, this, NoteSkin.GetDirection(lane, Managers.Length), lane, noteData, (int)hit, distance, holding);
     }
 
     /// <summary>

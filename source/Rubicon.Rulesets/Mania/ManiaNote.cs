@@ -49,12 +49,12 @@ public partial class ManiaNote : Note
 	/// <param name="svChange">The scroll velocity change associated</param>
 	/// <param name="parentManager">The parent manager</param>
 	/// <param name="noteSkin">The note skin</param>
-	public void Setup(NoteData noteData, SvChange svChange, ManiaNoteManager parentManager, ManiaNoteSkin noteSkin)
+	public void Setup(NoteData noteData, int svChange, ManiaNoteManager parentManager, ManiaNoteSkin noteSkin)
 	{
 		Position = new Vector2(5000, 0);
 		Info = noteData;
 		Info.HitObject = this;
-		SvChange = svChange;
+		SvChangeIndex = svChange;
 		ParentManager = parentManager;
 		ChangeNoteSkin(noteSkin);
 		
@@ -101,9 +101,10 @@ public partial class ManiaNote : Note
 	public override void UpdatePosition()
 	{
 		float startingPos = ParentManager.ParentBarLine.DistanceOffset * ParentManager.ScrollSpeed;
-		float distance = (float)(Info.MsTime - SvChange.MsTime - _tailOffset) * ParentManager.ScrollSpeed;
+		SvChange svChange = ParentManager.ParentBarLine.Chart.SvChanges[SvChangeIndex];
+		float distance = (float)(Info.MsTime - svChange.MsTime - _tailOffset) * ParentManager.ScrollSpeed;
 		Vector2 posMult = new Vector2(Mathf.Cos(ParentManager.DirectionAngle), Mathf.Sin(ParentManager.DirectionAngle));
-		Position = ParentManager.NoteHeld != Info ? (startingPos + distance) * posMult : Vector2.Zero; // TODO: Do holding.
+		Position = ParentManager.NoteHeld != Info ? (startingPos + distance) * posMult : Vector2.Zero;
 	}
 
 	/// <summary>
@@ -212,7 +213,6 @@ public partial class ManiaNote : Note
 	public void AdjustInitialTailSize()
 	{
 		// Rough code, might clean up later if possible
-		// TODO: Get hold length according to MULTIPLE scroll velocity changes (pain)
 		string direction = ParentManager.Direction;
 		bool isTiled = NoteSkin.UseTiledHold && TiledHold != null;
 		int tailTexWidth = Tail.SpriteFrames.GetFrameTexture($"{direction}NoteTail", Tail.GetFrame()).GetWidth();
@@ -220,7 +220,7 @@ public partial class ManiaNote : Note
 			? TiledHold.Texture.GetWidth()
 			: Hold.SpriteFrames.GetFrameTexture($"{direction}NoteHold", Hold.GetFrame()).GetWidth();
 
-		float holdWidth = (float)(Info.MsLength * ParentManager.ScrollSpeed * SvChange.Multiplier);
+		float holdWidth = GetOnScreenHoldLength(Info.MsLength) * ParentManager.ScrollSpeed;
 		if (isTiled)
 			TiledHold.Size = new Vector2((holdWidth - tailTexWidth) / HoldContainer.Scale.X, TiledHold.Size.Y);
 		else
@@ -233,14 +233,13 @@ public partial class ManiaNote : Note
 	/// <summary>
 	/// Resizes the entire hold in general according to the length provided.
 	/// </summary>
-	/// <param name="length">The length of the note</param>
 	public void AdjustTailLength(double length)
 	{
 		// Rough code, might clean up later if possible
 		string direction = ParentManager.Direction;
 		bool isTiled = NoteSkin.UseTiledHold && TiledHold != null;
-		float initialHoldWidth = (float)(Info.MsLength * ParentManager.ScrollSpeed * SvChange.Multiplier);
-		float holdWidth = (float)(length * ParentManager.ScrollSpeed * SvChange.Multiplier);
+		float initialHoldWidth = GetOnScreenHoldLength(Info.MsLength) * ParentManager.ScrollSpeed;
+		float holdWidth = GetOnScreenHoldLength(length) * ParentManager.ScrollSpeed;
 		
 		HoldContainer.Size = new Vector2(holdWidth / HoldContainer.Scale.X, HoldContainer.Size.Y);
 		float holdPos = HoldContainer.Size.X - (initialHoldWidth / HoldContainer.Scale.X);
@@ -276,5 +275,37 @@ public partial class ManiaNote : Note
 		base.Reset();
 		Note.Visible = true;
 		_tailOffset = 0d;
+	}
+	
+	/// <summary>
+	/// Gets the on-screen length of the hold note
+	/// </summary>
+	/// <param name="length">The current length of the note</param>
+	/// <returns>The on-screen length</returns>
+	private float GetOnScreenHoldLength(double length)
+	{
+		SvChange[] svChangeList = ParentManager.ParentBarLine.Chart.SvChanges;
+		double offsetLength = Info.MsLength - (Info.MsLength - length);
+		float currentPosition = svChangeList[SvChangeIndex].Position;
+		if (SvChangeIndex < svChangeList.Length - 1)
+		{
+			for (int i = SvChangeIndex + 1; i < svChangeList.Length; i++)
+			{
+				SvChange curChange = svChangeList[i];
+				if (curChange.MsTime > Info.MsTime + offsetLength)
+				{
+					currentPosition += (float)(offsetLength * svChangeList[i - 1].Multiplier);
+					break;
+				}
+				
+				currentPosition += svChangeList[SvChangeIndex].Position - curChange.Position;
+			}
+		}
+		else
+		{
+			currentPosition += (float)(offsetLength * svChangeList[SvChangeIndex].Multiplier);
+		}
+
+		return currentPosition;
 	}
 }

@@ -13,9 +13,9 @@ public partial class Note : Control
     [Export] public NoteData Info;
     
     /// <summary>
-    /// Contains info about this note's scroll velocity.
+    /// The index of this note's starting scroll velocity change.
     /// </summary>
-    [Export] public SvChange SvChange;
+    [Export] public int SvChangeIndex;
 
     /// <summary>
     /// If false, this note is ready to be recycled.

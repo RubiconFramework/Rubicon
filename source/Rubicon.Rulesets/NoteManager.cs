@@ -17,11 +17,6 @@ public partial class NoteManager : Control
 	[Export] public int Lane = 0;
 	
 	/// <summary>
-	/// The direction of this note manager.
-	/// </summary>
-	[Export] public string Direction = "";
-	
-	/// <summary>
 	/// Contains the individual notes for this manager.
 	/// </summary>
 	[Export] public NoteData[] Notes;
@@ -78,7 +73,7 @@ public partial class NoteManager : Control
 		
 		// Handle note spawning
 		double time = Conductor.Time * 1000d;
-		SvChange currentScrollVel = ParentBarLine.Chart.SvChanges[ParentBarLine.ScrollVelocityIndex];
+		int currentScrollVel = ParentBarLine.ScrollVelocityIndex;
 		if (NoteSpawnIndex < Notes.Length && Visible)
 		{
 			while (NoteSpawnIndex < Notes.Length && Notes[NoteSpawnIndex].MsTime - time <= 2000)
@@ -150,7 +145,7 @@ public partial class NoteManager : Control
 	/// <param name="note">The note passed in</param>
 	/// <param name="data">The note data</param>
 	/// <param name="svChange">The SV change associated</param>
-	protected virtual void SetupNote(Note note, NoteData data, SvChange svChange)
+	protected virtual void SetupNote(Note note, NoteData data, int svChange)
 	{
 		
 	}
