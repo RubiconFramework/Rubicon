@@ -90,7 +90,7 @@ public partial class ManiaNoteManager : NoteManager
 		LaneObject = new AnimatedSprite2D();
 		LaneObject.Scale = Vector2.One * NoteSkin.Scale;
 		LaneObject.SpriteFrames = NoteSkin.LaneAtlas;
-		LaneObject.Play($"{Direction}ManagerNeutral", 1f, true);
+		LaneObject.Play($"{Direction}LaneNeutral", 1f, true);
 		LaneObject.AnimationFinished += OnAnimationFinish;
 		AddChild(LaneObject);
 		MoveChild(LaneObject, 0);
@@ -111,7 +111,7 @@ public partial class ManiaNoteManager : NoteManager
 	/// <inheritdoc/>
 	protected override void OnNoteHit(NoteData note, double distance, bool holding)
 	{
-		LaneObject.Animation = $"{Direction}ManagerConfirm";
+		LaneObject.Animation = $"{Direction}LaneConfirm";
 		if (!holding)
 		{
 			NoteHeld = null;
@@ -157,8 +157,8 @@ public partial class ManiaNoteManager : NoteManager
 			NoteData[] notes = Notes;
 			if (NoteHitIndex >= notes.Length)
 			{
-				if (LaneObject.Animation != $"{Direction}ManagerPress")
-					LaneObject.Play($"{Direction}ManagerPress");
+				if (LaneObject.Animation != $"{Direction}LanePress")
+					LaneObject.Play($"{Direction}LanePress");
 				
 				return;
 			}
@@ -179,15 +179,15 @@ public partial class ManiaNoteManager : NoteManager
 			}
 			else if (hitTime < -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()) // Your Miss / "SHIT" rating
 			{
-				LaneObject.Animation = $"{Direction}ManagerConfirm";
+				LaneObject.Animation = $"{Direction}LaneConfirm";
 				LaneObject.Play();
 				OnNoteMiss(notes[NoteHitIndex], hitTime, true);
 				NoteHitIndex++;
 			}
 			else
 			{
-				if (LaneObject.Animation != $"{Direction}ManagerPress")
-					LaneObject.Play($"{Direction}ManagerPress");
+				if (LaneObject.Animation != $"{Direction}LanePress")
+					LaneObject.Play($"{Direction}LanePress");
 			}
 		}
 		else if (@event.IsReleased())
@@ -201,8 +201,8 @@ public partial class ManiaNoteManager : NoteManager
 					OnNoteMiss(NoteHeld, length, true);
 			}
 
-			if (LaneObject.Animation != $"{Direction}ManagerNeutral")
-				LaneObject.Play($"{Direction}ManagerNeutral", 1f, true);
+			if (LaneObject.Animation != $"{Direction}LaneNeutral")
+				LaneObject.Play($"{Direction}LaneNeutral", 1f, true);
 		}
 	}
 
@@ -211,10 +211,10 @@ public partial class ManiaNoteManager : NoteManager
 	/// </summary>
 	private void OnAnimationFinish()
 	{
-		if (!Autoplay || LaneObject.Animation != $"{Direction}ManagerConfirm")
+		if (!Autoplay || LaneObject.Animation != $"{Direction}LaneConfirm")
 			return;
 
-		if (LaneObject.Animation != $"{Direction}ManagerNeutral")
-			LaneObject.Play($"{Direction}ManagerNeutral");
+		if (LaneObject.Animation != $"{Direction}LaneNeutral")
+			LaneObject.Play($"{Direction}LaneNeutral");
 	}
 }
