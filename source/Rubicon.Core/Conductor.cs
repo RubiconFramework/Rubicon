@@ -13,7 +13,7 @@ public partial class Conductor : Node
 	/// <summary>
 	/// The current instance of the Conductor class.
 	/// </summary>
-	public static Conductor _instance;
+	public static Conductor Singleton;
 	#endregion
 
 	#region Status Variables
@@ -22,8 +22,8 @@ public partial class Conductor : Node
 	/// </summary>
 	public static double Bpm
 	{
-		get => _instance._bpm;
-		set => _instance._bpm = value;
+		get => Singleton._bpm;
+		set => Singleton._bpm = value;
 	}
 
 	/// <summary>
@@ -31,8 +31,8 @@ public partial class Conductor : Node
 	/// </summary>
 	public static int BpmIndex
 	{
-		get => _instance._bpmIndex;
-		set => _instance._bpmIndex = value;
+		get => Singleton._bpmIndex;
+		set => Singleton._bpmIndex = value;
 	}
 
 	/// <summary>
@@ -40,8 +40,8 @@ public partial class Conductor : Node
 	/// </summary>
 	public static double ChartOffset
 	{
-		get => _instance._chartOffset;
-		set => _instance._chartOffset = value;
+		get => Singleton._chartOffset;
+		set => Singleton._chartOffset = value;
 	}
 	
 	/// <summary>
@@ -49,26 +49,26 @@ public partial class Conductor : Node
 	/// </summary>
 	public static double Speed
 	{
-		get => _instance._speed;
-		set => _instance._speed = value;
+		get => Singleton._speed;
+		set => Singleton._speed = value;
 	}
 
 	/// <summary>
 	/// Is true when the Conductor has been started with Start() or Play(), false when either Pause() or Stop() is called.
 	/// </summary>
-	public static bool Playing => _instance._playing;
+	public static bool Playing => Singleton._playing;
 	#endregion
 
 	#region Time Variables
 	/// <summary>
 	/// The raw timestamp of this Conductor, without any corrections made to it.
 	/// </summary>
-	public static double RawTime => _instance.GetRawTime();
+	public static double RawTime => Singleton.GetRawTime();
 		
 	/// <summary>
 	/// The raw timestamp of this Conductor + the chart offset.
 	/// </summary>
-	public static double UncorrectedTime => _instance.GetUncorrectedTime();
+	public static double UncorrectedTime => Singleton.GetUncorrectedTime();
 
 	/// <summary>
 	/// The current timestamp from when the time was last set.
@@ -76,24 +76,24 @@ public partial class Conductor : Node
 	/// </summary>
 	public static double Time
 	{
-		get => _instance.GetTime();
-		set => _instance.SetTime(value);
+		get => Singleton.GetTime();
+		set => Singleton.SetTime(value);
 	}
 
 	/// <summary>
 	/// The current step according to the time, which also keeps BPM changes in mind.
 	/// </summary>
-	public static double CurrentStep => _instance.GetCurrentStep();
+	public static double CurrentStep => Singleton.GetCurrentStep();
 
 	/// <summary>
 	/// The current beat according to the time, which also keeps BPM changes in mind.
 	/// </summary>
-	public static double CurrentBeat => _instance.GetCurrentBeat();
+	public static double CurrentBeat => Singleton.GetCurrentBeat();
 
 	/// <summary>
 	/// The current measure according to the time, which also keeps BPM changes in mind.
 	/// </summary>
-	public static double CurrentMeasure => _instance.GetCurrentMeasure();
+	public static double CurrentMeasure => Singleton.GetCurrentMeasure();
 	#endregion
 
 	#region Event Handlers
@@ -129,8 +129,8 @@ public partial class Conductor : Node
 	/// </summary>
 	public static BpmInfo[] BpmList
 	{
-		get => _instance.GetBpms();
-		set => _instance.SetBpms(value);
+		get => Singleton.GetBpms();
+		set => Singleton.SetBpms(value);
 	}
 		
 	/// <summary>
@@ -138,8 +138,8 @@ public partial class Conductor : Node
 	/// </summary>
 	public static int TimeSigNumerator
 	{
-		get => _instance._timeSigNumerator;
-		set => _instance._timeSigNumerator = value;
+		get => Singleton._timeSigNumerator;
+		set => Singleton._timeSigNumerator = value;
 	}
 		
 	/// <summary>
@@ -147,8 +147,8 @@ public partial class Conductor : Node
 	/// </summary>
 	public static int TimeSigDenominator
 	{
-		get => _instance._timeSigDenominator;
-		set => _instance._timeSigDenominator = value;
+		get => Singleton._timeSigDenominator;
+		set => Singleton._timeSigDenominator = value;
 	}
 	#endregion
 
@@ -187,13 +187,13 @@ public partial class Conductor : Node
 	/// </summary>
 	public Conductor()
 	{
-		if (_instance != null)
+		if (Singleton != null)
 		{
 			QueueFree();
 			return;
 		}
 			
-		_instance = this;
+		Singleton = this;
 	}
 	#endregion
 	
@@ -202,27 +202,27 @@ public partial class Conductor : Node
 	/// Starts the Conductor at the time provided.
 	/// </summary>
 	/// <param name="time">The time the Conductor starts at. Default is 0</param>
-	public static void Start(double time = 0d) => _instance._Start(time);
+	public static void Start(double time = 0d) => Singleton._Start(time);
 	
 	/// <summary>
 	/// Resumes the Conductor at the last time it was paused at.
 	/// </summary>
-	public static void Play() => _instance._Play();
+	public static void Play() => Singleton._Play();
 	
 	/// <summary>
 	/// Stops the Conductor from ticking, but keeps the current time.
 	/// </summary>
-	public static void Pause() => _instance._Pause();
+	public static void Pause() => Singleton._Pause();
 	
 	/// <summary>
 	/// Stops the Conductor entirely, resetting the time to 0.
 	/// </summary>
-	public static void Stop() => _instance._Stop();
+	public static void Stop() => Singleton._Stop();
 	
 	/// <summary>
 	/// Resets the Conductor, wiping all its fields with its default values.
 	/// </summary>
-	public static void Reset() => _instance._Reset();
+	public static void Reset() => Singleton._Reset();
 	#endregion
 	
 	#region Private Methods

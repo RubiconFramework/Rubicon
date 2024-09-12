@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using Rubicon.Autoload;
 using Rubicon.Core;
+using Rubicon.Core.Chart;
 
 namespace Rubicon.backend.autoload;
 
@@ -90,10 +91,10 @@ public partial class DebugInfo : CanvasLayer
             ObjectUpdateTime = 0f;
         }
 
-        if (Conductor._instance != null)
+        if (Conductor.Singleton != null)
         {
             UpdateConductor();
-            ConductorInfo.Visible = false;
+            ConductorInfo.Visible = true;
         }
         else ConductorInfo.Visible = false;
     }
@@ -126,12 +127,17 @@ public partial class DebugInfo : CanvasLayer
     private void UpdateConductor()
     {
         ConductorSB.Clear();
-        
+
         ConductorSB.AppendLine($"Conductor BPM: {Conductor.Bpm} --- Current Position (s): {Conductor.RawTime}")
-            .AppendLine($"BPM List: " + Conductor.BpmList)
+            .AppendLine("BPM List: {");
+        foreach (BpmInfo bpm in Conductor.BpmList)
+            ConductorSB.AppendLine(
+                $"\t(Time: {bpm.Time}, Exact Time (ms): {bpm.MsTime}, BPM: {bpm.Bpm}, Time Signature: {bpm.TimeSignatureNumerator}/{bpm.TimeSignatureDenominator})");
+
+        ConductorSB.AppendLine("}")
             .AppendLine($"Current Step: {Conductor.CurrentStep}")
             .AppendLine($"Current Beat: {Conductor.CurrentBeat}")
-            .AppendLine($"Current Section: {Conductor.CurrentMeasure}");
+            .AppendLine($"Current Measure (Section): {Conductor.CurrentMeasure}");
 
         ConductorInfo.Text = ConductorSB.ToString();
     }
