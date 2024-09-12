@@ -115,7 +115,7 @@ public partial class ManiaNoteManager : NoteManager
 		if (!holding)
 		{
 			NoteHeld = null;
-			note.HitObject.PrepareRecycle();
+			note.HitObject?.PrepareRecycle();
 		}
 		else
 		{

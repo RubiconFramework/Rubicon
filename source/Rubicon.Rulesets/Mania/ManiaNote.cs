@@ -83,9 +83,6 @@ public partial class ManiaNote : Note
 		{
 			HoldContainer.Rotation = ParentManager.DirectionAngle;
 			
-			Vector2 posMult = new Vector2(Mathf.Cos(ParentManager.DirectionAngle), Mathf.Sin(ParentManager.DirectionAngle));
-			HoldContainer.Position = -(Vector2.One * HoldContainer.PivotOffset.Y * posMult) * NoteSkin.Scale;
-			
 			if (isHeld)
 			{
 				AdjustTailLength(Info.MsTime + Info.MsLength - songPos);

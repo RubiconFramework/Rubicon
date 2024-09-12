@@ -101,7 +101,8 @@ public partial class NoteManager : Control
 					note.MoveToFront();
 					note.Reset();
 				}
-				
+
+				note.Name = $"Note {NoteSpawnIndex}";
 				SetupNote(note, Notes[NoteSpawnIndex], currentScrollVel);
 				Notes[NoteSpawnIndex].WasSpawned = true;
 				NoteSpawnIndex++;

@@ -36,4 +36,15 @@ public partial class ManiaBarLine : BarLine
             Managers[i] = noteMan;
         }
     }
+
+    /// <summary>
+    /// Sets all the note managers' direction angle to the one provided
+    /// </summary>
+    /// <param name="radians">The angle, in radians</param>
+    public void SetDirectionAngle(float radians)
+    {
+        foreach (NoteManager noteManager in Managers)
+            if (noteManager is ManiaNoteManager maniaNoteManager)
+                maniaNoteManager.DirectionAngle = radians;
+    }
 }

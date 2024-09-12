@@ -27,8 +27,10 @@ public partial class ManiaPlayField : PlayField
     public override void Setup(SongMeta meta, RubiChart chart)
     {
         base.Setup(meta, chart);
+        Name = "Mania PlayField";
 
         BarLineContainer = new Control();
+        BarLineContainer.Name = "Bar Line Container";
         AddChild(BarLineContainer);
         
         UpdateOptions();
@@ -43,6 +45,7 @@ public partial class ManiaPlayField : PlayField
             ManiaBarLine curBarLine = new ManiaBarLine();
             curBarLine.Setup(indChart, noteSkin, chart.ScrollSpeed);
             curBarLine.Name = "Mania Bar Line " + i;
+            curBarLine.SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
             
             // Using Council positioning for now, sorry :/
             curBarLine.Position = new Vector2(i * 720f - (chart.Charts.Length - 1) * 720f / 2f, 0f);

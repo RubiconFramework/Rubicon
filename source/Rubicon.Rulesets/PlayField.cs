@@ -52,6 +52,7 @@ public partial class PlayField : Control
     /// <param name="chart">The chart loaded</param>
     public virtual void Setup(SongMeta meta, RubiChart chart)
     {
+        Name = "Base PlayField";
         Metadata = meta;
         Chart = chart;
         Chart.ConvertData().Format();
