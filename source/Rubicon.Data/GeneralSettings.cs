@@ -1,6 +1,6 @@
 namespace Rubicon.Data;
 
-public partial class ClientSettings : Resource
+public partial class GeneralSettings : Resource
 {
     [Export] public bool Downscroll = false;
     [Export] public int killlll = 0;

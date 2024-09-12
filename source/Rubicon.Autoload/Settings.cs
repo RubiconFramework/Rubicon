@@ -5,7 +5,7 @@ public partial class Settings : Node
 {
     private const string SettingsFilePath = "user://settings.tres";
     
-    public static ClientSettings ClientSettings { get; private set; } = new();
+    public static GeneralSettings General { get; private set; } = new();
     
     public override void _Ready()
     {
@@ -18,12 +18,12 @@ public partial class Settings : Node
         if (!ResourceLoader.Exists(SettingsFilePath))
             SaveSettings();
         
-        ClientSettings = GD.Load<ClientSettings>(SettingsFilePath);
+        General = GD.Load<GeneralSettings>(SettingsFilePath);
     }
 
     public static void SaveSettings()
     {
-        ResourceSaver.Save(ClientSettings, SettingsFilePath);
+        ResourceSaver.Save(General, SettingsFilePath);
         GD.Print($"Succesfully saved settings to file: {SettingsFilePath}");
     }
 }

@@ -4,6 +4,9 @@ using Rubicon.Core.Data;
 
 namespace Rubicon.Rulesets;
 
+/// <summary>
+/// A base bar line for Rubicon rulesets
+/// </summary>
 public partial class BarLine : Control
 {
 	/// <summary>
@@ -48,7 +51,15 @@ public partial class BarLine : Control
 		DistanceOffset = -(float)(currentScrollVel.Position + (Conductor.Time * 1000d - currentScrollVel.MsTime) * currentScrollVel.Multiplier);
 	}
 
-	public void OnNoteHit(int lane, NoteData noteData, HitType hit, double distance, bool holding)
+	/// <summary>
+	/// Triggers upon one of its note managers hitting a note in any way, even if it's a miss.
+	/// </summary>
+	/// <param name="lane">The lane index of the note manager</param>
+	/// <param name="noteData">The note's data</param>
+	/// <param name="hit">The type of hit</param>
+	/// <param name="distance">The hit distance from the note's time</param>
+	/// <param name="holding">Whether the note is being held down</param>
+	public virtual void OnNoteHit(int lane, NoteData noteData, HitType hit, double distance, bool holding)
 	{
 		EmitSignal(SignalName.NoteHit, this, lane, noteData, (int)hit, distance, holding);
 	}

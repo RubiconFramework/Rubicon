@@ -1,5 +1,6 @@
 using Rubicon.Autoload;
 using Rubicon.Core.Chart;
+using Rubicon.Core.Meta;
 
 namespace Rubicon.Rulesets.Mania;
 
@@ -8,13 +9,24 @@ namespace Rubicon.Rulesets.Mania;
 /// </summary>
 public partial class ManiaPlayField : PlayField
 {
+    /// <summary>
+    /// The bar lines associated with this play field. Sometimes referred to as "strumlines".
+    /// </summary>
     [Export] public ManiaBarLine[] BarLines;
 
+    /// <summary>
+    /// A control node for the general location for the bar lines.
+    /// </summary>
     [Export] public Control BarLineContainer;
     
-    public override void Setup(RubiChart chart)
+    /// <summary>
+    /// Readies this PlayField for Mania gameplay!
+    /// </summary>
+    /// <param name="meta">The song meta</param>
+    /// <param name="chart">The chart loaded</param>
+    public override void Setup(SongMeta meta, RubiChart chart)
     {
-        base.Setup(chart);
+        base.Setup(meta, chart);
 
         BarLineContainer = new Control();
         AddChild(BarLineContainer);
@@ -39,17 +51,18 @@ public partial class ManiaPlayField : PlayField
             BarLines[i] = curBarLine;
         }
         
-        // On Test Chart, index 1 is player sooo
-        BarLines[1].SetAutoPlay(false);
+        BarLines[meta.PlayerChartIndex].SetAutoPlay(false);
     }
     
-    public override bool GetFailCondition() => Health <= 0;
-    
+    /// <inheritdoc/>
     public override void UpdateOptions()
     {
         LayoutPreset barLinePreset =
-            Settings.ClientSettings.Downscroll ? LayoutPreset.CenterBottom : LayoutPreset.CenterTop;
+            Settings.General.Downscroll ? LayoutPreset.CenterBottom : LayoutPreset.CenterTop;
         BarLineContainer.SetAnchorsPreset(barLinePreset);
-        BarLineContainer.Position = new Vector2(0f, Settings.ClientSettings.Downscroll ? -120f : 120f);
+        BarLineContainer.Position = new Vector2(0f, Settings.General.Downscroll ? -120f : 120f);
     }
+    
+    /// <inheritdoc />
+    public override bool GetFailCondition() => Health <= 0;
 }

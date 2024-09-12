@@ -1,5 +1,8 @@
 namespace Rubicon.Rulesets;
 
+/// <summary>
+/// A base ruleset for any Rubicon ruleset
+/// </summary>
 public partial class RuleSet : RefCounted
 {
     /// <summary>

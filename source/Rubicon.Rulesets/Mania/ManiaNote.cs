@@ -5,24 +5,50 @@ namespace Rubicon.Rulesets.Mania;
 
 public partial class ManiaNote : Note
 {
-	[Export] public SvChange SvChange;
-
+	/// <summary>
+	/// The parent <see cref="ManiaNoteManager"/>.
+	/// </summary>
 	[Export] public ManiaNoteManager ParentManager;
 
+	/// <summary>
+	/// The note skin associated with this note.
+	/// </summary>
 	[Export] public ManiaNoteSkin NoteSkin;
 
-	[ExportGroup("Objects"), Export] public AnimatedSprite2D Note; // Perhaps it'd be a good idea to make an AnimatedTextureRect?
+	/// <summary>
+	/// The Note graphic for this note.
+	/// </summary>
+	public AnimatedSprite2D Note; // Perhaps it'd be a good idea to make an AnimatedTextureRect?
 
-	[Export] public Control HoldContainer;
+	/// <summary>
+	/// The hold control that contains everything related to the hold graphics.
+	/// </summary>
+	public Control HoldContainer;
 	
-	[Export] public AnimatedSprite2D Hold;
+	/// <summary>
+	/// The Hold graphic. Will not be used if <see cref="ManiaNoteSkin.UseTiledHold"/> is active.
+	/// </summary>
+	public AnimatedSprite2D Hold;
 	
-	[Export] public TextureRect TiledHold;
+	/// <summary>
+	/// The Hold graphic, for tiling. Will be used if <see cref="ManiaNoteSkin.UseTiledHold"/> is active.
+	/// </summary>
+	public TextureRect TiledHold;
 
-	[Export] public AnimatedSprite2D Tail;
+	/// <summary>
+	/// The Tail graphic for this note.
+	/// </summary>
+	public AnimatedSprite2D Tail;
 
 	private double _tailOffset = 0d;
 	
+	/// <summary>
+	/// Sets up this hit object for usage alongside a <see cref="ManiaNoteManager"/>.
+	/// </summary>
+	/// <param name="noteData">The note data</param>
+	/// <param name="svChange">The scroll velocity change associated</param>
+	/// <param name="parentManager">The parent manager</param>
+	/// <param name="noteSkin">The note skin</param>
 	public void Setup(NoteData noteData, SvChange svChange, ManiaNoteManager parentManager, ManiaNoteSkin noteSkin)
 	{
 		Position = new Vector2(5000, 0);
@@ -36,7 +62,7 @@ public partial class ManiaNote : Note
 		if (Info.MsLength <= 0)
 			return;
 		
-		AdjustTailSize();
+		AdjustInitialTailSize();
 		AdjustTailLength(Info.MsLength);
 	}
 
@@ -74,6 +100,7 @@ public partial class ManiaNote : Note
 		}
 	}
 	
+	/// <inheritdoc/>
 	public override void UpdatePosition()
 	{
 		float startingPos = ParentManager.ParentBarLine.DistanceOffset * ParentManager.ScrollSpeed;
@@ -181,9 +208,13 @@ public partial class ManiaNote : Note
 		Tail.Visible = true;
 	}
 	
-	public void AdjustTailSize()
+	/// <summary>
+	/// Resizes the hold's initial size to match the scroll speed and scroll velocities.
+	/// </summary>
+	public void AdjustInitialTailSize()
 	{
 		// Rough code, might clean up later if possible
+		// TODO: Get hold length according to MULTIPLE scroll velocity changes (pain)
 		string direction = ParentManager.Direction;
 		bool isTiled = NoteSkin.UseTiledHold && TiledHold != null;
 		int tailTexWidth = Tail.SpriteFrames.GetFrameTexture($"{direction}NoteTail", Tail.GetFrame()).GetWidth();
@@ -201,6 +232,10 @@ public partial class ManiaNote : Note
 			AdjustTailLength(Info.MsLength);
 	}
 
+	/// <summary>
+	/// Resizes the entire hold in general according to the length provided.
+	/// </summary>
+	/// <param name="length">The length of the note</param>
 	public void AdjustTailLength(double length)
 	{
 		// Rough code, might clean up later if possible
@@ -237,6 +272,7 @@ public partial class ManiaNote : Note
 		_tailOffset = (Info.MsTime - Conductor.Time * 1000d);
 	}
 
+	/// <inheritdoc/>
 	public override void Reset()
 	{
 		base.Reset();

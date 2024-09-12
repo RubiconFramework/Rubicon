@@ -6,12 +6,20 @@ using Rubicon.Core.Data;
 
 namespace Rubicon.Rulesets;
 
+/// <summary>
+/// A base note manager for Rubicon rulesets.
+/// </summary>
 public partial class NoteManager : Control
 {
 	/// <summary>
 	/// The lane index of this note manager.
 	/// </summary>
 	[Export] public int Lane = 0;
+	
+	/// <summary>
+	/// The direction of this note manager.
+	/// </summary>
+	[Export] public string Direction = "";
 	
 	/// <summary>
 	/// Contains the individual notes for this manager.
@@ -34,7 +42,7 @@ public partial class NoteManager : Control
 	[Export] public bool InputsEnabled = true;
 
 	/// <summary>
-	/// The scroll speed for this note manager.
+	/// The constant rate at which the notes go down. This is different from scroll velocities.
 	/// </summary>
 	[Export] public virtual float ScrollSpeed { get; set; } = 1f;
 
@@ -146,6 +154,12 @@ public partial class NoteManager : Control
 		
 	}
 
+	/// <summary>
+	/// Triggers upon this note manager hitting a note.
+	/// </summary>
+	/// <param name="note">The note that was hit</param>
+	/// <param name="distance">The hit distance from the note's time</param>
+	/// <param name="holding">Whether the note is held down.</param>
 	protected virtual void OnNoteHit(NoteData note, double distance, bool holding)
 	{
 		double[] hitWindows = [ 
@@ -168,6 +182,12 @@ public partial class NoteManager : Control
 		ParentBarLine.OnNoteHit(Lane, note, (HitType)hit, distance, holding);
 	}
 	
+	/// <summary>
+	/// Triggers upon this note manager missing a note.
+	/// </summary>
+	/// <param name="note">The note that was hit</param>
+	/// <param name="distance">The hit distance from the note's time</param>
+	/// <param name="holding">Whether the note is held down.</param>
 	protected virtual void OnNoteMiss(NoteData note, double distance, bool holding)
 	{
 		note.WasHit = true;

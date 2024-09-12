@@ -2,6 +2,9 @@ using Rubicon.Core;
 
 namespace Rubicon.Rulesets.Mania;
 
+/// <summary>
+/// A rule set for Mania gameplay
+/// </summary>
 [GlobalClass]
 public partial class ManiaRuleSet : RuleSet
 {

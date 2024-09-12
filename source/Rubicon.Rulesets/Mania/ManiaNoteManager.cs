@@ -8,10 +8,12 @@ using Array = System.Array;
 
 namespace Rubicon.Rulesets.Mania;
 
+/// <summary>
+/// A bar line class for Mania gameplay. Also referred to as a "strum" by some.
+/// </summary>
 public partial class ManiaNoteManager : NoteManager
 {
-	[Export] public string Direction = "";
-
+	/// <inheritdoc/>
 	[Export] public override float ScrollSpeed
 	{
 		get => base.ScrollSpeed;
@@ -20,18 +22,36 @@ public partial class ManiaNoteManager : NoteManager
 			base.ScrollSpeed = value;
 			foreach (Note note in HitObjects)
 				if (note is ManiaNote maniaNote)
-					maniaNote.AdjustTailSize();
+					maniaNote.AdjustInitialTailSize();
 		}
 	}
 
+	/// <summary>
+	/// The note that is currently being held.
+	/// </summary>
 	[Export] public NoteData NoteHeld;
 	
+	/// <summary>
+	/// The angle the notes come from in radians.
+	/// </summary>
 	[Export] public float DirectionAngle = Mathf.Pi / 2f;
 
+	/// <summary>
+	/// The note skin for this manager. Please change via <see cref="ChangeNoteSkin"/>!
+	/// </summary>
 	[Export] public ManiaNoteSkin NoteSkin;
 
+	/// <summary>
+	/// The lane graphic for this manager.
+	/// </summary>
 	[Export] public AnimatedSprite2D LaneObject;
 
+	/// <summary>
+	/// Sets up this manager for Mania gameplay.
+	/// </summary>
+	/// <param name="parent">The parent <see cref="ManiaBarLine"/>></param>
+	/// <param name="lane">The lane index</param>
+	/// <param name="noteSkin">The note skin provided</param>
 	public void Setup(ManiaBarLine parent, int lane, ManiaNoteSkin noteSkin)
 	{
 		ParentBarLine = parent;
@@ -59,6 +79,10 @@ public partial class ManiaNoteManager : NoteManager
 		base._Process(delta);
 	}
 
+	/// <summary>
+	/// Changes the note skin for this manager. Does not change the notes on-screen automatically!
+	/// </summary>
+	/// <param name="noteSkin">The note skin</param>
 	public void ChangeNoteSkin(ManiaNoteSkin noteSkin)
 	{
 		NoteSkin = noteSkin;
@@ -72,8 +96,10 @@ public partial class ManiaNoteManager : NoteManager
 		MoveChild(LaneObject, 0);
 	}
 	
+	/// <inheritdoc/>
 	protected override Note CreateNote() => new ManiaNote();
 
+	/// <inheritdoc/>
 	protected override void SetupNote(Note note, NoteData data, SvChange svChange)
 	{
 		if (note is not ManiaNote maniaNote)
@@ -82,6 +108,7 @@ public partial class ManiaNoteManager : NoteManager
 		maniaNote.Setup(data, svChange, this, NoteSkin);
 	}
 
+	/// <inheritdoc/>
 	protected override void OnNoteHit(NoteData note, double distance, bool holding)
 	{
 		LaneObject.Play($"{Direction}ManagerConfirm");
@@ -99,6 +126,7 @@ public partial class ManiaNoteManager : NoteManager
 		base.OnNoteHit(note, distance, holding);
 	}
 	
+	/// <inheritdoc/>
 	protected override void OnNoteMiss(NoteData note, double distance, bool holding)
 	{
 		if (note == NoteHeld)
@@ -172,6 +200,9 @@ public partial class ManiaNoteManager : NoteManager
 		}
 	}
 
+	/// <summary>
+	/// Mainly for when the autoplay finishes hitting a note.
+	/// </summary>
 	private void OnAnimationFinish()
 	{
 		if (!Autoplay || LaneObject.Animation != $"{Direction}ManagerConfirm")

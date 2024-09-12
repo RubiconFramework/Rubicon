@@ -11,6 +11,11 @@ public partial class Note : Control
     /// Contains info about this note.
     /// </summary>
     [Export] public NoteData Info;
+    
+    /// <summary>
+    /// Contains info about this note's scroll velocity.
+    /// </summary>
+    [Export] public SvChange SvChange;
 
     /// <summary>
     /// If false, this note is ready to be recycled.
@@ -18,7 +23,7 @@ public partial class Note : Control
     [Export] public bool Active = true;
 
     /// <summary>
-    /// 
+    /// Whether this note has missed.
     /// </summary>
     [Export] public bool Missed = false;
 
@@ -30,11 +35,17 @@ public partial class Note : Control
         UpdatePosition();
     }
     
+    /// <summary>
+    /// Triggers when the note needs to update its position.
+    /// </summary>
     public virtual void UpdatePosition()
     {
         
     }
 
+    /// <summary>
+    /// Triggers upon this note being recycled.
+    /// </summary>
     public virtual void Reset()
     {
         Info = null;
@@ -43,7 +54,10 @@ public partial class Note : Control
         Missed = false;
     }
 
-    public void PrepareRecycle()
+    /// <summary>
+    /// Triggers when the note needs to be prepared for recycling. (Ex: hitting a note)
+    /// </summary>
+    public virtual void PrepareRecycle()
     {
         Active = Visible = false;
         Info.HitObject = null;

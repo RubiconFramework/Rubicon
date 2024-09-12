@@ -3,23 +3,27 @@ using System.Linq;
 using System.Reflection;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
+using Rubicon.Core.Meta;
 using Rubicon.Rulesets;
 
 namespace Rubicon.Game;
 
 public partial class RubiconGame : Node
 {
-	public RuleSet RuleSet;
+	[Export] public bool Paused = false;
 	
-	public PlayField PlayField;
+	[Export] public RuleSet RuleSet;
+	
+	[Export] public PlayField PlayField;
 
-	[NodePath("Instrumental"), Export] public AudioStreamPlayer Instrumental;
+	[ExportGroup("Audio"), Export] public AudioStreamPlayer Instrumental;
 	
-	[NodePath("Vocals"), Export] public AudioStreamPlayer Vocals;
+	[Export] public AudioStreamPlayer Vocals;
 	
 	public override void _Ready()
 	{
 		// Shitty
+		SongMeta meta = GD.Load<SongMeta>("res://songs/test/meta.tres");
 		RubiChart chart = GD.Load<RubiChart>("res://songs/test/data/normal.tres");
 
 		Conductor.Reset();
@@ -54,7 +58,7 @@ public partial class RubiconGame : Node
 		
 		// Set up play field
 		PlayField = RuleSet.CreatePlayField();
-		PlayField.Setup(chart);
+		PlayField.Setup(meta, chart);
 		AddChild(PlayField);
 
 		Conductor.Start(0);
@@ -62,26 +66,40 @@ public partial class RubiconGame : Node
 		Vocals.Play(0f);
 	}
 
-	public override void _Process(double delta)
+	public override void _Input(InputEvent @event)
 	{
-		base._Process(delta);
+		base._Input(@event);
 
-		if (Input.IsActionJustPressed("GAME_PAUSE"))
+		if (@event.IsActionPressed("GAME_PAUSE"))
 		{
-			if (!Conductor.Playing)
-			{
-				Conductor.Play();	
-				Instrumental.Play((float)Conductor.RawTime);
-				Vocals.Play((float)Conductor.RawTime);
-				GD.Print("resume");
-			}
+			if (!Paused)
+				Pause();
 			else
-			{
-				Conductor.Pause();
-				Instrumental.Stop();
-				Vocals.Stop();
-				GD.Print("pause");
-			}
+				Resume();
 		}
+	}
+
+	/// <summary>
+	/// Pauses the game.
+	/// </summary>
+	public void Pause()
+	{
+		Conductor.Pause();	
+		Instrumental.Stop();
+		Vocals.Stop();
+		PlayField.ProcessMode = ProcessModeEnum.Inherit;
+		Paused = true;
+	}
+
+	/// <summary>
+	/// Resumes the game.
+	/// </summary>
+	public void Resume()
+	{
+		Conductor.Play();	
+		Instrumental.Play((float)Conductor.RawTime);
+		Vocals.Play((float)Conductor.RawTime);
+		PlayField.ProcessMode = ProcessModeEnum.Inherit;
+		Paused = false;
 	}
 }
