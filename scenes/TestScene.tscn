@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctfb65ovmobqc"]
+[gd_scene load_steps=4 format=3 uid="uid://ctfb65ovmobqc"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Game/RubiconGame.cs" id="1_bikcc"]
 [ext_resource type="AudioStream" uid="uid://bngsi6vxwswxg" path="res://songs/test/song/Inst.ogg" id="2_k16mo"]
 [ext_resource type="AudioStream" uid="uid://dgwe06tgq6sv8" path="res://songs/test/song/Vocals.ogg" id="3_bcgji"]
-
-[sub_resource type="Gradient" id="Gradient_hysd0"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_c3vsi"]
-gradient = SubResource("Gradient_hysd0")
 
 [node name="TestScene" type="Node" node_paths=PackedStringArray("Instrumental", "Vocals")]
 script = ExtResource("1_bikcc")
@@ -19,18 +14,3 @@ stream = ExtResource("2_k16mo")
 
 [node name="Vocals" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bcgji")
-
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 256.0
-offset_bottom = 40.0
-scale = Vector2(0.5, 0.5)
-pivot_offset = Vector2(0, 20)
-
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("GradientTexture1D_c3vsi")

@@ -57,6 +57,7 @@ public partial class PlayField : Control
         Chart = chart;
         Chart.ConvertData().Format();
         SetAnchorsPreset(LayoutPreset.FullRect);
+        Input.UseAccumulatedInput = false;
     }
 
     public override void _Process(double delta)

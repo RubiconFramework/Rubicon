@@ -180,6 +180,7 @@ public partial class ManiaNote : Note
 		HoldContainer.Size = new Vector2(0f, NoteSkin.HoldAtlas.GetFrameTexture($"{direction}NoteHold", 0).GetHeight());
 		HoldContainer.Scale = NoteSkin.Scale;
 		HoldContainer.PivotOffset = new Vector2(0f, HoldContainer.Size.Y / 2f);
+		HoldContainer.Position = new Vector2(0f, -HoldContainer.Size.Y / 2f);
 		if (noteSkin.UseTiledHold)
 		{
 			TiledHold.Texture = noteSkin.GetTiledHold(lane, laneCount);
