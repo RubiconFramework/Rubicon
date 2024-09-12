@@ -65,9 +65,7 @@ public partial class ManiaNoteSkin : Resource
 		if (!UseTiledHold)
 			return null;
 
-		var aaa = Image.CreateEmpty(43, 50, false, Image.Format.Rgba8);
-		aaa.Fill(Colors.Aqua);
-		return ImageTexture.CreateFromImage(aaa);
+		return TileTextures[$"{GetDirection(lane, laneCount)}NoteHold"];
 	}
 
 	/// <summary>
