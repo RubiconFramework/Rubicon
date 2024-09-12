@@ -32,12 +32,18 @@ public partial class PlayField : Control
     [Export] public uint Misses = 0;
 
     /// <summary>
-    /// 
+    /// The Chart for this PlayField.
     /// </summary>
     [Export] public RubiChart Chart;
 
+    /// <summary>
+    /// The Song meta for this PlayField
+    /// </summary>
     [Export] public SongMeta Metadata;
     
+    /// <summary>
+    /// The Target Bar Line index for the player to control
+    /// </summary>
     [Export] public int TargetBarLine = 0;
     
     /// <summary>

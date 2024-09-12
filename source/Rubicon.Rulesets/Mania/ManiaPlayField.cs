@@ -53,8 +53,9 @@ public partial class ManiaPlayField : PlayField
             BarLineContainer.AddChild(curBarLine);
             BarLines[i] = curBarLine;
         }
-        
-        BarLines[meta.PlayerChartIndex].SetAutoPlay(false);
+
+        TargetBarLine = meta.PlayerChartIndex;
+        BarLines[TargetBarLine].SetAutoPlay(false);
     }
     
     /// <inheritdoc/>
