@@ -113,6 +113,9 @@ public partial class NoteManager : Control
 					OnNoteHit(curNoteData, 0, curNoteData.MsLength > 0);
 				
 				NoteHitIndex++;
+				if (NoteHitIndex >= Notes.Length)
+					break;
+				
 				curNoteData = Notes[NoteHitIndex];
 			}
 		}

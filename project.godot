@@ -14,7 +14,7 @@ config/name="Rubicon"
 config/version="some version idk"
 run/main_scene="res://scenes/RubiconGame2D.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-run/max_fps=144
+run/max_fps=165
 config/icon="res://assets/ui/misc/fnf.png"
 
 [autoload]
