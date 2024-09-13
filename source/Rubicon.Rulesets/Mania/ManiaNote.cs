@@ -49,12 +49,11 @@ public partial class ManiaNote : Note
 	/// <param name="svChange">The scroll velocity change associated</param>
 	/// <param name="parentManager">The parent manager</param>
 	/// <param name="noteSkin">The note skin</param>
-	public void Setup(NoteData noteData, int svChange, ManiaNoteManager parentManager, ManiaNoteSkin noteSkin)
+	public void Setup(NoteData noteData, ManiaNoteManager parentManager, ManiaNoteSkin noteSkin)
 	{
 		Position = new Vector2(5000, 0);
 		Info = noteData;
 		Info.HitObject = this;
-		SvChangeIndex = svChange;
 		ParentManager = parentManager;
 		ChangeNoteSkin(noteSkin);
 		
@@ -101,8 +100,8 @@ public partial class ManiaNote : Note
 	public override void UpdatePosition()
 	{
 		float startingPos = ParentManager.ParentBarLine.DistanceOffset * ParentManager.ScrollSpeed;
-		SvChange svChange = ParentManager.ParentBarLine.Chart.SvChanges[SvChangeIndex];
-		float distance = (float)(Info.MsTime - svChange.MsTime - _tailOffset) * ParentManager.ScrollSpeed;
+		SvChange svChange = ParentManager.ParentBarLine.Chart.SvChanges[Info.StartingScrollVelocity];
+		float distance = (float)(svChange.Position + Info.MsTime - svChange.MsTime - _tailOffset) * ParentManager.ScrollSpeed;
 		Vector2 posMult = new Vector2(Mathf.Cos(ParentManager.DirectionAngle), Mathf.Sin(ParentManager.DirectionAngle));
 		Position = ParentManager.NoteHeld != Info ? (startingPos + distance) * posMult : Vector2.Zero;
 	}
@@ -285,27 +284,30 @@ public partial class ManiaNote : Note
 	private float GetOnScreenHoldLength(double length)
 	{
 		SvChange[] svChangeList = ParentManager.ParentBarLine.Chart.SvChanges;
-		double offsetLength = Info.MsLength - (Info.MsLength - length);
-		float currentPosition = svChangeList[SvChangeIndex].Position;
-		if (SvChangeIndex < svChangeList.Length - 1)
+		double startTime = Info.MsTime + (Info.MsLength - length);
+		int startIndex = Info.StartingScrollVelocity;
+		for (int i = startIndex; i <= Info.EndingScrollVelocity; i++)
 		{
-			for (int i = SvChangeIndex + 1; i < svChangeList.Length; i++)
-			{
-				SvChange curChange = svChangeList[i];
-				if (curChange.MsTime > Info.MsTime + offsetLength)
-				{
-					currentPosition += (float)(offsetLength * svChangeList[i - 1].Multiplier);
-					break;
-				}
-				
-				currentPosition += svChangeList[SvChangeIndex].Position - curChange.Position;
-			}
+			if (svChangeList[i].MsTime > startTime)
+				break;
+			
+			startIndex = i;
 		}
-		else
+		
+		SvChange startingSvChange = svChangeList[startIndex];
+		double startingPosition = startingSvChange.Position + ((startTime - startingSvChange.MsTime) * startingSvChange.Multiplier);
+		double endingPosition = svChangeList[Info.EndingScrollVelocity].Position +
+			((Info.MsTime + Info.MsLength - svChangeList[Info.EndingScrollVelocity].MsTime) * svChangeList[Info.EndingScrollVelocity].Multiplier);
+		/*
+		for (int i = startIndex; i < Info.EndingScrollVelocity; i++)
 		{
-			currentPosition += (float)(offsetLength * svChangeList[SvChangeIndex].Multiplier);
+			endingPosition += svChangeList[i].Position - endingPosition;
+			GD.Print("does this even run");
 		}
+		*/
 
-		return currentPosition;
+		//endingPosition = svChangeList[Info.EndingScrollVelocity].MsTime + ((Info.MsTime + Info.MsLength) * svChangeList[Info.EndingScrollVelocity].Multiplier);
+
+		return (float)(endingPosition - startingPosition);
 	}
 }

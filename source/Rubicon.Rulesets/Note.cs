@@ -11,11 +11,6 @@ public partial class Note : Control
     /// Contains info about this note.
     /// </summary>
     [Export] public NoteData Info;
-    
-    /// <summary>
-    /// The index of this note's starting scroll velocity change.
-    /// </summary>
-    [Export] public int SvChangeIndex;
 
     /// <summary>
     /// If false, this note is ready to be recycled.

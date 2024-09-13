@@ -73,7 +73,6 @@ public partial class NoteManager : Control
 		
 		// Handle note spawning
 		double time = Conductor.Time * 1000d;
-		int currentScrollVel = ParentBarLine.ScrollVelocityIndex;
 		if (NoteSpawnIndex < Notes.Length && Visible)
 		{
 			while (NoteSpawnIndex < Notes.Length && Notes[NoteSpawnIndex].MsTime - time <= 2000)
@@ -98,7 +97,7 @@ public partial class NoteManager : Control
 				}
 
 				note.Name = $"Note {NoteSpawnIndex}";
-				SetupNote(note, Notes[NoteSpawnIndex], currentScrollVel);
+				SetupNote(note, Notes[NoteSpawnIndex]);
 				Notes[NoteSpawnIndex].WasSpawned = true;
 				NoteSpawnIndex++;
 			}
@@ -131,6 +130,22 @@ public partial class NoteManager : Control
 		}
 	}
 
+	private int GetNoteScrollVelocityIndex(NoteData noteData)
+	{
+		SvChange[] svChangeList = ParentBarLine.Chart.SvChanges;
+		int index = svChangeList.Length - 1;
+		for (int i = 0; i < svChangeList.Length; i++)
+		{
+			if (svChangeList[i].Time > noteData.Time)
+			{
+				index = i - 1;
+				break;
+			}
+		}
+
+		return index;
+	}
+
 	#region Virtual (Overridable) Methods
 
 	/// <summary>
@@ -145,7 +160,7 @@ public partial class NoteManager : Control
 	/// <param name="note">The note passed in</param>
 	/// <param name="data">The note data</param>
 	/// <param name="svChange">The SV change associated</param>
-	protected virtual void SetupNote(Note note, NoteData data, int svChange)
+	protected virtual void SetupNote(Note note, NoteData data)
 	{
 		
 	}

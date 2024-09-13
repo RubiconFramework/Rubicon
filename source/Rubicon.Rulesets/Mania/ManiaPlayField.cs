@@ -33,8 +33,6 @@ public partial class ManiaPlayField : PlayField
         BarLineContainer.Name = "Bar Line Container";
         AddChild(BarLineContainer);
         
-        UpdateOptions();
-        
         BarLines = new ManiaBarLine[chart.Charts.Length];
         
         // REALLY SHITTY, REPLACE BELOW LATER !!!
@@ -45,7 +43,6 @@ public partial class ManiaPlayField : PlayField
             ManiaBarLine curBarLine = new ManiaBarLine();
             curBarLine.Setup(indChart, noteSkin, chart.ScrollSpeed);
             curBarLine.Name = "Mania Bar Line " + i;
-            curBarLine.SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
             
             // Using Council positioning for now, sorry :/
             curBarLine.Position = new Vector2(i * 720f - (chart.Charts.Length - 1) * 720f / 2f, 0f);
@@ -53,6 +50,8 @@ public partial class ManiaPlayField : PlayField
             BarLineContainer.AddChild(curBarLine);
             BarLines[i] = curBarLine;
         }
+        
+        UpdateOptions();
 
         TargetBarLine = meta.PlayerChartIndex;
         BarLines[TargetBarLine].SetAutoPlay(false);
@@ -65,6 +64,9 @@ public partial class ManiaPlayField : PlayField
             Settings.General.Downscroll ? LayoutPreset.CenterBottom : LayoutPreset.CenterTop;
         BarLineContainer.SetAnchorsPreset(barLinePreset);
         BarLineContainer.Position = new Vector2(0f, Settings.General.Downscroll ? -120f : 120f);
+        
+        for (int i = 0; i < BarLines.Length; i++)
+            BarLines[i].SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
     }
     
     /// <inheritdoc />

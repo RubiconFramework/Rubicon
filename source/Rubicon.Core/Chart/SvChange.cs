@@ -5,6 +5,7 @@ namespace Rubicon.Core.Chart;
 /// <summary>
 /// Keeps track of a scroll velocity change.
 /// </summary>
+[GlobalClass]
 public partial class SvChange : Resource
 {
     /// <summary>
@@ -41,6 +42,10 @@ public partial class SvChange : Resource
 
         MsTime = ConductorUtility.MeasureToMs(Time - bpm.Time, bpm.Bpm, bpm.TimeSignatureNumerator) + bpm.MsTime;
         if (previousChange != null)
-            Position = (float)(previousChange.Position + (MsTime - previousChange.MsTime) * Multiplier);
+        {
+            float previousEndingPoint = (float)(previousChange.Position + (MsTime - previousChange.MsTime) * previousChange.Multiplier);
+            Position = previousEndingPoint;
+            // Position = (float)((previousChange.Position + ) + ((MsTime - previousChange.MsTime) * Multiplier));
+        }
     }
 }

@@ -55,15 +55,13 @@ public partial class RubiChart : Resource
         foreach (IndividualChart curChart in Charts)
         {
             for (int n = 0; n < curChart.Notes.Length; n++)
-                curChart.Notes[n].ConvertData(BpmInfo);
+                curChart.Notes[n].ConvertData(BpmInfo, curChart.SvChanges);
 
-            for (int s = 0; s < curChart.SvChanges.Length; s++)
-            {
-                SvChange currentChange = curChart.SvChanges[s];
-                SvChange previousChange = s != 0 ? curChart.SvChanges[s - 1] : null;
+            if (curChart.SvChanges.Length <= 1)
+                continue;
 
-                currentChange.ConvertData(BpmInfo, previousChange);
-            }
+            for (int s = 1; s < curChart.SvChanges.Length; s++)
+                curChart.SvChanges[s].ConvertData(BpmInfo, curChart.SvChanges[s - 1]);
         }
         
         return this;

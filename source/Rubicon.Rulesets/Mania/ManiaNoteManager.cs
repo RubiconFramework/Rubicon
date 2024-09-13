@@ -105,12 +105,13 @@ public partial class ManiaNoteManager : NoteManager
 	protected override Note CreateNote() => new ManiaNote();
 
 	/// <inheritdoc/>
-	protected override void SetupNote(Note note, NoteData data, int svChange)
+	protected override void SetupNote(Note note, NoteData data)
 	{
 		if (note is not ManiaNote maniaNote)
 			return;
 		
-		maniaNote.Setup(data, svChange, this, NoteSkin);
+		maniaNote.Setup(data, this, NoteSkin);
+		//GD.Print($"{ParentBarLine.Name} - {Name} - {data.StartingScrollVelocity}, {data.EndingScrollVelocity}");
 	}
 
 	/// <inheritdoc/>

@@ -21,7 +21,7 @@ public partial class Settings : Node
 			return;
 		}
 		
-		Resource settingsRes = GD.Load<GeneralSettings>(FilePath);
+		Resource settingsRes = GD.Load<Resource>(FilePath);
 		if (settingsRes is not GeneralSettings general)
 		{
 			Save();
@@ -34,6 +34,6 @@ public partial class Settings : Node
 	public static void Save()
 	{
 		ResourceSaver.Save(General, FilePath);
-		GD.Print($"Succesfully saved settings to file: {FilePath}");
+		GD.Print($"Successfully saved settings to file: {FilePath}");
 	}
 }

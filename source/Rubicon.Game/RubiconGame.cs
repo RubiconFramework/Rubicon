@@ -5,6 +5,7 @@ using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Meta;
 using Rubicon.Rulesets;
+using Rubicon.Rulesets.Mania;
 
 namespace Rubicon.Game;
 
@@ -19,6 +20,8 @@ public partial class RubiconGame : Node
 	[ExportGroup("Audio"), Export] public AudioStreamPlayer Instrumental;
 	
 	[Export] public AudioStreamPlayer Vocals;
+
+	private Label _distanceDebugLabel;
 	
 	public override void _Ready()
 	{

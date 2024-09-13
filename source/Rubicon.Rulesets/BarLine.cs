@@ -43,12 +43,12 @@ public partial class BarLine : Control
 			return;
 		
 		double time = Conductor.Time * 1000d;
-		if (ScrollVelocityIndex < Chart.SvChanges.Length)
-			while (ScrollVelocityIndex + 1 < Chart.SvChanges.Length && Chart.SvChanges[ScrollVelocityIndex].MsTime - time <= 0)
-				ScrollVelocityIndex++;
+		SvChange[] svChangeList = Chart.SvChanges;
+		while (ScrollVelocityIndex + 1 < svChangeList.Length && svChangeList[ScrollVelocityIndex + 1].MsTime - time <= 0)
+			ScrollVelocityIndex++;
 		
 		SvChange currentScrollVel = Chart.SvChanges[ScrollVelocityIndex];
-		DistanceOffset = -(float)(currentScrollVel.Position + (Conductor.Time * 1000d - currentScrollVel.MsTime) * currentScrollVel.Multiplier);
+		DistanceOffset = -(float)(currentScrollVel.Position + (time - currentScrollVel.MsTime) * currentScrollVel.Multiplier);
 	}
 
 	/// <summary>
