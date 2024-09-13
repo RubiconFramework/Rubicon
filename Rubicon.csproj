@@ -3,6 +3,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <PublishAOT>true</PublishAOT>
+    <Version>0.1.0.0-alpha</Version>
+    <Title>Rubicon</Title>
+    <Authors>DuoNineXcore, legole0, Binpuki</Authors>
+    <Description>A Friday Night Funkin' engine based primarily on C# and Godot Engine!</Description>
   </PropertyGroup>
   <ItemGroup>
     <!-- Root the assemblies to avoid trimming. -->
@@ -12,7 +16,6 @@
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\characters\bf.tscn" />

@@ -10,11 +10,6 @@ namespace Rubicon.Rulesets.Mania;
 public partial class ManiaPlayField : PlayField
 {
     /// <summary>
-    /// The bar lines associated with this play field. Sometimes referred to as "strumlines".
-    /// </summary>
-    [Export] public ManiaBarLine[] BarLines;
-
-    /// <summary>
     /// A control node for the general location for the bar lines.
     /// </summary>
     [Export] public Control BarLineContainer;
@@ -33,7 +28,7 @@ public partial class ManiaPlayField : PlayField
         BarLineContainer.Name = "Bar Line Container";
         AddChild(BarLineContainer);
         
-        BarLines = new ManiaBarLine[chart.Charts.Length];
+        BarLines = new BarLine[chart.Charts.Length];
         
         // REALLY SHITTY, REPLACE BELOW LATER !!!
         ManiaNoteSkin noteSkin = GD.Load<ManiaNoteSkin>("res://resources/ui/funkin/mania.tres");
@@ -66,7 +61,8 @@ public partial class ManiaPlayField : PlayField
         BarLineContainer.Position = new Vector2(0f, Settings.General.Downscroll ? -120f : 120f);
         
         for (int i = 0; i < BarLines.Length; i++)
-            BarLines[i].SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
+            if (BarLines[i] is ManiaBarLine maniaBarLine)
+                maniaBarLine.SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
     }
     
     /// <inheritdoc />

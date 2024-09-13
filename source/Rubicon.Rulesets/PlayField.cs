@@ -42,6 +42,11 @@ public partial class PlayField : Control
     [Export] public SongMeta Metadata;
     
     /// <summary>
+    /// The bar lines associated with this play field.
+    /// </summary>
+    [Export] public BarLine[] BarLines;
+    
+    /// <summary>
     /// The Target Bar Line index for the player to control
     /// </summary>
     [Export] public int TargetBarLine = 0;

@@ -265,7 +265,11 @@ public partial class ManiaNote : Note
 	public void UnsetHold()
 	{
 		// Should be based on time, NOT note Y position
-		_tailOffset = (Info.MsTime - Conductor.Time * 1000d);
+		float startingPos = ParentManager.ParentBarLine.DistanceOffset;
+		SvChange svChange = ParentManager.ParentBarLine.Chart.SvChanges[Info.StartingScrollVelocity];
+		float distance = (float)(svChange.Position + Info.MsTime - svChange.MsTime);
+		
+		_tailOffset = startingPos + distance;
 	}
 
 	/// <inheritdoc/>
@@ -298,15 +302,6 @@ public partial class ManiaNote : Note
 		double startingPosition = startingSvChange.Position + ((startTime - startingSvChange.MsTime) * startingSvChange.Multiplier);
 		double endingPosition = svChangeList[Info.EndingScrollVelocity].Position +
 			((Info.MsTime + Info.MsLength - svChangeList[Info.EndingScrollVelocity].MsTime) * svChangeList[Info.EndingScrollVelocity].Multiplier);
-		/*
-		for (int i = startIndex; i < Info.EndingScrollVelocity; i++)
-		{
-			endingPosition += svChangeList[i].Position - endingPosition;
-			GD.Print("does this even run");
-		}
-		*/
-
-		//endingPosition = svChangeList[Info.EndingScrollVelocity].MsTime + ((Info.MsTime + Info.MsLength) * svChangeList[Info.EndingScrollVelocity].Multiplier);
 
 		return (float)(endingPosition - startingPosition);
 	}

@@ -5,7 +5,7 @@ using Rubicon.Autoload;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
 
-namespace Rubicon.backend.autoload;
+namespace Rubicon.Autoload;
 
 //[Icon("res://assets/misc/autoload.png")]
 public partial class DebugInfo : CanvasLayer
@@ -108,7 +108,7 @@ public partial class DebugInfo : CanvasLayer
         string GetKeybinds(Node node) => string.Join(", ", InputMap.ActionGetEvents(node.Name).OfType<InputEventKey>().Select(key => key.AsTextPhysicalKeycode()));
     }
 
-    private void UpdateFPS() => FPS.Text = $"FPS: {Engine.GetFramesPerSecond()}";
+    private void UpdateFPS() => FPS.Text = $"FPS: {Mathf.FloorToInt(1 / GetProcessDeltaTime())}";
 
     private void UpdateRAM() => RAM.Text = $"RAM: {ConvertToMemoryFormat(CurrentProcess.WorkingSet64)} [{ConvertToMemoryFormat(CurrentProcess.PrivateMemorySize64)}]";
 

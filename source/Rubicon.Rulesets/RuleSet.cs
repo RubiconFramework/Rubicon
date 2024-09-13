@@ -1,3 +1,5 @@
+using Rubicon.Core.UI;
+
 namespace Rubicon.Rulesets;
 
 /// <summary>
@@ -41,4 +43,11 @@ public partial class RuleSet : RefCounted
     /// </summary>
     /// <returns></returns>
     public virtual PlayField CreatePlayField() => null;
+
+    /// <summary>
+    /// Gets the default judgment position. Handy if this ever needs overriding for a specific ruleset.
+    /// </summary>
+    /// <param name="judgment">The judgment</param>
+    /// <returns>The default position</returns>
+    public virtual Vector2 GetJudgmentPosition(Judgment judgment) => judgment.GetPosition();
 }

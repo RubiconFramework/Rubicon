@@ -93,6 +93,7 @@ public partial class ManiaNoteManager : NoteManager
 		NoteSkin = noteSkin;
 
 		LaneObject = new AnimatedSprite2D();
+		LaneObject.Name = "Lane Graphic";
 		LaneObject.Scale = Vector2.One * NoteSkin.Scale;
 		LaneObject.SpriteFrames = NoteSkin.LaneAtlas;
 		LaneObject.Play($"{Direction}LaneNeutral", 1f, true);

@@ -3,7 +3,7 @@ using Godot.Sharp.Extras;
 namespace Rubicon.Core;
 
 [GlobalClass]
-public partial class HUDStyle : Resource
+public partial class UiStyle : Resource
 {
     //[Export] public PackedScene HealthBar { get; set; } = GD.Load<PackedScene>("res://resources/hudStyles/default/DefaultHealthbar.tscn");
 	
