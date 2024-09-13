@@ -96,7 +96,7 @@ public partial class FunkinChartPlugin : EditorImportPlugin
                 sectionCamera = 2;
                 
             if (lastCamera != sectionCamera)
-                cameraChanges.Add(new EventData { Time = i, Name = "Set Camera Focus", Arguments = [ sectionCamera.ToString() ] });
+                cameraChanges.Add(new EventData { Time = i, Name = "Set Camera Focus", Arguments = [ sectionCamera ] });
                 
             lastCamera = sectionCamera;
                 
