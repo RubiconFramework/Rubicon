@@ -87,7 +87,7 @@ public partial class Judgment : Control
     /// </summary>
     /// <param name="type">The hit type provided</param>
     /// <param name="offset">A Vector2 that offsets the position</param>
-    public virtual void Play(HitType type, Vector2 offset)
+    public virtual void Play(HitType type, Vector2? offset)
     {
         // Makes the judgment anchor at the center probably
         Play(type, 0.5f, 0.5f, 0.5f, 0.5f, offset);

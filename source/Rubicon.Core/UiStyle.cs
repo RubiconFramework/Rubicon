@@ -14,6 +14,10 @@ public partial class UiStyle : Resource
     [ExportGroup("Combo"), Export] public PackedScene Combo;
 
     [Export] public Vector2 ComboOffset;
+
+    [ExportGroup("Hit Distance"), Export] public PackedScene HitDistance;
+
+    [Export] public Vector2 HitDistanceOffset;
     
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Perfect"/>.

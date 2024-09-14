@@ -74,9 +74,14 @@ public partial class PlayField : Control
     public Judgment Judgment;
 
     /// <summary>
-    /// The ComboDisplay instance for 
+    /// The ComboDisplay instance for this play field.
     /// </summary>
     public ComboDisplay ComboDisplay;
+
+    /// <summary>
+    /// The HitDistance instance for this play field.
+    /// </summary>
+    public HitDistance HitDistance;
     
     /// <summary>
     /// Readies the PlayField for gameplay!
@@ -103,6 +108,9 @@ public partial class PlayField : Control
 
         UiStyle = GD.Load<UiStyle>(uiStylePath);
         
+        HitDistance = UiStyle.HitDistance.Instantiate<HitDistance>();
+        AddChild(HitDistance);
+        
         Judgment = UiStyle.Judgment.Instantiate<Judgment>();
         Judgment.PerfectMaterial = UiStyle.PerfectMaterial;
         Judgment.GreatMaterial = UiStyle.GreatMaterial;
@@ -120,7 +128,7 @@ public partial class PlayField : Control
         ComboDisplay.HorribleMaterial = Judgment.HorribleMaterial;
         ComboDisplay.MissMaterial = Judgment.MissMaterial;
         AddChild(ComboDisplay);
-
+        
         for (int i = 0; i < BarLines.Length; i++)
             BarLines[i].NoteHit += OnNoteHit;
         
@@ -178,6 +186,7 @@ public partial class PlayField : Control
             
             Judgment?.Play(hit, UiStyle.JudgmentOffset);   
             ComboDisplay?.Play(Combo, hit, UiStyle.ComboOffset);
+            HitDistance?.Show(distance, UiStyle.HitDistanceOffset);
         }
     }
 }

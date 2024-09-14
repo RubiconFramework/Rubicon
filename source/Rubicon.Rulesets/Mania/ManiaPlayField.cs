@@ -47,6 +47,7 @@ public partial class ManiaPlayField : PlayField
         BarLines[TargetBarLine].SetAutoPlay(false);
         
         base.Setup(meta, chart);
+        BarLineContainer.MoveToFront();
         Name = "Mania PlayField";
     }
     

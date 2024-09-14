@@ -6,16 +6,18 @@ using Rubicon.Core.UI;
 
 namespace Rubicon.Extras.UI;
 
+/// <summary>
+/// A <see cref="ComboDisplay"/> class that mimics the animation style of Friday Night Funkin'.
+/// </summary>
 public partial class FunkinComboDisplay : ComboDisplay
 {
     private bool _wasZero = false;
-    private HitType _lastRating = HitType.Perfect;
     private Array<TextureRect> _comboGraphics = new();
     private Dictionary<TextureRect, Vector2> _comboVelocities = new();
     private Dictionary<TextureRect, int> _comboAccelerations = new();
 
     /// <inheritdoc/>
-    public override void Play(uint combo, HitType type, Vector2 offset)
+    public override void Play(uint combo, HitType type, Vector2? offset)
     {
         Play(combo, type, 0.5f, 0.5f, 0.5f, 0.5f, new Vector2((Size.X * 0.507f) - 97.5f, Size.Y * 0.48f) + offset);
     }
@@ -26,8 +28,8 @@ public partial class FunkinComboDisplay : ComboDisplay
         if (combo == 0 && _wasZero)
             return;
 
-        if (type > _lastRating)
-            _lastRating = type;
+        if (type > LastRating)
+            LastRating = type;
         
         string comboString = combo.ToString("D3");
         int[] splitDigits = new int[comboString.Length];
@@ -52,7 +54,7 @@ public partial class FunkinComboDisplay : ComboDisplay
             comboSpr.Size = comboSpr.Texture.GetSize();
             comboSpr.Scale = GraphicScale;
             comboSpr.Position = (pos ?? Vector2.Zero) + new Vector2(i * generalSize, 0);
-            comboSpr.Material = GetMaterialFromRating(_lastRating);
+            comboSpr.Material = GetMaterialFromRating(LastRating);
             comboSpr.Modulate = new Color(comboSpr.Modulate.R, comboSpr.Modulate.G, comboSpr.Modulate.B);
 
             currentGraphics[i] = comboSpr;
@@ -67,7 +69,7 @@ public partial class FunkinComboDisplay : ComboDisplay
 
         _wasZero = combo == 0;
         if (_wasZero)
-            _lastRating = HitType.Perfect;
+            LastRating = HitType.Perfect;
     }
     
     public override void _Process(double delta)

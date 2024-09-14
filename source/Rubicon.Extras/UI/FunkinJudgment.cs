@@ -16,7 +16,7 @@ public partial class FunkinJudgment : Judgment
     private Dictionary<TextureRect, Vector2> _judgmentVelocities = new();
 
     /// <inheritdoc/>
-    public override void Play(HitType type, Vector2 offset)
+    public override void Play(HitType type, Vector2? offset)
     {
         Play(type, 0.5f, 0.5f, 0.5f, 0.5f, new Vector2((Size.X * 0.474f) - 60f, (Size.Y * 0.45f) - 90f) + offset);
     }

@@ -23,6 +23,11 @@ public partial class ComboDisplay : Control
     [Export] public Vector2 GraphicScale = Vector2.One;
     
     /// <summary>
+    /// The last rating that was hit.
+    /// </summary>
+    protected HitType LastRating = HitType.Perfect;
+    
+    /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Perfect"/>.
     /// </summary>
     public Material PerfectMaterial; // dokibird glasses
@@ -68,7 +73,7 @@ public partial class ComboDisplay : Control
     /// <param name="combo">The current combo</param>
     /// <param name="type">The hit type provided</param>
     /// <param name="offset">A Vector2 that offsets the position</param>
-    public virtual void Play(uint combo, HitType type, Vector2 offset)
+    public virtual void Play(uint combo, HitType type, Vector2? offset)
     {
         // Makes the judgment anchor at the center probably
         Play(combo, type, 0.5f, 0.5f, 0.5f, 0.5f, offset);
