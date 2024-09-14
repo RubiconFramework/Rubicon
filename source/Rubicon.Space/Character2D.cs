@@ -1,5 +1,3 @@
-using Godot.Sharp.Extras;
-
 namespace Rubicon.Space;
 
 /// <summary>
@@ -38,12 +36,12 @@ public partial class Character2D : Node2D
     /// Useful for alt animations or similar.
     /// </summary>
     [Export] public string StaticSuffix;
-    
+
     /// <summary>
     /// A string array containing the sequence of idle/dance animations to be played.
     /// Useful for left to right dance animations.
     /// </summary>
-    [Export] public string[] DanceList = {"idle"};
+    [Export] public string[] DanceList = { "idle" };
 
     /// <summary>
     /// The index for which dance animation in the <paramref name="DanceList"/> should play.
@@ -91,7 +89,7 @@ public partial class Character2D : Node2D
     /// <summary>
     /// The offset of the healthbar icon.
     /// </summary>
-    [Export] public Vector2 IconOffset = new Vector2(0,10);
+    [Export] public Vector2 IconOffset = new Vector2(0, 10);
 
     /// <summary>
     /// The healthbar color of this character.
@@ -121,32 +119,32 @@ public partial class Character2D : Node2D
 
         AnimPlayer.AnimationFinished += AnimationFinished;
         FlipAnimations = IsPlayer != MirrorCharacter;
-		if (IsPlayer != MirrorCharacter) Scale *= new Vector2(-1,1);
+        if (IsPlayer != MirrorCharacter) Scale *= new Vector2(-1, 1);
     }
 
     public void PlayAnim(CharacterAnimation anim)
-	{
-		if(!(anim.Force || !CurrentAnim.OverrideAnim || CurrentAnim.AnimFinished) || (!anim.Force && (!anim.OverrideDance && CurrentAnim.IsDanceAnimation))) return;
+    {
+        if (!(anim.Force || !CurrentAnim.OverrideAnim || CurrentAnim.AnimFinished) || (!anim.Force && (!anim.OverrideDance && CurrentAnim.IsDanceAnimation))) return;
 
-		if (FlipAnimations) anim.AnimName = FlipAnim(anim.AnimName);
+        if (FlipAnimations) anim.AnimName = FlipAnim(anim.AnimName);
 
-		string FinalPrefix = anim.Prefix != "" ? anim.Prefix : StaticPrefix;
-		string FinalSuffix = anim.Suffix != "" ? anim.Suffix : StaticSuffix;
+        string FinalPrefix = anim.Prefix != "" ? anim.Prefix : StaticPrefix;
+        string FinalSuffix = anim.Suffix != "" ? anim.Suffix : StaticSuffix;
 
-		if (AnimPlayer.HasAnimation(FinalPrefix+anim.AnimName+FinalSuffix))
-			anim.AnimName = FinalPrefix+anim.AnimName+FinalSuffix;
-		
-		if(!AnimPlayer.HasAnimation(anim.AnimName) && anim.AnimName != "" && !anim.AnimName.EndsWith("miss"))
-		{
-			GD.PushWarning($"There is no animation called {anim.AnimName}");
-			return;
-		}
+        if (AnimPlayer.HasAnimation(FinalPrefix + anim.AnimName + FinalSuffix))
+            anim.AnimName = FinalPrefix + anim.AnimName + FinalSuffix;
 
-		if (CurrentAnim.AnimName == anim.AnimName) AnimPlayer.Seek(0);
-		LastAnim = CurrentAnim;
-		CurrentAnim = anim;
-		AnimPlayer.Play(anim.AnimName);
-	}
+        if (!AnimPlayer.HasAnimation(anim.AnimName) && anim.AnimName != "" && !anim.AnimName.EndsWith("miss"))
+        {
+            GD.PushWarning($"There is no animation called {anim.AnimName}");
+            return;
+        }
+
+        if (CurrentAnim.AnimName == anim.AnimName) AnimPlayer.Seek(0);
+        LastAnim = CurrentAnim;
+        CurrentAnim = anim;
+        AnimPlayer.Play(anim.AnimName);
+    }
 
     public void Dance(bool Force = false)
     {
@@ -156,7 +154,7 @@ public partial class Character2D : Node2D
         PlayAnimByString(DanceList[DanceIndex], true);
 
         DanceIndex++;
-        DanceIndex = Mathf.Wrap(DanceIndex, 0, DanceList.Length-1);
+        DanceIndex = Mathf.Wrap(DanceIndex, 0, DanceList.Length - 1);
     }
 
     public void PlayAnimByString(string anim, bool force = false)
@@ -171,17 +169,17 @@ public partial class Character2D : Node2D
         PlayAnim(newAnim);
     }
 
-    public void AnimationFinished(StringName anim) 
+    public void AnimationFinished(StringName anim)
     {
         CurrentAnim.AnimFinished = true;
 
-        if(CurrentAnim.PostAnimation != null)
+        if (CurrentAnim.PostAnimation != null)
             PlayAnim(CurrentAnim.PostAnimation);
     }
 
     private static string FlipAnim(string anim)
     {
-		string newAnim = anim.Contains("LEFT") ? anim.Replace("LEFT", "RIGHT") : anim.Replace("RIGHT", "LEFT");
+        string newAnim = anim.Contains("LEFT") ? anim.Replace("LEFT", "RIGHT") : anim.Replace("RIGHT", "LEFT");
         return newAnim;
     }
 }

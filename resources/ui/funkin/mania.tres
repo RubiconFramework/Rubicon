@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="ManiaNoteSkin" load_steps=5 format=3 uid="uid://c7awjbb7h120n"]
 
-[ext_resource type="SpriteFrames" path="res://assets/ui/styles/funkin/mania/funkinSustains.tres" id="1_1u4ew"]
-[ext_resource type="SpriteFrames" path="res://assets/ui/styles/funkin/mania/funkinLane.tres" id="2_vxuwv"]
+[ext_resource type="SpriteFrames" uid="uid://ddl10qcxjlfa1" path="res://assets/ui/styles/funkin/mania/funkinSustains.tres" id="1_1u4ew"]
+[ext_resource type="SpriteFrames" uid="uid://bfowd14ghj7us" path="res://assets/ui/styles/funkin/mania/funkinLane.tres" id="2_vxuwv"]
 [ext_resource type="Script" path="res://source/Rubicon.Rulesets/Mania/ManiaNoteSkin.cs" id="2_wyt6f"]
-[ext_resource type="SpriteFrames" path="res://assets/ui/styles/funkin/mania/funkinNotes.tres" id="3_2wh6h"]
+[ext_resource type="SpriteFrames" uid="uid://cxwurvyo8jfnf" path="res://assets/ui/styles/funkin/mania/funkinNotes.tres" id="3_2wh6h"]
 
 [resource]
 script = ExtResource("2_wyt6f")

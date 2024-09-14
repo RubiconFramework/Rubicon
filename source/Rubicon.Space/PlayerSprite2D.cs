@@ -2,7 +2,7 @@
 namespace Rubicon.Space;
 
 #if TOOLS
-[Tool] 
+[Tool]
 #endif
 public partial class PlayerSprite2D : AnimatedSprite2D
 {

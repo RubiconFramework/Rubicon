@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cu2q514bs1uk"]
+[gd_scene load_steps=2 format=3 uid="uid://cu2q514bs1uk"]
+
+[ext_resource type="SpriteFrames" uid="uid://dcgqekmw4e2o8" path="res://assets/characters/bf/boyfriend.tres" id="1_sncc4"]
 
 [node name="ChartEditor" type="Control"]
 layout_mode = 3
@@ -7,3 +9,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+process_mode = 3
+position = Vector2(367, 272)
+sprite_frames = ExtResource("1_sncc4")
+animation = &"BF HEY!!"
+autoplay = "BF HEY!!"
+frame_progress = 0.495511

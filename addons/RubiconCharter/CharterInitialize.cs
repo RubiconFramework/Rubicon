@@ -8,7 +8,6 @@ public partial class CharterInitialize : EditorPlugin
     {
         GetViewport().GuiEmbedSubwindows = true;
         EditorInterface.Singleton.GetEditorMainScreen().AddChild(ChartEditorInstance);
-        
     }
 
     public override void _ExitTree()

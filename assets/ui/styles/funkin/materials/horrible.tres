@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bftkqmdktdaqt"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bpo40d5nlu05d"]
 
 [ext_resource type="Shader" path="res://resources/shaders/GradientShader.gdshader" id="1_enu44"]
 
