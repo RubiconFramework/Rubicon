@@ -12,9 +12,9 @@ namespace Rubicon.Extras.UI;
 public partial class FunkinComboDisplay : ComboDisplay
 {
     private bool _wasZero = false;
-    private Array<TextureRect> _comboGraphics = new();
-    private Dictionary<TextureRect, Vector2> _comboVelocities = new();
-    private Dictionary<TextureRect, int> _comboAccelerations = new();
+    private Array<Control> _comboGraphics = new();
+    private Dictionary<Control, Vector2> _comboVelocities = new();
+    private Dictionary<Control, int> _comboAccelerations = new();
 
     /// <inheritdoc/>
     public override void Play(uint combo, HitType type, Vector2? offset)
@@ -32,29 +32,38 @@ public partial class FunkinComboDisplay : ComboDisplay
             LastRating = type;
         
         string comboString = combo.ToString("D3");
-        int[] splitDigits = new int[comboString.Length];
+        string[] splitDigits = new string[comboString.Length];
         for (int i = 0; i < splitDigits.Length; i++)
-            splitDigits[i] = int.Parse(comboString.ToCharArray()[i].ToString());
+            splitDigits[i] = comboString.ToCharArray()[i].ToString();
         
         float generalSize = Spacing;
-        TextureRect[] currentGraphics = new TextureRect[splitDigits.Length];
+        Control[] currentGraphics = new Control[splitDigits.Length];
         for (int i = 0; i < splitDigits.Length; i++)
         {
-            TextureRect comboSpr = _comboGraphics.FirstOrDefault(x => x.Modulate.A == 0 && !currentGraphics.Contains(x));
+            Control comboSpr = _comboGraphics.FirstOrDefault(x => x.Modulate.A == 0 && !currentGraphics.Contains(x));
             if (comboSpr == null)
             {
                 comboSpr = new TextureRect();
                 comboSpr.Name = $"Instance {_comboGraphics.Count}";
+                AnimatedSprite2D comboGraphic = new AnimatedSprite2D();
+                comboGraphic.Name = "Graphic";
+                comboGraphic.Centered = false;
+                
+                comboSpr.AddChild(comboGraphic);
                 _comboGraphics.Add(comboSpr);
                 AddChild(comboSpr);
             }
 
+            AnimatedSprite2D graphic = comboSpr.GetChild<AnimatedSprite2D>(0);
+            graphic.SpriteFrames = Atlas;
+            graphic.Animation = splitDigits[i];
+            graphic.Frame = 0;
+            graphic.Play();
+            graphic.Material = GetMaterialFromRating(LastRating);
+            
             comboSpr.MoveToFront();
-            comboSpr.Texture = Textures[splitDigits[i]];
-            comboSpr.Size = comboSpr.Texture.GetSize();
             comboSpr.Scale = GraphicScale;
             comboSpr.Position = (pos ?? Vector2.Zero) + new Vector2(i * generalSize, 0);
-            comboSpr.Material = GetMaterialFromRating(LastRating);
             comboSpr.Modulate = new Color(comboSpr.Modulate.R, comboSpr.Modulate.G, comboSpr.Modulate.B);
 
             currentGraphics[i] = comboSpr;
@@ -82,7 +91,7 @@ public partial class FunkinComboDisplay : ComboDisplay
             if (_comboGraphics[i].Modulate.A == 0)
                 continue;
 
-            TextureRect comboSpr = _comboGraphics[i];
+            Control comboSpr = _comboGraphics[i];
             Vector2 velocity = _comboVelocities[comboSpr];
             int acceleration = _comboAccelerations[comboSpr];
 

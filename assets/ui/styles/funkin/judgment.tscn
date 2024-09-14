@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvuu8kmrsmsj"]
+[gd_scene load_steps=3 format=3 uid="uid://cvuu8kmrsmsj"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Extras/UI/FunkinJudgment.cs" id="1_k7iwh"]
-[ext_resource type="Texture2D" uid="uid://crwo0hy5q1jq3" path="res://assets/ui/styles/funkin/judgment/sick.tres" id="2_s71vr"]
-[ext_resource type="Texture2D" uid="uid://c16tfviwpkulh" path="res://assets/ui/styles/funkin/judgment/good.tres" id="3_61y1e"]
-[ext_resource type="Texture2D" uid="uid://blkvg5c7dliwi" path="res://assets/ui/styles/funkin/judgment/bad.tres" id="4_lxhev"]
-[ext_resource type="Texture2D" uid="uid://bd4trpuh4td3n" path="res://assets/ui/styles/funkin/judgment/shit.tres" id="5_ihyhh"]
-[ext_resource type="Texture2D" uid="uid://fsmsrd6hdpf1" path="res://assets/ui/styles/funkin/judgment/missed.png" id="6_xj114"]
+[ext_resource type="SpriteFrames" uid="uid://c3oogrurwc8mg" path="res://assets/ui/styles/funkin/judgment/judgments.tres" id="2_bql2j"]
 
 [node name="Judgment" type="Control"]
 layout_mode = 3
@@ -15,9 +11,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k7iwh")
-PerfectTexture = ExtResource("2_s71vr")
-GreatTexture = ExtResource("2_s71vr")
-GoodTexture = ExtResource("3_61y1e")
-BadTexture = ExtResource("4_lxhev")
-HorribleTexture = ExtResource("5_ihyhh")
-MissTexture = ExtResource("6_xj114")
+Atlas = ExtResource("2_bql2j")

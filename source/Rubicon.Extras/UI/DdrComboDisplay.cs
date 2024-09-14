@@ -13,7 +13,7 @@ namespace Rubicon.Extras.UI;
 /// </summary>
 public partial class DdrComboDisplay : ComboDisplay
 {
-    private Array<TextureRect> _comboGraphics = new();
+    private Array<Control> _comboGraphics = new();
     private Array<Tween> _comboTweens = new();
     private Vector2 _offset = Vector2.Zero;
 
@@ -44,9 +44,10 @@ public partial class DdrComboDisplay : ComboDisplay
 	        _comboTweens[i].Kill();
         _comboTweens.Clear();
 
-		int[] splitDigits = new int[combo.ToString().Length];
+        string comboString = combo.ToString();
+		string[] splitDigits = new String[comboString.Length];
 		for (int i = 0; i < splitDigits.Length; i++)
-			splitDigits[i] = int.Parse(combo.ToString().ToCharArray()[i].ToString());
+			splitDigits[i] = comboString.ToCharArray()[i].ToString();
 
 		int childCount = GetChildCount();
 		for (int i = 0; i < childCount; i++)
@@ -56,12 +57,14 @@ public partial class DdrComboDisplay : ComboDisplay
 		{
 			for (int i = 0; i < splitDigits.Length; i++)
 			{
-				TextureRect comboSpr = _comboGraphics[i];
+				Control comboSpr = _comboGraphics[i];
+				AnimatedSprite2D comboGraphic = comboSpr.GetChild<AnimatedSprite2D>(0);
 
-				comboSpr.Texture = Textures[splitDigits[i]];
-				comboSpr.Size = comboSpr.Texture.GetSize();
-				comboSpr.PivotOffset =
-					new Vector2(comboSpr.Texture.GetWidth() / 2f, comboSpr.Texture.GetHeight() / 2f);
+				comboGraphic.SpriteFrames = Atlas;
+				comboGraphic.Animation = splitDigits[i];
+				comboGraphic.Frame = 0;
+				comboGraphic.Play();
+
 				comboSpr.Modulate = new Color(1, 1, 1, 0.5f);
 				comboSpr.Scale = Vector2.One;
 			}
@@ -70,24 +73,29 @@ public partial class DdrComboDisplay : ComboDisplay
 		{
 			for (int i = 0; i < childCount; i++)
 			{
-				TextureRect comboSpr = _comboGraphics[i];
+				Control comboSpr = _comboGraphics[i];
+				AnimatedSprite2D comboGraphic = comboSpr.GetChild<AnimatedSprite2D>(0);
 
-				comboSpr.Texture = Textures[splitDigits[i]];
-				comboSpr.Size = comboSpr.Texture.GetSize();
-				comboSpr.PivotOffset =
-					new Vector2(comboSpr.Texture.GetWidth() / 2f, comboSpr.Texture.GetHeight() / 2f);
+				comboGraphic.SpriteFrames = Atlas;
+				comboGraphic.Animation = splitDigits[i];
+				comboGraphic.Frame = 0;
+				comboGraphic.Play();
+
 				comboSpr.Modulate = new Color(1, 1, 1, 0.5f);
 				comboSpr.Scale = Vector2.One;
 			}
 
 			for (int i = childCount; i < splitDigits.Length; i++)
 			{
-				TextureRect comboSpr = new TextureRect();
+				Control comboSpr = new TextureRect();
+				AnimatedSprite2D comboGraphic = new AnimatedSprite2D();
 
-				comboSpr.Texture = Textures[splitDigits[i]];
-				comboSpr.Size = comboSpr.Texture.GetSize();
-				comboSpr.PivotOffset =
-					new Vector2(comboSpr.Texture.GetWidth() / 2f, comboSpr.Texture.GetHeight() / 2f);
+				comboGraphic.SpriteFrames = Atlas;
+				comboGraphic.Animation = splitDigits[i];
+				comboGraphic.Frame = 0;
+				comboGraphic.Play();
+				comboSpr.AddChild(comboGraphic);
+					
 				comboSpr.Modulate = new Color(1, 1, 1, 0.5f);
 				comboSpr.Scale = Vector2.One;
 				_comboGraphics.Add(comboSpr);
@@ -99,8 +107,10 @@ public partial class DdrComboDisplay : ComboDisplay
 		Vector2 position = pos ?? Vector2.Zero;
 		for (int i = 0; i < splitDigits.Length; i++)
 		{
-			TextureRect comboSpr = _comboGraphics[i];
-			comboSpr.Material = GetMaterialFromRating(LastRating);
+			Control comboSpr = _comboGraphics[i];
+			AnimatedSprite2D comboGraphic = comboSpr.GetChild<AnimatedSprite2D>(0);
+			
+			comboGraphic.Material = GetMaterialFromRating(LastRating);
 			comboSpr.AnchorLeft = anchorLeft;
 			comboSpr.AnchorTop = anchorTop;
 			comboSpr.AnchorRight = anchorRight;

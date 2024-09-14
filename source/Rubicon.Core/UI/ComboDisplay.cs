@@ -10,7 +10,7 @@ public partial class ComboDisplay : Control
     /// <summary>
     /// The textures to display. Should go from 0 to 9.
     /// </summary>
-    [Export] public Texture2D[] Textures = new Texture2D[10];
+    [Export] public SpriteFrames Atlas;
     
     /// <summary>
     /// The spacing of the textures.

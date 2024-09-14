@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c360b8cibj2c0"]
-
-[ext_resource type="Texture2D" uid="uid://b3450r6jymynd" path="res://assets/ui/styles/funkin/score/combo.png" id="1_7wq08"]
-
-[resource]
-atlas = ExtResource("1_7wq08")
-region = Rect2(805, 13, 90, 111)

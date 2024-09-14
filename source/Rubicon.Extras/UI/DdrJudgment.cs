@@ -14,7 +14,8 @@ public partial class DdrJudgment : Judgment
 {
     [Export] public float Opacity = 0.5f;
     
-    private TextureRect _judgmentGraphic;
+    private Control _judgmentControl;
+    private AnimatedSprite2D _judgmentGraphic;
     private Tween _judgeTween;
     private Vector2 _offset = Vector2.Zero;
     
@@ -40,38 +41,43 @@ public partial class DdrJudgment : Judgment
     {
         if (_judgmentGraphic == null)
         {
-            _judgmentGraphic = new TextureRect();
-            _judgmentGraphic.Name = "Judgment Graphic";
-            AddChild(_judgmentGraphic);
+            _judgmentControl = new Control();
+            _judgmentControl.Name = "Judgment Container";
+            _judgmentGraphic = new AnimatedSprite2D();
+            _judgmentGraphic.Name = "Graphic";
+            
+            _judgmentControl.AddChild(_judgmentGraphic);
+            AddChild(_judgmentControl);
         }
         _judgeTween?.Kill();
 
-        _judgmentGraphic.AnchorLeft = anchorLeft;
-        _judgmentGraphic.AnchorTop = anchorTop;
-        _judgmentGraphic.AnchorRight = anchorRight;
-        _judgmentGraphic.AnchorBottom = anchorBottom;
-        _judgmentGraphic.Texture = GetJudgmentTexture(type);
+        _judgmentControl.AnchorLeft = anchorLeft;
+        _judgmentControl.AnchorTop = anchorTop;
+        _judgmentControl.AnchorRight = anchorRight;
+        _judgmentControl.AnchorBottom = anchorBottom;
+        _judgmentGraphic.SpriteFrames = Atlas;
+        _judgmentGraphic.Animation = GetJudgmentAnimation(type);
+        _judgmentGraphic.Frame = 0;
+        _judgmentGraphic.Play();
         _judgmentGraphic.Material = GetJudgmentMaterial(type);
-        _judgmentGraphic.Scale = GraphicScale * 1.1f;
-        _judgmentGraphic.Size = _judgmentGraphic.Texture.GetSize();
-        _judgmentGraphic.PivotOffset = _judgmentGraphic.Size / 2f;
-        _judgmentGraphic.Position = (pos ?? Vector2.Zero) - _judgmentGraphic.PivotOffset;
-        _judgmentGraphic.Modulate = new Color(_judgmentGraphic.Modulate.R, _judgmentGraphic.Modulate.G,
-            _judgmentGraphic.Modulate.B, Opacity);
+        _judgmentControl.Scale = GraphicScale * 1.1f;
+        _judgmentControl.Position = pos ?? Vector2.Zero;
+        _judgmentControl.Modulate = new Color(_judgmentControl.Modulate.R, _judgmentControl.Modulate.G,
+            _judgmentControl.Modulate.B, Opacity);
 
-        _judgeTween = _judgmentGraphic.CreateTween();
-        _judgeTween.TweenProperty(_judgmentGraphic, "scale", GraphicScale, 0.1d);
-        _judgeTween.TweenProperty(_judgmentGraphic, "modulate", Colors.Transparent, 0.5d).SetDelay(0.4d);
+        _judgeTween = _judgmentControl.CreateTween();
+        _judgeTween.TweenProperty(_judgmentControl, "scale", GraphicScale, 0.1d);
+        _judgeTween.TweenProperty(_judgmentControl, "modulate", Colors.Transparent, 0.5d).SetDelay(0.4d);
         _judgeTween.Play();
     }
     
     public override void _Process(double delta)
     {
-        if (RubiconGame.Instance == null || RubiconGame.Instance.PlayField == null || _judgmentGraphic == null)
+        if (RubiconGame.Instance == null || RubiconGame.Instance.PlayField == null || _judgmentControl == null || _judgmentGraphic == null)
             return;
         
         PlayField playField = RubiconGame.Instance.PlayField;
         BarLine barLine = playField.BarLines[playField.TargetBarLine];
-        _judgmentGraphic.Position = barLine.GlobalPosition + (_offset * (Settings.General.Downscroll ? -1f : 1f)) - (_judgmentGraphic.PivotOffset);
+        _judgmentControl.Position = barLine.GlobalPosition + (_offset * (Settings.General.Downscroll ? -1f : 1f));
     }
 }

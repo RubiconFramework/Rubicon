@@ -9,34 +9,9 @@ namespace Rubicon.Core.UI;
 public partial class Judgment : Control
 {
     /// <summary>
-    /// The texture to show when hitting a <see cref="HitType.Perfect"/>.
+    /// Textures to fetch from when displaying judgments.
     /// </summary>
-    [Export] public Texture2D PerfectTexture;
-
-    /// <summary>
-    /// The texture to show when hitting a <see cref="HitType.Great"/>.
-    /// </summary>
-    [Export] public Texture2D GreatTexture;
-
-    /// <summary>
-    /// The texture to show when hitting a <see cref="HitType.Good"/>.
-    /// </summary>
-    [Export] public Texture2D GoodTexture;
-
-    /// <summary>
-    /// The texture to show when hitting a <see cref="HitType.Bad"/>.
-    /// </summary>
-    [Export] public Texture2D BadTexture;
-    
-    /// <summary>
-    /// The texture to show when hitting a <see cref="HitType.Horrible"/>.
-    /// </summary>
-    [Export] public Texture2D HorribleTexture;
-
-    /// <summary>
-    /// The texture to show when hitting a <see cref="HitType.Miss"/>.
-    /// </summary>
-    [Export] public Texture2D MissTexture;
+    [Export] public SpriteFrames Atlas;
 
     /// <summary>
     /// How much to scale the judgment graphics by.
@@ -111,26 +86,26 @@ public partial class Judgment : Control
     }
 
     /// <summary>
-    /// Get a judgment texture based on the rating.
+    /// Get a judgment animation name based on the rating.
     /// </summary>
     /// <param name="type">The rating</param>
-    /// <returns>The Texture2D associated with the Judgment</returns>
-    protected Texture2D GetJudgmentTexture(HitType type)
+    /// <returns>The string associated with the Judgment</returns>
+    protected string GetJudgmentAnimation(HitType type)
     {
         switch (type)
         {
             default:
-                return PerfectTexture;
+                return "perfect";
             case HitType.Great:
-                return GreatTexture;
+                return "great";
             case HitType.Good:
-                return GoodTexture;
+                return "good";
             case HitType.Bad:
-                return BadTexture;
+                return "bad";
             case HitType.Horrible:
-                return HorribleTexture;
+                return "horrible";
             case HitType.Miss:
-                return MissTexture;
+                return "miss";
         }
     }
 

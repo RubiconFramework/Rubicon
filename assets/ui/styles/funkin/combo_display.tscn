@@ -1,16 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://ci220sy4asmdw"]
+[gd_scene load_steps=3 format=3 uid="uid://ci220sy4asmdw"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Extras/UI/FunkinComboDisplay.cs" id="1_2bm2c"]
-[ext_resource type="Texture2D" uid="uid://cm8ragfj4h5yv" path="res://assets/ui/styles/funkin/score/num0.tres" id="2_8h2et"]
-[ext_resource type="Texture2D" uid="uid://ce4e62t03lecw" path="res://assets/ui/styles/funkin/score/num1.tres" id="3_q4dm7"]
-[ext_resource type="Texture2D" uid="uid://d0ejt17mjvws2" path="res://assets/ui/styles/funkin/score/num2.tres" id="4_cw6a5"]
-[ext_resource type="Texture2D" uid="uid://dtuk1ix6q5mqo" path="res://assets/ui/styles/funkin/score/num3.tres" id="5_8etse"]
-[ext_resource type="Texture2D" uid="uid://bws8q1b8fa2ay" path="res://assets/ui/styles/funkin/score/num4.tres" id="6_0rupg"]
-[ext_resource type="Texture2D" uid="uid://cj27ipu8r16fx" path="res://assets/ui/styles/funkin/score/num5.tres" id="7_vjhd4"]
-[ext_resource type="Texture2D" uid="uid://dq82q3cj08fu4" path="res://assets/ui/styles/funkin/score/num6.tres" id="8_lhy3r"]
-[ext_resource type="Texture2D" uid="uid://bu75jr7eflokc" path="res://assets/ui/styles/funkin/score/num7.tres" id="9_7lbpn"]
-[ext_resource type="Texture2D" uid="uid://c360b8cibj2c0" path="res://assets/ui/styles/funkin/score/num8.tres" id="10_cd05o"]
-[ext_resource type="Texture2D" uid="uid://c2cyoj7un6b7u" path="res://assets/ui/styles/funkin/score/num9.tres" id="11_424pm"]
+[ext_resource type="SpriteFrames" uid="uid://c85tnr6y52kqk" path="res://assets/ui/styles/funkin/score/combo.tres" id="2_6mr8j"]
 
 [node name="ComboDisplay" type="Control"]
 layout_mode = 3
@@ -20,6 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2bm2c")
-Textures = [ExtResource("2_8h2et"), ExtResource("3_q4dm7"), ExtResource("4_cw6a5"), ExtResource("5_8etse"), ExtResource("6_0rupg"), ExtResource("7_vjhd4"), ExtResource("8_lhy3r"), ExtResource("9_7lbpn"), ExtResource("10_cd05o"), ExtResource("11_424pm")]
+Atlas = ExtResource("2_6mr8j")
 Spacing = 54.0
 GraphicScale = Vector2(0.675, 0.675)

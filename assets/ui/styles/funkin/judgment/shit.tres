@@ -1,7 +1,0 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bd4trpuh4td3n"]
-
-[ext_resource type="Texture2D" uid="uid://c7detcr7truqj" path="res://assets/ui/styles/funkin/judgment/judgments.png" id="1_8aife"]
-
-[resource]
-atlas = ExtResource("1_8aife")
-region = Rect2(129, 500, 240, 142)

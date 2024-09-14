@@ -12,8 +12,8 @@ namespace Rubicon.Extras.UI;
 public partial class FunkinJudgment : Judgment
 {
     private bool _missedCombo = false;
-    private Array<TextureRect> _judgmentGraphics = new();
-    private Dictionary<TextureRect, Vector2> _judgmentVelocities = new();
+    private Array<Control> _judgmentGraphics = new();
+    private Dictionary<Control, Vector2> _judgmentVelocities = new();
 
     /// <inheritdoc/>
     public override void Play(HitType type, Vector2? offset)
@@ -27,24 +27,32 @@ public partial class FunkinJudgment : Judgment
         if (_missedCombo && type == HitType.Miss)
             return;
 
-        TextureRect judgment = _judgmentGraphics.FirstOrDefault(x => x.Modulate.A == 0);
+        Control judgment = _judgmentGraphics.FirstOrDefault(x => x.Modulate.A == 0);
         if (judgment == null)
         {
-            judgment = new TextureRect();
+            judgment = new Control();
             judgment.Name = $"Instance {_judgmentGraphics.Count}";
+            AnimatedSprite2D judgmentGraphic = new AnimatedSprite2D();
+            judgmentGraphic.Name = "Graphic";
+            judgmentGraphic.Centered = false;
+            
+            judgment.AddChild(judgmentGraphic);
             _judgmentGraphics.Add(judgment);
             AddChild(judgment);
         }
-        
+
+        AnimatedSprite2D graphic = judgment.GetChild<AnimatedSprite2D>(0);
         judgment.AnchorLeft = anchorLeft;
         judgment.AnchorTop = anchorTop;
         judgment.AnchorRight = anchorRight;
         judgment.AnchorBottom = anchorBottom;
         judgment.Modulate = new Color(judgment.Modulate.R, judgment.Modulate.G, judgment.Modulate.B);
-        judgment.Texture = GetJudgmentTexture(type);
-        judgment.Material = GetJudgmentMaterial(type);
-        judgment.Size = judgment.Texture.GetSize();
         judgment.Scale = GraphicScale;
+        graphic.SpriteFrames = Atlas;
+        graphic.Animation = GetJudgmentAnimation(type);
+        graphic.Frame = 0;
+        graphic.Play();
+        graphic.Material = GetJudgmentMaterial(type);
         judgment.Position = pos ?? Vector2.Zero;
         judgment.MoveToFront();
         
@@ -62,7 +70,7 @@ public partial class FunkinJudgment : Judgment
 
         for (int i = 0; i < _judgmentGraphics.Count; i++)
         {
-            TextureRect curGraphic = _judgmentGraphics[i];
+            Control curGraphic = _judgmentGraphics[i];
             Vector2 curVelocity = _judgmentVelocities[curGraphic];
             if (curGraphic.Modulate.A == 0)
                 continue;
