@@ -1,10 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://ch42nuiw15uh6"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Space/Character2D.cs" id="1_deaeb"]
-[ext_resource type="SpriteFrames" uid="uid://dbld6aokhw543" path="res://assets/characters/bf/boyfriend.xml" id="2_lw8ua"]
+[ext_resource type="SpriteFrames" uid="uid://dcgqekmw4e2o8" path="res://assets/characters/bf/boyfriend.tres" id="2_7sbxo"]
 
 [sub_resource type="Animation" id="Animation_ylsds"]
 resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_a1bfv"]
+resource_name = "singDOWN"
 
 [sub_resource type="Animation" id="Animation_igel0"]
 resource_name = "singLEFT"
@@ -14,9 +17,6 @@ resource_name = "singRIGHT"
 
 [sub_resource type="Animation" id="Animation_elppf"]
 resource_name = "singUP"
-
-[sub_resource type="Animation" id="Animation_a1bfv"]
-resource_name = "singDOWN"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3vjhy"]
 _data = {
@@ -34,8 +34,8 @@ AnimPlayer = NodePath("AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-16, -185)
-sprite_frames = ExtResource("2_lw8ua")
-animation = &"BF idle dance"
+sprite_frames = ExtResource("2_7sbxo")
+animation = &"BF HEY!!"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

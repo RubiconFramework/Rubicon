@@ -39,7 +39,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_sparrow/plugin.cfg")
+enabled=PackedStringArray("res://addons/flashimport/plugin.cfg")
 
 [file_customization]
 
