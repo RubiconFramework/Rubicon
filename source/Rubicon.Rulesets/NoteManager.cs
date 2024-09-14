@@ -123,9 +123,9 @@ public partial class NoteManager : Control
 			}
 		}
 
-		if (curNoteData.MsTime - time <= -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
+		if (curNoteData.MsTime - time <= -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble())
 		{
-			OnNoteMiss(curNoteData, -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble() - 1, false);
+			OnNoteMiss(curNoteData, -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble() - 1, false);
 			NoteHitIndex++;
 		}
 	}
@@ -177,7 +177,8 @@ public partial class NoteManager : Control
 			ProjectSettings.GetSetting("rubicon/judgments/perfect_hit_window").AsDouble(),
 			ProjectSettings.GetSetting("rubicon/judgments/great_hit_window").AsDouble(),
 			ProjectSettings.GetSetting("rubicon/judgments/good_hit_window").AsDouble(),
-			ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()
+			ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble(),
+			ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble()
 		];
 		int hit = hitWindows.Length - 1;
 		for (int i = 0; i < hitWindows.Length; i++)

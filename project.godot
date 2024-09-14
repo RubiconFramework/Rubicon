@@ -160,9 +160,10 @@ buffering/agile_event_flushing=true
 
 [rubicon]
 
-general/default_ui_style="funkin"
 rulesets/mania="res://source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
 judgments/perfect_hit_window=25.0
 judgments/great_hit_window=50.0
 judgments/good_hit_window=90.0
 judgments/bad_hit_window=135.0
+general/default_ui_style="funkin"
+judgments/horrible_hit_window=165.0

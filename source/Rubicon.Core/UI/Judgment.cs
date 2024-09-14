@@ -27,6 +27,11 @@ public partial class Judgment : Control
     /// The texture to show when hitting a <see cref="HitType.Bad"/>.
     /// </summary>
     [Export] public Texture2D BadTexture;
+    
+    /// <summary>
+    /// The texture to show when hitting a <see cref="HitType.Horrible"/>.
+    /// </summary>
+    [Export] public Texture2D HorribleTexture;
 
     /// <summary>
     /// The texture to show when hitting a <see cref="HitType.Miss"/>.
@@ -41,27 +46,32 @@ public partial class Judgment : Control
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Perfect"/>.
     /// </summary>
-    [ExportGroup("Materials"), Export] public Material PerfectMaterial; // dokibird glasses
+    public Material PerfectMaterial; // dokibird glasses
 
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Great"/>.
     /// </summary>
-    [Export] public Material GreatMaterial;
+    public Material GreatMaterial;
 
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Good"/>.
     /// </summary>
-    [Export] public Material GoodMaterial;
+    public Material GoodMaterial;
 
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Bad"/>.
     /// </summary>
-    [Export] public Material BadMaterial;
+    public Material BadMaterial;
+    
+    /// <summary>
+    /// The material to put on when hitting a <see cref="HitType.Horrible"/>.
+    /// </summary>
+    public Material HorribleMaterial;
 
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Miss"/>.
     /// </summary>
-    [Export] public Material MissMaterial;
+    public Material MissMaterial;
 
     /// <summary>
     /// Plays an animation depending on the hit type provided.
@@ -117,6 +127,8 @@ public partial class Judgment : Control
                 return GoodTexture;
             case HitType.Bad:
                 return BadTexture;
+            case HitType.Horrible:
+                return HorribleTexture;
             case HitType.Miss:
                 return MissTexture;
         }
@@ -139,6 +151,8 @@ public partial class Judgment : Control
                 return GoodMaterial;
             case HitType.Bad:
                 return BadMaterial;
+            case HitType.Horrible:
+                return HorribleMaterial;
             case HitType.Miss:
                 return MissMaterial;
         }

@@ -34,6 +34,10 @@ public partial class PlayField : Control
     
     [Export] public uint Misses = 0;
 
+    [Export] public uint Combo = 0;
+
+    [Export] public uint HighestCombo = 0;
+
     /// <summary>
     /// The Chart for this PlayField.
     /// </summary>
@@ -68,6 +72,11 @@ public partial class PlayField : Control
     /// The Judgment instance for this play field.
     /// </summary>
     public Judgment Judgment;
+
+    /// <summary>
+    /// The ComboDisplay instance for 
+    /// </summary>
+    public ComboDisplay ComboDisplay;
     
     /// <summary>
     /// Readies the PlayField for gameplay!
@@ -93,8 +102,24 @@ public partial class PlayField : Control
         }
 
         UiStyle = GD.Load<UiStyle>(uiStylePath);
+        
         Judgment = UiStyle.Judgment.Instantiate<Judgment>();
+        Judgment.PerfectMaterial = UiStyle.PerfectMaterial;
+        Judgment.GreatMaterial = UiStyle.GreatMaterial;
+        Judgment.GoodMaterial = UiStyle.GoodMaterial;
+        Judgment.BadMaterial = UiStyle.BadMaterial;
+        Judgment.HorribleMaterial = UiStyle.HorribleMaterial;
+        Judgment.MissMaterial = UiStyle.MissMaterial;
         AddChild(Judgment);
+
+        ComboDisplay = UiStyle.Combo.Instantiate<ComboDisplay>();
+        ComboDisplay.PerfectMaterial = UiStyle.PerfectMaterial;
+        ComboDisplay.GreatMaterial = UiStyle.GreatMaterial;
+        ComboDisplay.GoodMaterial = UiStyle.GoodMaterial;
+        ComboDisplay.BadMaterial = UiStyle.BadMaterial;
+        ComboDisplay.HorribleMaterial = Judgment.HorribleMaterial;
+        ComboDisplay.MissMaterial = Judgment.MissMaterial;
+        AddChild(ComboDisplay);
 
         for (int i = 0; i < BarLines.Length; i++)
             BarLines[i].NoteHit += OnNoteHit;
@@ -145,6 +170,14 @@ public partial class PlayField : Control
     protected virtual void OnNoteHit(BarLine barLine, int lane, string direction, NoteData noteData, int hitType, double distance, bool holding)
     {
         if (BarLines[TargetBarLine] == barLine)
-            Judgment?.Play((HitType)hitType, UiStyle.JudgmentOffset);
+        {
+            HitType hit = (HitType)hitType;
+            Combo = hit != HitType.Miss ? Combo + 1 : 0;
+            if (Combo > HighestCombo)
+                HighestCombo = Combo;
+            
+            Judgment?.Play(hit, UiStyle.JudgmentOffset);   
+            ComboDisplay?.Play(Combo, hit, UiStyle.ComboOffset);
+        }
     }
 }

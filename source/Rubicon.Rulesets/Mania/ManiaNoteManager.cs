@@ -171,20 +171,20 @@ public partial class ManiaNoteManager : NoteManager
 			}
 
 			double songPos = Conductor.Time * 1000d; // calling it once since this can lag the game HORRIBLY if used without caution
-			while (notes[NoteHitIndex].MsTime - songPos <= -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window"))
+			while (notes[NoteHitIndex].MsTime - songPos <= -(float)ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window"))
 			{
 				// Miss every note thats too late first
-				OnNoteMiss(notes[NoteHitIndex], -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble() - 1, false);
+				OnNoteMiss(notes[NoteHitIndex], -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble() - 1, false);
 				NoteHitIndex++;
 			}
 
 			double hitTime = notes[NoteHitIndex].MsTime - songPos;
-			if (Mathf.Abs(hitTime) <= ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()) // Literally any other rating
+			if (Mathf.Abs(hitTime) <= ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble()) // Literally any other rating
 			{
 				OnNoteHit(notes[NoteHitIndex], hitTime, notes[NoteHitIndex].Length > 0);
 				NoteHitIndex++;
 			}
-			else if (hitTime < -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()) // Your Miss / "SHIT" rating
+			else if (hitTime < -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble()) // Your Miss / "SHIT" rating
 			{
 				LaneObject.Animation = $"{Direction}LaneConfirm";
 				LaneObject.Play();
@@ -202,7 +202,7 @@ public partial class ManiaNoteManager : NoteManager
 			if (NoteHeld != null)
 			{
 				double length = NoteHeld.MsTime + NoteHeld.MsLength - (Conductor.Time * 1000d);
-				if (length <= ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
+				if (length <= ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble())
 					OnNoteHit(NoteHeld, length, false);
 				else
 					OnNoteMiss(NoteHeld, length, true);

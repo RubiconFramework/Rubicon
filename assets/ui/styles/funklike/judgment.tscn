@@ -1,15 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct85hayoei4a1"]
+[gd_scene load_steps=7 format=3 uid="uid://ct85hayoei4a1"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Extras/UI/DdrJudgment.cs" id="1_1b2yj"]
 [ext_resource type="Texture2D" uid="uid://crwo0hy5q1jq3" path="res://assets/ui/styles/funkin/judgment/sick.tres" id="2_x337v"]
 [ext_resource type="Texture2D" uid="uid://c16tfviwpkulh" path="res://assets/ui/styles/funkin/judgment/good.tres" id="3_dll06"]
 [ext_resource type="Texture2D" uid="uid://blkvg5c7dliwi" path="res://assets/ui/styles/funkin/judgment/bad.tres" id="4_xdpmb"]
 [ext_resource type="Texture2D" uid="uid://bd4trpuh4td3n" path="res://assets/ui/styles/funkin/judgment/shit.tres" id="5_edkxr"]
-[ext_resource type="Material" uid="uid://bn4b2kj3ajywl" path="res://assets/ui/styles/funkin/materials/perfect.tres" id="6_c0ho5"]
-[ext_resource type="Material" uid="uid://b37f4mdn0h8w6" path="res://assets/ui/styles/funkin/materials/great.tres" id="7_lroo0"]
-[ext_resource type="Material" uid="uid://c0cgdmxo1vf40" path="res://assets/ui/styles/funkin/materials/good.tres" id="8_tdxv2"]
-[ext_resource type="Material" uid="uid://clrbqrdp1uiuf" path="res://assets/ui/styles/funkin/materials/bad.tres" id="9_d7te4"]
-[ext_resource type="Material" uid="uid://bftkqmdktdaqt" path="res://assets/ui/styles/funkin/materials/miss.tres" id="10_7j5hm"]
+[ext_resource type="Texture2D" uid="uid://fsmsrd6hdpf1" path="res://assets/ui/styles/funkin/judgment/missed.png" id="6_yncei"]
 
 [node name="Judgment" type="Control"]
 layout_mode = 3
@@ -23,10 +19,6 @@ PerfectTexture = ExtResource("2_x337v")
 GreatTexture = ExtResource("2_x337v")
 GoodTexture = ExtResource("3_dll06")
 BadTexture = ExtResource("4_xdpmb")
-MissTexture = ExtResource("5_edkxr")
+HorribleTexture = ExtResource("5_edkxr")
+MissTexture = ExtResource("6_yncei")
 GraphicScale = Vector2(0.667, 0.667)
-PerfectMaterial = ExtResource("6_c0ho5")
-GreatMaterial = ExtResource("7_lroo0")
-GoodMaterial = ExtResource("8_tdxv2")
-BadMaterial = ExtResource("9_d7te4")
-MissMaterial = ExtResource("10_7j5hm")

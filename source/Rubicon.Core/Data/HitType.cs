@@ -10,5 +10,6 @@ public enum HitType
     Great,
     Good,
     Bad,
+    Horrible,
     Miss
 }

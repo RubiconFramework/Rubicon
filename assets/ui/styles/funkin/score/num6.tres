@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dq82q3cj08fu4"]
+
+[ext_resource type="Texture2D" uid="uid://b3450r6jymynd" path="res://assets/ui/styles/funkin/score/combo.png" id="1_7t4jp"]
+
+[resource]
+atlas = ExtResource("1_7t4jp")
+region = Rect2(604, 13, 91, 111)

@@ -1,8 +1,8 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bftkqmdktdaqt"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bs8iq3r2cutsu"]
 
 [ext_resource type="Shader" path="res://assets/shaders/GradientShader.gdshader" id="1_enu44"]
 
 [resource]
 shader = ExtResource("1_enu44")
-shader_parameter/black_color = Color(0.305882, 0.0745098, 0.188235, 1)
-shader_parameter/white_color = Color(0.85098, 0.223529, 0.215686, 1)
+shader_parameter/black_color = Color(0.164706, 0.156863, 0.423529, 1)
+shader_parameter/white_color = Color(0.635294, 0.270588, 0.835294, 1)
