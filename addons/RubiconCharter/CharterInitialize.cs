@@ -22,11 +22,6 @@ public partial class CharterInitialize : EditorPlugin
         return true;
     }
 
-    public override void _MakeVisible(bool visible)
-    {
-
-    }
-
     public override string _GetPluginName()
     {
         return "Chart Editor";

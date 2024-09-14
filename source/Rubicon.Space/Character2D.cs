@@ -2,39 +2,52 @@ using Godot.Sharp.Extras;
 
 namespace Rubicon.Space;
 
+/// <summary>
+/// This is the character class, which handles which animations the sprite should play
+/// among other utils
+/// </summary>
 public partial class Character2D : Node2D
 {
     /// <summary>
-    /// 
-    /// This is the character class, which handles which animations the sprite should play
-    /// among other utils
-    /// 
+    /// Determines whether the character should be rotated or not.
+    /// Recommended when a character's sprite is facing left.
     /// </summary>
+    [ExportGroup("Character Info"), Export] public bool MirrorCharacter = false;
 
-    [ExportGroup("Character Info")]
-
-    // This should be true if the character is looking to the left
-    // It rotates the sprites and animations in case the character is a player
-    [Export] public bool MirrorCharacter = false;
-
-    // This two properties is automatically determined by the engine
+    /// <summary>
+    /// This property is automatically determined by the character class.
+    /// It flips the left and right animations depending if MirrorCharacter does not equal IsPlayer.
+    /// </summary>
     public bool FlipAnimations = false;
+
+    /// <summary>
+    /// Determines whether the character should be rotated or not depending on MirrorCharacter.
+    /// </summary>
     public bool IsPlayer = false;
 
+    /// <summary>
+    /// This property gets added to the start of an animation's name.
+    /// It is overriden by the Prefix property inside CurrentAnimation.
+    /// Useful for alt animations or similar.
+    /// </summary>
+    [ExportGroup("Animation Info"), Export] public string StaticPrefix;
 
-    [ExportGroup("Animation Info")]
-
-    // This two properties are added to the back and front of the animation name
-    // They are overriden by the ones in the CharacterAnimation being played
-    // Useful for alt animations or similar
-    [Export] public string StaticPrefix;
+    /// <summary>
+    /// This property gets added to the end of an animation's name.
+    /// It is overriden by the Suffix property inside CurrentAnimation.
+    /// Useful for alt animations or similar.
+    /// </summary>
     [Export] public string StaticSuffix;
     
     // This array contains the "idle" or "dance" animation sequence
     // Every beat that is played goes to the next one on the array
     // Useful for left and right animations like Gf
+    /// <summary>
+    /// A string array containing the sequence of idle/dance animations to be played.
+    /// Useful for 
+    /// </summary>
     [Export] public string[] DanceList = {"idle"};
-    public int DanceStep = 0;
+    private int DanceIndex = 0;
 
     // Whether the characters should jitter when holding notes or be completely still
     [Export] public bool StaticSustain = false;
@@ -74,7 +87,7 @@ public partial class Character2D : Node2D
 
     public void PlayAnim(CharacterAnimation anim)
 	{
-		if(!(anim.Force || !CurrentAnim.OverrideAnim || CurrentAnim.AnimFinished)) return;
+		if(!(anim.Force || !CurrentAnim.OverrideAnim || CurrentAnim.AnimFinished) || (!anim.Force && (!anim.OverrideDance && CurrentAnim.IsDanceAnimation))) return;
 
 		if (FlipAnimations) anim.AnimName = FlipAnim(anim.AnimName);
 
@@ -96,7 +109,30 @@ public partial class Character2D : Node2D
 		AnimPlayer.Play(anim.AnimName);
 	}
 
-	private static string FlipAnim(string anim)
+    public void Dance(bool Force = false)
+    {
+        if (!Force && !CurrentAnim.AnimFinished || !CurrentAnim.AnimFinished && CurrentAnim.OverrideDance) return;
+        if (CurrentAnim.AnimName.StartsWith("sing") && !Force) return;
+
+        PlayAnimByString(DanceList[DanceIndex], true);
+
+        DanceIndex++;
+        DanceIndex = Mathf.Wrap(DanceIndex, 0, DanceList.Length-1);
+    }
+
+    public void PlayAnimByString(string anim, bool force = false)
+    {
+        CharacterAnimation newAnim = new()
+        {
+            AnimName = anim,
+            Force = force,
+            IsDanceAnimation = true
+        };
+
+        PlayAnim(newAnim);
+    }
+
+    private static string FlipAnim(string anim)
     {
 		string newAnim = anim.Contains("LEFT") ? anim.Replace("LEFT", "RIGHT") : anim.Replace("RIGHT", "LEFT");
         return newAnim;
