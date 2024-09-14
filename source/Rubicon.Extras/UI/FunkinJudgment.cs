@@ -46,6 +46,7 @@ public partial class FunkinJudgment : Judgment
         judgment.Size = judgment.Texture.GetSize();
         judgment.Scale = GraphicScale;
         judgment.Position = pos ?? Vector2.Zero;
+        judgment.MoveToFront();
         
         _judgmentVelocities[judgment] = new Vector2(GD.RandRange(0, 25), GD.RandRange(-262, -52));
         Tween fadeTween = judgment.CreateTween();
