@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c0cgdmxo1vf40"]
+
+[ext_resource type="Shader" path="res://assets/shaders/GradientShader.gdshader" id="1_ibx11"]
+
+[resource]
+shader = ExtResource("1_ibx11")
+shader_parameter/black_color = Color(0.101961, 0.145098, 0.447059, 1)
+shader_parameter/white_color = Color(0.152941, 0.713726, 0.917647, 1)

@@ -21,9 +21,6 @@ public partial class ManiaPlayField : PlayField
     /// <param name="chart">The chart loaded</param>
     public override void Setup(SongMeta meta, RubiChart chart)
     {
-        base.Setup(meta, chart);
-        Name = "Mania PlayField";
-
         BarLineContainer = new Control();
         BarLineContainer.Name = "Bar Line Container";
         AddChild(BarLineContainer);
@@ -45,11 +42,12 @@ public partial class ManiaPlayField : PlayField
             BarLineContainer.AddChild(curBarLine);
             BarLines[i] = curBarLine;
         }
-        
-        UpdateOptions();
 
         TargetBarLine = meta.PlayerChartIndex;
         BarLines[TargetBarLine].SetAutoPlay(false);
+        
+        base.Setup(meta, chart);
+        Name = "Mania PlayField";
     }
     
     /// <inheritdoc/>
@@ -59,10 +57,14 @@ public partial class ManiaPlayField : PlayField
             Settings.General.Downscroll ? LayoutPreset.CenterBottom : LayoutPreset.CenterTop;
         BarLineContainer.SetAnchorsPreset(barLinePreset);
         BarLineContainer.Position = new Vector2(0f, Settings.General.Downscroll ? -120f : 120f);
-        
+
         for (int i = 0; i < BarLines.Length; i++)
+        {
             if (BarLines[i] is ManiaBarLine maniaBarLine)
                 maniaBarLine.SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
+            
+            BarLines[i].SetAnchorsPreset(barLinePreset, true);
+        }
     }
     
     /// <inheritdoc />

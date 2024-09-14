@@ -11,6 +11,8 @@ namespace Rubicon.Game;
 
 public partial class RubiconGame : Node
 {
+	public static RubiconGame Instance { get; private set; }
+
 	[Export] public bool Paused = false;
 	
 	[Export] public RuleSet RuleSet;
@@ -25,9 +27,17 @@ public partial class RubiconGame : Node
 	
 	public override void _Ready()
 	{
+		if (Instance != null)
+		{
+			QueueFree();
+			return;
+		}
+		Instance = this;
+		
 		// Shitty
 		SongMeta meta = GD.Load<SongMeta>("res://songs/test/data/meta.tres");
 		RubiChart chart = GD.Load<RubiChart>("res://songs/test/data/normal.tres");
+		chart.ConvertData().Format();
 
 		Conductor.Reset();
 		Conductor.ChartOffset = chart.Offset;

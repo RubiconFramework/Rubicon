@@ -31,8 +31,6 @@
     <Content Include="songs\test\song\Vocals.ogg" />
     <Content Include="songs\test\song\Vocals.ogg.import" />
     <Content Include="source\Rubicon.API\a pi.txt" />
-    <Content Include="source\Rubicon.Extras\ex tra.txt" />
-    <Content Include="source\Rubicon.Game\ga me.txt" />
     <Content Include="source\Rubicon.Menus\me nu.txt" />
   </ItemGroup>
 </Project>

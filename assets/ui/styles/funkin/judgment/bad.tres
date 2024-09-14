@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://blkvg5c7dliwi"]
+
+[ext_resource type="Texture2D" uid="uid://c7detcr7truqj" path="res://assets/ui/styles/funkin/judgment/judgments.png" id="1_5g2qd"]
+
+[resource]
+atlas = ExtResource("1_5g2qd")
+region = Rect2(148, 339, 187, 123)

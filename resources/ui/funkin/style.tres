@@ -1,20 +1,8 @@
-[gd_resource type="Resource" script_class="HUDStyle" load_steps=2 format=3 uid="uid://mjag4nkqs3ov"]
+[gd_resource type="Resource" script_class="UiStyle" load_steps=3 format=3 uid="uid://mjag4nkqs3ov"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Core/HUDStyle.cs" id="1_363r5"]
+[ext_resource type="Script" path="res://source/Rubicon.Core/UiStyle.cs" id="1_363r5"]
+[ext_resource type="PackedScene" uid="uid://cvuu8kmrsmsj" path="res://assets/ui/styles/funkin/judgment.tscn" id="1_w5fd1"]
 
 [resource]
 script = ExtResource("1_363r5")
-NoteAntialiasing = true
-SplashAntialiasing = true
-NoteScale = 0.6
-StrumScale = 0.6
-StrumTransparency = 0.75
-SplashScale = 0.9
-SustainXOffset = 0.0
-RatingAntialiasing = true
-ComboAntialiasing = true
-RatingScale = 0.65
-ComboScale = 0.5
-RatingTransparency = 0.75
-CountdownAntialiasing = true
-CountdownScale = 1.0
+Judgment = ExtResource("1_w5fd1")

@@ -1,5 +1,8 @@
+using Rubicon.Core;
 using Rubicon.Core.Chart;
+using Rubicon.Core.Data;
 using Rubicon.Core.Meta;
+using Rubicon.Core.UI;
 
 namespace Rubicon.Rulesets;
 
@@ -40,6 +43,11 @@ public partial class PlayField : Control
     /// The Song meta for this PlayField
     /// </summary>
     [Export] public SongMeta Metadata;
+
+    /// <summary>
+    /// The UiStyle currently being used
+    /// </summary>
+    [Export] public UiStyle UiStyle;
     
     /// <summary>
     /// The bar lines associated with this play field.
@@ -55,6 +63,11 @@ public partial class PlayField : Control
     /// A signal that is emitted upon failure.
     /// </summary>
     [Signal] public delegate void OnFailEventHandler();
+
+    /// <summary>
+    /// The Judgment instance for this play field.
+    /// </summary>
+    public Judgment Judgment;
     
     /// <summary>
     /// Readies the PlayField for gameplay!
@@ -69,6 +82,24 @@ public partial class PlayField : Control
         Chart.ConvertData().Format();
         SetAnchorsPreset(LayoutPreset.FullRect);
         Input.UseAccumulatedInput = false;
+        
+        // Handle UI Style
+        string uiStylePath = $"res://resources/ui/{Metadata.UiStyle}/style.tres";
+        if (!FileAccess.FileExists(uiStylePath))
+        {
+            string defaultUiPath = $"res://resources/ui/{ProjectSettings.GetSetting("rubicon/general/default_ui_style")}/style.tres";
+            GD.PrintErr($"UI Style Path: {uiStylePath} does not exist. Defaulting to {defaultUiPath}");
+            uiStylePath = defaultUiPath;
+        }
+
+        UiStyle = GD.Load<UiStyle>(uiStylePath);
+        Judgment = UiStyle.Judgment.Instantiate<Judgment>();
+        AddChild(Judgment);
+
+        for (int i = 0; i < BarLines.Length; i++)
+            BarLines[i].NoteHit += OnNoteHit;
+        
+        UpdateOptions();
     }
 
     public override void _Process(double delta)
@@ -100,4 +131,20 @@ public partial class PlayField : Control
     /// </summary>
     /// <returns>Whether the player has failed</returns>
     public virtual bool GetFailCondition() => false;
+
+    /// <summary>
+    /// The function that is connected to the bar lines when a note is hit. Can be overriden if needed for a specific ruleset.
+    /// </summary>
+    /// <param name="barLine">The bar line</param>
+    /// <param name="lane">The lane</param>
+    /// <param name="direction">The sing direction</param>
+    /// <param name="noteData">The note data</param>
+    /// <param name="hitType">The hit type</param>
+    /// <param name="distance">The hit distance from the note's time</param>
+    /// <param name="holding">Whether the note is held</param>
+    protected virtual void OnNoteHit(BarLine barLine, int lane, string direction, NoteData noteData, int hitType, double distance, bool holding)
+    {
+        if (BarLines[TargetBarLine] == barLine)
+            Judgment?.Play((HitType)hitType, UiStyle.JudgmentOffset);
+    }
 }

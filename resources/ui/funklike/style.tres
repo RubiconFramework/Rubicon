@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UiStyle" load_steps=3 format=3 uid="uid://bun65tly2euym"]
+
+[ext_resource type="PackedScene" uid="uid://ct85hayoei4a1" path="res://assets/ui/styles/funklike/judgment.tscn" id="1_aan2g"]
+[ext_resource type="Script" path="res://source/Rubicon.Core/UiStyle.cs" id="2_kxovl"]
+
+[resource]
+script = ExtResource("2_kxovl")
+Judgment = ExtResource("1_aan2g")
+JudgmentOffset = Vector2(0, 200)
