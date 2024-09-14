@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Rubicon"
-config/version="some version idk"
-run/main_scene="res://scenes/RubiconGame2D.tscn"
+config/version="0.0.0.0.0.0.0.1"
+run/main_scene="res://scenes/TestScene.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=165
 config/icon="res://assets/ui/misc/fnf.png"

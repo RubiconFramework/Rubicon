@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://j014di55rsba"]
-
-[node name="GameHUD" type="CanvasLayer"]
-layer = 5
-
-[node name="Notes" type="Node" parent="."]
-
-[node name="Strumlines" type="Node" parent="."]

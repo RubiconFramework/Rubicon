@@ -9,7 +9,10 @@ public class CharacterAnimation
 	public bool OverrideAnim = false; // cant be overridden by any animation unless Force is true
 	public bool AnimFinished = false; // self explanatory
 	
-	// these override the static ones.
+	
 	public string Prefix;
 	public string Suffix;
+
+	// this plays 
+	public CharacterAnimation PostAnimation;
 }
