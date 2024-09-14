@@ -1,10 +1,14 @@
 
 namespace Rubicon.Space;
 
+/// <summary>
+/// A class that is used by the <see cref="Character2D"/> or <see cref="Character3D"/> class to determine, which animation should be played and if it should be played or not
+/// among other stuff.
+/// </summary>
 public class CharacterAnimation
 {
 	/// <summary>
-	/// The name of the animation played by the AnimationPlayer. It has to match exactly.
+	/// The name of the animation played by the <see cref="AnimationPlayer"/>. It has to match exactly.
 	/// </summary>
 	public string AnimName = "idle";
 
@@ -24,7 +28,7 @@ public class CharacterAnimation
 	public bool IsDanceAnimation = false;
 
 	/// <summary>
-	/// The animation cannot be overriden unless Force is true.
+	/// The animation cannot be overriden unless <paramref name="Force"/> is <see langword="true"/>.
 	/// </summary>
 	public bool OverrideAnim = false;
 
@@ -32,14 +36,14 @@ public class CharacterAnimation
 	/// Represents whether the animation is finished or not.
 	/// </summary>
 	public bool AnimFinished = false;
-	
-	/// <summary>
-	/// A prefix for the animation played by the AnimationPlayer. Overrides the StaticPrefix found in the Character class.
-	/// </summary>
-	public string Prefix;
 
     /// <summary>
-    /// A suffix for the animation played by the AnimationPlayer. Overrides the StaticSuffix found in the Character class.
+    /// A prefix for the animation played by the <see cref="AnimationPlayer"/>. Overrides the <paramref name="StaticPrefix"/> found in the <see cref="Character2D"/> or <see cref="Character3D"/> class.
+    /// </summary>
+    public string Prefix;
+
+    /// <summary>
+    /// A suffix for the animation played by the <see cref="AnimationPlayer"/>. Overrides the <paramref name="StaticSuffix"/> found in the Character class.
     /// </summary>
     public string Suffix;
 

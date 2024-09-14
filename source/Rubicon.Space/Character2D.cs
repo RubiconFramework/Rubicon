@@ -16,63 +16,102 @@ public partial class Character2D : Node2D
 
     /// <summary>
     /// This property is automatically determined by the character class.
-    /// It flips the left and right animations depending if MirrorCharacter does not equal IsPlayer.
+    /// It flips the left and right animations depending if <paramref name="MirrorCharacter"/> does not equal <paramref name="IsPlayer"/>.
     /// </summary>
     public bool FlipAnimations = false;
 
     /// <summary>
-    /// Determines whether the character should be rotated or not depending on MirrorCharacter.
+    /// Determines whether the character should be rotated or not depending on <paramref name="MirrorCharacter"/>.
     /// </summary>
     public bool IsPlayer = false;
 
     /// <summary>
     /// This property gets added to the start of an animation's name.
-    /// It is overriden by the Prefix property inside CurrentAnimation.
+    /// It is overriden by the <paramref name="Prefix"/> parameter inside <paramref name="CurrentAnimation"/>.
     /// Useful for alt animations or similar.
     /// </summary>
     [ExportGroup("Animation Info"), Export] public string StaticPrefix;
 
     /// <summary>
     /// This property gets added to the end of an animation's name.
-    /// It is overriden by the Suffix property inside CurrentAnimation.
+    /// It is overriden by the <paramref name="Suffix"/> parameter inside <paramref name="CurrentAnimation"/>.
     /// Useful for alt animations or similar.
     /// </summary>
     [Export] public string StaticSuffix;
     
-    // This array contains the "idle" or "dance" animation sequence
-    // Every beat that is played goes to the next one on the array
-    // Useful for left and right animations like Gf
     /// <summary>
     /// A string array containing the sequence of idle/dance animations to be played.
-    /// Useful for 
+    /// Useful for left to right dance animations.
     /// </summary>
     [Export] public string[] DanceList = {"idle"};
+
+    /// <summary>
+    /// The index for which dance animation in the <paramref name="DanceList"/> should play.
+    /// </summary>
     private int DanceIndex = 0;
 
-    // Whether the characters should jitter when holding notes or be completely still
+    /// <summary>
+    /// If <see langword="true"/>, the character will jitter when holding a note. If <see langword="false"/>, it will stay completely static.
+    /// </summary>
     [Export] public bool StaticSustain = false;
 
-    // Currently playing animation and last played animation
+    /// <summary>
+    /// Currently playing <see cref="CharacterAnimation"/>.
+    /// </summary>
     public CharacterAnimation CurrentAnim = new();
+
+    /// <summary>
+    /// Last played <paramref name="CharacterAnimation"/>.
+    /// </summary>
 	public CharacterAnimation LastAnim = new();
 
-    // Timers to determine when to repeat or finish sing animations
+    /// <summary>
+    /// The duration of the sing animations before going back to idle.
+    /// </summary>
     [Export] public float SingDuration = 4;
+
+    /// <summary>
+    /// A timer that determines if the animation should be finished or not.
+    /// </summary>
     public float SingTimer;
+
+    /// <summary>
+    /// A timer that determines if the hold animation should be repeated or not.
+    /// It will not be used in case <paramref name="StaticSustain"/> is <see langword="true"/>.
+    /// </summary>
     public float HoldTimer;
-    
 
-    [ExportGroup("Healthbar Info")]
+    /// <summary>
+    /// The <paramref name="SpriteFrames"/> used for the healthbar icons.
+    /// It has to contain an idle animation.
+    /// It can contain "lose" and "win" optionally.
+    /// </summary>
+    [ExportGroup("Healthbar Info"), Export] public SpriteFrames CharacterIcon { get; set; } = GD.Load<SpriteFrames>("res://assets/characters/placeholder/icon.tres");
 
-    // A SpriteFrames resource that should contain an "idle" animation and optionally, "lose" and "win"
-    [Export] public SpriteFrames CharacterIcon { get; set; } = GD.Load<SpriteFrames>("res://assets/characters/placeholder/icon.tres");
+    /// <summary>
+    /// The offset of the healthbar icon.
+    /// </summary>
     [Export] public Vector2 IconOffset = new Vector2(0,10);
+
+    /// <summary>
+    /// The healthbar color of this character.
+    /// </summary>
     [Export] public Color HealthColor = new("#A1A1A1");
 
+    /// <summary>
+    /// The main <paramref name="Node2D"/> used for positioning and scaling.
+    /// Usually its the main <paramref name="PlayerSprite2D"/> node.
+    /// </summary>
+    [ExportGroup("Path Info"), Export] public Node2D MainNode;
 
-    [ExportGroup("Path Info")]
-    [Export] public Node MainNode;
+    /// <summary>
+    /// The main <see cref="AnimationPlayer"> node used for playing animations.
+    /// </summary>
     [Export] public AnimationPlayer AnimPlayer;
+
+    /// <summary>
+    /// A <see cref="Marker2D"/> from which the camera takes its position.
+    /// </summary>
     [NodePath("CamPoint")] public Marker2D CameraPoint;
 
     public override void _Ready()
@@ -80,7 +119,7 @@ public partial class Character2D : Node2D
         base._Ready();
         this.OnReady();
 
-        AnimPlayer.AnimationFinished += (StringName name) => CurrentAnim.AnimFinished = true;
+        AnimPlayer.AnimationFinished += AnimationFinished;
         FlipAnimations = IsPlayer != MirrorCharacter;
 		if (IsPlayer != MirrorCharacter) Scale *= new Vector2(-1,1);
     }
@@ -130,6 +169,14 @@ public partial class Character2D : Node2D
         };
 
         PlayAnim(newAnim);
+    }
+
+    public void AnimationFinished(StringName anim) 
+    {
+        CurrentAnim.AnimFinished = true;
+
+        if(CurrentAnim.PostAnimation != null)
+            PlayAnim(CurrentAnim.PostAnimation);
     }
 
     private static string FlipAnim(string anim)
