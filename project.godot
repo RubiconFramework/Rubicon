@@ -25,7 +25,7 @@ ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
 
 [display]
 
-window/size/viewport_width=1400
+window/size/viewport_width=1440
 window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
