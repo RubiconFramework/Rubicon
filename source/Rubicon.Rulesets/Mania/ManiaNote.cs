@@ -6,11 +6,6 @@ namespace Rubicon.Rulesets.Mania;
 public partial class ManiaNote : Note
 {
 	/// <summary>
-	/// The parent <see cref="ManiaNoteManager"/>.
-	/// </summary>
-	[Export] public ManiaNoteManager ParentManager;
-
-	/// <summary>
 	/// The note skin associated with this note.
 	/// </summary>
 	[Export] public ManiaNoteSkin NoteSkin;
@@ -67,7 +62,8 @@ public partial class ManiaNote : Note
 
 	public override void _Process(double delta)
 	{
-		if (!Active || ParentManager == null || !Visible || Info == null)
+		ManiaNoteManager parent = GetParentManiaNoteManager();
+		if (!Active || parent == null || !Visible || Info == null)
 			return;
 
 		float defaultAlpha = Missed ? 0.5f : 1f;
@@ -77,10 +73,10 @@ public partial class ManiaNote : Note
 		base._Process(delta);
 
 		double songPos = Conductor.Time * 1000d;
-		bool isHeld = ParentManager.NoteHeld == Info;
+		bool isHeld = parent.NoteHeld == Info;
 		if (Info.MsLength > 0)
 		{
-			HoldContainer.Rotation = ParentManager.DirectionAngle;
+			HoldContainer.Rotation = parent.DirectionAngle;
 			
 			if (isHeld)
 			{
@@ -99,11 +95,14 @@ public partial class ManiaNote : Note
 	/// <inheritdoc/>
 	public override void UpdatePosition()
 	{
+		if (ParentManager is not ManiaNoteManager maniaNoteManager)
+			return;
+		
 		float startingPos = ParentManager.ParentBarLine.DistanceOffset * ParentManager.ScrollSpeed;
 		SvChange svChange = ParentManager.ParentBarLine.Chart.SvChanges[Info.StartingScrollVelocity];
 		float distance = (float)(svChange.Position + Info.MsTime - svChange.MsTime - _tailOffset) * ParentManager.ScrollSpeed;
-		Vector2 posMult = new Vector2(Mathf.Cos(ParentManager.DirectionAngle), Mathf.Sin(ParentManager.DirectionAngle));
-		Position = ParentManager.NoteHeld != Info ? (startingPos + distance) * posMult : Vector2.Zero;
+		Vector2 posMult = new Vector2(Mathf.Cos(maniaNoteManager.DirectionAngle), Mathf.Sin(maniaNoteManager.DirectionAngle));
+		Position = maniaNoteManager.NoteHeld != Info ? (startingPos + distance) * posMult : Vector2.Zero;
 	}
 
 	/// <summary>
@@ -211,8 +210,11 @@ public partial class ManiaNote : Note
 	/// </summary>
 	public void AdjustInitialTailSize()
 	{
+		if (ParentManager is not ManiaNoteManager maniaNoteManager)
+			return;
+		
 		// Rough code, might clean up later if possible
-		string direction = ParentManager.Direction;
+		string direction = maniaNoteManager.Direction;
 		bool isTiled = NoteSkin.UseTiledHold && TiledHold != null;
 		int tailTexWidth = Tail.SpriteFrames.GetFrameTexture($"{direction}NoteTail", Tail.GetFrame()).GetWidth();
 		int holdTexWidth = isTiled
@@ -225,7 +227,7 @@ public partial class ManiaNote : Note
 		else
 			Hold.Scale = new Vector2(Mathf.Max(((holdWidth / holdTexWidth) - ((float)tailTexWidth / holdTexWidth)) / HoldContainer.Scale.X, 0f), Hold.Scale.Y);
 		
-		if (ParentManager.NoteHeld != Info)
+		if (maniaNoteManager.NoteHeld != Info)
 			AdjustTailLength(Info.MsLength);
 	}
 
@@ -234,8 +236,11 @@ public partial class ManiaNote : Note
 	/// </summary>
 	public void AdjustTailLength(double length)
 	{
+		if (ParentManager is not ManiaNoteManager maniaNoteManager)
+			return;
+		
 		// Rough code, might clean up later if possible
-		string direction = ParentManager.Direction;
+		string direction = maniaNoteManager.Direction;
 		bool isTiled = NoteSkin.UseTiledHold && TiledHold != null;
 		float initialHoldWidth = GetOnScreenHoldLength(Info.MsLength) * ParentManager.ScrollSpeed;
 		float holdWidth = GetOnScreenHoldLength(length) * ParentManager.ScrollSpeed;
@@ -258,6 +263,14 @@ public partial class ManiaNote : Note
 		Vector2 tailTexSize = tailFrame.GetSize();
 		Tail.Position = new Vector2((initialHoldWidth - tailTexSize.X) / HoldContainer.Scale.X + holdPos, holdHeight - tailTexSize.Y);
 	}
+
+	public ManiaNoteManager GetParentManiaNoteManager()
+	{
+		if (ParentManager is ManiaNoteManager a)
+			return a;
+
+		return null;
+	}
 	
 	/// <summary>
 	/// Usually called when the note was let go too early.
@@ -265,11 +278,7 @@ public partial class ManiaNote : Note
 	public void UnsetHold()
 	{
 		// Should be based on time, NOT note Y position
-		float startingPos = ParentManager.ParentBarLine.DistanceOffset;
-		SvChange svChange = ParentManager.ParentBarLine.Chart.SvChanges[Info.StartingScrollVelocity];
-		float distance = (float)(svChange.Position + Info.MsTime - svChange.MsTime);
-		
-		_tailOffset = startingPos + distance;
+		_tailOffset = GetStartingPoint() + ParentManager.ParentBarLine.DistanceOffset;
 	}
 
 	/// <inheritdoc/>
@@ -300,9 +309,7 @@ public partial class ManiaNote : Note
 		
 		SvChange startingSvChange = svChangeList[startIndex];
 		double startingPosition = startingSvChange.Position + ((startTime - startingSvChange.MsTime) * startingSvChange.Multiplier);
-		double endingPosition = svChangeList[Info.EndingScrollVelocity].Position +
-			((Info.MsTime + Info.MsLength - svChangeList[Info.EndingScrollVelocity].MsTime) * svChangeList[Info.EndingScrollVelocity].Multiplier);
 
-		return (float)(endingPosition - startingPosition);
+		return (float)(GetEndingPoint() - startingPosition);
 	}
 }
