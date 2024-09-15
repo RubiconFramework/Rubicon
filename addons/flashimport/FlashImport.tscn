@@ -54,6 +54,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "res://path/to/sprite.extension"
 
+[node name="Button" type="Button" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer/PathContainer"]
+layout_mode = 2
+text = "..."
+
 [node name="PathNameReminder" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer"]
 modulate = Color(1, 1, 0, 0.529412)
 layout_mode = 2
@@ -203,4 +207,5 @@ offset_bottom = 213.0
 theme_override_font_sizes/font_size = 20
 text = "Import"
 
+[connection signal="pressed" from="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer/PathContainer/Button" to="TabContainer/XML Spritesheet" method="FolderButton"]
 [connection signal="pressed" from="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/Convert" to="TabContainer/XML Spritesheet" method="OnButtonPress"]
