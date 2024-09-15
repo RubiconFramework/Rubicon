@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://k8kx0lbjm1hj"]
+[gd_scene load_steps=3 format=3 uid="uid://k8kx0lbjm1hj"]
 
 [ext_resource type="Script" path="res://addons/flashimport/Importers/XMLSpritesheet.cs" id="1_jnv0x"]
-[ext_resource type="Theme" uid="uid://14vqd4l3ryru" path="res://resources/themes/default.tres" id="2_b1xoh"]
 [ext_resource type="Script" path="res://addons/flashimport/Importers/JSONSpritesheet.cs" id="3_gxduc"]
 
 [node name="FlashImport" type="Control"]
@@ -23,127 +22,91 @@ grow_vertical = 2
 current_tab = 0
 
 [node name="XML Spritesheet" type="TabBar" parent="TabContainer"]
+visibility_layer = 5
 layout_mode = 2
 script = ExtResource("1_jnv0x")
 metadata/_tab_index = 0
 
-[node name="SpritePath" type="LineEdit" parent="TabContainer/XML Spritesheet"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/XML Spritesheet"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.008
-anchor_right = 0.986
-offset_left = 104.072
-offset_top = 16.0
-offset_right = -6.87598
-offset_bottom = 47.0
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
 grow_horizontal = 2
-theme = ExtResource("2_b1xoh")
-placeholder_text = "res://*Sprite.png"
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/SpritePath"]
-layout_mode = 0
-offset_left = -99.0
-offset_top = 4.0
-offset_right = -9.0
-offset_bottom = 27.0
+[node name="SpritePathContainer" type="VBoxContainer" parent="TabContainer/XML Spritesheet/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PathContainer" type="HBoxContainer" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer/PathContainer"]
+layout_mode = 2
 text = "Sprite Path:"
+vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="TabContainer/XML Spritesheet/SpritePath"]
-modulate = Color(0.423529, 0.423529, 0.423529, 1)
-layout_mode = 1
-offset_left = -94.0
-offset_top = 34.0
-offset_right = 205.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 10
-text = "*Fill with a directory to automatically convert every sprite in it"
-autowrap_mode = 3
+[node name="LineEdit" type="LineEdit" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer/PathContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "res://path/to/sprite.extension"
 
-[node name="Label2 2" type="Label" parent="TabContainer/XML Spritesheet/SpritePath"]
+[node name="PathNameReminder" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer"]
 modulate = Color(1, 1, 0, 0.529412)
-layout_mode = 1
-offset_left = -94.0
-offset_top = 47.0
-offset_right = 205.0
-offset_bottom = 61.0
-theme_override_font_sizes/font_size = 10
-text = "*XML Atlas and sprite need to have the same name"
-autowrap_mode = 3
+layout_mode = 2
+text = "*Atlas & Sprite need to have the same name"
 
-[node name="FPS" type="SpinBox" parent="TabContainer/XML Spritesheet"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_left = 145.0
-offset_top = 100.0
-offset_right = -18.0
-offset_bottom = 131.0
-grow_horizontal = 2
-theme = ExtResource("2_b1xoh")
-min_value = 1.0
-value = 24.0
-allow_greater = true
-
-[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/FPS"]
-layout_mode = 0
-offset_left = -40.0
-offset_top = 4.0
-offset_right = -8.0
-offset_bottom = 27.0
-text = "FPS:"
-
-[node name="Stack" type="CheckBox" parent="TabContainer/XML Spritesheet"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.02
-offset_left = 100.0
-offset_top = 132.0
-offset_right = -1.0
-offset_bottom = 148.26
-grow_horizontal = 2
-button_pressed = true
-text = "Stack Frames?"
-autowrap_mode = 1
-
-[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/Stack"]
+[node name="DirectoryReminder" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer"]
 modulate = Color(0.423529, 0.423529, 0.423529, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.806
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = 0.013998
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 10
-text = "*Recommended"
-autowrap_mode = 3
+layout_mode = 2
+text = "*Also can have \"res://path/to/folder\" too"
 
-[node name="Loop" type="CheckBox" parent="TabContainer/XML Spritesheet/Stack"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.161
-anchor_right = 1.0
-anchor_bottom = 1.161
-offset_top = 0.00899887
-offset_right = -1.0
-offset_bottom = 31.009
-grow_horizontal = 2
-text = " Loop?"
-autowrap_mode = 1
+[node name="ConvertContainer" type="HBoxContainer" parent="TabContainer/XML Spritesheet/VBoxContainer"]
+layout_mode = 2
 
-[node name="Convert" type="Button" parent="TabContainer/XML Spritesheet"]
-layout_mode = 1
-offset_left = 18.0
-offset_top = 96.0
-offset_right = 93.0
-offset_bottom = 198.0
+[node name="Convert" type="Button" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Import"
+
+[node name="SideStuff" type="VBoxContainer" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FPS" type="HBoxContainer" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff/FPS"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Frame Rate:"
+vertical_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff/FPS"]
+layout_mode = 2
+max_value = 2.14748e+09
+suffix = "FPS"
+
+[node name="StackFrames" type="HBoxContainer" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckBox" type="CheckBox" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff/StackFrames"]
+layout_mode = 2
+text = "Stack Frames?"
+
+[node name="Label" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff/StackFrames"]
+modulate = Color(0.423529, 0.423529, 0.423529, 1)
+layout_mode = 2
+text = "*Recommended"
+
+[node name="Loop" type="CheckBox" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff"]
+layout_mode = 2
+text = "Loop?"
 
 [node name="JSON Spritesheet" type="TabBar" parent="TabContainer"]
 visible = false
@@ -188,7 +151,6 @@ offset_left = 11.0
 offset_top = 16.0
 offset_right = 270.0
 offset_bottom = 54.0
-theme = ExtResource("2_b1xoh")
 placeholder_text = "res://*/SpriteAtlas/"
 
 [node name="Label" type="Label" parent="TabContainer/Sprite Atlas/SpritePath"]
@@ -241,4 +203,4 @@ offset_bottom = 213.0
 theme_override_font_sizes/font_size = 20
 text = "Import"
 
-[connection signal="pressed" from="TabContainer/XML Spritesheet/Convert" to="TabContainer/XML Spritesheet" method="OnButtonPress"]
+[connection signal="pressed" from="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/Convert" to="TabContainer/XML Spritesheet" method="OnButtonPress"]

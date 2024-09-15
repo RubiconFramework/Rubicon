@@ -13,10 +13,10 @@ namespace FlashImporter.addons.flashimport.Importers;
 	{
 		GD.Print("Converting XML Spritesheet...");
 
-		spritePath = GetNode<LineEdit>("SpritePath").Text;
-		fps = (int)GetNode<SpinBox>("FPS").Value;
-        loop = GetNode<Button>("Stack/Loop").ButtonPressed;
-        stackFrames = GetNode<Button>("Stack").ButtonPressed;
+		spritePath = GetNode<LineEdit>("VBoxContainer/SpritePathContainer/PathContainer/LineEdit").Text;
+		fps = (int)GetNode<SpinBox>("VBoxContainer/ConvertContainer/SideStuff/FPS/SpinBox").Value;
+        loop = GetNode<Button>("VBoxContainer/ConvertContainer/SideStuff/Loop").ButtonPressed;
+        stackFrames = GetNode<Button>("VBoxContainer/ConvertContainer/SideStuff/StackFrames/CheckBox").ButtonPressed;
 
 		List<string> spriteList = new();
 
