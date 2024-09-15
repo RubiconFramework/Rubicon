@@ -23,7 +23,6 @@ config/icon="res://assets/ui/misc/fnf.png"
 DebugInfo="*res://source/Rubicon.Autoload/DebugInfo.tscn"
 Settings="*res://source/Rubicon.Autoload/Settings.cs"
 ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
-GlobalSequenceController="*res://source/Rubicon.Sequence/SequenceController.cs"
 
 [display]
 

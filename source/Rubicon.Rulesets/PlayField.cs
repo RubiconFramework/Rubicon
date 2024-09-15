@@ -171,22 +171,19 @@ public partial class PlayField : Control
     /// <param name="barLine">The bar line</param>
     /// <param name="lane">The lane</param>
     /// <param name="direction">The sing direction</param>
-    /// <param name="noteData">The note data</param>
-    /// <param name="hitType">The hit type</param>
-    /// <param name="distance">The hit distance from the note's time</param>
-    /// <param name="holding">Whether the note is held</param>
-    protected virtual void OnNoteHit(BarLine barLine, int lane, string direction, NoteData noteData, int hitType, double distance, bool holding)
+    /// <param name="inputElement">Info about the input recieved</param>
+    protected virtual void OnNoteHit(BarLine barLine, int lane, string direction, NoteInputElement inputElement)
     {
         if (BarLines[TargetBarLine] == barLine)
         {
-            HitType hit = (HitType)hitType;
+            HitType hit = inputElement.Hit;
             Combo = hit != HitType.Miss ? Combo + 1 : 0;
             if (Combo > HighestCombo)
                 HighestCombo = Combo;
             
             Judgment?.Play(hit, UiStyle.JudgmentOffset);   
             ComboDisplay?.Play(Combo, hit, UiStyle.ComboOffset);
-            HitDistance?.Show(distance, UiStyle.HitDistanceOffset);
+            HitDistance?.Show(inputElement.Distance, UiStyle.HitDistanceOffset);
         }
     }
 }
