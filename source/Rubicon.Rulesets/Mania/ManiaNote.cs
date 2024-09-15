@@ -21,14 +21,9 @@ public partial class ManiaNote : Note
 	public Control HoldContainer;
 	
 	/// <summary>
-	/// The Hold graphic. Will not be used if <see cref="ManiaNoteSkin.UseTiledHold"/> is active.
+	/// The Hold graphic.
 	/// </summary>
-	public AnimatedSprite2D Hold;
-	
-	/// <summary>
-	/// The Hold graphic, for tiling. Will be used if <see cref="ManiaNoteSkin.UseTiledHold"/> is active.
-	/// </summary>
-	public TextureRect TiledHold;
+	public TextureRect Hold;
 
 	/// <summary>
 	/// The Tail graphic for this note.
@@ -143,18 +138,10 @@ public partial class ManiaNote : Note
 			thing.Color = Colors.Lavender;*/
 		}
 		
-		// Tiled hold
-		if (noteSkin.UseTiledHold && TiledHold == null)
+		// hold
+		if (Hold == null)
 		{
-			TiledHold = new TextureRect();
-			TiledHold.Name = "Tiled Hold Graphic";
-			TiledHold.StretchMode = TextureRect.StretchModeEnum.Tile;
-			HoldContainer.AddChild(TiledHold);
-			HoldContainer.MoveChild(TiledHold, 0);
-		}
-		else if (Hold == null) // normal hold
-		{
-			Hold = new AnimatedSprite2D();
+			Hold = new TextureRect();
 			Hold.Name = "Hold Graphic";
 			HoldContainer.AddChild(Hold);
 			HoldContainer.MoveChild(Hold, 0);
@@ -175,29 +162,17 @@ public partial class ManiaNote : Note
 		Note.Play($"{direction}NoteNeutral");
 		Note.Visible = true;
 
+		Texture2D holdTexture = NoteSkin.HoldAtlas.GetFrameTexture($"{direction}NoteHold", 0);
 		HoldContainer.Modulate = new Color(1f, 1f, 1f, 0.5f);
-		HoldContainer.Size = new Vector2(0f, NoteSkin.HoldAtlas.GetFrameTexture($"{direction}NoteHold", 0).GetHeight());
+		HoldContainer.Size = new Vector2(0f, holdTexture.GetHeight());
 		HoldContainer.Scale = NoteSkin.Scale;
 		HoldContainer.PivotOffset = new Vector2(0f, HoldContainer.Size.Y / 2f);
 		HoldContainer.Position = new Vector2(0f, -HoldContainer.Size.Y / 2f);
-		if (noteSkin.UseTiledHold)
-		{
-			TiledHold.Texture = noteSkin.GetTiledHold(lane, laneCount);
-			TiledHold.Visible = true;
-			
-			if (Hold != null)
-				Hold.Visible = false;
-		}
-		else
-		{
-			Hold.Centered = false;
-			Hold.SpriteFrames = noteSkin.HoldAtlas;
-			Hold.Play($"{direction}NoteHold");
-			Hold.Visible = true;
-			
-			if (TiledHold != null)
-				TiledHold.Visible = false;
-		}
+
+		Hold.Texture = holdTexture;
+		Hold.StretchMode = noteSkin.UseTiledHold && holdTexture is not AtlasTexture
+			? TextureRect.StretchModeEnum.Tile
+			: TextureRect.StretchModeEnum.Scale;
 
 		Tail.Centered = false;
 		Tail.SpriteFrames = noteSkin.HoldAtlas;
@@ -215,17 +190,10 @@ public partial class ManiaNote : Note
 		
 		// Rough code, might clean up later if possible
 		string direction = maniaNoteManager.Direction;
-		bool isTiled = NoteSkin.UseTiledHold && TiledHold != null;
 		int tailTexWidth = Tail.SpriteFrames.GetFrameTexture($"{direction}NoteTail", Tail.GetFrame()).GetWidth();
-		int holdTexWidth = isTiled
-			? TiledHold.Texture.GetWidth()
-			: Hold.SpriteFrames.GetFrameTexture($"{direction}NoteHold", Hold.GetFrame()).GetWidth();
 
 		float holdWidth = GetOnScreenHoldLength(Info.MsLength) * ParentManager.ScrollSpeed;
-		if (isTiled)
-			TiledHold.Size = new Vector2((holdWidth - tailTexWidth) / HoldContainer.Scale.X, TiledHold.Size.Y);
-		else
-			Hold.Scale = new Vector2(Mathf.Max(((holdWidth / holdTexWidth) - ((float)tailTexWidth / holdTexWidth)) / HoldContainer.Scale.X, 0f), Hold.Scale.Y);
+		Hold.Size = new Vector2((holdWidth - tailTexWidth) / HoldContainer.Scale.X, Hold.Size.Y);
 		
 		if (maniaNoteManager.NoteHeld != Info)
 			AdjustTailLength(Info.MsLength);
@@ -241,27 +209,16 @@ public partial class ManiaNote : Note
 		
 		// Rough code, might clean up later if possible
 		string direction = maniaNoteManager.Direction;
-		bool isTiled = NoteSkin.UseTiledHold && TiledHold != null;
 		float initialHoldWidth = GetOnScreenHoldLength(Info.MsLength) * ParentManager.ScrollSpeed;
 		float holdWidth = GetOnScreenHoldLength(length) * ParentManager.ScrollSpeed;
 		
 		HoldContainer.Size = new Vector2(holdWidth / HoldContainer.Scale.X, HoldContainer.Size.Y);
 		float holdPos = HoldContainer.Size.X - (initialHoldWidth / HoldContainer.Scale.X);
-		float holdHeight = 0f;
-		if (isTiled)
-		{
-			TiledHold.Position = new Vector2(holdPos, TiledHold.Position.Y);
-			holdHeight = TiledHold.Texture.GetHeight();
-		}
-		else
-		{
-			Hold.Position = new Vector2(holdPos, Hold.Position.Y);
-			holdHeight = Hold.SpriteFrames.GetFrameTexture($"{direction}NoteHold", Hold.GetFrame()).GetHeight();
-		}
-
+		Hold.Position = new Vector2(holdPos, Hold.Position.Y);
+		
 		Texture2D tailFrame = Tail.SpriteFrames.GetFrameTexture($"{direction}NoteTail", Tail.GetFrame());
 		Vector2 tailTexSize = tailFrame.GetSize();
-		Tail.Position = new Vector2((initialHoldWidth - tailTexSize.X) / HoldContainer.Scale.X + holdPos, holdHeight - tailTexSize.Y);
+		Tail.Position = new Vector2((initialHoldWidth - tailTexSize.X) / HoldContainer.Scale.X + holdPos, Hold.Texture.GetHeight() - tailTexSize.Y);
 	}
 
 	public ManiaNoteManager GetParentManiaNoteManager()
