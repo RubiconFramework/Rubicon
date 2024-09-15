@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 // im gonna kms this shits a mess i hate texture atlases
-namespace FlashImporter.addons.flashimport.Importers;
+namespace FlashImporter.Importers;
 public class SpriteAtlasData
 {
     // Sprite Data

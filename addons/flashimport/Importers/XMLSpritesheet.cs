@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FlashImporter.addons.flashimport.Importers;
+namespace FlashImporter.Importers;
 [Tool] public partial class XMLSpritesheet : Node
 {
     private string spritePath;
 	private int fps;
 	private bool loop;
 	private bool stackFrames;
+	/*private AnimatedSprite2D finalSprite;
+	string[] animArray;*/
+	private EditorFileDialog fileDialog;
 
     public void OnButtonPress()
 	{
@@ -17,15 +20,18 @@ namespace FlashImporter.addons.flashimport.Importers;
 		fps = (int)GetNode<SpinBox>("VBoxContainer/ConvertContainer/SideStuff/FPS/SpinBox").Value;
         loop = GetNode<Button>("VBoxContainer/ConvertContainer/SideStuff/Loop").ButtonPressed;
         stackFrames = GetNode<Button>("VBoxContainer/ConvertContainer/SideStuff/StackFrames/CheckBox").ButtonPressed;
+		//finalSprite = GetNode<AnimatedSprite2D>("FinalSprite");
 
 		List<string> spriteList = new();
+		bool pathIsDirectory = spritePath.EndsWith("/") || !spritePath.EndsWith(".png") && !spritePath.EndsWith(".xml");
 
-		if(!spritePath.EndsWith(".png")){
-			if(!spritePath.EndsWith("/")) spritePath += "/";
+		if(pathIsDirectory)
+		{
 			List<string> folderSprites = ImportUtils.ListDirectory(spritePath);
-			spriteList.AddRange(from sprite in folderSprites where sprite.EndsWith(".png") && FileAccess.FileExists(spritePath + sprite.Replace(".png", ".xml")) select spritePath + sprite);
+			spriteList.AddRange(from sprite in folderSprites where sprite.EndsWith(".png") && FileAccess.FileExists(spritePath + sprite.GetBaseName()+".xml") select spritePath + sprite);
 		}
-		else spriteList.Add(spritePath);
+		else
+			spriteList.Add(spritePath);
 
 		foreach(string sprite in spriteList) 
 		{
@@ -33,17 +39,52 @@ namespace FlashImporter.addons.flashimport.Importers;
 			{
 				Texture2D texture = GD.Load<Texture2D>(sprite);
 
-				string atlas = sprite.Replace(".png",".xml");
+				string atlas = $"{sprite.GetBaseDir() + sprite.GetBaseName()}.xml";
 				XmlParser xml = new();
 				xml.Open(atlas);
 				GD.Print($"Sprite Path: {sprite}\nAtlas Path: {atlas}");
-				ConvertSprite(texture,xml);
+				ConvertSprite(texture,xml, spriteList.Count > 1);
 			}
 			else GD.PrintErr($"No sprite found with the given path: {sprite}");
 		}
 	}
 
-	private void ConvertSprite(Texture2D texture, XmlParser xml)
+    public override void _EnterTree()
+    {
+        fileDialog = new EditorFileDialog();
+        fileDialog.Title = "Select a spritesheet";
+        fileDialog.FileMode = EditorFileDialog.FileModeEnum.OpenAny;
+        fileDialog.Size = new Vector2I(512, 512);
+        fileDialog.InitialPosition = Window.WindowInitialPosition.CenterMainWindowScreen;
+        fileDialog.Filters = ["*.png", "*.xml"];
+		fileDialog.DirSelected += DirSelected;
+        fileDialog.FileSelected += FileSelected;
+        AddChild(fileDialog);
+    }
+
+    public override void _ExitTree()
+    {
+        fileDialog.DirSelected -= DirSelected;
+        fileDialog.FileSelected -= FileSelected;
+    }
+
+    public void FolderButton()
+	{
+		fileDialog.PopupFileDialog();
+    }
+
+	public void FileSelected(string path)
+	{
+		GetNode<LineEdit>("VBoxContainer/SpritePathContainer/PathContainer/LineEdit").Text = path;
+    }
+
+	public void DirSelected(string path)
+	{
+		if (!path.EndsWith("/")) path += "/";
+        GetNode<LineEdit>("VBoxContainer/SpritePathContainer/PathContainer/LineEdit").Text = path;
+    }
+
+	private void ConvertSprite(Texture2D texture, XmlParser xml, bool showResult = false)
 	{
 		SpriteFrames spriteFrame = new();
 		spriteFrame.RemoveAnimation("default");
@@ -131,5 +172,23 @@ namespace FlashImporter.addons.flashimport.Importers;
 		ResourceSaver.Save(spriteFrame, resPath);
 		if (ResourceLoader.Exists(resPath))
 			GD.Print($"SpriteFrame successfully created at path: {resPath}\nFound {duppedFrameCount} dupped frames.");
+
+		/*if (showResult)
+		{
+			finalSprite.SpriteFrames = GD.Load<SpriteFrames>(resPath);
+			animArray = finalSprite.SpriteFrames.GetAnimationNames();
+
+			finalSprite.Play(animArray[0]);
+			finalSprite.AnimationFinished += FinalSpriteFinished;
+		}*/
 	}
+
+    /*public void FinalSpriteFinished()
+	{
+		int animIndex = 0;
+		if (animIndex < animArray.Length - 1)
+			finalSprite.Play(animArray[animIndex]);
+		else
+			finalSprite.AnimationFinished -= FinalSpriteFinished;
+    }*/
 }

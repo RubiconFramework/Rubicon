@@ -1,4 +1,4 @@
-namespace FlashImporter.addons.flashimport;
+namespace FlashImporter;
 
 [Tool]
 public partial class FlashInitializer : EditorPlugin
