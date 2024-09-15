@@ -27,7 +27,7 @@ We plan to have an API Reference and a wiki to help developers better understand
 
 We recommend using an IDE that has intelligent code completion, syntax highlighting, and integrates closely with Godot. Some that come to mind are [JetBrains Rider](https://www.jetbrains.com/rider/) and [Visual Studio Code](https://code.visualstudio.com/) with the [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) and [C# Tools for Godot](https://marketplace.visualstudio.com/items?itemName=neikeq.godot-csharp-vscode) plugins installed.
 
- [Visual Studio](https://visualstudio.microsoft.com/vs/) is also a good choice too, but that's for Windows only.
+[Visual Studio](https://visualstudio.microsoft.com/vs/) is also a good choice, but that's for Windows only.
 
 ### Languages
 
@@ -35,7 +35,7 @@ This engine uses mainly C# for its code base and main scripting.
 
 Lua is not planned to be supported in this engine any time soon. However GDScript is, but will most likely be a little finicky to work with by nature since this is essentially cross-language scripting. 
 
-You could possibly work with GDExtension, though we won't provide any support for these ourselves. (Theoretically you could Haxe! We wouldn't recommend it though, C# is very similar, if not better functionally than it.)
+You could possibly work with GDExtension, though we won't provide any support for those ourselves. (Theoretically you could use Haxe! We wouldn't recommend it though, C# is very similar, if not better functionally than it.)
 
 ### Disclaimer
 
@@ -49,6 +49,14 @@ We would appreciate your guys' help so much! The main way to help us out would b
 
 Rubicon Engine's code is licensed under the [Apache License, Version 2.0](https://opensource.org/license/apache-2-0). Please see [the license file](LICENSE) for more info. If you don't want to read all that, basically you can use our code as long as you credit us properly.
 
-# Special Credits
+# Credits
+
+## Lead Developers
+
+- [Binpuki](https://twitter.com/binpuki_)
+- [legole0](https://twitter.com/legole0)
+- [nullobjectreference](https://e-z.bio/nullobjectreference)
+
+## Special Credits
 
 - [firubii](https://github.com/firubii/) - HoloFunk note system and chart format (the base for Rubicon's note system and chart format)
