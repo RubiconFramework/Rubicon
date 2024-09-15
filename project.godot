@@ -13,6 +13,7 @@ config_version=5
 config/name="Rubicon"
 config/version="0.0.0.0.0.0.0.1"
 run/main_scene="res://scenes/TestScene.tscn"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=165
 config/icon="res://assets/ui/misc/fnf.png"
@@ -22,6 +23,7 @@ config/icon="res://assets/ui/misc/fnf.png"
 DebugInfo="*res://source/Rubicon.Autoload/DebugInfo.tscn"
 Settings="*res://source/Rubicon.Autoload/Settings.cs"
 ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
+GlobalSequenceController="*res://source/Rubicon.Sequence/SequenceController.cs"
 
 [display]
 

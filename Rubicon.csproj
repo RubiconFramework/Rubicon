@@ -33,4 +33,7 @@
     <Content Include="source\Rubicon.API\a pi.txt" />
     <Content Include="source\Rubicon.Menus\me nu.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="addons\rubicon_sequence_editor\Editor\" />
+  </ItemGroup>
 </Project>
