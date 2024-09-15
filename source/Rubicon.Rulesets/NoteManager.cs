@@ -135,10 +135,7 @@ public partial class NoteManager : Control
 		}
 
 		for (int i = 0; i < ProcessQueue.Count; i++)
-		{
 			OnNoteHit(ProcessQueue[i]);
-			ProcessQueue[i].Free();
-		}
 			
 		ProcessQueue.Clear();
 	}
