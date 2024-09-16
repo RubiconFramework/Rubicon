@@ -99,7 +99,7 @@ public partial class ManiaPlayField : PlayField
         }
         
         float baseNoteValue = ((float)MaxScore / _noteCount) / 2f;
-        float baseScore = (float)((baseNoteValue * PerfectHits) + (baseNoteValue * (GreatHits * 0.95)) + (baseNoteValue * (GoodHits * 0.75)) + (baseNoteValue * (OkayHits * 0.65)) + (baseNoteValue * (BadHits * 0.5)));
+        float baseScore = (float)((baseNoteValue * PerfectHits) + (baseNoteValue * (GreatHits * 0.9375)) + (baseNoteValue * (GoodHits * 0.625)) + (baseNoteValue * (OkayHits * 0.3125)) + (baseNoteValue * (BadHits * 0.15625)));
         float bonusScore = Mathf.Sqrt(((float)HighestCombo / _noteCount) * 100f) * MaxScore * 0.05f; 
         Score = (uint)(baseScore + bonusScore);
     }

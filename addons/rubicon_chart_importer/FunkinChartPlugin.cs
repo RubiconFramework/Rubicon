@@ -69,7 +69,7 @@ public partial class FunkinChartPlugin : EditorImportPlugin
         ];
 
         if (swagSong.ContainsKey("speed"))
-            chart.ScrollSpeed = swagSong["speed"].AsSingle() / 0.45f;
+            chart.ScrollSpeed = swagSong["speed"].AsSingle() * 0.45f * 1.5f;
 
         Array<NoteData> playerNotes = [];
         Array<NoteData> opponentNotes = [];

@@ -210,9 +210,9 @@ Arguments = ["1"]
 
 [resource]
 script = ExtResource("3_jtlbk")
-Name = ""
-Artist = ""
-UseVocals = false
+Name = "Test"
+Artist = "Kawai Sprite & MtH"
+UseVocals = true
 Characters = [SubResource("Resource_kwx62"), SubResource("Resource_esj2c"), SubResource("Resource_mipkk")]
 Events = [SubResource("Resource_e70w1"), SubResource("Resource_ap5oo"), SubResource("Resource_lpo8j"), SubResource("Resource_0uud8"), SubResource("Resource_esb5q"), SubResource("Resource_44qba"), SubResource("Resource_ey7ck"), SubResource("Resource_8rssc"), SubResource("Resource_x7jxo"), SubResource("Resource_fcs51"), SubResource("Resource_0qtj1"), SubResource("Resource_q2plv"), SubResource("Resource_i215p"), SubResource("Resource_u1f6h"), SubResource("Resource_b7wew"), SubResource("Resource_juany"), SubResource("Resource_yycpm"), SubResource("Resource_ub85k"), SubResource("Resource_mb4ff"), SubResource("Resource_d8arc"), SubResource("Resource_cokc2"), SubResource("Resource_rhe8k"), SubResource("Resource_rsx4e"), SubResource("Resource_of8la"), SubResource("Resource_d0m04"), SubResource("Resource_nb1j6"), SubResource("Resource_d3kv0"), SubResource("Resource_bny0f"), SubResource("Resource_ji5i8"), SubResource("Resource_gs2hg"), SubResource("Resource_vq2fq")]
 Enable3D = false

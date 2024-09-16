@@ -27,12 +27,12 @@ public partial class ManiaNoteSkin : Resource
 	/// <summary>
 	/// The scale used when generating notes and lanes.
 	/// </summary>
-	[Export] public Vector2 Scale = Vector2.One * 0.7f;
+	[Export] public Vector2 Scale = Vector2.One;
 
 	/// <summary>
 	/// The width of each lane.
 	/// </summary>
-	[Export] public float LaneSize = 160f * 0.7f;
+	[Export] public float LaneSize = 160f;
 
 	/// <summary>
 	/// The filtering used when generating notes and lanes.
