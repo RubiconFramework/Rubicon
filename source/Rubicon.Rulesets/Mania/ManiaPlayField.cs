@@ -60,7 +60,7 @@ public partial class ManiaPlayField : PlayField
             if (i == TargetBarLine)
             {
                 curBarLine.SetAutoPlay(false);
-                _noteCount = (uint)indChart.Notes.Count(x => !x.ShouldMiss);
+                _noteCount = (uint)(indChart.Notes.Count(x => !x.ShouldMiss) + indChart.Notes.Count(x => !x.ShouldMiss && x.Length > 0));
             }
             
             BarLineContainer.AddChild(curBarLine);
@@ -92,19 +92,16 @@ public partial class ManiaPlayField : PlayField
     /// <inheritdoc />
     public override void UpdateScore()
     {
-        uint notesHit = PerfectHits + GreatHits + GoodHits + OkayHits + BadHits;
         if (PerfectHits == _noteCount)
         {
             Score = MaxScore;
             return;
         }
         
-        float baseNoteValue = (float)MaxScore / _noteCount;
-        float baseScore = (float)(((baseNoteValue * PerfectHits) + (baseNoteValue * (GreatHits * 0.95)) + (baseNoteValue * (GoodHits * 0.75)) + (baseNoteValue * (OkayHits * 0.65)) + (baseNoteValue * (BadHits * 0.5))) * 0.5);
-        
-        
-        //float bonusScore = (noteValue * PerfectHits * 0.25f) + (noteValue * GreatHits * 0.125f) + (noteValue * GoodHits * 0.075f) + (noteValue * OkayHits * 0.045f) + (noteValue * BadHits * 0.005f);
-        //Score = (uint)(baseScore + bonusScore);
+        float baseNoteValue = ((float)MaxScore / _noteCount) / 2f;
+        float baseScore = (float)((baseNoteValue * PerfectHits) + (baseNoteValue * (GreatHits * 0.95)) + (baseNoteValue * (GoodHits * 0.75)) + (baseNoteValue * (OkayHits * 0.65)) + (baseNoteValue * (BadHits * 0.5)));
+        float bonusScore = Mathf.Sqrt(((float)HighestCombo / _noteCount) * 100f) * MaxScore * 0.05f; 
+        Score = (uint)(baseScore + bonusScore);
     }
 
     /// <inheritdoc />

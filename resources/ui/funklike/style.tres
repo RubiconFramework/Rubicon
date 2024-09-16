@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="UiStyle" load_steps=11 format=3 uid="uid://bun65tly2euym"]
 
-[ext_resource type="Material" uid="uid://clrbqrdp1uiuf" path="res://assets/ui/styles/funkin/materials/bad.tres" id="1_0mmj8"]
+[ext_resource type="Material" uid="uid://bftkqmdktdaqt" path="res://assets/ui/styles/funkin/materials/bad.tres" id="1_0mmj8"]
 [ext_resource type="PackedScene" uid="uid://ct85hayoei4a1" path="res://assets/ui/styles/funklike/judgment.tscn" id="1_aan2g"]
 [ext_resource type="Material" uid="uid://c0cgdmxo1vf40" path="res://assets/ui/styles/funkin/materials/good.tres" id="2_1vgib"]
 [ext_resource type="Script" path="res://source/Rubicon.Core/UiStyle.cs" id="2_kxovl"]
 [ext_resource type="PackedScene" uid="uid://q5yhhc5khh8u" path="res://assets/ui/styles/funklike/combo_display.tscn" id="2_xpu51"]
 [ext_resource type="Material" uid="uid://b37f4mdn0h8w6" path="res://assets/ui/styles/funkin/materials/great.tres" id="3_n04w6"]
-[ext_resource type="Material" uid="uid://bftkqmdktdaqt" path="res://assets/ui/styles/funkin/materials/horrible.tres" id="4_rgosj"]
 [ext_resource type="PackedScene" uid="uid://cynf1ud5pgdr3" path="res://assets/ui/styles/funklike/hit_distance.tscn" id="5_ry7he"]
 [ext_resource type="Material" uid="uid://bs8iq3r2cutsu" path="res://assets/ui/styles/funkin/materials/miss.tres" id="6_wjw47"]
 [ext_resource type="Material" uid="uid://bn4b2kj3ajywl" path="res://assets/ui/styles/funkin/materials/perfect.tres" id="7_p3nwh"]
+[ext_resource type="Material" uid="uid://clrbqrdp1uiuf" path="res://assets/ui/styles/funkin/materials/okay.tres" id="8_4vhrc"]
 
 [resource]
 script = ExtResource("2_kxovl")
@@ -22,6 +22,6 @@ HitDistanceOffset = Vector2(0, 95)
 PerfectMaterial = ExtResource("7_p3nwh")
 GreatMaterial = ExtResource("3_n04w6")
 GoodMaterial = ExtResource("2_1vgib")
+OkayMaterial = ExtResource("8_4vhrc")
 BadMaterial = ExtResource("1_0mmj8")
-HorribleMaterial = ExtResource("4_rgosj")
 MissMaterial = ExtResource("6_wjw47")
