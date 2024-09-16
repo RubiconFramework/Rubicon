@@ -59,7 +59,7 @@ public partial class SongMeta : Resource
     /// <summary>
     /// The Note Skin to use for this song.
     /// </summary>
-    [Export] public string NoteSkin = ProjectSettings.GetSetting("rubicon/mania/default_note_skin").AsString();
+    [Export] public string NoteSkin = ProjectSettings.GetSetting("rubicon/rulesets/mania/default_note_skin").AsString();
         
     /// <summary>
     /// Locks Opponent and Speaker mode out.
