@@ -169,7 +169,6 @@ public partial class NoteManager : Control
 	/// </summary>
 	/// <param name="note">The note passed in</param>
 	/// <param name="data">The note data</param>
-	/// <param name="svChange">The SV change associated</param>
 	protected virtual void SetupNote(Note note, NoteData data)
 	{
 		

@@ -90,18 +90,27 @@ public partial class ManiaPlayField : PlayField
     }
 
     /// <inheritdoc />
-    public override void UpdateScore()
+    public override void UpdateStatistics()
     {
+        // Score
         if (PerfectHits == _noteCount)
         {
             Score = MaxScore;
-            return;
+        }
+        else
+        {
+            float baseNoteValue = ((float)MaxScore / _noteCount) / 2f;
+            float baseScore = (float)((baseNoteValue * PerfectHits) + (baseNoteValue * (GreatHits * 0.9375)) + (baseNoteValue * (GoodHits * 0.625)) + (baseNoteValue * (OkayHits * 0.3125)) + (baseNoteValue * (BadHits * 0.15625)));
+            float bonusScore = Mathf.Sqrt(((float)HighestCombo / _noteCount) * 100f) * MaxScore * 0.05f; 
+            Score = (uint)(baseScore + bonusScore);
         }
         
-        float baseNoteValue = ((float)MaxScore / _noteCount) / 2f;
-        float baseScore = (float)((baseNoteValue * PerfectHits) + (baseNoteValue * (GreatHits * 0.9375)) + (baseNoteValue * (GoodHits * 0.625)) + (baseNoteValue * (OkayHits * 0.3125)) + (baseNoteValue * (BadHits * 0.15625)));
-        float bonusScore = Mathf.Sqrt(((float)HighestCombo / _noteCount) * 100f) * MaxScore * 0.05f; 
-        Score = (uint)(baseScore + bonusScore);
+        // Accuracy
+        uint hitNotes = PerfectHits + GreatHits + GoodHits + OkayHits + BadHits;
+        Accuracy = PerfectHits == _noteCount
+            ? 100f
+            : ((PerfectHits + (GreatHits * 0.95f) + (GoodHits * 0.65f) + (OkayHits * 0.3f) + (BadHits + 0.15f)) /
+               hitNotes) * 100f;
     }
 
     /// <inheritdoc />

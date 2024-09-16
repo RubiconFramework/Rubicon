@@ -22,7 +22,9 @@ public partial class PlayField : Control
     [Export] public uint MaxHealth = 1000;
 
     // lego was probably right in having a high score class, ill save this for him
-    [Export] public uint Score { get; protected set; } = 0;
+    [Export] public uint Score = 0;
+
+    [Export] public float Accuracy = 100f;
 
     [Export] public uint PerfectHits = 0;
     
@@ -170,9 +172,9 @@ public partial class PlayField : Control
     }
 
     /// <summary>
-    /// Triggers every time the player hits a note to update the score.
+    /// Triggers every time the player hits a note to update the in-game statistics
     /// </summary>
-    public virtual void UpdateScore()
+    public virtual void UpdateStatistics()
     {
         
     }
@@ -221,7 +223,7 @@ public partial class PlayField : Control
                     break;
             }
             
-            UpdateScore();
+            UpdateStatistics();
             Judgment?.Play(hit, UiStyle.JudgmentOffset);   
             ComboDisplay?.Play(Combo, hit, UiStyle.ComboOffset);
             HitDistance?.Show(inputElement.Distance, UiStyle.HitDistanceOffset);
