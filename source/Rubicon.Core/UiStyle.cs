@@ -35,14 +35,14 @@ public partial class UiStyle : Resource
     [Export] public Material GoodMaterial;
 
     /// <summary>
+    /// The material to put on when hitting a <see cref="HitType.Okay"/>.
+    /// </summary>
+    [Export] public Material OkayMaterial;
+    
+    /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Bad"/>.
     /// </summary>
     [Export] public Material BadMaterial;
-
-    /// <summary>
-    /// The material to put on when hitting a <see cref="HitType.Horrible"/>.
-    /// </summary>
-    [Export] public Material HorribleMaterial;
     
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Miss"/>.

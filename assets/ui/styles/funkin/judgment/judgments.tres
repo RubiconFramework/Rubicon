@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c7detcr7truqj" path="res://assets/ui/styles/funkin/judgment/judgments.png" id="1_s5xor"]
 [ext_resource type="Texture2D" uid="uid://fsmsrd6hdpf1" path="res://assets/ui/styles/funkin/judgment/missed.png" id="4_qaf0t"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a88co"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2us8"]
 atlas = ExtResource("1_s5xor")
-region = Rect2(148, 339, 187, 123)
+region = Rect2(129, 500, 240, 142)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibil4"]
 atlas = ExtResource("1_s5xor")
@@ -15,15 +15,15 @@ region = Rect2(116, 181, 260, 108)
 atlas = ExtResource("1_s5xor")
 region = Rect2(75, 8, 346, 138)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r2us8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a88co"]
 atlas = ExtResource("1_s5xor")
-region = Rect2(129, 500, 240, 142)
+region = Rect2(148, 339, 187, 123)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a88co")
+"texture": SubResource("AtlasTexture_r2us8")
 }],
 "loop": true,
 "name": &"bad",
@@ -47,18 +47,18 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r2us8")
-}],
-"loop": true,
-"name": &"horrible",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("4_qaf0t")
 }],
 "loop": true,
 "name": &"miss",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a88co")
+}],
+"loop": true,
+"name": &"okay",
 "speed": 5.0
 }, {
 "frames": [{

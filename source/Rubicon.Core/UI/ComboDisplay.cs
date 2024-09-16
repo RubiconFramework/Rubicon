@@ -43,14 +43,14 @@ public partial class ComboDisplay : Control
     public Material GoodMaterial;
 
     /// <summary>
+    /// The material to put on when hitting an <see cref="HitType.Okay"/>.
+    /// </summary>
+    public Material OkayMaterial;
+    
+    /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Bad"/>.
     /// </summary>
     public Material BadMaterial;
-    
-    /// <summary>
-    /// The material to put on when hitting a <see cref="HitType.Horrible"/>.
-    /// </summary>
-    public Material HorribleMaterial;
 
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Miss"/>.
@@ -112,10 +112,10 @@ public partial class ComboDisplay : Control
                 return GreatMaterial;
             case HitType.Good:
                 return GoodMaterial;
+            case HitType.Okay:
+                return OkayMaterial;
             case HitType.Bad:
                 return BadMaterial;
-            case HitType.Horrible:
-                return HorribleMaterial;
             case HitType.Miss:
                 return MissMaterial;
         }

@@ -52,7 +52,7 @@ public partial class DebugInfo : CanvasLayer
         UpdateStaticLabels();
     }
     
-    private static string ConvertToMemoryFormat(long mem)
+    private static string ConvertToMemoryFormat(ulong mem)
     {
         // Stole this from holofunk lol
         if (mem >= 0x40000000)
@@ -110,9 +110,9 @@ public partial class DebugInfo : CanvasLayer
 
     private void UpdateFPS() => FPS.Text = $"FPS: {Mathf.FloorToInt(1 / GetProcessDeltaTime())}";
 
-    private void UpdateRAM() => RAM.Text = $"RAM: {ConvertToMemoryFormat(CurrentProcess.WorkingSet64)} [{ConvertToMemoryFormat(CurrentProcess.PrivateMemorySize64)}]";
+    private void UpdateRAM() => RAM.Text = $"RAM: {ConvertToMemoryFormat(OS.GetStaticMemoryUsage())} [{ConvertToMemoryFormat(OS.GetStaticMemoryPeakUsage())}]";
 
-    private void UpdateVRAM() => VRAM.Text = $"VRAM: {ConvertToMemoryFormat((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed))}";
+    private void UpdateVRAM() => VRAM.Text = $"VRAM: {ConvertToMemoryFormat((ulong)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed))}";
 
     private void UpdateScene() => CurrentScene.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
 

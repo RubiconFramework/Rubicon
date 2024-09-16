@@ -127,9 +127,9 @@ public partial class NoteManager : Control
 				}
 			}
 
-			if (curNoteData.MsTime - time <= -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble())
+			if (curNoteData.MsTime - time <= -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
 			{
-				ProcessQueue.Add(new NoteInputElement{ Note = Notes[NoteHitIndex], Distance = -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble() - 1, Holding = false});
+				ProcessQueue.Add(new NoteInputElement{ Note = Notes[NoteHitIndex], Distance = -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble() - 1, Holding = false});
 				NoteHitIndex++;
 			}	
 		}

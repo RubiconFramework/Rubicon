@@ -47,14 +47,19 @@ public partial class SongMeta : Resource
     [Export] public bool Enable3D = false;
         
     /// <summary>
-    /// The stage to spawn in for this chart.
+    /// The stage to spawn in for this song.
     /// </summary>
     [Export] public string Stage = "stage";
-        
+
     /// <summary>
-    /// The UI style to use for this chart.
+    /// The UI style to use for this song.
     /// </summary>
-    [Export] public string UiStyle = "funkin";
+    [Export] public string UiStyle = ProjectSettings.GetSetting("rubicon/general/default_ui_style").AsString();
+
+    /// <summary>
+    /// The Note Skin to use for this song.
+    /// </summary>
+    [Export] public string NoteSkin = ProjectSettings.GetSetting("rubicon/mania/default_note_skin").AsString();
         
     /// <summary>
     /// Locks Opponent and Speaker mode out.

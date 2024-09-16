@@ -172,16 +172,16 @@ public partial class ManiaNoteManager : NoteManager
 				return;
 			}
 
-			double songPos = Conductor.Time * 1000d; // calling it once since this can lag the game HORRIBLY if used without caution
-			while (notes[NoteHitIndex].MsTime - songPos <= -(float)ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window"))
+			double songPos = Conductor.Time * 1000d;
+			while (notes[NoteHitIndex].MsTime - songPos <= -(float)ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window"))
 			{
 				// Miss every note thats too late first
-				ProcessQueue.Add(new NoteInputElement{Note = notes[NoteHitIndex], Distance = -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble() - 1, Holding = false});
+				ProcessQueue.Add(new NoteInputElement{Note = notes[NoteHitIndex], Distance = -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble() - 1, Holding = false});
 				NoteHitIndex++;
 			}
 
 			double hitTime = notes[NoteHitIndex].MsTime - songPos;
-			if (Mathf.Abs(hitTime) <= ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble()) // Literally any other rating
+			if (Mathf.Abs(hitTime) <= ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()) // Literally any other rating
 			{
 				ProcessQueue.Add(new NoteInputElement{Note = notes[NoteHitIndex], Distance = hitTime, Holding = notes[NoteHitIndex].Length > 0});
 				NoteHitIndex++;
@@ -197,7 +197,7 @@ public partial class ManiaNoteManager : NoteManager
 			if (NoteHeld != null)
 			{
 				double length = NoteHeld.MsTime + NoteHeld.MsLength - (Conductor.Time * 1000d);
-				bool holding = length <= ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble();
+				bool holding = length <= ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble();
 				ProcessQueue.Add(new NoteInputElement{Note = NoteHeld, Distance = length, Holding = !holding});
 			}
 

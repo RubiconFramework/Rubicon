@@ -45,7 +45,7 @@ public partial class RubiconGame : Node
 		
 		// Set up rule set
 		string ruleSet = chart.DefaultRuleset;
-		string ruleSetScriptPath = ProjectSettings.GetSetting($"rubicon/rulesets/{ruleSet}").AsString();
+		string ruleSetScriptPath = ProjectSettings.GetSetting($"rubicon/rulesets/{ruleSet}/ruleset_script_path").AsString();
 		CSharpScript ruleSetScript = GD.Load<CSharpScript>(ruleSetScriptPath);
 		GodotObject ruleSetObject = ruleSetScript.New().AsGodotObject();
 

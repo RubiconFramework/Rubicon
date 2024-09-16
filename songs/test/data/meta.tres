@@ -218,6 +218,7 @@ Events = [SubResource("Resource_e70w1"), SubResource("Resource_ap5oo"), SubResou
 Enable3D = false
 Stage = "stage"
 UiStyle = "funkin"
+NoteSkin = "funkin"
 OnlyPlayerMode = false
 OpponentChartIndex = 0
 PlayerChartIndex = 1

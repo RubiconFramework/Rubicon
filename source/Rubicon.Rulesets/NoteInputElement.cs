@@ -40,8 +40,8 @@ public partial class NoteInputElement : RefCounted
             ProjectSettings.GetSetting("rubicon/judgments/perfect_hit_window").AsDouble(),
             ProjectSettings.GetSetting("rubicon/judgments/great_hit_window").AsDouble(),
             ProjectSettings.GetSetting("rubicon/judgments/good_hit_window").AsDouble(),
-            ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble(),
-            ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble()
+            ProjectSettings.GetSetting("rubicon/judgments/okay_hit_window").AsDouble(),
+            ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble()
         ]; 
         int hit = hitWindows.Length;
         for (int i = 0; i < hitWindows.Length; i++)

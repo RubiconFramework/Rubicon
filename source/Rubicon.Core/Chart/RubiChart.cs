@@ -18,7 +18,7 @@ public partial class RubiChart : Resource
     /// <summary>
     /// The default ruleset for this chart.
     /// </summary>
-    [Export] public string DefaultRuleset = "mania";
+    [Export] public string DefaultRuleset = ProjectSettings.GetSetting("rubicon/rulesets/default_ruleset").AsString();
     
     /// <summary>
     /// A list of BPM changes.

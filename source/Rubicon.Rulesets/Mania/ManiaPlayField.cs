@@ -1,3 +1,4 @@
+using System.Linq;
 using Rubicon.Autoload;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Meta;
@@ -10,9 +11,16 @@ namespace Rubicon.Rulesets.Mania;
 public partial class ManiaPlayField : PlayField
 {
     /// <summary>
+    /// The max score this instance can get.
+    /// </summary>
+    [Export] public uint MaxScore = 1000000;
+    
+    /// <summary>
     /// A control node for the general location for the bar lines.
     /// </summary>
     [Export] public Control BarLineContainer;
+
+    private uint _noteCount;
     
     /// <summary>
     /// Readies this PlayField for Mania gameplay!
@@ -26,9 +34,19 @@ public partial class ManiaPlayField : PlayField
         AddChild(BarLineContainer);
         
         BarLines = new BarLine[chart.Charts.Length];
+        TargetBarLine = meta.PlayerChartIndex;
         
         // REALLY SHITTY, REPLACE BELOW LATER !!!
-        ManiaNoteSkin noteSkin = GD.Load<ManiaNoteSkin>("res://resources/ui/funkin/mania.tres");
+        string noteSkinName = meta.NoteSkin;
+        if (!ResourceLoader.Exists($"res://resources/ui/{noteSkinName}/mania.tres"))
+        {
+            string defaultPath = ProjectSettings.GetSetting("rubicon/rulesets/mania/default_note_skin").AsString();
+            GD.PrintErr($"Mania Note Skin Path: {noteSkinName} does not exist. Defaulting to {defaultPath}");
+            noteSkinName = defaultPath;
+        }
+        
+        TargetBarLine = meta.PlayerChartIndex;
+        ManiaNoteSkin noteSkin = GD.Load<ManiaNoteSkin>($"res://resources/ui/{noteSkinName}/mania.tres");
         for (int i = 0; i < chart.Charts.Length; i++)
         {
             IndividualChart indChart = chart.Charts[i];
@@ -38,13 +56,16 @@ public partial class ManiaPlayField : PlayField
             
             // Using Council positioning for now, sorry :/
             curBarLine.Position = new Vector2(i * 720f - (chart.Charts.Length - 1) * 720f / 2f, 0f);
+
+            if (i == TargetBarLine)
+            {
+                curBarLine.SetAutoPlay(false);
+                _noteCount = (uint)indChart.Notes.Count(x => !x.ShouldMiss);
+            }
             
             BarLineContainer.AddChild(curBarLine);
             BarLines[i] = curBarLine;
         }
-
-        TargetBarLine = meta.PlayerChartIndex;
-        BarLines[TargetBarLine].SetAutoPlay(false);
         
         base.Setup(meta, chart);
         BarLineContainer.MoveToFront();
@@ -67,7 +88,25 @@ public partial class ManiaPlayField : PlayField
             BarLines[i].SetAnchorsPreset(barLinePreset, true);
         }
     }
-    
+
+    /// <inheritdoc />
+    public override void UpdateScore()
+    {
+        uint notesHit = PerfectHits + GreatHits + GoodHits + OkayHits + BadHits;
+        if (PerfectHits == _noteCount)
+        {
+            Score = MaxScore;
+            return;
+        }
+        
+        float baseNoteValue = (float)MaxScore / _noteCount;
+        float baseScore = (float)(((baseNoteValue * PerfectHits) + (baseNoteValue * (GreatHits * 0.95)) + (baseNoteValue * (GoodHits * 0.75)) + (baseNoteValue * (OkayHits * 0.65)) + (baseNoteValue * (BadHits * 0.5))) * 0.5);
+        
+        
+        //float bonusScore = (noteValue * PerfectHits * 0.25f) + (noteValue * GreatHits * 0.125f) + (noteValue * GoodHits * 0.075f) + (noteValue * OkayHits * 0.045f) + (noteValue * BadHits * 0.005f);
+        //Score = (uint)(baseScore + bonusScore);
+    }
+
     /// <inheritdoc />
     public override bool GetFailCondition() => Health <= 0;
 }
