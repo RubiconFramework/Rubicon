@@ -14,11 +14,6 @@ public partial class ManiaPlayField : PlayField
     /// The max score this instance can get.
     /// </summary>
     [Export] public uint MaxScore = 1000000;
-    
-    /// <summary>
-    /// A control node for the general location for the bar lines.
-    /// </summary>
-    [Export] public Control BarLineContainer;
 
     private uint _noteCount;
     
@@ -29,10 +24,6 @@ public partial class ManiaPlayField : PlayField
     /// <param name="chart">The chart loaded</param>
     public override void Setup(SongMeta meta, RubiChart chart)
     {
-        BarLineContainer = new Control();
-        BarLineContainer.Name = "Bar Line Container";
-        AddChild(BarLineContainer);
-        
         BarLines = new BarLine[chart.Charts.Length];
         TargetBarLine = meta.PlayerChartIndex;
         
@@ -55,7 +46,8 @@ public partial class ManiaPlayField : PlayField
             curBarLine.Name = "Mania Bar Line " + i;
             
             // Using Council positioning for now, sorry :/
-            curBarLine.Position = new Vector2(i * 720f - (chart.Charts.Length - 1) * 720f / 2f, 0f);
+            //curBarLine.Position = new Vector2(i * 720f - (chart.Charts.Length - 1) * 720f / 2f, 0f);
+            curBarLine.AnchorLeft = curBarLine.AnchorRight = ((i * 0.5f) - (chart.Charts.Length - 1) * 0.5f / 2f) + 0.5f;
 
             if (i == TargetBarLine)
             {
@@ -63,29 +55,30 @@ public partial class ManiaPlayField : PlayField
                 _noteCount = (uint)(indChart.Notes.Count(x => !x.ShouldMiss) + indChart.Notes.Count(x => !x.ShouldMiss && x.Length > 0));
             }
             
-            BarLineContainer.AddChild(curBarLine);
+            AddChild(curBarLine);
             BarLines[i] = curBarLine;
         }
         
         base.Setup(meta, chart);
-        BarLineContainer.MoveToFront();
         Name = "Mania PlayField";
+        for (int i = 0; i < BarLines.Length; i++)
+            BarLines[i].MoveToFront();;
     }
     
     /// <inheritdoc/>
     public override void UpdateOptions()
     {
-        LayoutPreset barLinePreset =
-            Settings.General.Downscroll ? LayoutPreset.CenterBottom : LayoutPreset.CenterTop;
-        BarLineContainer.SetAnchorsPreset(barLinePreset);
-        BarLineContainer.Position = new Vector2(0f, Settings.General.Downscroll ? -120f : 120f);
+        //BarLineContainer.
+        //BarLineContainer.Position = new Vector2(0f, Settings.General.Downscroll ? -120f : 120f);
 
         for (int i = 0; i < BarLines.Length; i++)
         {
             if (BarLines[i] is ManiaBarLine maniaBarLine)
                 maniaBarLine.SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
-            
-            BarLines[i].SetAnchorsPreset(barLinePreset, true);
+
+            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = Settings.General.Downscroll ? 1f : 0f;
+            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = Settings.General.Downscroll ? -120f : 120f;
+            //BarLines[i].SetAnchorsPreset(barLinePreset, true);
         }
     }
 
@@ -106,7 +99,7 @@ public partial class ManiaPlayField : PlayField
         }
         
         // Accuracy
-        uint hitNotes = PerfectHits + GreatHits + GoodHits + OkayHits + BadHits;
+        uint hitNotes = PerfectHits + GreatHits + GoodHits + OkayHits + BadHits + Misses;
         Accuracy = PerfectHits == _noteCount
             ? 100f
             : ((PerfectHits + (GreatHits * 0.95f) + (GoodHits * 0.65f) + (OkayHits * 0.3f) + (BadHits + 0.15f)) /

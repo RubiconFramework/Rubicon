@@ -26,7 +26,7 @@ ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
 
 [display]
 
-window/size/viewport_width=1920
+window/size/viewport_width=1440
 window/size/viewport_height=1080
 window/size/window_width_override=1366
 window/size/window_height_override=768
@@ -40,7 +40,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/rubiconcharter/plugin.cfg")
+enabled=PackedStringArray("res://addons/flashimport/plugin.cfg")
 
 [file_customization]
 
@@ -161,14 +161,12 @@ buffering/agile_event_flushing=true
 
 [rubicon]
 
-rulesets/mania="res://source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
-judgments/perfect_hit_window=25.0
-judgments/great_hit_window=50.0
-judgments/good_hit_window=90.0
-judgments/bad_hit_window=180.0
 general/default_ui_style="funkin"
-judgments/horrible_hit_window=180.0
 rulesets/default_ruleset="mania"
 rulesets/mania/ruleset_script_path="res://source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
 rulesets/mania/default_note_skin="funkin"
+judgments/perfect_hit_window=25.0
+judgments/great_hit_window=50.0
+judgments/good_hit_window=90.0
 judgments/okay_hit_window=135.0
+judgments/bad_hit_window=180.0

@@ -7,7 +7,7 @@
 atlas = ExtResource("2_vh0a7")
 region = Rect2(2, 2, 157, 154)
 
-[node name="ChartEditor" type="Control" node_paths=PackedStringArray("note")]
+[node name="ChartEditor" type="Control"]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -16,7 +16,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wjtjy")
-note = NodePath("TextureRect")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
