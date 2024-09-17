@@ -11,6 +11,11 @@ public partial class Note : Control
     /// Contains info about this note.
     /// </summary>
     [Export] public NoteData Info;
+    
+    /// <summary>
+    /// The parent <see cref="NoteManager"/>.
+    /// </summary>
+    [Export] public NoteManager ParentManager;
 
     /// <summary>
     /// If false, this note is ready to be recycled.
@@ -56,5 +61,26 @@ public partial class Note : Control
     {
         Active = Visible = false;
         Info.HitObject = null;
+    }
+
+    /// <summary>
+    /// Gets the starting position of the note, with all the scroll velocities considered.
+    /// </summary>
+    /// <returns>The starting position of the note</returns>
+    protected float GetStartingPoint()
+    {
+        SvChange[] svChangeList = ParentManager.ParentBarLine.Chart.SvChanges;
+        return (float)(svChangeList[Info.StartingScrollVelocity].Position + ((Info.MsTime - svChangeList[Info.StartingScrollVelocity].MsTime) * svChangeList[Info.StartingScrollVelocity].Multiplier));
+    }
+
+    /// <summary>
+    /// Gets the ending position of the note, with all the scroll velocities considered.
+    /// </summary>
+    /// <returns>The ending position of the note</returns>
+    protected float GetEndingPoint()
+    {
+        SvChange[] svChangeList = ParentManager.ParentBarLine.Chart.SvChanges;
+        return (float)(svChangeList[Info.EndingScrollVelocity].Position +
+            ((Info.MsTime + Info.MsLength - svChangeList[Info.EndingScrollVelocity].MsTime) * svChangeList[Info.EndingScrollVelocity].Multiplier));
     }
 }

@@ -19,16 +19,20 @@ public partial class PlayField : Control
     /// <summary>
     /// The max health the player can have.
     /// </summary>
-    [Export] public uint MaxHealth = 2000;
+    [Export] public uint MaxHealth = 1000;
 
     // lego was probably right in having a high score class, ill save this for him
     [Export] public uint Score = 0;
+
+    [Export] public float Accuracy = 100f;
 
     [Export] public uint PerfectHits = 0;
     
     [Export] public uint GreatHits = 0;
     
     [Export] public uint GoodHits = 0;
+
+    [Export] public uint OkayHits = 0;
     
     [Export] public uint BadHits = 0;
     
@@ -99,35 +103,43 @@ public partial class PlayField : Control
         
         // Handle UI Style
         string uiStylePath = $"res://resources/ui/{Metadata.UiStyle}/style.tres";
-        if (!FileAccess.FileExists(uiStylePath))
+        if (!ResourceLoader.Exists(uiStylePath))
         {
             string defaultUiPath = $"res://resources/ui/{ProjectSettings.GetSetting("rubicon/general/default_ui_style")}/style.tres";
             GD.PrintErr($"UI Style Path: {uiStylePath} does not exist. Defaulting to {defaultUiPath}");
             uiStylePath = defaultUiPath;
         }
-
         UiStyle = GD.Load<UiStyle>(uiStylePath);
-        
-        HitDistance = UiStyle.HitDistance.Instantiate<HitDistance>();
-        AddChild(HitDistance);
-        
-        Judgment = UiStyle.Judgment.Instantiate<Judgment>();
-        Judgment.PerfectMaterial = UiStyle.PerfectMaterial;
-        Judgment.GreatMaterial = UiStyle.GreatMaterial;
-        Judgment.GoodMaterial = UiStyle.GoodMaterial;
-        Judgment.BadMaterial = UiStyle.BadMaterial;
-        Judgment.HorribleMaterial = UiStyle.HorribleMaterial;
-        Judgment.MissMaterial = UiStyle.MissMaterial;
-        AddChild(Judgment);
 
-        ComboDisplay = UiStyle.Combo.Instantiate<ComboDisplay>();
-        ComboDisplay.PerfectMaterial = UiStyle.PerfectMaterial;
-        ComboDisplay.GreatMaterial = UiStyle.GreatMaterial;
-        ComboDisplay.GoodMaterial = UiStyle.GoodMaterial;
-        ComboDisplay.BadMaterial = UiStyle.BadMaterial;
-        ComboDisplay.HorribleMaterial = Judgment.HorribleMaterial;
-        ComboDisplay.MissMaterial = Judgment.MissMaterial;
-        AddChild(ComboDisplay);
+        if (UiStyle.HitDistance != null)
+        {
+            HitDistance = UiStyle.HitDistance.Instantiate<HitDistance>();
+            AddChild(HitDistance);   
+        }
+
+        if (UiStyle.Judgment != null)
+        {
+            Judgment = UiStyle.Judgment.Instantiate<Judgment>();
+            Judgment.PerfectMaterial = UiStyle.PerfectMaterial;
+            Judgment.GreatMaterial = UiStyle.GreatMaterial;
+            Judgment.GoodMaterial = UiStyle.GoodMaterial;
+            Judgment.OkayMaterial = UiStyle.OkayMaterial;
+            Judgment.BadMaterial = UiStyle.BadMaterial;
+            Judgment.MissMaterial = UiStyle.MissMaterial;
+            AddChild(Judgment);   
+        }
+
+        if (UiStyle.Combo != null)
+        {
+            ComboDisplay = UiStyle.Combo.Instantiate<ComboDisplay>();
+            ComboDisplay.PerfectMaterial = UiStyle.PerfectMaterial;
+            ComboDisplay.GreatMaterial = UiStyle.GreatMaterial;
+            ComboDisplay.GoodMaterial = UiStyle.GoodMaterial;
+            ComboDisplay.OkayMaterial = UiStyle.OkayMaterial;
+            ComboDisplay.BadMaterial = UiStyle.BadMaterial;
+            ComboDisplay.MissMaterial = UiStyle.MissMaterial;
+            AddChild(ComboDisplay);   
+        }
         
         for (int i = 0; i < BarLines.Length; i++)
             BarLines[i].NoteHit += OnNoteHit;
@@ -158,6 +170,14 @@ public partial class PlayField : Control
     {
         
     }
+
+    /// <summary>
+    /// Triggers every time the player hits a note to update the in-game statistics
+    /// </summary>
+    public virtual void UpdateStatistics()
+    {
+        
+    }
     
     /// <summary>
     /// The fail condition for this play field.
@@ -171,22 +191,42 @@ public partial class PlayField : Control
     /// <param name="barLine">The bar line</param>
     /// <param name="lane">The lane</param>
     /// <param name="direction">The sing direction</param>
-    /// <param name="noteData">The note data</param>
-    /// <param name="hitType">The hit type</param>
-    /// <param name="distance">The hit distance from the note's time</param>
-    /// <param name="holding">Whether the note is held</param>
-    protected virtual void OnNoteHit(BarLine barLine, int lane, string direction, NoteData noteData, int hitType, double distance, bool holding)
+    /// <param name="inputElement">Info about the input recieved</param>
+    protected virtual void OnNoteHit(BarLine barLine, int lane, string direction, NoteInputElement inputElement)
     {
         if (BarLines[TargetBarLine] == barLine)
         {
-            HitType hit = (HitType)hitType;
+            HitType hit = inputElement.Hit;
             Combo = hit != HitType.Miss ? Combo + 1 : 0;
             if (Combo > HighestCombo)
                 HighestCombo = Combo;
+
+            switch (hit)
+            {
+                case HitType.Perfect:
+                    PerfectHits++;
+                    break;
+                case HitType.Great:
+                    GreatHits++;
+                    break;
+                case HitType.Good:
+                    GoodHits++;
+                    break;
+                case HitType.Okay:
+                    OkayHits++;
+                    break;
+                case HitType.Bad:
+                    BadHits++;
+                    break;
+                case HitType.Miss:
+                    Misses++;
+                    break;
+            }
             
+            UpdateStatistics();
             Judgment?.Play(hit, UiStyle.JudgmentOffset);   
             ComboDisplay?.Play(Combo, hit, UiStyle.ComboOffset);
-            HitDistance?.Show(distance, UiStyle.HitDistanceOffset);
+            HitDistance?.Show(inputElement.Distance, UiStyle.HitDistanceOffset);
         }
     }
 }

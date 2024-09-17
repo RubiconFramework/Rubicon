@@ -9,7 +9,7 @@ public enum HitType
     Perfect,
     Great,
     Good,
+    Okay,
     Bad,
-    Horrible,
     Miss
 }

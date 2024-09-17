@@ -38,6 +38,7 @@ offset_left = 9.0
 offset_top = 4.0
 offset_right = 1359.0
 offset_bottom = 213.0
+scale = Vector2(1.4, 1.4)
 mouse_filter = 2
 
 [node name="MainInformation" type="HBoxContainer" parent="InfoContainer"]

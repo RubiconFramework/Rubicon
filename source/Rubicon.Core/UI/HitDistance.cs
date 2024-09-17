@@ -18,7 +18,7 @@ public partial class HitDistance : Control
     public virtual void Show(double distance, Vector2? offset)
     {
         Label.Text = $"{distance:0.00} ms";
-        if (Math.Abs(distance) > ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble())
+        if (Math.Abs(distance) > ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
             Label.Text = $"Too {(distance < 0 ? "late!" : "early!")}";
         
         Play(offset);
@@ -33,7 +33,7 @@ public partial class HitDistance : Control
     public virtual void Show(double distance, Vector2 pos, Vector2? offset)
     {
         Label.Text = $"{distance:0.00} ms";
-        if (Math.Abs(distance) > ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble())
+        if (Math.Abs(distance) > ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
             Label.Text = $"Too {(distance < 0 ? "late!" : "early!")}";
         
         Play(offset);

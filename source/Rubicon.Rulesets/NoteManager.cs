@@ -3,6 +3,7 @@ using Godot.Collections;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Data;
+using Array = Godot.Collections.Array;
 
 namespace Rubicon.Rulesets;
 
@@ -67,6 +68,11 @@ public partial class NoteManager : Control
 	/// </summary>
 	[Export] public int NoteSpawnIndex = 0;
 
+	/// <summary>
+	/// The queue list for notes to be processed next frame.
+	/// </summary>
+	[Export] public Array<NoteInputElement> ProcessQueue = new();
+
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
@@ -103,31 +109,35 @@ public partial class NoteManager : Control
 			}
 		}
 		
-		// If note hitting is done, stop here
-		if (IsComplete)
-			return;
-		
-		NoteData curNoteData = Notes[NoteHitIndex];
-		if (Autoplay && InputsEnabled)
+		if (!IsComplete)
 		{
-			while (curNoteData.MsTime - time <= 0)
+			NoteData curNoteData = Notes[NoteHitIndex];
+			if (Autoplay && InputsEnabled)
 			{
-				if (!Notes[NoteHitIndex].ShouldMiss)
-					OnNoteHit(curNoteData, 0, curNoteData.MsLength > 0);
+				while (curNoteData.MsTime - time <= 0)
+				{
+					if (!Notes[NoteHitIndex].ShouldMiss)
+						ProcessQueue.Add(new NoteInputElement{ Note = curNoteData, Distance = 0, Holding = curNoteData.MsLength > 0});
 				
-				NoteHitIndex++;
-				if (NoteHitIndex >= Notes.Length)
-					break;
+					NoteHitIndex++;
+					if (NoteHitIndex >= Notes.Length)
+						break;
 				
-				curNoteData = Notes[NoteHitIndex];
+					curNoteData = Notes[NoteHitIndex];
+				}
 			}
+
+			if (curNoteData.MsTime - time <= -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
+			{
+				ProcessQueue.Add(new NoteInputElement{ Note = Notes[NoteHitIndex], Distance = -ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble() - 1, Holding = false});
+				NoteHitIndex++;
+			}	
 		}
 
-		if (curNoteData.MsTime - time <= -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble())
-		{
-			OnNoteMiss(curNoteData, -ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble() - 1, false);
-			NoteHitIndex++;
-		}
+		for (int i = 0; i < ProcessQueue.Count; i++)
+			OnNoteHit(ProcessQueue[i]);
+			
+		ProcessQueue.Clear();
 	}
 
 	private int GetNoteScrollVelocityIndex(NoteData noteData)
@@ -159,52 +169,19 @@ public partial class NoteManager : Control
 	/// </summary>
 	/// <param name="note">The note passed in</param>
 	/// <param name="data">The note data</param>
-	/// <param name="svChange">The SV change associated</param>
 	protected virtual void SetupNote(Note note, NoteData data)
 	{
 		
 	}
 
 	/// <summary>
-	/// Triggers upon this note manager hitting a note.
+	/// Triggers upon this note manager hitting/missing a note.
 	/// </summary>
-	/// <param name="note">The note that was hit</param>
-	/// <param name="distance">The hit distance from the note's time</param>
-	/// <param name="holding">Whether the note is held down.</param>
-	protected virtual void OnNoteHit(NoteData note, double distance, bool holding)
+	/// <param name="element">Contains information about a note and its hits</param>
+	protected virtual void OnNoteHit(NoteInputElement element)
 	{
-		double[] hitWindows = [ 
-			ProjectSettings.GetSetting("rubicon/judgments/perfect_hit_window").AsDouble(),
-			ProjectSettings.GetSetting("rubicon/judgments/great_hit_window").AsDouble(),
-			ProjectSettings.GetSetting("rubicon/judgments/good_hit_window").AsDouble(),
-			ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble(),
-			ProjectSettings.GetSetting("rubicon/judgments/horrible_hit_window").AsDouble()
-		];
-		int hit = hitWindows.Length - 1;
-		for (int i = 0; i < hitWindows.Length; i++)
-		{
-			if (Mathf.Abs(distance) <= hitWindows[i])
-			{
-				hit = i;
-				break;
-			}
-		}
-
-		note.WasHit = true;
-		ParentBarLine.OnNoteHit(Lane, note, (HitType)hit, distance, holding);
-	}
-	
-	/// <summary>
-	/// Triggers upon this note manager missing a note.
-	/// </summary>
-	/// <param name="note">The note that was hit</param>
-	/// <param name="distance">The hit distance from the note's time</param>
-	/// <param name="holding">Whether the note is held down.</param>
-	protected virtual void OnNoteMiss(NoteData note, double distance, bool holding)
-	{
-		note.WasHit = true;
-		note.HitObject = null;
-		ParentBarLine.OnNoteHit(Lane, note, HitType.Miss, distance, holding);
+		element.Note.WasHit = true;
+		ParentBarLine.OnNoteHit(Lane, element);
 	}
 	#endregion
 }

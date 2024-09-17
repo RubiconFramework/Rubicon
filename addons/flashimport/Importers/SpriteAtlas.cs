@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using static FlashImporter.addons.flashimport.Importers.SpriteAtlasAnimation;
-using static FlashImporter.addons.flashimport.Importers.SpriteAtlasData;
+using static FlashImporter.Importers.SpriteAtlasAnimation;
+using static FlashImporter.Importers.SpriteAtlasData;
 
-namespace FlashImporter.addons.flashimport.Importers;
+namespace FlashImporter.Importers;
 public partial class SpriteAtlas : Node
 {
     private string spritePath;

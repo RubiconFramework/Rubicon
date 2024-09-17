@@ -32,7 +32,7 @@ public partial class BarLine : Control
 	/// <summary>
 	/// A signal that is emitted every time a manager in this bar line hits a note. Can be a miss.
 	/// </summary>
-	[Signal] public delegate void NoteHitEventHandler(BarLine barLine, int lane, string direction, NoteData noteData, int hitType, double distance, bool holding);
+	[Signal] public delegate void NoteHitEventHandler(BarLine barLine, int lane, string direction, NoteInputElement inputElement);
 	
 	public override void _Process(double delta)
 	{
@@ -55,13 +55,10 @@ public partial class BarLine : Control
 	/// Triggers upon one of its note managers hitting a note in any way, even if it's a miss.
 	/// </summary>
 	/// <param name="lane">The lane index of the note manager</param>
-	/// <param name="noteData">The note's data</param>
-	/// <param name="hit">The type of hit</param>
-	/// <param name="distance">The hit distance from the note's time</param>
-	/// <param name="holding">Whether the note is being held down</param>
-	public virtual void OnNoteHit(int lane, NoteData noteData, HitType hit, double distance, bool holding)
+	/// <param name="inputElement">The input element received</param>
+	public virtual void OnNoteHit(int lane, NoteInputElement inputElement)
 	{
-		EmitSignal(SignalName.NoteHit, this, "", lane, noteData, (int)hit, distance, holding);
+		EmitSignal(SignalName.NoteHit, this, "", lane, inputElement);
 	}
 
 	public void SetAutoPlay(bool autoplay)

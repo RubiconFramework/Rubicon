@@ -34,14 +34,14 @@ public partial class Judgment : Control
     public Material GoodMaterial;
 
     /// <summary>
+    /// The material to put on when hitting a <see cref="HitType.Okay"/>.
+    /// </summary>
+    public Material OkayMaterial;
+    
+    /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Bad"/>.
     /// </summary>
     public Material BadMaterial;
-    
-    /// <summary>
-    /// The material to put on when hitting a <see cref="HitType.Horrible"/>.
-    /// </summary>
-    public Material HorribleMaterial;
 
     /// <summary>
     /// The material to put on when hitting a <see cref="HitType.Miss"/>.
@@ -100,10 +100,10 @@ public partial class Judgment : Control
                 return "great";
             case HitType.Good:
                 return "good";
+            case HitType.Okay:
+                return "okay";
             case HitType.Bad:
                 return "bad";
-            case HitType.Horrible:
-                return "horrible";
             case HitType.Miss:
                 return "miss";
         }
@@ -124,10 +124,10 @@ public partial class Judgment : Control
                 return GreatMaterial;
             case HitType.Good:
                 return GoodMaterial;
+            case HitType.Okay:
+                return OkayMaterial;
             case HitType.Bad:
                 return BadMaterial;
-            case HitType.Horrible:
-                return HorribleMaterial;
             case HitType.Miss:
                 return MissMaterial;
         }

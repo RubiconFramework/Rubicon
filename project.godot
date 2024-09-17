@@ -11,8 +11,9 @@ config_version=5
 [application]
 
 config/name="Rubicon"
-config/version="0.0.0.0.0.0.0.1"
+config/version="1"
 run/main_scene="res://scenes/TestScene.tscn"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=165
 config/icon="res://assets/ui/misc/fnf.png"
@@ -25,7 +26,7 @@ ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
 
 [display]
 
-window/size/viewport_width=1400
+window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
@@ -39,7 +40,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/flashimport/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -160,10 +161,12 @@ buffering/agile_event_flushing=true
 
 [rubicon]
 
-rulesets/mania="res://source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
+general/default_ui_style="funkin"
+rulesets/default_ruleset="mania"
+rulesets/mania/ruleset_script_path="res://source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
+rulesets/mania/default_note_skin="funkin"
 judgments/perfect_hit_window=25.0
 judgments/great_hit_window=50.0
 judgments/good_hit_window=90.0
-judgments/bad_hit_window=135.0
-general/default_ui_style="funkin"
-judgments/horrible_hit_window=180.0
+judgments/okay_hit_window=135.0
+judgments/bad_hit_window=180.0

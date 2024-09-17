@@ -52,9 +52,8 @@ public partial class DebugInfo : CanvasLayer
         UpdateStaticLabels();
     }
     
-    private static string ConvertToMemoryFormat(long mem)
+    private static string ConvertToMemoryFormat(ulong mem)
     {
-        // Stole this from holofunk lol
         if (mem >= 0x40000000)
             return (float)Math.Round(mem / 1024f / 1024f / 1024f, 2) + " GB";
         if (mem >= 0x100000)
@@ -99,20 +98,20 @@ public partial class DebugInfo : CanvasLayer
         else ConductorInfo.Visible = false;
     }
 
+    private string GetKeybinds(Node node) => string.Join(", ", InputMap.ActionGetEvents(node.Name).OfType<InputEventKey>().Select(key => key.AsTextPhysicalKeycode()));
+
     private void UpdateStaticLabels()
     {
         GameVersion.Text = $"{ProjectSettings.GetSetting("application/config/name").AsString()} {ProjectSettings.GetSetting("application/config/version").AsString()} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
         RubiconVersion.Text = $"Rubicon Engine {RubiconEngine.VersionString}";
         GodotVersion.Text = $"Godot Engine {Engine.GetVersionInfo()["major"]}.{Engine.GetVersionInfo()["minor"]}.{Engine.GetVersionInfo()["patch"]} [{Engine.GetVersionInfo()["status"]}]";
-        
-        string GetKeybinds(Node node) => string.Join(", ", InputMap.ActionGetEvents(node.Name).OfType<InputEventKey>().Select(key => key.AsTextPhysicalKeycode()));
     }
 
     private void UpdateFPS() => FPS.Text = $"FPS: {Mathf.FloorToInt(1 / GetProcessDeltaTime())}";
 
-    private void UpdateRAM() => RAM.Text = $"RAM: {ConvertToMemoryFormat(CurrentProcess.WorkingSet64)} [{ConvertToMemoryFormat(CurrentProcess.PrivateMemorySize64)}]";
+    private void UpdateRAM() => RAM.Text = $"RAM: {ConvertToMemoryFormat(OS.GetStaticMemoryUsage())} [{ConvertToMemoryFormat(OS.GetStaticMemoryPeakUsage())}]";
 
-    private void UpdateVRAM() => VRAM.Text = $"VRAM: {ConvertToMemoryFormat((long)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed))}";
+    private void UpdateVRAM() => VRAM.Text = $"VRAM: {ConvertToMemoryFormat((ulong)Performance.GetMonitor(Performance.Monitor.RenderTextureMemUsed))}";
 
     private void UpdateScene() => CurrentScene.Text = $"Scene: {(GetTree().CurrentScene != null && GetTree().CurrentScene.SceneFilePath != "" ? GetTree().CurrentScene.SceneFilePath : "None")}";
 
@@ -124,20 +123,17 @@ public partial class DebugInfo : CanvasLayer
     }
 
     private readonly StringBuilder ConductorSB = new();
+
     private void UpdateConductor()
     {
         ConductorSB.Clear();
 
-        ConductorSB.AppendLine($"Conductor BPM: {Conductor.Bpm} --- Current Position (s): {Conductor.RawTime}")
-            .AppendLine("BPM List: {");
+        ConductorSB.AppendLine($"BPM: {Conductor.Bpm}, Audio Position: {Conductor.RawTime}\n");
         foreach (BpmInfo bpm in Conductor.BpmList)
-            ConductorSB.AppendLine(
-                $"\t(Time: {bpm.Time}, Exact Time (ms): {bpm.MsTime}, BPM: {bpm.Bpm}, Time Signature: {bpm.TimeSignatureNumerator}/{bpm.TimeSignatureDenominator})");
-
-        ConductorSB.AppendLine("}")
-            .AppendLine($"Current Step: {Conductor.CurrentStep}")
-            .AppendLine($"Current Beat: {Conductor.CurrentBeat}")
-            .AppendLine($"Current Measure (Section): {Conductor.CurrentMeasure}");
+            ConductorSB.AppendLine($"Time: {bpm.Time}, Exact Time (ms): {bpm.MsTime}, BPM: {bpm.Bpm}, Time Signature: {bpm.TimeSignatureNumerator}/{bpm.TimeSignatureDenominator}\n")
+            .AppendLine($"Step: {Conductor.CurrentStep}")
+            .AppendLine($"Beat: {Conductor.CurrentBeat}")
+            .AppendLine($"Measure/Section: {Conductor.CurrentMeasure}");
 
         ConductorInfo.Text = ConductorSB.ToString();
     }

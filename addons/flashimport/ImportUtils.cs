@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
-namespace FlashImporter.addons.flashimport;
+namespace FlashImporter;
+
 public partial class ImportUtils
 {
     public static List<string> ListDirectory(string path)

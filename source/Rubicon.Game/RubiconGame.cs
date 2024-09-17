@@ -35,8 +35,8 @@ public partial class RubiconGame : Node
 		Instance = this;
 		
 		// Shitty
-		SongMeta meta = GD.Load<SongMeta>("res://songs/test/data/meta.tres");
-		RubiChart chart = GD.Load<RubiChart>("res://songs/test/data/normal.tres");
+		SongMeta meta = GD.Load<SongMeta>("res://songs/sew/data/meta.tres");
+		RubiChart chart = GD.Load<RubiChart>("res://songs/sew/data/sew.tres");
 		chart.ConvertData().Format();
 
 		Conductor.Reset();
@@ -45,7 +45,7 @@ public partial class RubiconGame : Node
 		
 		// Set up rule set
 		string ruleSet = chart.DefaultRuleset;
-		string ruleSetScriptPath = ProjectSettings.GetSetting($"rubicon/rulesets/{ruleSet}").AsString();
+		string ruleSetScriptPath = ProjectSettings.GetSetting($"rubicon/rulesets/{ruleSet}/ruleset_script_path").AsString();
 		CSharpScript ruleSetScript = GD.Load<CSharpScript>(ruleSetScriptPath);
 		GodotObject ruleSetObject = ruleSetScript.New().AsGodotObject();
 
@@ -76,7 +76,7 @@ public partial class RubiconGame : Node
 
 		Conductor.Start(0);
 		Instrumental.Play(0f);
-		Vocals.Play(0f);
+		//Vocals.Play(0f);
 	}
 
 	public override void _Input(InputEvent @event)

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace FlashImporter.addons.flashimport.Importers;
+namespace FlashImporter.Importers;
 [Tool] public partial class JSONSpritesheet : Node
 {
     private static string spritePath;

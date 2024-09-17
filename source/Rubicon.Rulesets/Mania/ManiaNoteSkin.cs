@@ -27,12 +27,12 @@ public partial class ManiaNoteSkin : Resource
 	/// <summary>
 	/// The scale used when generating notes and lanes.
 	/// </summary>
-	[Export] public Vector2 Scale = Vector2.One * 0.7f;
+	[Export] public Vector2 Scale = Vector2.One;
 
 	/// <summary>
 	/// The width of each lane.
 	/// </summary>
-	[Export] public float LaneSize = 160f * 0.7f;
+	[Export] public float LaneSize = 160f;
 
 	/// <summary>
 	/// The filtering used when generating notes and lanes.
@@ -45,30 +45,9 @@ public partial class ManiaNoteSkin : Resource
 	[Export] public Dictionary<int, string[]> Directions = new() { { 4, [ "left", "down", "up", "right" ] } };
 
 	/// <summary>
-	/// Whether to enable tiling on hold graphics. This will use a separate image from the hold atlas.
+	/// Whether to enable tiling on hold graphics. Hold textures in <see cref="HoldAtlas"/> should NOT be an <see cref="AtlasTexture"/>/part of a sprite sheet!
 	/// </summary>
-	[ExportGroup("Tiling"), Export] public bool UseTiledHold = false;
-
-	/// <summary>
-	/// Will get this texture instead of the animation in the hold atlas if tiling is enabled.
-	/// AtlasTextures are NOT supported, so that's why there's a roundabout way of doing this.
-	/// Ex: "downNoteHold" -> Separate Down Hold Texture somewhere
-	/// </summary>
-	[Export] public Dictionary<string, Texture2D> TileTextures = new();
-	
-	/// <summary>
-	/// Gets a tiled hold graphic based on lane count and lane number if tiled holds are active.
-	/// </summary>
-	/// <param name="lane">The lane index</param>
-	/// <param name="laneCount">The amount of lanes.</param>
-	/// <returns>A Texture2D compatible with tiling.</returns>
-	public Texture2D GetTiledHold(int lane, int laneCount = 4)
-	{
-		if (!UseTiledHold)
-			return null;
-
-		return TileTextures[$"{GetDirection(lane, laneCount)}NoteHold"];
-	}
+	[Export] public bool UseTiledHold = false;
 
 	/// <summary>
 	/// Gets a direction name based on lane count and lane number.

@@ -39,9 +39,9 @@ public partial class ManiaBarLine : BarLine
     }
     
     /// <inheritdoc/>
-    public override void OnNoteHit(int lane, NoteData noteData, HitType hit, double distance, bool holding)
+    public override void OnNoteHit(int lane, NoteInputElement inputElement)
     {
-        EmitSignal(SignalName.NoteHit, this, NoteSkin.GetDirection(lane, Managers.Length), lane, noteData, (int)hit, distance, holding);
+        EmitSignal(SignalName.NoteHit, this, NoteSkin.GetDirection(lane, Managers.Length), lane, inputElement);
     }
 
     /// <summary>
