@@ -2,13 +2,11 @@
 [Tool]
 public partial class CharterInitialize : EditorPlugin
 {
-    Control ChartEditorInstance = ResourceLoader.Load<PackedScene>("res://addons/RubiconCharter/ChartEditor.tscn").Instantiate<Control>();
+    Control ChartEditorInstance = ResourceLoader.Load<PackedScene>("res://addons/rubiconcharter/ChartEditor.tscn").Instantiate<Control>();
 
     public override void _EnterTree()
     {
-        GetViewport().GuiEmbedSubwindows = true;
         EditorInterface.Singleton.GetEditorMainScreen().AddChild(ChartEditorInstance);
-        
     }
 
     public override void _ExitTree()

@@ -28,8 +28,8 @@ ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/window_width_override=1366
+window/size/window_height_override=768
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
@@ -40,7 +40,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/flashimport/plugin.cfg")
+enabled=PackedStringArray("res://addons/rubiconcharter/plugin.cfg")
 
 [file_customization]
 
