@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://k8kx0lbjm1hj"]
+[gd_scene load_steps=4 format=3 uid="uid://k8kx0lbjm1hj"]
 
 [ext_resource type="Script" path="res://addons/flashimport/Importers/XMLSpritesheet.cs" id="1_jnv0x"]
+[ext_resource type="Texture2D" uid="uid://bj78asrejws2m" path="res://assets/ui/misc/Folder.svg" id="2_kddr2"]
 [ext_resource type="Script" path="res://addons/flashimport/Importers/JSONSpritesheet.cs" id="3_gxduc"]
 
 [node name="FlashImport" type="Control"]
@@ -56,7 +57,7 @@ placeholder_text = "res://path/to/sprite.extension"
 
 [node name="Button" type="Button" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer/PathContainer"]
 layout_mode = 2
-text = "..."
+icon = ExtResource("2_kddr2")
 
 [node name="PathNameReminder" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/SpritePathContainer"]
 modulate = Color(1, 1, 0, 0.529412)
@@ -93,6 +94,7 @@ vertical_alignment = 1
 [node name="SpinBox" type="SpinBox" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff/FPS"]
 layout_mode = 2
 max_value = 2.14748e+09
+value = 24.0
 suffix = "FPS"
 
 [node name="StackFrames" type="HBoxContainer" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff"]
