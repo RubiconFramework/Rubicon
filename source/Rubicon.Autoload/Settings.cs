@@ -4,8 +4,8 @@ namespace Rubicon.Autoload;
 public partial class Settings : Node
 {
 	private const string FilePath = "user://settings.tres";
-	
 	public static GeneralSettings General { get; private set; } = new();
+	
 	
 	public override void _Ready()
 	{

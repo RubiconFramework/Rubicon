@@ -1,6 +1,5 @@
 using Rubicon.Core;
 using Rubicon.Core.Chart;
-using Rubicon.Core.Data;
 
 namespace Rubicon.Rulesets;
 

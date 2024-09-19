@@ -3,7 +3,6 @@ using Rubicon.Core.Data;
 using Rubicon.Core.UI;
 using Rubicon.Game;
 using Rubicon.Rulesets;
-using Rubicon.Rulesets.Mania;
 
 namespace Rubicon.Extras.UI;
 

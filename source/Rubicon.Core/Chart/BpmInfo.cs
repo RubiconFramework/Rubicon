@@ -1,7 +1,3 @@
-using System;
-using Godot;
-using Godot.Collections;
-
 namespace Rubicon.Core.Chart;
 
 /// <summary>

@@ -1,5 +1,3 @@
-using System;
-
 namespace HCoroutines.Coroutines;
 
 /// <summary>

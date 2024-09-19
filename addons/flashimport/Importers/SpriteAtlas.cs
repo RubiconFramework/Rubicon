@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 using static FlashImporter.Importers.SpriteAtlasAnimation;
 using static FlashImporter.Importers.SpriteAtlasData;

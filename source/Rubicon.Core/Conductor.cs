@@ -1,4 +1,3 @@
-using System;
 using Rubicon.Core.Chart;
 
 namespace Rubicon.Core;

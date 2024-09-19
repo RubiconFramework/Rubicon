@@ -1,5 +1,4 @@
 using Rubicon.Core.Chart;
-using Rubicon.Core.Data;
 
 namespace Rubicon.Rulesets.Mania;
 

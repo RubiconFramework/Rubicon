@@ -1,6 +1,5 @@
-using Godot;
-using System;
+using Rubicon.Menus;
 
-public partial class SettingsMenu : Control
+public partial class SettingsMenu : BaseMenu
 {
 }

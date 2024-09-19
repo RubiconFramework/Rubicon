@@ -1,6 +1,4 @@
 #if TOOLS
-using Godot;
-using System;
 using Rubicon.Extras;
 
 [Tool]
