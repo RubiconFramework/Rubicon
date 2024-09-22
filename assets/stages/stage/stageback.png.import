@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bywi8lygjm4cc"
-path="res://.godot/imported/stageback.png-24834044971fd1155eca999b7eb78ab6.ctex"
+uid="uid://bo7xu407mbdb0"
+path="res://.godot/imported/StageBack.png-88b7ad26d14bbb374231254babc0cd2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stages/stage/stageback.png"
-dest_files=["res://.godot/imported/stageback.png-24834044971fd1155eca999b7eb78ab6.ctex"]
+source_file="res://Assets/Stages/Stage/StageBack.png"
+dest_files=["res://.godot/imported/StageBack.png-88b7ad26d14bbb374231254babc0cd2f.ctex"]
 
 [params]
 

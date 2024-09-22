@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlxiv1cnsoaju"
-path="res://.godot/imported/stagecurtains.png-6be2844208639cd4052eee80e6a9b0f2.ctex"
+uid="uid://clt4rkoycok84"
+path="res://.godot/imported/StageCurtains.png-5fa5e7a0a76bcb9f833b194b9377d986.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stages/stage/stagecurtains.png"
-dest_files=["res://.godot/imported/stagecurtains.png-6be2844208639cd4052eee80e6a9b0f2.ctex"]
+source_file="res://Assets/Stages/Stage/StageCurtains.png"
+dest_files=["res://.godot/imported/StageCurtains.png-5fa5e7a0a76bcb9f833b194b9377d986.ctex"]
 
 [params]
 

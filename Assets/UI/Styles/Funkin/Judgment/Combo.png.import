@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyuvgypolgjsr"
-path="res://.godot/imported/stage_light.png-f3e95304623a5711b2aca13af717f0cd.ctex"
+uid="uid://bdmkpl8u6pljo"
+path="res://.godot/imported/Combo.png-4f11e9e14ea4ac29e313041315ff82d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/stages/stage/stage_light.png"
-dest_files=["res://.godot/imported/stage_light.png-f3e95304623a5711b2aca13af717f0cd.ctex"]
+source_file="res://Assets/UI/Styles/Funkin/Judgment/Combo.png"
+dest_files=["res://.godot/imported/Combo.png-4f11e9e14ea4ac29e313041315ff82d5.ctex"]
 
 [params]
 

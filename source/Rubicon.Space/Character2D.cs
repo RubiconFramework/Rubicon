@@ -84,7 +84,7 @@ public partial class Character2D : Node2D
     /// It has to contain an idle animation.
     /// It can contain "lose" and "win" optionally.
     /// </summary>
-    [ExportGroup("Healthbar Info"), Export] public SpriteFrames CharacterIcon { get; set; } = GD.Load<SpriteFrames>("res://assets/characters/placeholder/icon.tres");
+    [ExportGroup("Healthbar Info"), Export] public SpriteFrames CharacterIcon { get; set; } = GD.Load<SpriteFrames>("res://Assets/Characters/Placeholder/Icon.tres");
 
     /// <summary>
     /// The offset of the healthbar icon.

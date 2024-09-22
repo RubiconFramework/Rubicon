@@ -6,7 +6,6 @@ using Rubicon.Core.Chart;
 
 namespace Rubicon.Autoload;
 
-//[Icon("res://assets/misc/autoload.png")]
 public partial class DebugInfo : CanvasLayer
 {
     /*Main Info (Always Visible)*/

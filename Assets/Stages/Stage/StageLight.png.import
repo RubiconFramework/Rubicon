@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vqbnorh6kqua"
-path="res://.godot/imported/menuBG.png-1dde0a3e71868c4a2aaec49f19dad10e.ctex"
+uid="uid://c5ppkvfk2c22o"
+path="res://.godot/imported/StageLight.png-470f46ef9a3bb206ab94f704973aa637.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/menus/menuBG.png"
-dest_files=["res://.godot/imported/menuBG.png-1dde0a3e71868c4a2aaec49f19dad10e.ctex"]
+source_file="res://Assets/Stages/Stage/StageLight.png"
+dest_files=["res://.godot/imported/StageLight.png-470f46ef9a3bb206ab94f704973aa637.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

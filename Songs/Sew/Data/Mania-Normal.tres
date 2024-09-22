@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="RubiChart" load_steps=1165 format=3 uid="uid://b7hiepina3j2x"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/BpmInfo.cs" id="1_ho6wp"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/NoteData.cs" id="2_jgbo3"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/SvChange.cs" id="3_cttvs"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/IndividualChart.cs" id="4_y0wgc"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/RubiChart.cs" id="5_72c3u"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/BpmInfo.cs" id="1_ho6wp"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/NoteData.cs" id="2_jgbo3"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/SvChange.cs" id="3_cttvs"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/IndividualChart.cs" id="4_y0wgc"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/RubiChart.cs" id="5_72c3u"]
 
 [sub_resource type="Resource" id="Resource_j05x1"]
 script = ExtResource("1_ho6wp")

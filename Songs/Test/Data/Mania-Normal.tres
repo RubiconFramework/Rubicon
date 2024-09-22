@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="RubiChart" load_steps=515 format=3 uid="uid://bo0m0fcj550a"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/BpmInfo.cs" id="1_8kda5"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/NoteData.cs" id="2_4rjss"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/SvChange.cs" id="3_7c81p"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/IndividualChart.cs" id="4_5a78w"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Chart/RubiChart.cs" id="5_2dum7"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/BpmInfo.cs" id="1_8kda5"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/NoteData.cs" id="2_4rjss"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/SvChange.cs" id="3_7c81p"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/IndividualChart.cs" id="4_5a78w"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Chart/RubiChart.cs" id="5_2dum7"]
 
 [sub_resource type="Resource" id="Resource_jwixm"]
 script = ExtResource("1_8kda5")

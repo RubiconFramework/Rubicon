@@ -102,10 +102,10 @@ public partial class PlayField : Control
         Input.UseAccumulatedInput = false;
         
         // Handle UI Style
-        string uiStylePath = $"res://resources/ui/{Metadata.UiStyle}/style.tres";
+        string uiStylePath = $"res://Resources/UI/{Metadata.UiStyle}/Style.tres";
         if (!ResourceLoader.Exists(uiStylePath))
         {
-            string defaultUiPath = $"res://resources/ui/{ProjectSettings.GetSetting("rubicon/general/default_ui_style")}/style.tres";
+            string defaultUiPath = $"res://Resources/UI/{ProjectSettings.GetSetting("rubicon/general/default_ui_style")}/style.tres";
             GD.PrintErr($"UI Style Path: {uiStylePath} does not exist. Defaulting to {defaultUiPath}");
             uiStylePath = defaultUiPath;
         }

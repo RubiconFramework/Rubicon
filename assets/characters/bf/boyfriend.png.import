@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkqiixire7gw"
-path="res://.godot/imported/boyfriend.png-89749296f085be5d766a65d8882c4242.ctex"
+uid="uid://djjv64xfqcox0"
+path="res://.godot/imported/Boyfriend.png-ce86ea4b1fbb7506c1aef882c3a34f09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/bf/boyfriend.png"
-dest_files=["res://.godot/imported/boyfriend.png-89749296f085be5d766a65d8882c4242.ctex"]
+source_file="res://Assets/Characters/Bf/Boyfriend.png"
+dest_files=["res://.godot/imported/Boyfriend.png-ce86ea4b1fbb7506c1aef882c3a34f09.ctex"]
 
 [params]
 

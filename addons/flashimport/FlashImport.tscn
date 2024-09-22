@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://k8kx0lbjm1hj"]
 
 [ext_resource type="Script" path="res://addons/flashimport/Importers/XMLSpritesheet.cs" id="1_jnv0x"]
-[ext_resource type="Texture2D" uid="uid://bj78asrejws2m" path="res://assets/ui/misc/Folder.svg" id="2_kddr2"]
+[ext_resource type="Texture2D" uid="uid://bj78asrejws2m" path="res://Assets/ui/misc/Folder.svg" id="2_kddr2"]
 [ext_resource type="Script" path="res://addons/flashimport/Importers/JSONSpritesheet.cs" id="3_gxduc"]
 
 [node name="FlashImport" type="Control"]
@@ -103,6 +103,7 @@ size_flags_horizontal = 3
 
 [node name="CheckBox" type="CheckBox" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff/StackFrames"]
 layout_mode = 2
+button_pressed = true
 text = "Stack Frames?"
 
 [node name="Label" type="Label" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff/StackFrames"]
@@ -113,6 +114,10 @@ text = "*Recommended"
 [node name="Loop" type="CheckBox" parent="TabContainer/XML Spritesheet/VBoxContainer/ConvertContainer/SideStuff"]
 layout_mode = 2
 text = "Loop?"
+
+[node name="SpriteResult" type="AnimatedSprite2D" parent="TabContainer/XML Spritesheet/VBoxContainer"]
+position = Vector2(0, 200)
+centered = false
 
 [node name="JSON Spritesheet" type="TabBar" parent="TabContainer"]
 visible = false

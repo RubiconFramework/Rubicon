@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wof6p8s7jeq0"
-path="res://.godot/imported/funkinNotes.png-97428dc8c0738826acd023b8f9bf1ae4.ctex"
+uid="uid://cqjhu4skev1nf"
+path="res://.godot/imported/FunkinNotes.png-625ff9ca33f56afb7b8533b04947fd65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/styles/funkin/mania/funkinNotes.png"
-dest_files=["res://.godot/imported/funkinNotes.png-97428dc8c0738826acd023b8f9bf1ae4.ctex"]
+source_file="res://Assets/UI/Styles/Funkin/Mania/FunkinNotes.png"
+dest_files=["res://.godot/imported/FunkinNotes.png-625ff9ca33f56afb7b8533b04947fd65.ctex"]
 
 [params]
 

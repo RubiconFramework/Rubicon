@@ -2,29 +2,28 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7detcr7truqj"
-path.bptc="res://.godot/imported/judgments.png-0ef96a9821dde6d9a3528fabdaad489f.bptc.ctex"
+uid="uid://lx4kgphk6qvl"
+path="res://.godot/imported/Judgments.png-22423c381b8a5cc1bd1441d2adb1a9d2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/styles/funkin/judgment/judgments.png"
-dest_files=["res://.godot/imported/judgments.png-0ef96a9821dde6d9a3528fabdaad489f.bptc.ctex"]
+source_file="res://Assets/UI/Styles/Funkin/Judgment/Judgments.png"
+dest_files=["res://.godot/imported/Judgments.png-22423c381b8a5cc1bd1441d2adb1a9d2.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_compression=0
-compress/normal_map=2
-compress/channel_pack=1
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false

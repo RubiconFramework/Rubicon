@@ -2,7 +2,8 @@
 .godot/
 .import/
 .mono/
-exclude/
+Exclude/
+Export/
 
 # macOS
 .DS_Store

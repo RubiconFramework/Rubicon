@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ci220sy4asmdw"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Extras/UI/FunkinComboDisplay.cs" id="1_2bm2c"]
-[ext_resource type="SpriteFrames" uid="uid://c85tnr6y52kqk" path="res://assets/ui/styles/funkin/score/combo.tres" id="2_6mr8j"]
+[ext_resource type="SpriteFrames" uid="uid://c85tnr6y52kqk" path="res://Assets/UI/Styles/Funkin/Judgment/Combo.tres" id="2_6mr8j"]
 
 [node name="ComboDisplay" type="Control"]
 layout_mode = 3

@@ -31,8 +31,8 @@ public partial class RubiconGame : Node
 		Instance = this;
 		
 		// Shitty
-		SongMeta meta = GD.Load<SongMeta>("res://songs/sew/data/meta.tres");
-		RubiChart chart = GD.Load<RubiChart>("res://songs/sew/data/sew.tres");
+		SongMeta meta = GD.Load<SongMeta>("res://Songs/Sew/Data/Meta.tres");
+		RubiChart chart = GD.Load<RubiChart>("res://Songs/Sew/Data/Mania-Normal.tres");
 		chart.ConvertData().Format();
 
 		Conductor.Reset();

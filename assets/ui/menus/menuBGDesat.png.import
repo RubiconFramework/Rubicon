@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl6xc7ajkg1j4"
-path="res://.godot/imported/menuBGDesat.png-cda51d6e24168ca44a4548a5f1e649c9.ctex"
+uid="uid://b21lx2vebocdi"
+path="res://.godot/imported/MenuBGDesat.png-0d9ae1c1741fcb587620d112411bb115.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/menus/menuBGDesat.png"
-dest_files=["res://.godot/imported/menuBGDesat.png-cda51d6e24168ca44a4548a5f1e649c9.ctex"]
+source_file="res://Assets/UI/Menus/MenuBGDesat.png"
+dest_files=["res://.godot/imported/MenuBGDesat.png-0d9ae1c1741fcb587620d112411bb115.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

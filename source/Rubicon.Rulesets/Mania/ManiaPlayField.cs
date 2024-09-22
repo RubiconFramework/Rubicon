@@ -29,7 +29,7 @@ public partial class ManiaPlayField : PlayField
         
         // REALLY SHITTY, REPLACE BELOW LATER !!!
         string noteSkinName = meta.NoteSkin;
-        if (!ResourceLoader.Exists($"res://resources/ui/{noteSkinName}/mania.tres"))
+        if (!ResourceLoader.Exists($"res://Resources/UI/{noteSkinName}/Mania.tres"))
         {
             string defaultPath = ProjectSettings.GetSetting("rubicon/rulesets/mania/default_note_skin").AsString();
             GD.PrintErr($"Mania Note Skin Path: {noteSkinName} does not exist. Defaulting to {defaultPath}");
@@ -37,7 +37,7 @@ public partial class ManiaPlayField : PlayField
         }
         
         TargetBarLine = meta.PlayerChartIndex;
-        ManiaNoteSkin noteSkin = GD.Load<ManiaNoteSkin>($"res://resources/ui/{noteSkinName}/mania.tres");
+        ManiaNoteSkin noteSkin = GD.Load<ManiaNoteSkin>($"res://Resources/UI/{noteSkinName}/Mania.tres");
         for (int i = 0; i < chart.Charts.Length; i++)
         {
             IndividualChart indChart = chart.Charts[i];

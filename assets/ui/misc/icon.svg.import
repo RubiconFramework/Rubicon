@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo42rkxda8b4b"
-path="res://.godot/imported/icon.svg-6ec2568e0ddbd5c8e7773418da2d7208.ctex"
+uid="uid://ds8qcoslu367x"
+path="res://.godot/imported/Icon.svg-71aaf0d446c9f619ddf60ada6ba5198b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/misc/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-6ec2568e0ddbd5c8e7773418da2d7208.ctex"]
+source_file="res://Assets/UI/Misc/Icon.svg"
+dest_files=["res://.godot/imported/Icon.svg-71aaf0d446c9f619ddf60ada6ba5198b.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

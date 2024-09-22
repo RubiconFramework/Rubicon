@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c5vbys8rxft6p"
-path="res://.godot/imported/vcr.ttf-4c8ac1042a00dc33cf105a2880a83cd5.fontdata"
+uid="uid://dyi1noxwy5t88"
+path="res://.godot/imported/vcr.ttf-49c97ad15f25bd2088efa56a923e0a7a.fontdata"
 
 [deps]
 
-source_file="res://assets/ui/fonts/vcr.ttf"
-dest_files=["res://.godot/imported/vcr.ttf-4c8ac1042a00dc33cf105a2880a83cd5.fontdata"]
+source_file="res://Assets/UI/Fonts/vcr.ttf"
+dest_files=["res://.godot/imported/vcr.ttf-49c97ad15f25bd2088efa56a923e0a7a.fontdata"]
 
 [params]
 

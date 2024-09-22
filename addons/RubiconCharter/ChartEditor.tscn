@@ -1,24 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu2q514bs1uk"]
+[gd_scene load_steps=2 format=3 uid="uid://cu2q514bs1uk"]
 
 [ext_resource type="Script" path="res://addons/rubiconcharter/scripts/ChartEditor.cs" id="1_wjtjy"]
-[ext_resource type="Texture2D" uid="uid://wof6p8s7jeq0" path="res://assets/ui/styles/funkin/mania/funkinNotes.png" id="2_vh0a7"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3vt6i"]
-atlas = ExtResource("2_vh0a7")
-region = Rect2(2, 2, 157, 154)
-
-[node name="ChartEditor" type="Control"]
+[node name="ChartEditor" type="PanelContainer"]
 process_mode = 3
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wjtjy")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("AtlasTexture_3vt6i")
+metadata/_edit_lock_ = true

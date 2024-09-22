@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cynf1ud5pgdr3"]
 
 [ext_resource type="Script" path="res://source/Rubicon.Extras/UI/DdrHitDistance.cs" id="1_ajaab"]
-[ext_resource type="FontFile" uid="uid://c5vbys8rxft6p" path="res://assets/ui/fonts/vcr.ttf" id="2_whcw6"]
+[ext_resource type="FontFile" uid="uid://c5vbys8rxft6p" path="res://Assets/ui/Fonts/vcr.ttf" id="2_whcw6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wf87c"]
 font = ExtResource("2_whcw6")

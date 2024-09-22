@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://csxrq1ms8awxc"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Menus/Settings/SettingsMenu.cs" id="1_lotll"]
+[ext_resource type="Script" path="res://Source/Rubicon.Menus/Settings/SettingsMenu.cs" id="1_lotll"]
 
 [node name="Settings Menu" type="Control"]
 layout_mode = 3

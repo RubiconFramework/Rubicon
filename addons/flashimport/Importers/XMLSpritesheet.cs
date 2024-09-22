@@ -8,8 +8,8 @@ namespace FlashImporter.Importers;
 	private int fps;
 	private bool loop;
 	private bool stackFrames;
-	/*private AnimatedSprite2D finalSprite;
-	string[] animArray;*/
+	private AnimatedSprite2D finalSprite;
+	string[] animArray;
 	private EditorFileDialog fileDialog;
 
     public void OnButtonPress()
@@ -20,7 +20,7 @@ namespace FlashImporter.Importers;
 		fps = (int)GetNode<SpinBox>("VBoxContainer/ConvertContainer/SideStuff/FPS/SpinBox").Value;
         loop = GetNode<Button>("VBoxContainer/ConvertContainer/SideStuff/Loop").ButtonPressed;
         stackFrames = GetNode<Button>("VBoxContainer/ConvertContainer/SideStuff/StackFrames/CheckBox").ButtonPressed;
-		//finalSprite = GetNode<AnimatedSprite2D>("FinalSprite");
+		finalSprite = GetNode<AnimatedSprite2D>("VBoxContainer/SpriteResult");
 
 		List<string> spriteList = new();
 		bool pathIsDirectory = spritePath.EndsWith("/") || !spritePath.EndsWith(".png") && !spritePath.EndsWith(".xml");
@@ -39,7 +39,7 @@ namespace FlashImporter.Importers;
 			{
 				Texture2D texture = GD.Load<Texture2D>(sprite);
 
-				string atlas = $"{sprite.GetBaseDir() + sprite.GetBaseName()}.xml";
+				string atlas = $"{sprite.GetBaseName()}.xml";
 				XmlParser xml = new();
 				xml.Open(atlas);
 				GD.Print($"Sprite Path: {sprite}\nAtlas Path: {atlas}");
@@ -51,15 +51,18 @@ namespace FlashImporter.Importers;
 
     public override void _EnterTree()
     {
-        fileDialog = new EditorFileDialog();
-        fileDialog.Title = "Select a spritesheet";
-        fileDialog.FileMode = EditorFileDialog.FileModeEnum.OpenAny;
-        fileDialog.Size = new Vector2I(512, 512);
-        fileDialog.InitialPosition = Window.WindowInitialPosition.CenterMainWindowScreen;
-        fileDialog.Filters = ["*.png", "*.xml"];
-		fileDialog.DirSelected += DirSelected;
-        fileDialog.FileSelected += FileSelected;
-        AddChild(fileDialog);
+		if (Engine.IsEditorHint())
+		{
+			fileDialog = new EditorFileDialog();
+			fileDialog.Title = "Select a spritesheet";
+			fileDialog.FileMode = EditorFileDialog.FileModeEnum.OpenAny;
+			fileDialog.Size = new Vector2I(512, 512);
+			fileDialog.InitialPosition = Window.WindowInitialPosition.CenterMainWindowScreen;
+			fileDialog.Filters = ["*.png", "*.xml"];
+			fileDialog.DirSelected += DirSelected;
+			fileDialog.FileSelected += FileSelected;
+			AddChild(fileDialog);
+		}
     }
 
     public override void _ExitTree()
@@ -70,7 +73,10 @@ namespace FlashImporter.Importers;
 
     public void FolderButton()
 	{
-		fileDialog.PopupFileDialog();
+		if (Engine.IsEditorHint())
+			fileDialog.PopupCentered();
+		else
+			GD.PrintErr("Folder button can only be used in the editor's plugin.");
     }
 
 	public void FileSelected(string path)
@@ -173,22 +179,28 @@ namespace FlashImporter.Importers;
 		if (ResourceLoader.Exists(resPath))
 			GD.Print($"SpriteFrame successfully created at path: {resPath}\nFound {duppedFrameCount} dupped frames.");
 
-		/*if (showResult)
+		if (showResult)
 		{
 			finalSprite.SpriteFrames = GD.Load<SpriteFrames>(resPath);
 			animArray = finalSprite.SpriteFrames.GetAnimationNames();
 
 			finalSprite.Play(animArray[0]);
-			finalSprite.AnimationFinished += FinalSpriteFinished;
-		}*/
+			finalSprite.Connect("animation_finished", Callable.From(FinalSpriteFinished));
+		}
 	}
 
-    /*public void FinalSpriteFinished()
+    public void FinalSpriteFinished()
 	{
 		int animIndex = 0;
 		if (animIndex < animArray.Length - 1)
-			finalSprite.Play(animArray[animIndex]);
+		{
+            animIndex++;
+            finalSprite.Play(animArray[animIndex]);
+            GD.Print($"Finished playing animation: {animArray[animIndex-1]}\nNow playing animation: {animArray[animIndex]}");
+		}
 		else
+		{
 			finalSprite.AnimationFinished -= FinalSpriteFinished;
-    }*/
+		}
+    }
 }

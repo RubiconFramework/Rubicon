@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://djunjp53banbr"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Menus/Title/TitleMenu.cs" id="1_kvdrp"]
+[ext_resource type="Script" path="res://Source/Rubicon.Menus/Title/TitleMenu.cs" id="1_kvdrp"]
 
 [node name="Debug Menu" type="Control"]
 layout_mode = 3

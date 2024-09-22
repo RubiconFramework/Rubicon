@@ -1,45 +1,45 @@
 [gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://c85tnr6y52kqk"]
 
-[ext_resource type="Texture2D" uid="uid://b3450r6jymynd" path="res://assets/ui/styles/funkin/score/combo.png" id="1_a1dpb"]
+[ext_resource type="Texture2D" path="res://Assets/UI/Styles/funkin/score/combo.png" id="1_hw42a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hagj5"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(4, 13, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_st3uh"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(104, 13, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s37rw"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(204, 13, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8a5fs"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(304, 13, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trs0m"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(404, 12, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7r426"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(505, 13, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8e0sw"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(604, 13, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pf5p0"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(704, 13, 91, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwyac"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(805, 13, 90, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxqvy"]
-atlas = ExtResource("1_a1dpb")
+atlas = ExtResource("1_hw42a")
 region = Rect2(905, 13, 91, 111)
 
 [resource]

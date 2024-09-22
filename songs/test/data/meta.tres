@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="SongMeta" load_steps=38 format=3 uid="uid://s3fcavf52yy2"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Core/Meta/CharacterMeta.cs" id="1_iokxe"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Meta/EventData.cs" id="2_e5nuv"]
-[ext_resource type="Script" path="res://source/Rubicon.Core/Meta/SongMeta.cs" id="3_jtlbk"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/CharacterMeta.cs" id="1_iokxe"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/EventData.cs" id="2_e5nuv"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/SongMeta.cs" id="3_jtlbk"]
 
 [sub_resource type="Resource" id="Resource_kwx62"]
 script = ExtResource("1_iokxe")

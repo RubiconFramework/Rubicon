@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Rubicon"
 config/version="1"
-run/main_scene="res://scenes/TestScene.tscn"
+run/main_scene="res://TestScene.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=165
@@ -20,9 +20,9 @@ config/icon="res://assets/ui/misc/fnf.png"
 
 [autoload]
 
-DebugInfo="*res://source/Rubicon.Autoload/DebugInfo.tscn"
-Settings="*res://source/Rubicon.Autoload/Settings.cs"
-ConductorSingleton="*res://source/Rubicon.Core/Conductor.cs"
+DebugInfo="*res://Source/Rubicon.Autoload/DebugInfo.tscn"
+Settings="*res://Source/Rubicon.Autoload/Settings.cs"
+ConductorSingleton="*res://Source/Rubicon.Core/Conductor.cs"
 
 [display]
 
@@ -45,16 +45,16 @@ enabled=PackedStringArray("res://addons/flashimport/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://source/Rubicon.API/": "pink",
-"res://source/Rubicon.Autoload/": "pink",
-"res://source/Rubicon.Core/": "pink",
-"res://source/Rubicon.Data/": "teal",
-"res://source/Rubicon.Extras/": "teal",
-"res://source/Rubicon.Game/": "teal",
-"res://source/Rubicon.Menus/": "teal",
-"res://source/Rubicon.Rulesets/": "teal",
-"res://source/Rubicon.Rulesets/Mania/": "teal",
-"res://source/Rubicon.Space/": "teal"
+"res://Source/Rubicon.API/": "pink",
+"res://Source/Rubicon.Autoload/": "pink",
+"res://Source/Rubicon.Core/": "pink",
+"res://Source/Rubicon.Data/": "teal",
+"res://Source/Rubicon.Extras/": "teal",
+"res://Source/Rubicon.Game/": "teal",
+"res://Source/Rubicon.Menus/": "teal",
+"res://Source/Rubicon.Rulesets/": "teal",
+"res://Source/Rubicon.Rulesets/Mania/": "teal",
+"res://Source/Rubicon.Space/": "teal"
 }
 
 [gui]
@@ -163,7 +163,7 @@ buffering/agile_event_flushing=true
 
 general/default_ui_style="funkin"
 rulesets/default_ruleset="mania"
-rulesets/mania/ruleset_script_path="res://source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
+rulesets/mania/ruleset_script_path="res://Source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
 rulesets/mania/default_note_skin="funkin"
 judgments/perfect_hit_window=25.0
 judgments/great_hit_window=50.0

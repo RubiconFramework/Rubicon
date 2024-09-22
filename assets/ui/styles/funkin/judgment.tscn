@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvuu8kmrsmsj"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Extras/UI/FunkinJudgment.cs" id="1_k7iwh"]
-[ext_resource type="SpriteFrames" uid="uid://c3oogrurwc8mg" path="res://assets/ui/styles/funkin/judgment/judgments.tres" id="2_bql2j"]
+[ext_resource type="Script" path="res://Source/Rubicon.Extras/UI/FunkinJudgment.cs" id="1_k7iwh"]
+[ext_resource type="SpriteFrames" uid="uid://c3oogrurwc8mg" path="res://Assets/UI/Styles/funkin/judgment/judgments.tres" id="2_bql2j"]
 
 [node name="Judgment" type="Control"]
 layout_mode = 3

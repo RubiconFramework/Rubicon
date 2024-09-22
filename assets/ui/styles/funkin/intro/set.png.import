@@ -2,26 +2,25 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm8m328axmhya"
-path.bptc="res://.godot/imported/set.png-d7d0abd477aa9a762168f7a92bd90f2b.bptc.ctex"
+uid="uid://cw875lant1d2l"
+path="res://.godot/imported/Set.png-561fa01965dec7decb183359f0f5e75f.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/styles/funkin/intro/set.png"
-dest_files=["res://.godot/imported/set.png-d7d0abd477aa9a762168f7a92bd90f2b.bptc.ctex"]
+source_file="res://Assets/UI/Styles/Funkin/Intro/Set.png"
+dest_files=["res://.godot/imported/Set.png-561fa01965dec7decb183359f0f5e75f.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_compression=0
-compress/normal_map=2
-compress/channel_pack=1
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0

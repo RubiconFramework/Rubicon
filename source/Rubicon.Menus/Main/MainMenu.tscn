@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cv0x3o3gtdbv3"]
 
-[ext_resource type="Script" path="res://source/Rubicon.Menus/Main/MainMenu.cs" id="1_cwcjp"]
+[ext_resource type="Script" path="res://Source/Rubicon.Menus/Main/MainMenu.cs" id="1_cwcjp"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3

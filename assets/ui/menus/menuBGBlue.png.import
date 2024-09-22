@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpfkgaqr1sgrj"
-path="res://.godot/imported/menuBGBlue.png-36574684fadc9143fb3d4e3397ae5198.ctex"
+uid="uid://tdy3posjxoe3"
+path="res://.godot/imported/MenuBGBlue.png-0f0cb800b74545f733b79226cdbefd52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/menus/menuBGBlue.png"
-dest_files=["res://.godot/imported/menuBGBlue.png-36574684fadc9143fb3d4e3397ae5198.ctex"]
+source_file="res://Assets/UI/Menus/MenuBGBlue.png"
+dest_files=["res://.godot/imported/MenuBGBlue.png-0f0cb800b74545f733b79226cdbefd52.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
