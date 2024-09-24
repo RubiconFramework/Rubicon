@@ -40,7 +40,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/RubiconCharter/plugin.cfg")
+enabled=PackedStringArray()
 
 [file_customization]
 
@@ -161,10 +161,10 @@ buffering/agile_event_flushing=true
 
 [rubicon]
 
-general/default_ui_style="funkin"
-rulesets/default_ruleset="mania"
+general/default_ui_style="Funkin"
+rulesets/default_ruleset="Mania"
 rulesets/mania/ruleset_script_path="res://Source/Rubicon.Rulesets/Mania/ManiaRuleSet.cs"
-rulesets/mania/default_note_skin="funkin"
+rulesets/mania/default_note_skin="Funkin"
 judgments/perfect_hit_window=25.0
 judgments/great_hit_window=50.0
 judgments/good_hit_window=90.0

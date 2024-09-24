@@ -22,20 +22,20 @@
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resources\characters\bf.tscn" />
-    <Content Include="resources\ui\funkin\mania.tres" />
-    <Content Include="resources\ui\funkin\style.tres" />
-    <Content Include="songs\test\data\normal.json" />
-    <Content Include="songs\test\data\normal.json.import" />
-    <Content Include="songs\test\meta.tres" />
-    <Content Include="songs\test\song\Inst.ogg" />
-    <Content Include="songs\test\song\Inst.ogg.import" />
-    <Content Include="songs\test\song\Vocals.ogg" />
-    <Content Include="songs\test\song\Vocals.ogg.import" />
-    <Content Include="source\Rubicon.API\a pi.txt" />
-    <Content Include="source\Rubicon.Menus\Credits\CreditsMenu.tscn" />
-    <Content Include="source\Rubicon.Menus\Main\MainMenu.tscn" />
-    <Content Include="source\Rubicon.Menus\Settings\SettingsMenu.tscn" />
-    <Content Include="source\Rubicon.Menus\Title\TitleMenu.tscn" />
+    <Content Include="Resources\Characters\bf.tscn" />
+    <Content Include="Resources\UI\Funkin\Mania.tres" />
+    <Content Include="Resources\UI\Funkin\Style.tres" />
+    <Content Include="Songs\Test\Data\normal.json" />
+    <Content Include="Songs\Test\Data\normal.json.import" />
+    <Content Include="Songs\Test\meta.tres" />
+    <Content Include="Songs\Test\Inst.ogg" />
+    <Content Include="Songs\Test\Inst.ogg.import" />
+    <Content Include="Songs\Test\Vocals.ogg" />
+    <Content Include="Songs\Test\Vocals.ogg.import" />
+    <Content Include="Source\Rubicon.API\a pi.txt" />
+    <Content Include="Source\Rubicon.Menus\Credits\CreditsMenu.tscn" />
+    <Content Include="Source\Rubicon.Menus\Main\MainMenu.tscn" />
+    <Content Include="Source\Rubicon.Menus\Settings\SettingsMenu.tscn" />
+    <Content Include="Source\Rubicon.Menus\Title\TitleMenu.tscn" />
   </ItemGroup>
 </Project>
