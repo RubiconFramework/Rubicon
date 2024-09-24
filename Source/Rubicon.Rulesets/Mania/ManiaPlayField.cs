@@ -77,7 +77,7 @@ public partial class ManiaPlayField : PlayField
                 maniaBarLine.SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
 
             BarLines[i].AnchorTop = BarLines[i].AnchorBottom = Settings.General.Downscroll ? 1f : 0f;
-            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = Settings.General.Downscroll ? -120f : 120f;
+            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = Settings.General.Downscroll ? -140f : 140f;
             //BarLines[i].SetAnchorsPreset(barLinePreset, true);
         }
     }

@@ -23,6 +23,6 @@ Stage = "petalforest"
 Name = "Sew"
 RawName = "Sew"
 Artist = "Swifticul"
-UiStyle = "Funkin"
+UiStyle = "FunkLike"
 NoteSkin = "Funkin"
 PlayableCharts = PackedStringArray("Player")
