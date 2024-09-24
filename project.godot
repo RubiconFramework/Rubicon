@@ -50,12 +50,7 @@ folder_colors={
 "res://Source/Rubicon.Core/": "green",
 "res://Source/Rubicon.Core/Autoload/": "pink",
 "res://Source/Rubicon.Data/": "green",
-"res://Source/Rubicon.Extras/": "gray",
-"res://Source/Rubicon.Game/": "gray",
-"res://Source/Rubicon.Menus/": "gray",
-"res://Source/Rubicon.Rulesets/": "gray",
-"res://Source/Rubicon.Rulesets/Mania/": "teal",
-"res://Source/Rubicon.Space/": "gray"
+"res://Source/Rubicon.Rulesets/Mania/": "teal"
 }
 
 [gui]
