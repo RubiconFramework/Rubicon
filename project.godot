@@ -20,10 +20,10 @@ config/icon="res://Assets/UI/Misc/fnf.png"
 
 [autoload]
 
-DebugInfo="*res://Source/Rubicon.Autoload/DebugInfo.tscn"
-Settings="*res://Source/Rubicon.Autoload/Settings.cs"
-Conductor="*res://Source/Rubicon.Core/ConductorSingleton.cs"
-RubiconEngine="*res://Source/Rubicon.Core/RubiconEngineSingleton.cs"
+DebugInfo="*res://Source/Rubicon.Core/Autoload/DebugInfo.tscn"
+Settings="*res://Source/Rubicon.Core/Autoload/Settings.cs"
+Conductor="*res://Source/Rubicon.Core/Autoload/ConductorSingleton.cs"
+RubiconEngine="*res://Source/Rubicon.Core/Autoload/RubiconEngineSingleton.cs"
 
 [display]
 
@@ -47,8 +47,8 @@ enabled=PackedStringArray()
 
 folder_colors={
 "res://Source/Rubicon.API/": "pink",
-"res://Source/Rubicon.Autoload/": "pink",
 "res://Source/Rubicon.Core/": "pink",
+"res://Source/Rubicon.Core/Autoload/": "pink",
 "res://Source/Rubicon.Data/": "teal",
 "res://Source/Rubicon.Extras/": "teal",
 "res://Source/Rubicon.Game/": "teal",

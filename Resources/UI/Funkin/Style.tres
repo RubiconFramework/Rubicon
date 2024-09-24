@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Source/Rubicon.Core/UiStyle.cs" id="1_363r5"]
 [ext_resource type="Material" uid="uid://clrbqrdp1uiuf" path="res://Resources/UI/Funkin/Materials/okay.tres" id="1_ncot3"]
-[ext_resource type="PackedScene" path="res://Assets/UI/Styles/Funkin/Judgment.tscn" id="1_w5fd1"]
+[ext_resource type="PackedScene" uid="uid://wg70s5307qtw" path="res://Assets/UI/Styles/Funkin/Judgment.tscn" id="1_w5fd1"]
 [ext_resource type="Material" uid="uid://c0cgdmxo1vf40" path="res://Resources/UI/Funkin/Materials/good.tres" id="2_4c21y"]
 [ext_resource type="PackedScene" uid="uid://djgolwf8k2y4" path="res://Assets/UI/Styles/Funkin/ComboDisplay.tscn" id="2_bgkbr"]
 [ext_resource type="Material" uid="uid://b37f4mdn0h8w6" path="res://Resources/UI/Funkin/Materials/great.tres" id="3_7f7f8"]

@@ -97,8 +97,7 @@ public partial class RubiChart : Resource
                         double end = lane[i].Time + lane[i].Length;
                         while (i < lane.Count - 1 && lane[i + 1].Time >= start && lane[i + 1].Time < end)
                         {
-                            GD.Print(
-                                $"Removed note inside hold note area at {lane[i + 1].Time} in lane {l} ({start}-{end})");
+                            GD.Print($"Removed note inside hold note area at {lane[i + 1].Time} in lane {l} ({start}-{end})");
                             lane.RemoveAt(i + 1);
                         }
                     }

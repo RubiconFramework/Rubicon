@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bditr4686af55"]
+[gd_scene load_steps=5 format=3 uid="uid://lhk0rodbjiux"]
 
-[ext_resource type="Script" path="res://Source/Rubicon.Autoload/DebugInfo.cs" id="1_kpyvy"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Autoload/DebugInfo.cs" id="1_nl6fn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8rmx7"]
 bg_color = Color(0.0509804, 0.0509804, 0.0509804, 0.745098)
@@ -29,9 +29,9 @@ corner_radius_bottom_left = 1
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[node name="DebugInfo" type="CanvasLayer"]
+[node name="DebugInfo2" type="CanvasLayer"]
 layer = 128
-script = ExtResource("1_kpyvy")
+script = ExtResource("1_nl6fn")
 
 [node name="InfoContainer" type="VBoxContainer" parent="."]
 anchors_preset = -1
