@@ -121,10 +121,10 @@ public partial class ConductorInstance : Node
     private double _cachedMeasureTime;
         
     private BpmInfo[] _bpmList = { new() { Bpm = 100 } };
-    
-    private int _lastBeat = -1;
-    private int _lastStep = -1;
-    private int _lastMeasure = -1;
+
+    private int _lastBeat = -int.MaxValue;
+    private int _lastStep = -int.MaxValue;
+    private int _lastMeasure = -int.MaxValue;
     #endregion
         
     #region Public Methods
