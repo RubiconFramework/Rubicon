@@ -1,15 +1,26 @@
 namespace Rubicon.Core;
 
-public static class RubiconEngine
+public partial class RubiconEngine : Node
 {
-    public static uint Version => CreateVersion(0, 1, 0, 0);
+    public static RubiconEngine Instance;
     
-    public static string SubVersion => "-alpha";
+    public static readonly uint Version = RubiconUtility.CreateVersion(0, 1, 0, 0);
     
-    public static string VersionString => $"{(Version & 0xFF000000) >> 24}.{(Version & 0x00FF0000) >> 16}.{(Version & 0x0000FF00) >> 8}.{Version & 0x000000FF}{SubVersion}";
-    
-    public static uint CreateVersion(byte major, byte minor, byte patch, byte build)
+    public static readonly string SubVersion = "-alpha";
+
+    public static string VersionString => RubiconUtility.VersionToString(Version) + SubVersion;
+
+    public override void _Ready()
     {
-        return ((uint)major << 24) | ((uint)minor << 16) | ((uint)patch << 8) | build;
+        if (Instance != null)
+        {
+            QueueFree();
+            return;
+        }
+
+        Instance = this;
+        
+        // Override content scale size with the one in rubicon's
+        GetWindow().ContentScaleSize = ProjectSettings.GetSetting("rubicon/general/content_minimum_size").AsVector2I();
     }
 }

@@ -23,10 +23,11 @@ config/icon="res://Assets/UI/Misc/fnf.png"
 DebugInfo="*res://Source/Rubicon.Autoload/DebugInfo.tscn"
 Settings="*res://Source/Rubicon.Autoload/Settings.cs"
 ConductorSingleton="*res://Source/Rubicon.Core/Conductor.cs"
+RubiconEngineSingleton="*res://Source/Rubicon.Core/RubiconEngine.cs"
 
 [display]
 
-window/size/viewport_width=1440
+window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/window_width_override=1366
 window/size/window_height_override=768
@@ -170,3 +171,4 @@ judgments/great_hit_window=50.0
 judgments/good_hit_window=90.0
 judgments/okay_hit_window=135.0
 judgments/bad_hit_window=180.0
+general/content_minimum_size=Vector2i(1440, 1080)
