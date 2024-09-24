@@ -1,14 +1,14 @@
 namespace Rubicon.Core;
 
 /// <summary>
-/// A class for a global instance of <see cref="RubiconEngineInstance"/>, as well as other static things.
+/// A class for a global instance of <see cref="RubiconEngineSingleton"/>, as well as other static things.
 /// </summary>
 public static class RubiconEngine
 {
     /// <summary>
-    /// The global instance of <see cref="RubiconEngineInstance"/>.
+    /// The global instance of <see cref="RubiconEngineSingleton"/>.
     /// </summary>
-    public static RubiconEngineInstance Singleton;
+    public static RubiconEngineSingleton Singleton;
     
     /// <summary>
     /// The current version of Rubicon being used.

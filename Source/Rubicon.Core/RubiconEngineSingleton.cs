@@ -5,7 +5,7 @@ namespace Rubicon.Core;
 /// More useful in GDScript than it is in C#.
 /// </summary>
 [GlobalClass]
-public partial class RubiconEngineInstance : Node
+public partial class RubiconEngineSingleton : Node
 {
     public override void _Ready()
     {

@@ -23,7 +23,7 @@ config/icon="res://Assets/UI/Misc/fnf.png"
 DebugInfo="*res://Source/Rubicon.Autoload/DebugInfo.tscn"
 Settings="*res://Source/Rubicon.Autoload/Settings.cs"
 Conductor="*res://Source/Rubicon.Core/ConductorInstance.cs"
-RubiconEngine="*res://Source/Rubicon.Core/RubiconEngineInstance.cs"
+RubiconEngine="*res://Source/Rubicon.Core/RubiconEngineSingleton.cs"
 
 [display]
 
