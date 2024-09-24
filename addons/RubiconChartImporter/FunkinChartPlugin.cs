@@ -144,15 +144,19 @@ public partial class FunkinChartPlugin : EditorImportPlugin
 	        chart.Charts = [
 		        new IndividualChart
 		        {
+			        Name = "Opponent",
 			        Notes = opponentNotes.ToArray(),
 			        Lanes = 4
 		        },
 		        new IndividualChart
 		        {
+			        Name = "Player",
 			        Notes = playerNotes.ToArray(),
 			        Lanes = 4
 		        },
-		        new IndividualChart {
+		        new IndividualChart 
+		        {
+			        Name = "Speaker",
 			        Notes = speakerNotes.ToArray(),
 			        Lanes = 4
 		        }
@@ -163,11 +167,13 @@ public partial class FunkinChartPlugin : EditorImportPlugin
 	        chart.Charts = [
 		        new IndividualChart
 		        {
+			        Name = "Opponent",
 			        Notes = opponentNotes.ToArray(),
 			        Lanes = 4
 		        },
 		        new IndividualChart
 		        {
+			        Name = "Player",
 			        Notes = playerNotes.ToArray(),
 			        Lanes = 4
 		        }
@@ -178,31 +184,29 @@ public partial class FunkinChartPlugin : EditorImportPlugin
 
         if (options.ContainsKey("CreateSongMeta") && options["CreateSongMeta"].AsBool())
         {
-	        SongMeta meta = new SongMeta();
+	        FunkinSongMeta meta = new FunkinSongMeta();
 	        //meta.Events = cameraChanges.ToArray();
 	        meta.Stage = swagSong.ContainsKey("stage") ? swagSong["stage"].AsString() : "stage";
-	        meta.OpponentChartIndex = 0;
-	        meta.PlayerChartIndex = 1;
-	        meta.SpeakerChartIndex = 2;
+	        meta.PlayableCharts = ["Player", "Opponent"];
 	        meta.Characters =
 	        [
 		        new CharacterMeta
 		        {
 			        Character = swagSong.ContainsKey("player2") ? swagSong["player2"].AsString() : "Missing",
-			        BarLineIndex = 0,
-			        SpawnPointIndex = 0
+			        BarLine = "Opponent",
+			        SpawnPoint = "Opponent"
 		        },
 		        new CharacterMeta
 		        {
 			        Character = swagSong.ContainsKey("player1") ? swagSong["player1"].AsString() : "Missing",
-			        BarLineIndex = 1,
-			        SpawnPointIndex = 1
+			        BarLine = "Player",
+			        SpawnPoint = "Player"
 		        },
 		        new CharacterMeta
 		        {
 			        Character = swagSong.ContainsKey("gfVersion") ? swagSong["gfVersion"].AsString() : "Missing",
-			        BarLineIndex = speakerHasNotes ? 2 : -1,
-			        SpawnPointIndex = 2
+			        BarLine = speakerHasNotes ? "Speaker" : "",
+			        SpawnPoint = "Speaker"
 		        }
 	        ];
 

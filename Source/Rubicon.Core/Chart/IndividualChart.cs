@@ -1,3 +1,5 @@
+using Rubicon.Core.Meta;
+
 namespace Rubicon.Core.Chart;
 
 /// <summary>
@@ -6,6 +8,11 @@ namespace Rubicon.Core.Chart;
 [GlobalClass]
 public partial class IndividualChart : Resource
 {
+    /// <summary>
+    /// What to name this bar-line. Used primarily for <see cref="SongMeta."/>
+    /// </summary>
+    [Export] public string Name = "Player";
+    
     /// <summary>
     /// How many lanes this specific chart will have.
     /// </summary>

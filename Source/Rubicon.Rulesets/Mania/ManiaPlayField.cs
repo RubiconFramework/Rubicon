@@ -25,7 +25,7 @@ public partial class ManiaPlayField : PlayField
     public override void Setup(SongMeta meta, RubiChart chart)
     {
         BarLines = new BarLine[chart.Charts.Length];
-        TargetBarLine = meta.PlayerChartIndex;
+        TargetBarLine = meta.PlayableCharts[0]; // For now, allow this to be modified later
         
         // REALLY SHITTY, REPLACE BELOW LATER !!!
         string noteSkinName = meta.NoteSkin;
@@ -36,7 +36,6 @@ public partial class ManiaPlayField : PlayField
             noteSkinName = defaultPath;
         }
         
-        TargetBarLine = meta.PlayerChartIndex;
         ManiaNoteSkin noteSkin = GD.Load<ManiaNoteSkin>($"res://Resources/UI/{noteSkinName}/Mania.tres");
         for (int i = 0; i < chart.Charts.Length; i++)
         {
@@ -49,8 +48,9 @@ public partial class ManiaPlayField : PlayField
             //curBarLine.Position = new Vector2(i * 720f - (chart.Charts.Length - 1) * 720f / 2f, 0f);
             curBarLine.AnchorLeft = curBarLine.AnchorRight = ((i * 0.5f) - (chart.Charts.Length - 1) * 0.5f / 2f) + 0.5f;
 
-            if (i == TargetBarLine)
+            if (indChart.Name == TargetBarLine)
             {
+                TargetBarLineIndex = i;
                 curBarLine.SetAutoPlay(false);
                 _noteCount = (uint)(indChart.Notes.Count(x => !x.ShouldMiss) + indChart.Notes.Count(x => !x.ShouldMiss && x.Length > 0));
             }

@@ -63,9 +63,14 @@ public partial class PlayField : Control
     [Export] public BarLine[] BarLines;
     
     /// <summary>
-    /// The Target Bar Line index for the player to control
+    /// The Target Bar Line's name for the player to control
     /// </summary>
-    [Export] public int TargetBarLine = 0;
+    [Export] public string TargetBarLine = "Player";
+    
+    /// <summary>
+    /// The Target Bar Line's index for the player to control
+    /// </summary>
+    [Export] public int TargetBarLineIndex = 0;
     
     /// <summary>
     /// A signal that is emitted upon failure.
@@ -194,7 +199,7 @@ public partial class PlayField : Control
     /// <param name="inputElement">Info about the input recieved</param>
     protected virtual void OnNoteHit(BarLine barLine, int lane, string direction, NoteInputElement inputElement)
     {
-        if (BarLines[TargetBarLine] == barLine)
+        if (BarLines[TargetBarLineIndex] == barLine)
         {
             HitType hit = inputElement.Hit;
             Combo = hit != HitType.Miss ? Combo + 1 : 0;

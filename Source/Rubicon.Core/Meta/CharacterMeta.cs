@@ -9,12 +9,12 @@ public partial class CharacterMeta : Resource
     [Export] public string Character = "";
 
     /// <summary>
-    /// The index of the bar line (strum line) selected.
+    /// The name of the bar line (strum line) to link this character to.
     /// </summary>
-    [Export] public int BarLineIndex = -1;
+    [Export] public string BarLine = "";
 
     /// <summary>
-    /// The index of the place to spawn at on the stage.
+    /// The name of the spawn point to link this character to.
     /// </summary>
-    [Export] public int SpawnPointIndex = 0;
+    [Export] public string SpawnPoint = "";
 }

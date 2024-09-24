@@ -28,21 +28,6 @@ public partial class SongMeta : Resource
     [Export] public Texture2D Icon;
 
     /// <summary>
-    /// The characters to spawn in the song.
-    /// </summary>
-    [Export] public CharacterMeta[] Characters = [];
-
-    /// <summary>
-    /// If turned on when the song loads, the game will load into a 3D stage instead of a 2D one. Only use when you need to, 3D spaces can be expensive on the computer.
-    /// </summary>
-    [Export] public bool Enable3D = false;
-        
-    /// <summary>
-    /// The stage to spawn in for this song.
-    /// </summary>
-    [Export] public string Stage = "stage";
-
-    /// <summary>
     /// The UI style to use for this song.
     /// </summary>
     [Export] public string UiStyle = ProjectSettings.GetSetting("rubicon/general/default_ui_style").AsString();
@@ -51,24 +36,9 @@ public partial class SongMeta : Resource
     /// The Note Skin to use for this song.
     /// </summary>
     [Export] public string NoteSkin = ProjectSettings.GetSetting("rubicon/rulesets/mania/default_note_skin").AsString();
-        
+
     /// <summary>
-    /// Locks Opponent and Speaker mode out.
+    /// Marks the playable charts in this song.
     /// </summary>
-    [ExportSubgroup("Focused Indexes"), Export] public bool OnlyPlayerMode = false;
-    
-    /// <summary>
-    /// The index for which chart to select to be the opponent (sometimes referred as the Dad).
-    /// </summary>
-    [Export] public int OpponentChartIndex = 0;
-        
-    /// <summary>
-    /// The index for which chart to select to be playable (sometimes referred as the BF).
-    /// </summary>
-    [Export] public int PlayerChartIndex = 1;
-        
-    /// <summary>
-    /// The index for which chart acts as the speaker character (sometimes referred as the GF).
-    /// </summary>
-    [Export] public int SpeakerChartIndex = 2;
+    [Export] public string[] PlayableCharts = ["Player"];
 }
