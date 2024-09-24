@@ -25,9 +25,8 @@
     <Content Include="Resources\Characters\bf.tscn" />
     <Content Include="Resources\UI\Funkin\Mania.tres" />
     <Content Include="Resources\UI\Funkin\Style.tres" />
-    <Content Include="Songs\Test\Data\normal.json" />
-    <Content Include="Songs\Test\Data\normal.json.import" />
-    <Content Include="Songs\Test\meta.tres" />
+    <Content Include="Songs\Test\Data\Mania-Normal.tres" />
+    <Content Include="Songs\Test\Data\Meta.tres" />
     <Content Include="Songs\Test\Inst.ogg" />
     <Content Include="Songs\Test\Inst.ogg.import" />
     <Content Include="Songs\Test\Vocals.ogg" />
