@@ -1,0 +1,58 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://47rhsae2m5sr"]
+
+[ext_resource type="Texture2D" uid="uid://wof6p8s7jeq0" path="res://Assets/UI/Styles/funkin/mania/funkinNotes.png" id="1_3bxo3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgx86"]
+atlas = ExtResource("1_3bxo3")
+region = Rect2(2, 2, 157, 154)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwkrw"]
+atlas = ExtResource("1_3bxo3")
+region = Rect2(161, 2, 154, 157)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82q4u"]
+atlas = ExtResource("1_3bxo3")
+region = Rect2(2, 158, 154, 157)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx3tp"]
+atlas = ExtResource("1_3bxo3")
+region = Rect2(158, 161, 157, 154)
+filter_clip = true
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgx86")
+}],
+"loop": false,
+"name": &"downNoteNeutral",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwkrw")
+}],
+"loop": false,
+"name": &"leftNoteNeutral",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82q4u")
+}],
+"loop": false,
+"name": &"rightNoteNeutral",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx3tp")
+}],
+"loop": false,
+"name": &"upNoteNeutral",
+"speed": 24.0
+}]

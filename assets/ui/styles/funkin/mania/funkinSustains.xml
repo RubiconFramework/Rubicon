@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="funkinSustains.png">
+	<!-- Created with Adobe Animate version 24.0.0.305 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="downNoteHold0000" x="68" y="2" width="43" height="50"/>
+	<SubTexture name="downNoteTail0000" x="2" y="2" width="64" height="50"/>
+	<SubTexture name="leftNoteHold0000" x="68" y="54" width="43" height="50"/>
+	<SubTexture name="leftNoteTail0000" x="2" y="54" width="64" height="50"/>
+	<SubTexture name="rightNoteHold0000" x="68" y="106" width="43" height="50"/>
+	<SubTexture name="rightNoteTail0000" x="2" y="106" width="64" height="50"/>
+	<SubTexture name="upNoteHold0000" x="68" y="158" width="43" height="50"/>
+	<SubTexture name="upNoteTail0000" x="2" y="158" width="64" height="50"/>
+</TextureAtlas>

@@ -1,0 +1,273 @@
+[gd_resource type="Resource" script_class="SongMeta" load_steps=46 format=3 uid="uid://cspcslltgv300"]
+
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/CharacterMeta.cs" id="1_qeq5u"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/EventData.cs" id="2_hf8u8"]
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/SongMeta.cs" id="3_d0t0y"]
+
+[sub_resource type="Resource" id="Resource_wfcuy"]
+script = ExtResource("1_qeq5u")
+Character = "stitch"
+BarLineIndex = 0
+SpawnPointIndex = 0
+
+[sub_resource type="Resource" id="Resource_xfgf4"]
+script = ExtResource("1_qeq5u")
+Character = "bf-stitch"
+BarLineIndex = 1
+SpawnPointIndex = 1
+
+[sub_resource type="Resource" id="Resource_462kp"]
+script = ExtResource("1_qeq5u")
+Character = "gf"
+BarLineIndex = -1
+SpawnPointIndex = 2
+
+[sub_resource type="Resource" id="Resource_in5wx"]
+script = ExtResource("2_hf8u8")
+Time = 4.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_kl7jt"]
+script = ExtResource("2_hf8u8")
+Time = 8.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_jc3px"]
+script = ExtResource("2_hf8u8")
+Time = 12.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_oir0l"]
+script = ExtResource("2_hf8u8")
+Time = 16.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_hdg1b"]
+script = ExtResource("2_hf8u8")
+Time = 20.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_gc7gh"]
+script = ExtResource("2_hf8u8")
+Time = 24.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_nltt5"]
+script = ExtResource("2_hf8u8")
+Time = 28.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_wmqoa"]
+script = ExtResource("2_hf8u8")
+Time = 32.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_ys8u4"]
+script = ExtResource("2_hf8u8")
+Time = 36.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_mu8ac"]
+script = ExtResource("2_hf8u8")
+Time = 40.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_e8e6b"]
+script = ExtResource("2_hf8u8")
+Time = 44.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_wmff2"]
+script = ExtResource("2_hf8u8")
+Time = 48.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_0dfp3"]
+script = ExtResource("2_hf8u8")
+Time = 52.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_sog2d"]
+script = ExtResource("2_hf8u8")
+Time = 56.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_sjd1n"]
+script = ExtResource("2_hf8u8")
+Time = 60.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_uhmit"]
+script = ExtResource("2_hf8u8")
+Time = 64.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_wolps"]
+script = ExtResource("2_hf8u8")
+Time = 70.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_sestl"]
+script = ExtResource("2_hf8u8")
+Time = 72.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_10ybi"]
+script = ExtResource("2_hf8u8")
+Time = 78.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_glvjy"]
+script = ExtResource("2_hf8u8")
+Time = 82.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_j4nll"]
+script = ExtResource("2_hf8u8")
+Time = 86.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_pf2ak"]
+script = ExtResource("2_hf8u8")
+Time = 90.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_fyvjq"]
+script = ExtResource("2_hf8u8")
+Time = 94.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_42m2l"]
+script = ExtResource("2_hf8u8")
+Time = 98.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_0j2vn"]
+script = ExtResource("2_hf8u8")
+Time = 102.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_5047r"]
+script = ExtResource("2_hf8u8")
+Time = 106.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_bcgs0"]
+script = ExtResource("2_hf8u8")
+Time = 110.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_4n6lc"]
+script = ExtResource("2_hf8u8")
+Time = 114.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_fvro6"]
+script = ExtResource("2_hf8u8")
+Time = 118.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_8uck8"]
+script = ExtResource("2_hf8u8")
+Time = 122.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_iqlnk"]
+script = ExtResource("2_hf8u8")
+Time = 126.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_5cpu3"]
+script = ExtResource("2_hf8u8")
+Time = 130.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_1di7s"]
+script = ExtResource("2_hf8u8")
+Time = 134.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_0aaow"]
+script = ExtResource("2_hf8u8")
+Time = 138.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_hanvd"]
+script = ExtResource("2_hf8u8")
+Time = 142.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_umrox"]
+script = ExtResource("2_hf8u8")
+Time = 146.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_u0sry"]
+script = ExtResource("2_hf8u8")
+Time = 150.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[sub_resource type="Resource" id="Resource_s01p6"]
+script = ExtResource("2_hf8u8")
+Time = 154.0
+Name = "Set Camera Focus"
+Arguments = [0]
+
+[sub_resource type="Resource" id="Resource_2dyrl"]
+script = ExtResource("2_hf8u8")
+Time = 158.0
+Name = "Set Camera Focus"
+Arguments = [1]
+
+[resource]
+script = ExtResource("3_d0t0y")
+Name = ""
+Artist = ""
+UseVocals = false
+Characters = [SubResource("Resource_wfcuy"), SubResource("Resource_xfgf4"), SubResource("Resource_462kp")]
+Events = [SubResource("Resource_in5wx"), SubResource("Resource_kl7jt"), SubResource("Resource_jc3px"), SubResource("Resource_oir0l"), SubResource("Resource_hdg1b"), SubResource("Resource_gc7gh"), SubResource("Resource_nltt5"), SubResource("Resource_wmqoa"), SubResource("Resource_ys8u4"), SubResource("Resource_mu8ac"), SubResource("Resource_e8e6b"), SubResource("Resource_wmff2"), SubResource("Resource_0dfp3"), SubResource("Resource_sog2d"), SubResource("Resource_sjd1n"), SubResource("Resource_uhmit"), SubResource("Resource_wolps"), SubResource("Resource_sestl"), SubResource("Resource_10ybi"), SubResource("Resource_glvjy"), SubResource("Resource_j4nll"), SubResource("Resource_pf2ak"), SubResource("Resource_fyvjq"), SubResource("Resource_42m2l"), SubResource("Resource_0j2vn"), SubResource("Resource_5047r"), SubResource("Resource_bcgs0"), SubResource("Resource_4n6lc"), SubResource("Resource_fvro6"), SubResource("Resource_8uck8"), SubResource("Resource_iqlnk"), SubResource("Resource_5cpu3"), SubResource("Resource_1di7s"), SubResource("Resource_0aaow"), SubResource("Resource_hanvd"), SubResource("Resource_umrox"), SubResource("Resource_u0sry"), SubResource("Resource_s01p6"), SubResource("Resource_2dyrl")]
+Enable3D = false
+Stage = "petalforest"
+UiStyle = "funkin"
+NoteSkin = "funkin"
+OnlyPlayerMode = false
+OpponentChartIndex = 0
+PlayerChartIndex = 1
+SpeakerChartIndex = 2
