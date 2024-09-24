@@ -1,5 +1,8 @@
 namespace Rubicon.Core;
 
+/// <summary>
+/// A general purpose utility class for Rubicon Engine
+/// </summary>
 public static class RubiconUtility
 {
     /// <summary>

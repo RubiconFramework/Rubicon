@@ -70,7 +70,7 @@ public partial class RubiconGame : Node
 		PlayField.Setup(meta, chart);
 		AddChild(PlayField);
 
-		Conductor.Start(0);
+		Conductor.Play(0);
 		Instrumental.Play(0f);
 		//Vocals.Play(0f);
 	}
