@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CharterPreferences" load_steps=2 format=3 uid="uid://tnn5sosvhudc"]
+
+[ext_resource type="Script" path="res://addons/RubiconCharter/scripts/CharterPreferences.cs" id="1_b3ala"]
+
+[resource]
+script = ExtResource("1_b3ala")
+ShowWelcomeWindow = true

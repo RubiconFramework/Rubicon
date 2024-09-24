@@ -1,13 +1,122 @@
 [gd_scene load_steps=2 format=3 uid="uid://cu2q514bs1uk"]
 
-[ext_resource type="Script" path="res://addons/rubiconcharter/scripts/ChartEditor.cs" id="1_wjtjy"]
+[ext_resource type="Script" path="res://addons/RubiconCharter/scripts/ChartEditor.cs" id="1_57esv"]
 
-[node name="ChartEditor" type="PanelContainer"]
+[node name="ChartEditor" type="Control"]
 process_mode = 3
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_wjtjy")
+script = ExtResource("1_57esv")
 metadata/_edit_lock_ = true
+
+[node name="WelcomeWindow" type="Window" parent="."]
+title = "Welcome"
+initial_position = 2
+size = Vector2i(768, 602)
+unresizable = true
+
+[node name="Panel" type="Panel" parent="WelcomeWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeWindow/Panel"]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 768.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 250
+metadata/_edit_use_anchors_ = true
+
+[node name="Welcome" type="Label" parent="WelcomeWindow/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 61
+text = "welcome n shit !"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WelcomeWindow/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 220
+
+[node name="Open" type="Label" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Open Files"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 73.0
+grow_horizontal = 2
+
+[node name="New" type="Button" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "New Chart"
+
+[node name="Load" type="Button" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Load Chart"
+
+[node name="Recent" type="Label" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Recent Files"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Recent"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 30.0
+offset_right = 100.0
+offset_bottom = 96.0
+grow_horizontal = 2
+
+[node name="NoRecent" type="Button" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Recent/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 25
+disabled = true
+text = "No recent charts found"
+
+[node name="ShowAgain" type="CheckBox" parent="WelcomeWindow/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Don't show this again"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="close_requested" from="WelcomeWindow" to="." method="OnWindowClose"]
+[connection signal="toggled" from="WelcomeWindow/Panel/ShowAgain" to="." method="ShowAgainToggled"]

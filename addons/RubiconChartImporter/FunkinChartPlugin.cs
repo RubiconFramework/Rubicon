@@ -179,7 +179,7 @@ public partial class FunkinChartPlugin : EditorImportPlugin
         if (options.ContainsKey("CreateSongMeta") && options["CreateSongMeta"].AsBool())
         {
 	        SongMeta meta = new SongMeta();
-	        meta.Events = cameraChanges.ToArray();
+	        //meta.Events = cameraChanges.ToArray();
 	        meta.Stage = swagSong.ContainsKey("stage") ? swagSong["stage"].AsString() : "stage";
 	        meta.OpponentChartIndex = 0;
 	        meta.PlayerChartIndex = 1;
@@ -188,19 +188,19 @@ public partial class FunkinChartPlugin : EditorImportPlugin
 	        [
 		        new CharacterMeta
 		        {
-			        Character = swagSong.ContainsKey("player2") ? swagSong["player2"].AsString() : "bf-pixel",
+			        Character = swagSong.ContainsKey("player2") ? swagSong["player2"].AsString() : "Missing",
 			        BarLineIndex = 0,
 			        SpawnPointIndex = 0
 		        },
 		        new CharacterMeta
 		        {
-			        Character = swagSong.ContainsKey("player1") ? swagSong["player1"].AsString() : "bf",
+			        Character = swagSong.ContainsKey("player1") ? swagSong["player1"].AsString() : "Missing",
 			        BarLineIndex = 1,
 			        SpawnPointIndex = 1
 		        },
 		        new CharacterMeta
 		        {
-			        Character = swagSong.ContainsKey("gfVersion") ? swagSong["gfVersion"].AsString() : "gf",
+			        Character = swagSong.ContainsKey("gfVersion") ? swagSong["gfVersion"].AsString() : "Missing",
 			        BarLineIndex = speakerHasNotes ? 2 : -1,
 			        SpawnPointIndex = 2
 		        }

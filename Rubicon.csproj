@@ -9,6 +9,10 @@
     <Description>A Friday Night Funkin' engine based primarily on C# and Godot Engine!</Description>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="scenes\**" />
+    <EmbeddedResource Remove="scenes\**" />
+  </ItemGroup>
+  <ItemGroup>
     <!-- Root the assemblies to avoid trimming. -->
     <TrimmerRootAssembly Include="GodotSharp" />
     <TrimmerRootAssembly Include="$(TargetName)" />
@@ -21,7 +25,6 @@
     <Content Include="resources\characters\bf.tscn" />
     <Content Include="resources\ui\funkin\mania.tres" />
     <Content Include="resources\ui\funkin\style.tres" />
-    <Content Include="scenes\TestScene.tscn" />
     <Content Include="songs\test\data\normal.json" />
     <Content Include="songs\test\data\normal.json.import" />
     <Content Include="songs\test\meta.tres" />

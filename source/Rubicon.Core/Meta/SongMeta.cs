@@ -9,12 +9,18 @@ public partial class SongMeta : Resource
     /// <summary>
     /// The name of the song.
     /// </summary>
-    [Export] public string Name = "";
+    [Export] public string Name = "Test";
+
+    /// <summary>
+    /// The raw name of the song used to load it.
+    /// Should be PascalCased and not contain any spaces or symbols.
+    /// </summary>
+    [Export] public string RawName = "Test";
 
     /// <summary>
     /// The artist who made the song.
     /// </summary>
-    [Export] public string Artist = "";
+    [Export] public string Artist = "Hideo Kojima";
 
     /// <summary>
     /// The icon that's associated with this song.
@@ -22,19 +28,9 @@ public partial class SongMeta : Resource
     [Export] public Texture2D Icon;
 
     /// <summary>
-    /// Tells the game whether to look for vocals or not.
-    /// </summary>
-    [Export] public bool UseVocals = false;
-
-    /// <summary>
     /// The characters to spawn in the song.
     /// </summary>
     [Export] public CharacterMeta[] Characters = [];
-
-    /// <summary>
-    /// The events to play in a song.
-    /// </summary>
-    [Export] public EventData[] Events = [];
 
     /// <summary>
     /// If turned on when the song loads, the game will load into a 3D stage instead of a 2D one. Only use when you need to, 3D spaces can be expensive on the computer.

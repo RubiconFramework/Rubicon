@@ -16,7 +16,7 @@ run/main_scene="res://TestScene.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=165
-config/icon="res://assets/ui/misc/fnf.png"
+config/icon="res://Assets/UI/Misc/Fnf.png"
 
 [autoload]
 
@@ -40,7 +40,7 @@ project/assembly_name="Rubicon"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/flashimport/plugin.cfg")
+enabled=PackedStringArray("res://addons/RubiconCharter/plugin.cfg")
 
 [file_customization]
 
