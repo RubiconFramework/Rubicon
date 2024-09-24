@@ -16,7 +16,7 @@ run/main_scene="res://TestScene.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 run/max_fps=165
-config/icon="res://Assets/UI/Misc/Fnf.png"
+config/icon="res://Assets/UI/Misc/fnf.png"
 
 [autoload]
 
