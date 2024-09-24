@@ -46,16 +46,16 @@ enabled=PackedStringArray()
 [file_customization]
 
 folder_colors={
-"res://Source/Rubicon.API/": "pink",
-"res://Source/Rubicon.Core/": "pink",
+"res://Source/Rubicon.API/": "green",
+"res://Source/Rubicon.Core/": "green",
 "res://Source/Rubicon.Core/Autoload/": "pink",
-"res://Source/Rubicon.Data/": "teal",
-"res://Source/Rubicon.Extras/": "teal",
-"res://Source/Rubicon.Game/": "teal",
-"res://Source/Rubicon.Menus/": "teal",
-"res://Source/Rubicon.Rulesets/": "teal",
+"res://Source/Rubicon.Data/": "green",
+"res://Source/Rubicon.Extras/": "gray",
+"res://Source/Rubicon.Game/": "gray",
+"res://Source/Rubicon.Menus/": "gray",
+"res://Source/Rubicon.Rulesets/": "gray",
 "res://Source/Rubicon.Rulesets/Mania/": "teal",
-"res://Source/Rubicon.Space/": "teal"
+"res://Source/Rubicon.Space/": "gray"
 }
 
 [gui]
