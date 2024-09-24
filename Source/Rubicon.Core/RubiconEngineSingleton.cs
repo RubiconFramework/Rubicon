@@ -23,7 +23,7 @@ public partial class RubiconEngineSingleton : Node
         GetWindow().ContentScaleSize = ProjectSettings.GetSetting("rubicon/general/content_minimum_size").AsVector2I();
         
         // Initialize Conductor as well
-        Conductor.Singleton = GetTree().Root.GetNode<ConductorInstance>("Conductor");
+        Conductor.Singleton = GetTree().Root.GetNode<ConductorSingleton>("Conductor");
     }
 
     /// <inheritdoc cref="RubiconEngine.Version"/>

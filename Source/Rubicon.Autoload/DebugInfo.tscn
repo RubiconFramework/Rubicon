@@ -118,14 +118,14 @@ layout_mode = 2
 size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
-text = "Rubicon Engine 0.1.0.0-SmthMaybe"
+text = "Rubicon Engine Pre-Release"
 
 [node name="Godot" type="Label" parent="InfoContainer/DebugInformation/Versions"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 21
 theme_override_styles/normal = SubResource("StyleBoxFlat_8rmx7")
-text = "Godot Engine 4.4 [dev2]"
+text = "Godot Engine 4.3 [stable]"
 
 [node name="Scene" type="Label" parent="InfoContainer/DebugInformation"]
 layout_mode = 2

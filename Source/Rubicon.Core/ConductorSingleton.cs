@@ -7,7 +7,7 @@ namespace Rubicon.Core;
 /// A Node that keeps track of musical timing and what not.
 /// </summary>
 [GlobalClass]
-public partial class ConductorInstance : Node
+public partial class ConductorSingleton : Node
 {
     #region Status Variables
     /// <summary>

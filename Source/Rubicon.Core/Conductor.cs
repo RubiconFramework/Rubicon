@@ -3,126 +3,126 @@ using Rubicon.Core.Chart;
 namespace Rubicon.Core;
 
 /// <summary>
-/// The global instance of <see cref="ConductorInstance"/>. Made for easier access.
+/// The global instance of <see cref="ConductorSingleton"/>. Made for easier access.
 /// </summary>
 public static class Conductor
 {
 	/// <summary>
-	/// The current global instance of <see cref="ConductorInstance"/>.
+	/// The current global instance of <see cref="ConductorSingleton"/>.
 	/// </summary>
-	public static ConductorInstance Singleton;
+	public static ConductorSingleton Singleton;
 
-	/// <inheritdoc cref="ConductorInstance.Bpm"/>
+	/// <inheritdoc cref="ConductorSingleton.Bpm"/>
 	public static double Bpm
 	{
 		get => Singleton.Bpm;
 		set => Singleton.Bpm = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.BpmIndex"/>
+	/// <inheritdoc cref="ConductorSingleton.BpmIndex"/>
 	public static int BpmIndex
 	{
 		get => Singleton.BpmIndex;
 		set => Singleton.BpmIndex = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.ChartOffset"/>
+	/// <inheritdoc cref="ConductorSingleton.ChartOffset"/>
 	public static double ChartOffset
 	{
 		get => Singleton.ChartOffset;
 		set => Singleton.ChartOffset = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.Speed"/>
+	/// <inheritdoc cref="ConductorSingleton.Speed"/>
 	public static double Speed
 	{
 		get => Singleton.Speed;
 		set => Singleton.Speed = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.Playing"/>
+	/// <inheritdoc cref="ConductorSingleton.Playing"/>
 	public static bool Playing
 	{
 		get => Singleton.Playing;
 		set => Singleton.Playing = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.RawTime"/>
+	/// <inheritdoc cref="ConductorSingleton.RawTime"/>
 	public static double RawTime => Singleton.RawTime;
 
-	/// <inheritdoc cref="ConductorInstance.UncorrectedTime"/>
+	/// <inheritdoc cref="ConductorSingleton.UncorrectedTime"/>
 	public static double UncorrectedTime => Singleton.UncorrectedTime;
 
-	/// <inheritdoc cref="ConductorInstance.Time"/>
+	/// <inheritdoc cref="ConductorSingleton.Time"/>
 	public static double Time
 	{
 		get => Singleton.Time;
 		set => Singleton.Time = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.CurrentStep"/>
+	/// <inheritdoc cref="ConductorSingleton.CurrentStep"/>
 	public static double CurrentStep => Singleton.CurrentStep;
 
-	/// <inheritdoc cref="ConductorInstance.CurrentBeat"/>
+	/// <inheritdoc cref="ConductorSingleton.CurrentBeat"/>
 	public static double CurrentBeat => Singleton.CurrentBeat;
 
-	/// <inheritdoc cref="ConductorInstance.CurrentMeasure"/>
+	/// <inheritdoc cref="ConductorSingleton.CurrentMeasure"/>
 	public static double CurrentMeasure => Singleton.CurrentMeasure;
 
-	/// <inheritdoc cref="ConductorInstance.BpmList"/>
+	/// <inheritdoc cref="ConductorSingleton.BpmList"/>
 	public static BpmInfo[] BpmList
 	{
 		get => Singleton.BpmList;
 		set => Singleton.BpmList = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.TimeSigNumerator"/>
+	/// <inheritdoc cref="ConductorSingleton.TimeSigNumerator"/>
 	public static int TimeSigNumerator
 	{
 		get => Singleton.TimeSigNumerator;
 		set => Singleton.TimeSigNumerator = value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.TimeSigDenominator"/>
+	/// <inheritdoc cref="ConductorSingleton.TimeSigDenominator"/>
 	public static int TimeSigDenominator
 	{
 		get => Singleton.TimeSigDenominator;
 		set => Singleton.TimeSigDenominator = value;
 	}
 	
-	/// <inheritdoc cref="ConductorInstance.MeasureHitEventHandler"/>
-	public static event ConductorInstance.MeasureHitEventHandler MeasureHit
+	/// <inheritdoc cref="ConductorSingleton.MeasureHitEventHandler"/>
+	public static event ConductorSingleton.MeasureHitEventHandler MeasureHit
 	{
 		add => Singleton.MeasureHit += value;
 		remove => Singleton.MeasureHit -= value;
 	}
 	
-	/// <inheritdoc cref="ConductorInstance.BeatHitEventHandler"/>
-	public static event ConductorInstance.BeatHitEventHandler BeatHit
+	/// <inheritdoc cref="ConductorSingleton.BeatHitEventHandler"/>
+	public static event ConductorSingleton.BeatHitEventHandler BeatHit
 	{
 		add => Singleton.BeatHit += value;
 		remove => Singleton.BeatHit -= value;
 	}
 	
-	/// <inheritdoc cref="ConductorInstance.StepHitEventHandler"/>
-	public static event ConductorInstance.StepHitEventHandler StepHit
+	/// <inheritdoc cref="ConductorSingleton.StepHitEventHandler"/>
+	public static event ConductorSingleton.StepHitEventHandler StepHit
 	{
 		add => Singleton.StepHit += value;
 		remove => Singleton.StepHit -= value;
 	}
 
-	/// <inheritdoc cref="ConductorInstance.Play"/>
+	/// <inheritdoc cref="ConductorSingleton.Play"/>
 	public static void Play(double time = 0d) => Singleton.Play(time);
 
-	/// <inheritdoc cref="ConductorInstance.Resume"/>
+	/// <inheritdoc cref="ConductorSingleton.Resume"/>
 	public static void Resume() => Singleton.Resume();
 
-	/// <inheritdoc cref="ConductorInstance.Pause"/>
+	/// <inheritdoc cref="ConductorSingleton.Pause"/>
 	public static void Pause() => Singleton.Pause();
 
-	/// <inheritdoc cref="ConductorInstance.Stop"/>
+	/// <inheritdoc cref="ConductorSingleton.Stop"/>
 	public static void Stop() => Singleton.Stop();
 
-	/// <inheritdoc cref="ConductorInstance.Reset"/>
+	/// <inheritdoc cref="ConductorSingleton.Reset"/>
 	public static void Reset() => Singleton.Reset();
 }
