@@ -15,9 +15,9 @@ public class GeneralSettings
 [RubiconSettingsSection("Modifiers")]
 public class Modifiers
 {
-	[StepValue(0.1f)] public float HealthGain { get; set; } = 1f;
-	[StepValue(0.1f)] public float HealthLoss { get; set; } = 1f;
-	[StepValue(0.1f)] public float HealthDrain { get; set; } = 0.5f;
+	[StepValue(0.1f)] public double HealthGain { get; set; } = 1f;
+	[StepValue(0.1f)] public double HealthLoss { get; set; } = 1f;
+	[StepValue(0.1f)] public double HealthDrain { get; set; } = 0.5f;
 	public bool OpponentDrainsHealth { get; set; } = false;
 }
 
@@ -33,11 +33,11 @@ public class Gameplay
 [RubiconSettingsSection("Audio")]
 public class Audio
 {
-	public float MasterVolume { get; set; } = 100f;
-	public float InstVolume { get; set; } = 100f;
-	public float VoicesVolume { get; set; } = 100f;
-	public float SFXVolume { get; set; } = 100f;
-	public float MusicVolume { get; set; } = 100f;
+	public double MasterVolume { get; set; } = 100f;
+	public double InstVolume { get; set; } = 100f;
+	public double VoicesVolume { get; set; } = 100f;
+	public double SFXVolume { get; set; } = 100f;
+	public double MusicVolume { get; set; } = 100f;
 }
 
 [RubiconSettingsSection("Video")]

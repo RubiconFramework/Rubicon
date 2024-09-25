@@ -105,7 +105,29 @@ public partial class UserSettingsInstance : Node
 							property.SetValue(section, Enum.ToObject(property.PropertyType, variantValue));
 							break;
 						default:
-							property.SetValue(section, variantValue.VariantType);
+							switch (variantValue.VariantType)
+							{
+								// TODO: Support different Variant types
+								case Variant.Type.Int:
+									property.SetValue(section, variantValue.AsInt32());
+									break;
+								case Variant.Type.Float:
+									property.SetValue(section, variantValue.AsDouble());
+									break;
+								case Variant.Type.Bool:
+									property.SetValue(section, variantValue.AsBool());
+									break;
+								case Variant.Type.String:
+									property.SetValue(section, variantValue.AsString());
+									break;
+								case Variant.Type.Array:
+									property.SetValue(section, variantValue.AsGodotArray());
+									break;
+								case Variant.Type.Dictionary:
+									property.SetValue(section, variantValue.AsGodotDictionary());
+									break;
+							}
+							
 							break;
 					}
 				}

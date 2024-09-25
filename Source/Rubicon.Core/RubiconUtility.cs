@@ -2,6 +2,7 @@ namespace Rubicon.Core;
 
 /// <summary>
 /// A general purpose utility class for Rubicon Engine
+/// I'm not naming this CoolUtil bro
 /// </summary>
 public static class RubiconUtility
 {
