@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Remove="scenes\**" />
     <EmbeddedResource Remove="scenes\**" />
+    <Compile Remove="Source\Rubicon.Data\Attributes\**" />
+    <EmbeddedResource Remove="Source\Rubicon.Data\Attributes\**" />
   </ItemGroup>
   <ItemGroup>
     <!-- Root the assemblies to avoid trimming. -->

@@ -24,9 +24,6 @@ public partial class RubiconEngineSingleton : Node
 
 		Window root = GetTree().Root;
 		
-		// Link UserSettings
-		UserSettings.Singleton = root.GetNode<UserSettingsInstance>("UserSettings");
-		
 		// Link Conductor as well
 		Conductor.Singleton = root.GetNode<ConductorSingleton>("Conductor");
 	}

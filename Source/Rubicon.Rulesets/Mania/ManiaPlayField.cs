@@ -1,6 +1,4 @@
 using System.Linq;
-using Rubicon.Autoload;
-using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Meta;
 
@@ -75,10 +73,10 @@ public partial class ManiaPlayField : PlayField
         for (int i = 0; i < BarLines.Length; i++)
         {
             if (BarLines[i] is ManiaBarLine maniaBarLine)
-                maniaBarLine.SetDirectionAngle(!UserSettings.DownScroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
+                maniaBarLine.SetDirectionAngle(!UserSettingsInstance.Settings.Gameplay.DownScroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
 
-            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = UserSettings.DownScroll ? 1f : 0f;
-            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = UserSettings.DownScroll ? -140f : 140f;
+            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = UserSettingsInstance.Settings.Gameplay.DownScroll ? 1f : 0f;
+            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = UserSettingsInstance.Settings.Gameplay.DownScroll ? -140f : 140f;
             //BarLines[i].SetAnchorsPreset(barLinePreset, true);
         }
     }
@@ -87,10 +85,7 @@ public partial class ManiaPlayField : PlayField
     public override void UpdateStatistics()
     {
         // Score
-        if (PerfectHits == _noteCount)
-        {
-            Score = MaxScore;
-        }
+        if (PerfectHits == _noteCount) Score = MaxScore;
         else
         {
             float baseNoteValue = ((float)MaxScore / _noteCount) / 2f;

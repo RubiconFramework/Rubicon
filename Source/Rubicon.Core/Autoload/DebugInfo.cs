@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Rubicon.Core;
 using Rubicon.Core.Chart;
 
 namespace Rubicon.Core.Autoload;

@@ -48,7 +48,7 @@ enabled=PackedStringArray()
 folder_colors={
 "res://Source/Rubicon.API/": "green",
 "res://Source/Rubicon.Core/": "green",
-"res://Source/Rubicon.Core/Autoload/": "pink",
+"res://Source/Rubicon.Core/Autoload/": "green",
 "res://Source/Rubicon.Data/": "green",
 "res://Source/Rubicon.Rulesets/Mania/": "teal"
 }

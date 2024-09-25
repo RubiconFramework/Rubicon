@@ -1,75 +1,115 @@
-namespace Rubicon.Core.Autoload;
+using Rubicon.Data.Settings;
+using Rubicon.Data.Settings.Attributes;
 
-/// <summary>
-/// Contains info about the user's preferences.
-/// </summary>
 [GlobalClass]
 public partial class UserSettingsInstance : Node
 {
-    /// <summary>
-    /// A container for all the data to be stored in.
-    /// </summary>
-    [Export] public ConfigFile Data = new();
+	[Export] public ConfigFile Data = new();
+	public const string SettingsFilePath = "user://settings.cfg";
+	public static GeneralSettings Settings { get; private set; } = new GeneralSettings();
 
-    private string _filePath;
-    
-    public UserSettingsInstance()
-    {
-        _filePath = "user://settings.cfg";
+	public UserSettingsInstance()
+	{
+		if (!Load())
+		{
+			Reset();
+			Save();
+		}
+	}
 
-        if (!Load())
-        {
-            Reset();
-            Save();
-        }
-    }
-    
-    public UserSettingsInstance(string filePath)
-    {
-        _filePath = filePath;
+	public bool Load()
+	{
+		if (FileAccess.FileExists(SettingsFilePath))
+		{
+			string configText = FileAccess.GetFileAsString(SettingsFilePath);
+			if (Data.Parse(configText) == Error.Ok)
+			{
+				LoadSectionFromFile(Settings.Modifiers);
+				LoadSectionFromFile(Settings.Gameplay);
+				LoadSectionFromFile(Settings.Audio);
+				LoadSectionFromFile(Settings.Video);
+				LoadSectionFromFile(Settings.Misc);
+				LoadSectionFromFile(Settings.Debug);
+				return true;
+			}
+		}
 
-        if (!Load())
-        {
-            Reset();
-            Save();
-        }
-    }
+		return false;
+	}
 
-    /// <summary>
-    /// If true, the notes' scroll direction will go down instead of up.
-    /// </summary>
-    [Export]
-    public bool DownScroll
-    {
-        get => Data.GetValue("Gameplay", "DownScroll", false).AsBool();
-        set => Data.SetValue("Gameplay", "DownScroll", value);
-    }
+	public bool Save()
+	{
+		SerializeSettings();
+		if (Data.Save(SettingsFilePath) == Error.Ok)
+			return true;
 
-    public bool Load()
-    {
-        if (FileAccess.FileExists(_filePath))
-        {
-            string configText = FileAccess.GetFileAsString(_filePath);
-            if (Data.Parse(configText) == Error.Ok)
-                return true;
-        }
+		return false;
+	}
 
-        return false;
-    }
+	public void Reset()
+	{
+		Settings = new GeneralSettings();
+		SerializeSettings();
+	}
 
-    public bool Save()
-    {
-        if (Data.Save(_filePath) == Error.Ok)
-            return true;
+	private void SerializeSettings()
+	{
+		SerializeSection(Settings.Modifiers);
+		SerializeSection(Settings.Gameplay);
+		SerializeSection(Settings.Audio);
+		SerializeSection(Settings.Video);
+		SerializeSection(Settings.Misc);
+		SerializeSection(Settings.Debug);
+	}
 
-        return false;
-    }
+	private void SerializeSection(object section)
+	{
+		var type = section.GetType();
+		var attribute = (RubiconSettingsSectionAttribute)Attribute.GetCustomAttribute(type, typeof(RubiconSettingsSectionAttribute));
+		if (attribute != null)
+		{
+			foreach (var property in type.GetProperties()) 
+			{
+				object value = property.GetValue(section);
 
-    public void Reset()
-    {
-        // TODO: Add functionality to this.
-    }
+				Variant variantValue = value switch
+				{
+					bool b => b,
+					int i => i,
+					float f => f,
+					string s => s,
+					Enum e => Convert.ToInt32(e),
+					_ => throw new InvalidOperationException($"Unsupported type: {value!.GetType()}")
+				};
 
-    public void SetValue(string section, string key, Variant value = default) => 
-        Data.SetValue(section, key, value);
+				Data.SetValue(attribute.Section, property.Name, variantValue);
+			}
+		}
+	}
+	
+	private void LoadSectionFromFile(object section)
+	{
+		var type = section.GetType();
+		var attribute = (RubiconSettingsSectionAttribute)Attribute.GetCustomAttribute(type, typeof(RubiconSettingsSectionAttribute));
+	
+		if (attribute != null)
+		{
+			foreach (var property in type.GetProperties())
+			{
+				if (Data.HasSectionKey(attribute.Section, property.Name))
+				{
+					Variant variantValue = Data.GetValue(attribute.Section, property.Name);
+					switch (property.PropertyType.IsEnum)
+					{
+						case true:
+							property.SetValue(section, Enum.ToObject(property.PropertyType, variantValue));
+							break;
+						default:
+							property.SetValue(section, variantValue.VariantType);
+							break;
+					}
+				}
+			}
+		}
+	}
 }

@@ -1,3 +1,7 @@
+global using Godot;
+global using Godot.Sharp.Extras;
+global using System;
+
 using Rubicon.Core.Autoload;
 
 namespace Rubicon.Core;

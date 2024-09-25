@@ -1,5 +1,3 @@
-using Rubicon.Autoload;
-using Rubicon.Core;
 using Rubicon.Core.UI;
 using Rubicon.Game;
 using Rubicon.Rulesets;
@@ -28,7 +26,7 @@ public partial class DdrHitDistance : HitDistance
             BarLine barLine = playField.BarLines[playField.TargetBarLineIndex];
             _offset = offset ?? Vector2.Zero;
 
-            Vector2 pos = barLine.GlobalPosition + (_offset * (UserSettings.DownScroll ? -1f : 1f));
+            Vector2 pos = barLine.GlobalPosition + (_offset * (UserSettingsInstance.Settings.Gameplay.DownScroll ? -1f : 1f));
             Play(barLine.AnchorLeft, barLine.AnchorTop, barLine.AnchorRight, barLine.AnchorBottom, pos);
             return;
         }
@@ -63,6 +61,6 @@ public partial class DdrHitDistance : HitDistance
         
         PlayField playField = RubiconGame.Instance.PlayField;
         BarLine barLine = playField.BarLines[playField.TargetBarLineIndex];
-        Label.Position = barLine.GlobalPosition + (_offset * (UserSettings.DownScroll ? -1f : 1f)) - Label.PivotOffset;
+        Label.Position = barLine.GlobalPosition + (_offset * (UserSettingsInstance.Settings.Gameplay.DownScroll ? -1f : 1f)) - Label.PivotOffset;
     }
 }

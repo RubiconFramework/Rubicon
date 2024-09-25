@@ -34,22 +34,6 @@ _data = {
 "RESET": SubResource("Animation_3ggst")
 }
 
-[sub_resource type="Animation" id="Animation_bpato"]
-resource_name = "Expand"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.170755, 0.0281641),
-"update": 0,
-"values": [Vector2(140, 1079), Vector2(400, 1079)]
-}
-
 [sub_resource type="Animation" id="Animation_hhudj"]
 resource_name = "Collapse"
 length = 0.8
@@ -64,6 +48,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.170755, 0.0281641),
 "update": 0,
 "values": [Vector2(400, 1079), Vector2(140, 1079)]
+}
+
+[sub_resource type="Animation" id="Animation_bpato"]
+resource_name = "Expand"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.170755, 0.0281641),
+"update": 0,
+"values": [Vector2(140, 1079), Vector2(400, 1079)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2wdae"]
