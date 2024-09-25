@@ -15,6 +15,12 @@ public static class RubiconEngine
 	/// The global instance of <see cref="RubiconEngineSingleton"/>.
 	/// </summary>
 	public static RubiconEngineSingleton Singleton;
+
+	/// <inheritdoc cref="RubiconEngineSingleton.StartingScene"/>
+	public static string StartingScene => Singleton.StartingScene;
+	
+	/// <inheritdoc cref="RubiconEngineSingleton.StartingSceneType"/>
+	public static Type StartingSceneType => Singleton.StartingSceneType;
 	
 	/// <summary>
 	/// The current version of Rubicon being used.

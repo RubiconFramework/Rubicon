@@ -7,6 +7,18 @@ namespace Rubicon.Core.Autoload;
 [GlobalClass]
 public partial class RubiconEngineSingleton : Node
 {
+	/// <summary>
+	/// The scene that the game first starts with. Automatically set by <see cref="_Ready"/>.
+	/// Will always be the main scene when exported, but can vary in editor.
+	/// </summary>
+	public string StartingScene;
+	
+	/// <summary>
+	/// The type of node the starting scene is. Automatically set by <see cref="_Ready"/>.
+	/// Will always be the main scene's type when exported, but can vary in editor.
+	/// </summary>
+	public Type StartingSceneType;
+	
 	public override void _Ready()
 	{
 		if (RubiconEngine.Singleton != null)
@@ -26,6 +38,9 @@ public partial class RubiconEngineSingleton : Node
 		
 		// Link Conductor as well
 		Conductor.Singleton = root.GetNode<ConductorSingleton>("Conductor");
+
+		StartingScene = GetTree().CurrentScene.Name;
+		StartingSceneType = GetTree().CurrentScene.GetType();
 	}
 
 	/// <inheritdoc cref="RubiconEngine.Version"/>
