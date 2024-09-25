@@ -1,6 +1,63 @@
-[gd_scene load_steps=2 format=3 uid="uid://csxrq1ms8awxc"]
+[gd_scene load_steps=16 format=3 uid="uid://csxrq1ms8awxc"]
 
 [ext_resource type="Script" path="res://Source/Rubicon.Menus/Settings/SettingsMenu.cs" id="1_lotll"]
+[ext_resource type="Texture2D" uid="uid://qhfv36mgywf6" path="res://Assets/UI/Menus/menuBGDesat.png" id="2_qyjh5"]
+[ext_resource type="Texture2D" uid="uid://dblhvvw255gjj" path="res://Assets/UI/Menus/Settings/gameplay.png" id="3_vkyqy"]
+[ext_resource type="Theme" uid="uid://dmhtwx5exb2au" path="res://Assets/UI/Menus/Settings/SettingsMenu.tres" id="3_vq5og"]
+[ext_resource type="Texture2D" uid="uid://cthc8so77wf14" path="res://Assets/UI/Menus/Settings/video.png" id="4_852f5"]
+[ext_resource type="Texture2D" uid="uid://qeua6x7cqwq7" path="res://Assets/UI/Menus/Settings/audio.png" id="5_e2j5x"]
+[ext_resource type="Texture2D" uid="uid://dxjcuac18k46f" path="res://Assets/UI/Menus/Settings/miscellaneous.png" id="6_4i8an"]
+[ext_resource type="Texture2D" uid="uid://cdtaelq0wxprt" path="res://Assets/UI/Menus/Settings/keybinds.png" id="7_3b8oe"]
+
+[sub_resource type="Gradient" id="Gradient_we0p3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_61vsb"]
+gradient = SubResource("Gradient_we0p3")
+
+[sub_resource type="Animation" id="Animation_3ggst"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(140, 1079)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e1kh8"]
+_data = {
+"RESET": SubResource("Animation_3ggst")
+}
+
+[sub_resource type="Animation" id="Animation_bpato"]
+resource_name = "Expand"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.170755, 0.0281641),
+"update": 0,
+"values": [Vector2(140, 1079), Vector2(400, 1079)]
+}
+
+[sub_resource type="Animation" id="Animation_ch86h"]
+resource_name = "Collapse"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2wdae"]
+_data = {
+"Collapse": SubResource("Animation_ch86h"),
+"Expand": SubResource("Animation_bpato")
+}
 
 [node name="Settings Menu" type="Control"]
 layout_mode = 3
@@ -11,10 +68,176 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lotll")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 1.78
+
+[node name="BG" type="TextureRect" parent="AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("2_qyjh5")
+
+[node name="colorblind gradient" type="TextureRect" parent="AspectRatioContainer/BG"]
+modulate = Color(1, 1, 1, 0.545098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_61vsb")
+
+[node name="Main" type="Control" parent="AspectRatioContainer"]
+layout_mode = 2
+
+[node name="Toolbar" type="Control" parent="AspectRatioContainer/Main"]
+layout_mode = 1
+anchor_right = 0.052
+anchor_bottom = 1.0
+offset_right = 40.16
+offset_bottom = 0.348145
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="AspectRatioContainer/Main/Toolbar"]
+modulate = Color(0, 0, 0, 0.384314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="Control" parent="AspectRatioContainer/Main/Toolbar"]
+custom_minimum_size = Vector2(103.78, 572)
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 259.0
+offset_right = 125.0
+offset_bottom = 831.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/Main/Toolbar/Buttons"]
+z_index = 1
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 11
+alignment = 1
+
+[node name="Gameplay" type="Button" parent="AspectRatioContainer/Main/Toolbar/Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_vq5og")
+text = "
+"
+icon = ExtResource("3_vkyqy")
+clip_text = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Video" type="Button" parent="AspectRatioContainer/Main/Toolbar/Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_vq5og")
+icon = ExtResource("4_852f5")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Audio" type="Button" parent="AspectRatioContainer/Main/Toolbar/Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_vq5og")
+icon = ExtResource("5_e2j5x")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Misc" type="Button" parent="AspectRatioContainer/Main/Toolbar/Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_vq5og")
+icon = ExtResource("6_4i8an")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Keybinds" type="Button" parent="AspectRatioContainer/Main/Toolbar/Buttons/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_vq5og")
+icon = ExtResource("7_3b8oe")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Texts" type="Control" parent="AspectRatioContainer/Main/Toolbar"]
+custom_minimum_size = Vector2(103.78, 572)
+anchors_preset = 0
+offset_left = 152.0
+offset_top = 259.0
+offset_right = 384.0
+offset_bottom = 831.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/Main/Toolbar/Texts"]
+z_index = 1
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 69
+alignment = 1
+
+[node name="Gameplay" type="Label" parent="AspectRatioContainer/Main/Toolbar/Texts/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Gameplay"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Video" type="Label" parent="AspectRatioContainer/Main/Toolbar/Texts/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Video
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Audio" type="Label" parent="AspectRatioContainer/Main/Toolbar/Texts/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Audio
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Misc" type="Label" parent="AspectRatioContainer/Main/Toolbar/Texts/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Misc.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keybinds" type="Label" parent="AspectRatioContainer/Main/Toolbar/Texts/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Keybinds
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AspectRatioContainer"]
+root_node = NodePath("../Main/Toolbar")
+libraries = {
+"": SubResource("AnimationLibrary_e1kh8"),
+"Toolbar": SubResource("AnimationLibrary_2wdae")
+}
