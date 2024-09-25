@@ -105,7 +105,7 @@ public partial class RubiconGame : Node
 	/// </summary>
 	public void Resume()
 	{
-		Conductor.Play();	
+		Conductor.Resume();	
 		Instrumental.Play((float)Conductor.RawTime);
 		Vocals.Play((float)Conductor.RawTime);
 		PlayField.ProcessMode = ProcessModeEnum.Inherit;

@@ -1,3 +1,5 @@
+using Rubicon.Core.Autoload;
+
 namespace Rubicon.Core;
 
 /// <summary>

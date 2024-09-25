@@ -20,8 +20,8 @@ config/icon="res://Assets/UI/Misc/fnf.png"
 
 [autoload]
 
+UserSettings="*res://Source/Rubicon.Core/Autoload/UserSettingsInstance.cs"
 DebugInfo="*res://Source/Rubicon.Core/Autoload/DebugInfo.tscn"
-Settings="*res://Source/Rubicon.Core/Autoload/Settings.cs"
 Conductor="*res://Source/Rubicon.Core/Autoload/ConductorSingleton.cs"
 RubiconEngine="*res://Source/Rubicon.Core/Autoload/RubiconEngineSingleton.cs"
 

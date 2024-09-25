@@ -1,5 +1,6 @@
 using System.Linq;
 using Rubicon.Autoload;
+using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Meta;
 
@@ -69,15 +70,15 @@ public partial class ManiaPlayField : PlayField
     public override void UpdateOptions()
     {
         //BarLineContainer.
-        //BarLineContainer.Position = new Vector2(0f, Settings.General.Downscroll ? -120f : 120f);
+        //BarLineContainer.Position = new Vector2(0f, UserSettings.DownScroll ? -120f : 120f);
 
         for (int i = 0; i < BarLines.Length; i++)
         {
             if (BarLines[i] is ManiaBarLine maniaBarLine)
-                maniaBarLine.SetDirectionAngle(!Settings.General.Downscroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
+                maniaBarLine.SetDirectionAngle(!UserSettings.DownScroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
 
-            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = Settings.General.Downscroll ? 1f : 0f;
-            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = Settings.General.Downscroll ? -140f : 140f;
+            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = UserSettings.DownScroll ? 1f : 0f;
+            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = UserSettings.DownScroll ? -140f : 140f;
             //BarLines[i].SetAnchorsPreset(barLinePreset, true);
         }
     }

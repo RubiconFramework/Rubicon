@@ -1,10 +1,10 @@
 using Godot;
 using Rubicon.Core.Chart;
 
-namespace Rubicon.Core;
+namespace Rubicon.Core.Autoload;
 
 /// <summary>
-/// A Node that keeps track of musical timing and what not.
+/// A Node that keeps track of musical timing and what not. There should only be a single instance of this.
 /// </summary>
 [GlobalClass]
 public partial class ConductorSingleton : Node

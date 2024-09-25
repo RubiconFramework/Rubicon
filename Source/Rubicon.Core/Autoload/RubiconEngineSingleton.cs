@@ -1,4 +1,4 @@
-namespace Rubicon.Core;
+namespace Rubicon.Core.Autoload;
 
 /// <summary>
 /// A Node that contains basic engine info and may help with other utilities.
@@ -21,9 +21,14 @@ public partial class RubiconEngineSingleton : Node
 		// This is done so that the editor can stay in a 16:9 aspect ratio while keeping
 		// the 4:3 support in-game typically.
 		GetWindow().ContentScaleSize = ProjectSettings.GetSetting("rubicon/general/content_minimum_size").AsVector2I();
+
+		Window root = GetTree().Root;
 		
-		// Initialize Conductor as well
-		Conductor.Singleton = GetTree().Root.GetNode<ConductorSingleton>("Conductor");
+		// Link UserSettings
+		UserSettings.Singleton = root.GetNode<UserSettingsInstance>("UserSettings");
+		
+		// Link Conductor as well
+		Conductor.Singleton = root.GetNode<ConductorSingleton>("Conductor");
 	}
 
 	/// <inheritdoc cref="RubiconEngine.Version"/>
