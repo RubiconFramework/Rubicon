@@ -50,12 +50,25 @@ tracks/0/keys = {
 "values": [Vector2(140, 1079), Vector2(400, 1079)]
 }
 
-[sub_resource type="Animation" id="Animation_ch86h"]
+[sub_resource type="Animation" id="Animation_hhudj"]
 resource_name = "Collapse"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.170755, 0.0281641),
+"update": 0,
+"values": [Vector2(400, 1079), Vector2(140, 1079)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2wdae"]
 _data = {
-"Collapse": SubResource("Animation_ch86h"),
+"Collapse": SubResource("Animation_hhudj"),
 "Expand": SubResource("Animation_bpato")
 }
 
@@ -105,6 +118,7 @@ grow_vertical = 2
 
 [node name="BG" type="ColorRect" parent="AspectRatioContainer/Main/Toolbar"]
 modulate = Color(0, 0, 0, 0.384314)
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -177,6 +191,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Texts" type="Control" parent="AspectRatioContainer/Main/Toolbar"]
+clip_contents = true
 custom_minimum_size = Vector2(103.78, 572)
 anchors_preset = 0
 offset_left = 152.0

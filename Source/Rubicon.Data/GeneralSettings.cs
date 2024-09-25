@@ -7,3 +7,5 @@ public partial class GeneralSettings : Resource
 	[Export] public bool arrestifkillpeople = false;
 	[Export] public int killlll = 0;
 }
+
+
