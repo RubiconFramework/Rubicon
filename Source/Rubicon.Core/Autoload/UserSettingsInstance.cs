@@ -29,7 +29,6 @@ public partial class UserSettingsInstance : Node
 				LoadSectionFromFile(Settings.Audio);
 				LoadSectionFromFile(Settings.Video);
 				LoadSectionFromFile(Settings.Misc);
-				LoadSectionFromFile(Settings.Debug);
 				return true;
 			}
 		}
@@ -59,7 +58,6 @@ public partial class UserSettingsInstance : Node
 		SerializeSection(Settings.Audio);
 		SerializeSection(Settings.Video);
 		SerializeSection(Settings.Misc);
-		SerializeSection(Settings.Debug);
 	}
 
 	private void SerializeSection(object section)
@@ -82,7 +80,7 @@ public partial class UserSettingsInstance : Node
 					_ => throw new InvalidOperationException($"Unsupported type: {value!.GetType()}")
 				};
 
-				Data.SetValue(attribute.Section, property.Name, variantValue);
+				Data.SetValue(attribute.SectionName, property.Name, variantValue);
 			}
 		}
 	}
@@ -96,9 +94,9 @@ public partial class UserSettingsInstance : Node
 		{
 			foreach (var property in type.GetProperties())
 			{
-				if (Data.HasSectionKey(attribute.Section, property.Name))
+				if (Data.HasSectionKey(attribute.SectionName, property.Name))
 				{
-					Variant variantValue = Data.GetValue(attribute.Section, property.Name);
+					Variant variantValue = Data.GetValue(attribute.SectionName, property.Name);
 					switch (property.PropertyType.IsEnum)
 					{
 						case true:
@@ -107,7 +105,6 @@ public partial class UserSettingsInstance : Node
 						default:
 							switch (variantValue.VariantType)
 							{
-								// TODO: Support different Variant types
 								case Variant.Type.Int:
 									property.SetValue(section, variantValue.AsInt32());
 									break;
@@ -127,7 +124,6 @@ public partial class UserSettingsInstance : Node
 									property.SetValue(section, variantValue.AsGodotDictionary());
 									break;
 							}
-							
 							break;
 					}
 				}
