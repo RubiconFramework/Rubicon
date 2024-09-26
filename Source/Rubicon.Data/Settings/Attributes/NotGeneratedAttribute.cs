@@ -1,7 +1,7 @@
 namespace Rubicon.Data.Settings.Attributes;
 
 [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class IgnoredGenerationAttribute : Attribute
+public class NotGeneratedAttribute : Attribute
 {
-	public IgnoredGenerationAttribute() {}
+	public NotGeneratedAttribute() {}
 }

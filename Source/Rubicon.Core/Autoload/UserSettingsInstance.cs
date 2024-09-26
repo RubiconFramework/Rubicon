@@ -1,5 +1,7 @@
+using Godot.Collections;
 using Rubicon.Data.Settings;
 using Rubicon.Data.Settings.Attributes;
+using Array = Godot.Collections.Array;
 
 [GlobalClass]
 public partial class UserSettingsInstance : Node
@@ -24,11 +26,11 @@ public partial class UserSettingsInstance : Node
 			string configText = FileAccess.GetFileAsString(SettingsFilePath);
 			if (Data.Parse(configText) == Error.Ok)
 			{
-				LoadSectionFromFile(Settings.Modifiers);
 				LoadSectionFromFile(Settings.Gameplay);
 				LoadSectionFromFile(Settings.Audio);
 				LoadSectionFromFile(Settings.Video);
 				LoadSectionFromFile(Settings.Misc);
+				LoadSectionFromFile(Settings.Keybinds);
 				return true;
 			}
 		}
@@ -53,11 +55,11 @@ public partial class UserSettingsInstance : Node
 
 	private void SerializeSettings()
 	{
-		SerializeSection(Settings.Modifiers);
 		SerializeSection(Settings.Gameplay);
 		SerializeSection(Settings.Audio);
 		SerializeSection(Settings.Video);
 		SerializeSection(Settings.Misc);
+		SerializeSection(Settings.Keybinds);
 	}
 
 	private void SerializeSection(object section)
@@ -76,6 +78,9 @@ public partial class UserSettingsInstance : Node
 					int i => i,
 					float f => f,
 					string s => s,
+					double d => d,
+					Dictionary d => d,
+					Array a => a,
 					Enum e => Convert.ToInt32(e),
 					_ => throw new InvalidOperationException($"Unsupported type: {value!.GetType()}")
 				};

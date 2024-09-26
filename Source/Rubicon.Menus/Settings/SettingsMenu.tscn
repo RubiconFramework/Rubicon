@@ -1,24 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://csxrq1ms8awxc"]
+[gd_scene load_steps=10 format=3 uid="uid://csxrq1ms8awxc"]
 
 [ext_resource type="Script" path="res://Source/Rubicon.Menus/Settings/SettingsMenu.cs" id="1_lotll"]
 [ext_resource type="Texture2D" uid="uid://qhfv36mgywf6" path="res://Assets/UI/Menus/menuBGDesat.png" id="2_qyjh5"]
-[ext_resource type="PackedScene" uid="uid://6mal2senysrq" path="res://Source/Rubicon.Menus/Settings/Resources/ButtonTemplate.tscn" id="4_btolj"]
 
 [sub_resource type="Gradient" id="Gradient_we0p3"]
-offsets = PackedFloat32Array(0, 0.492424, 1)
-colors = PackedColorArray(0.145098, 0.835294, 0.156863, 1, 0.984314, 0.203922, 0.941176, 1, 0.619608, 0.321569, 0.00392157, 1)
+colors = PackedColorArray(0.597176, 0.597176, 0.597176, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_61vsb"]
 gradient = SubResource("Gradient_we0p3")
 
 [sub_resource type="GDScript" id="GDScript_5iqvs"]
-script/source = "extends Control
+script/source = "@tool
+extends Control
 
 @onready var button_container:VBoxContainer = $BG/Container
 @onready var control:Control = $\"../..\" 
 
-var button_height:int = 96
-	
+var button_height:float = 96
+
 func _physics_process(_delta: float) -> void:
 	var new_height = button_container.get_child_count() * button_height
 	set_size(Vector2(get_size().x, new_height))
@@ -26,32 +25,32 @@ func _physics_process(_delta: float) -> void:
 	set_position(Vector2(get_position().x, (screen_height / 2) - (new_height / 2)))
 "
 
-[sub_resource type="Animation" id="Animation_afa0p"]
+[sub_resource type="Animation" id="Animation_pbqnw"]
 resource_name = "Enter"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BG:size")
+tracks/0/path = NodePath("BG:size:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.176777, 3.24901),
 "update": 0,
-"values": [Vector2(103, 96), Vector2(294, 96)]
+"values": [103.0, 294.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BG:position")
+tracks/1/path = NodePath("BG:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.176777, 3.24901),
 "update": 0,
-"values": [Vector2(191, 0), Vector2(0, 0)]
+"values": [191.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -60,7 +59,7 @@ tracks/2/path = NodePath("BG/Labels:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.3),
+"times": PackedFloat32Array(0.0333333, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -72,26 +71,26 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BG:size")
+tracks/0/path = NodePath("BG:size:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(3.24901, 0.176777),
 "update": 0,
-"values": [Vector2(294, 96), Vector2(103, 96)]
+"values": [294.0, 103.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BG:position")
+tracks/1/path = NodePath("BG:position:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(3.24901, 0.176777),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(191, 0)]
+"values": [0.0, 191.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -144,10 +143,34 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BG:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [191.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BG:size:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [294.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ddksm"]
 _data = {
-"Enter": SubResource("Animation_afa0p"),
+"Enter": SubResource("Animation_pbqnw"),
 "Leave": SubResource("Animation_1rl4d"),
 "RESET": SubResource("Animation_0lnge")
 }
@@ -196,15 +219,16 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="Sidebar" type="Control" parent="Main"]
+z_index = 2
 layout_mode = 1
 anchor_left = 0.995313
 anchor_top = 0.491
 anchor_right = 0.995313
 anchor_bottom = 0.491
 offset_left = -294.001
-offset_top = -38.28
+offset_top = 9.72003
 offset_right = -0.000976563
-offset_bottom = 57.72
+offset_bottom = 9.72003
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(103, 250)
@@ -222,7 +246,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -3.05176e-05
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -237,10 +261,6 @@ offset_left = -103.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Gameplay" parent="Main/Sidebar/BG/Container" instance=ExtResource("4_btolj")]
-layout_mode = 2
-mouse_filter = 1
-
 [node name="Labels" type="Control" parent="Main/Sidebar/BG"]
 layout_mode = 1
 anchors_preset = 15
@@ -250,17 +270,22 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Gameplay" type="Label" parent="Main/Sidebar/BG/Labels"]
+[node name="UI" type="Control" parent="Main"]
+z_index = 1
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 15.0
-offset_top = -23.0
-offset_right = 179.0
-offset_bottom = 23.0
+anchor_left = 0.0151042
+anchor_top = 0.0425926
+anchor_right = 0.922396
+anchor_bottom = 0.967593
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 27
-text = "Gameplay"
-horizontal_alignment = 1
-vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Main/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 2
