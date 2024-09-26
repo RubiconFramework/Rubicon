@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Source/Rubicon.Menus/Settings/SettingsMenu.cs" id="1_lotll"]
 [ext_resource type="Texture2D" uid="uid://qhfv36mgywf6" path="res://Assets/UI/Menus/menuBGDesat.png" id="2_qyjh5"]
-[ext_resource type="Script" path="res://Source/Rubicon.Menus/Settings/Resources/Sidebar.gd" id="3_pasnd"]
 [ext_resource type="PackedScene" uid="uid://6mal2senysrq" path="res://Source/Rubicon.Menus/Settings/Resources/ButtonTemplate.tscn" id="4_btolj"]
 
 [sub_resource type="Gradient" id="Gradient_we0p3"]
@@ -11,6 +10,21 @@ colors = PackedColorArray(0.145098, 0.835294, 0.156863, 1, 0.984314, 0.203922, 0
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_61vsb"]
 gradient = SubResource("Gradient_we0p3")
+
+[sub_resource type="GDScript" id="GDScript_5iqvs"]
+script/source = "extends Control
+
+@onready var button_container:VBoxContainer = $BG/Container
+@onready var control:Control = $\"../..\" 
+
+var button_height:int = 96
+	
+func _physics_process(_delta: float) -> void:
+	var new_height = button_container.get_child_count() * button_height
+	set_size(Vector2(get_size().x, new_height))
+	var screen_height = control.get_size().y
+	set_position(Vector2(get_position().x, (screen_height / 2) - (new_height / 2)))
+"
 
 [sub_resource type="Animation" id="Animation_afa0p"]
 resource_name = "Enter"
@@ -188,14 +202,14 @@ anchor_top = 0.491
 anchor_right = 0.995313
 anchor_bottom = 0.491
 offset_left = -294.001
-offset_top = -37.618
+offset_top = -38.28
 offset_right = -0.000976563
-offset_bottom = 58.382
+offset_bottom = 57.72
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(103, 250)
 mouse_filter = 1
-script = ExtResource("3_pasnd")
+script = SubResource("GDScript_5iqvs")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Main/Sidebar"]
 libraries = {
@@ -246,6 +260,7 @@ offset_top = -23.0
 offset_right = 179.0
 offset_bottom = 23.0
 grow_vertical = 2
+theme_override_font_sizes/font_size = 27
 text = "Gameplay"
 horizontal_alignment = 1
 vertical_alignment = 1
