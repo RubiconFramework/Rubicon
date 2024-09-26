@@ -1,34 +1,12 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://bnpl8q1kdxppc"]
+[gd_resource type="Resource" script_class="SongMeta" load_steps=2 format=3 uid="uid://bnpl8q1kdxppc"]
 
-[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/CharacterMeta.cs" id="1_iokxe"]
-[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/FunkinSongMeta.cs" id="3_jtlbk"]
-
-[sub_resource type="Resource" id="Resource_kwx62"]
-script = ExtResource("1_iokxe")
-Character = "bf-pixel"
-BarLine = "Opponent"
-SpawnPoint = "Opponent"
-
-[sub_resource type="Resource" id="Resource_esj2c"]
-script = ExtResource("1_iokxe")
-Character = "bf"
-BarLine = "Player"
-SpawnPoint = "Player"
-
-[sub_resource type="Resource" id="Resource_mipkk"]
-script = ExtResource("1_iokxe")
-Character = "gf"
-BarLine = ""
-SpawnPoint = "Speaker"
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/SongMeta.cs" id="1_0jx5p"]
 
 [resource]
-script = ExtResource("3_jtlbk")
-Characters = [SubResource("Resource_kwx62"), SubResource("Resource_esj2c"), SubResource("Resource_mipkk")]
-Enable3D = false
-Stage = "stage"
+script = ExtResource("1_0jx5p")
 Name = "Test"
 RawName = "Test"
-Artist = "Kawai Sprite & MtH"
+Artist = "Hideo Kojima"
 UiStyle = "Funkin"
 NoteSkin = "Funkin"
 PlayableCharts = PackedStringArray("Player")

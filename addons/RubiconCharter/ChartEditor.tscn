@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu2q514bs1uk"]
+[gd_scene load_steps=3 format=3 uid="uid://cu2q514bs1uk"]
 
-[ext_resource type="Script" path="res://addons/RubiconCharter/scripts/ChartEditor.cs" id="1_57esv"]
+[ext_resource type="Script" path="res://addons/RubiconCharter/Scripts/ChartEditor.cs" id="1_nv0gc"]
+[ext_resource type="Texture2D" uid="uid://2licv8xbhtn" path="res://Assets/UI/Misc/Folder.svg" id="2_hjmne"]
 
 [node name="ChartEditor" type="Control"]
 process_mode = 3
@@ -10,14 +11,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_57esv")
+script = ExtResource("1_nv0gc")
 metadata/_edit_lock_ = true
 
 [node name="WelcomeWindow" type="Window" parent="."]
 title = "Welcome"
 initial_position = 2
 size = Vector2i(768, 602)
-unresizable = true
 
 [node name="Panel" type="Panel" parent="WelcomeWindow"]
 anchors_preset = 15
@@ -27,16 +27,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WelcomeWindow/Panel"]
-layout_mode = 0
-offset_right = 768.0
-offset_bottom = 768.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 369.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 250
-metadata/_edit_use_anchors_ = true
 
 [node name="Welcome" type="Label" parent="WelcomeWindow/Panel/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 61
 text = "welcome n shit !"
@@ -49,33 +49,36 @@ theme_override_constants/separation = 220
 
 [node name="Open" type="Label" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 25
 text = "Open Files"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.0
+anchor_top = 1.2
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 3.771
 offset_left = -45.0
-offset_top = 7.0
 offset_right = 45.0
-offset_bottom = 73.0
+offset_bottom = -23.985
 grow_horizontal = 2
 
 [node name="New" type="Button" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 25
 text = "New Chart"
 
 [node name="Load" type="Button" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 25
 text = "Load Chart"
 
 [node name="Recent" type="Label" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 25
 text = "Recent Files"
 
@@ -92,6 +95,7 @@ grow_horizontal = 2
 
 [node name="NoRecent" type="Button" parent="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Recent/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 10
 theme_override_font_sizes/font_size = 25
 disabled = true
@@ -99,24 +103,199 @@ text = "No recent charts found"
 
 [node name="ShowAgain" type="CheckBox" parent="WelcomeWindow/Panel"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.899
 anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -194.0
+anchor_bottom = 1.005
+offset_left = -0.0800781
 offset_top = -31.0
+offset_bottom = -5.40002
 grow_horizontal = 0
 grow_vertical = 0
 text = "Don't show this again"
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
+[node name="NewWindow" type="Window" parent="."]
+title = "New Chart"
+initial_position = 2
+size = Vector2i(384, 512)
+
+[node name="Panel" type="Panel" parent="NewWindow"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="close_requested" from="WelcomeWindow" to="." method="OnWindowClose"]
-[connection signal="toggled" from="WelcomeWindow/Panel/ShowAgain" to="." method="ShowAgainToggled"]
+[node name="MarginContainer" type="MarginContainer" parent="NewWindow/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 51.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewWindow/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="SongName" type="HBoxContainer" parent="NewWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewWindow/Panel/MarginContainer/VBoxContainer/SongName"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Song Name"
+
+[node name="LineEdit" type="LineEdit" parent="NewWindow/Panel/MarginContainer/VBoxContainer/SongName"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Test"
+
+[node name="Stage" type="HBoxContainer" parent="NewWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewWindow/Panel/MarginContainer/VBoxContainer/Stage"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Stage"
+
+[node name="LineEdit" type="LineEdit" parent="NewWindow/Panel/MarginContainer/VBoxContainer/Stage"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="NewWindow/Panel/MarginContainer/VBoxContainer/Stage"]
+layout_mode = 2
+icon = ExtResource("2_hjmne")
+
+[node name="Bpm" type="HBoxContainer" parent="NewWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewWindow/Panel/MarginContainer/VBoxContainer/Bpm"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Starting BPM"
+
+[node name="SpinBox" type="SpinBox" parent="NewWindow/Panel/MarginContainer/VBoxContainer/Bpm"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="UIStyle" type="HBoxContainer" parent="NewWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewWindow/Panel/MarginContainer/VBoxContainer/UIStyle"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "UI Style"
+
+[node name="LineEdit" type="LineEdit" parent="NewWindow/Panel/MarginContainer/VBoxContainer/UIStyle"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="NewWindow/Panel/MarginContainer/VBoxContainer/UIStyle"]
+layout_mode = 2
+icon = ExtResource("2_hjmne")
+
+[node name="ManiaNoteSkin" type="HBoxContainer" parent="NewWindow/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewWindow/Panel/MarginContainer/VBoxContainer/ManiaNoteSkin"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Note Skin"
+
+[node name="LineEdit" type="LineEdit" parent="NewWindow/Panel/MarginContainer/VBoxContainer/ManiaNoteSkin"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="NewWindow/Panel/MarginContainer/VBoxContainer/ManiaNoteSkin"]
+layout_mode = 2
+icon = ExtResource("2_hjmne")
+
+[node name="MarginContainer2" type="MarginContainer" parent="NewWindow/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -79.5
+offset_top = -40.0
+offset_right = 79.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NewWindow/Panel/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 50
+
+[node name="Cancel" type="Button" parent="NewWindow/Panel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Cancel"
+
+[node name="Done" type="Button" parent="NewWindow/Panel/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Done"
+
+[node name="TopBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.35
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="File" type="MenuButton" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "File"
+switch_on_hover = true
+item_count = 1
+
+[node name="Edit" type="MenuButton" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Edit"
+switch_on_hover = true
+item_count = 1
+
+[node name="View" type="MenuButton" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "View"
+switch_on_hover = true
+item_count = 1
+
+[node name="Test" type="MenuButton" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Test"
+switch_on_hover = true
+item_count = 1
+
+[node name="About" type="MenuButton" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "About"
+switch_on_hover = true
+item_count = 1
+
+[connection signal="close_requested" from="WelcomeWindow" to="." method="OnWindowClose" binds= ["WelcomeWindow"]]
+[connection signal="pressed" from="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open/VBoxContainer/New" to="." method="ShowWindow" binds= ["NewWindow"]]
+[connection signal="close_requested" from="NewWindow" to="." method="OnWindowClose" binds= ["NewWindow"]]

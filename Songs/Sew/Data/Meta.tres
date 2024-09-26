@@ -1,25 +1,9 @@
-[gd_resource type="Resource" load_steps=5 format=3 uid="uid://de2lkhunlj07k"]
+[gd_resource type="Resource" script_class="SongMeta" load_steps=2 format=3 uid="uid://de2lkhunlj07k"]
 
-[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/CharacterMeta.cs" id="1_qeq5u"]
-[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/FunkinSongMeta.cs" id="3_d0t0y"]
-
-[sub_resource type="Resource" id="Resource_wfcuy"]
-script = ExtResource("1_qeq5u")
-Character = "stitch"
-BarLine = "Opponent"
-SpawnPoint = "Opponent"
-
-[sub_resource type="Resource" id="Resource_xfgf4"]
-script = ExtResource("1_qeq5u")
-Character = "bf-stitch"
-BarLine = "Player"
-SpawnPoint = "Player"
+[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/SongMeta.cs" id="1_t6c4e"]
 
 [resource]
-script = ExtResource("3_d0t0y")
-Characters = [SubResource("Resource_wfcuy"), SubResource("Resource_xfgf4")]
-Enable3D = false
-Stage = "petalforest"
+script = ExtResource("1_t6c4e")
 Name = "Sew"
 RawName = "Sew"
 Artist = "Swifticul"

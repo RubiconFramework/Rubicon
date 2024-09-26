@@ -13,23 +13,5 @@ namespace Charter.Scripts;
 
 [Tool] public class CharterPreferenceManager
 {
-    public string FilePath = "res://addons/RubiconCharter/preferences.tres";
     public CharterPreferences Preferences = new();
-
-    public void Load()
-    {
-        if (!ResourceLoader.Exists(FilePath))
-        {
-            Save();
-            return;
-        }
-
-        Resource _preferences = ResourceLoader.Load<Resource>(FilePath);
-        Preferences = _preferences as CharterPreferences;
-    }
-
-    public void Save()
-    {
-        ResourceSaver.Save(Preferences, FilePath);
-    }
 }

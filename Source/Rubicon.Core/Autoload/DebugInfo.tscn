@@ -51,6 +51,7 @@ mouse_filter = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_constants/separation = 13
 
 [node name="FPS" type="Label" parent="InfoContainer/MainInformation"]
@@ -74,10 +75,12 @@ text = "VRAM: 0 MB"
 [node name="DebugInformation" type="VBoxContainer" parent="InfoContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 
 [node name="Objects" type="HBoxContainer" parent="InfoContainer/DebugInformation"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 theme_override_constants/separation = 13
 
 [node name="AllObjects" type="Label" parent="InfoContainer/DebugInformation/Objects"]
@@ -104,6 +107,7 @@ text = "Node Objects: 0 (Orphan Nodes: 0)"
 [node name="Versions" type="HBoxContainer" parent="InfoContainer/DebugInformation"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 2
 theme_override_constants/separation = 13
 
 [node name="Game" type="Label" parent="InfoContainer/DebugInformation/Versions"]
