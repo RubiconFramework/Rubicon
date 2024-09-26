@@ -51,11 +51,11 @@ Rubicon Engine's code is licensed under the [Apache License, Version 2.0](https:
 
 # Credits
 
-## Lead Developers
+## Developers
 
 - [Binpuki](https://twitter.com/binpuki_)
+- [DuoNineXcore](https://e-z.bio/nullobjectreference)
 - [legole0](https://twitter.com/legole0)
-- [nullobjectreference](https://e-z.bio/nullobjectreference)
 
 ## Special Credits
 
