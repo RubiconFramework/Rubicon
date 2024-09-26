@@ -184,7 +184,7 @@ public partial class FunkinChartPlugin : EditorImportPlugin
 
         if (options.ContainsKey("CreateSongMeta") && options["CreateSongMeta"].AsBool())
         {
-	        FunkinSongMeta meta = new FunkinSongMeta();
+	        SongMeta meta = new SongMeta();
 	        //meta.Events = cameraChanges.ToArray();
 	        meta.Stage = swagSong.ContainsKey("stage") ? swagSong["stage"].AsString() : "stage";
 	        meta.PlayableCharts = ["Player", "Opponent"];
