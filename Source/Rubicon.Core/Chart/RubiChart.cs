@@ -12,6 +12,16 @@ public partial class RubiChart : Resource
 {
     #region Public Variables
     /// <summary>
+    /// The name of the people who helped with this chart.
+    /// </summary>
+    [Export] public string Charter = "";
+    
+    /// <summary>
+    /// How hard the chart really is.
+    /// </summary>
+    [Export] public uint Difficulty = 0;
+    
+    /// <summary>
     /// The Rubicon Engine version this chart was created on.
     /// </summary>
     [Export] public uint Version = RubiconEngine.Version;
