@@ -32,6 +32,11 @@ public partial class BarLine : Control
 	/// A signal that is emitted every time a manager in this bar line hits a note. Can be a miss.
 	/// </summary>
 	[Signal] public delegate void NoteHitEventHandler(BarLine barLine, int lane, string direction, NoteInputElement inputElement);
+
+	/// <summary>
+	/// A signal that is emitted every time a manager in this bar line either presses or lets go of a bind.
+	/// </summary>
+	[Signal] public delegate void BindPressedEventHandler(BarLine barLine);
 	
 	public override void _Process(double delta)
 	{

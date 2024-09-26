@@ -10,7 +10,7 @@ public class CharacterAnimation
 	/// <summary>
 	/// The name of the animation played by the <see cref="AnimationPlayer"/>. It has to match exactly.
 	/// </summary>
-	public string AnimName = "idle";
+	public string Name = "idle";
 
 	/// <summary>
 	/// Overrides any animation currently playing on the character, no matter what.
@@ -18,34 +18,19 @@ public class CharacterAnimation
 	public bool Force = false;
 
 	/// <summary>
-	/// The animation cannot be overriden by any dance/idle animation.
+	/// The time that the animation will start at. 0 by default.
 	/// </summary>
-	public bool OverrideDance = true;
-
-	/// <summary>
-	/// Represents whether its an idle/dance animation or not.
-	/// </summary>
-	public bool IsDanceAnimation = false;
-
-	/// <summary>
-	/// The animation cannot be overriden unless <paramref name="Force"/> is <see langword="true"/>.
-	/// </summary>
-	public bool OverrideAnim = false;
-
-	/// <summary>
-	/// Represents whether the animation is finished or not.
-	/// </summary>
-	public bool AnimFinished = false;
+	public float StartTime = 0f;
 
     /// <summary>
     /// A prefix for the animation played by the <see cref="AnimationPlayer"/>. Overrides the <paramref name="StaticPrefix"/> found in the <see cref="Character2D"/> or <see cref="Character3D"/> class.
     /// </summary>
-    public string Prefix;
+    public string CustomPrefix;
 
     /// <summary>
     /// A suffix for the animation played by the <see cref="AnimationPlayer"/>. Overrides the <paramref name="StaticSuffix"/> found in the Character class.
     /// </summary>
-    public string Suffix;
+    public string CustomSuffix;
 
 	/// <summary>
 	/// This animation will play at the end of the current one.

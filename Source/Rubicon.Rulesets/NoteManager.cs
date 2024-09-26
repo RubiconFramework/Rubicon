@@ -138,6 +138,18 @@ public partial class NoteManager : Control
 		ProcessQueue.Clear();
 	}
 
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+		
+		string actionName = $"MANIA_{ParentBarLine.Managers.Length}K_{Lane}";
+		if (Autoplay || !InputsEnabled || !InputMap.HasAction(actionName) || !@event.IsAction(actionName) || @event.IsEcho())
+			return;
+
+		if (!@event.IsEcho())
+			ParentBarLine.EmitSignal("BindPressed", ParentBarLine);
+	}
+
 	private int GetNoteScrollVelocityIndex(NoteData noteData)
 	{
 		SvChange[] svChangeList = ParentBarLine.Chart.SvChanges;
