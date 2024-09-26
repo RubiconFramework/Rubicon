@@ -155,7 +155,7 @@ public partial class ManiaNoteManager : NoteManager
 	{
 		base._Input(@event);
 
-		string actionName = $"MANIA_{ParentBarLine.Managers.Length}K_{Lane}";
+		string actionName = $"PLAY_MANIA_{ParentBarLine.Managers.Length}K_{Lane}";
 		if (Autoplay || !InputsEnabled || !InputMap.HasAction(actionName) || !@event.IsAction(actionName) || @event.IsEcho())
 			return;
 
