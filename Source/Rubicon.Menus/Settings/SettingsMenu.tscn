@@ -148,7 +148,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_lotll")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="BGContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,12 +156,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.78
+stretch_mode = 3
 
-[node name="BG" type="TextureRect" parent="AspectRatioContainer"]
+[node name="BG" type="TextureRect" parent="BGContainer"]
 layout_mode = 2
 texture = ExtResource("2_qyjh5")
 
-[node name="colorblind gradient" type="TextureRect" parent="AspectRatioContainer/BG"]
+[node name="colorblind gradient" type="TextureRect" parent="BGContainer/BG"]
 modulate = Color(1, 1, 1, 0.545098)
 layout_mode = 1
 anchors_preset = 15
@@ -171,11 +172,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_61vsb")
 
-[node name="Main" type="Control" parent="AspectRatioContainer"]
-layout_mode = 2
+[node name="Main" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 
-[node name="Sidebar" type="Control" parent="AspectRatioContainer/Main"]
+[node name="Sidebar" type="Control" parent="Main"]
 layout_mode = 1
 anchor_left = 0.995313
 anchor_top = 0.491
@@ -191,12 +197,12 @@ pivot_offset = Vector2(103, 250)
 mouse_filter = 1
 script = ExtResource("3_pasnd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AspectRatioContainer/Main/Sidebar"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main/Sidebar"]
 libraries = {
 "": SubResource("AnimationLibrary_ddksm")
 }
 
-[node name="BG" type="ColorRect" parent="AspectRatioContainer/Main/Sidebar"]
+[node name="BG" type="ColorRect" parent="Main/Sidebar"]
 self_modulate = Color(0, 0, 0, 0.384314)
 layout_mode = 1
 anchors_preset = 15
@@ -205,8 +211,9 @@ anchor_bottom = 1.0
 offset_right = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="Container" type="VBoxContainer" parent="AspectRatioContainer/Main/Sidebar/BG"]
+[node name="Container" type="VBoxContainer" parent="Main/Sidebar/BG"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -216,11 +223,11 @@ offset_left = -103.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Gameplay" parent="AspectRatioContainer/Main/Sidebar/BG/Container" instance=ExtResource("4_btolj")]
+[node name="Gameplay" parent="Main/Sidebar/BG/Container" instance=ExtResource("4_btolj")]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Labels" type="Control" parent="AspectRatioContainer/Main/Sidebar/BG"]
+[node name="Labels" type="Control" parent="Main/Sidebar/BG"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -229,7 +236,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="Gameplay" type="Label" parent="AspectRatioContainer/Main/Sidebar/BG/Labels"]
+[node name="Gameplay" type="Label" parent="Main/Sidebar/BG/Labels"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
