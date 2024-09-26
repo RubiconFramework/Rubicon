@@ -30,7 +30,7 @@ public partial class UserSettingsInstance : Node
 				LoadSectionFromFile(Settings.Audio);
 				LoadSectionFromFile(Settings.Video);
 				LoadSectionFromFile(Settings.Misc);
-				LoadSectionFromFile(Settings.Keybinds);
+				LoadSectionFromFile(Settings.KeyBinds);
 				return true;
 			}
 		}
@@ -59,7 +59,7 @@ public partial class UserSettingsInstance : Node
 		SerializeSection(Settings.Audio);
 		SerializeSection(Settings.Video);
 		SerializeSection(Settings.Misc);
-		SerializeSection(Settings.Keybinds);
+		SerializeSection(Settings.KeyBinds);
 	}
 
 	private void SerializeSection(object section)

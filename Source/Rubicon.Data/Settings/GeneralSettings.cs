@@ -9,15 +9,15 @@ public class GeneralSettings
 	public Audio Audio { get; set; } = new();
 	public Video Video { get; set; } = new();
 	public Misc Misc { get; set; } = new();
-	public Keybinds Keybinds { get; set; } = new();
+	public Keybinds KeyBinds { get; set; } = new();
 }
 
 [RubiconSettingsSection("Gameplay", true, "res://Assets/UI/Menus/Settings/Gameplay.png")]
 public class Gameplay
 {
 	public GameplayModifiers Modifiers { get; set; } = new();
-	public bool Downscroll { get; set; } = false;
-	public bool Middlescroll { get; set; } = false;
+	public bool DownScroll { get; set; } = false;
+	public bool CenterBarLine { get; set; } = false;
 	public bool GhostTapping { get; set; } = true;
 	public bool FlashingLights { get; set; } = true;
 	
@@ -39,7 +39,7 @@ public class Audio
 	public double MasterVolume { get; set; } = 100f;
 	public double InstVolume { get; set; } = 100f;
 	public double VoicesVolume { get; set; } = 100f;
-	public double SFXVolume { get; set; } = 100f;
+	public double SfxVolume { get; set; } = 100f;
 	public double MusicVolume { get; set; } = 100f;
 }
 
@@ -48,7 +48,7 @@ public class Video
 {
 	public bool Fullscreen { get; set; } = false;
 	public bool VSync { get; set; } = false;
-	public int FPS { get; set; } = 144;
+	public int Fps { get; set; } = 144;
 }
 
 [RubiconSettingsSection("Misc", true, "res://Assets/UI/Menus/Settings/Misc.png")]
@@ -60,6 +60,6 @@ public class Misc
 [RubiconSettingsSection("Keybinds", true, "res://Assets/UI/Menus/Settings/Keybinds.png")]
 public class Keybinds
 {
-	public Dictionary UIKeybinds { get; set; } = new();
-	public Dictionary GameKeybinds { get; set; } = new();	
+	public Dictionary UiKeyBinds { get; set; } = new();
+	public Dictionary GameKeyBinds { get; set; } = new();	
 }
