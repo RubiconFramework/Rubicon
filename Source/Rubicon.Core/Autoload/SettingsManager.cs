@@ -4,18 +4,18 @@ using Rubicon.Data.Settings.Attributes;
 using Array = Godot.Collections.Array;
 
 [GlobalClass]
-public partial class SettingsStorageSingleton : Node
+public partial class SettingsManager : Node
 {
 	[Export] public ConfigFile Data = new();
 	public const string SettingsFilePath = "user://settings.cfg";
-	public static SettingsStorage Settings { get; private set; } = new();
-	public static Gameplay Gameplay { get; private set; } = Settings.Gameplay;
-	public static Audio Audio { get; private set; } = Settings.Audio;
-	public static Video Video { get; private set; } = Settings.Video;
-	public static Misc Misc { get; private set; } = Settings.Misc;
-	public static Keybinds Keybinds { get; private set; } = Settings.Keybinds;
+	public static SettingsStorage Instance { get; private set; } = new();
+	public static Gameplay Gameplay { get; private set; } = Instance.Gameplay;
+	public static Audio Audio { get; private set; } = Instance.Audio;
+	public static Video Video { get; private set; } = Instance.Video;
+	public static Misc Misc { get; private set; } = Instance.Misc;
+	public static Keybinds Keybinds { get; private set; } = Instance.Keybinds;
 
-	public SettingsStorageSingleton()
+	public SettingsManager()
 	{
 		if (!Load())
 		{
@@ -31,11 +31,11 @@ public partial class SettingsStorageSingleton : Node
 			string configText = FileAccess.GetFileAsString(SettingsFilePath);
 			if (Data.Parse(configText) == Error.Ok)
 			{
-				LoadSectionFromFile(Settings.Gameplay);
-				LoadSectionFromFile(Settings.Audio);
-				LoadSectionFromFile(Settings.Video);
-				LoadSectionFromFile(Settings.Misc);
-				LoadSectionFromFile(Settings.Keybinds);
+				LoadSectionFromFile(Instance.Gameplay);
+				LoadSectionFromFile(Instance.Audio);
+				LoadSectionFromFile(Instance.Video);
+				LoadSectionFromFile(Instance.Misc);
+				LoadSectionFromFile(Instance.Keybinds);
 				return true;
 			}
 		}
@@ -54,17 +54,17 @@ public partial class SettingsStorageSingleton : Node
 
 	public void Reset()
 	{
-		Settings = new SettingsStorage();
+		Instance = new SettingsStorage();
 		SerializeSettings();
 	}
 
 	private void SerializeSettings()
 	{
-		SerializeSection(Settings.Gameplay);
-		SerializeSection(Settings.Audio);
-		SerializeSection(Settings.Video);
-		SerializeSection(Settings.Misc);
-		SerializeSection(Settings.Keybinds);
+		SerializeSection(Instance.Gameplay);
+		SerializeSection(Instance.Audio);
+		SerializeSection(Instance.Video);
+		SerializeSection(Instance.Misc);
+		SerializeSection(Instance.Keybinds);
 	}
 
 	private void SerializeSection(object section, string parentSection = "")

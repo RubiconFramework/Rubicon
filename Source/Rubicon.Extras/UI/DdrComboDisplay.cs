@@ -25,7 +25,7 @@ public partial class DdrComboDisplay : ComboDisplay
 		    BarLine barLine = playField.BarLines[playField.TargetBarLineIndex];
 		    _offset = offset ?? Vector2.Zero;
 
-		    Vector2 pos = barLine.GlobalPosition + (_offset * (SettingsStorageSingleton.Settings.Gameplay.DownScroll ? -1f : 1f));
+		    Vector2 pos = barLine.GlobalPosition + (_offset * (SettingsManager.Instance.Gameplay.DownScroll ? -1f : 1f));
 		    Play(combo, type, barLine.AnchorLeft, barLine.AnchorTop, barLine.AnchorRight, barLine.AnchorBottom, pos);
 		    return;
 	    }
@@ -137,7 +137,7 @@ public partial class DdrComboDisplay : ComboDisplay
         
 	    PlayField playField = RubiconGame.Instance.PlayField;
 	    BarLine barLine = playField.BarLines[playField.TargetBarLineIndex];
-	    Vector2 startPos = barLine.GlobalPosition + (_offset * (SettingsStorageSingleton.Settings.Gameplay.DownScroll ? -1f : 1f));
+	    Vector2 startPos = barLine.GlobalPosition + (_offset * (SettingsManager.Instance.Gameplay.DownScroll ? -1f : 1f));
 	    
 	    int comboCount = _comboGraphics.Count(x => x.Modulate.A != 0);
 	    for (int i = 0; i < comboCount; i++)

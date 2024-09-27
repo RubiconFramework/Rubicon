@@ -73,10 +73,10 @@ public partial class ManiaPlayField : PlayField
         for (int i = 0; i < BarLines.Length; i++)
         {
             if (BarLines[i] is ManiaBarLine maniaBarLine)
-                maniaBarLine.SetDirectionAngle(!SettingsStorageSingleton.Settings.Gameplay.DownScroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
+                maniaBarLine.SetDirectionAngle(!SettingsManager.Instance.Gameplay.DownScroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
 
-            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = SettingsStorageSingleton.Settings.Gameplay.DownScroll ? 1f : 0f;
-            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = SettingsStorageSingleton.Settings.Gameplay.DownScroll ? -140f : 140f;
+            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = SettingsManager.Instance.Gameplay.DownScroll ? 1f : 0f;
+            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = SettingsManager.Instance.Gameplay.DownScroll ? -140f : 140f;
             //BarLines[i].SetAnchorsPreset(barLinePreset, true);
         }
     }
