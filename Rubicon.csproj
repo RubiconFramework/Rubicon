@@ -13,6 +13,10 @@
     <EmbeddedResource Remove="scenes\**" />
     <Compile Remove="Source\Rubicon.Data\Attributes\**" />
     <EmbeddedResource Remove="Source\Rubicon.Data\Attributes\**" />
+    <Compile Remove="Source\Rubicon.Data\Settings\Validators\**" />
+    <EmbeddedResource Remove="Source\Rubicon.Data\Settings\Validators\**" />
+    <Compile Remove="Source\Rubicon.Data\Settings\Analyzers\**" />
+    <EmbeddedResource Remove="Source\Rubicon.Data\Settings\Analyzers\**" />
   </ItemGroup>
   <ItemGroup>
     <!-- Root the assemblies to avoid trimming. -->
@@ -22,6 +26,7 @@
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
     <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.11.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Characters\bf.tscn" />

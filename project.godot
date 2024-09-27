@@ -21,7 +21,7 @@ config/icon="res://Assets/UI/Misc/fnf.png"
 
 [autoload]
 
-UserSettings="*res://Source/Rubicon.Core/Autoload/UserSettingsInstance.cs"
+SettingsStorage="*res://Source/Rubicon.Core/Autoload/SettingsStorageSingleton.cs"
 DebugInfo="*res://Source/Rubicon.Core/Autoload/DebugInfo.tscn"
 Conductor="*res://Source/Rubicon.Core/Autoload/ConductorSingleton.cs"
 RubiconEngine="*res://Source/Rubicon.Core/Autoload/RubiconEngineSingleton.cs"

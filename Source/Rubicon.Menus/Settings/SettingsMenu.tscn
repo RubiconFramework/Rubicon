@@ -227,7 +227,6 @@ anchor_right = 0.995313
 anchor_bottom = 0.491
 offset_left = -294.001
 offset_top = 9.72003
-offset_right = -0.000976563
 offset_bottom = 9.72003
 grow_horizontal = 2
 grow_vertical = 2
@@ -241,6 +240,7 @@ libraries = {
 }
 
 [node name="BG" type="ColorRect" parent="Main/Sidebar"]
+visible = false
 self_modulate = Color(0, 0, 0, 0.384314)
 layout_mode = 1
 anchors_preset = 15

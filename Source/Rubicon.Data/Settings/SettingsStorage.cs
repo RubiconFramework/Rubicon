@@ -3,13 +3,13 @@ using Rubicon.Data.Settings.Attributes;
 
 namespace Rubicon.Data.Settings;
 
-public class GeneralSettings
+public class SettingsStorage
 {
 	public Gameplay Gameplay { get; set; } = new();
 	public Audio Audio { get; set; } = new();
 	public Video Video { get; set; } = new();
 	public Misc Misc { get; set; } = new();
-	public Keybinds KeyBinds { get; set; } = new();
+	public Keybinds Keybinds { get; set; } = new();
 }
 
 [RubiconSettingsSection("Gameplay", true, "res://Assets/UI/Menus/Settings/Gameplay.png")]
@@ -21,7 +21,7 @@ public class Gameplay
 	public bool GhostTapping { get; set; } = true;
 	public bool FlashingLights { get; set; } = true;
 	
-	[RubiconSettingsSubsection("Gameplay Modifiers")]
+	[RubiconSettingsGroup("Gameplay Modifiers")]
 	public class GameplayModifiers
 	{
 		[StepValue(0.01f)] public double PlaybackRate { get; set; } = 1f;
@@ -48,13 +48,19 @@ public class Video
 {
 	public bool Fullscreen { get; set; } = false;
 	public bool VSync { get; set; } = false;
-	public int Fps { get; set; } = 144;
+	public int MaxFPS { get; set; } = 144;
 }
 
 [RubiconSettingsSection("Misc", true, "res://Assets/UI/Menus/Settings/Misc.png")]
 public class Misc
 {
-	public bool PrintSettingsOnConsole { get; set; } = false;
+	public bool stupidfuckingsetting { get; set; } = false;
+
+	[RubiconSettingsGroup("Debug Settings")]
+	public class DebugMiscSettings
+	{
+		public bool PrintSettingsOnConsole { get; set; } = false;
+	}
 }
 
 [RubiconSettingsSection("Keybinds", true, "res://Assets/UI/Menus/Settings/Keybinds.png")]

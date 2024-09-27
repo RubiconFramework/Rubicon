@@ -4,13 +4,18 @@ using Rubicon.Data.Settings.Attributes;
 using Array = Godot.Collections.Array;
 
 [GlobalClass]
-public partial class UserSettingsInstance : Node
+public partial class SettingsStorageSingleton : Node
 {
 	[Export] public ConfigFile Data = new();
 	public const string SettingsFilePath = "user://settings.cfg";
-	public static GeneralSettings Settings { get; private set; } = new GeneralSettings();
+	public static SettingsStorage Settings { get; private set; } = new();
+	public static Gameplay Gameplay { get; private set; } = Settings.Gameplay;
+	public static Audio Audio { get; private set; } = Settings.Audio;
+	public static Video Video { get; private set; } = Settings.Video;
+	public static Misc Misc { get; private set; } = Settings.Misc;
+	public static Keybinds Keybinds { get; private set; } = Settings.Keybinds;
 
-	public UserSettingsInstance()
+	public SettingsStorageSingleton()
 	{
 		if (!Load())
 		{
@@ -30,7 +35,7 @@ public partial class UserSettingsInstance : Node
 				LoadSectionFromFile(Settings.Audio);
 				LoadSectionFromFile(Settings.Video);
 				LoadSectionFromFile(Settings.Misc);
-				LoadSectionFromFile(Settings.KeyBinds);
+				LoadSectionFromFile(Settings.Keybinds);
 				return true;
 			}
 		}
@@ -49,7 +54,7 @@ public partial class UserSettingsInstance : Node
 
 	public void Reset()
 	{
-		Settings = new GeneralSettings();
+		Settings = new SettingsStorage();
 		SerializeSettings();
 	}
 
@@ -59,7 +64,7 @@ public partial class UserSettingsInstance : Node
 		SerializeSection(Settings.Audio);
 		SerializeSection(Settings.Video);
 		SerializeSection(Settings.Misc);
-		SerializeSection(Settings.KeyBinds);
+		SerializeSection(Settings.Keybinds);
 	}
 
 	private void SerializeSection(object section)
