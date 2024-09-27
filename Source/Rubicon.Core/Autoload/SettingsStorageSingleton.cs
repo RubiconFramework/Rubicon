@@ -67,16 +67,20 @@ public partial class SettingsStorageSingleton : Node
 		SerializeSection(Settings.Keybinds);
 	}
 
-	private void SerializeSection(object section)
+	private void SerializeSection(object section, string parentSection = "")
 	{
 		var type = section.GetType();
 		var attribute = (RubiconSettingsSectionAttribute)Attribute.GetCustomAttribute(type, typeof(RubiconSettingsSectionAttribute));
-		if (attribute != null)
-		{
-			foreach (var property in type.GetProperties()) 
-			{
-				object value = property.GetValue(section);
+		string sectionName = string.IsNullOrEmpty(parentSection) ? attribute?.SectionName : parentSection;
 
+		foreach (var property in type.GetProperties())
+		{
+			object value = property.GetValue(section);
+
+			if (value == null) continue;
+
+			if (!(value.GetType().IsClass && value.GetType() != typeof(string) && !typeof(Dictionary).IsAssignableFrom(value.GetType()) && !typeof(Array).IsAssignableFrom(value.GetType())))
+			{
 				Variant variantValue = value switch
 				{
 					bool b => b,
@@ -87,53 +91,66 @@ public partial class SettingsStorageSingleton : Node
 					Dictionary d => d,
 					Array a => a,
 					Enum e => Convert.ToInt32(e),
-					_ => throw new InvalidOperationException($"Unsupported type: {value!.GetType()}")
+					_ => throw new InvalidOperationException($"Unsupported type: {value.GetType()}")
 				};
 
-				Data.SetValue(attribute.SectionName, property.Name, variantValue);
+				Data.SetValue(sectionName, property.Name, variantValue);
 			}
 		}
+
+		foreach (var property in type.GetProperties())
+		{
+			object value = property.GetValue(section);
+			if (value == null) continue;
+			if (value.GetType().IsClass && value.GetType() != typeof(string) && !typeof(Dictionary).IsAssignableFrom(value.GetType()) && !typeof(Array).IsAssignableFrom(value.GetType())) 
+				SerializeSection(value, sectionName + "/" + property.Name);
+		}
 	}
-	
-	private void LoadSectionFromFile(object section)
+
+	private void LoadSectionFromFile(object section, string parentSection = "")
 	{
 		var type = section.GetType();
 		var attribute = (RubiconSettingsSectionAttribute)Attribute.GetCustomAttribute(type, typeof(RubiconSettingsSectionAttribute));
-	
-		if (attribute != null)
+		string sectionName = attribute != null ? attribute.SectionName : parentSection;
+
+		foreach (var property in type.GetProperties())
 		{
-			foreach (var property in type.GetProperties())
+			if (property.PropertyType.IsClass && property.PropertyType != typeof(string) && !typeof(Dictionary).IsAssignableFrom(property.PropertyType) && !typeof(Array).IsAssignableFrom(property.PropertyType))
 			{
-				if (Data.HasSectionKey(attribute.SectionName, property.Name))
+				var nestedObject = property.GetValue(section);
+				if (nestedObject == null)
 				{
-					Variant variantValue = Data.GetValue(attribute.SectionName, property.Name);
-					switch (property.PropertyType.IsEnum)
+					nestedObject = Activator.CreateInstance(property.PropertyType);
+					property.SetValue(section, nestedObject);
+				}
+
+				LoadSectionFromFile(nestedObject, sectionName + "/" + property.Name);
+			}
+			else if (Data.HasSectionKey(sectionName, property.Name))
+			{
+				Variant variantValue = Data.GetValue(sectionName, property.Name);
+				if (property.PropertyType.IsEnum) property.SetValue(section, Enum.ToObject(property.PropertyType, variantValue));
+				else
+				{
+					switch (variantValue.VariantType)
 					{
-						case true:
-							property.SetValue(section, Enum.ToObject(property.PropertyType, variantValue));
+						case Variant.Type.Int:
+							property.SetValue(section, variantValue.AsInt32());
 							break;
-						default:
-							switch (variantValue.VariantType)
-							{
-								case Variant.Type.Int:
-									property.SetValue(section, variantValue.AsInt32());
-									break;
-								case Variant.Type.Float:
-									property.SetValue(section, variantValue.AsDouble());
-									break;
-								case Variant.Type.Bool:
-									property.SetValue(section, variantValue.AsBool());
-									break;
-								case Variant.Type.String:
-									property.SetValue(section, variantValue.AsString());
-									break;
-								case Variant.Type.Array:
-									property.SetValue(section, variantValue.AsGodotArray());
-									break;
-								case Variant.Type.Dictionary:
-									property.SetValue(section, variantValue.AsGodotDictionary());
-									break;
-							}
+						case Variant.Type.Float:
+							property.SetValue(section, variantValue.AsDouble());
+							break;
+						case Variant.Type.Bool:
+							property.SetValue(section, variantValue.AsBool());
+							break;
+						case Variant.Type.String:
+							property.SetValue(section, variantValue.AsString());
+							break;
+						case Variant.Type.Array:
+							property.SetValue(section, variantValue.AsGodotArray());
+							break;
+						case Variant.Type.Dictionary:
+							property.SetValue(section, variantValue.AsGodotDictionary());
 							break;
 					}
 				}

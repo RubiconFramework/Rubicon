@@ -54,8 +54,6 @@ public class Video
 [RubiconSettingsSection("Misc", true, "res://Assets/UI/Menus/Settings/Misc.png")]
 public class Misc
 {
-	public bool stupidfuckingsetting { get; set; } = false;
-
 	[RubiconSettingsGroup("Debug Settings")]
 	public class DebugMiscSettings
 	{
