@@ -120,7 +120,7 @@ public partial class ManiaNoteManager : NoteManager
 		{
 			if (!inputElement.Holding)
 			{
-				if (NoteHeld == null || NoteHeld != null && (Autoplay || !Autoplay && Input.IsActionPressed($"MANIA_{ParentBarLine.Managers.Length}K_{Lane}")))
+				if (NoteHeld == null || NoteHeld != null && (Autoplay || !Autoplay && Input.IsActionPressed($"PLAY_MANIA_{ParentBarLine.Managers.Length}K_{Lane}")))
 					LaneObject.Animation = $"{Direction}LaneConfirm";
 				
 				NoteHeld = null;

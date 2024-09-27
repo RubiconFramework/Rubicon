@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://csxrq1ms8awxc"]
 
-[ext_resource type="Script" path="res://Source/Rubicon.Menus/Settings/SettingsMenu.cs" id="1_lotll"]
+[ext_resource type="Script" path="res://Source/Rubicon/Menus/Settings/SettingsMenu.cs" id="1_lotll"]
 [ext_resource type="Texture2D" uid="uid://qhfv36mgywf6" path="res://Assets/UI/Menus/menuBGDesat.png" id="2_qyjh5"]
 
 [sub_resource type="Gradient" id="Gradient_we0p3"]

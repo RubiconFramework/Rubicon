@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SongMeta" load_steps=2 format=3 uid="uid://de2lkhunlj07k"]
 
-[ext_resource type="Script" path="res://Source/Rubicon.Core/Meta/SongMeta.cs" id="1_t6c4e"]
+[ext_resource type="Script" path="res://Source/Rubicon/Core/Meta/SongMeta.cs" id="1_t6c4e"]
 
 [resource]
 script = ExtResource("1_t6c4e")

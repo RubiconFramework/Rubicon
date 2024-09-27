@@ -20,9 +20,9 @@ func settings_loaded(settings_path: String):
 			var value = config.get_value(section, key)
 			settings_data[section][key] = value
 	
-	if settings_data["Misc/Debug"]["PrintSettingsOnConsole"] == true:
-		print("[SettingsAccessor] Settings data loaded:")
-		print(settings_data)
+	#if settings_data["Misc/Debug"]["PrintSettingsOnConsole"] == true:
+	#	print("[SettingsAccessor] Settings data loaded:")
+	#	print(settings_data)
 
 func get_setting(section: String, key: String, default_value = null):
 	if section in settings_data and key in settings_data[section]:

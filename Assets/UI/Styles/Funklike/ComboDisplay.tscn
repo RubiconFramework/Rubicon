@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://q5yhhc5khh8u"]
 
-[ext_resource type="Script" path="res://Source/Rubicon.Extras/UI/DdrComboDisplay.cs" id="1_1x1qq"]
+[ext_resource type="Script" path="res://Source/Rubicon/Extras/UI/DdrComboDisplay.cs" id="1_1x1qq"]
 [ext_resource type="SpriteFrames" uid="uid://c85tnr6y52kqk" path="res://Assets/UI/Styles/Funkin/Combo/combo.tres" id="2_wlae3"]
 
 [node name="ComboDisplay" type="Control"]
