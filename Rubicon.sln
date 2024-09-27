@@ -2,6 +2,8 @@
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon", "Rubicon.csproj", "{59851DE1-2761-4285-959C-23E212A67C62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rubicon.SourceGenerators", "Source\Rubicon.SourceGenerators\Rubicon.SourceGenerators.csproj", "{71D650FD-9DD5-4710-9C9D-4DD2035A2FFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 	Debug|Any CPU = Debug|Any CPU
@@ -15,5 +17,11 @@ Global
 		{59851DE1-2761-4285-959C-23E212A67C62}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{59851DE1-2761-4285-959C-23E212A67C62}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{59851DE1-2761-4285-959C-23E212A67C62}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{71D650FD-9DD5-4710-9C9D-4DD2035A2FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D650FD-9DD5-4710-9C9D-4DD2035A2FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D650FD-9DD5-4710-9C9D-4DD2035A2FFB}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D650FD-9DD5-4710-9C9D-4DD2035A2FFB}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{71D650FD-9DD5-4710-9C9D-4DD2035A2FFB}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D650FD-9DD5-4710-9C9D-4DD2035A2FFB}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

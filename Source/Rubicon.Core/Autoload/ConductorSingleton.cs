@@ -1,12 +1,13 @@
 using Godot;
 using Rubicon.Core.Chart;
+using Rubicon.Data.Generation;
 
 namespace Rubicon.Core.Autoload;
 
 /// <summary>
 /// A Node that keeps track of musical timing and what not. There should only be a single instance of this.
 /// </summary>
-[GlobalClass]
+[GlobalClass, StaticAutoloadSingleton("Rubicon.Core", "Conductor")]
 public partial class ConductorSingleton : Node
 {
 	#region Status Variables
