@@ -27,7 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
-    <PackageReference Include="GodotSharpExtras" Version="0.4.0" />
+    <PackageReference Include="GodotSharpExtras" Version="0.5.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Source\Rubicon.SourceGenerators\Rubicon.SourceGenerators.csproj"
@@ -45,6 +45,7 @@
     <Content Include="Songs\Test\Vocals.ogg" />
     <Content Include="Songs\Test\Vocals.ogg.import" />
     <Content Include="Source\Rubicon.API\a pi.txt" />
+    <Content Include="Source\Rubicon.Data\Settings\SettingsAccessor.gd" />
     <Content Include="Source\Rubicon.Menus\Credits\CreditsMenu.tscn" />
     <Content Include="Source\Rubicon.Menus\Main\MainMenu.tscn" />
     <Content Include="Source\Rubicon.Menus\Settings\SettingsMenu.tscn" />

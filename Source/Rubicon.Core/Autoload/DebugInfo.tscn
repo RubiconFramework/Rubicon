@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://lhk0rodbjiux"]
+[gd_scene load_steps=5 format=3 uid="uid://dwi8utcpb73yx"]
 
 [ext_resource type="Script" path="res://Source/Rubicon.Core/Autoload/DebugInfo.cs" id="1_nl6fn"]
 

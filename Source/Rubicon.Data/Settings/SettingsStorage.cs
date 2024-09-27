@@ -55,6 +55,8 @@ public class Video
 [RubiconSettingsSection("Misc", true, "res://Assets/UI/Menus/Settings/Misc.png")]
 public class Misc
 {
+	public DebugMiscSettings Debug { get; set; } = new();
+	
 	[RubiconSettingsGroup("Debug Settings")]
 	public class DebugMiscSettings
 	{

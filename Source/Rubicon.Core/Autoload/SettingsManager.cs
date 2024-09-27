@@ -7,23 +7,29 @@ using Array = Godot.Collections.Array;
 public partial class SettingsManager : Node
 {
 	[Export] public ConfigFile Data = new();
-	public const string SettingsFilePath = "user://settings.cfg";
+	[Export] public string SettingsFilePath = "user://settings.cfg";
+	
 	public static SettingsStorage Instance { get; private set; } = new();
 	public static Gameplay Gameplay { get; private set; } = Instance.Gameplay;
 	public static Audio Audio { get; private set; } = Instance.Audio;
 	public static Video Video { get; private set; } = Instance.Video;
 	public static Misc Misc { get; private set; } = Instance.Misc;
 	public static Keybinds Keybinds { get; private set; } = Instance.Keybinds;
-
-	public SettingsManager()
+	
+	[Signal] public delegate void SettingsLoadedEventHandler(string settings);
+	
+	public override void _Ready()
 	{
+		base._Ready();
+		
 		if (!Load())
 		{
 			Reset();
 			Save();
 		}
+		CallDeferred(MethodName.EmitSettingsLoaded);
 	}
-
+	
 	public bool Load()
 	{
 		if (FileAccess.FileExists(SettingsFilePath))
@@ -39,10 +45,9 @@ public partial class SettingsManager : Node
 				return true;
 			}
 		}
-
 		return false;
 	}
-
+	
 	public bool Save()
 	{
 		SerializeSettings();
@@ -158,4 +163,6 @@ public partial class SettingsManager : Node
 			}
 		}
 	}
+	
+	private void EmitSettingsLoaded() => EmitSignal(SignalName.SettingsLoaded, SettingsFilePath);
 }
