@@ -1,5 +1,6 @@
 using Godot.Collections;
 using Rubicon.Data.Settings.Attributes;
+using Array = Godot.Collections.Array;
 
 namespace Rubicon.Data.Settings;
 
@@ -64,6 +65,14 @@ public class Misc
 [RubiconSettingsSection("Keybinds", true, "res://Assets/UI/Menus/Settings/Keybinds.png")]
 public class Keybinds
 {
-	public Dictionary UiKeyBinds { get; set; } = new();
-	public Dictionary GameKeyBinds { get; set; } = new();	
+	public Dictionary UiKeybinds { get; set; } = new()
+	{
+		["UI_DOWN"] = "Down",
+		["UI_UP"] = "Up",
+		["UI_LEFT"] = "Left",
+		["UI_RIGHT"] = "Right",
+		["UI_CANCEL"] = "Escape",
+		["UI_ENTER"] = "Enter",
+	};
+	public Dictionary GameplayKeybinds { get; set; } = new();	
 }

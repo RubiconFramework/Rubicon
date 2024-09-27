@@ -76,9 +76,7 @@ public partial class SettingsStorageSingleton : Node
 		foreach (var property in type.GetProperties())
 		{
 			object value = property.GetValue(section);
-
 			if (value == null) continue;
-
 			if (!(value.GetType().IsClass && value.GetType() != typeof(string) && !typeof(Dictionary).IsAssignableFrom(value.GetType()) && !typeof(Array).IsAssignableFrom(value.GetType())))
 			{
 				Variant variantValue = value switch
@@ -120,7 +118,10 @@ public partial class SettingsStorageSingleton : Node
 				var nestedObject = property.GetValue(section);
 				if (nestedObject == null)
 				{
+					//shut up
+					#pragma warning disable IL2072
 					nestedObject = Activator.CreateInstance(property.PropertyType);
+					#pragma warning restore IL2072
 					property.SetValue(section, nestedObject);
 				}
 
