@@ -129,7 +129,7 @@ public partial class DebugInfo : CanvasLayer
 			ConductorSB.AppendLine($"Time: {bpm.Time}, Exact Time (ms): {bpm.MsTime}, BPM: {bpm.Bpm}, Time Signature: {bpm.TimeSignatureNumerator}/{bpm.TimeSignatureDenominator}\n")
 			.AppendLine($"Step: {Conductor.CurrentStep}")
 			.AppendLine($"Beat: {Conductor.CurrentBeat}")
-			.AppendLine($"Section: {Conductor.CurrentMeasure}");
+			.AppendLine($"Measure: {Conductor.CurrentMeasure}");
 
 		ConductorInfo.Text = ConductorSB.ToString();
 	}
