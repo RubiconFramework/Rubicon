@@ -24,7 +24,7 @@ public partial class RubiChart : Resource
     /// <summary>
     /// The Rubicon Engine version this chart was created on.
     /// </summary>
-    [Export] public uint Version = RubiconEngine.Version;
+    [Export] public uint Version = RubiconEngineInstance.Version;
 
     /// <summary>
     /// The default ruleset for this chart.

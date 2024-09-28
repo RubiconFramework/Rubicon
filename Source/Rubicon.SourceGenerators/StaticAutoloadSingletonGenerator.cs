@@ -7,7 +7,6 @@ using System.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Text;
 using IFieldSymbol = Microsoft.CodeAnalysis.IFieldSymbol;
 using IPropertySymbol = Microsoft.CodeAnalysis.IPropertySymbol;
 
@@ -68,19 +67,19 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
             .ToArray();
         
         IPropertySymbol[] publicProperties = properties
-            .Where(s => s.DeclaredAccessibility == Accessibility.Public)
+            .Where(s => s.DeclaredAccessibility == Accessibility.Public && !s.IsStatic)
             .ToArray();
 
         IFieldSymbol[] publicFields = members
             .Where(s => s.Kind == SymbolKind.Field && !s.IsImplicitlyDeclared)
             .Cast<IFieldSymbol>()
-            .Where(s => s.DeclaredAccessibility == Accessibility.Public)
+            .Where(s => s.DeclaredAccessibility == Accessibility.Public && !s.IsStatic)
             .ToArray();
 
         IMethodSymbol[] publicMethods = members
             .Where(s => s.Kind == SymbolKind.Method)
             .Cast<IMethodSymbol>()
-            .Where(s => s.DeclaredAccessibility == Accessibility.Public)
+            .Where(s => s.DeclaredAccessibility == Accessibility.Public && !s.IsStatic)
             .ToArray();
 
         INamedTypeSymbol[] signals = members
@@ -89,6 +88,8 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
             .Cast<INamedTypeSymbol>()
             .ToArray();
 
+        StringBuilder stuffToAppendAtEnd = new StringBuilder();
+        
         foreach (IPropertySymbol property in publicProperties)
         {
             string propertyNameSpace = property.Type.GetNamespaceName();
@@ -232,6 +233,6 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
 
         //throw new Exception((usingsText.ToString() + finalClass.ToString()).Replace("\n", "").Replace("\t", ""));
 
-        context.AddSource($"{className}.g.cs", usingsText.ToString() + finalClass.ToString());
+        context.AddSource($"{className}.g.cs", usingsText.ToString() + finalClass.ToString() + stuffToAppendAtEnd.ToString());
     }
 }

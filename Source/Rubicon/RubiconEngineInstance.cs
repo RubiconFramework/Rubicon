@@ -16,17 +16,17 @@ public partial class RubiconEngineInstance : Node
 	/// <summary>
 	/// The current version of Rubicon being used.
 	/// </summary>
-	public uint Version => GetVersion();
+	public static uint Version => RubiconUtility.CreateVersion(0, 1, 0, 0);
 
 	/// <summary>
 	/// A tag for the current version.
 	/// </summary>
-	public string VersionTag => GetVersionTag();
+	public static string VersionTag => "-alpha";
 
 	/// <summary>
 	/// The current Rubicon version, in string format.
 	/// </summary>
-	public string VersionToString => GetVersionToString();
+	public static string VersionToString => RubiconUtility.VersionToString(Version) + VersionTag;
 	
 	/// <summary>
 	/// The scene that the game first starts with. Automatically set by <see cref="_Ready"/>.
@@ -46,17 +46,17 @@ public partial class RubiconEngineInstance : Node
 		// This is done so that the editor can stay in a 16:9 aspect ratio while keeping
 		// the 4:3 support in-game typically.
 		GetWindow().ContentScaleSize = ProjectSettings.GetSetting("rubicon/general/content_minimum_size").AsVector2I();
-		
+
 		StartingScene = GetTree().CurrentScene.Name;
 		StartingSceneType = GetTree().CurrentScene.GetType();
 	}
 
 	/// <inheritdoc cref="Version"/>
-	public uint GetVersion() => RubiconUtility.CreateVersion(0, 1, 0, 0);
+	public uint GetVersion() => Version;
 
 	/// <inheritdoc cref="VersionTag"/>
-	public string GetVersionTag() => "-alpha";
+	public string GetVersionTag() => VersionTag;
 
 	/// <inheritdoc cref="VersionToString"/>
-	public string GetVersionToString() => RubiconUtility.VersionToString(GetVersion()) + GetVersionTag();
+	public string GetVersionToString() => VersionToString;
 }

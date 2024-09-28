@@ -23,7 +23,7 @@ public partial class ManiaRuleSet : RuleSet
     /// <summary>
     /// Mania is the main mode for this engine, so it should probably match up with this engine's version.
     /// </summary>
-    public override uint Version => RubiconEngine.Version;
+    public override uint Version => RubiconEngineInstance.Version;
 
     /// <summary>
     /// Mania Discord RPC verb
