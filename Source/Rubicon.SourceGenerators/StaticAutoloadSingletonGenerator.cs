@@ -47,17 +47,18 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
         string nameSpace = attribute.ConstructorArguments[0].Value?.ToString();
         string className = attribute.ConstructorArguments[1].Value?.ToString();
 
-        List<string> allUsings = [ symbol.ContainingNamespace.FullQualifiedNameOmitGlobal() ];
+        List<string> allUsings = [ symbol.ContainingNamespace.FullQualifiedNameOmitGlobal(), "Godot" ];
         StringBuilder finalClass = new();
         
         if (!string.IsNullOrEmpty(nameSpace))
             finalClass.Append($"namespace {nameSpace};\n\n");
 
         // Make singleton field here
-        finalClass.Append($"public static class {className}\n" +
+        finalClass.Append($"/// <summary>\n/// A static class that allows for accessing the <see cref=\"{symbol.Name}\"/> singleton's functions easier.\n/// </summary>\n" +
+                          $"public static class {className}\n" +
                           "{\n" +
                           $"\t/// <summary>\n\t/// The current global instance of <see cref=\"{symbol.Name}\"/>.\n\t/// </summary>\n" +
-                          $"\tpublic static {symbol.Name} Singleton;\n\n");
+                          $"\tpublic static {symbol.Name} Singleton => Engine.GetMainLoop() is SceneTree tree ? tree.Root.GetNode<{symbol.Name}>(\"{className}\") : null;\n\n");
 
         ImmutableArray<ISymbol> members = symbol.GetMembers();
 
@@ -99,7 +100,7 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
 
             if (property.IsReadOnly)
             {
-                finalClass.Append($"\tpublic static {property.Type.ToDisplayString()} {property.Name} => Singleton.{property.Name};\n");
+                finalClass.Append($"\tpublic static {property.Type.ToDisplayString()} {property.Name} => Singleton.{property.Name};\n\n");
                 continue;
             }
 
@@ -217,9 +218,10 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
                     finalClass.Append(", ");
             }
 
-            finalClass.Append(");\n");
+            finalClass.Append(");\n\n");
         }
 
+        finalClass.Remove(finalClass.Length - 1, 1);
         finalClass.Append("}");
 
         

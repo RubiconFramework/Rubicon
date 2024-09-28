@@ -1,12 +1,33 @@
+global using Godot;
+global using Godot.Sharp.Extras;
+global using System;
+
+using Rubicon.Data.Generation;
+
 namespace Rubicon.Core.Autoload;
 
 /// <summary>
-/// A Node that contains basic engine info and may help with other utilities.
+/// A Node that contains basic engine info. Essentially the Main class.
 /// More useful in GDScript than it is in C#.
 /// </summary>
-[GlobalClass]
-public partial class RubiconEngineSingleton : Node
+[GlobalClass, StaticAutoloadSingleton("Rubicon", "RubiconEngine")]
+public partial class RubiconEngineInstance : Node
 {
+	/// <summary>
+	/// The current version of Rubicon being used.
+	/// </summary>
+	public uint Version => GetVersion();
+
+	/// <summary>
+	/// A tag for the current version.
+	/// </summary>
+	public string VersionTag => GetVersionTag();
+
+	/// <summary>
+	/// The current Rubicon version, in string format.
+	/// </summary>
+	public string VersionToString => GetVersionToString();
+	
 	/// <summary>
 	/// The scene that the game first starts with. Automatically set by <see cref="_Ready"/>.
 	/// Will always be the main scene when exported, but can vary in editor.
@@ -21,34 +42,21 @@ public partial class RubiconEngineSingleton : Node
 	
 	public override void _Ready()
 	{
-		if (RubiconEngine.Singleton != null)
-		{
-			QueueFree();
-			return;
-		}
-
-		RubiconEngine.Singleton = this;
-		
 		// Override the current scale size with the one set in the Rubicon project settings
 		// This is done so that the editor can stay in a 16:9 aspect ratio while keeping
 		// the 4:3 support in-game typically.
 		GetWindow().ContentScaleSize = ProjectSettings.GetSetting("rubicon/general/content_minimum_size").AsVector2I();
-
-		Window root = GetTree().Root;
 		
-		// Link Conductor as well
-		Conductor.Singleton = root.GetNode<ConductorSingleton>("Conductor");
-
 		StartingScene = GetTree().CurrentScene.Name;
 		StartingSceneType = GetTree().CurrentScene.GetType();
 	}
 
-	/// <inheritdoc cref="RubiconEngine.Version"/>
-	public uint GetVersion() => RubiconEngine.Version;
+	/// <inheritdoc cref="Version"/>
+	public uint GetVersion() => RubiconUtility.CreateVersion(0, 1, 0, 0);
 
-	/// <inheritdoc cref="RubiconEngine.SubVersion"/>
-	public string GetSubVersion() => RubiconEngine.SubVersion;
+	/// <inheritdoc cref="VersionTag"/>
+	public string GetVersionTag() => "-alpha";
 
-	/// <inheritdoc cref="RubiconEngine.VersionString"/>
-	public string GetVersionString() => RubiconEngine.VersionString;
+	/// <inheritdoc cref="VersionToString"/>
+	public string GetVersionToString() => RubiconUtility.VersionToString(GetVersion()) + GetVersionTag();
 }

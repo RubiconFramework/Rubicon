@@ -100,7 +100,7 @@ public partial class DebugInfo : CanvasLayer
 	private void UpdateStaticLabels()
 	{
 		GameVersion.Text = $"{ProjectSettings.GetSetting("application/config/name").AsString()} {ProjectSettings.GetSetting("application/config/version").AsString()} {(OS.IsDebugBuild() ? "[Debug]" : "[Release]")}";
-		RubiconVersion.Text = $"Rubicon Engine {RubiconEngine.VersionString}";
+		RubiconVersion.Text = $"Rubicon Engine {RubiconEngine.VersionToString}";
 		GodotVersion.Text = $"Godot Engine {Engine.GetVersionInfo()["major"]}.{Engine.GetVersionInfo()["minor"]}.{Engine.GetVersionInfo()["patch"]} [{Engine.GetVersionInfo()["status"]}]";
 	}
 

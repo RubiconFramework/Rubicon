@@ -5,10 +5,10 @@ using Rubicon.Data.Generation;
 namespace Rubicon.Core.Autoload;
 
 /// <summary>
-/// A Node that keeps track of musical timing and what not. There should only be a single instance of this.
+/// A Node that keeps track of musical timing and what not.
 /// </summary>
 [GlobalClass, StaticAutoloadSingleton("Rubicon.Core", "Conductor")]
-public partial class ConductorSingleton : Node
+public partial class ConductorInstance : Node
 {
 	#region Status Variables
 	/// <summary>
