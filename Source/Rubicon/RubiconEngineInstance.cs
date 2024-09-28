@@ -4,7 +4,7 @@ global using System;
 
 using Rubicon.Data.Generation;
 
-namespace Rubicon.Core.Autoload;
+namespace Rubicon;
 
 /// <summary>
 /// A Node that contains basic engine info. Essentially the Main class.

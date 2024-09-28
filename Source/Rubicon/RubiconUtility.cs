@@ -1,4 +1,4 @@
-namespace Rubicon.Core;
+namespace Rubicon;
 
 /// <summary>
 /// A general purpose utility class for Rubicon Engine
