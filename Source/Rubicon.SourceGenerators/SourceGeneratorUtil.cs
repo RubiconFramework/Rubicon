@@ -7,6 +7,13 @@ namespace Rubicon.SourceGenerators;
 
 public static class SourceGeneratorUtil
 {
+    public static string GetNamespaceName(this ITypeSymbol symbol)
+    {
+        string fullyQualifiedName = symbol.FullQualifiedNameOmitGlobal();
+        int lastIndex = fullyQualifiedName.LastIndexOf('.');
+        return lastIndex == -1 ? "" : fullyQualifiedName.Substring(0, fullyQualifiedName.LastIndexOf('.'));
+    }
+    
     /// <summary>
     /// Whether the symbol inherits from the type provided.
     /// </summary>
@@ -28,18 +35,20 @@ public static class SourceGeneratorUtil
     }
     
     /// <summary>
-    /// Tests if the script is a Godot script.
+    /// Tests if the script is of the type specified.
     /// </summary>
     /// <param name="cds">The <see cref="ClassDeclarationSyntax"/></param>
+    /// <param name="assemblyName">The assembly name (example: GodotSharp)</param>
+    /// <param name="typeFullName">The full name of the type (example: Godot.GodotObject)</param>
     /// <param name="compilation">The compilation</param>
-    /// <param name="symbol">The symbol to test</param>
+    /// <param name="symbol">The symbol retrieved</param>
     /// <returns>True if it is a valid Godot class, false if not.</returns>
-    private static bool TryGetGodotScriptClass(this ClassDeclarationSyntax cds, Compilation compilation, out INamedTypeSymbol? symbol)
+    private static bool TryGetClassOfType(this ClassDeclarationSyntax cds, string assemblyName, string typeFullName, Compilation compilation, out INamedTypeSymbol? symbol)
     {
         SemanticModel semanticModel = compilation.GetSemanticModel(cds.SyntaxTree);
         INamedTypeSymbol? classTypeSymbol = semanticModel.GetDeclaredSymbol(cds);
 
-        if (classTypeSymbol?.BaseType == null || !classTypeSymbol.BaseType.InheritsFrom("GodotSharp", "Godot.GodotObject"))
+        if (classTypeSymbol?.BaseType == null || !classTypeSymbol.BaseType.InheritsFrom(assemblyName, typeFullName))
         {
             symbol = null;
             return false;
@@ -48,18 +57,20 @@ public static class SourceGeneratorUtil
         symbol = classTypeSymbol;
         return true;
     }
-    
+
     /// <summary>
-    /// Only selects classes inheriting from Godot.GodotObject.
+    /// Only selects classes inheriting from the type specified.
     /// </summary>
     /// <param name="source">The source</param>
+    /// <param name="assemblyName">The assembly name (example: GodotSharp)</param>
+    /// <param name="typeFullName">The full name of the type (example: Godot.GodotObject)</param>
     /// <param name="compilation">The compilation</param>
-    /// <returns>Godot inheriting classes</returns>
-    public static IEnumerable<(ClassDeclarationSyntax cds, INamedTypeSymbol symbol)> SelectGodotScriptClasses(this IEnumerable<ClassDeclarationSyntax> source, Compilation compilation)
+    /// <returns>Both the ClassDeclarationSymbol and the symbol associated.</returns>
+    public static IEnumerable<(ClassDeclarationSyntax cds, INamedTypeSymbol symbol)> SelectClassesOfType(this IEnumerable<ClassDeclarationSyntax> source, string assemblyName, string typeFullName, Compilation compilation)
     {
         foreach (var cds in source)
         {
-            if (cds.TryGetGodotScriptClass(compilation, out var symbol))
+            if (cds.TryGetClassOfType(assemblyName, typeFullName, compilation, out var symbol))
                 yield return (cds, symbol!);
         }
     }
@@ -94,4 +105,7 @@ public static class SourceGeneratorUtil
     /// <returns>Whether the type is matching or not</returns>
     public static bool IsStaticAutoloadAttribute(this INamedTypeSymbol symbol)
         => symbol.FullQualifiedNameOmitGlobal() == GenerationConstants.StaticAutoloadAttr;
+
+    public static bool IsGodotSignalAttribute(this INamedTypeSymbol symbol)
+        => symbol.FullQualifiedNameOmitGlobal() == GenerationConstants.SignalAttr;
 }
