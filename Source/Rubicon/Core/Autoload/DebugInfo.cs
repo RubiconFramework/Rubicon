@@ -31,7 +31,6 @@ public partial class DebugInfo : CanvasLayer
 	/*Visibility Shit*/
 	[NodePath("InfoContainer/DebugInformation")] private VBoxContainer DebugInformation; 
 	
-	private Process CurrentProcess = Process.GetCurrentProcess();
 	private float RAMUpdateTime;
 	private float ObjectUpdateTime;
 	
@@ -130,7 +129,7 @@ public partial class DebugInfo : CanvasLayer
 			ConductorSB.AppendLine($"Time: {bpm.Time}, Exact Time (ms): {bpm.MsTime}, BPM: {bpm.Bpm}, Time Signature: {bpm.TimeSignatureNumerator}/{bpm.TimeSignatureDenominator}\n")
 			.AppendLine($"Step: {Conductor.CurrentStep}")
 			.AppendLine($"Beat: {Conductor.CurrentBeat}")
-			.AppendLine($"Measure/Section: {Conductor.CurrentMeasure}");
+			.AppendLine($"Section: {Conductor.CurrentMeasure}");
 
 		ConductorInfo.Text = ConductorSB.ToString();
 	}
