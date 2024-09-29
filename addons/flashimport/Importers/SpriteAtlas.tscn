@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dufx3830dcjkh"]
 
-[ext_resource type="Theme" uid="uid://14vqd4l3ryru" path="res://resources/themes/default.tres" id="1_gn6fk"]
+[ext_resource type="Theme" uid="uid://14vqd4l3ryru" path="res://Resources/Themes/Default.tres" id="1_gn6fk"]
 [ext_resource type="Script" path="res://addons/flashimport/Importers/SpriteAtlas.cs" id="1_sfuc1"]
 [ext_resource type="Script" path="res://addons/flashimport/Importers/FolderButton.cs" id="3_428bq"]
 
@@ -22,7 +22,7 @@ offset_right = -25.0
 offset_bottom = 55.0
 grow_horizontal = 2
 theme = ExtResource("1_gn6fk")
-text = "res://assets/game/characters/assets/gf/lullabyGFUnoptimized/"
+text = ""
 placeholder_text = "res://*/SpriteAtlas/"
 expand_to_text_length = true
 

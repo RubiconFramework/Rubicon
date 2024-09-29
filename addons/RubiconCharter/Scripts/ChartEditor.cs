@@ -8,35 +8,41 @@ public partial class ChartEditor : Control
 {
     public CharterPreferenceManager preferenceManager = new();
 
-    public void OnWindowClose(string WindowPath)
+    public void CloseWindow(NodePath WindowPath)
     {
-        GetNode<Window>(WindowPath).Visible = false;
+        GetNode<Window>(FixNodePath(WindowPath)).Visible = false;
     }
 
-    public void ShowWindow(string WindowPath)
+    public void ShowWindow(NodePath WindowPath)
     {
-        GetNode<Window>(WindowPath).PopupCentered();
+        GetNode<Window>(FixNodePath(WindowPath)).PopupCentered();
     }
 
-    public void MakeFileDialog()
+    public void MakeFileDialog(NodePath LineEditPath)
     {
         #if TOOLS
-            EditorFileDialog fileDialog = new();
-            fileDialog.Title = "Select a chart";
-            fileDialog.FileMode = EditorFileDialog.FileModeEnum.OpenFile;
-            fileDialog.Size = new Vector2I(512, 512);
-            fileDialog.InitialPosition = Window.WindowInitialPosition.CenterMainWindowScreen;
-            fileDialog.Filters = ["*.tres"];
-            //fileDialog.FileSelected += FileSelected;
-            AddChild(fileDialog);
+        EditorFileDialog fileDialog = new()
+        {
+            Title = "Select a chart",
+            FileMode = EditorFileDialog.FileModeEnum.OpenFile,
+            //CurrentDir = "res://songs/",
+            Size = new Vector2I(512, 512),
+            InitialPosition = Window.WindowInitialPosition.CenterMainWindowScreen,
+            Filters = ["*.tres"]
+        };
+        fileDialog.FileSelected += (string path) => GetNode<LineEdit>(FixNodePath(LineEditPath)).Text = path;
+        AddChild(fileDialog);
         #endif
     }
-
-
 
     public void ShowAgainToggle(bool toggle)
     {
         preferenceManager.Preferences.ShowWelcomeWindow = toggle;
         //preferenceManager.Save();
+    }
+
+    private string FixNodePath(NodePath Path)
+    {
+        return Path.ToString().Replace("../../../../../../../", "");
     }
 }

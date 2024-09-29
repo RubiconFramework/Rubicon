@@ -15,7 +15,6 @@ using Charter.Scripts;
         EditorInterface.Singleton.GetEditorMainScreen().AddChild(ChartEditorInstance);
 
         //preferenceManager.Load();
-        GD.Print(preferenceManager.Preferences.ShowWelcomeWindow);
 
         MainScreenChanged += _MainScreenChanged;
     }

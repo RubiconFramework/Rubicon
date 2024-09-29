@@ -17,7 +17,7 @@ metadata/_edit_lock_ = true
 [node name="WelcomeWindow" type="Window" parent="."]
 title = "Welcome"
 initial_position = 2
-size = Vector2i(768, 602)
+size = Vector2i(768, 600)
 
 [node name="Panel" type="Panel" parent="WelcomeWindow"]
 anchors_preset = 15
@@ -118,7 +118,8 @@ text = "Don't show this again"
 [node name="NewWindow" type="Window" parent="."]
 title = "New Chart"
 initial_position = 2
-size = Vector2i(384, 512)
+size = Vector2i(384, 384)
+visible = false
 
 [node name="Panel" type="Panel" parent="NewWindow"]
 anchors_preset = 15
@@ -241,10 +242,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Cancel"
 
-[node name="Done" type="Button" parent="NewWindow/Panel/MarginContainer2/HBoxContainer"]
+[node name="Next" type="Button" parent="NewWindow/Panel/MarginContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-text = "Done"
+text = "Next"
 
 [node name="TopBar" type="Panel" parent="."]
 layout_mode = 1
@@ -296,6 +297,9 @@ text = "About"
 switch_on_hover = true
 item_count = 1
 
-[connection signal="close_requested" from="WelcomeWindow" to="." method="OnWindowClose" binds= ["WelcomeWindow"]]
-[connection signal="pressed" from="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open/VBoxContainer/New" to="." method="ShowWindow" binds= ["NewWindow"]]
-[connection signal="close_requested" from="NewWindow" to="." method="OnWindowClose" binds= ["NewWindow"]]
+[connection signal="close_requested" from="WelcomeWindow" to="." method="CloseWindow" binds= [NodePath(".")]]
+[connection signal="pressed" from="WelcomeWindow/Panel/VBoxContainer/HBoxContainer/Open/VBoxContainer/New" to="." method="ShowWindow" binds= [NodePath("../../../../../../../NewWindow")]]
+[connection signal="close_requested" from="NewWindow" to="." method="CloseWindow" binds= [NodePath(".")]]
+[connection signal="pressed" from="NewWindow/Panel/MarginContainer/VBoxContainer/Stage/Button" to="." method="MakeFileDialog" binds= [NodePath("../LineEdit")]]
+[connection signal="pressed" from="NewWindow/Panel/MarginContainer/VBoxContainer/UIStyle/Button" to="." method="MakeFileDialog" binds= [NodePath("../LineEdit")]]
+[connection signal="pressed" from="NewWindow/Panel/MarginContainer/VBoxContainer/ManiaNoteSkin/Button" to="." method="MakeFileDialog" binds= [NodePath("../LineEdit")]]
