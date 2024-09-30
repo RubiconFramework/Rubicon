@@ -76,7 +76,7 @@ public partial class SettingsManager : Node
 	{
 		var type = section.GetType();
 		var attribute = (RubiconSettingsSectionAttribute)Attribute.GetCustomAttribute(type, typeof(RubiconSettingsSectionAttribute));
-		string sectionName = string.IsNullOrEmpty(parentSection) ? attribute?.SectionName : parentSection;
+		string sectionName = string.IsNullOrEmpty(parentSection) ? attribute?.Name : parentSection;
 
 		foreach (var property in type.GetProperties())
 		{
@@ -114,7 +114,7 @@ public partial class SettingsManager : Node
 	{
 		var type = section.GetType();
 		var attribute = (RubiconSettingsSectionAttribute)Attribute.GetCustomAttribute(type, typeof(RubiconSettingsSectionAttribute));
-		string sectionName = attribute != null ? attribute.SectionName : parentSection;
+		string sectionName = attribute != null ? attribute.Name : parentSection;
 
 		foreach (var property in type.GetProperties())
 		{

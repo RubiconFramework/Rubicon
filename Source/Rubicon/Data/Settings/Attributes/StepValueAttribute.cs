@@ -1,12 +1,11 @@
 namespace Rubicon.Data.Settings.Attributes;
 
 [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
-public class StepValueAttribute : Attribute
+public class StepValueAttribute(float step, float min = float.MinValue, float max = float.MaxValue) : Attribute
 {
-	public float Step { get; set; }
+	public float Step { get; set; } = step;
 
-	public StepValueAttribute(float step)
-	{
-		Step = step;
-	}
+	public float Minimum { get; set; } = min;
+
+	public float Maximum { get; set; } = max;
 }

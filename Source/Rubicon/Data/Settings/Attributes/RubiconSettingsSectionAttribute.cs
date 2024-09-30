@@ -3,14 +3,16 @@ namespace Rubicon.Data.Settings.Attributes;
 [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 public class RubiconSettingsSectionAttribute : Attribute
 {
-	public string SectionName { get; set; }
-	public bool GeneratedInSettingsMenu { get; set; }
-	public string SectionIconPath { get; set; }
+	public string Name;
+	public Texture2D Icon;
+	public bool GenerateInMenu;
 
-	public RubiconSettingsSectionAttribute(string sectionName, bool generatedInSettingsMenu = true, string sectionIconPath = null)
+	public RubiconSettingsSectionAttribute(string name, bool generateInMenu = true, string iconPath = null)
 	{
-		SectionName = sectionName;
-		GeneratedInSettingsMenu = generatedInSettingsMenu; 
-		SectionIconPath = sectionIconPath;
+		Name = name;
+		GenerateInMenu = generateInMenu;
+
+		if (!string.IsNullOrWhiteSpace(iconPath))
+			Icon = GD.Load<Texture2D>(iconPath);
 	}
 }

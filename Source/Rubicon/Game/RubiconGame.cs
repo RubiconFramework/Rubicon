@@ -47,6 +47,9 @@ public partial class RubiconGame : Node
 		SongMeta meta = GD.Load<SongMeta>($"res://Songs/{songName}/Data/Meta.tres");
 		RubiChart chart = GD.Load<RubiChart>($"res://Songs/{songName}/Data/{chartName}.tres");
 		chart.ConvertData().Format();
+		
+		//GetTree().Root.FsrSharpness
+		
 
 		string instPath = $"res://Songs/{songName}/Inst.ogg";
 		string vocalsPath = $"res://Songs/{songName}/Vocals.ogg";

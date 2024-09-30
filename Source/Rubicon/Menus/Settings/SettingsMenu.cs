@@ -26,19 +26,19 @@ public partial class SettingsMenu : BaseMenu
 		foreach (var prop in typeof(SettingsStorage).GetProperties())
 		{
 			var attribute = prop.PropertyType.GetCustomAttribute<RubiconSettingsSectionAttribute>();
-			if (attribute != null && attribute.GeneratedInSettingsMenu) CreateSectionButton(attribute.SectionName, attribute.SectionIconPath);
+			if (attribute != null && attribute.GenerateInMenu) CreateSectionButton(attribute.Name, attribute.Icon);
 		}
 	}
 	
-	private void CreateSectionButton(string sectionName, string iconPath)
+	private void CreateSectionButton(string sectionName, Texture2D icon)
 	{
 		var buttonInstance = GD.Load<PackedScene>(ButtonTemplatePath).Instantiate<Control>();
 		buttonInstance.Name = sectionName;
 
 		var textureRect = buttonInstance.GetNode<TextureRect>("Icon");
 		var label = buttonInstance.GetNode<Label>("Text");
-		
-		textureRect.Texture = ResourceLoader.Load<Texture2D>(string.IsNullOrEmpty(iconPath) ? DefaultIconPath : iconPath);;
+
+		textureRect.Texture = icon;
 		label.Text = sectionName;
 		label.Name = sectionName;
 
