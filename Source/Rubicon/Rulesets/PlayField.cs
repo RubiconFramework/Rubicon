@@ -7,8 +7,7 @@ using Rubicon.Core.UI;
 namespace Rubicon.Rulesets;
 
 /// <summary>
-/// A control node with all general gameplay-related functions. -binpuki
-/// ITS PLAYSTATE -duo
+/// A control node with all general ruleset gameplay-related functions.
 /// </summary>
 public partial class PlayField : Control
 {
