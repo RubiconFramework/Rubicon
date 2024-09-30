@@ -17,7 +17,7 @@ public class SettingsStorage
 public class Gameplay
 {
 	public GameplayModifiers Modifiers { get; set; } = new();
-	public bool DownScroll { get; set; } = false;
+	public bool DownScroll { get; set; }
 	public bool CenterBarLine { get; set; } = false;
 	public bool GhostTapping { get; set; } = true;
 	public bool FlashingLights { get; set; } = true;
@@ -25,10 +25,10 @@ public class Gameplay
 	[RubiconSettingsGroup("Gameplay Modifiers")]
 	public class GameplayModifiers
 	{
-		[StepValue(0.01f)] public double PlaybackRate { get; set; } = 1f;
-		[StepValue(0.1f)] public double HealthGain { get; set; } = 1f;
-		[StepValue(0.1f)] public double HealthLoss { get; set; } = 1f;
-		[StepValue(0.1f)] public double HealthDrain { get; set; } = 0.5f;
+		[StepValue(0.01f, 1f, 1f)] public double PlaybackRate { get; set; } = 1f;
+		[StepValue(0.1f, 1f, 1f)] public double HealthGain { get; set; } = 1f;
+		[StepValue(0.1f, 1f, 1f)] public double HealthLoss { get; set; } = 1f;
+		[StepValue(0.1f, 1f, 1f)] public double HealthDrain { get; set; } = 0.5f;
 		public bool OpponentDrainsHealth { get; set; } = false;
 	}
 }
@@ -47,9 +47,9 @@ public class Audio
 [RubiconSettingsSection("Video", true, "res://Assets/UI/Menus/Settings/Video.png")]
 public class Video
 {
-	public bool Fullscreen { get; set; } = false;
-	public bool VSync { get; set; } = false;
-	public int MaxFPS { get; set; } = 144;
+	[ProjectSetting("display/window/size/mode")] public DisplayServer.WindowMode WindowMode { get; set; }
+	[ProjectSetting("display/window/vsync/vsync_mode")] public DisplayServer.VSyncMode VSync { get; set; }
+	[ProjectSetting("application/run/max_fps"), StepValue(1f, 10, 0)] public int MaxFPS { get; set; }
 }
 
 [RubiconSettingsSection("Misc", true, "res://Assets/UI/Menus/Settings/Misc.png")]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckthl2bkgfa11"
-path="res://.godot/imported/Boyfriend.png-ce86ea4b1fbb7506c1aef882c3a34f09.ctex"
+path="res://.godot/imported/boyfriend.png-acc5ec3ecfc34dcca083ee827c0a3a2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/Bf/Boyfriend.png"
-dest_files=["res://.godot/imported/Boyfriend.png-ce86ea4b1fbb7506c1aef882c3a34f09.ctex"]
+source_file="res://Assets/Characters/Bf/boyfriend.png"
+dest_files=["res://.godot/imported/boyfriend.png-acc5ec3ecfc34dcca083ee827c0a3a2a.ctex"]
 
 [params]
 
