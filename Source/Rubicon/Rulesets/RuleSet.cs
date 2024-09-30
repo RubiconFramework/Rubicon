@@ -5,49 +5,36 @@ namespace Rubicon.Rulesets;
 /// <summary>
 /// A base ruleset for any Rubicon ruleset
 /// </summary>
-public partial class RuleSet : RefCounted
+[GlobalClass]
+public partial class RuleSet : Resource
 {
     /// <summary>
-    /// The unique identifier of this ruleset.
+    /// The unique identifier for this ruleset.
     /// </summary>
-    public virtual string Uid { get; }
-
+    [Export] public string UniqueId;
+    
     /// <summary>
     /// The name of the ruleset.
     /// </summary>
-    public virtual string Name { get; }
+    [Export] public string Name;
 
     /// <summary>
     /// The shortened name of this ruleset.
     /// </summary>
-    public virtual string ShortName { get; }
+    [Export] public string ShortName;
 
     /// <summary>
     /// The version this ruleset is on.
     /// </summary>
-    public virtual uint Version { get; }
+    [Export] public VersionInfo Version = RubiconEngineInstance.Version;
 
     /// <summary>
     /// Mainly for Discord RPC, will display this verb while you are playing.
     /// </summary>
-    public virtual string PlayingVerb { get; }
+    [Export] public string PlayingVerb;
 
     /// <summary>
-    /// Checks whether the modifier passed through is compatible with this rule set.
+    /// The <see cref="PlayField"/> script that this ruleset is associated with.
     /// </summary>
-    /// <returns>True or false</returns>
-    public virtual bool CheckModifierCompatibility() => false; // TODO: ACTUALLY HAVE A PARAMETER!!!
-
-    /// <summary>
-    /// Creates the PlayField associated with this rule set.
-    /// </summary>
-    /// <returns></returns>
-    public virtual PlayField CreatePlayField() => null;
-
-    /// <summary>
-    /// Gets the default judgment position. Handy if this ever needs overriding for a specific ruleset.
-    /// </summary>
-    /// <param name="judgment">The judgment</param>
-    /// <returns>The default position</returns>
-    public virtual Vector2 GetJudgmentPosition(Judgment judgment) => judgment.GetPosition();
+    [Export] public CSharpScript PlayFieldScript; // Maybe in the future we can support GDScript
 }

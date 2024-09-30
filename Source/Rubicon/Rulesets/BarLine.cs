@@ -6,7 +6,7 @@ namespace Rubicon.Rulesets;
 /// <summary>
 /// A base bar line for Rubicon rulesets
 /// </summary>
-public partial class BarLine : Control
+public abstract partial class BarLine : Control
 {
 	/// <summary>
 	/// The individual chart for this bar line. Contains notes and scroll velocity changes.
@@ -60,10 +60,7 @@ public partial class BarLine : Control
 	/// </summary>
 	/// <param name="lane">The lane index of the note manager</param>
 	/// <param name="inputElement">The input element received</param>
-	public virtual void OnNoteHit(int lane, NoteInputElement inputElement)
-	{
-		EmitSignal(SignalName.NoteHit, this, "", lane, inputElement);
-	}
+	public abstract void OnNoteHit(int lane, NoteInputElement inputElement);
 
 	public void SetAutoPlay(bool autoplay)
 	{

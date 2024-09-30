@@ -189,7 +189,6 @@ buffering/agile_event_flushing=true
 
 general/default_ui_style="Funkin"
 rulesets/default_ruleset="Mania"
-rulesets/mania/ruleset_script_path="res://Source/Rubicon/Rulesets/Mania/ManiaRuleSet.cs"
 rulesets/mania/default_note_skin="Funkin"
 judgments/perfect_hit_window=25.0
 judgments/great_hit_window=50.0

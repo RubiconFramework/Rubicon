@@ -4011,8 +4011,10 @@ SvChanges = [SubResource("Resource_4rj0n"), SubResource("Resource_5wvyw"), SubRe
 
 [resource]
 script = ExtResource("5_2dum7")
+Charter = ""
+Difficulty = 0
 Version = 65536
-DefaultRuleset = "mania"
+DefaultRuleset = "Mania"
 BpmInfo = [SubResource("Resource_jwixm")]
 ScrollSpeed = 1.08
 Offset = 0.0

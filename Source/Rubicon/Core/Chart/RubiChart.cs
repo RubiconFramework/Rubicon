@@ -20,11 +20,11 @@ public partial class RubiChart : Resource
     /// How hard the chart really is.
     /// </summary>
     [Export] public uint Difficulty = 0;
-    
+
     /// <summary>
     /// The Rubicon Engine version this chart was created on.
     /// </summary>
-    [Export] public uint Version = RubiconEngineInstance.Version;
+    [Export] public uint Version = RubiconEngineInstance.Version.Raw;
 
     /// <summary>
     /// The default ruleset for this chart.

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Reflection;
 using Rubicon.Core;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Data;
@@ -110,7 +111,6 @@ public partial class ManiaNoteManager : NoteManager
 			return;
 		
 		maniaNote.Setup(data, this, NoteSkin);
-		//GD.Print($"{ParentBarLine.Name} - {Name} - {data.StartingScrollVelocity}, {data.EndingScrollVelocity}");
 	}
 
 	/// <inheritdoc/>
@@ -147,8 +147,9 @@ public partial class ManiaNoteManager : NoteManager
 			if (inputElement.Note.MsLength <= 0)
 				inputElement.Note.HitObject.PrepareRecycle();
 		}
-		
-		base.OnNoteHit(inputElement);
+
+		inputElement.Note.WasHit = true;
+		ParentBarLine.OnNoteHit(Lane, inputElement);
 	}
 	
 	public override void _Input(InputEvent @event)

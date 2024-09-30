@@ -49,7 +49,6 @@ public partial class RubiconGame : Node
 		chart.ConvertData().Format();
 		
 		//GetTree().Root.FsrSharpness
-		
 
 		string instPath = $"res://Songs/{songName}/Inst.ogg";
 		string vocalsPath = $"res://Songs/{songName}/Vocals.ogg";
@@ -79,7 +78,7 @@ public partial class RubiconGame : Node
 			throw new Exception("RuleSet is still null. Please check your Project Settings at \"rubicon/rulesets\"");
 		
 		// Set up play field
-		PlayField = RuleSet.CreatePlayField();
+		PlayField = LoadPlayField(RuleSet);
 		PlayField.Setup(meta, chart);
 		AddChild(PlayField);
 		
@@ -141,28 +140,40 @@ public partial class RubiconGame : Node
 	
 	private RuleSet LoadRuleSet(string ruleSetName)
 	{
-		string ruleSetSettingPath = $"rubicon/rulesets/{ruleSetName}/ruleset_script_path";
-		if (!ProjectSettings.HasSetting(ruleSetSettingPath))
+		string ruleSetResourcePath = $"res://Resources/Rulesets/{ruleSetName}.tres";
+		if (!ResourceLoader.Exists(ruleSetResourcePath))
 		{
-			GD.PrintErr($"ProjectSettings does not have the setting \"{ruleSetSettingPath}\".");
+			GD.PrintErr($"No resource exists at path \"{ruleSetResourcePath}\".");
 			return null;
 		}
 		
-		string ruleSetScriptPath = ProjectSettings.GetSetting(ruleSetSettingPath).AsString();
-		if (!ResourceLoader.Exists(ruleSetScriptPath))
+		Resource ruleSetResource = GD.Load<Resource>(ruleSetResourcePath);
+		if (ruleSetResource is not RuleSet ruleSet)
 		{
-			GD.PrintErr($"No resource exists at path \"{ruleSetScriptPath}\".");
-			return null;
-		}
-		
-		CSharpScript ruleSetScript = GD.Load<CSharpScript>(ruleSetScriptPath);
-		GodotObject ruleSetObject = ruleSetScript.New().AsGodotObject();
-		if (ruleSetObject is not RuleSet set)
-		{
-			GD.PrintErr($"Created object from path \"{ruleSetScriptPath}\" is not an object of type RuleSet.");
+			GD.PrintErr($"Resource at path \"{ruleSetResourcePath}\" found, but does not inherit RuleSet.cs");
 			return null;
 		}
 
-		return set;
+		return ruleSet;
+	}
+
+	private PlayField LoadPlayField(RuleSet ruleSet)
+	{
+		/*
+		Script script = ruleSet.PlayFieldScript;
+		if (script is not CSharpScript cSharpScript)
+		{
+			GD.PrintErr($"Rulesets do not support other languages other than C# at the moment. (path: \"{ruleSet.ResourcePath}\")");
+			return null;
+		}*/
+
+		GodotObject ruleSetObject = ruleSet.PlayFieldScript.New().AsGodotObject();
+		if (ruleSetObject is not PlayField playField)
+		{
+			GD.PrintErr($"Ruleset at path \"{ruleSet.ResourcePath}\" does not contain a valid PlayField script.");
+			return null;
+		}
+
+		return playField;
 	}
 }

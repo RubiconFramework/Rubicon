@@ -10,3 +10,6 @@ Artist = "Hideo Kojima"
 UiStyle = "Funkin"
 NoteSkin = "Funkin"
 PlayableCharts = PackedStringArray("Player")
+Characters = []
+Enable3D = false
+Stage = "stage"

@@ -32,17 +32,7 @@ public partial class RubiconEngineInstance : Node
 	/// <summary>
 	/// The current version of Rubicon being used.
 	/// </summary>
-	public static uint Version => RubiconUtility.CreateVersion(0, 1, 0, 0);
-
-	/// <summary>
-	/// A tag for the current version.
-	/// </summary>
-	public static string VersionTag => "-alpha";
-
-	/// <summary>
-	/// The current Rubicon version, in string format.
-	/// </summary>
-	public static string VersionToString => RubiconUtility.VersionToString(Version) + VersionTag;
+	public static VersionInfo Version = new(0, 1, 0, 0, "-alpha");
 	
 	/// <summary>
 	/// The scene that the game first starts with. Automatically set by <see cref="_Ready"/>.
@@ -68,11 +58,5 @@ public partial class RubiconEngineInstance : Node
 	}
 
 	/// <inheritdoc cref="Version"/>
-	public uint GetVersion() => Version;
-
-	/// <inheritdoc cref="VersionTag"/>
-	public string GetVersionTag() => VersionTag;
-
-	/// <inheritdoc cref="VersionToString"/>
-	public string GetVersionToString() => VersionToString;
+	public VersionInfo GetVersion() => Version;
 }

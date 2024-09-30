@@ -5,7 +5,7 @@ namespace Rubicon.Rulesets;
 /// <summary>
 /// A control node used to visualize a note meant to be hit on-screen.
 /// </summary>
-public partial class Note : Control
+public abstract partial class Note : Control
 {
     /// <summary>
     /// Contains info about this note.
@@ -34,14 +34,11 @@ public partial class Note : Control
         
         UpdatePosition();
     }
-    
+
     /// <summary>
     /// Triggers when the note needs to update its position.
     /// </summary>
-    public virtual void UpdatePosition()
-    {
-        
-    }
+    public abstract void UpdatePosition();
 
     /// <summary>
     /// Triggers upon this note being recycled.

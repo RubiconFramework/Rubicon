@@ -8,7 +8,7 @@ namespace Rubicon.Rulesets;
 /// <summary>
 /// A base note manager for Rubicon rulesets.
 /// </summary>
-public partial class NoteManager : Control
+public abstract partial class NoteManager : Control
 {
 	/// <summary>
 	/// The lane index of this note manager.
@@ -150,48 +150,24 @@ public partial class NoteManager : Control
 			ParentBarLine.EmitSignal("BindPressed", ParentBarLine);
 	}
 
-	private int GetNoteScrollVelocityIndex(NoteData noteData)
-	{
-		SvChange[] svChangeList = ParentBarLine.Chart.SvChanges;
-		int index = svChangeList.Length - 1;
-		for (int i = 0; i < svChangeList.Length; i++)
-		{
-			if (svChangeList[i].Time > noteData.Time)
-			{
-				index = i - 1;
-				break;
-			}
-		}
-
-		return index;
-	}
-
 	#region Virtual (Overridable) Methods
-
 	/// <summary>
 	/// Is called when creating a new note. Override to replace with a type that inherits from <see cref="Note"/>.
 	/// </summary>
 	/// <returns>A new note.</returns>
-	protected virtual Note CreateNote() => new Note();
+	protected abstract Note CreateNote();
 
 	/// <summary>
 	/// Called when setting up a note. Notes will be recycled.
 	/// </summary>
 	/// <param name="note">The note passed in</param>
 	/// <param name="data">The note data</param>
-	protected virtual void SetupNote(Note note, NoteData data)
-	{
-		
-	}
+	protected abstract void SetupNote(Note note, NoteData data);
 
 	/// <summary>
 	/// Triggers upon this note manager hitting/missing a note.
 	/// </summary>
 	/// <param name="element">Contains information about a note and its hits</param>
-	protected virtual void OnNoteHit(NoteInputElement element)
-	{
-		element.Note.WasHit = true;
-		ParentBarLine.OnNoteHit(Lane, element);
-	}
+	protected abstract void OnNoteHit(NoteInputElement element);
 	#endregion
 }

@@ -2,6 +2,7 @@ using Rubicon.Core;
 
 namespace Rubicon.Rulesets.Mania;
 
+/*
 /// <summary>
 /// A rule set for Mania gameplay
 /// </summary>
@@ -41,4 +42,4 @@ public partial class ManiaRuleSet : RuleSet
     /// </summary>
     /// <returns>An instance of <see cref="ManiaPlayField"/>.</returns>
     public override PlayField CreatePlayField() => new ManiaPlayField();
-}
+}*/
