@@ -88,9 +88,9 @@ public class UserSettingsGenerator : ISourceGenerator
             
             dataClass.Append($"\t\t\tcase \"{result.pathTo.Replace('.', '/')}\":\n");
             if (result.type.TypeKind == TypeKind.Enum)
-                dataClass.Append($"\t\t\t\treturn (long){result.pathTo};\n");
+                dataClass.Append($"\t\t\t\treturn Variant.CreateFrom((long){result.pathTo});\n");
             else 
-                dataClass.Append($"\t\t\t\treturn {result.pathTo};\n");
+                dataClass.Append($"\t\t\t\treturn Variant.CreateFrom({result.pathTo});\n");
         }
 
         dataClass.Append("\t\t\tdefault:\n" +
@@ -114,7 +114,7 @@ public class UserSettingsGenerator : ISourceGenerator
             else
                 dataClass.Append($"\t\t\t\t{result.pathTo} = ({result.type.ToDisplayString()})val;");
             
-            dataClass.Append("\tbreak;\n");
+            dataClass.Append("\n\t\t\t\tbreak;\n");
         }
 
         dataClass.Append("\t\t}\n" +

@@ -11,12 +11,30 @@ public partial class UserSettingsData
 
     public AudioSection Audio = new();
 
+    /// <summary>
+    /// Loads all valid settings from a <see cref="ConfigFile"/>.
+    /// </summary>
+    /// <param name="config">The config file to input</param>
     public partial void Load(ConfigFile config);
 
+    /// <summary>
+    /// Creates a new instance of <see cref="ConfigFile"/>, populated with the current settings.
+    /// </summary>
+    /// <returns></returns>
     public partial ConfigFile CreateConfigFileInstance();
     
+    /// <summary>
+    /// Gets a setting by key. More useful in GDScript than it is in C#.
+    /// </summary>
+    /// <param name="key">The key (case-sensitive)</param>
+    /// <returns>The variant value if found, null if not.</returns>
     public partial Variant GetSetting(string key);
 
+    /// <summary>
+    /// Sets a setting by key. More useful in GDScript than it is in C#.
+    /// </summary>
+    /// <param name="key">The key (case-sensitive)</param>
+    /// <param name="val">The variant value to set this setting to</param>
     public partial void SetSetting(string key, Variant val);
 }
 
