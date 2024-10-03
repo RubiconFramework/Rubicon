@@ -1,5 +1,6 @@
 using Godot.Collections;
 using Rubicon.Data.Settings.Attributes;
+using Array = Godot.Collections.Array;
 
 namespace Rubicon.Data.Settings;
 
@@ -10,6 +11,8 @@ public partial class UserSettingsData
     public GameplaySection Gameplay = new();
 
     public AudioSection Audio = new();
+
+    public BindingsSection Bindings = new();
 
     /// <summary>
     /// Loads all valid settings from a <see cref="ConfigFile"/>.
@@ -82,4 +85,9 @@ public class AudioSection
     public float MusicVolume = 1.0f;
     public float VocalsVolume = 1.0f;
     public float SfxVolume = 1.0f;
+}
+
+public class BindingsSection
+{
+    public Dictionary Bindings = RubiconEngine.DefaultInputMap.Duplicate();
 }

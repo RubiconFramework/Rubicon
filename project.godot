@@ -21,11 +21,10 @@ config/icon="res://Assets/UI/Misc/fnf.png"
 
 [autoload]
 
-Settings="*res://Source/Rubicon/Core/Autoload/SettingsManager.cs"
-SettingsAccessor="*res://Source/Rubicon/Data/Settings/SettingsAccessor.gd"
-DebugInfo="*res://Source/Rubicon/Core/Autoload/DebugInfo.tscn"
-Conductor="*res://Source/Rubicon/Core/ConductorInstance.cs"
 RubiconEngine="*res://Source/Rubicon/RubiconEngineInstance.cs"
+Conductor="*res://Source/Rubicon/Core/ConductorInstance.cs"
+UserSettings="*res://Source/Rubicon/Data/UserSettingsInstance.cs"
+DebugInfo="*res://Source/Rubicon/Core/Autoload/DebugInfo.tscn"
 
 [display]
 

@@ -1,5 +1,6 @@
 using Rubicon.Core.Data;
 using Rubicon.Core.UI;
+using Rubicon.Data;
 using Rubicon.Game;
 using Rubicon.Rulesets;
 
@@ -26,7 +27,7 @@ public partial class DdrJudgment : Judgment
             BarLine barLine = playField.BarLines[playField.TargetBarLineIndex];
             _offset = offset ?? Vector2.Zero;
 
-            Vector2 pos = barLine.GlobalPosition + (_offset * (SettingsManager.Instance.Gameplay.DownScroll ? -1f : 1f));
+            Vector2 pos = barLine.GlobalPosition + (_offset * (UserSettings.Gameplay.DownScroll ? -1f : 1f));
             Play(type, barLine.AnchorLeft, barLine.AnchorTop, barLine.AnchorRight, barLine.AnchorBottom, pos);
             return;
         }
@@ -76,6 +77,6 @@ public partial class DdrJudgment : Judgment
         
         PlayField playField = RubiconGame.Instance.PlayField;
         BarLine barLine = playField.BarLines[playField.TargetBarLineIndex];
-        _judgmentControl.Position = barLine.GlobalPosition + (_offset * (SettingsManager.Instance.Gameplay.DownScroll ? -1f : 1f));
+        _judgmentControl.Position = barLine.GlobalPosition + (_offset * (UserSettings.Gameplay.DownScroll ? -1f : 1f));
     }
 }

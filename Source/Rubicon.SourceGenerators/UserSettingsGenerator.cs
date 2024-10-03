@@ -17,6 +17,7 @@ public class UserSettingsGenerator : ISourceGenerator
 
     public void Execute(GeneratorExecutionContext context)
     {
+        #region User Settings Data
         INamedTypeSymbol? settingsData = context.Compilation.GetTypeByMetadataName(GenerationConstants.UserSettingsData);
         if (settingsData is null)
             throw new Exception("Could not find UserSettingsData found in \"GenerationConstants.UserSettingsData\".");
@@ -122,6 +123,147 @@ public class UserSettingsGenerator : ISourceGenerator
                          "}");
         
         context.AddSource($"{settingsData.Name}.g.cs", dataClass.ToString());
+        #endregion
+        
+        #region User Settings Instance
+        INamedTypeSymbol? settingsInstance = context.Compilation.GetTypeByMetadataName(GenerationConstants.UserSettingsInstance);
+        if (settingsInstance is null)
+            throw new Exception("Could not find UserSettingsInstance found in \"GenerationConstants.UserSettingsInstance\".");
+        
+        AttributeData? staticAutoload = settingsInstance.GetAttributes().FirstOrDefault(x => x.AttributeClass?.IsStaticAutoloadAttribute() ?? false);
+        if (staticAutoload is null)
+            throw new Exception("Could not find static autoload attribute (GenerationConstants.StaticAutoloadAttr) in class \"GenerationConstants.UserSettingsInstance\")");
+        
+        string staticNameSpace = staticAutoload.ConstructorArguments[0].Value?.ToString();
+        string staticClassName = staticAutoload.ConstructorArguments[1].Value?.ToString();
+
+        IPropertySymbol[] dataProperties = settingsData.GetMembers()
+            .Where(x => x.Kind is SymbolKind.Property && x is { IsStatic: false, DeclaredAccessibility: Accessibility.Public })
+            .Cast<IPropertySymbol>()
+            .Where(x => !x.IsWriteOnly && !x.IsImplicitlyDeclared)
+            .ToArray();
+
+        IFieldSymbol[] dataFields = settingsData.GetMembers()
+            .Where(x => x.Kind is SymbolKind.Field && x is { IsStatic: false, DeclaredAccessibility: Accessibility.Public })
+            .Cast<IFieldSymbol>()
+            .Where(x => !x.IsImplicitlyDeclared)
+            .ToArray();
+
+        string instanceNameSpace = settingsInstance.GetNamespaceName();
+
+        List<string> allInstanceUsings = new List<string>();
+        StringBuilder instanceClass = new StringBuilder();
+        instanceClass.Append($"namespace {instanceNameSpace};\n" +
+                             "\n" +
+                             $"public partial class {settingsInstance.Name}" +
+                             "{\n");
+        
+        StringBuilder staticClass = new StringBuilder();
+        if (!string.IsNullOrEmpty(staticNameSpace))
+            staticClass.Append($"namespace {staticNameSpace};\n\n");
+
+        staticClass.Append($"public static partial class {staticClassName}\n" +
+                           "{\n");
+            
+        foreach (IPropertySymbol property in dataProperties)
+        {
+            string propertyNameSpace = property.Type.GetNamespaceName();
+            if (!string.IsNullOrEmpty(propertyNameSpace) && propertyNameSpace != instanceNameSpace && !allInstanceUsings.Contains(propertyNameSpace))
+                allInstanceUsings.Add(propertyNameSpace);
+
+            // Make documentation comment
+            instanceClass.Append($"\t/// <inheritdoc cref=\"{settingsData.Name}.{property.Name}\"/>\n");
+            staticClass.Append($"\t/// <inheritdoc cref=\"{settingsData.Name}.{property.Name}\"/>\n");
+
+            if (property.IsReadOnly)
+            {
+                instanceClass.Append($"\tpublic {property.Type.ToDisplayString()} {property.Name} => _data.{property.Name};\n\n");
+                staticClass.Append($"\tpublic static {property.Type.ToDisplayString()} {property.Name} => Singleton.{property.Name};");
+                continue;
+            }
+
+            instanceClass.Append($"\tpublic {property.Type.ToDisplayString()} {property.Name}\n" +
+                                 "\t{\n");
+            staticClass.Append($"\tpublic static {property.Type.ToDisplayString()} {property.Name}\n" +
+                               "\t{\n");
+            
+            if (property.Type.TypeKind != TypeKind.Delegate)
+            {
+                instanceClass.Append($"\t\tget => _data.{property.Name};\n" +
+                                     $"\t\tset => _data.{property.Name} = value;\n");
+                
+                staticClass.Append($"\t\tget => Singleton.{property.Name};\n" +
+                                   $"\t\tset => Singleton.{property.Name} = value;\n");
+            }
+            else
+            {
+                instanceClass.Append($"\t\tadd => _data.{property.Name} += value;\n" +
+                                     $"\t\tremove => _data.{property.Name} -= value;\n");
+                
+                staticClass.Append($"\t\tadd => Singleton.{property.Name} += value;\n" +
+                                   $"\t\tremove => Singleton.{property.Name} -= value;\n");
+            }
+                              
+            instanceClass.Append("\t}\n\n");
+            staticClass.Append("\t}\n\n");
+        }
+
+        foreach (IFieldSymbol field in dataFields)
+        {
+            string fieldNameSpace = field.Type.GetNamespaceName();
+            if (!string.IsNullOrEmpty(fieldNameSpace) && fieldNameSpace != instanceNameSpace && !allInstanceUsings.Contains(fieldNameSpace))
+                allInstanceUsings.Add(fieldNameSpace);   
+            
+            // Make documentation comment
+            instanceClass.Append($"\t/// <inheritdoc cref=\"{settingsData.Name}.{field.Name}\"/>\n" +
+                                $"\tpublic {field.Type.ToDisplayString()} {field.Name}\n" +
+                                "\t{\n");
+            
+            staticClass.Append($"\t/// <inheritdoc cref=\"{settingsData.Name}.{field.Name}\"/>\n" +
+                               $"\tpublic static {field.Type.ToDisplayString()} {field.Name}\n" +
+                               "\t{\n");
+            
+            if (field.Type.TypeKind != TypeKind.Delegate)
+            {
+                instanceClass.Append($"\t\tget => _data.{field.Name};\n" +
+                                     $"\t\tset => _data.{field.Name} = value;\n");
+                
+                staticClass.Append($"\t\tget => Singleton.{field.Name};\n" +
+                                   $"\t\tset => Singleton.{field.Name} = value;\n");
+            }
+            else
+            {
+                instanceClass.Append($"\t\tadd => _data.{field.Name} += value;\n" +
+                                     $"\t\tremove => _data.{field.Name} -= value;\n");
+                
+                staticClass.Append($"\t\tadd => Singleton.{field.Name} += value;\n" +
+                                   $"\t\tremove => Singleton.{field.Name} -= value;\n");
+            }
+                              
+            instanceClass.Append("\t}\n\n");
+            staticClass.Append("\t}\n\n");
+        }
+        
+        instanceClass.Remove(instanceClass.Length - 1, 1);
+        instanceClass.Append("}");
+        
+        staticClass.Remove(staticClass.Length - 1, 1);
+        staticClass.Append("}");
+        
+        StringBuilder usingsText = new();
+        foreach (string usingDirective in allInstanceUsings)
+            usingsText.Append($"using {usingDirective};\n");
+        usingsText.Append("\n");
+
+        context.AddSource($"{settingsInstance.Name}.g.cs", usingsText.ToString() + instanceClass.ToString());
+
+        usingsText.Remove(usingsText.Length - 1, 1);
+        usingsText.Append($"using {instanceNameSpace};");
+        usingsText.Append("\n");
+        
+        context.AddSource($"{staticClassName}Ex.g.cs", usingsText.ToString() + staticClass.ToString());
+
+        #endregion
     }
 
     private (string pathTo, ITypeSymbol type)[] RecursiveSearchForValidOptions(ISymbol[] symbols)

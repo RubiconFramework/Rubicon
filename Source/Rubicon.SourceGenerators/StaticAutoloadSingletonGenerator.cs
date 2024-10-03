@@ -54,7 +54,7 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
 
         // Make singleton field here
         finalClass.Append($"/// <summary>\n/// A static class that allows for accessing the <see cref=\"{symbol.Name}\"/> singleton's functions easier.\n/// </summary>\n" +
-                          $"public static class {className}\n" +
+                          $"public static partial class {className}\n" +
                           "{\n" +
                           $"\t/// <summary>\n\t/// The current global instance of <see cref=\"{symbol.Name}\"/>.\n\t/// </summary>\n" +
                           $"\tpublic static {symbol.Name} Singleton => Engine.GetMainLoop() is SceneTree tree ? tree.Root.GetNode<{symbol.Name}>(\"{className}\") : null;\n\n");
@@ -87,8 +87,6 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
                         s.GetAttributes().Any(a => a.AttributeClass?.IsGodotSignalAttribute() ?? false))
             .Cast<INamedTypeSymbol>()
             .ToArray();
-
-        StringBuilder stuffToAppendAtEnd = new StringBuilder();
         
         foreach (IPropertySymbol property in publicProperties)
         {
@@ -202,7 +200,7 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
                 finalClass.Append($"{parameter.Type.ToDisplayString()} {parameter.Name}");
 
                 if (parameter.HasExplicitDefaultValue)
-                    finalClass.Append($" = {parameter.ExplicitDefaultValue}");
+                    finalClass.Append($" = {parameter.ExplicitDefaultValue ?? "null"}");
                 
                 if (i < parameters.Length - 1)
                     finalClass.Append(", ");
@@ -233,6 +231,6 @@ public class StaticAutoloadSingletonGenerator : ISourceGenerator
 
         //throw new Exception((usingsText.ToString() + finalClass.ToString()).Replace("\n", "").Replace("\t", ""));
 
-        context.AddSource($"{className}.g.cs", usingsText.ToString() + finalClass.ToString() + stuffToAppendAtEnd.ToString());
+        context.AddSource($"{className}.g.cs", usingsText.ToString() + finalClass.ToString());
     }
 }

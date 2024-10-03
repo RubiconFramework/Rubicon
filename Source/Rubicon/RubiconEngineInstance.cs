@@ -17,8 +17,9 @@
 global using Godot;
 global using Godot.Sharp.Extras;
 global using System;
-
+using Godot.Collections;
 using Rubicon.Data.Generation;
+using Array = Godot.Collections.Array;
 
 namespace Rubicon;
 
@@ -45,6 +46,8 @@ public partial class RubiconEngineInstance : Node
 	/// Will always be the main scene's type when exported, but can vary in editor.
 	/// </summary>
 	public Type StartingSceneType;
+
+	public Dictionary DefaultInputMap = new();
 	
 	public override void _Ready()
 	{
@@ -55,6 +58,15 @@ public partial class RubiconEngineInstance : Node
 
 		StartingScene = GetTree().CurrentScene.Name;
 		StartingSceneType = GetTree().CurrentScene.GetType();
+
+		Array<StringName> actionNames = InputMap.GetActions();
+		for (int i = 0; i < actionNames.Count; i++)
+		{
+			string actionName = actionNames[i];
+			DefaultInputMap[actionName] = InputMap.ActionGetEvents(actionName);
+		}
+		
+		GD.Print("First");
 	}
 
 	/// <inheritdoc cref="Version"/>

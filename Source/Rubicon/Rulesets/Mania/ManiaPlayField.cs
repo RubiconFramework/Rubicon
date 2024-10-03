@@ -1,6 +1,7 @@
 using System.Linq;
 using Rubicon.Core.Chart;
 using Rubicon.Core.Meta;
+using Rubicon.Data;
 
 namespace Rubicon.Rulesets.Mania;
 
@@ -73,10 +74,10 @@ public partial class ManiaPlayField : PlayField
         for (int i = 0; i < BarLines.Length; i++)
         {
             if (BarLines[i] is ManiaBarLine maniaBarLine)
-                maniaBarLine.SetDirectionAngle(!SettingsManager.Instance.Gameplay.DownScroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
+                maniaBarLine.SetDirectionAngle(!UserSettings.Gameplay.DownScroll ? Mathf.Pi / 2f : -Mathf.Pi / 2f);
 
-            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = SettingsManager.Instance.Gameplay.DownScroll ? 1f : 0f;
-            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = SettingsManager.Instance.Gameplay.DownScroll ? -140f : 140f;
+            BarLines[i].AnchorTop = BarLines[i].AnchorBottom = UserSettings.Gameplay.DownScroll ? 1f : 0f;
+            BarLines[i].OffsetTop = BarLines[i].OffsetBottom = UserSettings.Gameplay.DownScroll ? -140f : 140f;
             //BarLines[i].SetAnchorsPreset(barLinePreset, true);
         }
     }
