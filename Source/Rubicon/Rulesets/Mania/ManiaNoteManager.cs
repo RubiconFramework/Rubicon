@@ -120,7 +120,7 @@ public partial class ManiaNoteManager : NoteManager
 		{
 			if (!inputElement.Holding)
 			{
-				if (NoteHeld == null || NoteHeld != null && (Autoplay || !Autoplay && Input.IsActionPressed($"PLAY_MANIA_{ParentBarLine.Managers.Length}K_{Lane}")))
+				if (NoteHeld == null || NoteHeld != null && (Autoplay || !Autoplay && Input.IsActionPressed($"play_mania_{ParentBarLine.Managers.Length}k_{Lane}")))
 					LaneObject.Animation = $"{Direction}LaneConfirm";
 				
 				NoteHeld = null;
@@ -156,7 +156,7 @@ public partial class ManiaNoteManager : NoteManager
 	{
 		base._Input(@event);
 
-		string actionName = $"PLAY_MANIA_{ParentBarLine.Managers.Length}K_{Lane}";
+		string actionName = $"play_mania_{ParentBarLine.Managers.Length}k_{Lane}";
 		if (Autoplay || !InputsEnabled || !InputMap.HasAction(actionName) || !@event.IsAction(actionName) || @event.IsEcho())
 			return;
 

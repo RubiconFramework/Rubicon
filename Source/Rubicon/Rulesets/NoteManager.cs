@@ -141,13 +141,14 @@ public abstract partial class NoteManager : Control
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
+		/*
 		
 		string actionName = $"MANIA_{ParentBarLine.Managers.Length}K_{Lane}";
 		if (Autoplay || !InputsEnabled || !InputMap.HasAction(actionName) || !@event.IsAction(actionName) || @event.IsEcho())
 			return;
 
 		if (!@event.IsEcho())
-			ParentBarLine.EmitSignal("BindPressed", ParentBarLine);
+			ParentBarLine.EmitSignal("BindPressed", ParentBarLine);*/
 	}
 
 	#region Virtual (Overridable) Methods

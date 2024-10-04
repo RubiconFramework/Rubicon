@@ -99,7 +99,7 @@ public partial class RubiconGame : Node
 	{
 		base._Input(@event);
 
-		if (@event.IsActionPressed("GAME_PAUSE"))
+		if (@event.IsActionPressed("game_pause"))
 		{
 			if (!Paused)
 				Pause();

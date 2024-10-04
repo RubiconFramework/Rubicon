@@ -14,13 +14,13 @@ public partial class BaseMenu : Node
 	[Export] public AudioStream ConfirmAudio;
 	[Export] public AudioStream BackAudio;
 
-	public virtual void OnDownPressed(bool isPressed) {}
-	public virtual void OnUpPressed(bool isPressed) {}
-	public virtual void OnLeftPressed(bool isPressed) {}
-	public virtual void OnRightPressed(bool isPressed) {}
-	public virtual void OnConfirmPressed(bool isPressed) {}
-	public virtual void OnBackPressed(bool isPressed) {}
-	public virtual void OnScroll(byte direction) {}
+	public virtual void DownPressed(bool isPressed) {}
+	public virtual void UpPressed(bool isPressed) {}
+	public virtual void LeftPressed(bool isPressed) {}
+	public virtual void RightPressed(bool isPressed) {}
+	public virtual void ConfirmPressed(bool isPressed) {}
+	public virtual void BackPressed(bool isPressed) {}
+	public virtual void Scroll(float direction) {}
 
 	public virtual void UpdateSelection() {}
 
@@ -30,18 +30,18 @@ public partial class BaseMenu : Node
 	{
 		base._Input(@event);
 
-		if (@event.IsAction("MENU_DOWN", AllowEcho))
-			OnDownPressed(@event.IsPressed());
-		else if (@event.IsAction("MENU_UP", AllowEcho))
-			OnUpPressed(@event.IsPressed());
-		else if (@event.IsAction("MENU_LEFT", AllowEcho))
-			OnLeftPressed(@event.IsPressed());
-		else if (@event.IsAction("MENU_RIGHT", AllowEcho))
-			OnRightPressed(@event.IsPressed());
-		else if (@event.IsAction("MENU_CONFIRM"))
-			OnConfirmPressed(@event.IsPressed());
-		else if (@event.IsAction("MENU_BACK", AllowEcho))
-			OnBackPressed(@event.IsPressed());
+		if (@event.IsAction("ui_down", AllowEcho))
+			DownPressed(@event.IsPressed());
+		else if (@event.IsAction("ui_up", AllowEcho)) 
+			UpPressed(@event.IsPressed());
+		else if (@event.IsAction("ui_left", AllowEcho))
+			LeftPressed(@event.IsPressed());
+		else if (@event.IsAction("ui_right", AllowEcho))
+			RightPressed(@event.IsPressed());
+		else if (@event.IsAction("ui_accept"))
+			ConfirmPressed(@event.IsPressed());
+		else if (@event.IsAction("ui_cancel", AllowEcho))
+			BackPressed(@event.IsPressed());
 
 		if (!AllowScrollWheel)
 			return;
@@ -51,10 +51,10 @@ public partial class BaseMenu : Node
 			switch (mouseEvent.ButtonIndex)
 			{
 				case MouseButton.WheelDown:
-					OnScroll(0);
+					Scroll(mouseEvent.Factor);
 					break;
 				case MouseButton.WheelUp:
-					OnScroll(1);
+					Scroll(mouseEvent.Factor);
 					break;
 			}
 		}
