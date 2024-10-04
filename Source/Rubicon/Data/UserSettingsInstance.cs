@@ -25,7 +25,7 @@ public partial class UserSettingsInstance : Node
 
     public void UpdateSettings()
     {
-        foreach (var bind in Bindings.Bindings)
+        foreach (var bind in Bindings.Map)
         {
             string curAction = bind.Key.AsString();
             Array<InputEvent> events = bind.Value.AsGodotArray<InputEvent>();

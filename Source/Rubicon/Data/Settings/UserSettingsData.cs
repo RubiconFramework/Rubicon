@@ -12,7 +12,7 @@ public partial class UserSettingsData
 
     public AudioSection Audio = new();
 
-    public BindingsSection Bindings = new();
+    public InputMapSection Bindings = new();
 
     /// <summary>
     /// Loads all valid settings from a <see cref="ConfigFile"/>.
@@ -87,7 +87,7 @@ public class AudioSection
     public float SfxVolume = 1.0f;
 }
 
-public class BindingsSection
+public class InputMapSection
 {
-    public Dictionary Bindings = RubiconEngine.DefaultInputMap.Duplicate();
+    public Dictionary Map = RubiconEngine.DefaultInputMap.Duplicate();
 }
