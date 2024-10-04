@@ -22,6 +22,18 @@ public partial class UserSettingsInstance : Node
 
     public void UpdateSettings()
     {
+        Window mainWindow = GetTree().GetRoot();
+        
+        // Video
+        mainWindow.Mode = Video.Fullscreen;
+        mainWindow.Size = Video.Resolution;
+        DisplayServer.WindowSetVsyncMode(Video.VSync);
+        Engine.MaxFps = Video.MaxFps;
+        mainWindow.Scaling3DMode = Video.Settings3D.Scaling3DMode;
+        mainWindow.Scaling3DScale = Video.Settings3D.RenderScale;
+        mainWindow.FsrSharpness = Video.Settings3D.FsrSharpness;
+        
+        // Bindings
         foreach (var bind in Bindings.Map)
         {
             string curAction = bind.Key;

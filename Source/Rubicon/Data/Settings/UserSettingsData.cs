@@ -43,7 +43,7 @@ public partial class UserSettingsData
 
 public class VideoSection
 {
-    public DisplayServer.WindowMode Fullscreen = (DisplayServer.WindowMode)ProjectSettings.GetSetting("display/window/size/mode").AsInt64();
+    public Window.ModeEnum Fullscreen = (Window.ModeEnum)ProjectSettings.GetSetting("display/window/size/mode").AsInt64();
     
     public Vector2I Resolution = new(ProjectSettings.GetSetting("display/window/size/window_width_override").AsInt32(), ProjectSettings.GetSetting("display/window/size/window_height_override").AsInt32());
     
