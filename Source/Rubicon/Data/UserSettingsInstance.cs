@@ -19,11 +19,22 @@ public partial class UserSettingsInstance : Node
             Reset();
             Save();
         }
+        
+        UpdateSettings();
     }
 
     public void UpdateSettings()
     {
-        
+        foreach (var bind in Bindings.Bindings)
+        {
+            string curAction = bind.Key.AsString();
+            Array<InputEvent> events = bind.Value.AsGodotArray<InputEvent>();
+            
+            InputMap.ActionEraseEvents(curAction);
+            
+            for (int i = 0; i < events.Count; i++)
+                InputMap.ActionAddEvent(curAction, events[i]);
+        }
     }
     
     public Error Load(string path = null)

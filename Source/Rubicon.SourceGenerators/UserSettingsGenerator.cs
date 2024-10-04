@@ -190,7 +190,11 @@ public class UserSettingsGenerator : ISourceGenerator
             if (property.Type.TypeKind != TypeKind.Delegate)
             {
                 instanceClass.Append($"\t\tget => _data.{property.Name};\n" +
-                                     $"\t\tset => _data.{property.Name} = value;\n");
+                                     $"\t\tset\n" +
+                                     "\t\t{\n" +
+                                     $"\t\t\t_data.{property.Name} = value;\n" +
+                                     "\t\t\tUpdateSettings();\n"+
+                                     "\t\t}\n");
                 
                 staticClass.Append($"\t\tget => Singleton.{property.Name};\n" +
                                    $"\t\tset => Singleton.{property.Name} = value;\n");
@@ -226,7 +230,11 @@ public class UserSettingsGenerator : ISourceGenerator
             if (field.Type.TypeKind != TypeKind.Delegate)
             {
                 instanceClass.Append($"\t\tget => _data.{field.Name};\n" +
-                                     $"\t\tset => _data.{field.Name} = value;\n");
+                                     $"\t\tset\n" +
+                                     "\t\t{\n" +
+                                     $"\t\t\t_data.{field.Name} = value;\n" +
+                                     "\t\t\tUpdateSettings();\n" +
+                                     "\t\t}\n");
                 
                 staticClass.Append($"\t\tget => Singleton.{field.Name};\n" +
                                    $"\t\tset => Singleton.{field.Name} = value;\n");
