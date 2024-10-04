@@ -89,5 +89,5 @@ public class AudioSection
 
 public class InputMapSection
 {
-    public Dictionary Map = RubiconEngine.DefaultInputMap.Duplicate();
+    public Dictionary<string, Array<InputEvent>> Map = RubiconEngine.DefaultInputMap.Duplicate();
 }

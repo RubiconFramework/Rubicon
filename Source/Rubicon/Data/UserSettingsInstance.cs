@@ -1,7 +1,6 @@
 using Godot.Collections;
 using Rubicon.Data.Generation;
 using Rubicon.Data.Settings;
-using Array = Godot.Collections.Array;
 
 namespace Rubicon.Data;
 
@@ -12,8 +11,6 @@ public partial class UserSettingsInstance : Node
 
     public override void _Ready()
     {
-        GD.Print("Sec");
-        
         if (Load() != Error.Ok)
         {
             Reset();
@@ -27,8 +24,8 @@ public partial class UserSettingsInstance : Node
     {
         foreach (var bind in Bindings.Map)
         {
-            string curAction = bind.Key.AsString();
-            Array<InputEvent> events = bind.Value.AsGodotArray<InputEvent>();
+            string curAction = bind.Key;
+            Array<InputEvent> events = bind.Value;
             
             InputMap.ActionEraseEvents(curAction);
             
@@ -48,7 +45,7 @@ public partial class UserSettingsInstance : Node
         if (loadError != Error.Ok)
             return loadError;
 
-        _data = new();
+        Reset();
         _data.Load(config);
         return Error.Ok;
     }

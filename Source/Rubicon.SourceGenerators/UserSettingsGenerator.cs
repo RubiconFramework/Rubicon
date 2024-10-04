@@ -291,9 +291,10 @@ public class UserSettingsGenerator : ISourceGenerator
         List<(string pathTo, ITypeSymbol type)> results = new();
         foreach (IPropertySymbol property in properties)
         {
+            string typeFullName = property.Type.ToDisplayString();
             if (property.Type.TypeKind is TypeKind.Class 
-                && !property.Type.InheritsFrom("GodotSharp", "Godot.Collections.Array")
-                && !property.Type.InheritsFrom("GodotSharp", "Godot.Collections.Dictionary"))
+                && !typeFullName.Contains("Godot.Collections.Array")
+                && !typeFullName.Contains("Godot.Collections.Dictionary"))
             {
                 var propertyResults =
                     RecursiveSearchForValidOptions(property.Type.GetMembers().ToArray());
@@ -309,9 +310,10 @@ public class UserSettingsGenerator : ISourceGenerator
         
         foreach (IFieldSymbol field in fields)
         {
+            string typeFullName = field.Type.ToDisplayString();
             if (field.Type.TypeKind is TypeKind.Class
-                && !field.Type.InheritsFrom("GodotSharp", "Godot.Collections.Array")
-                && !field.Type.InheritsFrom("GodotSharp", "Godot.Collections.Dictionary"))
+                && !typeFullName.Contains("Godot.Collections.Array")
+                && !typeFullName.Contains("Godot.Collections.Dictionary"))
             {
                 var fieldResults =
                     RecursiveSearchForValidOptions(field.Type.GetMembers().ToArray());

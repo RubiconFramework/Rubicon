@@ -9,9 +9,13 @@ public static class SourceGeneratorUtil
 {
     public static string GetNamespaceName(this ITypeSymbol symbol)
     {
-        string fullyQualifiedName = symbol.FullQualifiedNameOmitGlobal();
-        int lastIndex = fullyQualifiedName.LastIndexOf('.');
-        return lastIndex == -1 ? "" : fullyQualifiedName.Substring(0, fullyQualifiedName.LastIndexOf('.'));
+        if (symbol.IsNamespace)
+            return symbol.Name;
+
+        if (symbol.ContainingNamespace != null)
+            return symbol.ContainingNamespace.ToDisplayString();
+
+        return "";
     }
     
     /// <summary>

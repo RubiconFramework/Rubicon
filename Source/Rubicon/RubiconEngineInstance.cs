@@ -47,7 +47,7 @@ public partial class RubiconEngineInstance : Node
 	/// </summary>
 	public Type StartingSceneType;
 
-	public Dictionary DefaultInputMap = new();
+	public Dictionary<string, Array<InputEvent>> DefaultInputMap = new();
 	
 	public override void _Ready()
 	{
@@ -65,8 +65,6 @@ public partial class RubiconEngineInstance : Node
 			string actionName = actionNames[i];
 			DefaultInputMap[actionName] = InputMap.ActionGetEvents(actionName);
 		}
-		
-		GD.Print("First");
 	}
 
 	/// <inheritdoc cref="Version"/>
