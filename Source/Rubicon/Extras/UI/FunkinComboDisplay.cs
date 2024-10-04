@@ -9,27 +9,61 @@ namespace Rubicon.Extras.UI;
 /// <summary>
 /// A <see cref="ComboDisplay"/> class that mimics the animation style of Friday Night Funkin'.
 /// </summary>
-public partial class FunkinComboDisplay : ComboDisplay
+public partial class FunkinComboDisplay : Control, IComboDisplay, IJudgmentMaterial
 {
+    /// <summary>
+    /// The textures to display. Should go from 0 to 9.
+    /// </summary>
+    [Export] public SpriteFrames Atlas;
+    
+    /// <summary>
+    /// The spacing of the textures.
+    /// </summary>
+    [Export] public float Spacing = 100f;
+
+    /// <summary>
+    /// The scale of the textures.
+    /// </summary>
+    [Export] public Vector2 GraphicScale = Vector2.One;
+    
+    /// <inheritdoc/>
+    public Material PerfectMaterial { get; set; } // dokibird glasses
+
+    /// <inheritdoc/>
+    public Material GreatMaterial { get; set; }
+
+    /// <inheritdoc/>
+    public Material GoodMaterial { get; set; }
+
+    /// <inheritdoc/>
+    public Material OkayMaterial { get; set; }
+    
+    /// <inheritdoc/>
+    public Material BadMaterial { get; set; }
+
+    /// <inheritdoc/>
+    public Material MissMaterial { get; set; }
+
+    private HitType _lastRating = HitType.Perfect;
     private bool _wasZero = false;
     private Array<Control> _comboGraphics = new();
     private Dictionary<Control, Vector2> _comboVelocities = new();
     private Dictionary<Control, int> _comboAccelerations = new();
 
     /// <inheritdoc/>
-    public override void Play(uint combo, HitType type, Vector2? offset)
+    public void Show(uint combo, HitType type, Vector2? offset)
     {
-        Play(combo, type, 0.5f, 0.5f, 0.5f, 0.5f, new Vector2((Size.X * 0.507f) - 97.5f, Size.Y * 0.48f) + offset);
+        Show(combo, type, 0.5f, 0.5f, 0.5f, 0.5f, new Vector2((Size.X * 0.507f) - 97.5f, Size.Y * 0.48f) + offset);
     }
     
     /// <inheritdoc/>
-    public override void Play(uint combo, HitType type, float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
+    public void Show(uint combo, HitType type, float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
     {
         if (combo == 0 && _wasZero)
             return;
 
-        if (type > LastRating)
-            LastRating = type;
+        if (type > _lastRating)
+            _lastRating = type;
         
         string comboString = combo.ToString("D3");
         string[] splitDigits = new string[comboString.Length];
@@ -59,7 +93,7 @@ public partial class FunkinComboDisplay : ComboDisplay
             graphic.Animation = splitDigits[i];
             graphic.Frame = 0;
             graphic.Play();
-            graphic.Material = GetMaterialFromRating(LastRating);
+            graphic.Material = this.GetHitMaterial(_lastRating);
             
             comboSpr.MoveToFront();
             comboSpr.Scale = GraphicScale;
@@ -78,7 +112,7 @@ public partial class FunkinComboDisplay : ComboDisplay
 
         _wasZero = combo == 0;
         if (_wasZero)
-            LastRating = HitType.Perfect;
+            _lastRating = HitType.Perfect;
     }
     
     public override void _Process(double delta)

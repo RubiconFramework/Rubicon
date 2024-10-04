@@ -80,17 +80,17 @@ public partial class PlayField : Control
     /// <summary>
     /// The Judgment instance for this play field.
     /// </summary>
-    public Judgment Judgment;
+    public IJudgment Judgment;
 
     /// <summary>
     /// The ComboDisplay instance for this play field.
     /// </summary>
-    public ComboDisplay ComboDisplay;
+    public IComboDisplay ComboDisplay;
 
     /// <summary>
     /// The HitDistance instance for this play field.
     /// </summary>
-    public HitDistance HitDistance;
+    public IHitDistance HitDistance;
     
     /// <summary>
     /// Readies the PlayField for gameplay!
@@ -118,32 +118,53 @@ public partial class PlayField : Control
 
         if (UiStyle.HitDistance != null)
         {
-            HitDistance = UiStyle.HitDistance.Instantiate<HitDistance>();
-            AddChild(HitDistance);   
+            Node hitDistNode = UiStyle.HitDistance.Instantiate();
+            if (hitDistNode is not IHitDistance hitDist)
+            {
+                GD.PrintErr($"UI Style's HitDistance does not inherit from IHitDistance! ({uiStylePath})");
+            }
+            else
+            {
+                HitDistance = hitDist;
+                AddChild(hitDistNode);
+                
+                if (HitDistance is IJudgmentMaterial toApply)
+                    toApply.ApplyUiStyle(UiStyle);
+            }
         }
 
         if (UiStyle.Judgment != null)
         {
-            Judgment = UiStyle.Judgment.Instantiate<Judgment>();
-            Judgment.PerfectMaterial = UiStyle.PerfectMaterial;
-            Judgment.GreatMaterial = UiStyle.GreatMaterial;
-            Judgment.GoodMaterial = UiStyle.GoodMaterial;
-            Judgment.OkayMaterial = UiStyle.OkayMaterial;
-            Judgment.BadMaterial = UiStyle.BadMaterial;
-            Judgment.MissMaterial = UiStyle.MissMaterial;
-            AddChild(Judgment);   
+            Node judgmentNode = UiStyle.Judgment.Instantiate();
+            if (judgmentNode is not IJudgment judgment)
+            {
+                GD.PrintErr($"UI Style's Judgment does not inherit from IJudgment! ({uiStylePath})");
+            }
+            else
+            {
+                Judgment = judgment;
+                AddChild(judgmentNode);   
+                
+                if (Judgment is IJudgmentMaterial toApply)
+                    toApply.ApplyUiStyle(UiStyle);
+            }
         }
 
         if (UiStyle.Combo != null)
         {
-            ComboDisplay = UiStyle.Combo.Instantiate<ComboDisplay>();
-            ComboDisplay.PerfectMaterial = UiStyle.PerfectMaterial;
-            ComboDisplay.GreatMaterial = UiStyle.GreatMaterial;
-            ComboDisplay.GoodMaterial = UiStyle.GoodMaterial;
-            ComboDisplay.OkayMaterial = UiStyle.OkayMaterial;
-            ComboDisplay.BadMaterial = UiStyle.BadMaterial;
-            ComboDisplay.MissMaterial = UiStyle.MissMaterial;
-            AddChild(ComboDisplay);   
+            Node comboNode = UiStyle.Combo.Instantiate();
+            if (comboNode is not IComboDisplay comboDisplay)
+            {
+                GD.PrintErr($"UI Style's ComboDisplay does not inherit from IComboDisplay! ({uiStylePath})");
+            }
+            else
+            {
+                ComboDisplay = comboDisplay;
+                AddChild(comboNode);   
+                
+                if (ComboDisplay is IJudgmentMaterial toApply)
+                    toApply.ApplyUiStyle(UiStyle);
+            }
         }
         
         for (int i = 0; i < BarLines.Length; i++)
@@ -230,8 +251,8 @@ public partial class PlayField : Control
             
             UpdateStatistics();
             Judgment?.Play(hit, UiStyle.JudgmentOffset);   
-            ComboDisplay?.Play(Combo, hit, UiStyle.ComboOffset);
-            HitDistance?.Show(inputElement.Distance, UiStyle.HitDistanceOffset);
+            ComboDisplay?.Show(Combo, hit, UiStyle.ComboOffset);
+            HitDistance?.Show(inputElement.Distance, hit, UiStyle.HitDistanceOffset);
         }
     }
 }

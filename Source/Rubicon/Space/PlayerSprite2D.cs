@@ -1,6 +1,7 @@
 
 namespace Rubicon.Space;
 
+// TODO: Gotta find a way to make this better later... -Binpuki
 #if TOOLS
 [Tool] 
 #endif

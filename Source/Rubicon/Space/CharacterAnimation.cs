@@ -5,7 +5,8 @@ namespace Rubicon.Space;
 /// A class that is used by the <see cref="Character2D"/> or <see cref="Character3D"/> class to determine, which animation should be played and if it should be played or not
 /// among other stuff.
 /// </summary>
-public class CharacterAnimation
+[GlobalClass]
+public partial class CharacterAnimation : RefCounted
 {
 	/// <summary>
 	/// The name of the animation played by the <see cref="AnimationPlayer"/>. It has to match exactly.

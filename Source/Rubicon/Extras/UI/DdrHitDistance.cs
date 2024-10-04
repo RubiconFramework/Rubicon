@@ -1,3 +1,4 @@
+using Rubicon.Core.Data;
 using Rubicon.Core.UI;
 using Rubicon.Data;
 using Rubicon.Game;
@@ -8,7 +9,7 @@ namespace Rubicon.Extras.UI;
 /// <summary>
 /// A HitDistance class that mimics the animations from Dance Dance Revolution.
 /// </summary>
-public partial class DdrHitDistance : HitDistance
+public partial class DdrHitDistance : Label, IHitDistance
 {
     /// <summary>
     /// The base scale for this hit distance.
@@ -19,7 +20,7 @@ public partial class DdrHitDistance : HitDistance
     private Vector2 _offset = Vector2.Zero;
     
     /// <inheritdoc/>
-    public override void Play(Vector2? offset)
+    public void Show(double distance, HitType type, Vector2? offset)
     {
         if (RubiconGame.Instance != null && RubiconGame.Instance.PlayField != null)
         {
@@ -28,40 +29,44 @@ public partial class DdrHitDistance : HitDistance
             _offset = offset ?? Vector2.Zero;
 
             Vector2 pos = barLine.GlobalPosition + (_offset * (UserSettings.Gameplay.DownScroll ? -1f : 1f));
-            Play(barLine.AnchorLeft, barLine.AnchorTop, barLine.AnchorRight, barLine.AnchorBottom, pos);
+            Show(distance, type, barLine.AnchorLeft, barLine.AnchorTop, barLine.AnchorRight, barLine.AnchorBottom, pos);
             return;
         }
         
-        Play(0f, 0f, 0f, 0f, offset);
+        Show(distance, type, 0f, 0f, 0f, 0f, offset);
     }
     
     /// <inheritdoc/>
-    public override void Play(float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
+    public void Show(double distance, HitType type, float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
     {
+        Text = $"{distance:0.00} ms";
+        if (Math.Abs(distance) > ProjectSettings.GetSetting("rubicon/judgments/bad_hit_window").AsDouble())
+            Text = $"Too {(distance < 0 ? "late!" : "early!")}";
+        
         _labelTween?.Kill();
 
-        Label.AnchorLeft = anchorLeft;
-        Label.AnchorTop = anchorTop;
-        Label.AnchorRight = anchorRight;
-        Label.AnchorBottom = anchorBottom;
-        Label.PivotOffset = Label.Size / 2f;
-        Label.Position = (pos ?? Vector2.Zero) - Label.PivotOffset;
-        Label.Modulate = new Color(Label.Modulate.R, Label.Modulate.G, Label.Modulate.B);
-        Label.Scale = GraphicScale * 1.1f;
+        AnchorLeft = anchorLeft;
+        AnchorTop = anchorTop;
+        AnchorRight = anchorRight;
+        AnchorBottom = anchorBottom;
+        PivotOffset = Size / 2f;
+        Position = (pos ?? Vector2.Zero) - PivotOffset;
+        Modulate = new Color(Modulate.R, Modulate.G, Modulate.B);
+        Scale = GraphicScale * 1.1f;
 
-        _labelTween = Label.CreateTween();
-        _labelTween.TweenProperty(Label, "scale", GraphicScale, 0.1d);
-        _labelTween.TweenProperty(Label, "modulate", Colors.Transparent, 0.5d).SetDelay(1d);
+        _labelTween = CreateTween();
+        _labelTween.TweenProperty(this, "scale", GraphicScale, 0.1d);
+        _labelTween.TweenProperty(this, "modulate", Colors.Transparent, 0.5d).SetDelay(1d);
         _labelTween.Play();
     }
 
     public override void _Process(double delta)
     {
-        if (RubiconGame.Instance == null || RubiconGame.Instance.PlayField == null || Label == null)
+        if (RubiconGame.Instance == null || RubiconGame.Instance.PlayField == null)
             return;
         
         PlayField playField = RubiconGame.Instance.PlayField;
         BarLine barLine = playField.BarLines[playField.TargetBarLineIndex];
-        Label.Position = barLine.GlobalPosition + (_offset * (UserSettings.Gameplay.DownScroll ? -1f : 1f)) - Label.PivotOffset;
+        Position = barLine.GlobalPosition + (_offset * (UserSettings.Gameplay.DownScroll ? -1f : 1f)) - PivotOffset;
     }
 }

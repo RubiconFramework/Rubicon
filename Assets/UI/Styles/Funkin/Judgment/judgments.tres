@@ -26,7 +26,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_r2us8")
 }],
 "loop": true,
-"name": &"bad",
+"name": &"Bad",
 "speed": 5.0
 }, {
 "frames": [{
@@ -34,7 +34,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ibil4")
 }],
 "loop": true,
-"name": &"good",
+"name": &"Good",
 "speed": 5.0
 }, {
 "frames": [{
@@ -42,7 +42,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jpr5e")
 }],
 "loop": true,
-"name": &"great",
+"name": &"Great",
 "speed": 5.0
 }, {
 "frames": [{
@@ -50,7 +50,7 @@ animations = [{
 "texture": ExtResource("4_qaf0t")
 }],
 "loop": true,
-"name": &"miss",
+"name": &"Miss",
 "speed": 5.0
 }, {
 "frames": [{
@@ -58,7 +58,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_a88co")
 }],
 "loop": true,
-"name": &"okay",
+"name": &"Okay",
 "speed": 5.0
 }, {
 "frames": [{
@@ -66,6 +66,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_jpr5e")
 }],
 "loop": true,
-"name": &"perfect",
+"name": &"Perfect",
 "speed": 5.0
 }]

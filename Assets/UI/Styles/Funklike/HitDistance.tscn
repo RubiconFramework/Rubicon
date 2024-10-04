@@ -9,19 +9,9 @@ font_size = 32
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
-[node name="HitDistance" type="Control" node_paths=PackedStringArray("Label")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_ajaab")
-Label = NodePath("Label")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
+[node name="Label" type="Label"]
 offset_right = 400.0
 offset_bottom = 29.0
 label_settings = SubResource("LabelSettings_wf87c")
 horizontal_alignment = 1
+script = ExtResource("1_ajaab")

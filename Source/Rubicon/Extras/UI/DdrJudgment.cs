@@ -9,9 +9,40 @@ namespace Rubicon.Extras.UI;
 /// <summary>
 /// A Judgment class that mimics the animations from Dance Dance Revolution.
 /// </summary>
-public partial class DdrJudgment : Judgment
+public partial class DdrJudgment : Control, IJudgment, IJudgmentMaterial
 {
+    /// <summary>
+    /// Textures to fetch from when displaying judgments.
+    /// </summary>
+    [Export] public SpriteFrames Atlas;
+
+    /// <summary>
+    /// How much to scale the judgment graphics by.
+    /// </summary>
+    [Export] public Vector2 GraphicScale = Vector2.One;
+    
+    /// <summary>
+    /// The default opacity each time the judgment activates.
+    /// </summary>
     [Export] public float Opacity = 0.5f;
+
+    /// <inheritdoc/>
+    public Material PerfectMaterial { get; set; } // dokibird glasses
+
+    /// <inheritdoc/>
+    public Material GreatMaterial { get; set; }
+
+    /// <inheritdoc/>
+    public Material GoodMaterial { get; set; }
+
+    /// <inheritdoc/>
+    public Material OkayMaterial { get; set; }
+    
+    /// <inheritdoc/>
+    public Material BadMaterial { get; set; }
+
+    /// <inheritdoc/>
+    public Material MissMaterial { get; set; }
     
     private Control _judgmentControl;
     private AnimatedSprite2D _judgmentGraphic;
@@ -19,7 +50,7 @@ public partial class DdrJudgment : Judgment
     private Vector2 _offset = Vector2.Zero;
     
     /// <inheritdoc/>
-    public override void Play(HitType type, Vector2? offset)
+    public void Play(HitType type, Vector2? offset)
     {
         if (RubiconGame.Instance != null && RubiconGame.Instance.PlayField != null)
         {
@@ -36,7 +67,7 @@ public partial class DdrJudgment : Judgment
     }
     
     /// <inheritdoc/>
-    public override void Play(HitType type, float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
+    public void Play(HitType type, float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
     {
         if (_judgmentGraphic == null)
         {
@@ -55,10 +86,10 @@ public partial class DdrJudgment : Judgment
         _judgmentControl.AnchorRight = anchorRight;
         _judgmentControl.AnchorBottom = anchorBottom;
         _judgmentGraphic.SpriteFrames = Atlas;
-        _judgmentGraphic.Animation = GetJudgmentAnimation(type);
+        _judgmentGraphic.Animation = type.ToString();
         _judgmentGraphic.Frame = 0;
         _judgmentGraphic.Play();
-        _judgmentGraphic.Material = GetJudgmentMaterial(type);
+        _judgmentGraphic.Material = this.GetHitMaterial(type);
         _judgmentControl.Scale = GraphicScale * 1.1f;
         _judgmentControl.Position = pos ?? Vector2.Zero;
         _judgmentControl.Modulate = new Color(_judgmentControl.Modulate.R, _judgmentControl.Modulate.G,

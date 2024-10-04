@@ -11,14 +11,48 @@ namespace Rubicon.Extras.UI;
 /// <summary>
 /// A ComboDisplay class that mimics the animations from Dance Dance Revolution.
 /// </summary>
-public partial class DdrComboDisplay : ComboDisplay
+public partial class DdrComboDisplay : Control, IComboDisplay, IJudgmentMaterial
 {
+	/// <summary>
+	/// The textures to display. Should go from 0 to 9.
+	/// </summary>
+	[Export] public SpriteFrames Atlas;
+    
+	/// <summary>
+	/// The spacing of the textures.
+	/// </summary>
+	[Export] public float Spacing = 100f;
+
+	/// <summary>
+	/// The scale of the textures.
+	/// </summary>
+	[Export] public Vector2 GraphicScale = Vector2.One;
+	
+	/// <inheritdoc/>
+	public Material PerfectMaterial { get; set; } // dokibird glasses
+
+	/// <inheritdoc/>
+	public Material GreatMaterial { get; set; }
+
+	/// <inheritdoc/>
+	public Material GoodMaterial { get; set; }
+
+	/// <inheritdoc/>
+	public Material OkayMaterial { get; set; }
+    
+	/// <inheritdoc/>
+	public Material BadMaterial { get; set; }
+
+	/// <inheritdoc/>
+	public Material MissMaterial { get; set; }
+	
+	private HitType _lastRating = HitType.Perfect;
     private Array<Control> _comboGraphics = new();
     private Array<Tween> _comboTweens = new();
     private Vector2 _offset = Vector2.Zero;
 
     /// <inheritdoc/>
-    public override void Play(uint combo, HitType type, Vector2? offset)
+    public void Show(uint combo, HitType type, Vector2? offset)
     {
 	    if (RubiconGame.Instance != null && RubiconGame.Instance.PlayField != null)
 	    {
@@ -27,18 +61,18 @@ public partial class DdrComboDisplay : ComboDisplay
 		    _offset = offset ?? Vector2.Zero;
 
 		    Vector2 pos = barLine.GlobalPosition + (_offset * (UserSettings.Gameplay.DownScroll ? -1f : 1f));
-		    Play(combo, type, barLine.AnchorLeft, barLine.AnchorTop, barLine.AnchorRight, barLine.AnchorBottom, pos);
+		    Show(combo, type, barLine.AnchorLeft, barLine.AnchorTop, barLine.AnchorRight, barLine.AnchorBottom, pos);
 		    return;
 	    }
         
-	    Play(combo, type, 0f, 0f, 0f, 0f, offset);
+	    Show(combo, type, 0f, 0f, 0f, 0f, offset);
     }
     
     /// <inheritdoc/>
-    public override void Play(uint combo, HitType type, float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
+    public void Show(uint combo, HitType type, float anchorLeft, float anchorTop, float anchorRight, float anchorBottom, Vector2? pos)
     {
-	    if (type > LastRating)
-		    LastRating = type;
+	    if (type > _lastRating)
+		    _lastRating = type;
 	    
         for (int i = 0; i < _comboTweens.Count; i++)
 	        _comboTweens[i].Kill();
@@ -109,8 +143,8 @@ public partial class DdrComboDisplay : ComboDisplay
 		{
 			Control comboSpr = _comboGraphics[i];
 			AnimatedSprite2D comboGraphic = comboSpr.GetChild<AnimatedSprite2D>(0);
-			
-			comboGraphic.Material = GetMaterialFromRating(LastRating);
+
+			comboGraphic.Material = this.GetHitMaterial(_lastRating);
 			comboSpr.AnchorLeft = anchorLeft;
 			comboSpr.AnchorTop = anchorTop;
 			comboSpr.AnchorRight = anchorRight;
@@ -128,7 +162,7 @@ public partial class DdrComboDisplay : ComboDisplay
 		}
 
 		if (combo == 0)
-			LastRating = HitType.Perfect;
+			_lastRating = HitType.Perfect;
     }
     
     public override void _Process(double delta)

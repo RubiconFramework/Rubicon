@@ -164,7 +164,7 @@ public partial class Character2D : Node2D
 	    DanceIndex = Mathf.Wrap(DanceIndex, 0, DanceList.Length-1);
     }
 
-    public void Sing(string direction, bool holding = false, bool miss = false, string customPrefix = null, string customSuffix = null)
+    public virtual void Sing(string direction, bool holding = false, bool miss = false, string customPrefix = null, string customSuffix = null)
     {
 	    SingTimer = 0f;
 	    HoldTimer = 0f;
@@ -182,11 +182,11 @@ public partial class Character2D : Node2D
 	    };
 	    
 	    // Help
-	    if (AnimPlayer.HasAnimation(animName + "-loop"))
+	    if (AnimPlayer.HasAnimation(animName + "-post"))
 	    {
 		    CharacterAnimation postAnim = new CharacterAnimation
 		    {
-			    Name = animName + "-loop",
+			    Name = animName + "-post",
 			    Force = true,
 			    StartTime = 0f,
 			    CustomPrefix = customPrefix,
@@ -199,7 +199,7 @@ public partial class Character2D : Node2D
 	    PlayAnim(singAnim);
     }
 
-    public void PlayAnim(string anim, bool force = false, float startTime = 0f, string customPrefix = null, string customSuffix = null)
+    public virtual void PlayAnim(string anim, bool force = false, float startTime = 0f, string customPrefix = null, string customSuffix = null)
     {
 	    PlayAnim(new CharacterAnimation
 	    {
