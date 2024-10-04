@@ -1,3 +1,6 @@
+using System.Linq;
+using Rubicon.Core.Chart;
+
 namespace Rubicon.Core;
 
 /// <summary>
@@ -15,6 +18,29 @@ public static class ConductorUtility
     public static double MeasureToMs(double measure, double bpm, double timeSignatureNumerator = 4d)
     {
         return measure * (60000d / (bpm / timeSignatureNumerator));
+    }
+
+    /// <summary>
+    /// Converts milliseconds to measures based on a list of BPM changes.
+    /// </summary>
+    /// <param name="msTime">The time in milliseconds</param>
+    /// <param name="bpmList">The bpm list (<see cref="RubiChart.ConvertData"/> needs to be invoked beforehand!)</param>
+    /// <returns>The milliseconds, in measures</returns>
+    public static double MsToMeasures(double msTime, BpmInfo[] bpmList)
+    {
+        BpmInfo bpm = bpmList.Last();
+        for (int i = 0; i < bpmList.Length; i++)
+        {
+            if (bpmList[i].MsTime > msTime)
+            {
+                bpm = bpmList[i - 1];
+                break;
+            }
+        }
+
+        double measureValue = MeasureToMs(1, bpm.Bpm, bpm.TimeSignatureNumerator);
+        double offset = msTime - bpm.MsTime;
+        return offset / measureValue;
     }
 
     /// <summary>
